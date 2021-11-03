@@ -38,7 +38,10 @@ class Event(models.Model):
 
 
 class EventTags(models.Model):
-    """A choice of event types."""
+    """A choice of event types.
+
+    Use <input type="color"> field.
+    """
 
     name = models.CharField(max_length=20)
     color = models.CharField(max_length=7)  # Validate for hex color
