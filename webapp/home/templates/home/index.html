@@ -1,3 +1,164 @@
-{% extends home/header.html %}
+{% extends 'home/header.html' %}
 
 {% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/landing.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  <section class="container-flex text-center my-3">
+    <img id="header-logo" src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy Australia Logo">
+  </section>
+
+  <section class="container-fluid" id="tagline">
+    <p>
+      Galaxy Australia is an
+      <b> open, web-based </b>
+      platform for accessible, reproducible
+      and transparent computational research. Galaxy supports thousands of
+      documented and maintained tools that are free to use. We facilitate on-demand
+      training capacities and provision
+      <b>600GB</b> for Australian institutional (and 100GB for other) users.
+    </p>
+  </section>
+
+  <section class="row justify-content-between text-center" id="header-cards">
+    <div class="tile">
+      <div class="card-body">
+        <h1 class="card-title"><span class="material-icons">book</span></h1>
+        <p>
+          Galaxy Australia
+          <br>
+          Training Materials
+        </p>
+        <a class="ga-btn" href="#">Start learning</a>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="card-body">
+        <h1 class="card-title"><span class="material-icons">construction</span></h1>
+        <p>
+          Request Tools
+          <br>
+          &amp; Datasets
+        </p>
+        <a class="ga-btn" href="#">Request now</a>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="card-body">
+        <h1 class="card-title"><span class="material-icons">storage</span></h1>
+        <p>
+          Request Data
+          <br>
+          Quota
+        </p>
+        <a class="ga-btn" href="#">Request now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats-panel">
+    <div>
+      <iframe width="100%" height="200px" src="https://stats.genome.edu.au/d-solo/-D4mtTAik/for_embedding?refresh=10s&amp;orgId=1&amp;panelId=2" frameborder="0" onload=notifyLoaded(1);></iframe>
+    </div>
+
+    <div class="row justify-content-between">
+      <img class="loading" src="{% static 'home/img/spinner.svg' %}" alt="Loading stats">
+
+      <div class="col">
+        <iframe src="https://stats.genome.edu.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=19" width="95%" height="110px" frameborder="0" onload=notifyLoaded(2);></iframe>
+      </div>
+
+      <div class="col">
+        <iframe src="https://stats.genome.edu.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=21" width="95%" height="110px" frameborder="0" onload=notifyLoaded(3);></iframe>
+      </div>
+
+      <div class="col">
+        <iframe src="https://stats.genome.edu.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=23" width="95%" height="110px" frameborder="0" onload=notifyLoaded(4);></iframe>
+      </div>
+
+      <div class="col">
+        <iframe src="https://stats.genome.edu.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=25" width="95%" height="110px" frameborder="0" onload=notifyLoaded(5);></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="row no-gutter" id="news-events">
+    <div class="col-sm-6" id="news">
+      <a href="#"><h4>News</h4></a>
+      {% for item in news_items %}
+      <!-- Some hard-coded news items for testing -->
+      <a href="{{ item.url }}">
+        <article>
+          <div class="row">
+            <div class="col">
+              <p> {{ item.date|date:"Y-m-d" }} </p>
+              <p><b> {{ item.title }} </b></p>
+            </div>
+
+            <div class="col-sm-auto text-end">
+              <p> {{ item.icons_html|safe }} </p>
+            </div>
+          </div>
+        </article>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="col-sm-6">
+      <a href="#"><h4>Events and workshops</h4></a>
+      {% for item in event_items %}
+      <!-- Some hard-coded event items for testing -->
+      <a href="{{ item.url }}">
+        <article>
+          <div class="row">
+            <div class="col">
+              <p> {{ item.date|date:"Y-m-d" }} </p>
+              <p><b> {{ item.title }} </b></p>
+            </div>
+
+            <div class="col-sm-auto text-end">
+              <p> {{ item.icons_html|safe }} </p>
+            </div>
+          </div>
+        </article>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+
+  const IFRAME_COUNT = 5;
+  let loaded = [];
+
+  const notifyLoaded = (id) => {
+    console.log(`Pushing ID ${id} to loaded`)
+    loaded.push(id);
+    if (loaded.length === IFRAME_COUNT) {
+      console.log("Switching iframes to visible")
+      $('#stats-panel img.loading').hide();
+      $('#stats-panel iframe').css('opacity', '1');
+    }
+  }
+
+</script>
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

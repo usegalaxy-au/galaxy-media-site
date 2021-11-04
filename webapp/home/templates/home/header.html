@@ -1,12 +1,29 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title> Galaxy Australia </title>
-  </head>
-  <body>
 
+{% load static %}
+
+  <head>
+    {% include 'home/meta.html' %}
+    <title> {% if title %}{{ title }}{% else %}Galaxy Australia{% endif %} </title>
+    {% include 'home/imports.html' %}
+
+    {% block head %}
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+
+    {% block script %}
+    {% endblock %}
+
+    <script type="text/javascript">
+      $(document).ready( () => {
+        {% block onload %}
+        {% endblock %}
+      });
+    </script>
   </body>
 </html>

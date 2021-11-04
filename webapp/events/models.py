@@ -25,16 +25,8 @@ class Event(models.Model):
     url = models.URLField(null=True)      # Only if external content
     ics_url = models.URLField(null=True)  # Create in pre-save?
 
-    tags = models.ManyToManyField(
-        'EventTags',
-        on_delete=models.CASCADE,
-        null=True,
-    )
-    supporters = models.ManyToManyField(
-        'EventSupporters',
-        on_delete=models.CASCADE,
-        null=True,
-    )
+    tags = models.ManyToManyField('EventTags')
+    supporters = models.ManyToManyField('EventSupporters')
 
 
 class EventTags(models.Model):
