@@ -105,7 +105,11 @@
             </div>
 
             <div class="col-sm-auto text-end">
-              <p> {{ item.icons_html|safe }} </p>
+              <p>
+                {% for icon in item.icons %}
+                <span class="material-icons">{{ icon }}</span>
+                {% endfor %}
+              </p>
             </div>
           </div>
         </article>
@@ -126,7 +130,11 @@
             </div>
 
             <div class="col-sm-auto text-end">
-              <p> {{ item.icons_html|safe }} </p>
+              <p>
+                {% for icon in item.icons %}
+                <span class="material-icons">{{ icon }}</span>
+                {% endfor %}
+              </p>
             </div>
           </div>
         </article>
