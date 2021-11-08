@@ -4,3 +4,4 @@ django-timezone-field==4.2.1
 python-dotenv==0.19.1
 pillow
 gunicorn
+psycopg2-binary

@@ -4,7 +4,9 @@ django_timezone_field: https://github.com/mfogel/django-timezone-field
 """
 
 from django.db import models
-from django.contrib.postgres.fields import JSONField
+
+# Need PG database before this works
+# from django.contrib.postgres.fields import JSONField
 
 from timezone_field import TimeZoneField
 
@@ -17,7 +19,7 @@ class Event(models.Model):
     body = models.CharField(max_length=10000, null=True)
     organiser_name = models.CharField(max_length=100, null=True)
     organiser_email = models.EmailField(max_length=255, null=True)
-    address = JSONField(null=True)
+    # address = JSONField(null=True)
 
     datetime_start = models.DateTimeField()
     datetime_end = models.DateTimeField()

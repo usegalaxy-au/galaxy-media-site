@@ -8,8 +8,7 @@
   padding-top: 1rem;
   background-color: #181b1f;
   border: 1px solid #181b1f;
-  border-top-right-radius: .5rem;
-  border-top-left-radius: .5rem;
+  border-radius: .5rem;
   margin-bottom: 0;
 }
 #stats-panel iframe {
@@ -28,9 +27,6 @@
 #news-events {
   font-size: 0.8rem;
   margin-top: 0;
-  border: 1px solid #181b1f;
-  border-bottom-right-radius: .5rem;
-  border-bottom-left-radius: .5rem;
 }
 #news-events > div {
   padding: 2rem .5rem;

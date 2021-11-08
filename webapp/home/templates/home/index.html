@@ -15,7 +15,7 @@
     <img id="header-logo" src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy Australia Logo">
   </section>
 
-  <section class="container-fluid" id="tagline">
+  <section class="container-fluid my-5" id="tagline">
     <p>
       Galaxy Australia is an
       <b> open, web-based </b>
@@ -56,9 +56,9 @@
       <div class="card-body">
         <h1 class="card-title"><span class="material-icons">storage</span></h1>
         <p>
-          Request Data
+          Request extra
           <br>
-          Quota
+          storage
         </p>
         <a class="ga-btn" href="#">Request now</a>
       </div>
@@ -92,7 +92,7 @@
   </section>
 
   <section class="row no-gutter" id="news-events">
-    <div class="col-sm-6" id="news">
+    <div class="col-sm-6 px-3" id="news">
       <a href="#"><h4>News</h4></a>
       {% for item in news_items %}
       <!-- Some hard-coded news items for testing -->
@@ -113,7 +113,7 @@
       {% endfor %}
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-6 px-3">
       <a href="#"><h4>Events and workshops</h4></a>
       {% for item in event_items %}
       <!-- Some hard-coded event items for testing -->
