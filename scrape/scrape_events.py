@@ -21,6 +21,7 @@ READ_FIELDS = [
 
 WRITE_COLUMNS = [
     'id',
+    'date',
     'title',
     'starts',
     'ends',
@@ -28,12 +29,13 @@ WRITE_COLUMNS = [
     'organiser_name',
     'organiser_email',
     'address',
+    'body',
 ]
 
 
-def write_event(i, meta, body):
+def write_event(i, date_str, meta, body):
     """Write an event item as a csv row."""
-    line = [i]
+    line = [i, date_str]
 
     for f in READ_FIELDS:
         v = meta.get(f)
@@ -70,6 +72,9 @@ def write_event(i, meta, body):
             raise ValueError(f'Unexpected type for field {f}: {type(v)}')
         line.append(value)
 
+    if body:
+        line.append(csv_escape(body))
+
     with open(EVENTS_OUT_PATH, 'a') as f:
         f.write('\t'.join([
             str(x) for x in line
@@ -90,6 +95,20 @@ def make_event_relations(i, k, v):
                 f.write(f'{i}\t{name}\n')
 
 
+def csv_escape(text):
+    """Escape functional characters in text for embedding in CSV."""
+    return '"' + text.replace('"', '\\"') + '"'
+
+
+def parse_date(path):
+    """Parse date from filename."""
+    fname = os.path.basename(path)
+    date = fname[:10]
+    # Assert dt format
+    datetime.datetime.strptime(date, '%Y-%m-%d')
+    return date
+
+
 with open(EVENTS_OUT_PATH, 'w') as f:
     f.write('\t'.join(WRITE_COLUMNS) + '\n')
 
@@ -97,14 +116,14 @@ for f in ('data/event_supporters.tab', 'data/event_tags.tab'):
     if os.path.exists(f):
         os.remove(f)
 
-events_src_files = [
+events_src_paths = [
     os.path.join(EVENTS_SRC_DIR, x)
     for x in os.listdir(EVENTS_SRC_DIR)
     if x.endswith('.md')
 ]
 
-for i, fname in enumerate(sorted(events_src_files)):
-    with open(fname) as f:
+for i, path in enumerate(sorted(events_src_paths)):
+    with open(path) as f:
         content = f.read()
         try:
             meta_str, body = [x for x in content.split('---\n', 2) if x]
@@ -113,29 +132,5 @@ for i, fname in enumerate(sorted(events_src_files)):
             body = None
         meta = yaml.load(meta_str, Loader=yaml.FullLoader)
     print(f'Writing event {i}')
-    write_event(i, meta, body)
-
-
-###
-
-# from copy import deepcopy
-
-
-# def recursive_merge(x, y):
-#     """Perform recursive merge of dictionaries."""
-#     if not (type(x) == dict and type(y) == dict):
-#         if not (type(x) == dict or type(y) == dict):
-#             return
-#         if not type(x) == dict:
-#             return y
-#         if not type(y) == dict:
-#             return x
-#     z = {}
-#     overlapping_keys = x.keys() & y.keys()
-#     for key in overlapping_keys:
-#         z[key] = recursive_merge(x[key], y[key])
-#     for key in x.keys() - overlapping_keys:
-#         z[key] = deepcopy(x[key])
-#     for key in y.keys() - overlapping_keys:
-#         z[key] = deepcopy(y[key])
-#     return z
+    date_str = parse_date(path)
+    write_event(i, date_str, meta, body)
