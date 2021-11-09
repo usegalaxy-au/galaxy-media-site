@@ -2,8 +2,8 @@
 
 import os
 import yaml
-import json
-import datetime
+
+import parse
 
 NEWS_SRC_DIR = 'src/_posts'
 NEWS_OUT_PATH = 'data/news.tab'
@@ -16,50 +16,40 @@ READ_FIELDS = [
 ]
 
 WRITE_COLUMNS = [
-    'id',
-    'date',
-    'title',
-    'external',
-    'body',
+    ('id', 'id'),
+    ('datetime_created', 'date'),
+    ('title', 'title'),
+    ('body', 'body'),
+    ('external', 'external'),
 ]
 
 
-def write_news(i, date_str, meta, body):
+def write_news(meta):
     """Write an news item as a csv row."""
-    line = [i, date_str]
-    for f in READ_FIELDS:
-        v = meta.get(f)
-        if not v:
-            line.append('')
-            continue
-        if f in ('tags', 'supporters'):
-            make_news_relations(i, f, v)
-            continue
-        elif type(v) == dict:
-            value = json.dumps(v)
-        elif type(v) == datetime.date:
-            value = v.strftime('%Y-%m-%d')
-        elif type(v) == str:
-            value = v
+    line = []
+    for col, key in WRITE_COLUMNS:
+        if type(key) == str:
+            val = meta.get(key, '')
         else:
-            raise ValueError(f'Unexpected type for field {f}: {type(v)}')
-        line.append(value)
-
-    if body:
-        line.append(csv_escape(body))
+            val = key(meta)
+        line.append(str(val).strip())
 
     with open(NEWS_OUT_PATH, 'a') as f:
-        f.write('\t'.join([
-            str(x) for x in line
-        ]) + '\n')
+        f.write('\t'.join(line) + '\n')
+
+    for k in ('tags', 'supporters'):
+        make_news_relations(k, meta)
 
 
-def make_news_relations(i, k, v):
+def make_news_relations(k, meta):
     """Create relations between news and other <k> with names <v>.
 
     This table can be bulk-imported to Django M2M through table once other
     names have been text-replaced with the corresponding pk.
     """
+    i = meta['id']
+    v = meta.get(k)
+
     with open(f'data/news_{k}.tab', 'a') as f:
         if type(v) == str:
             f.write(f'{i}\t{v}\n')
@@ -68,25 +58,8 @@ def make_news_relations(i, k, v):
                 f.write(f'{i}\t{name}\n')
 
 
-def csv_escape(text):
-    """Escape functional characters in text for embedding in CSV."""
-    return '"' + text.replace('"', '\\"') + '"'
-
-
-def parse_date(path):
-    """Parse date from filename."""
-    fname = os.path.basename(path)
-    date = fname[:10]
-    # Assert dt format
-    try:
-        datetime.datetime.strptime(date, '%Y-%m-%d')
-    except Exception:
-        raise ValueError(f"Couldn't parse date from filename {fname}")
-    return date
-
-
 with open(NEWS_OUT_PATH, 'w') as f:
-    f.write('\t'.join(WRITE_COLUMNS) + '\n')
+    f.write('\t'.join([x[0] for x in WRITE_COLUMNS]) + '\n')
 
 for f in ('data/news_supporters.tab', 'data/news_tags.tab'):
     if os.path.exists(f):
@@ -108,5 +81,7 @@ for i, path in enumerate(sorted(news_src_paths)):
             body = None
         meta = yaml.load(meta_str, Loader=yaml.FullLoader)
     print(f'Writing news {i}')
-    date_str = parse_date(path)
-    write_news(i, date_str, meta, body)
+    meta['id'] = i
+    meta['date'] = parse.date_from_filepath(path)
+    meta['body'] = parse.csv_escape(body)
+    write_news(meta)

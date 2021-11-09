@@ -20,10 +20,12 @@ class News(models.Model):
 
     datetime_created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
-    body = models.CharField(max_length=10000, null=True)
-    external = models.URLField(null=True)
+    body = models.CharField(
+        max_length=10000, null=True, help_text='Enter valid markdown')
+    external = models.URLField(null=True, help_text='Link to external content')
     tags = models.ManyToManyField(Tag)
-    supporters = models.ManyToManyField(Supporter)
+    supporters = models.ManyToManyField(
+        Supporter, help_text='Show logos/links')
 
     @property
     def slug(self):

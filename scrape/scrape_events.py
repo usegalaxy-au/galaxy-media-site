@@ -2,8 +2,8 @@
 
 import os
 import yaml
-import json
-import datetime
+
+import parse
 
 EVENTS_SRC_DIR = 'src/_events'
 EVENTS_OUT_PATH = 'data/events.tab'
@@ -20,73 +20,55 @@ READ_FIELDS = [
 ]
 
 WRITE_COLUMNS = [
-    'id',
-    'date',
-    'title',
-    'starts',
-    'ends',
-    'external',
-    'organiser_name',
-    'organiser_email',
-    'address',
-    'body',
+    # In order of django database table
+    # Map django columns to Jekyll meta key or parser function
+    ('id', 'id'),
+    ('datetime_created', 'date'),
+    ('title', 'title'),
+    ('body', 'body'),
+    ('organiser_name', parse.organiser_name),
+    ('organiser_email', parse.organiser_email),
+    ('timezone', lambda x: 'australia/sydney'),
+    ('external', 'external'),
+    ('date_end', parse.date_start),
+    ('date_start', parse.date_end),
+    ('time_end', None),
+    ('time_start', None),
+    ('address', 'location'),
 ]
 
 
-def write_event(i, date_str, meta, body):
+def write_event(meta):
     """Write an event item as a csv row."""
-    line = [i, date_str]
-
-    for f in READ_FIELDS:
-        v = meta.get(f)
-
-        if f == 'organiser':
-            if not v:
-                line.append('')
-                line.append('')
-            elif type(v) == str:
-                line.append(v)
-                line.append('')
-            else:
-                line.append(v.get('name', ''))
-                line.append(v.get('email', ''))
-            continue
-
-        if not v:
-            line.append('')
-            continue
-
-        if f in ('tags', 'supporters'):
-            make_event_relations(i, f, v)
-            continue
-
-        if f == 'location':
-            if type(v) == str:
-                v = {'name': v.title()}
-            value = json.dumps(v)
-        elif type(v) == datetime.date:
-            value = v.strftime('%Y-%m-%d')
-        elif type(v) == str:
-            value = v
+    line = []
+    for col, key in WRITE_COLUMNS:
+        if type(key) == str:
+            val = meta.get(key, '')
+        elif key is None:
+            val = ''
         else:
-            raise ValueError(f'Unexpected type for field {f}: {type(v)}')
-        line.append(value)
-
-    if body:
-        line.append(csv_escape(body))
+            val = key(meta)
+        line.append(str(val).strip())
 
     with open(EVENTS_OUT_PATH, 'a') as f:
-        f.write('\t'.join([
-            str(x) for x in line
-        ]) + '\n')
+        f.write('\t'.join(line) + '\n')
+
+    for k in ('tags', 'supporters'):
+        make_event_relations(k, meta)
 
 
-def make_event_relations(i, k, v):
+def make_event_relations(k, meta):
     """Create relations between event and other <k> with names <v>.
 
     This table can be bulk-imported to Django M2M through table once other
     names have been text-replaced with the corresponding pk.
     """
+    i = meta['id']
+    v = meta.get(k)
+
+    if not v:
+        return
+
     with open(f'data/event_{k}.tab', 'a') as f:
         if type(v) == str:
             f.write(f'{i}\t{v}\n')
@@ -95,22 +77,8 @@ def make_event_relations(i, k, v):
                 f.write(f'{i}\t{name}\n')
 
 
-def csv_escape(text):
-    """Escape functional characters in text for embedding in CSV."""
-    return '"' + text.replace('"', '\\"') + '"'
-
-
-def parse_date(path):
-    """Parse date from filename."""
-    fname = os.path.basename(path)
-    date = fname[:10]
-    # Assert dt format
-    datetime.datetime.strptime(date, '%Y-%m-%d')
-    return date
-
-
 with open(EVENTS_OUT_PATH, 'w') as f:
-    f.write('\t'.join(WRITE_COLUMNS) + '\n')
+    f.write('\t'.join([x[0] for x in WRITE_COLUMNS]) + '\n')
 
 for f in ('data/event_supporters.tab', 'data/event_tags.tab'):
     if os.path.exists(f):
@@ -132,5 +100,7 @@ for i, path in enumerate(sorted(events_src_paths)):
             body = None
         meta = yaml.load(meta_str, Loader=yaml.FullLoader)
     print(f'Writing event {i}')
-    date_str = parse_date(path)
-    write_event(i, date_str, meta, body)
+    meta['id'] = i
+    meta['date'] = parse.date_from_filepath(path)
+    meta['body'] = parse.csv_escape(body)
+    write_event(meta)

@@ -2,7 +2,8 @@
 
 from django import forms
 
-from .models import Event
+from home.widgets import ColorInput
+from .models import Event, Tag
 
 
 class EventAdminForm(forms.ModelForm):
@@ -17,5 +18,18 @@ class EventAdminForm(forms.ModelForm):
                 'rows': 10,
                 'cols': 80,
             }),
+        }
+        fields = '__all__'
+
+
+class TagAdminForm(forms.ModelForm):
+    """Update and create tags."""
+
+    class Meta:
+        """Form metadata."""
+
+        model = Tag
+        widgets = {
+            'color': ColorInput,
         }
         fields = '__all__'

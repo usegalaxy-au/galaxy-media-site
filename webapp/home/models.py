@@ -37,8 +37,12 @@ class Notice(models.Model):
     )
 
     notice_class = models.CharField(
-        max_length=16, choices=NOTICE_CLASSES, default=INFO
+        max_length=16, choices=NOTICE_CLASSES, default=INFO,
     )
     title = models.CharField(max_length=100)
-    body = models.CharField(max_length=2000)
-    material_icon = models.CharField(max_length=50, null=True)
+    body = models.CharField(max_length=2000, help_text='Enter valid markdown')
+    material_icon = models.CharField(
+        max_length=50, null=True, blank=True,
+        help_text=('A valid material design icon identifier.'
+                   ' See: https://fonts.google.com/icons')
+        )

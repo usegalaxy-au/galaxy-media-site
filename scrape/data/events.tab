@@ -1,9 +1,8 @@
-id	date	title	starts	ends	external	organiser_name	organiser_email	address	body
-0	2018-07-17	GTN CoFest on Metagenomics Training Material	2018-08-17	2018-08-17		Galaxy Training Network	galaxy-training@lists.galaxyproject.org		"
-The Galaxy Training Network has developed an infrastructure to deliver interactive training based on Galaxy: one central place ([https://training.galaxyproject.org](https://training.galaxyproject.org)) to aggregate training materials covering many current research topics. Each topic is supported by different tutorials developed and maintained by the community via a GitHub repository: [https://github.com/galaxyproject/training-material](https://github.com/galaxyproject/training-material).
+id	datetime_created	title	body	organiser_name	organiser_email	timezone	external	date_end	date_start	time_end	time_start	address
+0	2018-07-17	GTN CoFest on Metagenomics Training Material	"The Galaxy Training Network has developed an infrastructure to deliver interactive training based on Galaxy: one central place ([https://training.galaxyproject.org](https://training.galaxyproject.org)) to aggregate training materials covering many current research topics. Each topic is supported by different tutorials developed and maintained by the community via a GitHub repository: [https://github.com/galaxyproject/training-material](https://github.com/galaxyproject/training-material).
 
 <div class=\"multiple-img\">
-  <img src=\"/assets/media/gtn_cofests.png\" style=\"max-width: 500px; margin: 20px auto;\" alt=\"GTN cofest logo\" />
+  <img src=\"/media/uploads/gtn_cofests.png\" style=\"max-width: 500px; margin: 20px auto;\" alt=\"GTN cofest logo\" />
 </div>
 
 The Galaxy Training Network is organizing regular online CoFests (Collaboration/Contribution Fests) every 3 months on the 3rd Friday for a day of the collaborative work on the training content.
@@ -14,18 +13,14 @@ The first one will be on the 17th of August. We plan to focus on metagenomics tr
 
 *If you want to join to help or to talk and learn about the project, let us know on the [Gitter channel](https://gitter.im/Galaxy-Training-Network/Lobby).
 
-Bérénice and Saskia will be online between 9am and 6pm (CEST) but people from other time zones should feel welcome to continue even before/after. We will keep an eye on Gitter and GitHub*
-
----
-"
-1	2018-11-07	2019 Galaxy Admin Training	2019-01-28	2019-02-01		Penn State University	galaxy@informatik.uni-freiburg.de	{"city": "Penn State", "region": "Pennsylvania", "country": "USA"}	"
-**[Galaxy Admin Training](https://github.com/galaxyproject/dagobah-training)** will be offered January
+Bérénice and Saskia will be online between 9am and 6pm (CEST) but people from other time zones should feel welcome to continue even before/after. We will keep an eye on Gitter and GitHub*"	Galaxy Training Network	Galaxy Training Network	australia/sydney		2018-08-17	2018-08-17
+1	2018-11-07	2019 Galaxy Admin Training	"**[Galaxy Admin Training](https://github.com/galaxyproject/dagobah-training)** will be offered January
 28 through February 1 at Penn State University, where the Galaxy Project got started over ten years ago.
 The workshop is split into a [2 day introductory session](https://github.com/galaxyproject/dagobah-training#basic-sessions) and a [3 day advanced topics session](https://github.com/galaxyproject/dagobah-training#advanced-sessions).  Participants can register for one or both sessions.
 
 This workshop will cover [basic](https://github.com/galaxyproject/dagobah-training#basic-sessions)
 and [advanced topics](https://github.com/galaxyproject/dagobah-training#advanced-sessions) you
-need to know to set up your own production, high-performance and multi-user Galaxy instance.  
+need to know to set up your own production, high-performance and multi-user Galaxy instance.
 Sessions will be *intensive and hands-on*, and taught by experienced instructors from the Galaxy Community.
 Participants will learn how to install, configure, customize, and extend their own Galaxy servers.
 Topics include tool configuration, authentication and user management, using heterogeneous storage and
@@ -38,16 +33,12 @@ and across the tree of life.
 
 For more information please visit the [Galaxy hub](https://galaxyproject.org/events/2019-admin-training/).
 
-![Galaxy Admin Training 2019](https://galaxyproject.org/events/2019-admin-training/2019-admin-training-logo.png)
-"
-2	2018-12-01	2019 Galaxy Community Conference (GCC2019)	2019-07-01	2019-07-06	https://galaxyproject.org/events/gcc2019/	Freiburg Galaxy Team	galaxy@informatik.uni-freiburg.de	{"name": "Konzerthaus Freiburg", "street": "Konrad-Adenauer-Platz 1", "postal": 79098, "city": "Freiburg im Breisgau", "region": "Baden-W\u00fcrttemberg", "country": "Germany"}	"
-We are pleased to announce that GCC2019 will be held in Freiburg, Germany, 1-6 July. Like previous Galaxy Community Conferences, GCC2019 will feature invited keynotes, accepted talks, posters, and demos, birds-of-a-feather gatherings, multiple days of collaborative work, and plenty of opportunities to network with your fellow data-intensive researchers and practitioners. If you are working in data-intensive life science, there is no better place to be.
-"
-3	2019-02-11	GTN CoFest on Training Material	2019-02-21	2019-02-21		Galaxy Training Network	galaxy-training@lists.galaxyproject.org		"
-The Galaxy Training Network has developed an infrastructure to deliver interactive training based on Galaxy: one central place ([https://training.galaxyproject.org](https://training.galaxyproject.org)) to aggregate training materials covering many current research topics. Each topic is supported by different tutorials developed and maintained by the community via a GitHub repository: [https://github.com/galaxyproject/training-material](https://github.com/galaxyproject/training-material).
+![Galaxy Admin Training 2019](https://galaxyproject.org/events/2019-admin-training/2019-admin-training-logo.png)"	Penn State University	Penn State University	australia/sydney		2019-01-28	2019-02-01			{'city': 'Penn State', 'region': 'Pennsylvania', 'country': 'USA'}
+2	2018-12-01	2019 Galaxy Community Conference (GCC2019)	"We are pleased to announce that GCC2019 will be held in Freiburg, Germany, 1-6 July. Like previous Galaxy Community Conferences, GCC2019 will feature invited keynotes, accepted talks, posters, and demos, birds-of-a-feather gatherings, multiple days of collaborative work, and plenty of opportunities to network with your fellow data-intensive researchers and practitioners. If you are working in data-intensive life science, there is no better place to be."	Freiburg Galaxy Team	Freiburg Galaxy Team	australia/sydney	https://galaxyproject.org/events/gcc2019/	2019-07-01	2019-07-06			{'name': 'Konzerthaus Freiburg', 'street': 'Konrad-Adenauer-Platz 1', 'postal': 79098, 'city': 'Freiburg im Breisgau', 'region': 'Baden-Württemberg', 'country': 'Germany'}
+3	2019-02-11	GTN CoFest on Training Material	"The Galaxy Training Network has developed an infrastructure to deliver interactive training based on Galaxy: one central place ([https://training.galaxyproject.org](https://training.galaxyproject.org)) to aggregate training materials covering many current research topics. Each topic is supported by different tutorials developed and maintained by the community via a GitHub repository: [https://github.com/galaxyproject/training-material](https://github.com/galaxyproject/training-material).
 
 <div class=\"multiple-img\">
-  <img src=\"/assets/media/gtn_cofests.png\" style=\"max-width: 500px; margin: 20px auto;\" alt=\"GTN cofest logo\" />
+  <img src=\"/media/uploads/gtn_cofests.png\" style=\"max-width: 500px; margin: 20px auto;\" alt=\"GTN cofest logo\" />
 </div>
 
 The Galaxy Training Network is organizing regular online CoFests (Collaboration/Contribution Fests) every 3 months on the 3rd Friday for a day of the collaborative work on the training content.
@@ -58,12 +49,8 @@ The next one will be on the 21st of February. Anyone who would like to contribut
 
 *If you want to join to help or to talk and learn about the project, let us know on the [Gitter channel](https://gitter.im/Galaxy-Training-Network/Lobby).
 
-Bérénice and Saskia will be online between 9am and 6pm (CEST) but people from other time zones should feel welcome to continue even before/after. We will keep an eye on Gitter and GitHub*
-
----
-"
-4	2019-03-06	Galaxy training workshops Brisbane - April 2019	2019-04-01	2018-04-05		QFAB	training@qfab.org	{"name": "Translational Research Institute (TRI)", "street": "37 Kent St", "city": "Woolloongabba", "region": "Queensland", "country": "Australia"}	"
-The Queensland Facility for Advanced Bioinformatics (QFAB) in association with Galaxy Australia are running 5 x 1 day long workshops on various analysis techniques using Galaxy Australia. These workshops will be run at the Translational Research Institute in Woolloongabba, Brisbane, Queensland.
+Bérénice and Saskia will be online between 9am and 6pm (CEST) but people from other time zones should feel welcome to continue even before/after. We will keep an eye on Gitter and GitHub*"	Galaxy Training Network	Galaxy Training Network	australia/sydney		2019-02-21	2019-02-21
+4	2019-03-06	Galaxy training workshops Brisbane - April 2019	"The Queensland Facility for Advanced Bioinformatics (QFAB) in association with Galaxy Australia are running 5 x 1 day long workshops on various analysis techniques using Galaxy Australia. These workshops will be run at the Translational Research Institute in Woolloongabba, Brisbane, Queensland.
 
 <br/>
 <style>
@@ -92,12 +79,8 @@ The Queensland Facility for Advanced Bioinformatics (QFAB) in association with G
 
 <br/>
 
-Sign up here: [https://qfab.org/training#NGS_Workshops](https://qfab.org/training#NGS_Workshops)
-
----
-"
-5	2019-03-06	Galaxy training workshops Melbourne - March 2019	2019-03-21	2018-03-26		Melbourne Bioinformatics	help@genome.edu.au	{"name": "Melbourne Bioinformatics", "street": "187 Grattan St", "city": "Carlton", "region": "Victoria", "country": "Australia"}	"
-Melbourne Bioinformatics, in association with Galaxy Australia and EMBL-ABR will be running a series of half day Galaxy Training Workshops in March 2019. The workshops will be run at Melbourne Bioinformatics, 187 Grattan St, Carlton.
+Sign up here: [https://qfab.org/training#NGS_Workshops](https://qfab.org/training#NGS_Workshops)"	QFAB	QFAB	australia/sydney		2019-04-01	2018-04-05			{'name': 'Translational Research Institute (TRI)', 'street': '37 Kent St', 'city': 'Woolloongabba', 'region': 'Queensland', 'country': 'Australia'}
+5	2019-03-06	Galaxy training workshops Melbourne - March 2019	"Melbourne Bioinformatics, in association with Galaxy Australia and EMBL-ABR will be running a series of half day Galaxy Training Workshops in March 2019. The workshops will be run at Melbourne Bioinformatics, 187 Grattan St, Carlton.
 
 <br/>
 <style>
@@ -133,12 +116,8 @@ There are also some non-Galaxy workshops being run in and around the same dates.
 
 <br/>
 
-Sign up here: [https://www.melbournebioinformatics.org.au/training-and-events/](https://www.melbournebioinformatics.org.au/training-and-events/)
-
----
-"
-6	2019-07-29	Galaxy training workshops Brisbane - July - August 2019	2019-07-29	2018-08-02		QFAB	training@qfab.org	{"name": "Translational Research Institute (TRI)", "street": "37 Kent St", "city": "Woolloongabba", "region": "Queensland", "country": "Australia"}	"
-The Queensland Facility for Advanced Bioinformatics (QFAB) in association with Galaxy Australia are running 5 x 1 day long workshops on various analysis techniques using Galaxy Australia. These workshops will be run at the Translational Research Institute in Woolloongabba, Brisbane, Queensland.
+Sign up here: [https://www.melbournebioinformatics.org.au/training-and-events/](https://www.melbournebioinformatics.org.au/training-and-events/)"	Melbourne Bioinformatics	Melbourne Bioinformatics	australia/sydney		2019-03-21	2018-03-26			{'name': 'Melbourne Bioinformatics', 'street': '187 Grattan St', 'city': 'Carlton', 'region': 'Victoria', 'country': 'Australia'}
+6	2019-07-29	Galaxy training workshops Brisbane - July - August 2019	"The Queensland Facility for Advanced Bioinformatics (QFAB) in association with Galaxy Australia are running 5 x 1 day long workshops on various analysis techniques using Galaxy Australia. These workshops will be run at the Translational Research Institute in Woolloongabba, Brisbane, Queensland.
 
 <br/>
 <style>
@@ -167,11 +146,8 @@ The Queensland Facility for Advanced Bioinformatics (QFAB) in association with G
 
 <br/>
 
-Sign up here: [https://qfab.org/training#NGS_Workshops](https://qfab.org/training#NGS_Workshops)
-
----
-"
-7	2019-08-20	Galaxy @ INCOB 2019 - September 08-12, Jakarta, Indonesia.	2019-09-08	2018-09-12		Galaxy Australia	g.price@qfab.org	{"name": "Universitas Yarsi", "street": "Jalan Letjen Suprapto Kav 13. Cempaka Putih.", "city": "Central Jakarta", "country": "Indonesia"}	"![INCOB 2019](/assets/media/incob-logo-square.jpeg)
+Sign up here: [https://qfab.org/training#NGS_Workshops](https://qfab.org/training#NGS_Workshops)"	QFAB	QFAB	australia/sydney		2019-07-29	2018-08-02			{'name': 'Translational Research Institute (TRI)', 'street': '37 Kent St', 'city': 'Woolloongabba', 'region': 'Queensland', 'country': 'Australia'}
+7	2019-08-20	Galaxy @ INCOB 2019 - September 08-12, Jakarta, Indonesia.	"![INCOB 2019](/media/uploads/incob-logo-square.jpeg)
 
 **Galaxy**, and especially the [**Galaxy Australia community**](https://www.embl-abr.org.au/galaxyaustralia/) will have a strong presence at [INCOB 2019](http://incob2019.org/) in Jakarta. There will be an [Introduction to Galaxy workshop](http://incob2019.org/workshop2/) and a conference talk about the Galaxy Australia platform.
 
@@ -199,12 +175,8 @@ In addition, we are hoping to bring together all interested parties to discuss l
 |------|------|---------------|--------------|
 | TBD  | TBD  | Building a regional Galaxy Community and Platform | Gareth Price, Simon Gladman, Nuwan Goonesekera, Dave Clements |
 | Wed Sept 11 | 13:30-17:00 | Workshop : An introduction to the Galaxy platform for computational biology – with real-world hands-on demonstration | Gareth, Simon, Nuwan, Dave |
-| TBD | TBD | Galaxy Australia - a truly national open-source bioinformatics platform | Gareth Price|
-
----
-"
-8	2019-08-21	Galaxy training workshops Brisbane - September 2019	2019-09-23	2018-09-27		QFAB	training@qfab.org	{"name": "Translational Research Institute (TRI)", "street": "37 Kent St", "city": "Woolloongabba", "region": "Queensland", "country": "Australia"}	"
-The Queensland Facility for Advanced Bioinformatics (QFAB) in association with Galaxy Australia are running 5 x 1 day long workshops on various analysis techniques using Galaxy Australia. These workshops will be run at the Translational Research Institute in Woolloongabba, Brisbane, Queensland.
+| TBD | TBD | Galaxy Australia - a truly national open-source bioinformatics platform | Gareth Price|"	Galaxy Australia	Galaxy Australia	australia/sydney		2019-09-08	2018-09-12			{'name': 'Universitas Yarsi', 'street': 'Jalan Letjen Suprapto Kav 13. Cempaka Putih.', 'city': 'Central Jakarta', 'country': 'Indonesia'}
+8	2019-08-21	Galaxy training workshops Brisbane - September 2019	"The Queensland Facility for Advanced Bioinformatics (QFAB) in association with Galaxy Australia are running 5 x 1 day long workshops on various analysis techniques using Galaxy Australia. These workshops will be run at the Translational Research Institute in Woolloongabba, Brisbane, Queensland.
 
 <br/>
 <style>
@@ -233,45 +205,25 @@ The Queensland Facility for Advanced Bioinformatics (QFAB) in association with G
 
 <br/>
 
-Sign up here: [https://qfab.org/training#NGS_Workshops](https://qfab.org/training#NGS_Workshops)
-
----
-"
-9	2020-01-15	WEBINAR: Bionitio - building better bioinformatics tools (with batteries included)	2020-01-20	2020-01-20		Australian Biocommons	training@biocommons.org.au		"
-The [Australian Biocommons](https://biocommons.org.au) is presenting a webinar on the 20th of January from 1 - 2pm AEDT (12 - 1pm AEST) for bioinformatics developers on a tool called [Bionitio](https://github.com/bionitio-team/bionitio) that automates the process of starting a new bioinformatics software project.
+Sign up here: [https://qfab.org/training#NGS_Workshops](https://qfab.org/training#NGS_Workshops)"	QFAB	QFAB	australia/sydney		2019-09-23	2018-09-27			{'name': 'Translational Research Institute (TRI)', 'street': '37 Kent St', 'city': 'Woolloongabba', 'region': 'Queensland', 'country': 'Australia'}
+9	2020-01-15	WEBINAR: Bionitio - building better bioinformatics tools (with batteries included)	"The [Australian Biocommons](https://biocommons.org.au) is presenting a webinar on the 20th of January from 1 - 2pm AEDT (12 - 1pm AEST) for bioinformatics developers on a tool called [Bionitio](https://github.com/bionitio-team/bionitio) that automates the process of starting a new bioinformatics software project.
 <br/>
 <p>
-Details and registration information of the webinar can be found at [https://www.biocommons.org.au/events/bionitio-2019](https://www.biocommons.org.au/events/bionitio-2019)
+Details and registration information of the webinar can be found at [https://www.biocommons.org.au/events/bionitio-2019](https://www.biocommons.org.au/events/bionitio-2019)"	Australian Biocommons	Australian Biocommons	australia/sydney		2020-01-20	2020-01-20
+10	2020-01-15	WEBINAR: Data visualization in bioinformatics	"The [Australian Biocommons](https://biocommons.org.au) is presenting a webinar on the 3rd of February from 12 - 1pm AEDT (11am - 12pm AEST) on data visualisation in bioinformatics. The webinar will be presented by Martin Krzywinski from Canada's Michael Smith Genome Sciences Center. Martin will provide a highlights tour of data visualisation in bioinformatics.
 
----
-"
-10	2020-01-15	WEBINAR: Data visualization in bioinformatics	2020-02-03	2020-02-03		Australian Biocommons	training@biocommons.org.au		"
-The [Australian Biocommons](https://biocommons.org.au) is presenting a webinar on the 3rd of February from 12 - 1pm AEDT (11am - 12pm AEST) on data visualisation in bioinformatics. The webinar will be presented by Martin Krzywinski from Canada's Michael Smith Genome Sciences Center. Martin will provide a highlights tour of data visualisation in bioinformatics.
-
-Details of the webinar including registration information can be found at [https://www.biocommons.org.au/events/krzywinski](https://www.biocommons.org.au/events/krzywinski)
-
----
-"
-11	2020-02-13	CANCELLED - Galaxy for Scientists – Advanced Hands-on Tutorials @ C3DIS 2020 Melbourne	2020-03-19	2020-03-19		CSIRO, QFAB, Melbourne Bioinformatics		{"name": "Melbourne Convention and Exhibition Centre", "street": "1 Convention Centre Pl", "city": "South Wharf, Melbourne", "country": "Australia"}	"
-CSIRO along with the Queensland Facility for Advanced Bioinformatics (QFAB) and Melbourne Bioinformatics will be conducting a workshop on [**Galaxy for Scientists – Advanced Hands-on Tutorials**](http://www.c3dis.com/4007) as part of the [**Collaborative Conference on Computational and Data Intensive Science 2020 (C3DIS 2020)**](http://www.c3dis.com/) on March the 18th 2020 from 9:30am until 12:30pm.
+Details of the webinar including registration information can be found at [https://www.biocommons.org.au/events/krzywinski](https://www.biocommons.org.au/events/krzywinski)"	Australian Biocommons	Australian Biocommons	australia/sydney		2020-02-03	2020-02-03
+11	2020-02-13	CANCELLED - Galaxy for Scientists – Advanced Hands-on Tutorials @ C3DIS 2020 Melbourne	"CSIRO along with the Queensland Facility for Advanced Bioinformatics (QFAB) and Melbourne Bioinformatics will be conducting a workshop on [**Galaxy for Scientists – Advanced Hands-on Tutorials**](http://www.c3dis.com/4007) as part of the [**Collaborative Conference on Computational and Data Intensive Science 2020 (C3DIS 2020)**](http://www.c3dis.com/) on March the 18th 2020 from 9:30am until 12:30pm.
 
 The C3DIS 2020 conference will be held at the Melbourne Convention and Exhibition Centre from March 16th to 20th 2020.
 
-Details of the workshop can be found at: [http://www.c3dis.com/4007](http://www.c3dis.com/4007). Registration for the workshop is via [http://www.c3dis.com/registration](http://www.c3dis.com/registration)
-
----
-"
-12	2020-02-13	CANCELLED - Introduction to the Galaxy workflow tool @ C3DIS 2020 Melbourne	2020-03-18	2020-03-18		CSIRO, QFAB, Melbourne Bioinformatics		{"name": "Melbourne Convention and Exhibition Centre", "street": "1 Convention Centre Pl", "city": "South Wharf, Melbourne", "country": "Australia"}	"
-CSIRO along with the Queensland Facility for Advanced Bioinformatics (QFAB) and Melbourne Bioinformatics will be conducting a workshop on [**Introduction to the Galaxy workflow tool**](http://www.c3dis.com/4025) as part of the [**Collaborative Conference on Computational and Data Intensive Science 2020 (C3DIS 2020)**](http://www.c3dis.com/) on March the 18th 2020 from 9:30am until 12:30pm.
+Details of the workshop can be found at: [http://www.c3dis.com/4007](http://www.c3dis.com/4007). Registration for the workshop is via [http://www.c3dis.com/registration](http://www.c3dis.com/registration)"	CSIRO, QFAB, Melbourne Bioinformatics	CSIRO, QFAB, Melbourne Bioinformatics	australia/sydney		2020-03-19	2020-03-19			{'name': 'Melbourne Convention and Exhibition Centre', 'street': '1 Convention Centre Pl', 'city': 'South Wharf, Melbourne', 'country': 'Australia'}
+12	2020-02-13	CANCELLED - Introduction to the Galaxy workflow tool @ C3DIS 2020 Melbourne	"CSIRO along with the Queensland Facility for Advanced Bioinformatics (QFAB) and Melbourne Bioinformatics will be conducting a workshop on [**Introduction to the Galaxy workflow tool**](http://www.c3dis.com/4025) as part of the [**Collaborative Conference on Computational and Data Intensive Science 2020 (C3DIS 2020)**](http://www.c3dis.com/) on March the 18th 2020 from 9:30am until 12:30pm.
 
 The C3DIS 2020 conference will be held at the Melbourne Convention and Exhibition Centre from March 16th to 20th 2020.
 
-Details of the workshop can be found at: [http://www.c3dis.com/4025](http://www.c3dis.com/4025). Registration for the workshop is via [http://www.c3dis.com/registration](http://www.c3dis.com/registration)
-
----
-"
-13	2020-03-05	CANCELLED - Galaxy training workshops Melbourne - March 2020	2020-03-23	2020-03-24		Melbourne Bioinformatics	help@genome.edu.au	{"name": "Melbourne Bioinformatics", "street": "187 Grattan St", "city": "Carlton", "region": "Victoria", "country": "Australia"}	"
-Melbourne Bioinformatics, in association with Galaxy Australia will be running a series of half day Galaxy Training Workshops in March 2020. The workshops will be run at Melbourne Bioinformatics, 187 Grattan St, Carlton.
+Details of the workshop can be found at: [http://www.c3dis.com/4025](http://www.c3dis.com/4025). Registration for the workshop is via [http://www.c3dis.com/registration](http://www.c3dis.com/registration)"	CSIRO, QFAB, Melbourne Bioinformatics	CSIRO, QFAB, Melbourne Bioinformatics	australia/sydney		2020-03-18	2020-03-18			{'name': 'Melbourne Convention and Exhibition Centre', 'street': '1 Convention Centre Pl', 'city': 'South Wharf, Melbourne', 'country': 'Australia'}
+13	2020-03-05	CANCELLED - Galaxy training workshops Melbourne - March 2020	"Melbourne Bioinformatics, in association with Galaxy Australia will be running a series of half day Galaxy Training Workshops in March 2020. The workshops will be run at Melbourne Bioinformatics, 187 Grattan St, Carlton.
 
 <br/>
 <style>
@@ -306,17 +258,11 @@ There are also some non-Galaxy workshops being run in and around the same dates.
 
 <br/>
 
-Sign up here: [https://www.melbournebioinformatics.org.au/training-and-events/](https://www.melbournebioinformatics.org.au/training-and-events/)
+Sign up here: [https://www.melbournebioinformatics.org.au/training-and-events/](https://www.melbournebioinformatics.org.au/training-and-events/)"	Melbourne Bioinformatics	Melbourne Bioinformatics	australia/sydney		2020-03-23	2020-03-24			{'name': 'Melbourne Bioinformatics', 'street': '187 Grattan St', 'city': 'Carlton', 'region': 'Victoria', 'country': 'Australia'}
+14	2020-04-25	2020 Bioinformatics Community Conference (BCC2020)	"BCC2020 is packed full of joint & parallel sessions, keynotes, poster & demo sessions, birds-of-a-feather, and social events. The meeting encompasses a week of activities, including two optional pre-conference training days, a three-day main meeting, and four post-meeting collaboration days. You can choose some or all of it to attend.
 
----
-"
-14	2020-04-25	2020 Bioinformatics Community Conference (BCC2020)	2020-07-17	2020-07-26	https://bcc2020.github.io/	Galaxy Project & Open Bioinformatics Foundation	bcc2020-org@lists.galaxyproject.org		"BCC2020 is packed full of joint & parallel sessions, keynotes, poster & demo sessions, birds-of-a-feather, and social events. The meeting encompasses a week of activities, including two optional pre-conference training days, a three-day main meeting, and four post-meeting collaboration days. You can choose some or all of it to attend.
-
-**BCC2020 will be online, global and affordable. We will be inviting our community to engage in new ways, and hope that BCC2020 will be an important space for discussion for the bioinformatics community.**
-
----
-"
-15	2020-04-25	Galaxy-ELIXIR Webinar 1 - Introduction to Galaxy and the Galaxy workflows for SARS-CoV-2 data analysis	2020-04-30	2020-05-01		Galaxy-Elixir				"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
+**BCC2020 will be online, global and affordable. We will be inviting our community to engage in new ways, and hope that BCC2020 will be an important space for discussion for the bioinformatics community.**"	Galaxy Project & Open Bioinformatics Foundation	Galaxy Project & Open Bioinformatics Foundation	australia/sydney	https://bcc2020.github.io/	2020-07-17	2020-07-26
+15	2020-04-25	Galaxy-ELIXIR Webinar 1 - Introduction to Galaxy and the Galaxy workflows for SARS-CoV-2 data analysis	"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
 
 The Galaxy Community and ELIXIR have organised a webinar series to demonstrate how open software and public research infrastructures can be used in analysing and publishing SARS-CoV2 data.
 
@@ -331,11 +277,8 @@ The first session will introduce the Galaxy platform and other public research i
 
 Anton Nekrutenko, Professor of [Biochemistry and Molecular Biology](http://bmb.psu.edu/) at Penn State University (USA) and co-founder of the [Galaxy Project](https://galaxyproject.org). <br/>
 Frederik Coppens, Head of Node of [ELIXIR Belgium](http://www.elixir-belgium.org/) and Co-Lead of the [ELIXIR Galaxy Community](https://elixir-europe.org/communities/galaxy)<br/>
-Sergei Pond, Professor of Biology, [Institute for Genomics and Evolutionary Medicine](https://igem.temple.edu/), Temple University, US.
-
----
-"
-16	2020-04-25	Galaxy-ELIXIR Webinar 2 - Genomics/Variant Calling	2020-05-07	2020-05-08		Galaxy-Elixir				"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
+Sergei Pond, Professor of Biology, [Institute for Genomics and Evolutionary Medicine](https://igem.temple.edu/), Temple University, US."	Galaxy-Elixir	Galaxy-Elixir	australia/sydney		2020-04-30	2020-05-01
+16	2020-04-25	Galaxy-ELIXIR Webinar 2 - Genomics/Variant Calling	"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
 
 The Galaxy Community and ELIXIR have organised a webinar series to demonstrate how open software and public research infrastructures can be used in analysing and publishing SARS-CoV2 data.
 
@@ -349,11 +292,8 @@ The second session will present the [initial analysis of the SARS-CoV-2 genome, 
 #### Speakers
 
 Anton Nekrutenko, Professor of [Biochemistry and Molecular Biology](http://bmb.psu.edu/) at Penn State University (USA) and co-founder of the [Galaxy Project](https://galaxyproject.org). <br/>
-Wolfgang Maier, PostDoc at the University of Freiburg and member of the [European Galaxy team](https://usegalaxy-eu.github.io/freiburg/people).
-
----
-"
-17	2020-04-25	Galaxy-ELIXIR Webinar 3 - Cheminformatics - Screening of the main protease	2020-05-14	2020-05-15		Galaxy-Elixir				"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
+Wolfgang Maier, PostDoc at the University of Freiburg and member of the [European Galaxy team](https://usegalaxy-eu.github.io/freiburg/people)."	Galaxy-Elixir	Galaxy-Elixir	australia/sydney		2020-05-07	2020-05-08
+17	2020-04-25	Galaxy-ELIXIR Webinar 3 - Cheminformatics - Screening of the main protease	"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
 
 The Galaxy Community and ELIXIR have organised a webinar series to demonstrate how open software and public research infrastructures can be used in analysing and publishing SARS-CoV2 data.
 
@@ -366,11 +306,8 @@ The computationally intensive workflow was executed through a distributed comput
 
 <a href=\"https://elixir-europe.org/events/webinar-galaxy-elixir-covid19\" target=\"_blank\">Programme Information and Registration</a>
 
-#### Speakers to be confirmed
-
----
-"
-18	2020-05-16	Galaxy-ELIXIR Webinar 4 - Evolution of the Virus	2020-05-20	2020-05-21		Galaxy-Elixir				"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
+#### Speakers to be confirmed"	Galaxy-Elixir	Galaxy-Elixir	australia/sydney		2020-05-14	2020-05-15
+18	2020-05-16	Galaxy-ELIXIR Webinar 4 - Evolution of the Virus	"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
 
 The Galaxy Community and ELIXIR have organised a webinar series to demonstrate how open software and public research infrastructures can be used in analysing and publishing SARS-CoV2 data.
 
@@ -379,11 +316,8 @@ The Galaxy Community and ELIXIR have organised a webinar series to demonstrate h
 
 <a href=\"https://elixir-europe.org/events/webinar-galaxy-elixir-covid19\" target=\"_blank\">Programme Information and Registration</a>
 
-#### Speaker: Sergei Pond, Professor of Biology, Institute for Genomics and Evolutionary Medicine, Temple University, US
-
----
-"
-19	2020-05-16	Galaxy-ELIXIR Webinar 5 - Behind the scenes - Global Open Infrastructures at work	2020-05-28	2020-05-29		Galaxy-Elixir				"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
+#### Speaker: Sergei Pond, Professor of Biology, Institute for Genomics and Evolutionary Medicine, Temple University, US"	Galaxy-Elixir	Galaxy-Elixir	australia/sydney		2020-05-20	2020-05-21
+19	2020-05-16	Galaxy-ELIXIR Webinar 5 - Behind the scenes - Global Open Infrastructures at work	"**Galaxy-ELIXIR Webinar Series: FAIR data and Open Infrastructures to tackle the COVID-19 pandemic**
 
 The Galaxy Community and ELIXIR have organised a webinar series to demonstrate how open software and public research infrastructures can be used in analysing and publishing SARS-CoV2 data.
 
@@ -394,65 +328,43 @@ This session will guide the participants how they can use the Galaxy compute cap
 
 <a href=\"https://elixir-europe.org/events/webinar-galaxy-elixir-covid19\" target=\"_blank\">Programme Information and Registration</a>
 
-#### Speaker: TBC
+#### Speaker: TBC"	Galaxy-Elixir	Galaxy-Elixir	australia/sydney		2020-05-28	2020-05-29
+20	2020-05-27	Webinar + Q&A: Introduction to Galaxy and the Galaxy workflows for SARS-CoV-2 data analysis	"**Webinar + Q&A: Introduction to Galaxy and the Galaxy workflows for SARS-CoV-2 data analysis**
 
----
-"
-20	2020-05-27	Webinar + Q&A: Introduction to Galaxy and the Galaxy workflows for SARS-CoV-2 data analysis	2020-06-02	2020-06-02		galaxyaustralia				"**Webinar + Q&A: Introduction to Galaxy and the Galaxy workflows for SARS-CoV-2 data analysis**
-
-Join Galaxy Australia at 4pm on 2 June 2020 (AEST) to view the ELIXIR-Galaxy webinar in our timezone and have your questions answered live by the speakers. You’ll be introduced to the Galaxy platform and other public research infrastructure by world leaders in the field. You’ll hear about the motivation behind the Galaxy COVID-19 projects and the benefits of open reproducible research and transparent and interoperable analytics.  
+Join Galaxy Australia at 4pm on 2 June 2020 (AEST) to view the ELIXIR-Galaxy webinar in our timezone and have your questions answered live by the speakers. You’ll be introduced to the Galaxy platform and other public research infrastructure by world leaders in the field. You’ll hear about the motivation behind the Galaxy COVID-19 projects and the benefits of open reproducible research and transparent and interoperable analytics.
 
 ELIXIR Galaxy Community Co-leads Frederik Coppens, Head of Node of ELIXIR Belgium and Björn Grüning, Technical Coordinator of ELIXIR Germany will be available to answer all of your questions.
 
-[More information and registration details](https://www.biocommons.org.au/events/galaxy-elixir-covid-webinar-intro)
----
-"
-21	2020-07-05	Galaxy Training in Brisbane: RNA-Seq Analysis using Galaxy	2020-07-14	2020-07-14		QCIF	training@qfab.org		"
-This hands-on workshop introduces the concepts of RNA-Seq analysis, from data preparation through to statistical testing for differential gene expression, along with more advanced topics such as identification of novel transcription features and pathway and functional enrichment analysis.
+[More information and registration details](https://www.biocommons.org.au/events/galaxy-elixir-covid-webinar-intro)"	galaxyaustralia	galaxyaustralia	australia/sydney		2020-06-02	2020-06-02
+21	2020-07-05	Galaxy Training in Brisbane: RNA-Seq Analysis using Galaxy	"This hands-on workshop introduces the concepts of RNA-Seq analysis, from data preparation through to statistical testing for differential gene expression, along with more advanced topics such as identification of novel transcription features and pathway and functional enrichment analysis.
 
 This workshop will be held online using Zoom.
 
 <br/>
 
-More information and registration: [https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/](https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/)
-
----
-"
-22	2020-07-05	Galaxy Training in Brisbane: Metagenomics Analysis Using Galaxy	2020-08-11	2020-08-11		QCIF	training@qfab.org		"
-This workshop will cover the concepts of 16S bacterial metagenomics analysis. You will learn about pre-processing and quality -filtering of your data, assembly of reads into Operational Taxonomic Units (OTUs), and visualisation and export of data for further analysis.
+More information and registration: [https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/](https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/)"	QCIF	QCIF	australia/sydney		2020-07-14	2020-07-14
+22	2020-07-05	Galaxy Training in Brisbane: Metagenomics Analysis Using Galaxy	"This workshop will cover the concepts of 16S bacterial metagenomics analysis. You will learn about pre-processing and quality -filtering of your data, assembly of reads into Operational Taxonomic Units (OTUs), and visualisation and export of data for further analysis.
 
 This workshop will be held online using Zoom.
 
 <br/>
 
-More information and registration: [https://www.qcif.edu.au/trainingcourses/metagenomics-analysis-using-galaxy/](https://www.qcif.edu.au/trainingcourses/metagenomics-analysis-using-galaxy/)
-
----
-"
-23	2020-07-05	Galaxy Training in Brisbane: An Introduction to NGS Platforms and Bioinformatics Analysis	2020-09-08	2020-09-08		QCIF	training@qfab.org		"
-This hands-on practical workshop is an introduction to next generation sequencing technologies and how they work, providers, common bioinformatics workflows, standardised file types, quality control and an introduction to Galaxy Australia. No prior experience of using Galaxy is required.
+More information and registration: [https://www.qcif.edu.au/trainingcourses/metagenomics-analysis-using-galaxy/](https://www.qcif.edu.au/trainingcourses/metagenomics-analysis-using-galaxy/)"	QCIF	QCIF	australia/sydney		2020-08-11	2020-08-11
+23	2020-07-05	Galaxy Training in Brisbane: An Introduction to NGS Platforms and Bioinformatics Analysis	"This hands-on practical workshop is an introduction to next generation sequencing technologies and how they work, providers, common bioinformatics workflows, standardised file types, quality control and an introduction to Galaxy Australia. No prior experience of using Galaxy is required.
 
 This workshop will be held online using Zoom.
 
 <br/>
 
-More information and registration: [https://www.qcif.edu.au/trainingcourses/ngs-platforms-how-data-generation-impacts-bioinformatics-analysis/](https://www.qcif.edu.au/trainingcourses/ngs-platforms-how-data-generation-impacts-bioinformatics-analysis/)
-
----
-"
-24	2020-07-05	Galaxy Training in Brisbane: RNA-Seq Analysis using Galaxy	2020-10-13	2020-10-13		QCIF	training@qfab.org		"
-This hands-on workshop introduces the concepts of RNA-Seq analysis, from data preparation through to statistical testing for differential gene expression, along with more advanced topics such as identification of novel transcription features and pathway and functional enrichment analysis.
+More information and registration: [https://www.qcif.edu.au/trainingcourses/ngs-platforms-how-data-generation-impacts-bioinformatics-analysis/](https://www.qcif.edu.au/trainingcourses/ngs-platforms-how-data-generation-impacts-bioinformatics-analysis/)"	QCIF	QCIF	australia/sydney		2020-09-08	2020-09-08
+24	2020-07-05	Galaxy Training in Brisbane: RNA-Seq Analysis using Galaxy	"This hands-on workshop introduces the concepts of RNA-Seq analysis, from data preparation through to statistical testing for differential gene expression, along with more advanced topics such as identification of novel transcription features and pathway and functional enrichment analysis.
 
 This workshop will be held online using Zoom.
 
 <br/>
 
-More information and registration: [https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/](https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/)
-
----
-"
-25	2020-07-09	HPC COVID-19 Australian Response Showcase	2020-07-31	2020-07-31		Pawsey Supercomputing Centre	admin@pawsey.org.au		"
-Friday July 31 15:00-17:00 (AEST) 13:00-15:00 (AWST)
+More information and registration: [https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/](https://www.qcif.edu.au/trainingcourses/rna-seq-analysis-using-galaxy/)"	QCIF	QCIF	australia/sydney		2020-10-13	2020-10-13
+25	2020-07-09	HPC COVID-19 Australian Response Showcase	"Friday July 31 15:00-17:00 (AEST) 13:00-15:00 (AWST)
 
 #### PRINCIPAL INVESTIGATOR: Dr Gareth Price, QCIF Facility for Advanced Bioinformatics.
 Gareth manages the diverse spectrum of researcher lead questions involving genomic data, provides training in genomic data analysis, as well as leading the Galaxy Australia as Platform Manager. Gareth has 20 years’ experience as a Bioinformatician and Genomics Scientist.
@@ -483,29 +395,23 @@ SARS-CoV-2 and SARS are human coronaviruses of zoonotic origin first transferred
 
 Remarkably, single species models still apply even when the datasets are combined across their shared core-proteome. Dated phylogenetic reconstructions suggest that both SARS-like and MERS-like beta-coronaviruses have been circulating for many years, and the population has been largely constant.
 
-<a href=\"https://pawsey.org.au/event/pawsey-friday-covid19/\" target=\"_blank\">More information and registration details</a>
----
-"
-26	2020-10-21	Webinar: Galaxy Australia - enabling online data analysis for the research community	2020-11-04	2020-11-04		Australian BioCommons	melissa@biocommons.org.au		"**Data analysis without the need for programming experience**
+<a href=\"https://pawsey.org.au/event/pawsey-friday-covid19/\" target=\"_blank\">More information and registration details</a>"	Pawsey Supercomputing Centre	Pawsey Supercomputing Centre	australia/sydney		2020-07-31	2020-07-31
+26	2020-10-21	Webinar: Galaxy Australia - enabling online data analysis for the research community	"**Data analysis without the need for programming experience**
 
 Galaxy is your ultimate research buddy -  an online platform for biological research that gives you access to computational data analysis tools and workflows without the need for programming experience. It is supported by a rich collection of training materials and an active community of scientists.
 
-In this webinar we explore how Galaxy can transform your research through access to high performance computing power coupled with open, reproducible computational workflows and support from the Galaxy community. 
+In this webinar we explore how Galaxy can transform your research through access to high performance computing power coupled with open, reproducible computational workflows and support from the Galaxy community.
 
 We’ll look at real-life examples of how Galaxy workflows are being applied to integrative meta-omics of microbial communities and how Galaxy is being leveraged to address the global challenges of COVID-19 research.
 
-**Presenters:** Dr Gareth Price, Service Manager, Galaxy Australia & Dr Johan Gustafsson, Bioinformatics Engagement Officer, Australian BioCommons 
+**Presenters:** Dr Gareth Price, Service Manager, Galaxy Australia & Dr Johan Gustafsson, Bioinformatics Engagement Officer, Australian BioCommons
 
 **Who the webinar is for:** This webinar is suitable for life-science researchers. No prior knowledge of Galaxy or programming is required.
 
 **Date/time:** 04 Nov 2020 - 13:00-14:00 AEDT / 12:00-13:00 AEST / 10:00-11.00 AWST
 
-**Registration and more details at: <a href=\"https://www.biocommons.org.au/events/galaxy-aust-mass-spec\">https://www.biocommons.org.au/events/galaxy-aust-mass-spec</a>**
-
----
-"
-27	2020-11-01	Galaxy Online Training Workshops  - November - December 2020	2020-11-12	2020-11-12		Australian BioCommons	christina@biocommons.org.au		"
-The Australian BioCommons, Melbourne Bioinformatics and QCIF, in association with Galaxy Australia will be running a series of half day Galaxy Training Workshops in November 2020. The workshops will be held online for Australian researchers.
+**Registration and more details at: <a href=\"https://www.biocommons.org.au/events/galaxy-aust-mass-spec\">https://www.biocommons.org.au/events/galaxy-aust-mass-spec</a>**"	Australian BioCommons	Australian BioCommons	australia/sydney		2020-11-04	2020-11-04
+27	2020-11-01	Galaxy Online Training Workshops  - November - December 2020	"The Australian BioCommons, Melbourne Bioinformatics and QCIF, in association with Galaxy Australia will be running a series of half day Galaxy Training Workshops in November 2020. The workshops will be held online for Australian researchers.
 <br/>
 <style>
   th, td {
@@ -534,7 +440,7 @@ The Australian BioCommons, Melbourne Bioinformatics and QCIF, in association wit
 
 <br/>
 
-### Summary: 
+### Summary:
 
 A summary and further details can be found at: [Melbourne Bioinformatics Training and Events](https://www.melbournebioinformatics.org.au/training-and-events/)
 
@@ -556,29 +462,21 @@ Across two days attendees can expect to gain an understanding of approaches to, 
 
 Performing de novo assembly is easier than ever thanks to advances in long read sequencing and platforms such as Galaxy which enable bioinformatics workflows for non-coders. In this tutorial we will use the web-based analysis platform “Galaxy” to create a high-quality assembly of a Bacillus Subtilis strain. The software tools “Flye” and then “Pilon” will be used to perform the assembly and subsequent error correction to improve the accuracy of assembled contigs. You will learn how to will visualize input read sets and the assemblies produced at each stage and assess the quality of the final assembly.
 
-<br/>
-
----
-"
-28	2020-11-17	Galaxy Paper Cuts	2020-11-18	2020-11-18	https://galaxyproject.org/events/2020-11-papercuts/			{"name": "Online"}		
-29	2020-12-13	2021 Galaxy Administrators Course	2021-01-25	2021-01-29	https://galaxyproject.org/events/2021-01-admin-training/	Galaxy Project		{"name": "Online"}	
-30	2020-12-13	Galaxy Paper Cuts December Edition	2020-12-17	2020-12-17	https://galaxyproject.org/events/2020-12-papercuts/			{"name": "Online"}		
-31	2020-12-13	2021 GTN Smörgåsbord: A Global Galaxy Course	2021-02-15	2021-02-19	https://galaxyproject.org/events/2021-02-smorgasbord/	Galaxy Project		{"name": "Online"}
-32	2021-01-05	WORKSHOP: RNA-seq: from reads to differentially expressed genes	2021-02-23	2021-02-24	https://www.biocommons.org.au/events/rnaseq	Galaxy Project		{"name": "Online"}	"
-An introduction to RNA-seq analysis using the Galaxy Australia web platform. Presented by Australian Biocommons, Galaxy Australia and Melbourne Bioinformatics."
-33	2021-02-24	GTN CoFest & Galaxy Paper Cuts	2021-02-25	2021-02-25				{"name": "Online"}			"
-In February, the __[Galaxy Training Network day](https://galaxyproject.org/events/2021-02-gtn/) and [Paper Cuts day](https://galaxyproject.org/events/2021-02-papercuts/) will be held concurrently!__
+<br/>"	Australian BioCommons	Australian BioCommons	australia/sydney		2020-11-12	2020-11-12
+28	2020-11-17	Galaxy Paper Cuts				australia/sydney	https://galaxyproject.org/events/2020-11-papercuts/	2020-11-18	2020-11-18			online
+29	2020-12-13	2021 Galaxy Administrators Course		Galaxy Project		australia/sydney	https://galaxyproject.org/events/2021-01-admin-training/	2021-01-25	2021-01-29			online
+30	2020-12-13	Galaxy Paper Cuts December Edition				australia/sydney	https://galaxyproject.org/events/2020-12-papercuts/	2020-12-17	2020-12-17			online
+31	2020-12-13	2021 GTN Smörgåsbord: A Global Galaxy Course		Galaxy Project		australia/sydney	https://galaxyproject.org/events/2021-02-smorgasbord/	2021-02-15	2021-02-19			online
+32	2021-01-05	WORKSHOP: RNA-seq: from reads to differentially expressed genes	"An introduction to RNA-seq analysis using the Galaxy Australia web platform. Presented by Australian Biocommons, Galaxy Australia and Melbourne Bioinformatics."	Galaxy Project		australia/sydney	https://www.biocommons.org.au/events/rnaseq	2021-02-23	2021-02-24			online
+33	2021-02-24	GTN CoFest & Galaxy Paper Cuts	"In February, the __[Galaxy Training Network day](https://galaxyproject.org/events/2021-02-gtn/) and [Paper Cuts day](https://galaxyproject.org/events/2021-02-papercuts/) will be held concurrently!__
 
 The GTN CoFest will have 3 calls in 3 different timezones, you can already [suggest topics for discussion](https://docs.google.com/document/d/1BA4TYe5snFd5866ZeF3OtuV9quhpvvfrIMn6qD2qxl0/edit).
 
-At different times, and every 3-4 hours, the community will host check-in calls to onboard new people interested in learning more about Galaxy development and helping fixing bugs. Check all the [details](https://galaxyproject.org/events/2021-02-papercuts/) and join us!
-"
-34	2021-03-17	Galaxy Paper Cuts	2021-03-18	2021-03-18	https://galaxyproject.org/events/2021-03-papercuts/			{"name": "Online"}		
-35	2021-04-06	Plant genomics: chloroplast genome assembly using Galaxy Australia	2021-04-21	2021-04-21	https://www.biocommons.org.au/events/plant-genomics-galaxy	Australian BioCommons	melissa@biocommons.org.au		"
-"
-36	2021-04-15	Galaxy Paper Cuts	2021-04-15	2021-04-15	https://galaxyproject.org/events/2021-04-papercuts/			{"name": "Online"}		
-37	2021-05-01	Galaxy Online Training Workshops - Variant Calling - May 2021	2021-05-25	2021-05-27		Australian BioCommons	melissa@biocommons.org.au		"
-The Australian BioCommons and Queensland Cyber Infrastructure Foundation (QCIF), in association with a network of facilitators from the national Bioinformatics Training Cooperative and Galaxy Australia will be running a series of half day Galaxy Training Workshops on Variant Calling in May 2021. The workshops will be held online for Australian researchers. The deadline for signup applications is **5pm AEST, 12th May 2021.** Details on selection are below. 
+At different times, and every 3-4 hours, the community will host check-in calls to onboard new people interested in learning more about Galaxy development and helping fixing bugs. Check all the [details](https://galaxyproject.org/events/2021-02-papercuts/) and join us!"			australia/sydney		2021-02-25	2021-02-25			online
+34	2021-03-17	Galaxy Paper Cuts				australia/sydney	https://galaxyproject.org/events/2021-03-papercuts/	2021-03-18	2021-03-18			online
+35	2021-04-06	Plant genomics: chloroplast genome assembly using Galaxy Australia	""	Australian BioCommons	Australian BioCommons	australia/sydney	https://www.biocommons.org.au/events/plant-genomics-galaxy	2021-04-21	2021-04-21
+36	2021-04-15	Galaxy Paper Cuts				australia/sydney	https://galaxyproject.org/events/2021-04-papercuts/	2021-04-15	2021-04-15			online
+37	2021-05-01	Galaxy Online Training Workshops - Variant Calling - May 2021	"The Australian BioCommons and Queensland Cyber Infrastructure Foundation (QCIF), in association with a network of facilitators from the national Bioinformatics Training Cooperative and Galaxy Australia will be running a series of half day Galaxy Training Workshops on Variant Calling in May 2021. The workshops will be held online for Australian researchers. The deadline for signup applications is **5pm AEST, 12th May 2021.** Details on selection are below.
 <br/>
 <style>
   th, td {
@@ -626,14 +524,10 @@ During the workshop you will get hands-on experience using Snippy for genetic va
 
 These workshop are free but participation is subject to application with selection. **Applications close at 5pm AEST Wednesday 12 May 2021.**
 
-You must be associated with an Australian organisation and provide an appropriate organisational email address for your application to be considered. 
+You must be associated with an Australian organisation and provide an appropriate organisational email address for your application to be considered.
 
-Applications will be reviewed by the organising committee and all applicants will be informed of the status of their application (successful, waiting list, unsuccessful) by Friday 14 May 2021. Successful applicants will be provided with a Zoom meeting link closer to the date.
-
----
-"
-38	2021-05-01	2021 Galaxy Community Conference (GCC2021) - Virtual Edition	2021-06-28	2021-06-10	https://www.vibconferences.be/events/gcc2021	VIB - Ghent, Belgium	conferences@vib.be	{"name": "Online"}	"
-**GCC2021 will be virtual, global and affordable.**
+Applications will be reviewed by the organising committee and all applicants will be informed of the status of their application (successful, waiting list, unsuccessful) by Friday 14 May 2021. Successful applicants will be provided with a Zoom meeting link closer to the date."	Australian BioCommons	Australian BioCommons	australia/sydney		2021-05-25	2021-05-27
+38	2021-05-01	2021 Galaxy Community Conference (GCC2021) - Virtual Edition	"**GCC2021 will be virtual, global and affordable.**
 
 The 2021 Galaxy Community Conference (GCC2021) has moved to a virtual format. See the announcement for more information. We will miss gathering in person, but this enables us to do some things we can’t at an in person event.
 
@@ -647,10 +541,8 @@ GCC2021 will be globally accessible, in any time zone, on every continent, and i
 
 </br>
 
-GCC brings together hundreds of faculty, clinicians, researchers, and students, all working in and supporting data intensive science that is accessible, sharable and reproducible.
-"
-39	2021-08-21	WORKSHOP: Online data analysis for biologists - September 2021	2021-09-09	2021-09-09		Australian BioCommons	melissa@biocommons.org.au		"
-**Get a hands-on introduction to Galaxy, an online platform for data analysis**
+GCC brings together hundreds of faculty, clinicians, researchers, and students, all working in and supporting data intensive science that is accessible, sharable and reproducible."	VIB - Ghent, Belgium	VIB - Ghent, Belgium	australia/sydney	https://www.vibconferences.be/events/gcc2021	2021-06-28	2021-06-10			{'name': 'Online'}
+39	2021-08-21	WORKSHOP: Online data analysis for biologists - September 2021	"**Get a hands-on introduction to Galaxy, an online platform for data analysis**
 
 This Galaxy Australia workshop is presented by the [Australian BioCommons](https://biocommons.org.au), [Melbourne Bioinformatics](https://melbournebioinformatics.org.au) and [QCIF](https://qcif.edu.au) with the assistance of a national network of facilitators.
 
@@ -689,12 +581,9 @@ You must be associated with an Australian organisation and provide an appropriat
 
 Applications will be reviewed by the organising committee and all applicants will be informed of the status of their application (successful, waiting list, unsuccessful) by Friday 3 September 2021. Successful applicants will be provided with a Zoom meeting link closer to the date.
 
-[**Apply here**](https://galaxy-intro-2021.eventbrite.com.au/)
----
-"
-40	2021-09-13	Galaxy Paper Cuts	2021-09-16	2021-09-16	https://galaxyproject.org/events/2021-09-papercuts/			{"name": "Online"}		
-41	2021-09-26	WORKSHOP: Hybrid de novo genome assembly - October 2021	2021-10-07	2021-10-07		Australian BioCommons	melissa@biocommons.org.au		"
-**Get a hands-on introduction to Galaxy, an online platform for data analysis**
+[**Apply here**](https://galaxy-intro-2021.eventbrite.com.au/)"	Australian BioCommons	Australian BioCommons	australia/sydney		2021-09-09	2021-09-09
+40	2021-09-13	Galaxy Paper Cuts				australia/sydney	https://galaxyproject.org/events/2021-09-papercuts/	2021-09-16	2021-09-16			online
+41	2021-09-26	WORKSHOP: Hybrid de novo genome assembly - October 2021	"**Get a hands-on introduction to Galaxy, an online platform for data analysis**
 
 This Galaxy Australia workshop is presented by the [Australian BioCommons](https://biocommons.org.au), [Melbourne Bioinformatics](https://melbournebioinformatics.org.au) and [QCIF](https://qcif.edu.au) with the assistance of a national network of facilitators.
 
@@ -733,10 +622,8 @@ No programming experience is required.
 
 This workshop is free but participation is subject to application with selection. Applications close at **11:59pm AEST Wednesday 29 September 2021.**
 
-You must be associated with an Australian organisation and provide an appropriate organisational email address for your application to be considered. 
+You must be associated with an Australian organisation and provide an appropriate organisational email address for your application to be considered.
 
 Applications will be reviewed by the organising committee and all applicants will be informed of the status of their application (successful, waiting list, unsuccessful) by Friday 1 October 2021. Successful applicants will be provided with a Zoom meeting link closer to the date.
 
-[**Apply here**](https://hybrid-assembly.eventbrite.com.au/)
----
-"
+[**Apply here**](https://hybrid-assembly.eventbrite.com.au/)"	Australian BioCommons	Australian BioCommons	australia/sydney		2021-10-07	2021-10-07

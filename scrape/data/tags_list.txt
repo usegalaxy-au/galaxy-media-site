@@ -1,0 +1,12 @@
+conference
+devops
+galaxy
+galaxyaustralia
+galaxyproject
+job
+news
+paper
+release
+tools
+training
+update

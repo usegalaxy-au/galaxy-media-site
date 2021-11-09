@@ -3,7 +3,7 @@
 from django.contrib import admin
 
 from .models import Event, Tag, Supporter
-from .forms import EventAdminForm
+from .forms import EventAdminForm, TagAdminForm
 
 
 class EventAdmin(admin.ModelAdmin):
@@ -12,6 +12,12 @@ class EventAdmin(admin.ModelAdmin):
     form = EventAdminForm
 
 
+class TagAdmin(admin.ModelAdmin):
+    """Administer tag items."""
+
+    form = TagAdminForm
+
+
 admin.site.register(Event, EventAdmin)
-admin.site.register(Tag)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Supporter)
