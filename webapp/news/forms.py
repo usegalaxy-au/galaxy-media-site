@@ -1,17 +1,17 @@
-"""Forms for managing events."""
+"""Forms for managing news content."""
 
 from django import forms
 
-from .models import Event
+from .models import News
 
 
-class EventAdminForm(forms.ModelForm):
-    """Update and create events."""
+class NewsAdminForm(forms.ModelForm):
+    """Update and create news items."""
 
     class Meta:
         """Form metadata."""
 
-        model = Event
+        model = News
         widgets = {
             'body': forms.Textarea(attrs={
                 'rows': 10,

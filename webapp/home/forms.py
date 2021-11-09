@@ -1,17 +1,17 @@
-"""Forms for managing events."""
+"""Forms for managing generic content."""
 
 from django import forms
 
-from .models import Event
+from .models import Notice
 
 
-class EventAdminForm(forms.ModelForm):
+class NoticeAdminForm(forms.ModelForm):
     """Update and create events."""
 
     class Meta:
         """Form metadata."""
 
-        model = Event
+        model = Notice
         widgets = {
             'body': forms.Textarea(attrs={
                 'rows': 10,
