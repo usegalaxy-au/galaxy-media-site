@@ -14,7 +14,7 @@ COPY events_event
 ;
 
 COPY events_event_supporters
-  FROM 'data/events_supporters.tab'
+  FROM 'data/events_supporters_ids.tab'
   OIDS false
   DELIMITER '\t'
   QUOTE '"'
@@ -23,7 +23,7 @@ COPY events_event_supporters
 ;
 
 COPY events_event_tags
-  FROM 'data/events_tags.tab'
+  FROM 'data/events_tags_ids.tab'
   OIDS false
   DELIMITER '\t'
   QUOTE '"'
@@ -41,7 +41,7 @@ COPY news_news
 ;
 
 COPY news_news_supporters
-  FROM 'data/news_supporters.tab'
+  FROM 'data/news_supporters_ids.tab'
   OIDS false
   DELIMITER '\t'
   QUOTE '"'
@@ -50,7 +50,7 @@ COPY news_news_supporters
 ;
 
 COPY news_news_tags
-  FROM 'data/news_tags.tab'
+  FROM 'data/news_tags_ids.tab'
   OIDS false
   DELIMITER '\t'
   QUOTE '"'

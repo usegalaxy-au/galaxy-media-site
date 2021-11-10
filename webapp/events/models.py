@@ -26,6 +26,7 @@ class Tag(models.Model):
         help_text=('A valid material design icon identifier.'
                    ' See: https://fonts.google.com/icons')
     )
+    archived = models.BooleanField(default=False)
 
     def __str__(self):
         """Return string representation."""
@@ -40,6 +41,7 @@ class Supporter(models.Model):
     logo = models.FileField(
         upload_to='logos',  # subdir in MEDIA_ROOT
     )
+    archived = models.BooleanField(default=False)
 
     def __str__(self):
         """Return string representation."""
