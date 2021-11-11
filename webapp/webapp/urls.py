@@ -25,9 +25,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    # path('news/', include('news.urls')),
-    # path('events/', include('events.urls')),
-    # path('people/', include('people.urls')),
+    path('news/', include('news.urls')),
+    path('events/', include('events.urls')),
+    path('people/', include('people.urls')),
 ]
 
 if settings.DEBUG:

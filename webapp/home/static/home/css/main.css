@@ -24,12 +24,19 @@ section {
 
 /* Components */
 .tile {
+  display: flex;
+  flex-direction: column;
   background-color: var(--tile-bg);
   margin: 1rem;
   border: 1px solid grey;
   border-radius: .25rem;
   width: 250px;
   box-shadow: 0 .25rem .5rem #00000029;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .ga-btn {
   display: inline-block;
@@ -53,4 +60,7 @@ section {
 a {
   color: inherit;
   text-decoration: inherit;
+}
+.text-small {
+  font-size: 0.8rem;
 }

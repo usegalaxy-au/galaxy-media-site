@@ -11,6 +11,7 @@ class Person(models.Model):
 
         verbose_name_plural = "people"
 
+    datetime_created = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     position = models.CharField(max_length=150, null=True, blank=True)

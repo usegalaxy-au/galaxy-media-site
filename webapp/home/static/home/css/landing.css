@@ -50,9 +50,6 @@
 #news-events article p {
   margin: 0;
 }
-#news-events article p:last-child {
-
-}
 h1 span.material-icons {
   font-size: 100%;
 }

@@ -1,6 +1,7 @@
 {% extends 'home/header.html' %}
 
 {% load static %}
+{% load markdownify %}
 
 
 {% block head %}
@@ -32,9 +33,11 @@
       <div class="card-body">
         <h1 class="card-title"><span class="material-icons">book</span></h1>
         <p>
-          Galaxy Australia
+          200+
           <br>
-          Training Materials
+          Galaxy tutorials
+          <br>
+          available
         </p>
         <a class="ga-btn" href="#">Start learning</a>
       </div>
@@ -44,9 +47,11 @@
       <div class="card-body">
         <h1 class="card-title"><span class="material-icons">construction</span></h1>
         <p>
-          Request Tools
+          7000+
           <br>
-          &amp; Datasets
+          Tools &amp; Datasets
+          <br>
+          Ready to install
         </p>
         <a class="ga-btn" href="#">Request now</a>
       </div>
@@ -54,11 +59,11 @@
 
     <div class="tile">
       <div class="card-body">
-        <h1 class="card-title"><span class="material-icons">storage</span></h1>
-        <p>
-          Request extra
+        <h1 class="card-title"><span class="material-icons">save</span></h1>
+        <p class="m-0">
+          Additional storage
           <br>
-          storage
+          available on request
         </p>
         <a class="ga-btn" href="#">Request now</a>
       </div>
@@ -95,18 +100,17 @@
     <div class="col-sm-6 px-3" id="news">
       <a href="#"><h4>News</h4></a>
       {% for item in news_items %}
-      <!-- Some hard-coded news items for testing -->
       <a href="{{ item.url }}">
         <article>
           <div class="row">
             <div class="col">
-              <p> {{ item.date|date:"Y-m-d" }} </p>
-              <p><b> {{ item.title }} </b></p>
+              <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
+              <p><b> {{ item.title|markdownify }} </b></p>
             </div>
 
             <div class="col-sm-auto text-end">
               <p>
-                {% for icon in item.icons %}
+                {% for icon in item.material_icons %}
                 <span class="material-icons">{{ icon }}</span>
                 {% endfor %}
               </p>
@@ -118,20 +122,19 @@
     </div>
 
     <div class="col-sm-6 px-3">
-      <a href="#"><h4>Events and workshops</h4></a>
-      {% for item in event_items %}
-      <!-- Some hard-coded event items for testing -->
+      <a href="/events"><h4>Events and workshops</h4></a>
+      {% for item in events %}
       <a href="{{ item.url }}">
         <article>
           <div class="row">
             <div class="col">
-              <p> {{ item.date|date:"Y-m-d" }} </p>
-              <p><b> {{ item.title }} </b></p>
+              <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
+              <p><b> {{ item.title|markdownify }} </b></p>
             </div>
 
             <div class="col-sm-auto text-end">
               <p>
-                {% for icon in item.icons %}
+                {% for icon in item.material_icons %}
                 <span class="material-icons">{{ icon }}</span>
                 {% endfor %}
               </p>

@@ -35,7 +35,10 @@ class News(models.Model):
     @property
     def material_icons(self):
         """Return list of material icon identifiers for event."""
-        return [x.icon for x in self.tags]
+        return [
+            x.material_icon
+            for x in self.tags.filter(material_icon__isnull=False)
+        ]
 
     @property
     def blurb(self):
