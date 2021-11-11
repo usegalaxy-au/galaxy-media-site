@@ -36,4 +36,3 @@ with open('data/news_supporters_ids.tab', 'w') as f:
     f.write(news_supporters)
 
 print("Done")
-print(news_supporters)

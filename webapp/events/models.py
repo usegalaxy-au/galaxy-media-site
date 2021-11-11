@@ -57,15 +57,17 @@ class Event(models.Model):
     datetime_created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
     body = models.CharField(
-        max_length=10000, null=True, blank=True,
+        max_length=50000, null=True, blank=True,
         help_text='Enter valid markdown')
     organiser_name = models.CharField(max_length=100, null=True, blank=True)
     organiser_email = models.EmailField(max_length=255, null=True, blank=True)
-    address = JSONField(null=True, blank=True)
+    address = JSONField(null=True, blank=True, help_text="Valid JSON string")
 
     timezone = TimeZoneField(
         default="Australia/Sydney",
         choices_display='WITH_GMT_OFFSET',
+        null=True,
+        blank=True,
     )
     date_start = models.DateField(null=True, blank=True)
     date_end = models.DateField(null=True, blank=True)
@@ -77,7 +79,7 @@ class Event(models.Model):
 
     tags = models.ManyToManyField(Tag)
     supporters = models.ManyToManyField(
-        Supporter, help_text='Show logos/links')
+        Supporter, help_text='Displays logos and links')
 
     @property
     def slug(self):

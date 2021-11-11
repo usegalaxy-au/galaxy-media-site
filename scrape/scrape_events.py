@@ -28,13 +28,13 @@ WRITE_COLUMNS = [
     ('body', 'body'),
     ('organiser_name', parse.organiser_name),
     ('organiser_email', parse.organiser_email),
-    ('timezone', lambda x: 'australia/sydney'),
+    ('timezone', None),
     ('external', 'external'),
     ('date_end', parse.date_start),
     ('date_start', parse.date_end),
     ('time_end', None),
     ('time_start', None),
-    ('address', 'location'),
+    ('address', parse.location_json),
 ]
 
 
@@ -99,8 +99,11 @@ for i, path in enumerate(sorted(events_src_paths)):
             meta_str = [x for x in content.split('---\n', 2) if x][0]
             body = None
         meta = yaml.load(meta_str, Loader=yaml.FullLoader)
-    print(f'Writing event {i}')
-    meta['id'] = i
+    print(f'Writing event {i + 1}')
+    meta['id'] = i + 1
     meta['date'] = parse.date_from_filepath(path)
-    meta['body'] = parse.csv_escape(body)
+    meta['body'] = parse.csv_escape(body).replace(
+        'src="/assets',
+        'src="/media/uploads',
+    )
     write_event(meta)

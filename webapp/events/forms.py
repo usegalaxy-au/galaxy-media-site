@@ -15,8 +15,8 @@ class EventAdminForm(forms.ModelForm):
         model = Event
         widgets = {
             'body': forms.Textarea(attrs={
-                'rows': 10,
-                'cols': 80,
+                'rows': 30,
+                'cols': 120,
             }),
         }
         fields = '__all__'

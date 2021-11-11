@@ -1,13 +1,13 @@
 id	datetime_created	title	body	external
-0	2018-07-04	Bioconda: sustainable and comprehensive software distribution for the life sciences	"3 years ago the Galaxy community evaluated mechanism to make software installation more robust and we joined
+1	2018-07-04	Bioconda: sustainable and comprehensive software distribution for the life sciences	~3 years ago the Galaxy community evaluated mechanism to make software installation more robust and we joined
 the Bioconda community, to fix the software deployment problem once and for all.
 Today, we are happy to annouce that the Bioconda manuscript is now published in the latest
 [Nature Methods issue](https://doi.org/10.1038/s41592-018-0046-7) (public [view](https://rdcu.be/2kbI)).
 usegalaxy.org.au and many other Galaxy instance are already powered by Bioconda and you might use it daily
 without knowing :)
 
-<div class=\"multiple-img\">
-    <img src=\"/media/uploads/bioconda_nmeth.jpg\" height=\"400px\" alt=\"Stats from Bioconda\" />
+<div class="multiple-img">
+    <img src="/media/uploads/media/bioconda_nmeth.jpg" height="400px" alt="Stats from Bioconda" />
 </div>
 
 ## Abstract
@@ -52,25 +52,25 @@ project (https://conda-forge.github.io), which hosts software not specifically r
 biological sciences. This separation has proven beneficial, because the focused nature
 of the Bioconda community allows for fast turnaround times and support when a user needs
 to contribute packages or fix problems. Nevertheless, the two projects collaborate
-closely, and the Bioconda team maintains over 500 packages hosted by conda-forge."
-1	2018-07-18	GCCBOSC	"From 24th of June to 2nd of July the Galaxy Community Conference (GCC) and Bioinformatics Open Source Conference 2018 (BOSC) were meeting together in Portland, Oregon, United States. There was be two days of training, a two day meeting, and four days of intense collaboration.  The meeting featured joint & parallel sessions, shared keynotes, poster & demo sessions, birds-of-a-feather, and social events.  Simon and Derek were there and represented the Galaxy Australia team!
+closely, and the Bioconda team maintains over 500 packages hosted by conda-forge.~	
+2	2018-07-18	GCCBOSC	~From 24th of June to 2nd of July the Galaxy Community Conference (GCC) and Bioinformatics Open Source Conference 2018 (BOSC) were meeting together in Portland, Oregon, United States. There was be two days of training, a two day meeting, and four days of intense collaboration.  The meeting featured joint & parallel sessions, shared keynotes, poster & demo sessions, birds-of-a-feather, and social events.  Simon and Derek were there and represented the Galaxy Australia team! 
 
-<div class=\"multiple-img\">
-    <a data-flickr-embed=\"true\" href=\"https://www.flickr.com/photos/134305289@N03/albums/72157695693844792\" title=\"GCCBOSC\"><img src=\"https://farm1.staticflickr.com/846/43248513092_b4efcaa655_z.jpg\" width=\"640\" height=\"427\" alt=\"GCCBOSC\"></a><script async src=\"//embedr.flickr.com/assets/client-code.js\" charset=\"utf-8\"></script>
+<div class="multiple-img">
+    <a data-flickr-embed="true" href="https://www.flickr.com/photos/134305289@N03/albums/72157695693844792" title="GCCBOSC"><img src="https://farm1.staticflickr.com/846/43248513092_b4efcaa655_z.jpg" width="640" height="427" alt="GCCBOSC"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </div>
 
 The event started with 2 days of training. Bérénice, Joachim, and Björn trained there ([Galaxy 101 - A gentle introduction to using Galaxy](https://gccbosc2018.sched.com/event/DmxD/galaxy-101-a-gentle-introduction-to-using-galaxy), [Bioinformatics Training and Education with the Galaxy Training Network](https://gccbosc2018.sched.com/event/Drp9/bioinformatics-training-and-education-with-the-galaxy-training-network), [Conda and Containers](https://gccbosc2018.sched.com/event/Dn3G/conda-and-containers), [Galaxy Interactive Environments](https://gccbosc2018.sched.com/event/DnAc/galaxy-interactive-environments)) but also participated on trainings.
 
 Then, the two day conference started with several interesting keynotes ([Tracy K Teal on Democratization of data](https://gccbosc2018.sched.com/event/EQF7/opening-keynote-tracy-k-teal-democratizing-data), [Fernando Pérez on Jupyter](https://gccbosc2018.sched.com/event/EQ3d/keynote-fernando-perez-sustainable-development-of-scientific-open-source-tools-a-view-from-jupyter) or [Lucia Peixoto on reproducibility of biology](https://gccbosc2018.sched.com/event/EQFC/closing-keynote-confound-it-reproducible-biology-from-omics-data-analysis)) and parallel tracks of talks and posters for GCC and BOSC. Joachim presented [Galaxy HiCExplorer](https://gccbosc2018.sched.com/event/EYNG/galaxy-hicexplorer-hicexplorer-deeptools3-and-pygenometracks) and Bérénice a [report of the Galaxy Training material](https://gccbosc2018.sched.com/event/EYF1/a-fruitful-year-for-the-galaxy-training-materials).
 
-<div class=\"multiple-img\">
-    <embed src=\"https://api.accusoft.com/v1/viewer/?key=aIAHEk1WtoJas0JtfMsvfRTwAP3ApQikUG4NnwM3RzGuKnHIty0UftIkfzzFE6XS&viewertype=html5&document=https://d1hiluowqo0t4b.cloudfront.net/posters/compressed/f1000research-211135.pdf&viewerHeight=550&viewerWidth=100%&upperToolbarColor=373e46&lowerToolbarColor=eeeeee&bottomToolbarColor=373e46&backgroundColor=f7f6f5&fontColor=ffffff&buttonColor=black&hidden=selectText,download,panTool,magnifyTool,rotateDocument,rotatePage,fullScreen,print,pageInfo,redact,esign\" width=\"80%\" height=\"450px\">
+<div class="multiple-img">
+    <embed src="https://api.accusoft.com/v1/viewer/?key=aIAHEk1WtoJas0JtfMsvfRTwAP3ApQikUG4NnwM3RzGuKnHIty0UftIkfzzFE6XS&viewertype=html5&document=https://d1hiluowqo0t4b.cloudfront.net/posters/compressed/f1000research-211135.pdf&viewerHeight=550&viewerWidth=100%&upperToolbarColor=373e46&lowerToolbarColor=eeeeee&bottomToolbarColor=373e46&backgroundColor=f7f6f5&fontColor=ffffff&buttonColor=black&hidden=selectText,download,panTool,magnifyTool,rotateDocument,rotatePage,fullScreen,print,pageInfo,redact,esign" width="80%" height="450px">
 </div>
 
 After these 4 days the CollaborationFest started - and it was really productive! Many discussions, new contributions and contributors, improvement of our training materials, new Bioconda packages and new BioContainer and so much more that will find its way into the next Galaxy releases.
 
-This conference was really intense in so many ways! To get the feeling, you can check out Twitter: [#GCCBOSC](https://twitter.com/hashtag/gccbosc?f=tweets&vertical=default&src=hash\")"
-2	2018-10-08	Initial release of `gxadmin` tool	"The good folks over at Galaxy Europe have developed a cool bit of code to help out Galaxy systems administrators. It's called `gxadmin`, it's available on [GitHub](https://github.com/usegalaxy-eu/gxadmin)
+This conference was really intense in so many ways! To get the feeling, you can check out Twitter: [#GCCBOSC](https://twitter.com/hashtag/gccbosc?f=tweets&vertical=default&src=hash")~	
+3	2018-10-08	Initial release of `gxadmin` tool	~The good folks over at Galaxy Europe have developed a cool bit of code to help out Galaxy systems administrators. It's called `gxadmin`, it's available on [GitHub](https://github.com/usegalaxy-eu/gxadmin)
 and includes many small SQL queries that administrators run every day.
 
 As a Galaxy administrator, you can use it to do things like viewing the queue:
@@ -87,29 +87,29 @@ $ gxadmin query queue
 ```
 
 amongst many more queries. We hope that other administrators will find this
-utility useful and can contribute queries that they run often."
-3	2018-11-15	Tutorial of the Month: "Reference-based RNA-Seq data analysis", selected by Saskia Hiltemann	"The Galaxy community is developing and maintaining a collection of tutorials that are designed to be interactive and are built around Galaxy: [https://training.galaxyproject.org](https://training.galaxyproject.org). To help highlight our tutorials and the training effort of the community, a member of the community will select every month one tutorial and explains in the *Galactic Blog* why they select this tutorial. This month, the [Galaxy contributor of the Month!](https://galaxyproject.org/blog/2018-10-totm/2018-11-cotm-saskia-hiltemann), Saskia Hilteman, selects and presents a tutorial: [\"Reference-based RNA-Seq data analysis\"](https://galaxyproject.github.io/training-material/topics/transcriptomics/tutorials/ref-based/tutorial.html), from the topic [\"Transcriptomics\"](http://galaxyproject.github.io/training-material/topics/transcriptomics)"	https://galaxyproject.org/blog/2018-11-totm/
-4	2018-11-21	Automatic workflow testing	"We have started to test a few of our workflows automatically against [UseGalaxy.eu](https://usegalaxy.eu).
+utility useful and can contribute queries that they run often.~	
+4	2018-11-15	Tutorial of the Month: "Reference-based RNA-Seq data analysis", selected by Saskia Hiltemann	~The Galaxy community is developing and maintaining a collection of tutorials that are designed to be interactive and are built around Galaxy: [https://training.galaxyproject.org](https://training.galaxyproject.org). To help highlight our tutorials and the training effort of the community, a member of the community will select every month one tutorial and explains in the *Galactic Blog* why they select this tutorial. This month, the [Galaxy contributor of the Month!](https://galaxyproject.org/blog/2018-10-totm/2018-11-cotm-saskia-hiltemann), Saskia Hilteman, selects and presents a tutorial: ["Reference-based RNA-Seq data analysis"](https://galaxyproject.github.io/training-material/topics/transcriptomics/tutorials/ref-based/tutorial.html), from the topic ["Transcriptomics"](http://galaxyproject.github.io/training-material/topics/transcriptomics)~	https://galaxyproject.org/blog/2018-11-totm/
+5	2018-11-21	Automatic workflow testing	~We have started to test a few of our workflows automatically against [UseGalaxy.eu](https://usegalaxy.eu).
 This will run all workflows monthly to ensure that the keep working and that our infrastructure works and scales well.
 
 Feel free to contribute workflows to our [testing repository](https://github.com/usegalaxy-eu/workflow-testing) or
 propose us workflows via [opening an issue](https://github.com/usegalaxy-eu/workflow-testing/issues/new). Alternatively you can write us at [contact@usegalaxy.eu](mailto:contact@usegalaxy.eu). If you would like us to test these workflows on your server, just get in contact with us and we can do that as well.
 
 
-<a href=\"https://github.com/usegalaxy-eu/workflow-testing\"><img src=\"/media/uploads/workflow_testing.png\" height=\"400px\" alt=\"List of workflows under testing\" /></a>"
-5	2018-12-03	Nominate a training for the 2019 Galaxy Community Conference (GCC2019)	"The 2019 Galaxy Community Conference (GCC2019) will be held in be held in Freiburg, Germany, 1-6 July. The training topics that are offered are determined by the community so [BY YOU](https://docs.google.com/forms/d/1fBPjEmw7Td52rhBnC0SvflnQCD7Ue5IMJ9RkM0SjnYg/)!"	https://galaxyproject.org/news/2018-12-gcc2019-training-nomination/
-6	2018-12-05	New Tools Added: Gemini Tools	"We have added the Gemini Tools to Galaxy Australia. These tools are for doing integrative exploration of genetic variation and genome annotations. The documentation for these tools can be found [here](https://gemini.readthedocs.io/en/latest/). You can find these tools under the **Gemini Tools** section of the Galaxy Australia tool menu."	https://github.com/arq5x/gemini
-7	2018-12-20	Summer Holiday Support	"Galaxy Australia will be minimally administered during the university shutdown period from 24th December 2019 to the 2nd January 2019. During this time, only essential maintenance will be performed. No disk quota modifications, tool installations or reference data installation or upgrades will be performed."
-8	2019-02-12	Galaxy Server Maintenance	"Galaxy Australia will be undergoing maintenance for 2 hours on the 20th February 2019 from 10:00am AEDT. It will be getting:
+<a href="https://github.com/usegalaxy-eu/workflow-testing"><img src="/media/uploads/media/workflow_testing.png" height="400px" alt="List of workflows under testing" /></a>~	
+6	2018-12-03	Nominate a training for the 2019 Galaxy Community Conference (GCC2019)	~The 2019 Galaxy Community Conference (GCC2019) will be held in be held in Freiburg, Germany, 1-6 July. The training topics that are offered are determined by the community so [BY YOU](https://docs.google.com/forms/d/1fBPjEmw7Td52rhBnC0SvflnQCD7Ue5IMJ9RkM0SjnYg/)!~	https://galaxyproject.org/news/2018-12-gcc2019-training-nomination/
+7	2018-12-05	New Tools Added: Gemini Tools	~We have added the Gemini Tools to Galaxy Australia. These tools are for doing integrative exploration of genetic variation and genome annotations. The documentation for these tools can be found [here](https://gemini.readthedocs.io/en/latest/). You can find these tools under the **Gemini Tools** section of the Galaxy Australia tool menu.~	https://github.com/arq5x/gemini
+8	2018-12-20	Summer Holiday Support	~Galaxy Australia will be minimally administered during the university shutdown period from 24th December 2019 to the 2nd January 2019. During this time, only essential maintenance will be performed. No disk quota modifications, tool installations or reference data installation or upgrades will be performed.~	
+9	2019-02-12	Galaxy Server Maintenance	~Galaxy Australia will be undergoing maintenance for 2 hours on the 20th February 2019 from 10:00am AEDT. It will be getting:
 * a new landing page
 * the tool panel will be updated to match usegalaxy.org and usegalaxy.eu
 * the backend will be upgraded to fix some job running issues
 
-We thank you for your patience in advance."
-9	2019-02-12	Tutorial of the Month: Prokka	"The Galaxy Project Training Network's tutorial of the month for January/February 2019 is \"Annotation of Bacterial Genomes with Prokka\" chosen by our own Simon Gladman.
+We thank you for your patience in advance.~	
+10	2019-02-12	Tutorial of the Month: Prokka	~The Galaxy Project Training Network's tutorial of the month for January/February 2019 is "Annotation of Bacterial Genomes with Prokka" chosen by our own Simon Gladman.
 
-[Here is a link](https://galaxyproject.org/blog/2019-01-totm/) to the Galaxy blog post referencing it."
-10	2019-02-27	New tools added: Heatmaps and VSearch	"This week we have added a number of new tools to Galaxy Australia
+[Here is a link](https://galaxyproject.org/blog/2019-01-totm/) to the Galaxy blog post referencing it.~	
+11	2019-02-27	New tools added: Heatmaps and VSearch	~This week we have added a number of new tools to Galaxy Australia
 
 **New tools:**
 * *Heatmap w ggplot*: This tool will generate a clustered heatmap of your data.
@@ -117,15 +117,15 @@ We thank you for your patience in advance."
 * *chimera.vsearch*: Part of the Mothur suite - find potential chimeric sequences using vsearch
 
 **Updated tools:**
-* *VSearch suite*: now at version 2.8.3.0"
-11	2019-03-06	Galaxy Version 19.01 Released	"**Galaxy 19.01 has now been released!**
+* *VSearch suite*: now at version 2.8.3.0~	
+12	2019-03-06	Galaxy Version 19.01 Released	~**Galaxy 19.01 has now been released!**
 <br/>
 This release includes the revised UI style, addition of colorful tags, extensive workflow enhancements, and enhanced support for Singularity.
 
 Please see the [release notes](https://docs.galaxyproject.org/en/release_19.01/releases/19.01_announce.html) for additional information.
 
-Galaxy Australia will be moving to this Galaxy version in the upcoming weeks. More information will be forthcoming."
-12	2019-03-14	Galactic News March 2019	"**Galactic News March 2019**
+Galaxy Australia will be moving to this Galaxy version in the upcoming weeks. More information will be forthcoming.~	
+13	2019-03-14	Galactic News March 2019	~**Galactic News March 2019**
 
 The March newsletter for the Galaxy project is available at: [https://galaxyproject.org/news/2019-03-galaxy-update/](https://galaxyproject.org/news/2019-03-galaxy-update/)
 
@@ -136,30 +136,30 @@ Highlights include:
 * Upcoming global training events
 * More publications citing Galaxy
 * Job opportunities
-* Training material updates"	https://galaxyproject.org/news/2019-03-galaxy-update/
-13	2019-03-18	New FTP upload URL	"Galaxy Australia has recently changed the URL for FTP uploads. If you need to upload large files to Galaxy Australia, simply log in to the FTP server at **[ftp://ftp.usegalaxy.org.au/](ftp://ftp.usegalaxy.org.au/)** with your favourite FTP software using your **Galaxy Australia** credentials. For help visit the [tutorial](https://galaxyproject.org/ftp-upload/).
+* Training material updates~	https://galaxyproject.org/news/2019-03-galaxy-update/
+14	2019-03-18	New FTP upload URL	~Galaxy Australia has recently changed the URL for FTP uploads. If you need to upload large files to Galaxy Australia, simply log in to the FTP server at **[ftp://ftp.usegalaxy.org.au/](ftp://ftp.usegalaxy.org.au/)** with your favourite FTP software using your **Galaxy Australia** credentials. For help visit the [tutorial](https://galaxyproject.org/ftp-upload/).
 
-Free FTP Client Software can be downloaded for your Operating System at: [https://filezilla-project.org/](https://filezilla-project.org/) or [https://cyberduck.io/](https://cyberduck.io/)"
-14	2019-03-25	Resolved - Service Slow Down 20-22 March 2019.	"You may have noticed that Galaxy Australia was slow to respond from the 20th - 22nd of March 2019 - This has been resolved. Upon investigation the slow down was caused by a live migration of some of the backend storage to a new faster platform. The migration is mostly completed and our normal excellent level of service was resumed on the 23rd March.
+Free FTP Client Software can be downloaded for your Operating System at: [https://filezilla-project.org/](https://filezilla-project.org/) or [https://cyberduck.io/](https://cyberduck.io/)~	
+15	2019-03-25	Resolved - Service Slow Down 20-22 March 2019.	~You may have noticed that Galaxy Australia was slow to respond from the 20th - 22nd of March 2019 - This has been resolved. Upon investigation the slow down was caused by a live migration of some of the backend storage to a new faster platform. The migration is mostly completed and our normal excellent level of service was resumed on the 23rd March.
 
 We thank you for your patience during this time.
 
-Galaxy Australia Admin Team."
-15	2019-04-09	Galaxy Australia upgraded to Galaxy version 19.01	"**Galaxy Australia has been upgraded to the latest Galaxy release. Version 19.01.**
+Galaxy Australia Admin Team.~	
+16	2019-04-09	Galaxy Australia upgraded to Galaxy version 19.01	~**Galaxy Australia has been upgraded to the latest Galaxy release. Version 19.01.**
 <br/>
 This morning after a brief planned outage, Galaxy Australia was upgraded to the latest version of Galaxy. You will notice some changes straight away - The colour scheme is different and the look and feel has altered. Everything else is the same however!
 
 This release includes the revised UI style, addition of colourful tags, extensive workflow enhancements, and enhanced support for Singularity.
 
-Please see the [release notes](https://docs.galaxyproject.org/en/release_19.01/releases/19.01_announce.html) for additional information."
-16	2019-05-02	Text processing tools disabled	"**Text processing tools** have been disabled due to security concerns with one of it's dependencies. We will re-enable these tools once the security patch has been developed and applied."
-17	2019-06-07	Galaxy Australia wins three Queensland iAwards	"**7 June 2019**
+Please see the [release notes](https://docs.galaxyproject.org/en/release_19.01/releases/19.01_announce.html) for additional information.~	
+17	2019-05-02	Text processing tools disabled	~**Text processing tools** have been disabled due to security concerns with one of it's dependencies. We will re-enable these tools once the security patch has been developed and applied.~	
+18	2019-06-07	Galaxy Australia wins three Queensland iAwards	~**7 June 2019**
 
 **Galaxy Australia won three trophies at the Australian Information Industry Association’s (AIIA) Queensland state iAwards on Tuesday, 4 June, including the top prize, the Queensland Premier's iAward for Public Sector Innovation.**
 
 The Hon. Mick de Brenni, Queensland’s Minister for Digital Technology, presented Galaxy Australia with the Queensland Premier’s iAward at a gala event at the Rydges hotel, South Bank, Brisbane.
 
-\"When it comes to being proud of fellow Queenslanders, it’s hard to look past an initiative that allows scientists to identify resolutions to genetic conditions that cause terminal cancer and debilitating disease,” said Mr de Brenni.
+"When it comes to being proud of fellow Queenslanders, it’s hard to look past an initiative that allows scientists to identify resolutions to genetic conditions that cause terminal cancer and debilitating disease,” said Mr de Brenni.
 
 “To put it simply, this application could find the next cure for cancer.”
 
@@ -167,8 +167,8 @@ Galaxy Australia also won [iAwards](https://www.aiia.com.au/iawards/about/2019-w
 
 The AIIA iAwards is the nation’s leading awards program that helps to recognise, celebrate and elevate Australian digital innovation.
 
-<div class=\"multiple-img\">
-    <img src=\"/media/uploads/galaxy-iaward-qld.jpg\" height=\"400px\" alt=\"galaxy-iaward-qld.jpg\" />
+<div class="multiple-img">
+    <img src="/media/uploads/media/galaxy-iaward-qld.jpg" height="400px" alt="galaxy-iaward-qld.jpg" />
 </div>
 
 *L–R: Dr Dominique Gorse (QFAB), Derek Benson (RCC), Dr Gareth Price (QFAB), Nick Rhodes (QFAB)) and Dr Phil Gurney (QCIF) with the three Queensland iAwards won by the Galaxy Australia team. (Photo: Anne Bernard.)*
@@ -177,7 +177,7 @@ Galaxy Australia is a free, Web-accessible platform to enable genetic scientists
 
 The [Queensland Cyber Infrastructure Foundation (QCIF)](https://www.qcif.edu.au/) and its bioinformatics arm [Queensland Facility for Advanced Bioinformatics (QFAB)](https://qfab.org/), together with the University of Melbourne’s [Melbourne Bioinformatics](https://www.melbournebioinformatics.org.au/), and the University of Queensland’s [Research Computing Centre (RCC)](https://rcc.uq.edu.au/) jointly built and operate Galaxy Australia.
 
-Galaxy Australia Service Manager Dr Gareth Price is very proud that his team’s work has been recognised with not just one, but three iAwards.
+Galaxy Australia Service Manager Dr Gareth Price is very proud that his team’s work has been recognised with not just one, but three iAwards.  
 
 “Personally, I was humbled by the calibre of entrants. We are proud to be honoured with these awards that reflect our contribution to Australian research by linking researchers and their data to national compute power and the analytical tools required to maximise research value,” he said.
 
@@ -189,7 +189,7 @@ Galaxy Australia is jointly supported by the Australian Research Data Commons ([
 
 As a Queensland iAward winner, Galaxy Australia will be a finalist in the national iAwards on Thursday, 29 August in Melbourne.
 
-AIIA CEO Ron Gauci said: \"Each year the AIIA iAwards shine a light on the exceptional achievements of those at the forefront of Australian innovation, and the projects shaping our modern economy.”
+AIIA CEO Ron Gauci said: "Each year the AIIA iAwards shine a light on the exceptional achievements of those at the forefront of Australian innovation, and the projects shaping our modern economy.”
 
 National iAward winners will represent Australia at the Asia Pacific ICT Alliance ([APICTA](http://www.apicta.org/)) Awards, dubbed the “Oscars of the ICT arena”, in HaLong, Vietnam, 18–23 November.
 
@@ -223,38 +223,38 @@ The [Queensland Cyber Infrastructure Foundation](https://www.qcif.edu.au/) (QCIF
 The [Research Computing Centre](https://rcc.uq.edu.au/) (RCC) provides coordinated management and support of The University of Queensland’s sustained and substantial investment in eResearch.
 
 **Bioplatforms Australia**
-[Bioplatforms Australia](https://www.bioplatforms.com/) enables Australian life science research by investing in state-of-the-art infrastructure and associated expertise in the specialist fields of genomics, proteomics, metabolomics and bioinformatics. We create open-data initiatives through collaborative research projects, which build critical ‘omic datasets that support scientific challenges of national importance."
-18	2019-06-25	Galaxy Australia upgraded to Galaxy version 19.05	"**Galaxy Australia has been upgraded to the latest Galaxy release. Version 19.05.**
+[Bioplatforms Australia](https://www.bioplatforms.com/) enables Australian life science research by investing in state-of-the-art infrastructure and associated expertise in the specialist fields of genomics, proteomics, metabolomics and bioinformatics. We create open-data initiatives through collaborative research projects, which build critical ‘omic datasets that support scientific challenges of national importance.~	
+19	2019-06-25	Galaxy Australia upgraded to Galaxy version 19.05	~**Galaxy Australia has been upgraded to the latest Galaxy release. Version 19.05.**
 <br/>
 This morning after a brief planned outage, Galaxy Australia was upgraded to the latest version of Galaxy. You will notice some changes straight away - The colour scheme is different and the look and feel has altered. Everything else is the same however!
 
 This release includes:
 
-* Tool favourites! You can now tag tools that you use all the time and create your own \"mini tool list\".
+* Tool favourites! You can now tag tools that you use all the time and create your own "mini tool list".
 * Improvements to History import/export.
 * A data selection dialog within tool forms to make it easier to select the data the tool is to run on.
 
 Please see the [user release notes](https://docs.galaxyproject.org/en/release_19.05/releases/19.05_announce_user.html) for additional information.
 
-Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/release_19.05/releases/19.05_announce.html)"
-19	2019-08-07	Galaxy Australia moves to new hardware	"**Galaxy Australia moves to the new QRIS cloud stage 5 hardware**
+Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/release_19.05/releases/19.05_announce.html)~	
+20	2019-08-07	Galaxy Australia moves to new hardware	~**Galaxy Australia moves to the new QRIS cloud stage 5 hardware**
 <br/>
 This morning after a planned outage, the Galaxy Australia main queue was moved from it's original home on QRIS cloud to their shiny new hardware! The stage 5 hardware is faster, better connected and much more flexible. This will help Galaxy Australia be more responsive to it's users as we are now able to launch bigger jobs and have them run faster.
 
-For more information about Galaxy Australia's home, see the [QRIScloud website](https://qriscloud.org.au) and the [ARDC](https://ardc.org.au) refresh of the [ NeCTAR Australian Research Cloud](https://ardc.edu.au/collaborations/strategic-activities/storage-and-compute/research-cloud-request-for-proposals/)"
-20	2019-08-16	Galactic News August 2019		https://galaxyproject.org/news/2019-08-galaxy-update/
-21	2019-09-26	Galactic News September 2019		https://galaxyproject.org/news/2019-09-galaxy-update/
-22	2019-10-06	Galactic News October 2019		https://galaxyproject.org/news/2019-10-galaxy-update/
-23	2019-10-07	Australian BioCommons Data Survey	"**Calling all Australian life science researchers who move data!**
+For more information about Galaxy Australia's home, see the [QRIScloud website](https://qriscloud.org.au) and the [ARDC](https://ardc.org.au) refresh of the [ NeCTAR Australian Research Cloud](https://ardc.edu.au/collaborations/strategic-activities/storage-and-compute/research-cloud-request-for-proposals/)~	
+21	2019-08-16	Galactic News August 2019		https://galaxyproject.org/news/2019-08-galaxy-update/
+22	2019-09-26	Galactic News September 2019		https://galaxyproject.org/news/2019-09-galaxy-update/
+23	2019-10-06	Galactic News October 2019		https://galaxyproject.org/news/2019-10-galaxy-update/
+24	2019-10-07	Australian BioCommons Data Survey	~**Calling all Australian life science researchers who move data!**
 <br/>
-The <a href=\"https://biocommons.org.au\" target=\"_blank\">Australian BioCommons</a> is a new NCRIS-funded digital capability that will enhance national bioinformatics infrastructure for environmental, agricultural and biomedical researchers. We want to know about your research data movement challenges.
+The <a href="https://biocommons.org.au" target="_blank">Australian BioCommons</a> is a new NCRIS-funded digital capability that will enhance national bioinformatics infrastructure for environmental, agricultural and biomedical researchers. We want to know about your research data movement challenges.
 
 Please help inform us so that we can improve bioinformatics infrastructure and resources nationally by completing our 10 minute survey on data movement.
 
-Survey here: <a href=\"https://forms.gle/35RsqUYi1jnMxp9W9\" target=\"_blank\">https://forms.gle/35RsqUYi1jnMxp9W9</a>
+Survey here: <a href="https://forms.gle/35RsqUYi1jnMxp9W9" target="_blank">https://forms.gle/35RsqUYi1jnMxp9W9</a>
 
-*Follow Australian BioCommons at <a href=\"https://twitter.com/AusBiocommons\" target=\"_blank\">@AusBioCommons</a>*"
-24	2019-10-28	Nanopore tools installed	"**Nanopore tools installed**
+*Follow Australian BioCommons at <a href="https://twitter.com/AusBiocommons" target="_blank">@AusBioCommons</a>*~	
+25	2019-10-28	Nanopore tools installed	~**Nanopore tools installed**
 <br/>
 Galaxy Australia has been updated with a new set of tools for processing **Nanopore** data. The tools include:
 
@@ -267,9 +267,9 @@ Galaxy Australia has been updated with a new set of tools for processing **Nanop
 
 The majority of Nanopore tools are located under *Genomic File Manipulation - Nanopore*, except for the assemblers (*Flye* and *Canu*) which are in *Assembly.*
 
-Other tools to support Nanopore data will be installed soon."
-25	2019-12-06	Galactic News December 2019		https://galaxyproject.org/news/2019-12-galaxy-update/
-26	2019-12-11	Galaxy Australia upgraded to Galaxy version 19.09	"**Galaxy Australia has been upgraded to the latest Galaxy release. Version 19.09.**
+Other tools to support Nanopore data will be installed soon.~	
+26	2019-12-06	Galactic News December 2019		https://galaxyproject.org/news/2019-12-galaxy-update/
+27	2019-12-11	Galaxy Australia upgraded to Galaxy version 19.09	~**Galaxy Australia has been upgraded to the latest Galaxy release. Version 19.09.**
 <br/>
 This morning after a brief planned outage, Galaxy Australia was upgraded to the latest version of Galaxy. You will notice some changes straight away - The tool menu is a bit easier to read now. Everything else is the same however!
 
@@ -281,10 +281,10 @@ This release includes:
 
 Please see the [user release notes](https://docs.galaxyproject.org/en/release_19.09/releases/19.09_announce_user.html) for additional information.
 
-Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/release_19.09/releases/19.09_announce.html)"
-27	2019-12-17	Summer Holiday Support	"Galaxy Australia will be minimally administered during the university shutdown period from 24th December 2019 to the 2nd January 2020. During this time, only essential maintenance will be performed. No disk quota modifications, tool installations or reference data installation or upgrades will be performed."
-28	2020-01-29	One millionth job!	"Galaxy Australia has now processed over **1 million jobs!** The tool run for the one millionth job was DeepTools bam coverage and completed at 8:55am on Wednesday the 29th of January 2020."
-29	2020-01-31	Galaxy Training Network - Survey	"*We need your input on preparing and giving Galaxy Training*
+Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/release_19.09/releases/19.09_announce.html)~	
+28	2019-12-17	Summer Holiday Support	~Galaxy Australia will be minimally administered during the university shutdown period from 24th December 2019 to the 2nd January 2020. During this time, only essential maintenance will be performed. No disk quota modifications, tool installations or reference data installation or upgrades will be performed.~	
+29	2020-01-29	One millionth job!	~Galaxy Australia has now processed over **1 million jobs!** The tool run for the one millionth job was DeepTools bam coverage and completed at 8:55am on Wednesday the 29th of January 2020.~	
+30	2020-01-31	Galaxy Training Network - Survey	~*We need your input on preparing and giving Galaxy Training*
 
 Do you use Galaxy for Training? Then the **Galaxy Training Network** [wants your feedback](https://protect-au.mimecast.com/s/mNptCJypvAfjOjw7uV_6w5?domain=forms.gle). Please take a few minutes to let us know about your training experiences.
 
@@ -292,8 +292,8 @@ The survey should take no more than 10 minutes and will help us prioritise impro
 
 Thank you!
 
-The GTN Community"
-30	2020-02-16	GVL version 5 released!	"**The Genomics Virtual Lab (GVL) has had an update to version 5!**
+The GTN Community~	
+31	2020-02-16	GVL version 5 released!	~**The Genomics Virtual Lab (GVL) has had an update to version 5!**
 
 * The GVL 5.0 is a ground-up rewrite of the GVL based on Kubernetes and containerization technologies
 * Production grade out of the box, with scalability, zero downtime configuration changes, better security, fully integrated Grafana metrics, containerized tools, as well as near equivalent toolset and reference data to usegalaxy.org
@@ -305,8 +305,8 @@ The GTN Community"
 
 More details can be found at: [https://galaxyproject.org/blog/2020-02-gvl5-beta/](https://galaxyproject.org/blog/2020-02-gvl5-beta/)
 
-*Enis Afgan, Nuwan Goonasekera, Alexandru Mahmoud, Alex Ostrovsky, the GVL and Galaxy teams*"
-31	2020-02-19	Galaxy Australia tool updates 2020-02-19	"The following tools have been updated on Galaxy Australia
+*Enis Afgan, Nuwan Goonasekera, Alexandru Mahmoud, Alex Ostrovsky, the GVL and Galaxy teams*~	
+32	2020-02-19	Galaxy Australia tool updates 2020-02-19	~The following tools have been updated on Galaxy Australia
 
 ### Annotation
 
@@ -404,11 +404,11 @@ More details can be found at: [https://galaxyproject.org/blog/2020-02-gvl5-beta/
  - bcftools_query_list_samples was updated to [242753783b68](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query_list_samples/242753783b68)
  - bcftools_reheader was updated to [982bc0e518c8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_reheader/982bc0e518c8)
  - bcftools_roh was updated to [cb681f21e670](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_roh/cb681f21e670)
- - bcftools_view was updated to [c4a9b38b435d](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/c4a9b38b435d)"
-32	2020-02-27	Galaxy Australia contributes to global research effort into COVID-19	"A joint paper by Galaxy teams from Australia, Europe and the United States demonstrated how the COVID-19 genome data can be shared, analysed and reproduced in an efficient and transparent way. Find the paper at <a href=\"https://www.biocommons.org.au/galaxy-covid-19\" target=\"_blank\">https://www.biocommons.org.au/galaxy-covid-19</a> and the workflows ready for use here in Galaxy Australia under Shared Data / Workflows.
+ - bcftools_view was updated to [c4a9b38b435d](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/c4a9b38b435d)~	
+33	2020-02-27	Galaxy Australia contributes to global research effort into COVID-19	~A joint paper by Galaxy teams from Australia, Europe and the United States demonstrated how the COVID-19 genome data can be shared, analysed and reproduced in an efficient and transparent way. Find the paper at <a href="https://www.biocommons.org.au/galaxy-covid-19" target="_blank">https://www.biocommons.org.au/galaxy-covid-19</a> and the workflows ready for use here in Galaxy Australia under Shared Data / Workflows.
 
-Galaxy Australia Team"
-33	2020-03-01	Galaxy Version 20.01 Released	"**Galaxy 20.01 has now been released!**
+Galaxy Australia Team~	
+34	2020-03-01	Galaxy Version 20.01 Released	~**Galaxy 20.01 has now been released!**
 <br/>
 This release includes:
 
@@ -420,8 +420,8 @@ Please see the [user release notes](https://docs.galaxyproject.org/en/master/rel
 
 Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/master/releases/20.01_announce.html).
 
-Galaxy Australia will be moving to this Galaxy version in mid March. More information will be forthcoming."
-34	2020-03-03	Galaxy Australia tool updates 2020-03-03	"The following tools have been installed/updated on Galaxy Australia
+Galaxy Australia will be moving to this Galaxy version in mid March. More information will be forthcoming.~	
+35	2020-03-03	Galaxy Australia tool updates 2020-03-03	~The following tools have been installed/updated on Galaxy Australia
 
 ### Annotation
 
@@ -504,8 +504,8 @@ Galaxy Australia will be moving to this Galaxy version in mid March. More inform
 
  - lofreq_viterbi revision [ecd80c7c3886](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_viterbi/ecd80c7c3886) was installed
  - lofreq_call revision [03627f24605f](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/03627f24605f) was installed
- - freebayes was updated to [ef2c525bd8cd](https://toolshed.g2.bx.psu.edu/view/devteam/freebayes/ef2c525bd8cd)"
-35	2020-03-16	Galaxy Australia upgraded to Galaxy version 20.01	"**Galaxy Australia has been upgraded to the latest Galaxy release. Version 20.01.**
+ - freebayes was updated to [ef2c525bd8cd](https://toolshed.g2.bx.psu.edu/view/devteam/freebayes/ef2c525bd8cd)~	
+36	2020-03-16	Galaxy Australia upgraded to Galaxy version 20.01	~**Galaxy Australia has been upgraded to the latest Galaxy release. Version 20.01.**
 <br/>
 This morning after a brief planned outage, Galaxy Australia was upgraded to the latest version of Galaxy. You will notice some changes straight away - The tool menu is a bit easier to read now. Everything else is the same however!
 
@@ -517,8 +517,8 @@ This release includes:
 
 Please see the [user release notes](https://docs.galaxyproject.org/en/release_20.01/releases/20.01_announce_user.html) for additional information.
 
-Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/release_20.01/releases/20.01_announce.html)"
-36	2020-04-01	Galaxy Australia tool updates 2020-04-01	"The following tools have been installed/updated on Galaxy Australia
+Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/release_20.01/releases/20.01_announce.html)~	
+37	2020-04-01	Galaxy Australia tool updates 2020-04-01	~The following tools have been installed/updated on Galaxy Australia
 
 
 ### Assembly
@@ -655,9 +655,9 @@ Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/re
 
 ### Variant Calling
 
- - lofreq_call was updated to [dfadc322b065](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/dfadc322b065)"
-37	2020-04-03	We just lost James Taylor (1979-2020)	"We just lost James Taylor (1979-2020). His legacy — open, reproducible science — will continue."	https://galaxyproject.org/news/2020-04-james-taylor/
-38	2020-04-08	Galaxy Australia tool updates 2020-04-08	"The following tools have been installed/updated on Galaxy Australia
+ - lofreq_call was updated to [dfadc322b065](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/dfadc322b065)~	
+38	2020-04-03	We just lost James Taylor (1979-2020)	~We just lost James Taylor (1979-2020). His legacy — open, reproducible science — will continue.~	https://galaxyproject.org/news/2020-04-james-taylor/
+39	2020-04-08	Galaxy Australia tool updates 2020-04-08	~The following tools have been installed/updated on Galaxy Australia
 
 
 ### Assembly
@@ -792,8 +792,8 @@ Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/re
  - ivar_removereads revision [bd2a7d1316b9](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/bd2a7d1316b9), [9eaadf03e0df](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/9eaadf03e0df) was installed
  - ivar_trim revision [8858fa037a15](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/8858fa037a15), [d37ede8589b2](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/d37ede8589b2) was installed
  - ivar_variants revision [12d66d0d05ac](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/12d66d0d05ac), [c5c9f02b6167](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/c5c9f02b6167) was installed
- - ivar_getmasked was updated to [fafb3d685fa9](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/fafb3d685fa9), [ad0dc9f4c9e2](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/ad0dc9f4c9e2)"
-39	2020-04-17	Galaxy Australia tool updates 2020-04-17	"The following tools have been installed/updated on Galaxy Australia
+ - ivar_getmasked was updated to [fafb3d685fa9](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/fafb3d685fa9), [ad0dc9f4c9e2](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/ad0dc9f4c9e2)~	
+40	2020-04-17	Galaxy Australia tool updates 2020-04-17	~The following tools have been installed/updated on Galaxy Australia
 
 
 ### Assembly
@@ -874,12 +874,12 @@ Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/re
 
 ### Variant Calling
 
- - lofreq_call was updated to [3b4b2121842f](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/3b4b2121842f)"
-40	2020-04-21	Leaders in Australian Computing Research Begin Battle with COVID-19	"NCI Australia and the Pawsey Supercomputing Centre are supporting the Australian and international research community undertaking COVID-19 research through provision of streamlined, prioritised and expedited access to computation and data resources."	https://nci.org.au/news-events/news/leaders-australian-computing-research-begin-battle-covid-19
-41	2020-04-21	Galaxy Australia COVID-19 dedicated Pulsar	"Galaxy Australia relies on remote (to head node) deployments called Pulsar to increase the range and number of jobs that can be run on the service. The team has been allocated resources on the Nimbus cloud to deploy a dedicated COVID-19 Pulsar as part of Galaxy Australia at the Pawsey Centre that allows Galaxy users to rapidly analyse their data on published tools/workflows to further research into SARS-CoV-2.
+ - lofreq_call was updated to [3b4b2121842f](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/3b4b2121842f)~	
+41	2020-04-21	Leaders in Australian Computing Research Begin Battle with COVID-19	~NCI Australia and the Pawsey Supercomputing Centre are supporting the Australian and international research community undertaking COVID-19 research through provision of streamlined, prioritised and expedited access to computation and data resources.~	https://nci.org.au/news-events/news/leaders-australian-computing-research-begin-battle-covid-19
+42	2020-04-21	Galaxy Australia COVID-19 dedicated Pulsar	~Galaxy Australia relies on remote (to head node) deployments called Pulsar to increase the range and number of jobs that can be run on the service. The team has been allocated resources on the Nimbus cloud to deploy a dedicated COVID-19 Pulsar as part of Galaxy Australia at the Pawsey Centre that allows Galaxy users to rapidly analyse their data on published tools/workflows to further research into SARS-CoV-2.
 
-- Dr. Gareth Price"	https://pawsey.org.au/covid19announcement/
-42	2020-04-24	Galaxy Australia tool updates 2020-04-24	"<style>
+- Dr. Gareth Price~	https://pawsey.org.au/covid19announcement/
+43	2020-04-24	Galaxy Australia tool updates 2020-04-24	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -910,8 +910,8 @@ Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/re
 |---------|-----|
 | **Assembly** | racon [a199cd7ac344](https://toolshed.g2.bx.psu.edu/view/bgruening/racon/a199cd7ac344) |
 | **FASTA/FASTQ** | umi_tools_count [b557acca0b56](https://toolshed.g2.bx.psu.edu/view/iuc/umi_tools_count/b557acca0b56)<br/>umi_tools_extract [828dba98cdb4](https://toolshed.g2.bx.psu.edu/view/iuc/umi_tools_extract/828dba98cdb4) |
-| **iVar** | ivar_consensus [d6e72da3ec35](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/d6e72da3ec35)<br/>ivar_filtervariants [f91cfb73d369](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/f91cfb73d369)<br/>ivar_getmasked [d7e79eb3bcb3](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/d7e79eb3bcb3)<br/>ivar_removereads [94df24c6bc00](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/94df24c6bc00)<br/>ivar_variants [e1a015876aa9](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/e1a015876aa9) |"
-43	2020-05-01	Galaxy Australia tool updates 2020-05-01	"<style>
+| **iVar** | ivar_consensus [d6e72da3ec35](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/d6e72da3ec35)<br/>ivar_filtervariants [f91cfb73d369](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/f91cfb73d369)<br/>ivar_getmasked [d7e79eb3bcb3](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/d7e79eb3bcb3)<br/>ivar_removereads [94df24c6bc00](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/94df24c6bc00)<br/>ivar_variants [e1a015876aa9](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/e1a015876aa9) |~	
+44	2020-05-01	Galaxy Australia tool updates 2020-05-01	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -942,16 +942,16 @@ Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/re
 | **ChemicalToolBox** | rdock_rbdock [07fa39ed62c7](https://toolshed.g2.bx.psu.edu/view/bgruening/rdock_rbdock/07fa39ed62c7) |
 | **FASTA/FASTQ** | fastp [dbf9c561ef29](https://toolshed.g2.bx.psu.edu/view/iuc/fastp/dbf9c561ef29) |
 | **Get Data** | sra_tools [c441583adae5](https://toolshed.g2.bx.psu.edu/view/iuc/sra_tools/c441583adae5) |
-| **iVar** | ivar_trim [cb903c9dc33d](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/cb903c9dc33d) |"
-44	2020-05-07	Galactic News May 2020		https://galaxyproject.org/news/2020-05-galaxy-update/
-45	2020-05-07	The James Taylor Foundation: Big shoes to fill	"**JTech: Junior Training and Educational Connections Hotspot**
+| **iVar** | ivar_trim [cb903c9dc33d](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/cb903c9dc33d) |~	
+45	2020-05-07	Galactic News May 2020		https://galaxyproject.org/news/2020-05-galaxy-update/
+46	2020-05-07	The James Taylor Foundation: Big shoes to fill	~**JTech: Junior Training and Educational Connections Hotspot**
 
 The James Taylor Foundation: Big shoes to fill
 
 *The most important job of senior faculty is to mentor junior faculty and students. (@jxtx)*
 
-These are the words that James Taylor (JT) said and lived by. This, he believed, was imperative to advance science, and in a way that facilitated diversity and inclusion. The mission of this foundation is to continue his legacy, through a multifaceted approach which will be unrolled across several stages."	https://galaxyproject.org/jxtx/
-46	2020-05-08	Galaxy Australia tool updates 2020-05-08	"<style>
+These are the words that James Taylor (JT) said and lived by. This, he believed, was imperative to advance science, and in a way that facilitated diversity and inclusion. The mission of this foundation is to continue his legacy, through a multifaceted approach which will be unrolled across several stages.~	https://galaxyproject.org/jxtx/
+47	2020-05-08	Galaxy Australia tool updates 2020-05-08	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -988,8 +988,8 @@ These are the words that James Taylor (JT) said and lived by. This, he believed,
 | **Mapping** | bowtie2 [749c918495f7](https://toolshed.g2.bx.psu.edu/view/devteam/bowtie2/749c918495f7) |
 | **Phylogenetics** | hyphy_absrel [107d3ba7024a](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/107d3ba7024a)<br/>hyphy_gard [e75442c7f4da](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/e75442c7f4da) |
 | **RNA-seq** | deseq2 [71bacea10eee](https://toolshed.g2.bx.psu.edu/view/iuc/deseq2/71bacea10eee) |
-| **SAM/BAM** | samtools_calmd [06dc50b7b711](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_calmd/06dc50b7b711)<br/>samtools_split [135c85f4cfaf](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_split/135c85f4cfaf) |"
-47	2020-05-12	Galaxy Australia tool updates 2020-05-12	"<style>
+| **SAM/BAM** | samtools_calmd [06dc50b7b711](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_calmd/06dc50b7b711)<br/>samtools_split [135c85f4cfaf](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_split/135c85f4cfaf) |~	
+48	2020-05-12	Galaxy Australia tool updates 2020-05-12	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1020,8 +1020,8 @@ These are the words that James Taylor (JT) said and lived by. This, he believed,
 | **Mapping** | minimap2 [53c0b7a1a0c3](https://toolshed.g2.bx.psu.edu/view/iuc/minimap2/53c0b7a1a0c3) |
 | **Phylogenetics** | hyphy_absrel [c78f3d7dd1db](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/c78f3d7dd1db)<br/>hyphy_gard [7a2092844346](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/7a2092844346) |
 | **RNA-seq** | kallisto_quant [60f888039fb2](https://toolshed.g2.bx.psu.edu/view/iuc/kallisto_quant/60f888039fb2)<br/>salmon [e3d32471da11](https://toolshed.g2.bx.psu.edu/view/bgruening/salmon/e3d32471da11) |
-| **Text Manipulation** | regex_find_replace [538933d9fccc](https://toolshed.g2.bx.psu.edu/view/galaxyp/regex_find_replace/538933d9fccc) |"
-48	2020-05-26	Galaxy Australia tool updates 2020-05-26	"<style>
+| **Text Manipulation** | regex_find_replace [538933d9fccc](https://toolshed.g2.bx.psu.edu/view/galaxyp/regex_find_replace/538933d9fccc) |~	
+49	2020-05-26	Galaxy Australia tool updates 2020-05-26	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1069,8 +1069,8 @@ These are the words that James Taylor (JT) said and lived by. This, he believed,
 | **SAM/BAM** | qualimap_bamqc [5f8e69cc4c6e](https://toolshed.g2.bx.psu.edu/view/iuc/qualimap_bamqc/5f8e69cc4c6e), [19ece8afbaab](https://toolshed.g2.bx.psu.edu/view/iuc/qualimap_bamqc/19ece8afbaab) |
 | **Single-cell** | scanpy_filter [3c86f71498bc](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_filter/3c86f71498bc)<br/>scanpy_normalize [a407e7f8bdc1](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_normalize/a407e7f8bdc1)<br/>scanpy_remove_confounders [215733a383f2](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_remove_confounders/215733a383f2) |
 | **Statistics** | sklearn_build_pipeline [840f29aad145](https://toolshed.g2.bx.psu.edu/view/bgruening/sklearn_build_pipeline/840f29aad145) |
-| **Text Manipulation** | text_processing [9ff72e942410](https://toolshed.g2.bx.psu.edu/view/bgruening/text_processing/9ff72e942410) |"
-49	2020-06-02	Galaxy Australia tool updates 2020-06-02	"<style>
+| **Text Manipulation** | text_processing [9ff72e942410](https://toolshed.g2.bx.psu.edu/view/bgruening/text_processing/9ff72e942410) |~	
+50	2020-06-02	Galaxy Australia tool updates 2020-06-02	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1109,8 +1109,8 @@ These are the words that James Taylor (JT) said and lived by. This, he believed,
 | **Metagenomic Analysis** | cat_bins [18676df0cb3a](https://toolshed.g2.bx.psu.edu/view/iuc/cat_bins/18676df0cb3a) |
 | **Nanopore** | nanopolish_eventalign [8fdb079ddaf0](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_eventalign/8fdb079ddaf0)<br/>nanopolish_methylation [12efe2f03697](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_methylation/12efe2f03697)<br/>nanopolish_polya [be717b65851f](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_polya/be717b65851f)<br/>nanopolish_variants [63af3144371a](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_variants/63af3144371a) |
 | **Single-cell** | scanpy_cluster_reduce_dimension [b2df381a6004](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_cluster_reduce_dimension/b2df381a6004) |
-| **Variant Calling** | lofreq_alnqual [e61c9ac190ad](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_alnqual/e61c9ac190ad)<br/>lofreq_filter [701d134358ad](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_filter/701d134358ad)<br/>lofreq_indelqual [c27549b9aa1f](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_indelqual/c27549b9aa1f)<br/>lofreq_viterbi [dbd9f2db9ed8](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_viterbi/dbd9f2db9ed8) |"
-50	2020-06-03	The Galaxy platform for accessible, reproducible and collaborative biomedical analyses: 2020 update	"If your use of Galaxy Australia leads to publication, please cite this paper to help promote the value of the Galaxy Australia platform to reproducible science.
+| **Variant Calling** | lofreq_alnqual [e61c9ac190ad](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_alnqual/e61c9ac190ad)<br/>lofreq_filter [701d134358ad](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_filter/701d134358ad)<br/>lofreq_indelqual [c27549b9aa1f](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_indelqual/c27549b9aa1f)<br/>lofreq_viterbi [dbd9f2db9ed8](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_viterbi/dbd9f2db9ed8) |~	
+51	2020-06-03	The Galaxy platform for accessible, reproducible and collaborative biomedical analyses: 2020 update	~If your use of Galaxy Australia leads to publication, please cite this paper to help promote the value of the Galaxy Australia platform to reproducible science.
 
 The Galaxy Project has a new paper in Nucleic Acids Research.
 
@@ -1122,8 +1122,8 @@ Full paper can be found here: [https://doi.org/10.1093/nar/gkaa434](https://doi.
 
 **Abstract:**
 
-Galaxy ([https://galaxyproject.org](https://galaxyproject.org)) is a web-based computational workbench used by tens of thousands of scientists across the world to analyze large biomedical datasets. Since 2005, the Galaxy project has fostered a global community focused on achieving accessible, reproducible, and collaborative research. Together, this community develops the Galaxy software framework, integrates analysis tools and visualizations into the framework, runs public servers that make Galaxy available via a web browser, performs and publishes analyses using Galaxy, leads bioinformatics workshops that introduce and use Galaxy, and develops interactive training materials for Galaxy. Over the last two years, all aspects of the Galaxy project have grown: code contributions, tools integrated, users, and training materials. Key advances in Galaxy's user interface include enhancements for analyzing large dataset collections as well as interactive tools for exploratory data analysis. Extensions to Galaxy's framework include support for federated identity and access management and increased ability to distribute analysis jobs to remote resources. New community resources include large public servers in Europe and Australia, an increasing number of regional and local Galaxy communities, and substantial growth in the Galaxy Training Network."
-51	2020-06-09	Galaxy Australia tool updates 2020-06-09	"<style>
+Galaxy ([https://galaxyproject.org](https://galaxyproject.org)) is a web-based computational workbench used by tens of thousands of scientists across the world to analyze large biomedical datasets. Since 2005, the Galaxy project has fostered a global community focused on achieving accessible, reproducible, and collaborative research. Together, this community develops the Galaxy software framework, integrates analysis tools and visualizations into the framework, runs public servers that make Galaxy available via a web browser, performs and publishes analyses using Galaxy, leads bioinformatics workshops that introduce and use Galaxy, and develops interactive training materials for Galaxy. Over the last two years, all aspects of the Galaxy project have grown: code contributions, tools integrated, users, and training materials. Key advances in Galaxy's user interface include enhancements for analyzing large dataset collections as well as interactive tools for exploratory data analysis. Extensions to Galaxy's framework include support for federated identity and access management and increased ability to distribute analysis jobs to remote resources. New community resources include large public servers in Europe and Australia, an increasing number of regional and local Galaxy communities, and substantial growth in the Galaxy Training Network.~	
+52	2020-06-09	Galaxy Australia tool updates 2020-06-09	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1155,8 +1155,8 @@ Galaxy ([https://galaxyproject.org](https://galaxyproject.org)) is a web-based c
 | **Get Data** | sra_tools [7068f48d0ef9](https://toolshed.g2.bx.psu.edu/view/iuc/sra_tools/7068f48d0ef9) |
 | **Proteomics** | maxquant [2133b0be850a](https://toolshed.g2.bx.psu.edu/view/galaxyp/maxquant/2133b0be850a)<br/>maxquant_mqpar [2d67fb758956](https://toolshed.g2.bx.psu.edu/view/galaxyp/maxquant_mqpar/2d67fb758956) |
 | **Text Manipulation** | column_maker [be25c075ed54](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/be25c075ed54)<br/>merge_cols [dd40b1e9eebe](https://toolshed.g2.bx.psu.edu/view/devteam/merge_cols/dd40b1e9eebe) |
-| **iVar** | ivar_consensus [7f781286b55f](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/7f781286b55f)<br/>ivar_filtervariants [2c47c138176e](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/2c47c138176e)<br/>ivar_getmasked [2cf4a1cafc16](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/2cf4a1cafc16)<br/>ivar_removereads [3d18f8c3c0f6](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/3d18f8c3c0f6)<br/>ivar_variants [aa9de8f20668](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/aa9de8f20668) |"
-52	2020-06-16	Galaxy Australia tool updates 2020-06-16	"<style>
+| **iVar** | ivar_consensus [7f781286b55f](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/7f781286b55f)<br/>ivar_filtervariants [2c47c138176e](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/2c47c138176e)<br/>ivar_getmasked [2cf4a1cafc16](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_getmasked/2cf4a1cafc16)<br/>ivar_removereads [3d18f8c3c0f6](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/3d18f8c3c0f6)<br/>ivar_variants [aa9de8f20668](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/aa9de8f20668) |~	
+53	2020-06-16	Galaxy Australia tool updates 2020-06-16	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1189,9 +1189,9 @@ Galaxy ([https://galaxyproject.org](https://galaxyproject.org)) is a web-based c
 | **Mapping** | minimap2 [8c6cd2650d1f](https://toolshed.g2.bx.psu.edu/view/iuc/minimap2/8c6cd2650d1f) |
 | **RNA-seq** | heinz [2b80a2596064](https://toolshed.g2.bx.psu.edu/view/iuc/heinz/2b80a2596064) |
 | **Variant Calling** | lofreq_call [074d44697036](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/074d44697036), [65432c3abf6c](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/65432c3abf6c)<br/>lofreq_alnqual [e0e2fd665102](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_alnqual/e0e2fd665102)<br/>lofreq_filter [950d1d49d678](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_filter/950d1d49d678)<br/>lofreq_indelqual [354b534eeab7](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_indelqual/354b534eeab7)<br/>lofreq_viterbi [af7e416d8176](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_viterbi/af7e416d8176) |
-| **iVar** | ivar_trim [5d6ed46cc101](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/5d6ed46cc101) |"
-53	2020-06-18	Galactic News June 2020		https://galaxyproject.org/news/2020-06-galaxy-update/
-54	2020-06-23	Galaxy Australia tool updates 2020-06-23	"<style>
+| **iVar** | ivar_trim [5d6ed46cc101](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/5d6ed46cc101) |~	
+54	2020-06-18	Galactic News June 2020		https://galaxyproject.org/news/2020-06-galaxy-update/
+55	2020-06-23	Galaxy Australia tool updates 2020-06-23	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1221,9 +1221,9 @@ Galaxy ([https://galaxyproject.org](https://galaxyproject.org)) is a web-based c
 |---------|-----|
 | **Phylogenetics** | hyphy_absrel [8834daeb9892](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/8834daeb9892)<br/>hyphy_gard [df47d4845b62](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/df47d4845b62) |
 | **RNA-seq** | cuffcompare [f648e5180e40](https://toolshed.g2.bx.psu.edu/view/devteam/cuffcompare/f648e5180e40)<br/>cuffdiff [43b36b3d4333](https://toolshed.g2.bx.psu.edu/view/devteam/cuffdiff/43b36b3d4333)<br/>cufflinks [d080005cffe1](https://toolshed.g2.bx.psu.edu/view/devteam/cufflinks/d080005cffe1)<br/>cuffmerge [6a6717a5f421](https://toolshed.g2.bx.psu.edu/view/devteam/cuffmerge/6a6717a5f421)<br/>cuffnorm [6cbfede05833](https://toolshed.g2.bx.psu.edu/view/devteam/cuffnorm/6cbfede05833)<br/>cuffquant [679d93c99757](https://toolshed.g2.bx.psu.edu/view/devteam/cuffquant/679d93c99757) |
-| **iVar** | ivar_consensus [78bbd17d0703](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/78bbd17d0703)<br/>ivar_filtervariants [7fe36019c073](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/7fe36019c073)<br/>ivar_removereads [ee2beb764a7b](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/ee2beb764a7b)<br/>ivar_variants [f95f403841ad](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/f95f403841ad) |"
-55	2020-07-01	Galactic News July 2020		https://galaxyproject.org/news/2020-07-galaxy-update/
-56	2020-07-01	Galaxy Version 20.05 Released	"**Galaxy 20.05 has now been released!**
+| **iVar** | ivar_consensus [78bbd17d0703](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/78bbd17d0703)<br/>ivar_filtervariants [7fe36019c073](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/7fe36019c073)<br/>ivar_removereads [ee2beb764a7b](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/ee2beb764a7b)<br/>ivar_variants [f95f403841ad](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/f95f403841ad) |~	
+56	2020-07-01	Galactic News July 2020		https://galaxyproject.org/news/2020-07-galaxy-update/
+57	2020-07-01	Galaxy Version 20.05 Released	~**Galaxy 20.05 has now been released!**
 <br/>
 This release includes:
 
@@ -1235,8 +1235,8 @@ Please see the [user release notes](https://docs.galaxyproject.org/en/master/rel
 
 Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/master/releases/20.05_announce.html).
 
-Galaxy Australia will be moving to this Galaxy version in mid July. More information will be forthcoming."
-57	2020-07-07	Galaxy Australia tool updates 2020-07-07	"<style>
+Galaxy Australia will be moving to this Galaxy version in mid July. More information will be forthcoming.~	
+58	2020-07-07	Galaxy Australia tool updates 2020-07-07	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1268,8 +1268,8 @@ Galaxy Australia will be moving to this Galaxy version in mid July. More informa
 | **Phylogenetics** | roary [15ac71df11a0](https://toolshed.g2.bx.psu.edu/view/iuc/roary/15ac71df11a0) |
 | **SAM/BAM** | samtools_reheader [30388d878f81](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_reheader/30388d878f81) |
 | **Statistics** | dwt_cor_ava_perclass [b87bbe6bc044](https://toolshed.g2.bx.psu.edu/view/devteam/dwt_cor_ava_perclass/b87bbe6bc044)<br/>dwt_cor_avb_all [e01e8a9a82f4](https://toolshed.g2.bx.psu.edu/view/devteam/dwt_cor_avb_all/e01e8a9a82f4)<br/>dwt_ivc_all [506ae7b0d85d](https://toolshed.g2.bx.psu.edu/view/devteam/dwt_ivc_all/506ae7b0d85d)<br/>dwt_var_perclass [781e68074f84](https://toolshed.g2.bx.psu.edu/view/devteam/dwt_var_perclass/781e68074f84)<br/>dwt_var_perfeature [6c29c7e347e8](https://toolshed.g2.bx.psu.edu/view/devteam/dwt_var_perfeature/6c29c7e347e8) |
-| **iVar** | ivar_trim [db536ad45f28](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/db536ad45f28) |"
-58	2020-07-28	Galaxy Australia tool updates 2020-07-28	"<style>
+| **iVar** | ivar_trim [db536ad45f28](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/db536ad45f28) |~	
+59	2020-07-28	Galaxy Australia tool updates 2020-07-28	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1303,8 +1303,8 @@ Galaxy Australia will be moving to this Galaxy version in mid July. More informa
 | **Graph/Display Data** | histogram [6f134426c2b0](https://toolshed.g2.bx.psu.edu/view/devteam/histogram/6f134426c2b0) |
 | **RNA-seq** | cummerbund [c3b54a4b7741](https://toolshed.g2.bx.psu.edu/view/devteam/cummerbund/c3b54a4b7741)<br/>cuffnorm [9a854107dbb2](https://toolshed.g2.bx.psu.edu/view/devteam/cuffnorm/9a854107dbb2) |
 | **Single-cell** | anndata_import [00712416fdaa](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_import/00712416fdaa)<br/>anndata_inspect [39e945f0b2c1](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_inspect/39e945f0b2c1)<br/>anndata_manipulate [43cb7b5a6fe7](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_manipulate/43cb7b5a6fe7) |
-| **Text Manipulation** | column_maker [6e8d94597139](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/6e8d94597139)<br/>merge_cols [ae7843d06f8f](https://toolshed.g2.bx.psu.edu/view/devteam/merge_cols/ae7843d06f8f) |"
-59	2020-08-04	Galaxy Australia tool updates 2020-08-04	"<style>
+| **Text Manipulation** | column_maker [6e8d94597139](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/6e8d94597139)<br/>merge_cols [ae7843d06f8f](https://toolshed.g2.bx.psu.edu/view/devteam/merge_cols/ae7843d06f8f) |~	
+60	2020-08-04	Galaxy Australia tool updates 2020-08-04	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1337,8 +1337,8 @@ Galaxy Australia will be moving to this Galaxy version in mid July. More informa
 | **FASTA/FASTQ** | trimmomatic [dfa082f84068](https://toolshed.g2.bx.psu.edu/view/pjbriggs/trimmomatic/dfa082f84068) |
 | **Metagenomic Analysis** | staramr [2fd4d4c9c5c2](https://toolshed.g2.bx.psu.edu/view/nml/staramr/2fd4d4c9c5c2) |
 | **Proteomics** | maxquant [ea0a1d50c83f](https://toolshed.g2.bx.psu.edu/view/galaxyp/maxquant/ea0a1d50c83f)<br/>cardinal_filtering [a8157342d9a3](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_filtering/a8157342d9a3) |
-| **RNA-seq** | salmon [b265be7af3db](https://toolshed.g2.bx.psu.edu/view/bgruening/salmon/b265be7af3db) |"
-60	2020-08-18	Galaxy Australia tool updates 2020-08-18	"<style>
+| **RNA-seq** | salmon [b265be7af3db](https://toolshed.g2.bx.psu.edu/view/bgruening/salmon/b265be7af3db) |~	
+61	2020-08-18	Galaxy Australia tool updates 2020-08-18	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1372,8 +1372,8 @@ Galaxy Australia will be moving to this Galaxy version in mid July. More informa
 | **Collection Operations** | collapse_collections [90981f86000f](https://toolshed.g2.bx.psu.edu/view/nml/collapse_collections/90981f86000f) |
 | **Mapping** | rna_starsolo [e403d27e8f24](https://toolshed.g2.bx.psu.edu/view/iuc/rna_starsolo/e403d27e8f24) |
 | **Mothur** | mothur_sub_sample [e866e31f6da3](https://toolshed.g2.bx.psu.edu/view/iuc/mothur_sub_sample/e866e31f6da3) |
-| **RNA-seq** | rgrnastar [5ec75f5dae3c](https://toolshed.g2.bx.psu.edu/view/iuc/rgrnastar/5ec75f5dae3c) |"
-61	2020-09-01	Galaxy Australia tool updates 2020-09-01	"<style>
+| **RNA-seq** | rgrnastar [5ec75f5dae3c](https://toolshed.g2.bx.psu.edu/view/iuc/rgrnastar/5ec75f5dae3c) |~	
+62	2020-09-01	Galaxy Australia tool updates 2020-09-01	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1410,9 +1410,9 @@ Galaxy Australia will be moving to this Galaxy version in mid July. More informa
 | **Phylogenetics** | hyphy_absrel [81e66674859e](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/81e66674859e)<br/>hyphy_gard [83f146502c0f](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/83f146502c0f)<br/>raxml [73a469f7dc96](https://toolshed.g2.bx.psu.edu/view/iuc/raxml/73a469f7dc96) |
 | **Proteomics** | cardinal_classification [277dc652246e](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_classification/277dc652246e)<br/>cardinal_combine [525f201b86c1](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_combine/525f201b86c1)<br/>cardinal_mz_images [a69865da6f80](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_mz_images/a69865da6f80)<br/>maldi_quant_peak_detection [d286ff4600dd](https://toolshed.g2.bx.psu.edu/view/galaxyp/maldi_quant_peak_detection/d286ff4600dd)<br/>openms_fileconverter [5ad0b5bf1deb](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_fileconverter/5ad0b5bf1deb)<br/>openms_filemerger [27cba4c5fc42](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_filemerger/27cba4c5fc42)<br/>openms_highresprecursormasscorrector [d413dc49d650](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_highresprecursormasscorrector/d413dc49d650)<br/>openms_idmerger [8d4db262964c](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_idmerger/8d4db262964c)<br/>openms_mztabexporter [8098330f6d91](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_mztabexporter/8098330f6d91)<br/>openms_peakpickerhires [3d8d4ada5405](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_peakpickerhires/3d8d4ada5405) |
 | **RNA-seq** | featurecounts [90d16db017d7](https://toolshed.g2.bx.psu.edu/view/iuc/featurecounts/90d16db017d7)<br/>trinotate [4383070d29ed](https://toolshed.g2.bx.psu.edu/view/iuc/trinotate/4383070d29ed) |
-| **Text Manipulation** | regex_find_replace [ae8c4b2488e7](https://toolshed.g2.bx.psu.edu/view/galaxyp/regex_find_replace/ae8c4b2488e7) |"
-62	2020-09-02	Galactic News September 2020		https://galaxyproject.org/news/2020-09-galaxy-update/
-63	2020-09-08	Galaxy Australia tool updates 2020-09-08	"<style>
+| **Text Manipulation** | regex_find_replace [ae8c4b2488e7](https://toolshed.g2.bx.psu.edu/view/galaxyp/regex_find_replace/ae8c4b2488e7) |~	
+63	2020-09-02	Galactic News September 2020		https://galaxyproject.org/news/2020-09-galaxy-update/
+64	2020-09-08	Galaxy Australia tool updates 2020-09-08	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1442,10 +1442,10 @@ Galaxy Australia will be moving to this Galaxy version in mid July. More informa
 |---------|-----|
 | **Assembly** | miniasm [8dee0218ac7d](https://toolshed.g2.bx.psu.edu/view/iuc/miniasm/8dee0218ac7d) |
 | **Get Data** | sra_tools [653e89d73fc4](https://toolshed.g2.bx.psu.edu/view/iuc/sra_tools/653e89d73fc4) |
-| **Graph/Display Data** | jbrowse [17359b808b01](https://toolshed.g2.bx.psu.edu/view/iuc/jbrowse/17359b808b01) |"
-64	2020-10-10	Galactic News October 2020		https://galaxyproject.org/news/2020-10-galaxy-update/
-65	2020-11-10	Galactic News November 2020		https://galaxyproject.org/news/2020-11-galaxy-update/
-66	2020-11-11	Galaxy Australia tool updates 2020-11-11	"<style>
+| **Graph/Display Data** | jbrowse [17359b808b01](https://toolshed.g2.bx.psu.edu/view/iuc/jbrowse/17359b808b01) |~	
+65	2020-10-10	Galactic News October 2020		https://galaxyproject.org/news/2020-10-galaxy-update/
+66	2020-11-10	Galactic News November 2020		https://galaxyproject.org/news/2020-11-galaxy-update/
+67	2020-11-11	Galaxy Australia tool updates 2020-11-11	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1479,8 +1479,8 @@ Galaxy Australia will be moving to this Galaxy version in mid July. More informa
 | **FASTA/FASTQ** | fasta_merge_files_and_filter_unique_sequences [650d553c1fda](https://toolshed.g2.bx.psu.edu/view/galaxyp/fasta_merge_files_and_filter_unique_sequences/650d553c1fda) |
 | **Get Data** | dbbuilder [c1b437242fee](https://toolshed.g2.bx.psu.edu/view/galaxyp/dbbuilder/c1b437242fee) |
 | **Metagenomic Analysis** | vsearch [9495df9dd6ef](https://toolshed.g2.bx.psu.edu/view/iuc/vsearch/9495df9dd6ef) |
-| **Text Manipulation** | sqlite_to_tabular [4678715f7147](https://toolshed.g2.bx.psu.edu/view/iuc/sqlite_to_tabular/4678715f7147) |"
-67	2020-11-24	Galaxy Version 20.09 Released	"**Galaxy 20.09 has now been released!**
+| **Text Manipulation** | sqlite_to_tabular [4678715f7147](https://toolshed.g2.bx.psu.edu/view/iuc/sqlite_to_tabular/4678715f7147) |~	
+68	2020-11-24	Galaxy Version 20.09 Released	~**Galaxy 20.09 has now been released!**
 <br/>
 This release includes:
 
@@ -1493,11 +1493,11 @@ Please see the [user release notes](https://docs.galaxyproject.org/en/master/rel
 
 Alternatively, see the [full release notes](https://docs.galaxyproject.org/en/master/releases/20.09_announce.html).
 
-Galaxy Australia will be moving to this Galaxy version in mid December. More information will be forthcoming."
-68	2020-12-09	Galactic News December 2020		https://galaxyproject.org/news/2020-12-galaxy-update/
-69	2020-12-09	Galaxy Version 20.09 Feature Summary Video		https://galaxyproject.org/news/2020-12-release-video-20-09/
-70	2020-12-09	CloudBridge Release 2.1.0	"CloudBridge is a Python library that provides a consistent layer of abstraction over different Infrastructure-as-a-Service cloud providers, reducing or eliminating the need to write conditional code for each cloud."	https://galaxyproject.org/news/2020-12-cloudbridge-210/
-71	2020-12-15	Galaxy Australia tool updates 2020-12-15	"<style>
+Galaxy Australia will be moving to this Galaxy version in mid December. More information will be forthcoming.~	
+69	2020-12-09	Galactic News December 2020		https://galaxyproject.org/news/2020-12-galaxy-update/
+70	2020-12-09	Galaxy Version 20.09 Feature Summary Video		https://galaxyproject.org/news/2020-12-release-video-20-09/
+71	2020-12-09	CloudBridge Release 2.1.0	~CloudBridge is a Python library that provides a consistent layer of abstraction over different Infrastructure-as-a-Service cloud providers, reducing or eliminating the need to write conditional code for each cloud.~	https://galaxyproject.org/news/2020-12-cloudbridge-210/
+72	2020-12-15	Galaxy Australia tool updates 2020-12-15	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1543,12 +1543,12 @@ Galaxy Australia will be moving to this Galaxy version in mid December. More inf
 | **Single-cell** | dropletutils [8855361fcfc5](https://toolshed.g2.bx.psu.edu/view/iuc/dropletutils/8855361fcfc5) |
 | **Statistics** | sklearn_numeric_clustering [ad7e0b4291ee](https://toolshed.g2.bx.psu.edu/view/bgruening/sklearn_numeric_clustering/ad7e0b4291ee) |
 | **Text Manipulation** | text_processing [ddf54b12c295](https://toolshed.g2.bx.psu.edu/view/bgruening/text_processing/ddf54b12c295) |
-| **Variant Calling** | lofreq_call [e1461b5c52a0](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/e1461b5c52a0) |"
-72	2020-12-22	Summer Holiday Support	"The Galaxy Australia support team are on leave from 5pm, Thursday, 24 December 2020 until 9am, 4 January 2021. We will respond to your request after the holiday shutdown period.
+| **Variant Calling** | lofreq_call [e1461b5c52a0](https://toolshed.g2.bx.psu.edu/view/iuc/lofreq_call/e1461b5c52a0) |~	
+73	2020-12-22	Summer Holiday Support	~The Galaxy Australia support team are on leave from 5pm, Thursday, 24 December 2020 until 9am, 4 January 2021. We will respond to your request after the holiday shutdown period.
 
-Wishing all our users, funders and partners a safe and relaxing festive season."
-73	2021-01-08	Galactic News January 2021		https://galaxyproject.org/news/2021-01-galaxy-update/
-74	2021-01-12	Galaxy Australia tool updates 2021-01-12	"<style>
+Wishing all our users, funders and partners a safe and relaxing festive season.~	
+74	2021-01-08	Galactic News January 2021		https://galaxyproject.org/news/2021-01-galaxy-update/
+75	2021-01-12	Galaxy Australia tool updates 2021-01-12	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1586,8 +1586,8 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **RNA-seq** | rgrnastar [e132e7d02a3e](https://toolshed.g2.bx.psu.edu/view/iuc/rgrnastar/e132e7d02a3e)<br/>deseq2 [6a3a025714d3](https://toolshed.g2.bx.psu.edu/view/iuc/deseq2/6a3a025714d3) |
 | **SAM/BAM** | samtools_view [b72793637686](https://toolshed.g2.bx.psu.edu/view/iuc/samtools_view/b72793637686) |
 | **Single-cell** | anndata_import [cfc3f5a57dc6](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_import/cfc3f5a57dc6)<br/>anndata_inspect [038e32885fec](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_inspect/038e32885fec)<br/>anndata_manipulate [b85871dd69f9](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_manipulate/b85871dd69f9)<br/>dropletutils [2c1200fba922](https://toolshed.g2.bx.psu.edu/view/iuc/dropletutils/2c1200fba922) |
-| **Text Manipulation** | column_maker [9cd341095afd](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/9cd341095afd) |"
-75	2021-01-26	Galaxy Australia tool updates 2021-01-26	"<style>
+| **Text Manipulation** | column_maker [9cd341095afd](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/9cd341095afd) |~	
+76	2021-01-26	Galaxy Australia tool updates 2021-01-26	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1626,9 +1626,9 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **Proteomics** | openms_consensusid [01dbaf6a57e0](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_consensusid/01dbaf6a57e0)<br/>openms_falsediscoveryrate [c9eff69a7c62](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_falsediscoveryrate/c9eff69a7c62)<br/>openms_featurefindermultiplex [5e948629bc73](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_featurefindermultiplex/5e948629bc73)<br/>openms_fidoadapter [658494a2cb00](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_fidoadapter/658494a2cb00)<br/>openms_fileconverter [9b7977080f6d](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_fileconverter/9b7977080f6d)<br/>openms_filefilter [0bb5056cb775](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_filefilter/0bb5056cb775)<br/>openms_fileinfo [52ba9695e752](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_fileinfo/52ba9695e752)<br/>openms_filemerger [92352a475eed](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_filemerger/92352a475eed)<br/>openms_highresprecursormasscorrector [0efbc235f314](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_highresprecursormasscorrector/0efbc235f314)<br/>openms_idconflictresolver [c28f13cab67a](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_idconflictresolver/c28f13cab67a)<br/>openms_idfilter [ca799a7246e7](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_idfilter/ca799a7246e7)<br/>openms_idmapper [39caaa778d2e](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_idmapper/39caaa778d2e)<br/>openms_idmerger [f817513840a9](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_idmerger/f817513840a9)<br/>openms_idposteriorerrorprobability [111c3a00136d](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_idposteriorerrorprobability/111c3a00136d)<br/>openms_idscoreswitcher [be74a8cd7d66](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_idscoreswitcher/be74a8cd7d66)<br/>openms_msgfplusadapter [c18d8efa4474](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_msgfplusadapter/c18d8efa4474)<br/>openms_multiplexresolver [d0304fb829c0](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_multiplexresolver/d0304fb829c0)<br/>openms_mztabexporter [ee860980edc6](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_mztabexporter/ee860980edc6)<br/>openms_openswathanalyzer [0ced5bc9f4dd](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathanalyzer/0ced5bc9f4dd)<br/>openms_openswathassaygenerator [2a9ff56cb279](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathassaygenerator/2a9ff56cb279)<br/>openms_openswathconfidencescoring [1bf940c18d93](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathconfidencescoring/1bf940c18d93)<br/>openms_openswathdecoygenerator [f861ec9fbe59](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathdecoygenerator/f861ec9fbe59)<br/>openms_openswathdiaprescoring [d4396637b9f5](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathdiaprescoring/d4396637b9f5)<br/>openms_openswathfilesplitter [89254095cbf6](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathfilesplitter/89254095cbf6)<br/>openms_openswathmzmlfilecacher [f9ed7e074900](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathmzmlfilecacher/f9ed7e074900)<br/>openms_openswathrtnormalizer [6e8cc5ed2a9b](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathrtnormalizer/6e8cc5ed2a9b)<br/>openms_openswathworkflow [2aebe58de46e](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_openswathworkflow/2aebe58de46e)<br/>openms_peakpickerhires [decc397c3b7e](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_peakpickerhires/decc397c3b7e)<br/>openms_peptideindexer [dd173849c3d8](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_peptideindexer/dd173849c3d8)<br/>openms_proteinquantifier [16026cdb1330](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_proteinquantifier/16026cdb1330)<br/>openms_textexporter [9020199dba0a](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_textexporter/9020199dba0a)<br/>openms_xtandemadapter [7f6a1f27553e](https://toolshed.g2.bx.psu.edu/view/galaxyp/openms_xtandemadapter/7f6a1f27553e) |
 | **RNA-seq** | hisat2 [26371a1df031](https://toolshed.g2.bx.psu.edu/view/iuc/hisat2/26371a1df031) |
 | **SAM/BAM** | pileup_interval [9c1c0b947e46](https://toolshed.g2.bx.psu.edu/view/devteam/pileup_interval/9c1c0b947e46) |
-| **Text Manipulation** | column_maker [13b6f0007d9e](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/13b6f0007d9e) |"
-76	2021-02-08	February Galactic News!		https://galaxyproject.org/news/2021-02-galaxy-update/
-77	2021-02-09	Galaxy Australia tool updates 2021-02-09	"<style>
+| **Text Manipulation** | column_maker [13b6f0007d9e](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/13b6f0007d9e) |~	
+77	2021-02-08	February Galactic News!		https://galaxyproject.org/news/2021-02-galaxy-update/
+78	2021-02-09	Galaxy Australia tool updates 2021-02-09	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1672,8 +1672,8 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **Metagenomic Analysis** | humann2_genefamilies_genus_level [6c84982ee6f7](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_genefamilies_genus_level/6c84982ee6f7), [79cd822debef](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_genefamilies_genus_level/79cd822debef)<br/>humann2_regroup_table [bd7a9c6efb10](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_regroup_table/bd7a9c6efb10), [88ff1d78fd30](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_regroup_table/88ff1d78fd30)<br/>humann2_renorm_table [b084117133af](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_renorm_table/b084117133af), [cd235981c423](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_renorm_table/cd235981c423)<br/>humann2_unpack_pathways [9704f1a3b32d](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_unpack_pathways/9704f1a3b32d), [3115a530686e](https://toolshed.g2.bx.psu.edu/view/iuc/humann2_unpack_pathways/3115a530686e) |
 | **Proteomics** | metaquantome_db [0ed07016d668](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_db/0ed07016d668)<br/>metaquantome_expand [352b37c66d97](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_expand/352b37c66d97)<br/>metaquantome_filter [4f359549383c](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_filter/4f359549383c)<br/>metaquantome_sample [e79958768a2c](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_sample/e79958768a2c)<br/>metaquantome_stat [d2eac53666f0](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_stat/d2eac53666f0)<br/>metaquantome_viz [1199751329b0](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_viz/1199751329b0)<br/>peptideshaker [1beff3ddce58](https://toolshed.g2.bx.psu.edu/view/galaxyp/peptideshaker/1beff3ddce58), [3634c90301af](https://toolshed.g2.bx.psu.edu/view/galaxyp/peptideshaker/3634c90301af), [a72c48001f7c](https://toolshed.g2.bx.psu.edu/view/galaxyp/peptideshaker/a72c48001f7c) |
 | **RNA-seq** | transdecoder [d0d4cef4f967](https://toolshed.g2.bx.psu.edu/view/iuc/transdecoder/d0d4cef4f967)<br/>rgrnastar [7ed2edc1337f](https://toolshed.g2.bx.psu.edu/view/iuc/rgrnastar/7ed2edc1337f)<br/>featurecounts [f3a5f075498f](https://toolshed.g2.bx.psu.edu/view/iuc/featurecounts/f3a5f075498f) |
-| **VCF/BCF** | bcftools_annotate [403553ae19f6](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_annotate/403553ae19f6)<br/>bcftools_call [072f606e2e69](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_call/072f606e2e69)<br/>bcftools_cnv [01d6b7d6365e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_cnv/01d6b7d6365e)<br/>bcftools_concat [d40d4bf05718](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_concat/d40d4bf05718)<br/>bcftools_convert_from_vcf [b8e9da766b0f](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_from_vcf/b8e9da766b0f)<br/>bcftools_convert_to_vcf [fec517907949](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_to_vcf/fec517907949)<br/>bcftools_filter [6ca7c55a27e8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_filter/6ca7c55a27e8)<br/>bcftools_isec [02f349bdbf96](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_isec/02f349bdbf96)<br/>bcftools_merge [e03f2f3ac3a9](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_merge/e03f2f3ac3a9)<br/>bcftools_mpileup [0dbff46d5a1b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_mpileup/0dbff46d5a1b)<br/>bcftools_norm [c077f71d351f](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_norm/c077f71d351f)<br/>bcftools_plugin_counts [4813f99d81b7](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_counts/4813f99d81b7)<br/>bcftools_plugin_dosage [5c232a738c74](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_dosage/5c232a738c74)<br/>bcftools_plugin_fill_an_ac [582f8b13873d](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_an_ac/582f8b13873d)<br/>bcftools_plugin_fill_tags [bf7d6acd9884](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_tags/bf7d6acd9884)<br/>bcftools_plugin_fixploidy [365325116147](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fixploidy/365325116147)<br/>bcftools_plugin_impute_info [776ad0b21536](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_impute_info/776ad0b21536)<br/>bcftools_plugin_mendelian [bf235558f2cf](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_mendelian/bf235558f2cf)<br/>bcftools_plugin_missing2ref [dfef7a353ed0](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_missing2ref/dfef7a353ed0)<br/>bcftools_plugin_setgt [8abfcd1a6949](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_setgt/8abfcd1a6949)<br/>bcftools_plugin_tag2tag [bdfdf5f6e950](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_tag2tag/bdfdf5f6e950)<br/>bcftools_query [c9c5718edc19](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query/c9c5718edc19)<br/>bcftools_query_list_samples [ed4ea9de1791](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query_list_samples/ed4ea9de1791)<br/>bcftools_reheader [9ef52d95114b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_reheader/9ef52d95114b)<br/>bcftools_roh [b76adb2f1c51](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_roh/b76adb2f1c51)<br/>bcftools_stats [b17394940c7a](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_stats/b17394940c7a)<br/>bcftools_view [23680a42e149](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/23680a42e149) |"
-78	2021-02-23	Galaxy Australia tool updates 2021-02-23	"<style>
+| **VCF/BCF** | bcftools_annotate [403553ae19f6](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_annotate/403553ae19f6)<br/>bcftools_call [072f606e2e69](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_call/072f606e2e69)<br/>bcftools_cnv [01d6b7d6365e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_cnv/01d6b7d6365e)<br/>bcftools_concat [d40d4bf05718](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_concat/d40d4bf05718)<br/>bcftools_convert_from_vcf [b8e9da766b0f](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_from_vcf/b8e9da766b0f)<br/>bcftools_convert_to_vcf [fec517907949](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_to_vcf/fec517907949)<br/>bcftools_filter [6ca7c55a27e8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_filter/6ca7c55a27e8)<br/>bcftools_isec [02f349bdbf96](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_isec/02f349bdbf96)<br/>bcftools_merge [e03f2f3ac3a9](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_merge/e03f2f3ac3a9)<br/>bcftools_mpileup [0dbff46d5a1b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_mpileup/0dbff46d5a1b)<br/>bcftools_norm [c077f71d351f](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_norm/c077f71d351f)<br/>bcftools_plugin_counts [4813f99d81b7](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_counts/4813f99d81b7)<br/>bcftools_plugin_dosage [5c232a738c74](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_dosage/5c232a738c74)<br/>bcftools_plugin_fill_an_ac [582f8b13873d](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_an_ac/582f8b13873d)<br/>bcftools_plugin_fill_tags [bf7d6acd9884](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_tags/bf7d6acd9884)<br/>bcftools_plugin_fixploidy [365325116147](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fixploidy/365325116147)<br/>bcftools_plugin_impute_info [776ad0b21536](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_impute_info/776ad0b21536)<br/>bcftools_plugin_mendelian [bf235558f2cf](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_mendelian/bf235558f2cf)<br/>bcftools_plugin_missing2ref [dfef7a353ed0](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_missing2ref/dfef7a353ed0)<br/>bcftools_plugin_setgt [8abfcd1a6949](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_setgt/8abfcd1a6949)<br/>bcftools_plugin_tag2tag [bdfdf5f6e950](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_tag2tag/bdfdf5f6e950)<br/>bcftools_query [c9c5718edc19](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query/c9c5718edc19)<br/>bcftools_query_list_samples [ed4ea9de1791](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query_list_samples/ed4ea9de1791)<br/>bcftools_reheader [9ef52d95114b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_reheader/9ef52d95114b)<br/>bcftools_roh [b76adb2f1c51](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_roh/b76adb2f1c51)<br/>bcftools_stats [b17394940c7a](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_stats/b17394940c7a)<br/>bcftools_view [23680a42e149](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/23680a42e149) |~	
+79	2021-02-23	Galaxy Australia tool updates 2021-02-23	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1713,8 +1713,8 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **Proteomics** | cardinal_combine [5f066029763e](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_combine/5f066029763e)<br/>maxquant [37d669de2828](https://toolshed.g2.bx.psu.edu/view/galaxyp/maxquant/37d669de2828)<br/>maxquant_mqpar [9cb7dcc07dae](https://toolshed.g2.bx.psu.edu/view/galaxyp/maxquant_mqpar/9cb7dcc07dae)<br/>metaquantome_db [a72ac2c7cc5b](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_db/a72ac2c7cc5b)<br/>metaquantome_expand [990b4560ead7](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_expand/990b4560ead7)<br/>metaquantome_filter [deaf035bbe9f](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_filter/deaf035bbe9f)<br/>metaquantome_sample [c1343e3389ca](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_sample/c1343e3389ca)<br/>metaquantome_stat [d46d64e7964d](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_stat/d46d64e7964d)<br/>metaquantome_viz [9bf325045235](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_viz/9bf325045235) |
 | **Single-cell** | anndata_import [ae1e5d9d8972](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_import/ae1e5d9d8972)<br/>anndata_inspect [383dcb0500f9](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_inspect/383dcb0500f9)<br/>anndata_manipulate [8db95f488f0f](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_manipulate/8db95f488f0f) |
 | **Text Manipulation** | filter_tabular [6544e4b87a4f](https://toolshed.g2.bx.psu.edu/view/iuc/filter_tabular/6544e4b87a4f)<br/>sqlite_to_tabular [bce29ec10b78](https://toolshed.g2.bx.psu.edu/view/iuc/sqlite_to_tabular/bce29ec10b78)<br/>query_tabular [83069b38aa85](https://toolshed.g2.bx.psu.edu/view/iuc/query_tabular/83069b38aa85) |
-| **VCF/BCF** | bcftools_csq [fdd127bd4a32](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_csq/fdd127bd4a32)<br/>bcftools_consensus [d6dc477167f8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_consensus/d6dc477167f8) |"
-79	2021-03-09	Galaxy Australia tool updates 2021-03-09	"<style>
+| **VCF/BCF** | bcftools_csq [fdd127bd4a32](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_csq/fdd127bd4a32)<br/>bcftools_consensus [d6dc477167f8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_consensus/d6dc477167f8) |~	
+80	2021-03-09	Galaxy Australia tool updates 2021-03-09	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1753,13 +1753,13 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **Phylogenetics** | hyphy_absrel [d033ffc1c161](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/d033ffc1c161)<br/>hyphy_gard [02b8758214b0](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/02b8758214b0) |
 | **Picard** | picard [7d34178f2812](https://toolshed.g2.bx.psu.edu/view/devteam/picard/7d34178f2812) |
 | **Proteomics** | msstats [593839e1f2c3](https://toolshed.g2.bx.psu.edu/view/galaxyp/msstats/593839e1f2c3) |
-| **Text Manipulation** | column_maker [427903d47026](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/427903d47026)<br/>text_processing [74a8bef53a00](https://toolshed.g2.bx.psu.edu/view/bgruening/text_processing/74a8bef53a00) |"
-80	2021-03-16	GTN Smörgåsbord Report (Spoiler alert: it was awesome.)	"The recently completed GTN Smörgåsbord course was the largest and most global Galaxy event ever, *and it was absolutely incredible.*  Read the report to find out how."	https://gallantries.github.io/posts/2021/03/01/sm%C3%B6rg%C3%A5sbord/
-81	2021-03-17	2021 Google Summer of Code	"Galaxy is again participating in [Google Summer of Code](https://summerofcode.withgoogle.com/) as part of the [Open Genome Informatics Consortium](http://gmod.org/wiki/GSoC). *And we need your [help](https://galaxyproject.org/news/2021-03-gsoc/#how-to-help), of course.*"	https://galaxyproject.org/news/2021-03-gsoc/
-82	2021-03-18	March Galactic News!	""	https://galaxyproject.org/news/2021-03-galaxy-update/
-83	2021-03-19	Galaxy Career Center	"We are pleased to announce the launch of the **[Galaxy Career Center](https://galaxyproject.org/careers/)**. The Galaxy community is continually searching for new developers, bioinformaticians, system administrators, and researchers. The Career Center lists openings from around the world that use, deploy, enhance and administer Galaxy."	https://galaxyproject.org/careers/
-84	2021-03-21	Galaxy Australia update to 21.01		https://docs.galaxyproject.org/en/release_21.01/releases/21.01_announce_user.html
-85	2021-03-23	Galaxy Australia tool updates 2021-03-23	"<style>
+| **Text Manipulation** | column_maker [427903d47026](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/427903d47026)<br/>text_processing [74a8bef53a00](https://toolshed.g2.bx.psu.edu/view/bgruening/text_processing/74a8bef53a00) |~	
+81	2021-03-16	GTN Smörgåsbord Report (Spoiler alert: it was awesome.)	~The recently completed GTN Smörgåsbord course was the largest and most global Galaxy event ever, *and it was absolutely incredible.*  Read the report to find out how.~	https://gallantries.github.io/posts/2021/03/01/sm%C3%B6rg%C3%A5sbord/
+82	2021-03-17	2021 Google Summer of Code	~Galaxy is again participating in [Google Summer of Code](https://summerofcode.withgoogle.com/) as part of the [Open Genome Informatics Consortium](http://gmod.org/wiki/GSoC). *And we need your [help](https://galaxyproject.org/news/2021-03-gsoc/#how-to-help), of course.*~	https://galaxyproject.org/news/2021-03-gsoc/
+83	2021-03-18	March Galactic News!	~~	https://galaxyproject.org/news/2021-03-galaxy-update/
+84	2021-03-19	Galaxy Career Center	~We are pleased to announce the launch of the **[Galaxy Career Center](https://galaxyproject.org/careers/)**. The Galaxy community is continually searching for new developers, bioinformaticians, system administrators, and researchers. The Career Center lists openings from around the world that use, deploy, enhance and administer Galaxy.~	https://galaxyproject.org/careers/
+85	2021-03-21	Galaxy Australia update to 21.01		https://docs.galaxyproject.org/en/release_21.01/releases/21.01_announce_user.html
+86	2021-03-23	Galaxy Australia tool updates 2021-03-23	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1795,12 +1795,12 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **Proteomics** | peptide_genomic_coordinate [cb0378d2d487](https://toolshed.g2.bx.psu.edu/view/galaxyp/peptide_genomic_coordinate/cb0378d2d487)<br/>maxquant [f522c08e900c](https://toolshed.g2.bx.psu.edu/view/galaxyp/maxquant/f522c08e900c) |
 | **RNA-seq** | htseq_count [916cb26bd9d3](https://toolshed.g2.bx.psu.edu/view/lparsons/htseq_count/916cb26bd9d3)<br/>rgrnastar [c772497b2c32](https://toolshed.g2.bx.psu.edu/view/iuc/rgrnastar/c772497b2c32)<br/>describe_samples [6d6982a1d1d0](https://toolshed.g2.bx.psu.edu/view/iuc/describe_samples/6d6982a1d1d0)<br/>dexseq [62adf13b86ea](https://toolshed.g2.bx.psu.edu/view/iuc/dexseq/62adf13b86ea)<br/>trinity [26d5493b20b6](https://toolshed.g2.bx.psu.edu/view/iuc/trinity/26d5493b20b6)<br/>trinity_abundance_estimates_to_matrix [81a4697677e7](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_abundance_estimates_to_matrix/81a4697677e7)<br/>trinity_align_and_estimate_abundance [893655fa55f9](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_align_and_estimate_abundance/893655fa55f9)<br/>trinity_analyze_diff_expr [4a816294c512](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_analyze_diff_expr/4a816294c512)<br/>trinity_contig_exn50_statistic [b1e9a0355166](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_contig_exn50_statistic/b1e9a0355166)<br/>trinity_define_clusters_by_cutting_tree [d40101d3a2af](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_define_clusters_by_cutting_tree/d40101d3a2af)<br/>trinity_filter_low_expr_transcripts [1007cdb58d91](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_filter_low_expr_transcripts/1007cdb58d91)<br/>trinity_gene_to_trans_map [d80f0f1d6c9d](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_gene_to_trans_map/d80f0f1d6c9d)<br/>trinity_run_de_analysis [bbbb39ad9a7e](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_run_de_analysis/bbbb39ad9a7e)<br/>trinity_samples_qccheck [d83aa367a381](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_samples_qccheck/d83aa367a381) |
 | **Single-cell** | scanpy_cluster_reduce_dimension [35bc2eb568ed](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_cluster_reduce_dimension/35bc2eb568ed)<br/>scanpy_filter [f87ed6503715](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_filter/f87ed6503715)<br/>scanpy_inspect [9d33775ec67d](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_inspect/9d33775ec67d)<br/>scanpy_normalize [5342ce58cd1e](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_normalize/5342ce58cd1e)<br/>scanpy_plot [6adf98e782f3](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_plot/6adf98e782f3)<br/>scanpy_remove_confounders [80d4e2cac903](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_remove_confounders/80d4e2cac903) |
-| **Text Manipulation** | column_maker [02026300aa45](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/02026300aa45) |"
-86	2021-04-14	April Galactic News!	"The [April 2021 Newsletter is out](https://galaxyproject.org/news/2021-04-galaxy-update/) with updates on upcoming events, news about public Galaxy platforms, recent blog posts, training and doc updates, recent open-access Galaxy-related publications, and new releases."	https://galaxyproject.org/news/2021-04-galaxy-update/
-87	2021-04-14	GCC2021 Abstract Submission is open	"If you are using, supporting, or expanding Galaxy for data-intensive science then this is an ideal way to share your work with, and gain insights from the global Galaxy Community.  Abstracts are due 7 May."	https://galaxyproject.org/news/2021-04-gcc-abstracts/
-88	2021-04-14	Apply for a GCC2021 Conference Fellowship	"If you are a student or researcher in a developing economy, then please consider applying.  Fellowships cover all conference costs. Applications are due 7 May."	https://galaxyproject.org/news/2021-04-gcc-fellowships/
-89	2021-04-14	GCC2021 Registration is Open	"Please join us at Galaxy's annual community gathering. It will be online, accessible, and affordable to all."	https://galaxyproject.org/news/2021-04-gcc-reg
-90	2021-04-20	Galaxy Australia tool updates 2021-04-20	"<style>
+| **Text Manipulation** | column_maker [02026300aa45](https://toolshed.g2.bx.psu.edu/view/devteam/column_maker/02026300aa45) |~	
+87	2021-04-14	April Galactic News!	~The [April 2021 Newsletter is out](https://galaxyproject.org/news/2021-04-galaxy-update/) with updates on upcoming events, news about public Galaxy platforms, recent blog posts, training and doc updates, recent open-access Galaxy-related publications, and new releases.~	https://galaxyproject.org/news/2021-04-galaxy-update/
+88	2021-04-14	GCC2021 Abstract Submission is open	~If you are using, supporting, or expanding Galaxy for data-intensive science then this is an ideal way to share your work with, and gain insights from the global Galaxy Community.  Abstracts are due 7 May.~	https://galaxyproject.org/news/2021-04-gcc-abstracts/
+89	2021-04-14	Apply for a GCC2021 Conference Fellowship	~If you are a student or researcher in a developing economy, then please consider applying.  Fellowships cover all conference costs. Applications are due 7 May.~	https://galaxyproject.org/news/2021-04-gcc-fellowships/
+90	2021-04-14	GCC2021 Registration is Open	~Please join us at Galaxy's annual community gathering. It will be online, accessible, and affordable to all.~	https://galaxyproject.org/news/2021-04-gcc-reg
+91	2021-04-20	Galaxy Australia tool updates 2021-04-20	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1846,10 +1846,10 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **Proteomics** | peptideshaker [da885ca16cb2](https://toolshed.g2.bx.psu.edu/view/galaxyp/peptideshaker/da885ca16cb2) |
 | **RNA-seq** | kallisto_quant [40985510cd98](https://toolshed.g2.bx.psu.edu/view/iuc/kallisto_quant/40985510cd98) |
 | **Single-cell** | scanpy_cluster_reduce_dimension [3e4e1cf73d98](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_cluster_reduce_dimension/3e4e1cf73d98)<br/>scanpy_filter [5511647110ff](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_filter/5511647110ff)<br/>scanpy_inspect [e4c99c83dfbf](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_inspect/e4c99c83dfbf)<br/>scanpy_normalize [51d945eab1e1](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_normalize/51d945eab1e1)<br/>scanpy_plot [9a169729c9f9](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_plot/9a169729c9f9)<br/>scanpy_remove_confounders [c2ef03559dc6](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_remove_confounders/c2ef03559dc6) |
-| **VCF/BCF** | bcftools_view [98d5499ead46](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/98d5499ead46) |"
-91	2021-05-04	May Galactic News!	"The [May 2021 Newsletter is here](https://galaxyproject.org/news/2021-05-galaxy-update/).  Deadlines for GCC2021 and for submitted James Taylor videos have been extended, and there are updates on other upcoming events (4 in Australia), news about public Galaxy platforms, recent blog posts, training and doc updates, recent open-access Galaxy-related publications, and new releases."	https://galaxyproject.org/news/2021-05-galaxy-update/
-92	2021-05-04	GCC2021 Abstract and Fellowship Submission, and Early Registration Deadlines Extended	"Several deadlines for the [2021 Galaxy Community Conference (GCC2021)](https://galaxyproject.org/news/2021-05-gcc-extended/) have been extended."	https://galaxyproject.org/news/2021-05-gcc-extended/
-93	2021-05-11	Galaxy Australia tool updates 2021-05-11	"<style>
+| **VCF/BCF** | bcftools_view [98d5499ead46](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/98d5499ead46) |~	
+92	2021-05-04	May Galactic News!	~The [May 2021 Newsletter is here](https://galaxyproject.org/news/2021-05-galaxy-update/).  Deadlines for GCC2021 and for submitted James Taylor videos have been extended, and there are updates on other upcoming events (4 in Australia), news about public Galaxy platforms, recent blog posts, training and doc updates, recent open-access Galaxy-related publications, and new releases.~	https://galaxyproject.org/news/2021-05-galaxy-update/
+93	2021-05-04	GCC2021 Abstract and Fellowship Submission, and Early Registration Deadlines Extended	~Several deadlines for the [2021 Galaxy Community Conference (GCC2021)](https://galaxyproject.org/news/2021-05-gcc-extended/) have been extended.~	https://galaxyproject.org/news/2021-05-gcc-extended/
+94	2021-05-11	Galaxy Australia tool updates 2021-05-11	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1894,23 +1894,23 @@ Wishing all our users, funders and partners a safe and relaxing festive season."
 | **RAD-seq** | stacks2_clonefilter [289b7d6b69a4](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_clonefilter/289b7d6b69a4)<br/>stacks2_cstacks [c207119ba5f6](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_cstacks/c207119ba5f6)<br/>stacks2_gstacks [eb784fa07f80](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_gstacks/eb784fa07f80)<br/>stacks2_kmerfilter [1544278c272e](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_kmerfilter/1544278c272e)<br/>stacks2_populations [887cf585cafc](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_populations/887cf585cafc)<br/>stacks2_procrad [e897c74a48bb](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_procrad/e897c74a48bb)<br/>stacks2_refmap [4f65e343ecdf](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_refmap/4f65e343ecdf)<br/>stacks2_shortreads [c5d7050e4ad7](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_shortreads/c5d7050e4ad7)<br/>stacks2_tsv2bam [a9c34a289493](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_tsv2bam/a9c34a289493)<br/>stacks2_sstacks [cd034465d4a4](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_sstacks/cd034465d4a4) |
 | **RNA-seq** | kallisto_pseudo [01247aaf0a10](https://toolshed.g2.bx.psu.edu/view/iuc/kallisto_pseudo/01247aaf0a10) |
 | **Text Manipulation** | table_compute [93a3ce78ce55](https://toolshed.g2.bx.psu.edu/view/iuc/table_compute/93a3ce78ce55) |
-| **Variant Calling** | breseq [82fb5e3bb93e](https://toolshed.g2.bx.psu.edu/view/iuc/breseq/82fb5e3bb93e)<br/>snippy [fa016f1eea1a](https://toolshed.g2.bx.psu.edu/view/iuc/snippy/fa016f1eea1a) |"
-94	2021-05-31	2021 Galaxy Community Conference (GCC2021) - Poster/Demo abstracts due 14th June	"The [**2021 Galaxy Community Conference**](https://www.vibconferences.be/events/gcc2021) is almost upon us. GCC2021 will be held 28 June through July 10.
+| **Variant Calling** | breseq [82fb5e3bb93e](https://toolshed.g2.bx.psu.edu/view/iuc/breseq/82fb5e3bb93e)<br/>snippy [fa016f1eea1a](https://toolshed.g2.bx.psu.edu/view/iuc/snippy/fa016f1eea1a) |~	
+95	2021-05-31	2021 Galaxy Community Conference (GCC2021) - Poster/Demo abstracts due 14th June	~The [**2021 Galaxy Community Conference**](https://www.vibconferences.be/events/gcc2021) is almost upon us. GCC2021 will be held 28 June through July 10.
 
 **June 14: Poster Abstracts are due**
 
 We welcome [poster/demo](https://galaxyproject.org/news/2021-05-gcc-posterdemo/) submissions that use, implement or extend the Galaxy platform and ecosystem, including integrating and analyzing datasets in any research area, enhancing reproducibility in computational analyses, and fostering collaboration in scientific workflow development
 
-Poster/Demos will be presented live at Remo.co tables and will not be limited to a single large PDF. They are an opportunity to fully communicate your work.
+Poster/Demos will be presented live at Remo.co tables and will not be limited to a single large PDF. They are an opportunity to fully communicate your work. 
 
-[**Submit your abstract now.**](https://www.vibconferences.be/events/gcc2021-virtual-edition#abstracts)"
-95	2021-06-01	June Galactic News!	"The [June 2021 Newsletter is here](https://galaxyproject.org/news/2021-06-galaxy-update/).  GCC2021 starts this month; James Taylor Video; plus a whole lot more."	https://galaxyproject.org/news/2021-06-galaxy-update/
-96	2021-06-01	2021 Galaxy Community Conference (GCC2021) - Early registration closes 8th June	"The [**2021 Galaxy Community Conference**](https://www.vibconferences.be/events/gcc2021) is almost upon us. GCC2021 will be held 28 June through July 10.
+[**Submit your abstract now.**](https://www.vibconferences.be/events/gcc2021-virtual-edition#abstracts)~	
+96	2021-06-01	June Galactic News!	~The [June 2021 Newsletter is here](https://galaxyproject.org/news/2021-06-galaxy-update/).  GCC2021 starts this month; James Taylor Video; plus a whole lot more.~	https://galaxyproject.org/news/2021-06-galaxy-update/
+97	2021-06-01	2021 Galaxy Community Conference (GCC2021) - Early registration closes 8th June	~The [**2021 Galaxy Community Conference**](https://www.vibconferences.be/events/gcc2021) is almost upon us. GCC2021 will be held 28 June through July 10.
 
 **June 8: Early registration closes**
 
-[Register by June 8](https://galaxyproject.org/news/2021-05-gcc-reg/) and save 50% off of the full rates. Registration discounts are available to researchers from low and lower-middle income countries. For everyone else, registration is downright cheap too, starting at €15.00 for the training week and in €25.00 for the 3-day conference (plus VAT). The CoFest is free."
-97	2021-06-01	Galaxy Australia tool updates 2021-06-01	"<style>
+[Register by June 8](https://galaxyproject.org/news/2021-05-gcc-reg/) and save 50% off of the full rates. Registration discounts are available to researchers from low and lower-middle income countries. For everyone else, registration is downright cheap too, starting at €15.00 for the training week and in €25.00 for the 3-day conference (plus VAT). The CoFest is free.~	
+98	2021-06-01	Galaxy Australia tool updates 2021-06-01	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1944,8 +1944,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **RAD-seq** | stacks2_denovomap [ad5ab22ffe24](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_denovomap/ad5ab22ffe24)<br/>stacks2_ustacks [cfb504394ae1](https://toolshed.g2.bx.psu.edu/view/iuc/stacks2_ustacks/cfb504394ae1) |
 | **RNA-seq** | trinity [5b60313a6ce7](https://toolshed.g2.bx.psu.edu/view/iuc/trinity/5b60313a6ce7) |
 | **Statistics** | sklearn_numeric_clustering [73e7f1c76ece](https://toolshed.g2.bx.psu.edu/view/bgruening/sklearn_numeric_clustering/73e7f1c76ece)<br/>sklearn_build_pipeline [0c74d3164ac8](https://toolshed.g2.bx.psu.edu/view/bgruening/sklearn_build_pipeline/0c74d3164ac8)<br/>sklearn_estimator_attributes [c9ddd20d25d0](https://toolshed.g2.bx.psu.edu/view/bgruening/sklearn_estimator_attributes/c9ddd20d25d0)<br/>sklearn_nn_classifier [823ecc0bce45](https://toolshed.g2.bx.psu.edu/view/bgruening/sklearn_nn_classifier/823ecc0bce45) |
-| **iVar** | ivar_consensus [5e668dc9f379](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/5e668dc9f379)<br/>ivar_filtervariants [51afc8a64951](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/51afc8a64951)<br/>ivar_removereads [75c279fa403a](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/75c279fa403a)<br/>ivar_variants [49236b03e4fd](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/49236b03e4fd) |"
-98	2021-06-15	Galaxy Australia tool updates 2021-06-15	"<style>
+| **iVar** | ivar_consensus [5e668dc9f379](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/5e668dc9f379)<br/>ivar_filtervariants [51afc8a64951](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/51afc8a64951)<br/>ivar_removereads [75c279fa403a](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/75c279fa403a)<br/>ivar_variants [49236b03e4fd](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/49236b03e4fd) |~	
+99	2021-06-15	Galaxy Australia tool updates 2021-06-15	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -1982,8 +1982,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Phylogenetics** | hyphy_absrel [260a5a236b66](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/260a5a236b66)<br/>hyphy_gard [8c388fd08c09](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/8c388fd08c09) |
 | **Proteomics** | uniprotxml_downloader [12692567c7f9](https://toolshed.g2.bx.psu.edu/view/galaxyp/uniprotxml_downloader/12692567c7f9) |
 | **RNA-seq** | edger [3d89af8a44f0](https://toolshed.g2.bx.psu.edu/view/iuc/edger/3d89af8a44f0)<br/>limma_voom [58c35179ebf0](https://toolshed.g2.bx.psu.edu/view/iuc/limma_voom/58c35179ebf0) |
-| **iVar** | ivar_trim [cf65217ad61c](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/cf65217ad61c), [364f4ffec275](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/364f4ffec275)<br/>ivar_consensus [d1459d85ff18](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/d1459d85ff18)<br/>ivar_filtervariants [4abcfbc2e5b6](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/4abcfbc2e5b6)<br/>ivar_removereads [43aac8d29685](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/43aac8d29685)<br/>ivar_variants [252dfb042563](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/252dfb042563) |"
-99	2021-06-22	Galaxy Australia tool updates 2021-06-22	"<style>
+| **iVar** | ivar_trim [cf65217ad61c](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/cf65217ad61c), [364f4ffec275](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/364f4ffec275)<br/>ivar_consensus [d1459d85ff18](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/d1459d85ff18)<br/>ivar_filtervariants [4abcfbc2e5b6](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/4abcfbc2e5b6)<br/>ivar_removereads [43aac8d29685](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/43aac8d29685)<br/>ivar_variants [252dfb042563](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/252dfb042563) |~	
+100	2021-06-22	Galaxy Australia tool updates 2021-06-22	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2026,8 +2026,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Mapping** | minimap2 [3f4d6399997b](https://toolshed.g2.bx.psu.edu/view/iuc/minimap2/3f4d6399997b) |
 | **Phylogenetics** | hyphy_absrel [5a2b7f3d05e8](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/5a2b7f3d05e8)<br/>hyphy_gard [b8a7f604708e](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/b8a7f604708e) |
 | **Proteomics** | cardinal_classification [f28ad96b76dc](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_classification/f28ad96b76dc)<br/>cardinal_combine [e988563cc6e5](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_combine/e988563cc6e5)<br/>metaquantome_db [860429737408](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_db/860429737408)<br/>metaquantome_expand [4187b6df1a40](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_expand/4187b6df1a40)<br/>metaquantome_filter [a1daafbf5233](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_filter/a1daafbf5233)<br/>metaquantome_sample [40ca115438d2](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_sample/40ca115438d2)<br/>metaquantome_stat [b648e45fd3cf](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_stat/b648e45fd3cf)<br/>metaquantome_viz [eb811f3018ea](https://toolshed.g2.bx.psu.edu/view/galaxyp/metaquantome_viz/eb811f3018ea) |
-| **Text Manipulation** | filter_tabular [37cde8134c6a](https://toolshed.g2.bx.psu.edu/view/iuc/filter_tabular/37cde8134c6a)<br/>sqlite_to_tabular [575cd6cd537c](https://toolshed.g2.bx.psu.edu/view/iuc/sqlite_to_tabular/575cd6cd537c) |"
-100	2021-06-29	Galaxy Australia tool updates 2021-06-29	"<style>
+| **Text Manipulation** | filter_tabular [37cde8134c6a](https://toolshed.g2.bx.psu.edu/view/iuc/filter_tabular/37cde8134c6a)<br/>sqlite_to_tabular [575cd6cd537c](https://toolshed.g2.bx.psu.edu/view/iuc/sqlite_to_tabular/575cd6cd537c) |~	
+101	2021-06-29	Galaxy Australia tool updates 2021-06-29	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2066,8 +2066,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Convert Formats** | biom_convert [bd46669113b9](https://toolshed.g2.bx.psu.edu/view/iuc/biom_convert/bd46669113b9) |
 | **Proteomics** | peptideshaker [943a34df6047](https://toolshed.g2.bx.psu.edu/view/galaxyp/peptideshaker/943a34df6047) |
 | **RNA-seq** | mirdeep2_mapper [a8d24f4b6d95](https://toolshed.g2.bx.psu.edu/view/rnateam/mirdeep2_mapper/a8d24f4b6d95)<br/>edger [6e53e565fc6a](https://toolshed.g2.bx.psu.edu/view/iuc/edger/6e53e565fc6a)<br/>egsea [fba1660fb717](https://toolshed.g2.bx.psu.edu/view/iuc/egsea/fba1660fb717)<br/>limma_voom [708348a17fa1](https://toolshed.g2.bx.psu.edu/view/iuc/limma_voom/708348a17fa1) |
-| **Text Manipulation** | query_tabular [33d61c89fb8d](https://toolshed.g2.bx.psu.edu/view/iuc/query_tabular/33d61c89fb8d)<br/>text_processing [f46f0e4f75c4](https://toolshed.g2.bx.psu.edu/view/bgruening/text_processing/f46f0e4f75c4) |"
-101	2021-07-06	Galaxy Australia tool updates 2021-07-06	"<style>
+| **Text Manipulation** | query_tabular [33d61c89fb8d](https://toolshed.g2.bx.psu.edu/view/iuc/query_tabular/33d61c89fb8d)<br/>text_processing [f46f0e4f75c4](https://toolshed.g2.bx.psu.edu/view/bgruening/text_processing/f46f0e4f75c4) |~	
+102	2021-07-06	Galaxy Australia tool updates 2021-07-06	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2097,8 +2097,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **FASTA/FASTQ** | cutadapt [4e5056fefd88](https://toolshed.g2.bx.psu.edu/view/lparsons/cutadapt/4e5056fefd88)<br/>fasta_stats [56022eb50bbd](https://toolshed.g2.bx.psu.edu/view/iuc/fasta_stats/56022eb50bbd) |
 | **Metagenomic Analysis** | dada2_dada [1c35dadbe76f](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_dada/1c35dadbe76f)<br/>dada2_filterandtrim [a9f4a217dcd6](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_filterandtrim/a9f4a217dcd6)<br/>dada2_learnerrors [04c15826a0b8](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_learnerrors/04c15826a0b8)<br/>dada2_makesequencetable [e96bbb9e24ea](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_makesequencetable/e96bbb9e24ea)<br/>dada2_mergepairs [1d75bd0595e2](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_mergepairs/1d75bd0595e2)<br/>dada2_plotcomplexity [8daf4564ccda](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_plotcomplexity/8daf4564ccda)<br/>dada2_plotqualityprofile [d60df8727f59](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_plotqualityprofile/d60df8727f59)<br/>dada2_removebimeradenovo [7f3b59dee073](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_removebimeradenovo/7f3b59dee073)<br/>dada2_seqcounts [0a1224c4b781](https://toolshed.g2.bx.psu.edu/view/iuc/dada2_seqcounts/0a1224c4b781) |
 | **Phylogenetics** | hyphy_absrel [113854308427](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/113854308427)<br/>hyphy_gard [053b20029378](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/053b20029378) |
-| **Single-cell** | dropletutils [a9caad671439](https://toolshed.g2.bx.psu.edu/view/iuc/dropletutils/a9caad671439) |"
-102	2021-07-13	Galaxy Australia tool updates 2021-07-13	"<style>
+| **Single-cell** | dropletutils [a9caad671439](https://toolshed.g2.bx.psu.edu/view/iuc/dropletutils/a9caad671439) |~	
+103	2021-07-13	Galaxy Australia tool updates 2021-07-13	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2123,8 +2123,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Mapping** | bowtie2 [a6d65b0c67af](https://toolshed.g2.bx.psu.edu/view/devteam/bowtie2/a6d65b0c67af) |
 | **Phylogenetics** | pangolin [437e28791761](https://toolshed.g2.bx.psu.edu/view/iuc/pangolin/437e28791761) |
 | **RNA-seq** | deseq2 [d027d1f4984e](https://toolshed.g2.bx.psu.edu/view/iuc/deseq2/d027d1f4984e) |
-| **Variant Calling** | tbvcfreport [adc0645b945c](https://toolshed.g2.bx.psu.edu/view/iuc/tbvcfreport/adc0645b945c) |"
-103	2021-07-20	Galaxy Australia tool updates 2021-07-20	"<style>
+| **Variant Calling** | tbvcfreport [adc0645b945c](https://toolshed.g2.bx.psu.edu/view/iuc/tbvcfreport/adc0645b945c) |~	
+104	2021-07-20	Galaxy Australia tool updates 2021-07-20	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2160,8 +2160,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Proteomics** | maxquant [e42225f8a659](https://toolshed.g2.bx.psu.edu/view/galaxyp/maxquant/e42225f8a659) |
 | **RNA-seq** | hisat2 [6c19daec423d](https://toolshed.g2.bx.psu.edu/view/iuc/hisat2/6c19daec423d) |
 | **Text Manipulation** | query_tabular [623f3eb7aa48](https://toolshed.g2.bx.psu.edu/view/iuc/query_tabular/623f3eb7aa48) |
-| **Variant Calling** | snippy [d220115f882b](https://toolshed.g2.bx.psu.edu/view/iuc/snippy/d220115f882b) |"
-104	2021-07-27	Galaxy Australia tool updates 2021-07-27	"<style>
+| **Variant Calling** | snippy [d220115f882b](https://toolshed.g2.bx.psu.edu/view/iuc/snippy/d220115f882b) |~	
+105	2021-07-27	Galaxy Australia tool updates 2021-07-27	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2195,8 +2195,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Get Data** | ncbi_acc_download [28587613264f](https://toolshed.g2.bx.psu.edu/view/iuc/ncbi_acc_download/28587613264f) |
 | **Phylogenetics** | pangolin [7bb8726be37c](https://toolshed.g2.bx.psu.edu/view/iuc/pangolin/7bb8726be37c) |
 | **RNA-seq** | featurecounts [ce44c6f2ba38](https://toolshed.g2.bx.psu.edu/view/iuc/featurecounts/ce44c6f2ba38)<br/>kallisto_pseudo [87c11c05d238](https://toolshed.g2.bx.psu.edu/view/iuc/kallisto_pseudo/87c11c05d238)<br/>kallisto_quant [c971db6f0fe5](https://toolshed.g2.bx.psu.edu/view/iuc/kallisto_quant/c971db6f0fe5)<br/>rgrnastar [44959aa06aeb](https://toolshed.g2.bx.psu.edu/view/iuc/rgrnastar/44959aa06aeb) |
-| **Variant Calling** | tb_variant_filter [40f0591deda0](https://toolshed.g2.bx.psu.edu/view/iuc/tb_variant_filter/40f0591deda0) |"
-105	2021-08-03	Galaxy Australia tool updates 2021-08-03	"<style>
+| **Variant Calling** | tb_variant_filter [40f0591deda0](https://toolshed.g2.bx.psu.edu/view/iuc/tb_variant_filter/40f0591deda0) |~	
+106	2021-08-03	Galaxy Australia tool updates 2021-08-03	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2228,8 +2228,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Collection Operations** | collection_column_join [3ddd99c7efee](https://toolshed.g2.bx.psu.edu/view/iuc/collection_column_join/3ddd99c7efee) |
 | **EMBOSS** | emboss_5 [63dd26468588](https://toolshed.g2.bx.psu.edu/view/devteam/emboss_5/63dd26468588) |
 | **Nanopore** | nanopolish_eventalign [85a394edc247](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_eventalign/85a394edc247)<br/>nanopolish_methylation [be95355fef8d](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_methylation/be95355fef8d)<br/>nanopolish_polya [d376944466bf](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_polya/d376944466bf)<br/>nanopolish_variants [a3afc5f0a96c](https://toolshed.g2.bx.psu.edu/view/bgruening/nanopolish_variants/a3afc5f0a96c) |
-| **RNA-seq** | salmon [49121db48873](https://toolshed.g2.bx.psu.edu/view/bgruening/salmon/49121db48873) |"
-106	2021-08-10	Galaxy Australia tool updates 2021-08-10	"<style>
+| **RNA-seq** | salmon [49121db48873](https://toolshed.g2.bx.psu.edu/view/bgruening/salmon/49121db48873) |~	
+107	2021-08-10	Galaxy Australia tool updates 2021-08-10	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2257,9 +2257,9 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | Section | Tool |
 |---------|-----|
 | **Proteomics** | msstats [28434abe6c5c](https://toolshed.g2.bx.psu.edu/view/galaxyp/msstats/28434abe6c5c) |
-| **iVar** | ivar_consensus [2d9926ce62be](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/2d9926ce62be)<br/>ivar_filtervariants [b93845a04cc8](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/b93845a04cc8)<br/>ivar_removereads [28a6f1908fcc](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/28a6f1908fcc)<br/>ivar_variants [aea7008fe1f1](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/aea7008fe1f1) |"
-107	2021-08-24	Galaxy Australia updated to 21.05		https://docs.galaxyproject.org/en/release_21.05/releases/21.05_announce_user.html
-108	2021-09-07	Galaxy Australia tool updates 2021-09-07	"<style>
+| **iVar** | ivar_consensus [2d9926ce62be](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/2d9926ce62be)<br/>ivar_filtervariants [b93845a04cc8](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/b93845a04cc8)<br/>ivar_removereads [28a6f1908fcc](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/28a6f1908fcc)<br/>ivar_variants [aea7008fe1f1](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/aea7008fe1f1) |~	
+108	2021-08-24	Galaxy Australia updated to 21.05		https://docs.galaxyproject.org/en/release_21.05/releases/21.05_announce_user.html
+109	2021-09-07	Galaxy Australia tool updates 2021-09-07	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2300,8 +2300,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Text Manipulation** | filter_tabular [4d5aae46f850](https://toolshed.g2.bx.psu.edu/view/iuc/filter_tabular/4d5aae46f850)<br/>query_tabular [cf34c344508d](https://toolshed.g2.bx.psu.edu/view/iuc/query_tabular/cf34c344508d)<br/>sqlite_to_tabular [c29d2f80a066](https://toolshed.g2.bx.psu.edu/view/iuc/sqlite_to_tabular/c29d2f80a066) |
 | **VCF/BCF** | vcfsort [dd44c3f416c3](https://toolshed.g2.bx.psu.edu/view/devteam/vcfsort/dd44c3f416c3) |
 | **Variant Calling** | tb_variant_filter [e7aff4a85df5](https://toolshed.g2.bx.psu.edu/view/iuc/tb_variant_filter/e7aff4a85df5) |
-| **iVar** | ivar_consensus [731182d54f78](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/731182d54f78)<br/>ivar_filtervariants [47a27906d750](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/47a27906d750)<br/>ivar_removereads [8d36959b000d](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/8d36959b000d)<br/>ivar_variants [3888bbe7a9ca](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/3888bbe7a9ca) |"
-109	2021-09-14	Galaxy Australia tool updates 2021-09-14	"<style>
+| **iVar** | ivar_consensus [731182d54f78](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_consensus/731182d54f78)<br/>ivar_filtervariants [47a27906d750](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_filtervariants/47a27906d750)<br/>ivar_removereads [8d36959b000d](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_removereads/8d36959b000d)<br/>ivar_variants [3888bbe7a9ca](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_variants/3888bbe7a9ca) |~	
+110	2021-09-14	Galaxy Australia tool updates 2021-09-14	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2341,8 +2341,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Phylogenetics** | iqtree [b8476e82ac20](https://toolshed.g2.bx.psu.edu/view/iuc/iqtree/b8476e82ac20) |
 | **Proteomics** | cardinal_data_exporter [be5d1c3c51e5](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_data_exporter/be5d1c3c51e5)<br/>cardinal_filtering [105056844497](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_filtering/105056844497)<br/>cardinal_preprocessing [accf9fb6ea01](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_preprocessing/accf9fb6ea01)<br/>cardinal_quality_report [23d0394b5908](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_quality_report/23d0394b5908)<br/>cardinal_segmentations [5279bc051339](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_segmentations/5279bc051339)<br/>cardinal_spectra_plots [d333733dd571](https://toolshed.g2.bx.psu.edu/view/galaxyp/cardinal_spectra_plots/d333733dd571) |
 | **RNA-seq** | describe_samples [46a4d8115515](https://toolshed.g2.bx.psu.edu/view/iuc/describe_samples/46a4d8115515)<br/>rgrnastar [4074fc1940e2](https://toolshed.g2.bx.psu.edu/view/iuc/rgrnastar/4074fc1940e2)<br/>trinity [48636f857c4b](https://toolshed.g2.bx.psu.edu/view/iuc/trinity/48636f857c4b)<br/>trinity_abundance_estimates_to_matrix [2e21a7c28b38](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_abundance_estimates_to_matrix/2e21a7c28b38)<br/>trinity_align_and_estimate_abundance [6c20d62180af](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_align_and_estimate_abundance/6c20d62180af)<br/>trinity_analyze_diff_expr [29b50af3e07c](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_analyze_diff_expr/29b50af3e07c)<br/>trinity_contig_exn50_statistic [34840e9c79b0](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_contig_exn50_statistic/34840e9c79b0)<br/>trinity_define_clusters_by_cutting_tree [718a5b66395e](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_define_clusters_by_cutting_tree/718a5b66395e)<br/>trinity_filter_low_expr_transcripts [17101429bf0d](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_filter_low_expr_transcripts/17101429bf0d)<br/>trinity_gene_to_trans_map [318fd1a0646d](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_gene_to_trans_map/318fd1a0646d)<br/>trinity_run_de_analysis [3bff7c3cf63c](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_run_de_analysis/3bff7c3cf63c)<br/>trinity_samples_qccheck [b58468eb4e64](https://toolshed.g2.bx.psu.edu/view/iuc/trinity_samples_qccheck/b58468eb4e64) |
-| **iVar** | ivar_trim [c092052ed673](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/c092052ed673) |"
-110	2021-09-21	Galaxy Australia tool updates 2021-09-21	"<style>
+| **iVar** | ivar_trim [c092052ed673](https://toolshed.g2.bx.psu.edu/view/iuc/ivar_trim/c092052ed673) |~	
+111	2021-09-21	Galaxy Australia tool updates 2021-09-21	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2371,8 +2371,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 |---------|-----|
 | **Assembly** | metaspades [3ca2d2a9068c](https://toolshed.g2.bx.psu.edu/view/nml/metaspades/3ca2d2a9068c)<br/>spades [b7829778729f](https://toolshed.g2.bx.psu.edu/view/nml/spades/b7829778729f) |
 | **ChemicalToolBox** | ambertools_acpype [da6bd1975a71](https://toolshed.g2.bx.psu.edu/view/chemteam/ambertools_acpype/da6bd1975a71) |
-| **Nanopore** | medaka_consensus [fa11aa8103b2](https://toolshed.g2.bx.psu.edu/view/iuc/medaka_consensus/fa11aa8103b2)<br/>medaka_consensus_pipeline [0e9e7fcdd543](https://toolshed.g2.bx.psu.edu/view/iuc/medaka_consensus_pipeline/0e9e7fcdd543)<br/>medaka_variant [0f5f4a208660](https://toolshed.g2.bx.psu.edu/view/iuc/medaka_variant/0f5f4a208660) |"
-111	2021-09-29	Galaxy Australia tool updates 2021-09-29	"<style>
+| **Nanopore** | medaka_consensus [fa11aa8103b2](https://toolshed.g2.bx.psu.edu/view/iuc/medaka_consensus/fa11aa8103b2)<br/>medaka_consensus_pipeline [0e9e7fcdd543](https://toolshed.g2.bx.psu.edu/view/iuc/medaka_consensus_pipeline/0e9e7fcdd543)<br/>medaka_variant [0f5f4a208660](https://toolshed.g2.bx.psu.edu/view/iuc/medaka_variant/0f5f4a208660) |~	
+112	2021-09-29	Galaxy Australia tool updates 2021-09-29	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2398,8 +2398,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Convert Formats** | gffread [154d00cbbf2d](https://toolshed.g2.bx.psu.edu/view/devteam/gffread/154d00cbbf2d) |
 | **Phylogenetics** | iqtree [563c3aa769f2](https://toolshed.g2.bx.psu.edu/view/iuc/iqtree/563c3aa769f2)<br/>roary [e88a7de55d6e](https://toolshed.g2.bx.psu.edu/view/iuc/roary/e88a7de55d6e) |
 | **SAM/BAM** | bam_to_sam [10184eaa85fc](https://toolshed.g2.bx.psu.edu/view/devteam/bam_to_sam/10184eaa85fc)<br/>samtools_bedcov [46c6639921f1](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_bedcov/46c6639921f1)<br/>samtools_calmd [c147e3a10573](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_calmd/c147e3a10573)<br/>samtools_fastx [720217c23995](https://toolshed.g2.bx.psu.edu/view/iuc/samtools_fastx/720217c23995)<br/>samtools_flagstat [fe34990e5ce7](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_flagstat/fe34990e5ce7)<br/>samtools_idxstats [7def34e6cf4d](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_idxstats/7def34e6cf4d)<br/>samtools_merge [8890e2d4c068](https://toolshed.g2.bx.psu.edu/view/iuc/samtools_merge/8890e2d4c068)<br/>samtools_mpileup [111f83918fe6](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_mpileup/111f83918fe6)<br/>samtools_phase [1e5880498f52](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_phase/1e5880498f52)<br/>samtools_reheader [bb8cfc6f6e0c](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_reheader/bb8cfc6f6e0c)<br/>samtools_slice_bam [344fc91e1bfd](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_slice_bam/344fc91e1bfd)<br/>samtools_sort [6c2c1836728b](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_sort/6c2c1836728b)<br/>samtools_split [5d9ae78f34d3](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_split/5d9ae78f34d3)<br/>samtools_stats [e28839a4b932](https://toolshed.g2.bx.psu.edu/view/devteam/samtools_stats/e28839a4b932) |
-| **Single-cell** | anndata_import [499059586799](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_import/499059586799)<br/>scanpy_cluster_reduce_dimension [aaa5da8e73a9](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_cluster_reduce_dimension/aaa5da8e73a9)<br/>scanpy_filter [b409c2486353](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_filter/b409c2486353)<br/>scanpy_inspect [c5d3684f7c4c](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_inspect/c5d3684f7c4c)<br/>scanpy_normalize [ab55fe8030b6](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_normalize/ab55fe8030b6)<br/>scanpy_plot [aa0c474463c2](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_plot/aa0c474463c2)<br/>scanpy_remove_confounders [bf2017df9837](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_remove_confounders/bf2017df9837) |"
-112	2021-10-05	Galaxy Australia tool updates 2021-10-05	"<style>
+| **Single-cell** | anndata_import [499059586799](https://toolshed.g2.bx.psu.edu/view/iuc/anndata_import/499059586799)<br/>scanpy_cluster_reduce_dimension [aaa5da8e73a9](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_cluster_reduce_dimension/aaa5da8e73a9)<br/>scanpy_filter [b409c2486353](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_filter/b409c2486353)<br/>scanpy_inspect [c5d3684f7c4c](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_inspect/c5d3684f7c4c)<br/>scanpy_normalize [ab55fe8030b6](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_normalize/ab55fe8030b6)<br/>scanpy_plot [aa0c474463c2](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_plot/aa0c474463c2)<br/>scanpy_remove_confounders [bf2017df9837](https://toolshed.g2.bx.psu.edu/view/iuc/scanpy_remove_confounders/bf2017df9837) |~	
+113	2021-10-05	Galaxy Australia tool updates 2021-10-05	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2432,9 +2432,9 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Metagenomic Analysis** | metaphlan [ff8f55893e7d](https://toolshed.g2.bx.psu.edu/view/iuc/metaphlan/ff8f55893e7d) |
 | **Phylogenetics** | pangolin [fe3e8506112c](https://toolshed.g2.bx.psu.edu/view/iuc/pangolin/fe3e8506112c) |
 | **RNA-seq** | stringtie [258d696dbd7e](https://toolshed.g2.bx.psu.edu/view/iuc/stringtie/258d696dbd7e) |
-| **SAM/BAM** | sam_to_bam [1e69848b596f](https://toolshed.g2.bx.psu.edu/view/devteam/sam_to_bam/1e69848b596f)<br/>samtools_view [350bbc5c2ffd](https://toolshed.g2.bx.psu.edu/view/iuc/samtools_view/350bbc5c2ffd) |"
-113	2021-10-10	October Galactic News!	"The [October 2021 Newsletter is here](https://galaxyproject.org/news/2021-10-galaxy-update/)."	https://galaxyproject.org/news/2021-10-galaxy-update/
-114	2021-10-13	Galaxy Australia tool updates 2021-10-13	"<style>
+| **SAM/BAM** | sam_to_bam [1e69848b596f](https://toolshed.g2.bx.psu.edu/view/devteam/sam_to_bam/1e69848b596f)<br/>samtools_view [350bbc5c2ffd](https://toolshed.g2.bx.psu.edu/view/iuc/samtools_view/350bbc5c2ffd) |~	
+114	2021-10-10	October Galactic News!	~The [October 2021 Newsletter is here](https://galaxyproject.org/news/2021-10-galaxy-update/).~	https://galaxyproject.org/news/2021-10-galaxy-update/
+115	2021-10-13	Galaxy Australia tool updates 2021-10-13	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2465,8 +2465,8 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **ChemicalToolBox** | ambertools_acpype [a0c154146234](https://toolshed.g2.bx.psu.edu/view/chemteam/ambertools_acpype/a0c154146234)<br/>gmx_sim [da8753545526](https://toolshed.g2.bx.psu.edu/view/chemteam/gmx_sim/da8753545526) |
 | **Graph/Display Data** | circos [7f13dc906cb9](https://toolshed.g2.bx.psu.edu/view/iuc/circos/7f13dc906cb9) |
 | **Phylogenetics** | hyphy_absrel [26de3a7b1cb9](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_absrel/26de3a7b1cb9)<br/>hyphy_gard [45d39a499816](https://toolshed.g2.bx.psu.edu/view/iuc/hyphy_gard/45d39a499816) |
-| **Single-cell** | scater_create_qcmetric_ready_sce [b834074a9aff](https://toolshed.g2.bx.psu.edu/view/iuc/scater_create_qcmetric_ready_sce/b834074a9aff)<br/>scater_filter [7a365ec81b52](https://toolshed.g2.bx.psu.edu/view/iuc/scater_filter/7a365ec81b52)<br/>scater_plot_dist_scatter [81e5bdff4853](https://toolshed.g2.bx.psu.edu/view/iuc/scater_plot_dist_scatter/81e5bdff4853)<br/>scater_plot_pca [9e5c0bb18d08](https://toolshed.g2.bx.psu.edu/view/iuc/scater_plot_pca/9e5c0bb18d08) |"
-115	2021-10-19	Galaxy Australia tool updates 2021-10-19	"<style>
+| **Single-cell** | scater_create_qcmetric_ready_sce [b834074a9aff](https://toolshed.g2.bx.psu.edu/view/iuc/scater_create_qcmetric_ready_sce/b834074a9aff)<br/>scater_filter [7a365ec81b52](https://toolshed.g2.bx.psu.edu/view/iuc/scater_filter/7a365ec81b52)<br/>scater_plot_dist_scatter [81e5bdff4853](https://toolshed.g2.bx.psu.edu/view/iuc/scater_plot_dist_scatter/81e5bdff4853)<br/>scater_plot_pca [9e5c0bb18d08](https://toolshed.g2.bx.psu.edu/view/iuc/scater_plot_pca/9e5c0bb18d08) |~	
+116	2021-10-19	Galaxy Australia tool updates 2021-10-19	~<style>
   table {
     width: 100%;
     margin: 10px 20px;
@@ -2497,4 +2497,4 @@ Poster/Demos will be presented live at Remo.co tables and will not be limited to
 | **Assembly** | raven [3edba9afc9bc](https://toolshed.g2.bx.psu.edu/view/iuc/raven/3edba9afc9bc) |
 | **FASTA/FASTQ** | seqtk [3da72230c066](https://toolshed.g2.bx.psu.edu/view/iuc/seqtk/3da72230c066) |
 | **Metagenomic Analysis** | metadegalaxy_phyloseq_deseq2 [7e24242ffa65](https://toolshed.g2.bx.psu.edu/view/qfabrepo/metadegalaxy_phyloseq_deseq2/7e24242ffa65) |
-| **VCF/BCF** | bcftools_annotate [2436e3bef247](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_annotate/2436e3bef247)<br/>bcftools_call [912a8ff07fc9](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_call/912a8ff07fc9)<br/>bcftools_cnv [4891338c6c54](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_cnv/4891338c6c54)<br/>bcftools_concat [5ee777f9db23](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_concat/5ee777f9db23)<br/>bcftools_consensus [92182c270ce4](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_consensus/92182c270ce4)<br/>bcftools_convert_from_vcf [7cea7c7bf203](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_from_vcf/7cea7c7bf203)<br/>bcftools_convert_to_vcf [c14b33ab15d8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_to_vcf/c14b33ab15d8)<br/>bcftools_csq [8899a6d50699](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_csq/8899a6d50699)<br/>bcftools_filter [abafcb875ba6](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_filter/abafcb875ba6)<br/>bcftools_gtcheck [39810174657a](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_gtcheck/39810174657a)<br/>bcftools_isec [9ece72700ca9](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_isec/9ece72700ca9)<br/>bcftools_merge [3e0e55c628b8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_merge/3e0e55c628b8)<br/>bcftools_mpileup [ce9396ddcb2b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_mpileup/ce9396ddcb2b)<br/>bcftools_norm [ff9e769ccd6c](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_norm/ff9e769ccd6c)<br/>bcftools_plugin_counts [28b35180900b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_counts/28b35180900b)<br/>bcftools_plugin_dosage [84cf4959145a](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_dosage/84cf4959145a)<br/>bcftools_plugin_fill_an_ac [79064be67dff](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_an_ac/79064be67dff)<br/>bcftools_plugin_fill_tags [1fd34b10d28e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_tags/1fd34b10d28e)<br/>bcftools_plugin_fixploidy [d9f9294ccccc](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fixploidy/d9f9294ccccc)<br/>bcftools_plugin_impute_info [dcf130f10ca5](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_impute_info/dcf130f10ca5)<br/>bcftools_plugin_mendelian [ab7c07ed8726](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_mendelian/ab7c07ed8726)<br/>bcftools_plugin_missing2ref [701e01819e52](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_missing2ref/701e01819e52)<br/>bcftools_plugin_setgt [bb3d20a58f5b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_setgt/bb3d20a58f5b)<br/>bcftools_plugin_tag2tag [f272b8ba0983](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_tag2tag/f272b8ba0983)<br/>bcftools_query [3b1b51e1fcba](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query/3b1b51e1fcba)<br/>bcftools_query_list_samples [77e0bd62b554](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query_list_samples/77e0bd62b554)<br/>bcftools_reheader [b3b3c060962e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_reheader/b3b3c060962e)<br/>bcftools_roh [d80872078a09](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_roh/d80872078a09)<br/>bcftools_view [1d1762860d7e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/1d1762860d7e) |"
+| **VCF/BCF** | bcftools_annotate [2436e3bef247](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_annotate/2436e3bef247)<br/>bcftools_call [912a8ff07fc9](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_call/912a8ff07fc9)<br/>bcftools_cnv [4891338c6c54](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_cnv/4891338c6c54)<br/>bcftools_concat [5ee777f9db23](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_concat/5ee777f9db23)<br/>bcftools_consensus [92182c270ce4](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_consensus/92182c270ce4)<br/>bcftools_convert_from_vcf [7cea7c7bf203](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_from_vcf/7cea7c7bf203)<br/>bcftools_convert_to_vcf [c14b33ab15d8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_convert_to_vcf/c14b33ab15d8)<br/>bcftools_csq [8899a6d50699](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_csq/8899a6d50699)<br/>bcftools_filter [abafcb875ba6](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_filter/abafcb875ba6)<br/>bcftools_gtcheck [39810174657a](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_gtcheck/39810174657a)<br/>bcftools_isec [9ece72700ca9](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_isec/9ece72700ca9)<br/>bcftools_merge [3e0e55c628b8](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_merge/3e0e55c628b8)<br/>bcftools_mpileup [ce9396ddcb2b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_mpileup/ce9396ddcb2b)<br/>bcftools_norm [ff9e769ccd6c](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_norm/ff9e769ccd6c)<br/>bcftools_plugin_counts [28b35180900b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_counts/28b35180900b)<br/>bcftools_plugin_dosage [84cf4959145a](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_dosage/84cf4959145a)<br/>bcftools_plugin_fill_an_ac [79064be67dff](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_an_ac/79064be67dff)<br/>bcftools_plugin_fill_tags [1fd34b10d28e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fill_tags/1fd34b10d28e)<br/>bcftools_plugin_fixploidy [d9f9294ccccc](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_fixploidy/d9f9294ccccc)<br/>bcftools_plugin_impute_info [dcf130f10ca5](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_impute_info/dcf130f10ca5)<br/>bcftools_plugin_mendelian [ab7c07ed8726](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_mendelian/ab7c07ed8726)<br/>bcftools_plugin_missing2ref [701e01819e52](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_missing2ref/701e01819e52)<br/>bcftools_plugin_setgt [bb3d20a58f5b](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_setgt/bb3d20a58f5b)<br/>bcftools_plugin_tag2tag [f272b8ba0983](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_plugin_tag2tag/f272b8ba0983)<br/>bcftools_query [3b1b51e1fcba](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query/3b1b51e1fcba)<br/>bcftools_query_list_samples [77e0bd62b554](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_query_list_samples/77e0bd62b554)<br/>bcftools_reheader [b3b3c060962e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_reheader/b3b3c060962e)<br/>bcftools_roh [d80872078a09](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_roh/d80872078a09)<br/>bcftools_view [1d1762860d7e](https://toolshed.g2.bx.psu.edu/view/iuc/bcftools_view/1d1762860d7e) |~	

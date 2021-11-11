@@ -24,7 +24,9 @@ def organiser_email(meta):
 
 def location_json(meta):
     """Get location data from location text."""
-    v = meta.get('location') or ''
+    v = meta.get('location')
+    if not v:
+        return ''
     if type(v) == str:
         v = {'name': v.title()}
     return json.dumps(v)
@@ -63,4 +65,4 @@ def csv_escape(text):
     """Escape functional characters in text for embedding in CSV."""
     if text is None:
         return ''
-    return '"' + text.replace('"', '\\"').strip('\n -') + '"'
+    return '~' + text.strip('\n -') + '~'

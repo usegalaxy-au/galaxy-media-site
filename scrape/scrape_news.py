@@ -80,8 +80,11 @@ for i, path in enumerate(sorted(news_src_paths)):
             meta_str = [x for x in content.split('---\n', 2) if x][0]
             body = None
         meta = yaml.load(meta_str, Loader=yaml.FullLoader)
-    print(f'Writing news {i}')
-    meta['id'] = i
+    print(f'Writing news {i + 1}')
+    meta['id'] = i + 1
     meta['date'] = parse.date_from_filepath(path)
-    meta['body'] = parse.csv_escape(body)
+    meta['body'] = parse.csv_escape(body).replace(
+        'src="/assets',
+        'src="/media/uploads',
+    )
     write_news(meta)

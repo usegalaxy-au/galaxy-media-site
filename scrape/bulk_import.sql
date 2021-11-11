@@ -4,56 +4,68 @@
 
 \c ga_site;
 
+BEGIN;
+
 COPY events_event
-  FROM 'data/events.tab'
-  OIDS true
-  DELIMITER '\t'
-  QUOTE '"'
-  ESCAPE '\\'
+  FROM '/home/cameron/dev/galaxy/galaxy-content-site/scrape/data/events.tab'
+  WITH (
+  FORMAT csv,
+  HEADER true,
+  DELIMITER E'\t',
+  QUOTE '~',
   NULL ''
-;
-
-COPY events_event_supporters
-  FROM 'data/events_supporters_ids.tab'
-  OIDS false
-  DELIMITER '\t'
-  QUOTE '"'
-  ESCAPE '\\'
-  NULL ''
-;
-
-COPY events_event_tags
-  FROM 'data/events_tags_ids.tab'
-  OIDS false
-  DELIMITER '\t'
-  QUOTE '"'
-  ESCAPE '\\'
-  NULL ''
-;
+);
 
 COPY news_news
-  FROM 'data/news.tab'
-  OIDS true
-  DELIMITER '\t'
-  QUOTE '"'
-  ESCAPE '\\'
+  FROM '/home/cameron/dev/galaxy/galaxy-content-site/scrape/data/news.tab'
+  WITH (
+  FORMAT csv,
+  HEADER true,
+  DELIMITER E'\t',
+  QUOTE '~',
+  ESCAPE E'\\',
   NULL ''
-;
+);
+
+COPY events_event_supporters
+  FROM '/home/cameron/dev/galaxy/galaxy-content-site/scrape/data/event_supporters_oids_2.tab'
+  WITH (
+  FORMAT csv,
+  DELIMITER E'\t',
+  QUOTE '~',
+  ESCAPE E'\\',
+  NULL ''
+);
+
+
+COPY events_event_tags
+  FROM '/home/cameron/dev/galaxy/galaxy-content-site/scrape/data/event_tags_oids_2.tab'
+  WITH (
+  FORMAT csv,
+  DELIMITER E'\t',
+  QUOTE '~',
+  ESCAPE E'\\',
+  NULL ''
+);
 
 COPY news_news_supporters
-  FROM 'data/news_supporters_ids.tab'
-  OIDS false
-  DELIMITER '\t'
-  QUOTE '"'
-  ESCAPE '\\'
+  FROM '/home/cameron/dev/galaxy/galaxy-content-site/scrape/data/news_supporters_oids_2.tab'
+  WITH (
+  FORMAT csv,
+  DELIMITER E'\t',
+  QUOTE '~',
+  ESCAPE E'\\',
   NULL ''
-;
+);
 
 COPY news_news_tags
-  FROM 'data/news_tags_ids.tab'
-  OIDS false
-  DELIMITER '\t'
-  QUOTE '"'
-  ESCAPE '\\'
+  FROM '/home/cameron/dev/galaxy/galaxy-content-site/scrape/data/news_tags_oids_2.tab'
+  WITH (
+  FORMAT csv,
+  DELIMITER E'\t',
+  QUOTE '~',
+  ESCAPE E'\\',
   NULL ''
-;
+);
+
+COMMIT;
