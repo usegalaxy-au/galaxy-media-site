@@ -14,8 +14,8 @@ class NoticeAdminForm(forms.ModelForm):
         model = Notice
         widgets = {
             'body': forms.Textarea(attrs={
-                'rows': 10,
-                'cols': 80,
+                'rows': 30,
+                'cols': 120,
             }),
         }
         fields = '__all__'

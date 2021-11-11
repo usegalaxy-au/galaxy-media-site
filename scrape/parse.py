@@ -18,7 +18,7 @@ def organiser_email(meta):
     """Get email from organiser text."""
     v = meta.get('organiser') or ''
     if type(v) == dict:
-        return v.get('name', '')
+        return v.get('email', '')
     return ''
 
 

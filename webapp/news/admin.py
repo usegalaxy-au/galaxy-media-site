@@ -10,6 +10,11 @@ class NewsAdmin(admin.ModelAdmin):
     """Administer news items."""
 
     form = NewsAdminForm
+    list_display = [
+        'datetime_created',
+        'title',
+        'external',
+    ]
 
 
 admin.site.register(News, NewsAdmin)
