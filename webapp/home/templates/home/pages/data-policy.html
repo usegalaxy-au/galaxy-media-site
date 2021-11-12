@@ -1,0 +1,152 @@
+{% extends 'home/header.html' %}  {% load static %}
+
+
+{% block content %}
+
+<main>
+  <h1> Galaxy Australia Data Policy </h1>
+
+  <br>
+
+  <div class="container">
+    <p>
+      <strong>Galaxy Australia</strong>
+      is designed for data analysis and not for long term storage of data.
+    </p>
+
+    <br/>
+
+    <p>
+      Use Galaxy Australia to host your input data only for the period required for analysis.
+      Also, remember to export/download your analysed data as this also will not be stored
+      beyond the limits set out below.
+    </p>
+
+    <p>
+      It is
+
+      <u>your responsibility</u>
+
+      as a user of the system to manage your own data and routinely remove both your input and
+      output data from this community system to enable capacity for other users. Any data that
+      is not removed by you within a defined time period (see below) will be automatically and
+      permanently deleted.
+    </p>
+
+    <p>
+      Galaxy Australia maintains a collection of frequently used reference genomes and
+      annotation datasets. The inclusion of additional reference genomes and/or annotation data
+      on the system for community use can be
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXuarvkzFA5kRqoCfO8uiUGAB0PplfR4yvAfpCPSpdMcehmA/viewform">
+        requested
+      </a>
+
+      . Galaxy Australia's hosting of all reference and annotation data does not count to your
+      quota and it is the best way to access reference/annotation data.
+    </p>
+
+    <h3 class="header">Data storage quotas and retention periods</h3>
+
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+          <th></th>
+          <th>Quota</th>
+          <th>Retention period</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Registered Australian researchers</strong></td>
+            <td>600GB</td>
+            <td>1 year (52 weeks)</td>
+          </tr>
+
+          <tr>
+            <td><strong>Other registered users</strong></td>
+            <td>100GB</td>
+            <td>1 year (52 weeks)</td>
+          </tr>
+
+          <tr>
+            <td><strong>Unregistered users</strong></td>
+            <td>5GB</td>
+            <td>NA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="header">Registered Users</h3>
+
+    <ul>
+      <li>
+        <u>Registered Australian Researchers</u>
+
+        are defined by registration email from:
+
+        <ul>
+          <li><b>@domain.edu.au</b></li>
+
+          <li><b>@domain.org.au</b></li>
+
+          <li>
+            <b>@domain.edu</b> (only for known Australian Universities without .au domain)
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <u>Other Registered Users</u>
+
+        are defined as any registration email from all other @domains
+      </li>
+
+      <li>
+        Please contact us (help@genome.edu.au) if your institution does not conform to
+        this rule but you understand it should be defined as performing publicly funded
+        Australian research
+      </li>
+    </ul>
+
+    <p>
+      Registered users from Australian publicly funded research organisations have a 600GB data
+      storage quota. Other registered users have a 100GB quota. An increased data storage quota
+      can be
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiw6ajmkezLCwbXc3OFQEU3Ai9hGnBd967u9YbQ8ANPgvatA/viewform">
+        requested
+      </a>
+
+      for a limited time period in special cases.
+    </p>
+
+    <p>
+      Registered User's data (i.e. datasets, histories) will be available on the system for 1
+      year (52 weeks) from the point of upload or creation. Within this period, any data marked
+      by a Registered User as "deleted" will be permanently removed within 5 days. If a
+      registered user "purges" the dataset, it will be removed immediately and permanently.
+    </p>
+
+    <h3 class="header">Unregistered Users</h3>
+
+    <p>
+      Processed data will only be accessible during one browser session, using a browser cookie
+      to identify an Unregistered User's data. This cookie is not used for any other purposes
+      (e.g. tracking or analytics.)
+    </p>
+
+    <h3 class="header">What does it mean when I go over quota?</h3>
+
+    <p>
+      You data and histories are still accessible, but you not be able to run new jobs or import
+      more data. If you know in advance then take advantage of
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiw6ajmkezLCwbXc3OFQEU3Ai9hGnBd967u9YbQ8ANPgvatA/viewform">
+        requesting
+      </a>
+
+      more analysis storage or downloading and deleting old, unwanted data.
+    </p>
+  </div>
+</main>
+
+{% endblock %}

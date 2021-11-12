@@ -13,8 +13,29 @@
   </head>
 
   <body>
+
+    <nav class="navbar fixed-top navbar-expand-lg">
+      <a class="navbar-brand" href="/">
+        Galaxy <span class="australia">Australia</span>
+        <!-- <img src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy logo"> -->
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link {% if request.path == '/news' %}active{% endif %}" href="/news">News</a>
+          <a class="nav-link {% if request.path == 'events' %}active{% endif %}" href="/events">Events</a>
+          <a class="nav-link {% if request.path == 'people' %}active{% endif %}" href="/people">People</a>
+          <a class="nav-link {% if request.path == 'about' %}active{% endif %}" href="/about">About</a>
+          <a class="nav-link {% if request.path == 'support' %}active{% endif %}" href="/support">Support</a>
+        </div>
+      </div>
+    </nav>
+
+
     {% block content %}
     {% endblock %}
+
+    {% include 'home/footer.html' %}
 
     {% block script %}
     {% endblock %}
