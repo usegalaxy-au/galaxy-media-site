@@ -9,7 +9,7 @@ User = dev
 Group = www-data
 RuntimeDirectory=gunicorn
 WorkingDirectory=/srv/sites/ga-site/webapp
-Environment="PATH=/home/miniconda/envs/ga-site/bin/"
+Environment="PATH=/home/dev/miniconda/envs/ga-site/bin/"
 ExecStart=/home/miniconda/envs/ga-site/bin/gunicorn --pid /run/gunicorn/pid   \
           --bind unix:/run/ga-site.sock \
           -c /srv/sites/ga-site/server/gunicorn.py ga-site.wsgi
