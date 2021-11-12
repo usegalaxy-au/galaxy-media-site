@@ -1,0 +1,88 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+{% load markdownify %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/events.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+
+  <h1>Galaxy Australia events</h1>
+
+  <section class="container-fluid event-list">
+    <div class="">
+      <table class="table table-striped">
+        <thead>
+          <th colspan=2>Description</th>
+          <th>Organiser</th>
+          <th>
+            Start
+            <span class="text-muted text-nowrap">dd-mm-yyyy</span>
+          </th>
+          <th>
+            End
+            <span class="text-muted text-nowrap">dd-mm-yyyy</span>
+          </th>
+        </thead>
+
+        <tbody>
+          {% for item in events %}
+          <tr>
+            <td>
+              <a href="{{ item.url }}" {% if item.external %} target="_blank" {% endif %}>
+                <h4> {{ item.title|markdownify|safe }} </h4>
+              </a>
+              <div class="blurb">
+                {{ item.blurb|markdownify|safe }}
+              </div>
+            </td>
+
+            <td>
+              {% for icon in item.material_icons %}
+              <span class="material-icons">{{ icon }}</span>
+              {% endfor %}
+            </td>
+
+            <td> {{ item.organiser_name }} </td>
+            <td> {{ item.date_start|date:"d-m-Y" }} </td>
+            <td> {{ item.date_end|date:"d-m-Y" }} </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+
+  const IFRAME_COUNT = 5;
+  let loaded = [];
+
+  const notifyLoaded = (id) => {
+    console.log(`Pushing ID ${id} to loaded`)
+    loaded.push(id);
+    if (loaded.length === IFRAME_COUNT) {
+      console.log("Switching iframes to visible")
+      $('#stats-panel img.loading').hide();
+      $('#stats-panel iframe').css('opacity', '1');
+    }
+  }
+
+</script>
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

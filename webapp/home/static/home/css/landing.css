@@ -41,6 +41,7 @@
   border-left: .5rem solid var(--color);
   margin: 0;
   padding: .5rem 1rem;
+  cursor: pointer;
   transition-duration: .25s;
 }
 #news-events article:hover {
@@ -49,9 +50,6 @@
 }
 #news-events article p {
   margin: 0;
-}
-#news-events article p:last-child {
-
 }
 h1 span.material-icons {
   font-size: 100%;

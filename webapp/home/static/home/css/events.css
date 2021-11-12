@@ -1,0 +1,10 @@
+main {
+  max-width: 1400px;
+}
+td {
+  vertical-align: top;
+}
+.event-list {
+  font-size: 0.8rem;
+  margin-top: 0;
+}

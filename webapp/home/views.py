@@ -1,81 +1,30 @@
 """Views for home app."""
 
-from datetime import datetime
+import os
+from django.conf import settings
 from django.shortcuts import render
+from django.http import HttpResponseNotFound
 
-FAKE_NEWS_ITEMS = [
-    {
-        'date': datetime.strptime('2021-10-28', '%Y-%m-%d'),
-        'icons_html': '<span class="material-icons">build</span>',
-        'title': "Galaxy australia tool updates",
-    },
-    {
-        'date': datetime.strptime('2021-10-10', '%Y-%m-%d'),
-        'icons_html': '',
-        'title': "Intergalactic news",
-    },
-    {
-        'date': datetime.strptime('2021-10-04', '%Y-%m-%d'),
-        'icons_html': '<span class="material-icons">build</span>',
-        'title': "Galaxy australia tool updates",
-    },
-    {
-        'date': datetime.strptime('2021-10-28', '%Y-%m-%d'),
-        'icons_html': '<span class="material-icons">build</span>',
-        'title': "Galaxy australia tool updates",
-    },
-    {
-        'date': datetime.strptime('2021-10-10', '%Y-%m-%d'),
-        'icons_html': '',
-        'title': "Intergalactic news",
-    },
-    {
-        'date': datetime.strptime('2021-10-04', '%Y-%m-%d'),
-        'icons_html': '<span class="material-icons">build</span>',
-        'title': "Galaxy australia tool updates",
-    },
-]
+from events.models import Event
+from news.models import News
 
-FAKE_EVENT_ITEMS = [
-    {
-        'date': datetime.strptime('2021-10-07', '%Y-%m-%d'),
-        'icons_html': (
-            '<span class="material-icons">school</span>'
-            '<span class="material-icons">event</span>'
-        ),
-        'title': "WORKSHOP: Hybrid de novo genome assembly",
-    },
-    {
-        'date': datetime.strptime('2021-09-16', '%Y-%m-%d'),
-        'icons_html': (
-            '<span class="material-icons">event</span>'
-        ),
-        'title': "Galaxy Paper Cuts",
-    },
-    {
-        'date': datetime.strptime('2021-09-09', '%Y-%m-%d'),
-        'icons_html': (
-            '<span class="material-icons">school</span>'
-            '<span class="material-icons">event</span>'
-        ),
-        'title': "WORKSHOP: Online data analsis for biologists",
-    },
-    {
-        'date': datetime.strptime('2021-06-28', '%Y-%m-%d'),
-        'icons_html': (
-            '<span class="material-icons">groups</span>'
-            '<span class="material-icons">event</span>'
-        ),
-        'title': "Galaxy community conference (GCC 2021) - virtual edition",
-    },
-]
-
-# Should upgrade to class-based views
+# Should maybe upgrade to class-based views
 
 
 def index(request):
     """Return homepage."""
     return render(request, 'home/index.html', {
-        'news_items': FAKE_NEWS_ITEMS,
-        'event_items': FAKE_EVENT_ITEMS,
+        'news_items': News.objects.order_by('-datetime_created')[:6],
+        'events': Event.objects.order_by('-datetime_created')[:6],
     })
+
+
+def page(request):
+    """Serve an arbitrary static page."""
+    template = f'home/pages/{request.path}'
+    templates_dir = os.path.join(
+        settings.BASE_DIR,
+        'home/templates/home/pages')
+    if os.path.basename(template) not in os.listdir(templates_dir):
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+    return render(request, template)

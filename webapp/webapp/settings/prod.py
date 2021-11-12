@@ -12,6 +12,13 @@ DEBUG = False
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 ALLOWED_HOSTS.append('usegalaxy-au.neoformit.com')
 
-# DATABASES = {
-#     # Probably want a proper production database e.g. postgres
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ga_site',
+        # 'USER': 'ga_site',
+        # 'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}

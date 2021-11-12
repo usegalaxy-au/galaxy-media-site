@@ -1,6 +1,7 @@
-{% extends 'home/header.html' %}
+{% extends landing|yesno:'home/header_landing.html,home/header.html' %}
 
 {% load static %}
+{% load markdownify %}
 
 
 {% block head %}
@@ -12,7 +13,9 @@
 
 <main>
   <section class="container-flex text-center my-3">
-    <img id="header-logo" src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy Australia Logo">
+    <a href="https://usegalaxy.org.au">
+      <img id="header-logo" src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy Australia Logo">
+    </a>
   </section>
 
   <section class="container-fluid my-5" id="tagline">
@@ -32,9 +35,11 @@
       <div class="card-body">
         <h1 class="card-title"><span class="material-icons">book</span></h1>
         <p>
-          Galaxy Australia
+          200+
           <br>
-          Training Materials
+          Galaxy tutorials
+          <br>
+          available now
         </p>
         <a class="ga-btn" href="#">Start learning</a>
       </div>
@@ -44,9 +49,11 @@
       <div class="card-body">
         <h1 class="card-title"><span class="material-icons">construction</span></h1>
         <p>
-          Request Tools
+          7000+
           <br>
-          &amp; Datasets
+          Tools &amp; Datasets
+          <br>
+          Ready to install
         </p>
         <a class="ga-btn" href="#">Request now</a>
       </div>
@@ -54,11 +61,11 @@
 
     <div class="tile">
       <div class="card-body">
-        <h1 class="card-title"><span class="material-icons">storage</span></h1>
-        <p>
-          Request extra
+        <h1 class="card-title"><span class="material-icons">save</span></h1>
+        <p class="m-0">
+          Additional storage
           <br>
-          storage
+          available on request
         </p>
         <a class="ga-btn" href="#">Request now</a>
       </div>
@@ -93,46 +100,112 @@
 
   <section class="row no-gutter" id="news-events">
     <div class="col-sm-6 px-3" id="news">
-      <a href="#"><h4>News</h4></a>
+      <div class="row justify-content-between">
+        <div class="col">
+          <h4>News</h4>
+        </div>
+        <div class="col-md-auto">
+          <a class="ga-btn sm" href="/news">Browse</a>
+        </div>
+      </div>
       {% for item in news_items %}
-      <!-- Some hard-coded news items for testing -->
-      <a href="{{ item.url }}">
-        <article>
-          <div class="row">
-            <div class="col">
-              <p> {{ item.date|date:"Y-m-d" }} </p>
-              <p><b> {{ item.title }} </b></p>
-            </div>
+      <article class="row" onclick="window.location='{{ item.url }}';">
+        <div class="col">
+          <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
+          <p><b> {{ item.title|markdownify }} </b></p>
+        </div>
 
-            <div class="col-sm-auto text-end">
-              <p> {{ item.icons_html|safe }} </p>
-            </div>
-          </div>
-        </article>
-      </a>
+        <div class="col-sm-auto text-end">
+          <p>
+            {% for icon in item.material_icons %}
+            <span class="material-icons">{{ icon }}</span>
+            {% endfor %}
+          </p>
+        </div>
+      </article>
       {% endfor %}
     </div>
 
     <div class="col-sm-6 px-3">
-      <a href="#"><h4>Events and workshops</h4></a>
-      {% for item in event_items %}
-      <!-- Some hard-coded event items for testing -->
-      <a href="{{ item.url }}">
-        <article>
-          <div class="row">
-            <div class="col">
-              <p> {{ item.date|date:"Y-m-d" }} </p>
-              <p><b> {{ item.title }} </b></p>
-            </div>
+      <div class="row justify-content-between">
+        <div class="col">
+          <h4>Events and workshops</h4>
+        </div>
+        <div class="col-md-auto">
+          <a class="ga-btn sm" href="/events">Browse</a>
+        </div>
+      </div>
+      {% for item in events %}
+      <article class="row" onclick="window.location='{{ item.url }}';">
+        <div class="col">
+          <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
+          <p><b> {{ item.title|markdownify }} </b></p>
+        </div>
 
-            <div class="col-sm-auto text-end">
-              <p> {{ item.icons_html|safe }} </p>
-            </div>
-          </div>
-        </article>
-      </a>
+        <div class="col-sm-auto text-end">
+          <p>
+            {% for icon in item.material_icons %}
+            <span class="material-icons">{{ icon }}</span>
+            {% endfor %}
+          </p>
+        </div>
+      </article>
       {% endfor %}
     </div>
+  </section>
+
+  <section id="data-policy">
+    <h4 class="header"> Our data policy </h4>
+
+    <h5> Registered users <span class="material-icons">account_circle</span> </h5>
+
+    <p>
+      User data on usegalaxy.org.au (i.e. datasets, histories) is stored for a
+      <b>minimum of 1 year</b> (52 weeks) unless deleted by the user. Datasets will be permanently removed within 5 days of deletion by the user. If
+      the user "purges" the dataset in the Galaxy, it will be removed immediately,
+      permanently.
+    </p>
+
+    <p>
+      Users are allocated a <b>100GB</b> disk quota upon registration. Users registratered
+      with an Australian research institute address are allocated <b>600GB</b>.
+    </p>
+
+    <p>
+      An extended quota can be
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiw6ajmkezLCwbXc3OFQEU3Ai9hGnBd967u9YbQ8ANPgvatA/viewform" target="_blank">
+        requested
+      </a>
+      for a limited time period in special cases.
+    </p>
+
+    <hr>
+
+    <h5> Unregistered users <span class="material-icons">no_accounts</span></h5>
+
+    <p>
+      Processed data will only be accessible during one browser session, using a
+      cookie to identify your data. This cookie is not used for any other purposes
+      (e.g. tracking or analytics.)
+    </p>
+
+    <p>
+      If the user does not access usegalaxy.org.au within 5 days, those datasets will be permanently deleted.
+    </p>
+
+    <br>
+
+    <p class="text-center">
+      <a class="ga-btn" href="/galaxy/data-policy.html">
+        Full data policy
+      </a>
+
+      <br>
+
+      <a class="ga-btn" href="https://galaxy-au-training.github.io/tutorials/modules/galaxy-data/">
+        Downloading and deleting my data
+      </a>
+    </p>
   </section>
 
 </main>

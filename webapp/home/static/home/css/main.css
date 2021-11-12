@@ -5,8 +5,35 @@
 }
 body {
   color: #2C3143;
-  padding: 1rem 2rem;
+  padding: 6rem 2rem 1rem 2rem;
   font-family: 'apple-system' arial sans-serif;
+}
+nav {
+  color: #ddd;
+  background-color: var(--color);
+  padding: .5rem 3rem;
+}
+nav img {
+  width: auto;
+  height: 3rem;
+}
+nav .navbar-brand {
+  margin-right: 5rem;
+}
+nav a, a.nav-link {
+  color: inherit;
+}
+nav a:hover, a.nav-link:hover {
+  color: white;
+}
+nav .australia {
+  color: #cebd2c;
+}
+nav a:hover .australia {
+  color: #eedd5c;
+}
+footer {
+  margin-top: 5rem;
 }
 
 /* Layout */
@@ -21,15 +48,29 @@ section {
   margin-left: 0;
   margin-right: 0;
 }
+.logo img {
+  width: auto;
+  height: 2.5rem;
+  margin: 1rem;
+}
 
 /* Components */
 .tile {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
   background-color: var(--tile-bg);
+  padding: 0;
   margin: 1rem;
   border: 1px solid grey;
   border-radius: .25rem;
-  width: 250px;
+  max-width: 250px;
   box-shadow: 0 .25rem .5rem #00000029;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .ga-btn {
   display: inline-block;
@@ -44,13 +85,47 @@ section {
   border-radius: .25rem;
   transition-duration: .25s;
 }
+.ga-btn.sm {
+  margin: .5rem;
+  padding: .15rem .35rem;
+  min-width: 100px;
+}
 .ga-btn:hover {
   color: white;
   background-color: var(--color);
 }
+.material-icons {
+  vertical-align: bottom;
+}
+.contact-info {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  list-style-type: none;
+}
+.contact-info > div {
+  margin: 0 1rem;
+  display: flex;
+}
+i {
+  margin: 0 .5rem;
+}
 
 /* Font */
 a {
-  color: inherit;
   text-decoration: inherit;
+}
+.text-small {
+  font-size: 0.8rem;
+}
+h1.header,
+h2.header,
+h3.header,
+h4.header,
+h5.header,
+h6.header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--color);
 }

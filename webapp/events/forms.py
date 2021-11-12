@@ -1,14 +1,35 @@
-"""Forms for managing events.
-
-django_timezone_field: https://github.com/mfogel/django-timezone-field
-"""
+"""Forms for managing events."""
 
 from django import forms
-from timezone_field import TimeZoneFormField
+
+from home.widgets import ColorInput
+from .models import Event, Tag
 
 
-class EventForm(forms.Form):
-    """Create a new event."""
+class EventAdminForm(forms.ModelForm):
+    """Update and create events."""
 
-    # Displays like "GMT-08:00 America/Los Angeles"
-    timezone = TimeZoneFormField(choices_display='WITH_GMT_OFFSET')
+    class Meta:
+        """Form metadata."""
+
+        model = Event
+        widgets = {
+            'body': forms.Textarea(attrs={
+                'rows': 30,
+                'cols': 120,
+            }),
+        }
+        fields = '__all__'
+
+
+class TagAdminForm(forms.ModelForm):
+    """Update and create tags."""
+
+    class Meta:
+        """Form metadata."""
+
+        model = Tag
+        widgets = {
+            'color': ColorInput,
+        }
+        fields = '__all__'

@@ -1,3 +1,12 @@
+"""People views."""
+
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Person
+
+
+def index(request):
+    """Show people page."""
+    return render(request, 'people/index.html', {
+        'people': Person.objects.order_by('datetime_created'),
+    })
