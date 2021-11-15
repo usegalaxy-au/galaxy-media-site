@@ -77,9 +77,9 @@ class Event(models.Model):
     external = models.URLField(
         null=True, blank=True, help_text='Link to external content')
 
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
     supporters = models.ManyToManyField(
-        Supporter, help_text='Displays logos and links')
+        Supporter, blank=True, help_text='Displays logos and links')
 
     @property
     def url(self):
@@ -110,4 +110,4 @@ class Event(models.Model):
     @property
     def blurb(self):
         """Extract a blurb from the body markdown."""
-        return get_blurb_from_markdown(self.body)
+        return get_blurb_from_markdown(self.body, style=False)

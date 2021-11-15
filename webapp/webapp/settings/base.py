@@ -103,6 +103,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MARKDOWNIFY = {
+    "default": {
+        "BLEACH": False,  # Shouldn't need to sanitize as admin only
+    },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

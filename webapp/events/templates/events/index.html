@@ -12,53 +12,55 @@
 {% block content %}
 
 <main>
+  <div class="container">
+    <h1>Galaxy Australia events</h1>
 
-  <h1>Galaxy Australia events</h1>
+    <section class="container-fluid">
+      <div class="">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th colspan=2>Description</th>
+              <th>Organiser</th>
+              <th>
+                Start
+                <span class="text-muted text-nowrap">(dd-mm-yyyy)</span>
+              </th>
+              <th>
+                End
+                <span class="text-muted text-nowrap">(dd-mm-yyyy)</span>
+              </th>
+            </tr>
+          </thead>
 
-  <section class="container-fluid event-list">
-    <div class="">
-      <table class="table table-striped">
-        <thead>
-          <th colspan=2>Description</th>
-          <th>Organiser</th>
-          <th>
-            Start
-            <span class="text-muted text-nowrap">dd-mm-yyyy</span>
-          </th>
-          <th>
-            End
-            <span class="text-muted text-nowrap">dd-mm-yyyy</span>
-          </th>
-        </thead>
+          <tbody>
+            {% for item in events %}
+            <tr>
+              <td>
+                <a href="{{ item.url }}" {% if item.external %} target="_blank" {% endif %}>
+                  <h4> {{ item.title|markdownify|safe }} </h4>
+                </a>
+                <div class="blurb">
+                  {{ item.blurb|markdownify|safe }}
+                </div>
+              </td>
 
-        <tbody>
-          {% for item in events %}
-          <tr>
-            <td>
-              <a href="{{ item.url }}" {% if item.external %} target="_blank" {% endif %}>
-                <h4> {{ item.title|markdownify|safe }} </h4>
-              </a>
-              <div class="blurb">
-                {{ item.blurb|markdownify|safe }}
-              </div>
-            </td>
+              <td>
+                {% for icon in item.material_icons %}
+                <span class="material-icons">{{ icon }}</span>
+                {% endfor %}
+              </td>
 
-            <td>
-              {% for icon in item.material_icons %}
-              <span class="material-icons">{{ icon }}</span>
-              {% endfor %}
-            </td>
-
-            <td> {{ item.organiser_name }} </td>
-            <td> {{ item.date_start|date:"d-m-Y" }} </td>
-            <td> {{ item.date_end|date:"d-m-Y" }} </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </section>
-
+              <td> {{ item.organiser_name }} </td>
+              <td> {{ item.date_start|date:"d-m-Y" }} </td>
+              <td> {{ item.date_end|date:"d-m-Y" }} </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 </main>
 
 {% endblock %}

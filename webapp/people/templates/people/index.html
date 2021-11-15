@@ -1,0 +1,108 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'people/css/people.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  <div class="container">
+    <h1>People</h1>
+
+    <p class="lead">
+      Blah blah creators/maintainers of Galaxy Australia
+    </p>
+
+    <hr>
+
+    <section class="row">
+      {% for p in people %}
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top" src="{{ p.img_uri }}" alt="{{ p.full_name }}">
+          <div class="card-body">
+            <div class="card-title">
+              {{ p.full_name }}
+              <br>
+              {{ p.position }}
+            </div>
+
+            <div class="card-text">
+              <small>
+                <table>
+                  <tr>
+                    <td>
+                      <i class="fas fa-envelope"></i>
+                    </td>
+                    <td>{{ p.email }}</td>
+                  </tr>
+
+                  {% if p.github %}
+                  <tr>
+                    <td>
+                      <i class="fab fa-github"></i>
+                    </td>
+                    <td>{{ p.github }}</td>
+                  </tr>
+                  {% endif %}
+
+                  {% if p.phone %}
+                  <tr>
+                    <td>
+                      <i class="fas fa-phone-alt"></i>
+                    </td>
+                    <td>{{ p.phone }}</td>
+                  </tr>
+                  {% endif %}
+
+                  {% if p.location %}
+                  <tr>
+                    <td>
+                      <i class="fas fa-map-pin"></i>
+                    </td>
+                    <td>{{ p.location }}</td>
+                  </tr>
+                  {% endif %}
+                </table>
+
+                {% if p.gitter %}
+                <a href="https://gitter.im/{{ p.gitter }}">
+                  <i class="fas fa-comments"></i>
+                </a>
+                {% endif %}
+
+                {% if p.twitter %}
+                <a href="https://twitter.com/{{ p.twitter }}">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                {% endif %}
+
+                {% if p.orcid %}
+                <a href="https://orcid.org/{{ p.orcid }}">
+                  <img src="{% static 'home/img/orcid-logo.svg' %}" style="width: 1rem; height: auto;">
+                </a>
+                {% endif %}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+  </div>
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

@@ -6,7 +6,6 @@
 body {
   color: #2C3143;
   padding: 6rem 2rem 1rem 2rem;
-  font-family: 'apple-system' arial sans-serif;
 }
 nav {
   color: #ddd;
@@ -35,11 +34,16 @@ nav a:hover .australia {
 footer {
   margin-top: 5rem;
 }
+h1 {
+  margin-bottom: 3rem;
+}
 
 /* Layout */
 main {
   max-width: 1000px;
   margin: 0 auto;
+  /* Push the footer down */
+  min-height: calc(95vh - 180px - 7rem);
 }
 section {
   margin: 1rem 0;

@@ -1,0 +1,63 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+{% load markdownify %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/events.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  <div class="container">
+    <h1>Galaxy Australia news</h1>
+
+    <section class="container-fluid event-list">
+      <table class="table table-striped">
+        <thead>
+          <th colspan=2>Article</th>
+          <th>
+            Date published
+            <span class="text-muted text-nowrap">(dd-mm-yyyy)</span>
+          </th>
+        </thead>
+
+        <tbody>
+          {% for item in news_items %}
+          <tr>
+            <td>
+              <a href="{{ item.url }}" {% if item.external %} target="_blank" {% endif %}>
+                <h4> {{ item.title|markdownify|safe }} </h4>
+              </a>
+              <div class="blurb">
+                {{ item.blurb|markdownify|safe }}
+              </div>
+            </td>
+
+            <td>
+              {% for icon in item.material_icons %}
+              <span class="material-icons">{{ icon }}</span>
+              {% endfor %}
+            </td>
+
+            <td> {{ item.datetime_created|date:'d-m-Y' }} </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

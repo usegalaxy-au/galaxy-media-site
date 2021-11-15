@@ -8,15 +8,25 @@ from django.http import HttpResponseNotFound
 from events.models import Event
 from news.models import News
 
-# Should maybe upgrade to class-based views
+# Should maybe upgrade to class-based views?
 
 
 def index(request):
-    """Return homepage."""
+    """Show homepage."""
     return render(request, 'home/index.html', {
         'news_items': News.objects.order_by('-datetime_created')[:6],
         'events': Event.objects.order_by('-datetime_created')[:6],
     })
+
+
+def about(request):
+    """Show about page."""
+    return render(request, 'home/about.html')
+
+
+def support(request):
+    """Show support page."""
+    return render(request, 'home/support.html')
 
 
 def page(request):

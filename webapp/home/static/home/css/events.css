@@ -1,10 +1,11 @@
 main {
   max-width: 1400px;
 }
-td {
-  vertical-align: top;
+th, .table th {
+  color: white;
+  background-color: var(--color);
+  vertical-align: middle;
 }
-.event-list {
-  font-size: 0.8rem;
-  margin-top: 0;
+td, .table td {
+  vertical-align: top;
 }

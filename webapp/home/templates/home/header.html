@@ -4,9 +4,9 @@
 {% load static %}
 
   <head>
-    {% include 'home/meta.html' %}
+    {% include 'home/snippets/meta.html' %}
     <title> {% if title %}{{ title }}{% else %}Galaxy Australia{% endif %} </title>
-    {% include 'home/imports.html' %}
+    {% include 'home/snippets/imports.html' %}
 
     {% block head %}
     {% endblock %}
@@ -22,11 +22,15 @@
 
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+          <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
           <a class="nav-link {% if request.path == '/news' %}active{% endif %}" href="/news">News</a>
           <a class="nav-link {% if request.path == 'events' %}active{% endif %}" href="/events">Events</a>
           <a class="nav-link {% if request.path == 'people' %}active{% endif %}" href="/people">People</a>
           <a class="nav-link {% if request.path == 'about' %}active{% endif %}" href="/about">About</a>
           <a class="nav-link {% if request.path == 'support' %}active{% endif %}" href="/support">Support</a>
+          {% if user.is_staff %}
+          <a class="nav-link" href="/admin">Admin</a>
+          {% endif %}
         </div>
       </div>
     </nav>
@@ -35,7 +39,7 @@
     {% block content %}
     {% endblock %}
 
-    {% include 'home/footer.html' %}
+    {% include 'home/snippets/footer.html' %}
 
     {% block script %}
     {% endblock %}

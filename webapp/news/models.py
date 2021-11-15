@@ -28,6 +28,14 @@ class News(models.Model):
         Supporter, help_text='Show logos/links')
 
     @property
+    def url(self):
+        """Return internal or external link."""
+        return (
+            self.external
+            or f'/news/{self.id}'
+        )
+
+    @property
     def slug(self):
         """Return slug generated from title."""
         return slugify(self.title)
@@ -43,4 +51,4 @@ class News(models.Model):
     @property
     def blurb(self):
         """Extract a blurb from the body markdown."""
-        return get_blurb_from_markdown(self.body)
+        return get_blurb_from_markdown(self.body, style=False)

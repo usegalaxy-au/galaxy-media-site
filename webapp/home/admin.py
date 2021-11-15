@@ -12,6 +12,6 @@ class NoticeAdmin(admin.ModelAdmin):
     form = NoticeAdminForm
 
 
-admin.site.site_header = "Galaxy content administration"
+admin.site.site_header = "Galaxy Australia content administration"
 admin.site.register(User)
 admin.site.register(Notice, NoticeAdmin)
