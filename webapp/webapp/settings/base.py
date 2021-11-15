@@ -103,6 +103,50 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} | {asctime} | {module}: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'debug_file': {
+            'delay': True,
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1000000,  # 1MB ~ 20k rows
+            'backupCount': 5,
+            'filename': (os.path.join(BASE_DIR, 'webapp/logs/main.log')),
+            'formatter': 'verbose',
+        },
+        'error_file': {
+            'delay': True,
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1000000,  # 1MB ~ 20k rows
+            'backupCount': 5,
+            'filename': (os.path.join(BASE_DIR, 'webapp/logs/error.log')),
+            'formatter': 'verbose',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['debug_file', 'error_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
 MARKDOWNIFY = {
     "default": {
         "BLEACH": False,  # Shouldn't need to sanitize as admin only
