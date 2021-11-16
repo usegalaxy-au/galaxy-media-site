@@ -43,4 +43,6 @@ class Person(models.Model):
     @property
     def img_uri(self):
         """Return URI for image field."""
-        return urljoin(settings.MEDIA_URL, str(self.image))
+        if self.image:
+            return urljoin(settings.MEDIA_URL, str(self.image))
+        return urljoin(settings.STATIC_URL, 'people/img/placeholder.png')

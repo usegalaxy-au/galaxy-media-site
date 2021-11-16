@@ -10,17 +10,25 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os
 from pathlib import Path
+
+from utils.paths import ensure_dir
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 AUTH_USER_MODEL = 'home.User'
 
+# Site paths and URLs
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'webapp/static'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'webapp/media'
+LOGGING_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
+
+# Hostnames
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
@@ -119,7 +127,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'maxBytes': 1000000,  # 1MB ~ 20k rows
             'backupCount': 5,
-            'filename': (os.path.join(BASE_DIR, 'webapp/logs/main.log')),
+            'filename': LOGGING_ROOT / 'main.log',
             'formatter': 'verbose',
         },
         'error_file': {
@@ -128,12 +136,12 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'maxBytes': 1000000,  # 1MB ~ 20k rows
             'backupCount': 5,
-            'filename': (os.path.join(BASE_DIR, 'webapp/logs/error.log')),
+            'filename': LOGGING_ROOT / 'error.log',
             'formatter': 'verbose',
         },
         'console': {
             'class': 'logging.StreamHandler',
-            'level': 'DEBUG',
+            'level': 'INFO',
             'formatter': 'verbose',
         },
     },
@@ -162,13 +170,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-
-# Site paths and URLs
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'webapp/static')
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'webapp/media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

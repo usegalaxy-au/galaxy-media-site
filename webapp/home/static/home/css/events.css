@@ -1,6 +1,3 @@
-main {
-  max-width: 1400px;
-}
 th, .table th {
   color: white;
   background-color: var(--color);

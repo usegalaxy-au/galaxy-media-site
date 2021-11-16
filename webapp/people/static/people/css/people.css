@@ -1,3 +1,20 @@
+.card {
+  max-width: 325px;
+}
+.card table {
+  font-size: .75rem;
+}
 .card td {
   vertical-align: top;
+}
+.card-footer {
+  background-color: inherit;
+  border-top: none;
+}
+
+/* Responsive */
+@media(max-width: 576px) {
+  .g-4 .col {
+    padding: 2rem;
+  }
 }

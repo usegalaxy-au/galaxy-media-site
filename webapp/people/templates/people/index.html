@@ -10,81 +10,94 @@
 
 {% block content %}
 
-<main>
+<main class="wide">
   <div class="container">
-    <h1>People</h1>
+    <h1>The Galaxy Australia Team</h1>
 
-    <p class="lead">
+    <p class="lead text-danger">
       Blah blah creators/maintainers of Galaxy Australia
     </p>
 
     <hr>
 
-    <section class="row">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-4">
+
       {% for p in people %}
-      <div class="col-sm-4">
-        <div class="card">
+      <div class="col">
+        <div class="card h-100">
           <img class="card-img-top" src="{{ p.img_uri }}" alt="{{ p.full_name }}">
           <div class="card-body">
-            <div class="card-title">
+            <div class="card-title text-center">
               {{ p.full_name }}
               <br>
-              {{ p.position }}
+              <small>
+                {{ p.position }}
+              </small>
             </div>
 
             <div class="card-text">
+              <table>
+                <tr>
+                  <td>
+                    <i class="fas fa-envelope"></i>
+                  </td>
+                  <td>
+                    <a href="mailto:{{ p.email }}">
+                      {{ p.email }}
+                    </a>
+                  </td>
+                </tr>
+
+                {% if p.github %}
+                <tr>
+                  <td>
+                    <i class="fab fa-github"></i>
+                  </td>
+                  <td>
+                    <a href="https://github.com/{{ p.github }}">
+                      {{ p.github }}
+                    </a>
+                  </td>
+                </tr>
+                {% endif %}
+
+                {% if p.phone %}
+                <tr>
+                  <td>
+                    <i class="fas fa-phone-alt"></i>
+                  </td>
+                  <td>{{ p.phone }}</td>
+                </tr>
+                {% endif %}
+
+                {% if p.location %}
+                <tr>
+                  <td>
+                    <i class="fas fa-map-pin"></i>
+                  </td>
+                  <td>{{ p.location }}</td>
+                </tr>
+                {% endif %}
+              </table>
+            </div>
+
+            <div class="card-footer">
               <small>
-                <table>
-                  <tr>
-                    <td>
-                      <i class="fas fa-envelope"></i>
-                    </td>
-                    <td>{{ p.email }}</td>
-                  </tr>
-
-                  {% if p.github %}
-                  <tr>
-                    <td>
-                      <i class="fab fa-github"></i>
-                    </td>
-                    <td>{{ p.github }}</td>
-                  </tr>
-                  {% endif %}
-
-                  {% if p.phone %}
-                  <tr>
-                    <td>
-                      <i class="fas fa-phone-alt"></i>
-                    </td>
-                    <td>{{ p.phone }}</td>
-                  </tr>
-                  {% endif %}
-
-                  {% if p.location %}
-                  <tr>
-                    <td>
-                      <i class="fas fa-map-pin"></i>
-                    </td>
-                    <td>{{ p.location }}</td>
-                  </tr>
-                  {% endif %}
-                </table>
-
                 {% if p.gitter %}
-                <a href="https://gitter.im/{{ p.gitter }}">
+                <a href="https://gitter.im/{{ p.gitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Gitter IM">
                   <i class="fas fa-comments"></i>
                 </a>
                 {% endif %}
 
                 {% if p.twitter %}
-                <a href="https://twitter.com/{{ p.twitter }}">
+                <a href="https://twitter.com/{{ p.twitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Twitter">
                   <i class="fab fa-twitter"></i>
                 </a>
                 {% endif %}
 
                 {% if p.orcid %}
-                <a href="https://orcid.org/{{ p.orcid }}">
-                  <img src="{% static 'home/img/orcid-logo.svg' %}" style="width: 1rem; height: auto;">
+                <a href="https://orcid.org/{{ p.orcid }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Orcid">
+                  <img src="{% static 'home/img/orcid-logo.png' %}" style="width: 1rem; height: auto; padding-bottom: 0.15rem; margin-left: 0.5rem;">
                 </a>
                 {% endif %}
               </small>
@@ -93,7 +106,8 @@
         </div>
       </div>
       {% endfor %}
-    </section>
+
+    </div>
   </div>
 </main>
 
