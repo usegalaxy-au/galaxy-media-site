@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!--
+  This content will be shown within the Galaxy Australia main panel as the
+  welcome/landing page.
+-->
+
+{% load static %}
+
+  <head>
+    {% include 'home/snippets/meta.html' %}
+    {% include 'home/snippets/imports.html' %}
+
+    {% block head %}
+    {% endblock %}
+  </head>
+
+  <body>
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'home/snippets/footer.html' %}
+
+    {% block script %}
+    {% endblock %}
+
+    <script type="text/javascript">
+      $(document).ready( () => {
+
+        // Make all links open in new tab
+        $('a').prop('target', '_blank');
+
+        // Enable bootstrap tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        {% block onload %}
+        {% endblock %}
+      });
+    </script>
+  </body>
+</html>

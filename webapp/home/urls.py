@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.index, name="home_index"),
     path('about', views.about, name="home_about"),
     path('support', views.support, name="home_support"),
+    path('landing', views.landing, name="home_landing"),
     re_path(r'^[\w\d\_-]+.html$', views.page, name='home_page')
 ]

@@ -19,6 +19,15 @@ def index(request):
     })
 
 
+def landing(request):
+    """Show landing page for usegalaxy site."""
+    return render(request, 'home/index.html', {
+        'landing': True,
+        'news_items': News.objects.order_by('-datetime_created')[:6],
+        'events': Event.objects.order_by('-datetime_created')[:6],
+    })
+
+
 def about(request):
     """Show about page."""
     return render(request, 'home/about.html')
