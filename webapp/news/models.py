@@ -29,9 +29,12 @@ class News(models.Model):
         null=True,
         blank=True,
         help_text='Link to external content')
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, null=True, blank=True)
     supporters = models.ManyToManyField(
-        Supporter, help_text='Show logos/links')
+        Supporter,
+        null=True,
+        blank=True,
+        help_text='Show logos/links')
 
     @property
     def url(self):
