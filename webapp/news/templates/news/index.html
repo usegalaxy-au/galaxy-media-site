@@ -16,6 +16,11 @@
     <h1>Galaxy Australia news</h1>
 
     <section class="container-fluid event-list">
+
+      {% if user.is_staff %}
+      <a class="btn btn-primary mb-3" href="/admin/news/news/add" target="_blank"> Create post </a>
+      {% endif %}
+
       <table class="table table-striped">
         <thead>
           <th colspan=2>Article</th>
@@ -23,6 +28,9 @@
             Date published
             <span class="text-muted text-nowrap">(dd-mm-yyyy)</span>
           </th>
+          {% if user.is_staff %}
+          <th></th>
+          {% endif %}
         </thead>
 
         <tbody>
@@ -44,6 +52,20 @@
             </td>
 
             <td> {{ item.datetime_created|date:'d-m-Y' }} </td>
+
+            {% if user.is_staff %}
+            <td>
+              <a
+                href="/admin/news/news/{{ item.id }}/change"
+                target="_blank"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="Edit post"
+              >
+                <span class="material-icons">edit</span>
+              </a>
+            </td>
+            {% endif %}
           </tr>
           {% endfor %}
         </tbody>

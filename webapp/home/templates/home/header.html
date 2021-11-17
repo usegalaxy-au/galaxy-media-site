@@ -20,7 +20,7 @@
         <!-- <img src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy logo"> -->
       </a>
 
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a {% if request.path == '/' %}
             class="nav-link active"
@@ -67,6 +67,20 @@
           <a class="nav-link" href="/admin">Admin</a>
           {% endif %}
         </div>
+      </div>
+
+      <div class="navbar-nav">
+        {% if not user.is_authenticated %}
+        <a
+          href="/admin"
+          data-bs-toggle="tooltip" 
+          data-bs-placement="bottom"
+          title="Admin login"
+          id="admin-login"
+        >Login</a>
+        {% else %}
+        <a href="/admin/logout">Log out</a>
+        {% endif %}
       </div>
     </nav>
 

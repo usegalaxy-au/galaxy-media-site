@@ -16,6 +16,11 @@
     <h1>Galaxy Australia events</h1>
 
     <section class="container-fluid">
+
+      {% if user.is_staff %}
+      <a class="btn btn-primary mb-3" href="/admin/events/event/add" target="_blank"> Create post </a>
+      {% endif %}
+
       <div class="">
         <table class="table table-striped">
           <thead>
@@ -30,6 +35,11 @@
                 End
                 <span class="text-muted text-nowrap">(dd-mm-yyyy)</span>
               </th>
+
+              {% if user.is_staff %}
+              <th></th>
+              {% endif %}
+
             </tr>
           </thead>
 
@@ -54,6 +64,21 @@
               <td> {{ item.organiser_name }} </td>
               <td> {{ item.date_start|date:"d-m-Y" }} </td>
               <td> {{ item.date_end|date:"d-m-Y" }} </td>
+
+              {% if user.is_staff %}
+              <td>
+                <a
+                  href="/admin/events/event/{{ item.id }}/change"
+                  target="_blank"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Edit post"
+                >
+                  <span class="material-icons">edit</span>
+                </a>
+              </td>
+              {% endif %}
+
             </tr>
             {% endfor %}
           </tbody>

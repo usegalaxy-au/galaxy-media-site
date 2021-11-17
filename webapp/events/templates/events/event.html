@@ -36,6 +36,20 @@
           </span>
         </p>
         {% endfor %}
+
+        {% if user.is_staff %}
+        <p class="text-end">
+          <a
+            href="/admin/events/event/{{ event.id }}/change"
+            target="_blank"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Edit post"
+          >
+            <span class="material-icons">edit</span>
+          </a>
+        </p>
+        {% endif %}
       </div>
     </div>
 

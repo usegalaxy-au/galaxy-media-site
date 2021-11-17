@@ -29,8 +29,6 @@ def render_markdown_image_uris(sender, instance, using, **kwargs):
     """Replace EventImage identifiers with real URIs in submitted markdown.
 
     !!! Need to validate markdown on submission.
-
-    !!! Probably needs to be called from EventImage.post_save
     """
     event = Event.objects.get(id=instance.event_id)
     p = re.compile(r'\(img\d\)', re.MULTILINE)

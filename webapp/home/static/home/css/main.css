@@ -36,6 +36,13 @@ nav .australia {
 nav a:hover .australia {
   color: #eedd5c;
 }
+#admin-login {
+  opacity: 0.1;
+  transition-duration: .25s;
+}
+#admin-login:hover {
+  opacity: 1;
+}
 footer {
   margin-top: 5rem;
 }
