@@ -12,6 +12,7 @@ against double-firing (e.g. check if file exists before creating).
 Must be called in apps.py to work.
 """
 
+import re
 from django.dispatch import receiver
 from django.db.models.signals import (
     # pre_delete,
@@ -23,7 +24,7 @@ from django.db.models.signals import (
 from .models import Event, EventImage
 
 
-@receiver(post_save, sender=Event)
+@receiver(post_save, sender=EventImage)
 def render_markdown_image_uris(sender, instance, using, **kwargs):
     """Replace EventImage identifiers with real URIs in submitted markdown.
 
@@ -31,13 +32,20 @@ def render_markdown_image_uris(sender, instance, using, **kwargs):
 
     !!! Probably needs to be called from EventImage.post_save
     """
-    body = instance.body
-    images = (
-        EventImage.objects.filter(event_id=instance.id)
-        .order_by('id')
-    )
-    for i, image in enumerate(images):
-        body = body.replace(
-            f"(img{i + 1})",
-            f"({image.img_uri})")
-    Event.objects.filter(id=instance.id).update(body=body)
+    event = Event.objects.get(id=instance.event_id)
+    p = re.compile(r'\(img\d\)', re.MULTILINE)
+    m = p.search(event.body)
+    if not m:
+        # No tags to replace
+        return
+
+    # Determine current event image number
+    i = 1
+    while f"(img{i})" not in event.body:
+        i += 1
+
+    # Replace placeholder with real URI
+    event.body = event.body.replace(
+        f"(img{i})",
+        f"({instance.img_uri})")
+    event.save()
