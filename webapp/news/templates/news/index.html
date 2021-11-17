@@ -1,7 +1,7 @@
 {% extends 'home/header.html' %}
 
 {% load static %}
-{% load markdownify %}
+{% load markdown %}
 
 
 {% block head %}
@@ -38,10 +38,10 @@
           <tr>
             <td>
               <a href="{{ item.url }}" {% if item.external %} target="_blank" {% endif %}>
-                <h4> {{ item.title|markdownify|safe }} </h4>
+                <h4 class="markdown"> {{ item.title|markdown|safe }} </h4>
               </a>
-              <div class="blurb">
-                {{ item.blurb|markdownify|safe }}
+              <div class="blurb markdown">
+                {{ item.blurb|markdown|safe }}
               </div>
             </td>
 

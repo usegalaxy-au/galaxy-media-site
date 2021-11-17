@@ -5,5 +5,3 @@ python-dotenv==0.19.1
 Pillow==7.0.0
 psycopg2-binary==2.9.1
 gunicorn
-
-# django-markdownify==0.9.0

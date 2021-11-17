@@ -1,7 +1,7 @@
 {% extends landing|yesno:'home/header_landing.html,home/header.html' %}
 
 {% load static %}
-{% load markdownify %}
+{% load markdown %}
 
 
 {% block head %}
@@ -118,7 +118,7 @@
       <article class="row" onclick="window.location='{{ item.url }}';">
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
-          <p><b> {{ item.title|markdownify }} </b></p>
+          <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>
         </div>
 
         <div class="col-sm-auto text-end">
@@ -145,7 +145,7 @@
       <article class="row" onclick="window.location='{{ item.url }}';">
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
-          <p><b> {{ item.title|markdownify }} </b></p>
+          <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>
         </div>
 
         <div class="col-sm-auto text-end">
