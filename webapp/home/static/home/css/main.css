@@ -26,6 +26,10 @@ nav a, a.nav-link {
 nav a:hover, a.nav-link:hover {
   color: white;
 }
+nav a.active {
+  color: white;
+  font-weight: bold;
+}
 nav .australia {
   color: #cebd2c;
 }

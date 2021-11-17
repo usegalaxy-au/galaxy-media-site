@@ -2,8 +2,14 @@
 
 from django.contrib import admin
 
-from .models import Event, Tag, Supporter
+from .models import Event, EventImage, Tag, Supporter
 from .forms import EventAdminForm, TagAdminForm
+
+
+class EventImageInline(admin.StackedInline):
+    """Administer EventImage items."""
+
+    model = EventImage
 
 
 class EventAdmin(admin.ModelAdmin):
@@ -20,6 +26,7 @@ class EventAdmin(admin.ModelAdmin):
         'date_start',
         'date_end',
     ]
+    inlines = [EventImageInline]
 
 
 class TagAdmin(admin.ModelAdmin):

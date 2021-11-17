@@ -13,6 +13,11 @@ from timezone_field import TimeZoneField
 from utils.filters import get_blurb_from_markdown
 
 
+def get_event_image_path(instance, filename):
+    """Return media path for uploaded images."""
+    return f"uploads/events/{instance.event.id}/{filename}"
+
+
 class Tag(models.Model):
     """A tag for event and news items.
 
@@ -32,6 +37,13 @@ class Tag(models.Model):
         """Return string representation."""
         return self.name
 
+    def font_color(self):
+        """Return appropriate font color for selected background."""
+        rgb = tuple(int(self.color.lstrip('#')[i:i+2], 16) for i in (0, 2, 4))
+        if sum(rgb) > 400:
+            return "#333"
+        return "#fff"
+
 
 class Supporter(models.Model):
     """A supporter/sponsor of event and news items."""
@@ -47,6 +59,11 @@ class Supporter(models.Model):
         """Return string representation."""
         return self.name
 
+    @property
+    def logo_uri(self):
+        """Return media URI for logo."""
+        return urljoin(settings.MEDIA_URL, str(self.logo))
+
 
 class Event(models.Model):
     """An event relevant to the Galaxy users.
@@ -58,7 +75,13 @@ class Event(models.Model):
     title = models.CharField(max_length=255)
     body = models.CharField(
         max_length=50000, null=True, blank=True,
-        help_text='Enter valid markdown')
+        help_text=(
+            """Enter valid markdown.
+            Add event images at the bottom of the page, and tag them
+            in markdown like so:
+            <pre> ![alt text](img1) <br> ![alt text](img2) </pre>"""
+        )
+    )
     organiser_name = models.CharField(max_length=100, null=True, blank=True)
     organiser_email = models.EmailField(max_length=255, null=True, blank=True)
     address = JSONField(null=True, blank=True, help_text="Valid JSON string")
@@ -111,3 +134,21 @@ class Event(models.Model):
     def blurb(self):
         """Extract a blurb from the body markdown."""
         return get_blurb_from_markdown(self.body, style=False)
+
+
+class EventImage(models.Model):
+    """An image to embed in an event article."""
+
+    event = models.ForeignKey(
+        Event,
+        on_delete=models.CASCADE,
+        related_name="images",
+    )
+    image = models.FileField(
+        upload_to=get_event_image_path,
+    )
+
+    @property
+    def img_uri(self):
+        """Return media URI for logo."""
+        return urljoin(settings.MEDIA_URL, str(self.image))

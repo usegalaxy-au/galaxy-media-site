@@ -5,7 +5,7 @@
 
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'home/css/events.css' %}">
+<link rel="stylesheet" href="{% static 'events/css/events.css' %}">
 {% endblock %}
 
 
@@ -67,22 +67,6 @@
 
 
 {% block script %}
-<script type="text/javascript">
-
-  const IFRAME_COUNT = 5;
-  let loaded = [];
-
-  const notifyLoaded = (id) => {
-    console.log(`Pushing ID ${id} to loaded`)
-    loaded.push(id);
-    if (loaded.length === IFRAME_COUNT) {
-      console.log("Switching iframes to visible")
-      $('#stats-panel img.loading').hide();
-      $('#stats-panel iframe').css('opacity', '1');
-    }
-  }
-
-</script>
 {% endblock %}
 
 

@@ -22,12 +22,47 @@
 
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
-          <a class="nav-link {% if request.path == '/news' %}active{% endif %}" href="/news">News</a>
-          <a class="nav-link {% if request.path == 'events' %}active{% endif %}" href="/events">Events</a>
-          <a class="nav-link {% if request.path == 'people' %}active{% endif %}" href="/people">People</a>
-          <a class="nav-link {% if request.path == 'about' %}active{% endif %}" href="/about">About</a>
-          <a class="nav-link {% if request.path == 'support' %}active{% endif %}" href="/support">Support</a>
+          <a {% if request.path == '/' %}
+            class="nav-link active"
+            {% else %}
+            class="nav-link" href="/"
+            {% endif %}>
+            Home
+          </a>
+          <a {% if '/news/' in request.path %}
+            class="nav-link active" href="/news"
+            {% else %}
+            class="nav-link" href="/news"
+            {% endif %}>
+            News
+          </a>
+          <a {% if '/events/' in request.path %}
+            class="nav-link active" href="/events"
+            {% else %}
+            class="nav-link" href="/events"
+            {% endif %}>
+            Events
+          </a>
+          <a {% if '/people/' in request.path %}
+            class="nav-link active"
+            {% else %}
+            class="nav-link" href="/people"
+            {% endif %}>
+            People
+          </a>
+          <a {% if '/about/' in request.path %}
+            class="nav-link active"
+            {% else %}
+            class="nav-link" href="/about"
+            {% endif %}>
+            About
+          </a>
+          <a {% if '/support/' in request.path %}
+              class="nav-link active"
+              {% else %}
+              class="nav-link" href="/support"
+              {% endif %}
+          >Support</a>
           {% if user.is_staff %}
           <a class="nav-link" href="/admin">Admin</a>
           {% endif %}

@@ -6,3 +6,12 @@ th, .table th {
 td, .table td {
   vertical-align: top;
 }
+span.tag {
+  padding: .25rem .5rem;
+  border-radius: .5rem;
+}
+.supporter img {
+  width: auto;
+  height: 50px;
+  margin: 1rem 3rem;
+}
