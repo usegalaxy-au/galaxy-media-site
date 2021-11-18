@@ -2,8 +2,14 @@
 
 from django.contrib import admin
 
-from .models import News
+from .models import News, NewsImage
 from .forms import NewsAdminForm
+
+
+class NewsImageInline(admin.StackedInline):
+    """Administer NewsImage items."""
+
+    model = NewsImage
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -15,6 +21,7 @@ class NewsAdmin(admin.ModelAdmin):
         'title',
         'external',
     ]
+    inlines = [NewsImageInline]
 
 
 admin.site.register(News, NewsAdmin)

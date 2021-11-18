@@ -28,11 +28,20 @@ class News(models.Model):
         max_length=50000,
         null=True,
         blank=True,
-        help_text='Enter valid markdown')
+        help_text=(
+            """Enter valid GitHub markdown.
+            Add news images at the bottom of the page, and tag them
+            in markdown like so:
+            <pre> ![alt text](img1) <br> ...<br> ![alt text](img2) </pre>"""
+        )
+    )
     external = models.URLField(
         null=True,
         blank=True,
-        help_text='Link to external content')
+        help_text=(
+            'Link to external content. Users will be directed here instead'
+            ' of the post page, so use instead of body.')
+    )
     tags = models.ManyToManyField(Tag, blank=True)
     supporters = models.ManyToManyField(
         Supporter,
