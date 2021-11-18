@@ -1,0 +1,8 @@
+/* Customise the admin markdown editor */
+
+.editor-toolbar,
+.CodeMirror,
+.editor-preview-side,
+.editor-statusbar {
+  margin-left: 170px;
+}

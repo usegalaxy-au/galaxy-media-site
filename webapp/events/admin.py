@@ -15,6 +15,20 @@ class EventImageInline(admin.StackedInline):
 class EventAdmin(admin.ModelAdmin):
     """Administer event items."""
 
+    class Media:
+        """Assets for the admin page."""
+
+        js = (
+            '//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js',
+            'home/js/admin-mde.js',
+        )
+        css = {
+            'screen': (
+                '//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css',
+                'home/css/admin-mde.css',
+            ),
+        }
+
     form = EventAdminForm
     list_display = [
         'datetime_created',
