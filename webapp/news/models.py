@@ -1,13 +1,17 @@
-"""Models for storing event content.
-
-django_timezone_field: https://github.com/mfogel/django-timezone-field
-"""
+"""Models for storing event content."""
 
 from django.db import models
+from django.conf import settings
 from django.template.defaultfilters import slugify
+from urllib.parse import urljoin
 
 from events.models import Tag, Supporter
-from utils.filters import get_blurb_from_markdown
+from utils.markdown import get_blurb_from_markdown
+
+
+def get_upload_dir(instance, filename):
+    """Return media path for uploaded images."""
+    return f"uploads/events/{instance.news.id}/{filename}"
 
 
 class News(models.Model):
@@ -60,3 +64,21 @@ class News(models.Model):
     def blurb(self):
         """Extract a blurb from the body markdown."""
         return get_blurb_from_markdown(self.body, style=False)
+
+
+class NewsImage(models.Model):
+    """An image to embed in an event article."""
+
+    news = models.ForeignKey(
+        News,
+        on_delete=models.CASCADE,
+        related_name="images",
+    )
+    image = models.FileField(
+        upload_to=get_upload_dir,
+    )
+
+    @property
+    def img_uri(self):
+        """Return media URI for logo."""
+        return urljoin(settings.MEDIA_URL, str(self.image))

@@ -20,13 +20,13 @@ from django.db.models.signals import (
     post_save,
 )
 
-from .models import EventImage
+from .models import NewsImage
 from utils.markdown import render_image_uri
 
 
-@receiver(post_save, sender=EventImage)
+@receiver(post_save, sender=NewsImage)
 def render_markdown_image_uris(sender, instance, using, **kwargs):
-    """Replace EventImage identifiers with real URIs in submitted markdown.
+    """Replace NewsImage identifiers with real URIs in submitted markdown.
 
     !!! Need to validate markdown on submission.
     """
