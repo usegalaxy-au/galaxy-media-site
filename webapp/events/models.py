@@ -1,19 +1,16 @@
-"""Models for storing event content.
-
-django_timezone_field: https://github.com/mfogel/django-timezone-field
-"""
+"""Models for storing event content."""
 
 from django.db import models
 from django.db.models import JSONField
 from django.template.defaultfilters import slugify
 from django.conf import settings
-from urllib.parse import urljoin
 from timezone_field import TimeZoneField
+from urllib.parse import urljoin
 
-from utils.filters import get_blurb_from_markdown
+from utils.markdown import get_blurb_from_markdown
 
 
-def get_event_image_path(instance, filename):
+def get_upload_dir(instance, filename):
     """Return media path for uploaded images."""
     return f"uploads/events/{instance.event.id}/{filename}"
 
@@ -145,7 +142,7 @@ class EventImage(models.Model):
         related_name="images",
     )
     image = models.FileField(
-        upload_to=get_event_image_path,
+        upload_to=get_upload_dir,
     )
 
     @property

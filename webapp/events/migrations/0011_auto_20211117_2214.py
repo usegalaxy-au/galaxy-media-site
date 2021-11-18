@@ -19,6 +19,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='eventimage',
             name='image',
-            field=models.FileField(upload_to=events.models.get_event_image_path),
+            field=models.FileField(upload_to=events.models.get_upload_dir),
         ),
     ]
