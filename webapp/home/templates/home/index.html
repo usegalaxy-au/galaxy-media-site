@@ -19,6 +19,18 @@
   </section>
 
   <section class="container-fluid my-5" id="tagline">
+
+    {% for notice in notices %}
+    <div class="alert alert-{{ notice.notice_class }}">
+      {% if notice.material_icon %}
+      <span class="material-icons">{{ notice.material_icon }}</span>
+      {% endif %}
+      <strong> {{ notice.title }} </strong>
+      <br>
+      {{ notice.body|markdown|safe }}
+    </div>
+    {% endfor %}
+
     <p>
       Galaxy Australia is an
       <b> open, web-based </b>

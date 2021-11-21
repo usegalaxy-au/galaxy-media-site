@@ -5,6 +5,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 
+from home.models import Notice
 from events.models import Event
 from news.models import News
 
@@ -16,6 +17,7 @@ def index(request):
     return render(request, 'home/index.html', {
         'news_items': News.objects.order_by('-datetime_created')[:6],
         'events': Event.objects.order_by('-datetime_created')[:6],
+        'notices': Notice.objects.filter(enabled=True),
     })
 
 
@@ -25,6 +27,7 @@ def landing(request):
         'landing': True,
         'news_items': News.objects.order_by('-datetime_created')[:6],
         'events': Event.objects.order_by('-datetime_created')[:6],
+        'notices': Notice.objects.filter(enabled=True),
     })
 
 

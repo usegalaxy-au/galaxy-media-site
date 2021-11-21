@@ -36,6 +36,7 @@ class Notice(models.Model):
         (DANGER, 'danger'),
     )
 
+    datetime_created = models.DateTimeField(auto_now_add=True)
     notice_class = models.CharField(
         max_length=16, choices=NOTICE_CLASSES, default=INFO,
     )
@@ -43,6 +44,20 @@ class Notice(models.Model):
     body = models.CharField(max_length=2000, help_text='Enter valid markdown')
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
-        help_text=('A valid material design icon identifier.'
-                   ' See: https://fonts.google.com/icons')
+        help_text=('Optional. A valid Material Design icon identifier.'
+                   ' <a href="https://fonts.google.com/icons" target="_blank">'
+                   ' Browse icons here </a>')
         )
+    enabled = models.BooleanField(
+        default=False,
+        help_text="Display on the Galaxy Australia landing page.")
+
+    def __str__(self):
+        """Return string representation."""
+        return f"[{self.notice_class}] {self.title}"
+
+    def clean(self):
+        """Clean fields before saving."""
+        super().clean()
+        if self.material_icon:
+            self.material_icon = self.material_icon.lower().replace(' ', '_')
