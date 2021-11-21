@@ -1,5 +1,6 @@
 """Models for storing event content."""
 
+import os
 from django.db import models
 from django.db.models import JSONField
 from django.template.defaultfilters import slugify
@@ -7,7 +8,7 @@ from django.conf import settings
 from timezone_field import TimeZoneField
 from urllib.parse import urljoin
 
-from utils.markdown import get_blurb_from_markdown
+from utils.markdown import get_blurb_from_markdown, render_image_uri
 
 
 def get_upload_dir(instance, filename):
@@ -66,6 +67,19 @@ class Event(models.Model):
     """An event relevant to the Galaxy users.
 
     Icons must be strings matching material icon identifier.
+
+    Event and News images are saved with the same logic. It's a bit complex
+    but seems to be solid and uses inbuilt Django functionality.
+
+    - EventImages are uploaded in the Django admin through the StackedInline
+      element.
+    - When saved, a post_save hook on EventImage updates the body of the parent
+      Event, parsing and rendering image URIs with
+      utils.markdown.render_image_uri
+    - This function assumes the EventImage number based on the order of saving
+    - EventImage order is determined by scanning for the first increment of
+      img<n> that matches.
+
     """
 
     datetime_created = models.DateTimeField(auto_now_add=True)
@@ -74,9 +88,13 @@ class Event(models.Model):
         max_length=50000, null=True, blank=True,
         help_text=(
             """Enter valid GitHub markdown.
-            Add event images at the bottom of the page, and tag them
+            Upload event images at the bottom of the page, and tag them
             in markdown like so:
-            <pre> ![alt text](img1) <br> ...<br> ![alt text](img2) </pre>"""
+            <pre>
+             ![alt text](img1)    # img1 will be replaced with the real URI
+             ...
+             ![alt text](img2) </pre>
+             """
         )
     )
     organiser_name = models.CharField(max_length=100, null=True, blank=True)
@@ -137,6 +155,16 @@ class Event(models.Model):
         """Extract a blurb from the body markdown."""
         return get_blurb_from_markdown(self.body, style=False)
 
+    def render_markdown_uris(self):
+        """Render EventImage URIs into markdown placeholders."""
+        print('EVENT.RENDER_MARKDOWN_URLS')
+        images = EventImage.objects.filter(event_id=self.id).order_by('id')
+        new_body = render_image_uri(self.body, images)
+        if new_body != self.body:
+            # Avoid the dreaded infinite loop - only save if body changed
+            self.body = new_body
+            self.save()
+
 
 class EventImage(models.Model):
     """An image to embed in an event article."""
@@ -149,6 +177,10 @@ class EventImage(models.Model):
     image = models.FileField(
         upload_to=get_upload_dir,
     )
+
+    def __str__(self):
+        """Return string representation."""
+        return os.path.basename(str(self.image))
 
     @property
     def img_uri(self):

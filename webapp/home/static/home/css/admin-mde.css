@@ -6,3 +6,6 @@
 .editor-statusbar {
   margin-left: 170px;
 }
+.field-body img {
+  max-width: 100%;
+}

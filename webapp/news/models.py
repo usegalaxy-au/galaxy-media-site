@@ -1,5 +1,6 @@
 """Models for storing event content."""
 
+import os
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
@@ -30,9 +31,13 @@ class News(models.Model):
         blank=True,
         help_text=(
             """Enter valid GitHub markdown.
-            Add news images at the bottom of the page, and tag them
-            in markdown like so:
-            <pre> ![alt text](img1) <br> ...<br> ![alt text](img2) </pre>"""
+            Upload news images at the bottom of the page, then tag them
+            in markdown like so
+            <pre>
+             ![alt text](img1)    # img1 will be replaced with the real URI
+             ...
+             ![alt text](img2) </pre>
+             """
         )
     )
     external = models.URLField(
@@ -86,6 +91,10 @@ class NewsImage(models.Model):
     image = models.FileField(
         upload_to=get_upload_dir,
     )
+
+    def __str__(self):
+        """Return string representation."""
+        return os.path.basename(str(self.image))
 
     @property
     def img_uri(self):
