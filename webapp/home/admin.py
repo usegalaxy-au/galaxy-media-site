@@ -26,7 +26,7 @@ class NoticeAdmin(admin.ModelAdmin):
         }
 
     list_display = [
-        'datetime_created',
+        'datetime_modified',
         '__str__',
         'enabled',
     ]

@@ -36,7 +36,7 @@ class Notice(models.Model):
         (DANGER, 'danger'),
     )
 
-    datetime_created = models.DateTimeField(auto_now_add=True)
+    datetime_modified = models.DateTimeField(auto_now=True)
     notice_class = models.CharField(
         max_length=16, choices=NOTICE_CLASSES, default=INFO,
     )
