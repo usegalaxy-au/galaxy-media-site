@@ -5,7 +5,10 @@
 
 
 {% block head %}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% if landing %}
 <link rel="stylesheet" href="{% static 'home/css/landing.css' %}">
+{% endif %}
 {% endblock %}
 
 
