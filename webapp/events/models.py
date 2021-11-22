@@ -16,6 +16,17 @@ def get_upload_dir(instance, filename):
     return f"uploads/events/{instance.event.id}/{filename}"
 
 
+def default_address():
+    """Return default value for address field."""
+    return {
+        'name': None,
+        'street': None,
+        'city': None,
+        'region': None,
+        'country': None,
+    }
+
+
 class Tag(models.Model):
     """A tag for event and news items.
 
@@ -99,7 +110,12 @@ class Event(models.Model):
     )
     organiser_name = models.CharField(max_length=100, null=True, blank=True)
     organiser_email = models.EmailField(max_length=255, null=True, blank=True)
-    address = JSONField(null=True, blank=True, help_text="Valid JSON string")
+    address = JSONField(
+        null=True,
+        blank=True,
+        help_text="Valid JSON string",
+        default=default_address,
+    )
 
     timezone = TimeZoneField(
         default="Australia/Sydney",
@@ -122,7 +138,7 @@ class Event(models.Model):
 
     tags = models.ManyToManyField(Tag, blank=True)
     supporters = models.ManyToManyField(
-        Supporter, blank=True, help_text='Displays logos and links')
+        Supporter, blank=True, help_text='Display logos and links for a supporter.')
     is_published = models.BooleanField(default=False)
 
     @property
