@@ -52,6 +52,7 @@ class News(models.Model):
         Supporter,
         blank=True,
         help_text='Show logos/links')
+    is_published = models.BooleanField(default=False)
 
     @property
     def url(self):

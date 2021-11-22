@@ -9,26 +9,27 @@ from home.models import Notice
 from events.models import Event
 from news.models import News
 
-# Should maybe upgrade to class-based views?
 
+def index(request, landing=False):
+    """Show homepage/landing page."""
+    if request.user.is_staff:
+        news_items = News.objects.all()
+        events = Event.objects.all()
+    else:
+        news_items = News.objects.filter(published=True)
+        events = Event.objects.filter(published=True)
 
-def index(request):
-    """Show homepage."""
     return render(request, 'home/index.html', {
-        'news_items': News.objects.order_by('-datetime_created')[:6],
-        'events': Event.objects.order_by('-datetime_created')[:6],
+        'news_items': news_items.order_by('-datetime_created')[:6],
+        'events': events.order_by('-datetime_created')[:6],
         'notices': Notice.objects.filter(enabled=True),
+        'landing': True,
     })
 
 
 def landing(request):
-    """Show landing page for usegalaxy site."""
-    return render(request, 'home/index.html', {
-        'landing': True,
-        'news_items': News.objects.order_by('-datetime_created')[:6],
-        'events': Event.objects.order_by('-datetime_created')[:6],
-        'notices': Notice.objects.filter(enabled=True),
-    })
+    """Show landing page for usegalaxy.org.au."""
+    return index(request, landing=True)
 
 
 def about(request):

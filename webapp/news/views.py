@@ -9,8 +9,12 @@ from .models import News
 
 def index(request):
     """Show news list page."""
+    if request.user.is_staff:
+        news_items = News.objects.all()
+    else:
+        news_items = News.objects.filter(published=True)
     return render(request, 'news/index.html', {
-        'news_items': News.objects.order_by('-datetime_created'),
+        'news_items': news_items.order_by('-datetime_created'),
     })
 
 
