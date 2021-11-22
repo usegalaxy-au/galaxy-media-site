@@ -61,7 +61,7 @@ def create_post(request):
     body = request.POST.get('body')
     tool_update = request.POST.get('tool_update')
     if tool_update == 'true':
-        today = date.today().strftime('%d-%m-%Y')
+        today = date.today().strftime('%Y-%m-%d')
         title = f"Galaxy {settings.GALAXY_SITE_NAME} Tool Update {today}"
     if not body:
         return HttpResponse(
