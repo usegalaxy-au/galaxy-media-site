@@ -4,7 +4,6 @@ from datetime import date
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.core.exceptions import BadRequest
 
 from events.models import Tag, Supporter
 from .models import News, APIToken
@@ -14,10 +13,10 @@ from .models import News, APIToken
 def create_post(request):
     """Create a new post.
 
-    Test post request:
-    curl -X POST -d "api_token=be51413f-4f5d-491d-9730-17894015decf
+    To post a tool update:
+    curl -X POST -d "api_token=<token>
         &tool_update=true
-        &body=$(cat test_tool_update_body.txt)"
+        &body=$(cat body.txt)"
         http://127.0.0.1:5000/news/api/create
     """
     if request.method == 'GET':
