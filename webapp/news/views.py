@@ -12,7 +12,7 @@ def index(request):
     if request.user.is_staff:
         news_items = News.objects.all()
     else:
-        news_items = News.objects.filter(published=True)
+        news_items = News.objects.filter(is_published=True)
     return render(request, 'news/index.html', {
         'news_items': news_items.order_by('-datetime_created'),
     })

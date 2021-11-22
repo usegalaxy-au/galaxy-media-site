@@ -16,8 +16,8 @@ def index(request, landing=False):
         news_items = News.objects.all()
         events = Event.objects.all()
     else:
-        news_items = News.objects.filter(published=True)
-        events = Event.objects.filter(published=True)
+        news_items = News.objects.filter(is_published=True)
+        events = Event.objects.filter(is_published=True)
 
     return render(request, 'home/index.html', {
         'news_items': news_items.order_by('-datetime_created')[:6],

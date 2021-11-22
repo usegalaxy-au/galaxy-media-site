@@ -12,7 +12,7 @@ def index(request):
     if request.user.is_staff:
         events = Event.objects.all()
     else:
-        events = Event.objects.filter(published=True)
+        events = Event.objects.filter(is_published=True)
     return render(request, 'events/index.html', {
         'events': events.order_by('-date_start'),
     })

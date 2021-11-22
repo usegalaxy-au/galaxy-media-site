@@ -123,7 +123,7 @@ class Event(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     supporters = models.ManyToManyField(
         Supporter, blank=True, help_text='Displays logos and links')
-    published = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=False)
 
     @property
     def url(self):
