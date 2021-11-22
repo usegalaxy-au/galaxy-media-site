@@ -1,0 +1,5 @@
+# change_form_help_text.html
+{% extends 'admin/change_form.html' %}
+{% block form_top %}
+{% if help_text %}<p>{{ help_text|safe }}</p>{% endif %}
+{% endblock %}

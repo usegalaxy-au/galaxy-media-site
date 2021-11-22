@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from .models import News, NewsImage
+from .models import News, NewsImage, APIToken
 from .forms import NewsAdminForm
 
 
@@ -38,4 +38,25 @@ class NewsAdmin(admin.ModelAdmin):
     inlines = [NewsImageInline]
 
 
+class APITokenAdmin(admin.ModelAdmin):
+    """Administer API tokens."""
+
+    def render_change_form(self, request, context, *args, **kwargs):
+        """Define a custom template."""
+        self.change_form_template = 'news/admin/apitoken-form.html'
+        extra = {
+            'help_text': (
+                'These API tokens grant API access for automated posting of'
+                ' News items. <br>'
+                '<b>Treat them as secrets</b>'
+                ' - anyone with an API token can create posts on the site!'
+            ),
+        }
+        context.update(extra)
+        return super().render_change_form(request, context, *args, **kwargs)
+
+    readonly_fields = ['token']
+
+
 admin.site.register(News, NewsAdmin)
+admin.site.register(APIToken, APITokenAdmin)

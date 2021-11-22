@@ -1,6 +1,7 @@
 """Models for storing event content."""
 
 import os
+import uuid
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
@@ -54,6 +55,10 @@ class News(models.Model):
         help_text='Show logos/links')
     is_published = models.BooleanField(default=False)
 
+    def __str__(self):
+        """Return string definition."""
+        return f'News item <{self.id}> "{self.title}"'
+
     @property
     def url(self):
         """Return internal or external link."""
@@ -101,3 +106,29 @@ class NewsImage(models.Model):
     def img_uri(self):
         """Return media URI for logo."""
         return urljoin(settings.MEDIA_URL, str(self.image))
+
+
+class APIToken(models.Model):
+    """Tokens for accessing the news API."""
+
+    token = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+    )
+    name = models.CharField(max_length=100, help_text="A name for this token.")
+
+    def __str__(self):
+        """Return string representation."""
+        return f'"{self.name}" API token'
+
+    @classmethod
+    def matches(cls, token):
+        """Test whether the given token matches database."""
+        registered_tokens = [
+            str(x)
+            for x in cls.objects.values_list('token', flat=True)
+        ]
+        if token in registered_tokens:
+            return True
+        return False

@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='event',
             name='supporters',
-            field=models.ManyToManyField(help_text='Displays logos and links', to='events.Supporter'),
+            field=models.ManyToManyField(help_text='Display logos and links for a supporter.', to='events.Supporter'),
         ),
         migrations.AlterField(
             model_name='event',
