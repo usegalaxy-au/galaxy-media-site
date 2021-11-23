@@ -35,7 +35,7 @@ def create_post(request):
 
     if request.method != "POST":
         return HttpResponse(
-            "HTTP method not allowed",
+            "Bad request: HTTP method not allowed",
             content_type="text/plain",
             status=400,
         )
@@ -64,18 +64,23 @@ def create_post(request):
         title = f"Galaxy {settings.GALAXY_SITE_NAME} Tool Update {today}"
     if not body:
         return HttpResponse(
-            '"body" field is required\n.',
+            'Bad request: "body" field is required\n.',
             content_type="text/plain",
             status=400,
         )
     if not title:
         return HttpResponse(
-            '"body" field is required\n.',
+            'Bad request: "body" field is required\n.',
             content_type="text/plain",
             status=400,
         )
 
-    article = News.objects.create(title=title, body=body, is_published=True)
+    body_markdown = [x for x in body.split('---\n', 2) if x][1].strip(' \n')
+    article = News.objects.create(
+        title=title,
+        body=body_markdown,
+        is_published=True,
+    )
     article.tags.add(Tag.objects.get(name="tools"))
     article.supporters.add(Supporter.objects.get(name="Galaxy Australia"))
     article.supporters.add(Supporter.objects.get(name="QCIF"))
