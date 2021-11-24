@@ -45,7 +45,12 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {'fields': ('email', 'password1', 'password2')}),
         ('Personal', {'fields': ('first_name', 'last_name')}),
-        ('Permissions', {'fields': ('is_staff', 'is_superuser', 'is_active')}),
+        ('Permissions', {'fields': (
+                'is_staff',
+                'is_superuser',
+                'is_active',
+                'user_permissions',
+        )}),
     )
     search_fields = ('email',)
     ordering = ('email',)
