@@ -10,7 +10,7 @@ class User(AbstractUser):
     """Staff user for managing site content."""
 
     username = None
-    email = models.EmailField(unique=True, )
+    email = models.EmailField(unique=True, max_length=255)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
 
