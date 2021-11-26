@@ -49,11 +49,19 @@ class APITokenAdmin(admin.ModelAdmin):
                 'These API tokens grant API access for automated posting of'
                 ' News items. <br>'
                 '<b>Treat them as secrets</b>'
-                ' - anyone with an API token can create posts on the site!'
+                ' - anyone with an API token can create posts on the site!<br>'
+                'The token will become visible after saving.'
             ),
         }
         context.update(extra)
         return super().render_change_form(request, context, *args, **kwargs)
+
+    def get_readonly_fields(self, request, obj=None):
+        """Return read-only fields to display."""
+        if obj:
+            # Object exists, show token field
+            return self.readonly_fields
+        return ()
 
     readonly_fields = ['token']
 

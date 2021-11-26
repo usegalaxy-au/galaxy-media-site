@@ -120,7 +120,7 @@ class APIToken(models.Model):
 
     def __str__(self):
         """Return string representation."""
-        return f'"{self.name}" API token'
+        return f'API token: {self.name}'
 
     @classmethod
     def matches(cls, token):
