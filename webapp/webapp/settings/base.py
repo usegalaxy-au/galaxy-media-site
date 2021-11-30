@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'markdownify.apps.MarkdownifyConfig',
     'home',
     'news',
     'events',
@@ -152,13 +151,6 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-    },
-}
-
-
-MARKDOWNIFY = {
-    "default": {
-        "BLEACH": False,  # Shouldn't need to sanitize as admin only
     },
 }
 

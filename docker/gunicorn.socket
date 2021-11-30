@@ -1,6 +1,6 @@
 [Unit]
 Description=Galaxy content site socket
 [Socket]
-ListenStream=/run/ga-site.sock
+ListenStream=/run/webapp.sock
 [Install]
 WantedBy=sockets.target

@@ -1,0 +1,20 @@
+[Unit]
+Description=Gunicorn for Galaxy content site
+Requires=webapp.socket
+After=network.target
+
+[Service]
+PIDFile=/run/gunicorn/pid
+User = ubuntu
+Group = www-data
+RuntimeDirectory=gunicorn
+WorkingDirectory=/srv/sites/webapp
+ExecStart=gunicorn --pid /run/gunicorn/pid   \
+          --bind unix:/run/webapp.sock \
+          -c /srv/sites/webapp/server/gunicorn.py webapp.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
