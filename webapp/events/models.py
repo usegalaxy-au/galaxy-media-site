@@ -79,6 +79,40 @@ class Supporter(models.Model):
         return urljoin(settings.MEDIA_URL, str(self.logo))
 
 
+class EventLocation(models.Model):
+    """A location to be associated with events."""
+
+    name = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+        help_text=(
+            "All fields are optional."
+            " Only populated fields will be displayed."),
+    )
+    street = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    region = models.CharField(max_length=100, null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        """Return string representation."""
+        return self.name or self.street or f"Event location ({self.id})"
+
+    @property
+    def fields(self):
+        """Return list of fields with values."""
+        fields = []
+        for field in self._meta.get_fields():
+            v = self._meta.get_field(field.name)
+            if v:
+                fields.append({
+                    'name': field.name,
+                    'value': v,
+                })
+        return fields
+
+
 class Event(models.Model):
     """An event relevant to the Galaxy users.
 
@@ -108,13 +142,12 @@ class Event(models.Model):
     )
     organiser_name = models.CharField(max_length=100, null=True, blank=True)
     organiser_email = models.EmailField(max_length=255, null=True, blank=True)
-    address = JSONField(
+    location = models.ForeignKey(
+        EventLocation,
+        on_delete=models.CASCADE,
         null=True,
-        blank=True,
-        help_text="Valid JSON string",
-        default=default_address,
+        help_text="This will be rendered as a table.",
     )
-
     timezone = TimeZoneField(
         default="Australia/Sydney",
         choices_display='WITH_GMT_OFFSET',
@@ -134,9 +167,16 @@ class Event(models.Model):
             ' of the post page, so use instead of body.')
     )
 
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        help_text="Shown in list (icon) and post views.",
+    )
     supporters = models.ManyToManyField(
-        Supporter, blank=True, help_text='Display logos and links for a supporter.')
+        Supporter,
+        blank=True,
+        help_text='Display logos and links for a supporter.',
+    )
     is_published = models.BooleanField(default=False)
 
     @property
@@ -146,6 +186,18 @@ class Event(models.Model):
             self.external
             or f'/events/{self.id}'
         )
+
+    @property
+    def address_items(self):
+        """Render address items from JSON."""
+        if not self.address:
+            return
+        # Exclude null fields
+        return [
+            (k, v)
+            for k, v in self.address.items()
+            if v
+        ]
 
     @property
     def slug(self):

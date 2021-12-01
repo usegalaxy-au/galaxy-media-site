@@ -7,6 +7,18 @@ th, .table th {
 td, .table td {
   vertical-align: top;
 }
+table.location th {
+  color: inherit;
+  background-color: transparent;
+}
+table.location td, table.location th {
+  font-size: .85rem;
+  padding: .15rem 2rem .15rem .25rem;
+  border-bottom: 1px solid grey;
+}
+table.location td:first-child {
+  background-color: #eee;
+}
 span.tag {
   padding: .25rem .5rem;
   border-radius: .5rem;

@@ -31,6 +31,7 @@ class NewsAdmin(admin.ModelAdmin):
 
     form = NewsAdminForm
     list_display = [
+        'id',
         'datetime_created',
         'title',
         'external',

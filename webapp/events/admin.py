@@ -1,8 +1,9 @@
 """Register models with the Django admin."""
 
 from django.contrib import admin
+from django.utils.html import format_html
 
-from .models import Event, EventImage, Tag, Supporter
+from .models import Event, EventImage, EventLocation, Tag, Supporter
 from .forms import EventAdminForm, TagAdminForm
 
 
@@ -32,16 +33,23 @@ class EventAdmin(admin.ModelAdmin):
 
     form = EventAdminForm
     list_display = [
+        'id',
         'datetime_created',
+        'view_page',
         'title',
-        'external',
-        'organiser_name',
-        'organiser_email',
-        'timezone',
         'date_start',
         'date_end',
+        'external',
     ]
     inlines = [EventImageInline]
+
+    @admin.display(empty_value='')
+    def view_page(self, obj):
+        """Render link to view event page."""
+        return format_html("<a href={href}> View page </a>", href=obj.url)
+
+    view_page.short_description = ""
+    view_page.allow_tags = True
 
 
 class TagAdmin(admin.ModelAdmin):
@@ -69,3 +77,4 @@ class SupporterAdmin(admin.ModelAdmin):
 admin.site.register(Event, EventAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Supporter)
+admin.site.register(EventLocation)
