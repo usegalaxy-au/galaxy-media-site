@@ -94,6 +94,7 @@ class EventLocation(models.Model):
     city = models.CharField(max_length=100, null=True, blank=True)
     region = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
+    postal = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         """Return string representation."""
