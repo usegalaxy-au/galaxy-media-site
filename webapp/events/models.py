@@ -2,7 +2,6 @@
 
 import os
 from django.db import models
-from django.db.models import JSONField
 from django.template.defaultfilters import slugify
 from django.conf import settings
 from timezone_field import TimeZoneField
@@ -95,6 +94,7 @@ class EventLocation(models.Model):
     region = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
     postal = models.CharField(max_length=20, null=True, blank=True)
+    archived = models.BooleanField(default=False)
 
     def __str__(self):
         """Return string representation."""

@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 
+from events.models import Tag, Supporter
 from .models import News, NewsImage, APIToken
 from .forms import NewsAdminForm
 
@@ -28,6 +29,15 @@ class NewsAdmin(admin.ModelAdmin):
                 'home/css/admin-mde.css',
             ),
         }
+
+    def render_change_form(self, request, context, *args, **kwargs):
+        """Filter objects available in add/change forms."""
+        context['adminform'].form.fields['tags'].queryset = (
+            Tag.objects.exclude(archived=True))
+        context['adminform'].form.fields['supporters'].queryset = (
+            Supporter.objects.exclude(archived=True))
+        return super(NewsAdmin, self).render_change_form(
+            request, context, *args, **kwargs)
 
     form = NewsAdminForm
     list_display = [

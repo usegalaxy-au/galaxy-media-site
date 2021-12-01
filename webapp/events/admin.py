@@ -43,6 +43,17 @@ class EventAdmin(admin.ModelAdmin):
     ]
     inlines = [EventImageInline]
 
+    def render_change_form(self, request, context, *args, **kwargs):
+        """Filter objects available in add/change forms."""
+        context['adminform'].form.fields['tags'].queryset = (
+            Tag.objects.exclude(archived=True))
+        context['adminform'].form.fields['supporters'].queryset = (
+            Supporter.objects.exclude(archived=True))
+        context['adminform'].form.fields['location'].queryset = (
+            EventLocation.objects.exclude(archived=True))
+        return super(EventAdmin, self).render_change_form(
+            request, context, *args, **kwargs)
+
     @admin.display(empty_value='')
     def view_page(self, obj):
         """Render link to view event page."""
