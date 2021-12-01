@@ -2,6 +2,28 @@
 
 import re
 
+# Help text for markdown editors
+MARKDOWN_HELP_TEXT = (
+    """Enter valid GitHub markdown.
+    We're using <b>"code-friendly" mode</b>, so __ and _ will be rendered literally!
+    Use * and ** instead.
+    """
+)
+
+MARKDOWN_IMAGE_HELP_TEXT = (
+    """
+    <br>
+    Upload event images at the bottom of the page, and tag them
+    in markdown like so:
+    <pre>
+     <span style="color: #79AEC8"># the URI will replace img&lt;N&gt; after save </span>
+     ![alt text](img1)
+
+     <span style="color: #79AEC8"># Use an image tag to define size. Defaults to 100% max-width.</span>
+     &lt;img src="img2" width=200&gt; </pre>
+     """
+)
+
 # To render/replace image URIs
 IMAGE_URI_EXPRESSIONS = (
     {   # markdown image tags

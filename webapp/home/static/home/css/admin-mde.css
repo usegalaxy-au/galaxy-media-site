@@ -9,3 +9,11 @@
 .field-body img {
   max-width: 100%;
 }
+
+/* Overwrite django admin styling */
+.editor-preview ul {
+  margin-left: 1rem !important;
+}
+.editor-preview ul li {
+  list-style-type: disc !important;
+}

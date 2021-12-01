@@ -8,7 +8,12 @@ from django.conf import settings
 from timezone_field import TimeZoneField
 from urllib.parse import urljoin
 
-from utils.markdown import get_blurb_from_markdown, render_image_uri
+from utils.markdown import (
+    get_blurb_from_markdown,
+    render_image_uri,
+    MARKDOWN_HELP_TEXT,
+    MARKDOWN_IMAGE_HELP_TEXT,
+)
 
 
 def get_upload_dir(instance, filename):
@@ -96,17 +101,10 @@ class Event(models.Model):
     datetime_created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
     body = models.CharField(
-        max_length=50000, null=True, blank=True,
-        help_text=(
-            """Enter valid GitHub markdown.
-            Upload event images at the bottom of the page, and tag them
-            in markdown like so:
-            <pre>
-             ![alt text](img1)    # img1 will be replaced with the real URI
-             ...
-             ![alt text](img2) </pre>
-             """
-        )
+        max_length=50000,
+        null=True,
+        blank=True,
+        help_text=MARKDOWN_HELP_TEXT + MARKDOWN_IMAGE_HELP_TEXT,
     )
     organiser_name = models.CharField(max_length=100, null=True, blank=True)
     organiser_email = models.EmailField(max_length=255, null=True, blank=True)
