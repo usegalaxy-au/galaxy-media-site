@@ -66,6 +66,8 @@ def render_image_uri(markdown, images):
     the ordering of URI tags entered by the user
     (e.g. img1, img2, img3 should respectively match images ordered by pk).
     """
+    if not (markdown and images):
+        return markdown
     new = markdown.replace('', '')
     for i, image in enumerate(images):
         print(f'\nPARSING URIs FOR IMAGE {image} \n')
