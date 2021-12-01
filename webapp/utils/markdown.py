@@ -70,7 +70,6 @@ def render_image_uri(markdown, images):
         return markdown
     new = markdown.replace('', '')
     for i, image in enumerate(images):
-        print(f'\nPARSING URIs FOR IMAGE {image} \n')
         for e in IMAGE_URI_EXPRESSIONS:
             p = re.compile(e['re'], re.MULTILINE)
             m = p.search(new)
