@@ -8,7 +8,12 @@ from django.template.defaultfilters import slugify
 from urllib.parse import urljoin
 
 from events.models import Tag, Supporter
-from utils.markdown import get_blurb_from_markdown
+from utils.markdown import (
+    get_blurb_from_markdown,
+    render_image_uri,
+    MARKDOWN_HELP_TEXT,
+    MARKDOWN_IMAGE_HELP_TEXT,
+)
 
 
 def get_upload_dir(instance, filename):
@@ -30,16 +35,7 @@ class News(models.Model):
         max_length=50000,
         null=True,
         blank=True,
-        help_text=(
-            """Enter valid GitHub markdown.
-            Upload news images at the bottom of the page, then tag them
-            in markdown like so
-            <pre>
-             ![alt text](img1)    # img1 will be replaced with the real URI
-             ...
-             ![alt text](img2) </pre>
-             """
-        )
+        help_text=MARKDOWN_HELP_TEXT + MARKDOWN_IMAGE_HELP_TEXT,
     )
     external = models.URLField(
         null=True,
@@ -84,6 +80,15 @@ class News(models.Model):
     def blurb(self):
         """Extract a blurb from the body markdown."""
         return get_blurb_from_markdown(self.body, style=False)
+
+    def render_markdown_uris(self):
+        """Render NewsImage URIs into markdown placeholders."""
+        images = NewsImage.objects.filter(news_id=self.id).order_by('id')
+        new_body = render_image_uri(self.body, images)
+        if new_body != self.body:
+            # Avoid the dreaded infinite loop - only save if body changed
+            self.body = new_body
+            self.save()
 
 
 class NewsImage(models.Model):

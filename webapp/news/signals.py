@@ -21,7 +21,6 @@ from django.db.models.signals import (
 )
 
 from .models import News, NewsImage
-from utils.markdown import render_image_uri
 
 
 @receiver(post_save, sender=NewsImage)
@@ -31,4 +30,4 @@ def render_markdown_image_uris(sender, instance, using, **kwargs):
     !!! Need to validate markdown on submission.
     """
     article = News.objects.get(id=instance.news_id)
-    render_image_uri(article, instance.img_uri)
+    article.render_markdown_uris()

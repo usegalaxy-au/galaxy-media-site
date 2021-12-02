@@ -3,6 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from utils.markdown import MARKDOWN_HELP_TEXT
 from .managers import CustomUserManager
 
 
@@ -41,7 +42,7 @@ class Notice(models.Model):
         max_length=16, choices=NOTICE_CLASSES, default=INFO,
     )
     title = models.CharField(max_length=100)
-    body = models.CharField(max_length=2000, help_text='Enter valid markdown')
+    body = models.CharField(max_length=2000, help_text=MARKDOWN_HELP_TEXT)
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
         help_text=('Optional. A valid Material Design icon identifier.'
