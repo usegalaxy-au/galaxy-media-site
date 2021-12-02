@@ -103,15 +103,23 @@ class EventLocation(models.Model):
     @property
     def fields(self):
         """Return list of fields with values."""
-        fields = []
-        for field in self._meta.get_fields():
-            v = self._meta.get_field(field.name)
+        fields = [
+            'name',
+            'street',
+            'city',
+            'region',
+            'country',
+            'postal',
+        ]
+        field_values = []
+        for f in fields:
+            v = getattr(self, f)
             if v:
-                fields.append({
-                    'name': field.name,
+                field_values.append({
+                    'name': f,
                     'value': v,
                 })
-        return fields
+        return field_values
 
 
 class Event(models.Model):
@@ -146,6 +154,7 @@ class Event(models.Model):
     location = models.ForeignKey(
         EventLocation,
         on_delete=models.CASCADE,
+        blank=True,
         null=True,
         help_text="This will be rendered as a table.",
     )

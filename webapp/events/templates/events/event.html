@@ -21,20 +21,93 @@
       <div class="col">
         <h3> {{ event.title }} </h3>
 
-        {% if event.location %}
-        <table class="location">
-          <thead><th colspan=2><b>Location:</b></th></thead>
-          {% for item in event.location.fields %}
-          <tr>
-            <td> {{ item.name }} </td>
-            <td> {{ item.value }} </td>
-          </tr>
-          {% endfor %}
+        {% if event.organiser_name %}
+        <p>
+          Organised by {{ event.organiser_name }}
+          {% if event.organiser_email %}
+          <br>
+          <small>
+            Contact: <a href="mailto:{{ event.organiser_email }}">{{ event.organiser_email }}</a>
+          </small>
+          {% endif %}
+        </p>
+        {% endif %}
+
+        {% if event.date_start %}
+        <br>
+        <table class="datetime text-center">
+          <thead>
+            {% if event.time_start and event.date_start != event.date_end %}
+              <th>Start</th>
+              <th>End</th>
+            {% else %}
+              <th>Date</th>
+
+              {% if event.time_start %}
+              <th>Time</th>
+              {% endif %}
+            {% endif %}
+
+            {% if event.timezone %}
+            <th>Timezone</th>
+            {% endif %}
+          </thead>
+          <tbody>
+            <tr>
+              {% if event.time_start and event.date_end and event.date_start != event.date_end %}
+              <!-- Render date and time together -->
+              <td>
+                {{ event.date_start|date:"d/m/y" }}
+                {% if event.time_start %}
+                {{ event.time_start|time:"H:i" }}
+                {% endif %}
+              </td>
+              <td>
+                {{ event.date_end|date:"d/m/y" }}
+                {% if event.time_end %}
+                {{ event.time_end|time:"H:i" }}
+                {% endif %}
+              </td>
+              {% else %}
+              <!-- Render date and time separately -->
+              <td>
+                {{ event.date_start|date:"d-m-y" }}
+              </td>
+
+                {% if event.time_start %}
+                <td>
+                  {{ event.time_start|time:"H:i" }}
+                  {% if event.time_end %}
+                  - {{ event.time_end|time:"H:i" }}
+                  {% endif %}
+                </td>
+                {% endif %}
+              {% endif %}
+
+              {% if event.timezone %}
+              <td>{{ event.timezone }}</td>
+              {% endif %}
+            </tr>
+          </tbody>
         </table>
         {% endif %}
       </div>
 
       <div class="col-sm-auto">
+        {% if user.is_staff %}
+        <p class="text-end">
+          <a
+            href="/admin/events/event/{{ event.id }}/change"
+            target="_blank"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Edit post"
+          >
+            <span class="material-icons">edit</span>
+          </a>
+        </p>
+        {% endif %}
+
         <p class="text-end text-muted">
           <span class="date">
             {{ event.datetime_created|date:'d-m-Y'}}
@@ -49,18 +122,17 @@
         </p>
         {% endfor %}
 
-        {% if user.is_staff %}
-        <p class="text-end">
-          <a
-            href="/admin/events/event/{{ event.id }}/change"
-            target="_blank"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Edit post"
-          >
-            <span class="material-icons">edit</span>
-          </a>
-        </p>
+        {% if event.location %}
+        <table class="location">
+          <thead><th colspan=2>Location</th></thead>
+          <tbody>
+            {% for item in event.location.fields %}
+            <tr>
+              <td> {{ item.value }} </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
         {% endif %}
       </div>
     </div>
