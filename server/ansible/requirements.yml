@@ -1,0 +1,10 @@
+- src: geerlingguy.pip
+  version: 2.0.0
+- src: uchida.miniconda
+  version: 0.3.0
+
+# galaxy-media
+# - git pull
+# - install deps
+# - template config files
+# - restart services
