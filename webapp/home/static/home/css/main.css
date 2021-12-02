@@ -62,6 +62,9 @@ footer {
   height: 1.75rem;
   margin: .5rem;
 }
+footer .col-auto {
+  padding: 0 2rem;
+}
 footer .links h6 {
   font-size: 0.8rem;
   font-weight: bold;
@@ -70,17 +73,17 @@ footer .links h6 {
 footer .links img {
   height: 35px;
   width: auto;
-  margin: 1.5rem;
+  margin: 2.75rem 1.5rem;
 }
 footer .links a {
   color: inherit;
   white-space: nowrap;
 }
 footer small {
-  font-size: .65rem;
+  font-size: .75rem;
 }
 footer p.tight {
-  line-height: 1;
+  line-height: 1.15;
 }
 
 /* Layout */
