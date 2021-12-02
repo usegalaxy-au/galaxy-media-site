@@ -49,7 +49,6 @@ class Notice(models.Model):
                    ' Browse icons here </a>')
         )
     enabled = models.BooleanField(
-        null=True,
         default=False,
         help_text="Display on the Galaxy Australia landing page.")
 
