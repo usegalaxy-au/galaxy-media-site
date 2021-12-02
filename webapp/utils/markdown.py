@@ -4,9 +4,10 @@ import re
 
 # Help text for markdown editors
 MARKDOWN_HELP_TEXT = (
-    """Enter valid GitHub markdown.
-    We're using <b>"code-friendly" mode</b>, so __ and _ will be rendered literally!
-    Use * and ** instead.
+    """Enter valid GitHub markdown -
+    <a href="https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax" target="_blank">see markdown guide</a>.
+    We're using <b>"code-friendly" mode</b>, so __ and _ will be rendered
+    literally! Use * and ** for italics/bold instead.
     """
 )
 
