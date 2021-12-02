@@ -33,7 +33,7 @@ class UserAdmin(BaseUserAdmin):
     ]
     list_filter = ['is_staff']
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'password1', 'password2')}),
+        (None, {'fields': ('email', 'password1', 'password2')}),
         ('Personal', {'fields': ('first_name', 'last_name')}),
         ('Permissions', {'fields': (
                 'is_staff',
