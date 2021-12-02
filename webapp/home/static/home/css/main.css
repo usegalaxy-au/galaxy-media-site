@@ -43,11 +43,44 @@ nav a:hover .australia {
 #admin-login:hover {
   opacity: 1;
 }
-footer {
-  margin-top: 5rem;
-}
 h1 {
   margin-bottom: 3rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 5rem;
+  padding-bottom: 1rem;
+}
+.logo img {
+  width: auto;
+  height: 3.5rem;
+  margin: 1rem;
+}
+.logo .second img {
+  width: auto;
+  height: 1.75rem;
+  margin: .5rem;
+}
+footer .links h6 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+footer .links img {
+  height: 35px;
+  width: auto;
+  margin: 1.5rem;
+}
+footer .links a {
+  color: inherit;
+  white-space: nowrap;
+}
+footer small {
+  font-size: .65rem;
+}
+footer p.tight {
+  line-height: 1;
 }
 
 /* Layout */
@@ -66,11 +99,6 @@ section {
 .row.no-gutter {
   margin-left: 0;
   margin-right: 0;
-}
-.logo img {
-  width: auto;
-  height: 2.5rem;
-  margin: 1rem;
 }
 
 /* Components */
@@ -115,16 +143,6 @@ section {
 }
 .material-icons {
   vertical-align: bottom;
-}
-.contact-info {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  list-style-type: none;
-}
-.contact-info > div {
-  margin: 0 1rem;
-  display: flex;
 }
 i {
   margin: 0 .5rem;
