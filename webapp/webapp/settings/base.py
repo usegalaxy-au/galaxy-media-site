@@ -22,7 +22,7 @@ DEBUG = True
 AUTH_USER_MODEL = 'home.User'
 
 # Site paths and URLs
-GALAXY_SITE_NAME = 'Australia'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
+GALAXY_SITE_NAME = 'Media'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'webapp/static'
 MEDIA_URL = '/media/'

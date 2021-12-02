@@ -69,8 +69,8 @@
         </div>
       </div>
 
-      <div class="navbar-nav">
-        {% if not user.is_authenticated %}
+      {% if not user.is_authenticated %}
+      <div class="navbar-nav login">
         <a
           href="/admin"
           data-bs-toggle="tooltip"
@@ -78,10 +78,12 @@
           title="Admin login"
           id="admin-login"
         >Login</a>
-        {% else %}
-        <a href="/admin/logout">Log out</a>
-        {% endif %}
       </div>
+      {% else %}
+      <div class="navbar-nav">
+        <a href="/admin/logout">Log out</a>
+      </div>
+        {% endif %}
     </nav>
 
 
@@ -94,7 +96,18 @@
     {% endblock %}
 
     <script type="text/javascript">
+
+      function inIframe () {
+        try {
+            return window.self !== window.top;
+        } catch (e) {
+            return true;
+        }
+      }
+
       $(document).ready( () => {
+        // Switch to centered nav if embedded in iframe
+        inIframe() && $('nav').addClass("embedded");
 
         // Enable bootstrap tooltips
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
