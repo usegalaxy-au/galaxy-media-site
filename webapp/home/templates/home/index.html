@@ -130,7 +130,9 @@
         </div>
       </div>
       {% for item in news_items %}
-      <article class="row" onclick="window.location='{{ item.url }}';">
+      <article
+        class="row"
+        onclick="window.open('{{ item.url }}'{% if not item.external %}, '_self'{% endif %});">
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
           <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>
@@ -157,7 +159,9 @@
         </div>
       </div>
       {% for item in events %}
-      <article class="row" onclick="window.location='{{ item.url }}';">
+      <article
+        class="row"
+        onclick="window.open('{{ item.url }}'{% if not item.external %}, '_self'{% endif %});">
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
           <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>
