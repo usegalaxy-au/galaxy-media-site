@@ -33,6 +33,13 @@
         </p>
         {% endif %}
 
+        <p>
+          <a href="{{ event.ical_url }}">
+            <span class="material-icons">event</span>
+            Add to calendar
+          </a>
+        </p>
+
         {% if event.date_start %}
         <br>
         <table class="datetime text-center">

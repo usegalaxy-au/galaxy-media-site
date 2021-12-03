@@ -1,6 +1,18 @@
 """Development settings."""
 
+import os
+from dotenv import load_dotenv
+
 from .base import *
+
+
+load_dotenv()
+
+DEBUG = False
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
+HOSTNAME = os.environ['HOSTNAME']
+ALLOWED_HOSTS.append(HOSTNAME)
+GALAXY_SITE_NAME = 'Media'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
 
 DEBUG = True
 

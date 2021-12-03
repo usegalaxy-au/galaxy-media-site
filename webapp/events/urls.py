@@ -7,4 +7,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name="events_index"),
     path('<int:pk>/', views.show, name='events_show'),
+    path('<int:pk>/ical', views.ical, name='events_ical'),
 ]

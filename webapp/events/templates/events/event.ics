@@ -1,0 +1,22 @@
+{% load replace %}{% load markdown %}BEGIN:VCALENDAR
+PRODID:-//Galaxy Australia//NONSGML v1.0//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:{{ event.title | escape }}
+X-WR-TIMEZONE:{{ event.timezone|default:"Australia/Sydney" }}
+BEGIN:VEVENT
+ORGANIZER;CN={{ event.organiser_name }}:MAILTO:{{ event.organiser_email }}?subject={{ event.title | escape | urlencode}}
+DTSTART;VALUE=DATE:{{ event.datetime_start_str }}
+DTEND;VALUE=DATE:{{event.datetime_end_str }}
+DTSTAMP;VALUE=DATE:{{event.date_start | date:"Ymd"}}T000000Z
+CREATED;VALUE=DATE:{{event.datetime_created | date:"Ymd"}}T000000Z
+UID:{{ event.date_start | date:"Ymd" }}{{ event.date_end | date:"Ymd" }}@usegalaxy.org.au
+DESCRIPTION:{{ event.body|markdown|replace:"\n,"|replace:"<p>,"|linebreaksbr|safe }}
+LOCATION:{{ event.location.full }}
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:{{ event.title | escape }}
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

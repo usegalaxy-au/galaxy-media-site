@@ -28,3 +28,15 @@ def show(request, pk=None):
         })
     except ObjectDoesNotExist:
         raise Http404
+
+
+def ical(request, pk=None):
+    """Return a calendar event in iCal format."""
+    if not pk:
+        raise Http404
+    try:
+        return render(request, 'events/event.ics', {
+            'event': Event.objects.get(id=pk),
+        })
+    except ObjectDoesNotExist:
+        raise Http404

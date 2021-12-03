@@ -81,6 +81,15 @@ class Supporter(models.Model):
 class EventLocation(models.Model):
     """A location to be associated with events."""
 
+    FIELDS = [
+        'name',
+        'street',
+        'city',
+        'region',
+        'country',
+        'postal',
+    ]
+
     name = models.CharField(
         max_length=100,
         null=True,
@@ -103,23 +112,25 @@ class EventLocation(models.Model):
     @property
     def fields(self):
         """Return list of fields with values."""
-        fields = [
-            'name',
-            'street',
-            'city',
-            'region',
-            'country',
-            'postal',
-        ]
-        field_values = []
-        for f in fields:
+        fields = []
+        for f in self.FIELDS:
             v = getattr(self, f)
             if v:
-                field_values.append({
+                fields.append({
                     'name': f,
                     'value': v,
                 })
-        return field_values
+        return fields
+
+    @property
+    def full(self):
+        """Return full location as string."""
+        loc = []
+        for f in self.FIELDS:
+            v = getattr(self, f).title()
+            if v:
+                loc.append(v.replace(',', '\\,'))
+        return '\\, '.join(loc)
 
 
 class Event(models.Model):
@@ -210,14 +221,9 @@ class Event(models.Model):
         ]
 
     @property
-    def slug(self):
-        """Return slug generated from title."""
-        return slugify(self.title)
-
-    @property
-    def ics_url(self):
-        """Return URL for calendar ICS file."""
-        return urljoin(settings.HOSTNAME, f'event/{self.id}/{self.slug}.ics')
+    def ical_url(self):
+        """Return URL for ical file."""
+        return f'webcal://{settings.HOSTNAME}/events/{self.id}/ical'
 
     @property
     def material_icons(self):
@@ -231,6 +237,28 @@ class Event(models.Model):
     def blurb(self):
         """Extract a blurb from the body markdown."""
         return get_blurb_from_markdown(self.body, style=False)
+
+    @property
+    def datetime_start_str(self):
+        """Return string for start date/time."""
+        date = self.date_start.strftime("%Y%m%d")
+        date += 'T'
+        if self.time_start:
+            date += self.time_start.strftime("%H%M%S") or '000000'
+        else:
+            date += '000000'
+        return date + 'Z'
+
+    @property
+    def datetime_end_str(self):
+        """Return string for start date/time."""
+        date = self.date_end.strftime("%Y%m%d")
+        date += 'T'
+        if self.time_end:
+            date += self.time_end.strftime("%H%M%S") or '000000'
+        else:
+            date += '235959'
+        return date + 'Z'
 
     def render_markdown_uris(self):
         """Render EventImage URIs into markdown placeholders."""
