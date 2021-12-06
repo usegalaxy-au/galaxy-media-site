@@ -3,6 +3,10 @@ webapp/webapp/logs/
 webapp/webapp/media/
 webapp/webapp/static/
 
+# Deploy conf
+deploy/gunicorn.service
+deploy/nginx.conf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
