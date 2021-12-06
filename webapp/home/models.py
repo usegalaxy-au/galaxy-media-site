@@ -27,7 +27,7 @@ class User(AbstractUser):
 class Notice(models.Model):
     """A site notice to be displayed on the home/landing pages."""
 
-    INFO = 'info'
+    INFO = 'success'
     WARNING = 'warning'
     DANGER = 'danger'
 
