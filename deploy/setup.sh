@@ -83,9 +83,9 @@ echo ""
 echo "Configuring webserver with Nginx and Gunicorn..."
 sed "s/{{ HOSTNAME }}/$HOSTNAME/" nginx.conf.tmpl > nginx.conf
 sed "s|{{ PWD }}|$PWD|" gunicorn.service.tmpl > gunicorn.service
-sudo ln -s gunicorn.service /etc/systemd/system/webapp.service
-sudo ln -s gunicorn.socket /etc/systemd/system/webapp.socket
-sudo ln -s nginx.conf /etc/nginx/sites-available/webapp.conf
+sudo ln -s $PWD/gunicorn.service /etc/systemd/system/webapp.service
+sudo ln -s $PWD/gunicorn.socket /etc/systemd/system/webapp.socket
+sudo ln -s $PWD/nginx.conf /etc/nginx/sites-available/webapp.conf
 sudo ln -s /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
 sudo mkdir -p /srv/sites
 sudo ln -s "$(dirname $PWD)/webapp" /srv/sites/webapp
