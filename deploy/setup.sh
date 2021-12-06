@@ -142,10 +142,10 @@ sudo service webapp start
 # Configure default user
 echo ""
 echo "Create superuser login:"
-python3.8 webapp/manage.py createsuperuser
+python3.8 ../webapp/manage.py createsuperuser
 
 # Static file setup
-python3.8 webapp/manage.py collectstatic --noinput
+python3.8 ../webapp/manage.py collectstatic --noinput
 
 echo "Setup complete"
 case $ssl in
