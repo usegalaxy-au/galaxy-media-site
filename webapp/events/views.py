@@ -31,7 +31,11 @@ def show(request, pk=None):
 
 
 def ical(request, pk=None):
-    """Return a calendar event in iCal format."""
+    """Return a calendar event in iCal format.
+
+    Can validate by copying event.ics browser source into
+    https://icalendar.org/validator.html.
+    """
     if not pk:
         raise Http404
     try:
