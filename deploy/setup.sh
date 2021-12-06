@@ -103,9 +103,9 @@ python3.8 -m pip install --no-cache-dir -r ../requirements.txt
 echo ""
 echo "Configuring webserver with Nginx and Gunicorn..."
 sed "s/{{ HOSTNAME }}/$HOSTNAME/" nginx.conf.tmpl > nginx.conf
-sed "s|{{ PWD }}|$PWD|" gunicorn.service.tmpl > gunicorn.service
-sudo ln -s $PWD/gunicorn.service /etc/systemd/system/webapp.service
-sudo ln -s $PWD/gunicorn.socket /etc/systemd/system/webapp.socket
+sed "s|{{ PWD }}|$PWD|" webapp.service.tmpl > webapp.service
+sudo ln -s $PWD/webapp.service /etc/systemd/system/webapp.service
+sudo ln -s $PWD/webapp.socket /etc/systemd/system/webapp.socket
 sudo ln -s $PWD/nginx.conf /etc/nginx/sites-available/webapp.conf
 sudo ln -s /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
 sudo mkdir -p /srv/sites
