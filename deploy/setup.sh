@@ -10,6 +10,7 @@ if [[ $1 = '--clean' ]]; then
     sudo rm /etc/systemd/system/webapp.*
     sudo rm /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
     sudo rm -r /srv/sites/webapp
+    echo "Done"
     exit 0;
 fi
 
@@ -86,7 +87,7 @@ sudo ln -s gunicorn.service /etc/systemd/system/webapp.service
 sudo ln -s gunicorn.socket /etc/systemd/system/webapp.socket
 sudo ln -s nginx.conf /etc/nginx/sites-available/webapp.conf
 sudo ln -s /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
-sudo mkdir /srv/sites
+sudo mkdir -p /srv/sites
 sudo ln -s "$(dirname $PWD)/webapp" /srv/sites/webapp
 sudo chown ubuntu:ubuntu /srv/sites/webapp
 
