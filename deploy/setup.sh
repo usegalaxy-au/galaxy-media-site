@@ -65,14 +65,28 @@ EOI
 read abc
 
 if [[ ! -f ../.env ]]; then
-    printf "\n.env not found in the root directory. Please create an \
+    printf "\n.env not found in the root directory.\nPlease create an \
 environment file as described above.\n"
     exit 1;
 fi
 
 source ../.env
 
-printf "Configure SSL certificates with certbot (requires user input)? [y/n]\n"
+cat << EOI
+
+~~~~~~~ SSL configuration ~~~~~~~
+
+If you are the owner of the domain name "$HOSTNAME", you can
+configure SSL for secure serving over HTTPS. This is required for production
+deployments, for security and technical reasons! You cannot display this site
+within a Galaxy instance if serving without SSL. In order to configure SSL
+successfully, you must set a DNS "A" record with your DNS provider (e.g.
+CloudFlare, GoDaddy) which points the hostname to the IP address of this
+machine ($(curl --no-progress-meter icanhazip.com)).
+
+Configure SSL certificates with certbot (requires user input)? [y/n]
+EOI
+
 while true; do
     read ssl
     case $ssl in
