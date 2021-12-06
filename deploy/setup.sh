@@ -13,6 +13,8 @@ if [[ $1 = '--clean' ]]; then
     echo "Press <ENTER> to continue or CTRL+C to cancel."
     read abc
     echo "Removing server conf..."
+    sudo systemctl disable webapp.socket
+    sudo systemctl disable webapp.service
     sudo rm /etc/systemd/system/webapp.*
     sudo rm /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
     sudo rm -r /srv/sites/webapp
