@@ -56,12 +56,15 @@ sudo apt-get update \
     nginx \
     certbot python3-certbot-nginx
 
+export PATH=/home/$USER/.local/bin:$PATH
+echo "export PATH=/home/$USER/.local/bin:$PATH" >> /home/$USER/.bashrc
+
 python3.8 -m pip install --no-cache-dir --upgrade pip
 python3.8 -m pip install --no-cache-dir virtualenv
 
 echo ""
 echo "Creating virtual environment..."
-virtualenv .venv
+python3.8 -m virtualenv .venv
 source .venv/bin/activate
 python3.8 -m pip install --no-cache-dir -r requirements.txt
 
