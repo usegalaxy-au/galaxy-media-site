@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from .base import *
 
 
-load_dotenv()
+load_dotenv('..', override=True)
 
 DEBUG = False
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
