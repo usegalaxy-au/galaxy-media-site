@@ -13,6 +13,8 @@ if [[ $1 = '--clean' ]]; then
     echo "Press <ENTER> to continue or CTRL+C to cancel."
     read abc
     echo "Removing server conf..."
+    sudo systemctl stop webapp.socket
+    sudo systemctl stop webapp.service
     sudo systemctl disable webapp.socket
     sudo systemctl disable webapp.service
     sudo rm /etc/systemd/system/webapp.socket
@@ -154,7 +156,7 @@ echo ""
 echo "Please enter sensible superuser login credentials for this site."
 echo "N.B. users can be further managed from within the admin interface,"
 echo "once the application has launched. These login credentials will be"
-echo " required to access the admin interface, so keep them safe!"
+echo "required to access the admin interface, so keep them safe!"
 echo ""
 python3.8 ../webapp/manage.py createsuperuser
 
