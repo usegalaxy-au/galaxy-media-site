@@ -1,10 +1,10 @@
 """Add a worker for each available CPU.
 
-Most requests are handled quickly, so 1 worker can handle many requests per
-second
+Most requests are handled quickly, so 1 worker should be able to handle many
+requests per second.
 """
 
-workers = 2
+workers = 4
 
 # Environment variables
 raw_env = [

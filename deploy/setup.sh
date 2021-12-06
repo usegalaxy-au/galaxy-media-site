@@ -41,6 +41,7 @@ set -e
 
 # Webserver config
 cat << EOI
+
 ~~~~~~~~~~ GALAXY MEDIA SITE ~~~~~~~~~~~~
 
 Author: Cameron Hyde, QCIF Bioinformatics
