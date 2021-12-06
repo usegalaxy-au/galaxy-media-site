@@ -5,6 +5,14 @@ set -e
 # Drop into ./deploy if user called from root dir
 [[ -d deploy ]] && [[ -d webapp ]] && cd deploy
 
+if [[ $1 = '--clean' ]]; then
+    echo "Removing server conf from system..."
+    sudo rm /etc/systemd/system/webapp.*
+    sudo rm /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
+    sudo rm -r /srv/sites/webapp
+    exit 0;
+fi
+
 # Webserver config
 cat << EOI
 ~~~~~~~~~~ GALAXY MEDIA SITE ~~~~~~~~~~~~
@@ -23,6 +31,8 @@ project root (copy .env.sample).
   - set DJANGO_SECRET_KEY and DB_PASSWORD to something secure (no hash chars)
   - set HOSTNAME to the domain name that the site will be hosted under
     (e.g. example.com)
+
+To remove system configuration after install, run with --clean flag
 
 Press <ENTER> to continue or CTRL-C to cancel.
 EOI
@@ -76,8 +86,9 @@ sudo ln -s gunicorn.service /etc/systemd/system/webapp.service
 sudo ln -s gunicorn.socket /etc/systemd/system/webapp.socket
 sudo ln -s nginx.conf /etc/nginx/sites-available/webapp.conf
 sudo ln -s /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
-sudo ln -s "$(dirname $PWD)/webapp /srv/sites/webapp"
-sudo rm /etc/nginx/sites-enabled/default
+sudo mkdir /srv/sites
+sudo ln -s "$(dirname $PWD)/webapp" /srv/sites/webapp
+sudo chown ubuntu:ubuntu /srv/sites/webapp
 
 echo ""
 if [[ $ssl = 'y' ]]; then
@@ -117,7 +128,7 @@ python3.8 webapp/manage.py collectstatic --noinput
 
 echo "Setup complete"
 case $ssl in
-    "y" )   echo "Serving HTTPS at $HOSTNAME";;
-    "n" )   echo "Serving HTTP at $HOSTNAME";;
+    "y" )   echo "Serving at https://$HOSTNAME";;
+    "n" )   echo "Serving http://$HOSTNAME";;
 esac
 echo ""
