@@ -62,7 +62,7 @@ sudo apt-get update \
 && sudo apt-get install -y --no-install-recommends \
     python3.8 \
     python3-pip \
-    postgresql-client \
+    postgresql postgresql-client \
     nginx \
     certbot python3-certbot-nginx
 
