@@ -18,17 +18,15 @@ if [[ $1 = '--clean' ]]; then
     sudo rm -r /srv/sites/webapp
     echo "Done"
 
-    while true; do
-        echo "Remove Postgres user/database? [y/n]"
-        read rmdb
-        if [[ $rmdb = 'y' ]]; then
-            echo "Removing database configuration..."
-            sudo -u postgres psql -c "DROP DATABASE $DB_NAME;"
-            sudo -u postgres psql -c "DROP USER $DB_USER;"
-        else
-            echo "Leaving database configuation"
-        fi
-    done
+    echo "Remove Postgres user/database? [y/n]"
+    read rmdb
+    if [[ $rmdb = 'y' ]]; then
+        echo "Removing database configuration..."
+        sudo -u postgres psql -c "DROP DATABASE $DB_NAME;"
+        sudo -u postgres psql -c "DROP USER $DB_USER;"
+    else
+        echo "Leaving database configuation"
+    fi
 
     exit 0;
 fi
