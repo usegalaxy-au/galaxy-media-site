@@ -102,11 +102,10 @@ fi
 # Set up database
 echo ""
 echo "Configuring database"
-sudo su postgres
 sudo -u postgres createuser $DB_USER
 sudo -u postgres createdb $DB_NAME
 sudo -u postgres psql << SQL
-ALTER USER $DB_NAME WITH PASSWORD $DB_PASSWORD;
+ALTER USER $DB_NAME WITH PASSWORD '$DB_PASSWORD';
 GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 SQL
 
