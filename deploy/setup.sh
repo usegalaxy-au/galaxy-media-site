@@ -6,11 +6,27 @@ set -e
 [[ -d deploy ]] && [[ -d webapp ]] && cd deploy
 
 if [[ $1 = '--clean' ]]; then
-    echo "Removing server conf from system..."
+    echo "Removing server configuration from the system."
+    echo "Press <ENTER> to continue or CTRL+C to cancel."
+    read abc
+    echo "Removing server conf..."
     sudo rm /etc/systemd/system/webapp.*
     sudo rm /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
     sudo rm -r /srv/sites/webapp
     echo "Done"
+
+    while true; do
+        echo "Remove Postgres user/database? [y/n]"
+        read rmdb
+        if [[ $rmdb = 'y' ]]; then
+            echo "Removing database configuration..."
+            sudo -u postgres psql -c "DROP DATABASE $DB_NAME"
+            sudo -u postgres psql -c "DROP USER $DB_USER"
+        else
+            echo "Leaving database configuation"
+        fi
+    done
+
     exit 0;
 fi
 
