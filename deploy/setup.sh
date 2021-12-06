@@ -66,7 +66,7 @@ echo ""
 echo "Creating virtual environment..."
 python3.8 -m virtualenv .venv
 source .venv/bin/activate
-python3.8 -m pip install --no-cache-dir -r requirements.txt
+python3.8 -m pip install --no-cache-dir -r ../requirements.txt
 
 echo ""
 echo "Configuring webserver with Nginx and Gunicorn..."
