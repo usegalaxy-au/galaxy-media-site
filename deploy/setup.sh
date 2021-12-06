@@ -15,7 +15,8 @@ if [[ $1 = '--clean' ]]; then
     echo "Removing server conf..."
     sudo systemctl disable webapp.socket
     sudo systemctl disable webapp.service
-    sudo rm /etc/systemd/system/webapp.*
+    sudo rm /etc/systemd/system/webapp.socket
+    sudo rm /etc/systemd/system/webapp.service
     sudo rm /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
     sudo rm -r /srv/sites/webapp
     echo "Done"
@@ -130,7 +131,7 @@ ALTER USER $DB_NAME WITH PASSWORD '$DB_PASSWORD';
 GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 SQL
 
-# Start services\
+# Start services
 echo ""
 echo "Reloading system services..."
 sudo service nginx restart
@@ -138,6 +139,11 @@ sudo service postgresql restart
 sudo systemctl enable webapp.socket
 sudo systemctl enable webapp.service
 sudo service webapp start
+
+# Migrate database
+echo ""
+echo "Migrating database schema..."
+python3.8 ../webapp/manage.py migrate
 
 # Configure default user
 echo ""
