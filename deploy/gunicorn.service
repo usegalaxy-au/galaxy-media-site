@@ -1,5 +1,5 @@
 [Unit]
-Description=Gunicorn for Galaxy content site
+Description=Gunicorn for Galaxy Media Site
 Requires=webapp.socket
 After=network.target
 
@@ -9,8 +9,9 @@ User = ubuntu
 Group = www-data
 RuntimeDirectory=gunicorn
 WorkingDirectory=/srv/sites/webapp
-ExecStart=gunicorn --pid /run/gunicorn/pid   \
-          --bind unix:/run/webapp.sock \
+Environment="PATH=/home/ubuntu/virtualenvs/crustyenv/bin:$PATH"
+ExecStart={{ PWD }}/.venv/bin/gunicorn --pid /run/gunicorn/pid   \
+          --bind unix:/run/webapp.sock       \
           -c /srv/sites/webapp/server/gunicorn.py webapp.wsgi
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID

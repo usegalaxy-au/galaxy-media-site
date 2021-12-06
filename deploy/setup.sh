@@ -2,6 +2,9 @@
 
 set -e
 
+# Drop into ./deploy if user called from root dir
+[[ -d deploy ]] && [[ -d webapp ]] && cd deploy
+
 # Webserver config
 cat << EOI
 ~~~~~~~~~~ GALAXY MEDIA SITE ~~~~~~~~~~~~
@@ -43,9 +46,10 @@ while true; do
     echo "Run certbot to configure SSL certificates? [y/n]"
 done
 
+echo ""
 echo "Installing system dependancies..."
-apt-get update \
-&& apt-get install -y --no-install-recommends \
+sudo apt-get update \
+&& sudo apt-get install -y --no-install-recommends \
     python3.8 \
     python3-pip \
     postgresql-client \
@@ -53,44 +57,63 @@ apt-get update \
     certbot python3-certbot-nginx
 
 python3.8 -m pip install --no-cache-dir --upgrade pip
+python3.8 -m pip install --no-cache-dir virtualenv
+
+echo ""
+echo "Creating virtual environment..."
+virtualenv .venv
+source .venv/bin/activate
 python3.8 -m pip install --no-cache-dir -r requirements.txt
 
+echo ""
+echo "Configuring webserver with Nginx and Gunicorn..."
 sed "s/{{ HOSTNAME }}/$HOSTNAME/" nginx.conf.tmpl > nginx.conf
-ln -s gunicorn.service /etc/systemd/system/webapp.service
-ln -s gunicorn.socket /etc/systemd/system/webapp.socket
-ln -s nginx.conf /etc/nginx/sites-available/webapp.conf
-ln -s /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
-rm /etc/nginx/sites-enabled/default
+sed "s/{{ PWD }}/$(pwd)/" gunicorn.service.tmpl > gunicorn.service
+sudo ln -s gunicorn.service /etc/systemd/system/webapp.service
+sudo ln -s gunicorn.socket /etc/systemd/system/webapp.socket
+sudo ln -s nginx.conf /etc/nginx/sites-available/webapp.conf
+sudo ln -s /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
+sudo ln -s "$(dirname $PWD)/webapp /srv/sites/webapp"
+sudo rm /etc/nginx/sites-enabled/default
 
+echo ""
 if [[ $ssl = 'y' ]]; then
-    echo "Contiguring SSL with Certbot..."
+    echo "Configuring SSL with Certbot..."
     sudo certbot --nginx -d $HOSTNAME
 elif [[ $ssl = 'n' ]]; then
     echo "Skipping SSL..."
 
 # Set up database
+echo ""
 echo "Configuring database"
-su postgres
-postgres createuser $DB_USER
-postgres createdb $DB_NAME
-psql <<SQL
+sudo su postgres
+sudo -u postgres createuser $DB_USER
+sudo -u postgres createdb $DB_NAME
+sudo -u postgres psql << SQL
 ALTER USER $DB_NAME WITH PASSWORD $DB_PASSWORD;
 GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 SQL
 
-# Start services
-service nginx restart
-service postgresql restart
-systemctl enable webapp.socket
-systemctl enable webapp.service
-service webapp start
+# Start services\
+echo ""
+echo "Reloading system services..."
+sudo service nginx restart
+sudo service postgresql restart
+sudo systemctl enable webapp.socket
+sudo systemctl enable webapp.service
+sudo service webapp start
 
 # Configure default user
+echo ""
 echo "Create superuser login:"
-python3 webapp/manage.py createsuperuser
+python3.8 webapp/manage.py createsuperuser
 
 # Static file setup
-python3 webapp/manage.py collectstatic --noinput
+python3.8 webapp/manage.py collectstatic --noinput
 
 echo "Setup complete"
-echo "Serve HTTPS over localhost:443"
+case $ssl in
+    "y" )   echo "Serving HTTPS at $HOSTNAME";;
+    "n" )   echo "Serving HTTP at $HOSTNAME";;
+esac
+echo ""
