@@ -66,7 +66,7 @@ read abc
 
 if [[ ! -f ../.env ]]; then
     printf "\n.env not found in the root directory. Please create an \
-environment file as described above."
+environment file as described above.\n"
     exit 1;
 fi
 
@@ -168,4 +168,20 @@ case $ssl in
     "y" )   echo "Now serving at https://$HOSTNAME";;
     "n" )   echo "Now serving at http://$HOSTNAME";;
 esac
-echo ""
+
+cat << EOI
+
+Some management tips:
+
+- Test gunicorn wsgi server:
+  curl --unix-sock /run/webapp.sock http://localhost
+
+- Check systemd services status:
+  sudo service nginx status
+  sudo service webapp status
+  sudo service postgresql status
+
+- Check socket status:
+  sudo systemctl status webapp.socket
+
+EOI
