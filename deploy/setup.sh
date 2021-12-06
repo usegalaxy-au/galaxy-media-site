@@ -147,7 +147,13 @@ python3.8 ../webapp/manage.py migrate
 
 # Configure default user
 echo ""
-echo "Create superuser login:"
+echo "~~~~~ Create superuser login ~~~~~"
+echo ""
+echo "Please enter sensible superuser login credentials for this site."
+echo "N.B. users can be further managed from within the admin interface,"
+echo "once the application has launched. These login credentials will be"
+echo " required to access the admin interface, so keep them safe!"
+echo ""
 python3.8 ../webapp/manage.py createsuperuser
 
 # Static file setup
@@ -155,7 +161,7 @@ python3.8 ../webapp/manage.py collectstatic --noinput
 
 echo "Setup complete"
 case $ssl in
-    "y" )   echo "Serving at https://$HOSTNAME";;
-    "n" )   echo "Serving http://$HOSTNAME";;
+    "y" )   echo "Now serving at https://$HOSTNAME";;
+    "n" )   echo "Now serving at http://$HOSTNAME";;
 esac
 echo ""
