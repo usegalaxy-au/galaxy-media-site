@@ -12,7 +12,7 @@ WorkingDirectory=/srv/sites/webapp
 Environment="PATH={{ PWD }}/.venv/bin:$PATH"
 ExecStart={{ PWD }}/.venv/bin/gunicorn --pid /run/gunicorn/pid   \
           --bind unix:/run/webapp.sock       \
-          -c /srv/sites/webapp/server/gunicorn.py webapp.wsgi
+          -c {{ PWD }}/gunicorn.py webapp.wsgi
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 PrivateTmp=true
