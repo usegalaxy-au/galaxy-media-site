@@ -85,6 +85,7 @@ if [[ $ssl = 'y' ]]; then
     sudo certbot --nginx -d $HOSTNAME
 elif [[ $ssl = 'n' ]]; then
     echo "Skipping SSL..."
+fi
 
 # Set up database
 echo ""
