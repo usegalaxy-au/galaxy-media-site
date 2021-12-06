@@ -6,6 +6,11 @@ set -e
 [[ -d deploy ]] && [[ -d webapp ]] && cd deploy
 
 if [[ $1 = '--clean' ]]; then
+
+    if [[ -f ../.env ]]; then
+        source ../.env
+    fi
+
     echo "Removing server configuration from the system."
     echo "Press <ENTER> to continue or CTRL+C to cancel."
     read abc
