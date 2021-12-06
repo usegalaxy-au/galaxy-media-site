@@ -1,7 +1,5 @@
 # Config production server setup
 
-set -e
-
 # Drop into ./deploy if user called from root dir
 [[ -d deploy ]] && [[ -d webapp ]] && cd deploy
 
@@ -25,8 +23,8 @@ if [[ $1 = '--clean' ]]; then
         read rmdb
         if [[ $rmdb = 'y' ]]; then
             echo "Removing database configuration..."
-            sudo -u postgres psql -c "DROP DATABASE $DB_NAME"
-            sudo -u postgres psql -c "DROP USER $DB_USER"
+            sudo -u postgres psql -c "DROP DATABASE $DB_NAME;"
+            sudo -u postgres psql -c "DROP USER $DB_USER;"
         else
             echo "Leaving database configuation"
         fi
@@ -34,6 +32,8 @@ if [[ $1 = '--clean' ]]; then
 
     exit 0;
 fi
+
+set -e
 
 # Webserver config
 cat << EOI
