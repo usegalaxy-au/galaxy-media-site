@@ -19,6 +19,7 @@ if [[ $1 = '--clean' ]]; then
     sudo rm /etc/systemd/system/webapp.service
     sudo rm /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
     sudo rm -r /srv/sites/webapp
+    sudo systemctl daemon-reload
     echo "Done"
 
     echo "Remove Postgres user/database? [y/n]"
@@ -123,7 +124,7 @@ fi
 
 # Set up database
 echo ""
-echo "Configuring database"
+echo "Configuring database..."
 sudo -u postgres createuser $DB_USER
 sudo -u postgres createdb $DB_NAME
 sudo -u postgres psql << SQL
@@ -136,6 +137,7 @@ echo ""
 echo "Reloading system services..."
 sudo service nginx restart
 sudo service postgresql restart
+sudo systemctl daemon-reload
 sudo systemctl enable webapp.socket
 sudo systemctl enable webapp.service
 sudo service webapp start
@@ -159,7 +161,7 @@ python3.8 ../webapp/manage.py createsuperuser
 # Static file setup
 python3.8 ../webapp/manage.py collectstatic --noinput
 
-echo "Setup complete"
+printf "\nSetup complete!\n\n"
 case $ssl in
     "y" )   echo "Now serving at https://$HOSTNAME";;
     "n" )   echo "Now serving at http://$HOSTNAME";;
