@@ -245,10 +245,8 @@
   let loaded = [];
 
   const notifyLoaded = (id) => {
-    console.log(`Pushing ID ${id} to loaded`)
     loaded.push(id);
     if (loaded.length === IFRAME_COUNT) {
-      console.log("Switching iframes to visible")
       $('#stats-panel img.loading').hide();
       $('#stats-panel iframe').css('opacity', '1');
     }

@@ -10,6 +10,16 @@
 
     {% block head %}
     {% endblock %}
+
+    <style>
+      .material-icons {
+        opacity: 0;
+        max-width: 2rem;
+        overflow: hidden;
+        transition-duration: 0.25s;
+      }
+    </style>
+
   </head>
 
   <body>
@@ -97,6 +107,16 @@
 
     <script type="text/javascript">
 
+      // Load material icons and display when page has loaded
+      document.fonts.onloadingdone = () => {
+        $('.material-icons').css({
+          'opacity': 1,
+          'max-width': 'unset',
+          'overflow': 'visible'
+        });
+      }
+
+      // Determine whether page is being viewed in iframe
       function inIframe () {
         try {
             return window.self !== window.top;
@@ -118,6 +138,7 @@
         {% block onload %}
         {% endblock %}
       });
+
     </script>
   </body>
 </html>
