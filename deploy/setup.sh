@@ -186,12 +186,14 @@ esac
 
 cat << EOI
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Some management tips:
 
 - Test gunicorn wsgi server:
   curl --unix-sock /run/webapp.sock http://localhost
 
-- Check systemd services status:
+- Check status of systemd services:
   sudo service nginx status
   sudo service webapp status
   sudo service postgresql status
