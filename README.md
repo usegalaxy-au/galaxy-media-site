@@ -27,6 +27,8 @@ The site is designed to be fully navigable from within your Galaxy instance, wit
 
 
 
+For admin docs, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki).
+
 ---
 
 ## Installation
@@ -66,6 +68,8 @@ source deploy/.venv/bin/activate
 # Follow prompts
 python webapp/manage.py createsuperuser
 ```
+
+For more info check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki)
 
 ---
 
