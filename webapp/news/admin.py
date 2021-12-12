@@ -21,6 +21,7 @@ class NewsAdmin(admin.ModelAdmin):
 
         js = (
             '//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js',
+            'home/js/admin-required-fields.js',
             'home/js/admin-mde.js',
         )
         css = {

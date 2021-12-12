@@ -21,8 +21,8 @@ class EventAdmin(admin.ModelAdmin):
 
         js = (
             '//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js',
+            'home/js/admin-required-fields.js',
             'home/js/admin-mde.js',
-            'home/js/prettify.js',
         )
         css = {
             'screen': (
