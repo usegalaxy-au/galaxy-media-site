@@ -1,6 +1,6 @@
 # Galaxy Media Site
 
-A content site for a Galaxy instance, built with Django.
+A simple content site for a Galaxy instance, built with Django.
 
 ---
 
