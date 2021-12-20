@@ -25,7 +25,7 @@ The homepage is designed to be displayed as your Galaxy instance welcome page. J
 
 The site is designed to be fully navigable from within your Galaxy instance, with the Navbar being nested under the Galaxy navbar:
 
-
+![site navigation](.img/iframe-nav.png)
 
 For admin docs, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki).
 
@@ -33,10 +33,10 @@ For admin docs, check out the [Wiki](https://github.com/neoformit/galaxy-content
 
 ## Installation
 
-If you are setting this up for production, create a DNS record for your domain name before running the setup script - this should be an A record pointing to the IP address of the host machine.
+If you are setting this up for production, create a DNS record for your domain name before running the setup script - this should be an A record pointing to the IP address of the host machine. Subdomains are fine.
 
 ```bash
-# This site has been developed and tested on Ubuntu 20.04 LTS.
+# This app has been developed and tested on Ubuntu 20.04 LTS.
 # Other operating systems may require manual installation.
 # The application is installed on a Nginx-Gunicorn-Postgres stack
 # and is not containerized. We recommend installation in a fresh
@@ -44,46 +44,47 @@ If you are setting this up for production, create a DNS record for your domain n
 
 cd <my-projects-directory>
 git clone https://github.com/neoformit/galaxy-content-site.git
-
 cd galaxy-content-site
+PROJECT_ROOT=$PWD
 
 # Follow prompts
 ./deploy/setup.sh
 
 # Check operation with Django local serve
-# Will provide feedback on any issues detected
+# Django will provide feedback on any issues detected
 source deploy/.venv/bin/activate
 python webapp/manage.py runserver
 ```
 
 ---
 
-## Administration
+## Site administration
 
 Visit `/admin/login` and log in with a staff user account. If you don't have one, you can create one with the Django CLI:
 
 ```bash
+cd $PROJECT_ROOT
 source deploy/.venv/bin/activate
 
 # Follow prompts
 python webapp/manage.py createsuperuser
 ```
 
-For more info check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki)
+Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki) to learn about site administration through the admin panel.
 
 ---
 
 ## Migration
 
-If required, you can migrate the application between servers.
+Application state is stored in the PostgreSQL database, with images in the `webapp/webapp/media` directory. If required, you can migrate the application between servers. This assumes some experience with postgres and the psql shell.
 
-> N.B. if the database user name has changed, you will have to dump the database with the `--no-owner` flag and create privileges for the new owner manually in a `psql` shell.
+> N.B. if the database username has changed, you will have to dump the database with the `--no-owner` flag and create privileges for the new owner manually in a `psql` shell.
 
-1. Get a db dump on the old machine:
+1. Grab a db dump on the old machine:
 
   `sudo -u postgres pg_dump <dbname> > gm.sql`
 
-2. Run `deploy/setup.sh` on the new server (N.B superuser will be overwritten by the following steps)
+2. Run `deploy/setup.sh` on the new server (N.B the created superuser will be overwritten in the following steps)
 
 3. Drop and recreate the new database
   ```
@@ -98,6 +99,15 @@ If required, you can migrate the application between servers.
 
 5. Check out the new site, the content should be there.
 
-6. Images/media must be migrated separately. `tar` the `webapp/webapp/media` directory and `sftp` to the new server. Untar in the same location on the new server and your media content should become accessible.
+6. Images/media must be migrated separately. `tar` the `webapp/webapp/media` directory and send to the new server:
+  ```
+  cd $PROJECT_ROOT
+  tar czf - webapp/webapp/media \
+      | ssh <REMOTE-ADDRESS> \ "(
+          cd <NEW_PROJECT_ROOT>/webapp/webapp;
+          cat > media.tar.gz;
+          tar -xzf media.tar.gz && rm media.tar.gz)"
+  ```
+  Images should now be display on the new site.
 
-7. If you are using a Jenkins task for automated news posts, you will need to update the Jenkins config if the hostname has changed.
+7. If you are using a Jenkins task for automated news posts, you will need to update the Jenkins config if the hostname has changed. The API key should be unchanged.
