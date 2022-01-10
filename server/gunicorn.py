@@ -1,4 +1,4 @@
-workers = 1
+workers = 4
 
 # Environment variables
 raw_env = [
