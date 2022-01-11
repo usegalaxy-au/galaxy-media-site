@@ -10,8 +10,8 @@ load_dotenv('../.env', override=True)
 
 DEBUG = False
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-ALLOWED_HOSTS.append('usegalaxy-au.neoformit.com')
 HOSTNAME = os.environ['HOSTNAME']
+ALLOWED_HOSTS.append(HOSTNAME)
 GALAXY_SITE_NAME = 'Media'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
 
 DATABASES = {
