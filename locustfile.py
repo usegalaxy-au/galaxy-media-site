@@ -4,7 +4,7 @@
 
 Run with:
 
-$ locust --host=https://usegalaxy-au.neoformit.com --locustfile locustfile.py
+$ locust --host=https://MYSITE.COM --locustfile locustfile.py
 
 You may need to change your machine's "open file limits".
 On Linux you can do this on a per-session basis with:
