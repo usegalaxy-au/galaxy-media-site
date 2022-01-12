@@ -2,14 +2,21 @@
 
 `requirements.txt` should be pip installed into a virtual env.
 
-Run with:
+See locust.sh for example run with 4 CPUs.
 
-$ locust --host=https://MYSITE.COM --locustfile locustfile.py
-
-You may need to change your machine's "open file limits".
+N.B. You may need to change your machine's "open file limits".
 On Linux you can do this on a per-session basis with:
 
-$ ulimit -S -n 20000
+    $ ulimit -S -n 20000
+
+Start a master process:
+
+    HOST=https://usegalaxy-au-2.neoformit.com
+    locust --host=$HOST --locustfile locustfile.py --master
+
+Start a worker process (probably fork and run several in separate terminal):
+
+    locust --host=$HOST --locustfile locustfile.py --worker &
 
 """
 

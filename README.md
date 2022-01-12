@@ -31,7 +31,7 @@ For admin docs, check out the [Wiki](https://github.com/neoformit/galaxy-content
 
 ---
 
-## Installation
+## Installation and deployment
 
 If you are setting this up for production, create a DNS record for your domain name before running the setup script - this should be an A record pointing to the IP address of the host machine. Subdomains are fine.
 
@@ -56,6 +56,16 @@ source deploy/.venv/bin/activate
 python webapp/manage.py runserver
 ```
 
+> **A note on performance**
+>
+> The app was tested with Locust against a web server with 1vCPU / 2GB RAM
+> (see locustfile.py). It could handle 500 concurrent users with <1s
+> response times before web performance started to degrade.
+>
+> In 2021, peak traffic experienced by Galaxy Australia was below 1000
+> requests per hour, so it seems that a 1CPU machine can handle this service
+> adequately, based on the Locust model.
+
 ---
 
 ## Site administration
@@ -70,7 +80,7 @@ source deploy/.venv/bin/activate
 python webapp/manage.py createsuperuser
 ```
 
-Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki) to learn about site administration through the admin panel.
+Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki) to learn about site administration through the web admin.
 
 ---
 
@@ -84,7 +94,7 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 
   `sudo -u postgres pg_dump <dbname> > gm.sql`
 
-2. Run `deploy/setup.sh` on the new server (N.B the created superuser will be overwritten in the following steps)
+2. Git clone and run `deploy/setup.sh` on the new server (N.B your superuser will be overwritten in the following steps)
 
 3. Drop and recreate the new database
   ```
