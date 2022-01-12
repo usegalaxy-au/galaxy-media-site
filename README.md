@@ -36,8 +36,8 @@ For docs on the web admin, check out the [Wiki](https://github.com/neoformit/gal
 When requested in an `<iframe>` from a Galaxy instance, GMS pages "know" that
 they are in an `iframe` and will render slightly differently than if the user
 was visting the GMS site directly. For developers, if there is content that
-you'd like to render differently you can use the Js function `inIframe()`
-on any page to check if you're currently in an iframe.
+you'd like to render differently you can use the Javascript function
+`inIframe()` on any page to check if you're currently in an iframe.
 
 
 ---
