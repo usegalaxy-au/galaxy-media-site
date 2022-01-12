@@ -1,4 +1,4 @@
-# Galaxy Media Site
+# Galaxy Media Site (GMS)
 
 A simple content site for a Galaxy instance, built with Django.
 
@@ -8,10 +8,11 @@ A simple content site for a Galaxy instance, built with Django.
 
 This web application is designed to host content related to a [Galaxy](https://galaxyproject.org/) instance. It is lightweight, easy to install and maintain, and provides interfaces for publishing:
 
+- A Dynamic landing page for the Galaxy instance
 - Events
 - News items (including automated tool updates)
 - Team members
-- Homepage alerts (Notices)
+- Landing page notices
 
 The site also hosts some static pages including:
 
@@ -19,15 +20,25 @@ The site also hosts some static pages including:
 - Data policy
 - About page
 
-If you fork the repository, these templates can be updated with content relevant to your Galaxy instance.
+If you fork the repository, these templates can be updated with content relevant to your Galaxy instance, and new pages can be added too.
 
-The homepage is designed to be displayed as your Galaxy instance welcome page. Just create a `welcome.html` file with an `iframe` that points to https://mysite.com/landing to get a landing page without the navbar.
+The GMS homepage (aka landing page) is designed to be displayed as your Galaxy instance "welcome" page. Just create a `welcome.html` file with an `iframe` that points to https://mygms.com/landing to get a landing page without the navbar.
 
-The site is designed to be fully navigable from within your Galaxy instance, with the Navbar being nested under the Galaxy navbar:
+The site is designed to be fully navigable from within your Galaxy instance, with the Navbar being nested under the Galaxy navbar once a user has interacted with GSM:
 
 ![site navigation](.img/iframe-nav.png)
 
 For admin docs, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki).
+
+
+> **A note on iframe behaviour**
+>  
+> When requested in an `<iframe>` from a Galaxy instance, GMS pages "know" that
+> they are in an `iframe` and will render slightly differently than if the user
+> was visting the GMS site directly. For developers, if there is content that
+> you'd like to render differently you can use the Js function `inIframe()`
+> on any page to check if you're currently in an iframe.
+
 
 ---
 

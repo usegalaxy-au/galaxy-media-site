@@ -1,4 +1,4 @@
-"""Fake data for rendering some news/event items."""
+"""Fake data for testing news/event item rendering."""
 
 import datetime
 
