@@ -28,7 +28,7 @@ The site is designed to be fully navigable from within your Galaxy instance, wit
 
 ![site navigation](.img/iframe-nav.png)
 
-For admin docs, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki).
+For docs on the web admin, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki).
 
 
 > **A note on iframe behaviour**
