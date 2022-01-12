@@ -8,11 +8,11 @@ A simple content site for a Galaxy instance, built with Django.
 
 This web application is designed to host content related to a [Galaxy](https://galaxyproject.org/) instance. It is lightweight, easy to install and maintain, and provides interfaces for publishing:
 
-- A Dynamic landing page for the Galaxy instance
-- Events
-- News items (including automated tool updates)
-- Team members
+- A dynamic landing page for the Galaxy instance
 - Landing page notices
+- Event posts
+- News articles (including automated tool updates)
+- Team members
 
 The site also hosts some static pages including:
 
@@ -24,20 +24,20 @@ If you fork the repository, these templates can be updated with content relevant
 
 The GMS homepage (aka landing page) is designed to be displayed as your Galaxy instance "welcome" page. Just create a `welcome.html` file with an `iframe` that points to https://mygms.com/landing to get a landing page without the navbar.
 
-The site is designed to be fully navigable from within your Galaxy instance, with the Navbar being nested under the Galaxy navbar once a user has interacted with GSM:
+The site is designed to be fully navigable from within your Galaxy instance, with the GMS Navbar being nested under the main Galaxy navbar once a user has interacted with GMS:
 
 ![site navigation](.img/iframe-nav.png)
 
-For docs on the web admin, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki).
+For docs on the web admin, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration).
 
 
-> **A note on iframe behaviour**
->  
-> When requested in an `<iframe>` from a Galaxy instance, GMS pages "know" that
-> they are in an `iframe` and will render slightly differently than if the user
-> was visting the GMS site directly. For developers, if there is content that
-> you'd like to render differently you can use the Js function `inIframe()`
-> on any page to check if you're currently in an iframe.
+**A note on iframe behaviour**
+ 
+When requested in an `<iframe>` from a Galaxy instance, GMS pages "know" that
+they are in an `iframe` and will render slightly differently than if the user
+was visting the GMS site directly. For developers, if there is content that
+you'd like to render differently you can use the Js function `inIframe()`
+on any page to check if you're currently in an iframe.
 
 
 ---
@@ -45,6 +45,8 @@ For docs on the web admin, check out the [Wiki](https://github.com/neoformit/gal
 ## Installation and deployment
 
 If you are setting this up for production, create a DNS record for your domain name before running the setup script - this should be an A record pointing to the IP address of the host machine. Subdomains are fine.
+
+**The site can be installed and deployed in the terminal as follows:**
 
 ```bash
 # This app has been developed and tested on Ubuntu 20.04 LTS.
@@ -67,15 +69,15 @@ source deploy/.venv/bin/activate
 python webapp/manage.py runserver
 ```
 
-> **A note on performance**
->
-> The app was tested with Locust against a web server with 1vCPU / 2GB RAM
-> (see locustfile.py). It could handle 500 concurrent users with <1s
-> response times before web performance started to degrade.
->
-> In 2021, peak traffic experienced by Galaxy Australia was below 1000
-> requests per hour, so it seems that a 1CPU machine can handle this service
-> adequately, based on the Locust model.
+**A note on performance**
+
+The app was tested with Locust against a web server with 1vCPU / 2GB RAM
+(see `locustfile.py`). It could handle 500 concurrent users with <1s
+response times before web performance started to degrade.
+
+In 2021, peak traffic experienced by Galaxy Australia was below 1000
+requests per hour, so it seems that a 1CPU machine can handle this service
+adequately, based on the Locust model.
 
 ---
 
@@ -91,7 +93,7 @@ source deploy/.venv/bin/activate
 python webapp/manage.py createsuperuser
 ```
 
-Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki) to learn about site administration through the web admin.
+Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration) to learn about site administration through the web admin.
 
 ---
 
@@ -99,7 +101,9 @@ Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki) to l
 
 Application state is stored in the PostgreSQL database, with images in the `webapp/webapp/media` directory. If required, you can migrate the application between servers. This assumes some experience with postgres and the psql shell.
 
-> N.B. if the database username has changed, you will have to dump the database with the `--no-owner` flag and create privileges for the new owner manually in a `psql` shell.
+**N.B.** if the database username has changed, you will have to dump the database with the `--no-owner` flag and create privileges for the new owner manually in a `psql` shell.
+
+**The following steps demonstrate migrating application state to a new machine:**
 
 1. Grab a db dump on the old machine:
 
