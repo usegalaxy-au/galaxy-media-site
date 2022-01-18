@@ -22,7 +22,7 @@ def index(request, landing=False):
     return render(request, 'home/index.html', {
         'news_items': news_items.order_by('-datetime_created')[:6],
         'events': events.order_by('-datetime_created')[:6],
-        'notices': Notice.objects.filter(enabled=True),
+        'notices': Notice.objects.filter(enabled=True).order_by('order'),
         'landing': landing,
     })
 

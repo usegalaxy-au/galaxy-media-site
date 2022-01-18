@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from utils.markdown import MARKDOWN_HELP_TEXT
 from .managers import CustomUserManager
@@ -48,14 +49,20 @@ class Notice(models.Model):
         help_text=('Optional. A valid Material Design icon identifier.'
                    ' <a href="https://fonts.google.com/icons" target="_blank">'
                    ' Browse icons here </a>')
-        )
+    )
     enabled = models.BooleanField(
         default=False,
         help_text="Display on the Galaxy Australia landing page.")
+    order = models.IntegerField(
+        null=True, blank=True,
+        validators=[MinValueValidator(1), MaxValueValidator(99)],
+        help_text=("Order of display on the landing page when multiple Notices"
+                   " are enabled (i.e. lowest value shown first)")
+    )
 
     def __str__(self):
         """Return string representation."""
-        return f"[{self.notice_class}] {self.title}"
+        return f"[{self.get_notice_class_display()}] {self.title}"
 
     def clean(self):
         """Clean fields before saving."""
