@@ -24,7 +24,7 @@
 
   <body>
 
-    <nav class="navbar fixed-top navbar-expand-lg">
+    <nav class="navbar fixed-top navbar-expand-lg embedded">
       <a class="navbar-brand" href="/">
         Galaxy <span class="australia">Australia</span>
         <!-- <img src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy logo"> -->
@@ -127,7 +127,7 @@
 
       $(document).ready( () => {
         // Switch to centered nav if embedded in iframe
-        inIframe() && $('nav').addClass("embedded");
+        inIframe() || $('nav').removeClass("embedded");
 
         // Enable bootstrap tooltips
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
