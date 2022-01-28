@@ -1,0 +1,22 @@
+- hosts: hosts
+  become: true
+  roles:
+    - { role: geerlingguy.nginx }
+    - { role: geerlingguy.certbot }
+    - role: geerlingguy.postgresql
+      become: true
+#    - webapp  # Nearly ready
+
+
+postgresql_databases:
+  - name: webapp # required; the rest are optional
+    login_password: secret
+    login_user: webapp
+    port: 5432
+
+postgresql_users:
+  - name: webapp
+    password: secret
+    db: webapp
+    login_password: secret
+    login_user: webapp

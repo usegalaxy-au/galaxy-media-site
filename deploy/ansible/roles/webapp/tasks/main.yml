@@ -1,0 +1,22 @@
+---
+
+- name: template webserver configuration
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  # https://www.tutorialworks.com/ansible-template-loop/
+  loop: {{ webapp_templates }}
+
+- name: copy webserver configuration
+  copy:
+    src: 'files/webapp.socket'
+    dest: '/etc/systemd/system/webapp.socket'
+
+- name: template setup script
+  template:
+    src: 'templates/setup.sh.tmpl'
+    dest: 'scripts/setup.sh'
+    delegate_to: localhost
+
+- name: webapp setup
+  script: scripts/setup.sh
