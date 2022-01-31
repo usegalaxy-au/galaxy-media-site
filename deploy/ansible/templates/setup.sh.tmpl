@@ -1,0 +1,37 @@
+# Set up python environment, pull code and migrate webapp database
+
+# Install python + pip
+echo "Installing python3.8..."
+sudo apt update
+sudo apt install -y --no-install-recommends python3.8 python3-pip
+python3.8 -m pip install --no-cache-dir --upgrade pip
+python3.8 -m pip install --no-cache-dir virtualenv
+
+# Clone GMS repo and link webapp
+echo "Cloning repository from https://github.com/neoformit/galaxy-content-site.git..."
+git clone https://github.com/neoformit/galaxy-content-site.git {{ project_root }}
+sudo ln -s {{ project_root }}/webapp {{ web_root }}
+cd {{ project_root }}
+
+echo "Creating virtual environment..."
+python3.8 -m virtualenv {{ venv_root }}
+source {{ venv_root }}/bin/activate
+python -m pip install --no-cache-dir -r requirements.txt
+
+# Migrate database
+export DJANGO_SETTINGS_MODULE=webapp.settings.prod
+python webapp/manage.py migrate
+
+sudo systemctl daemon-reload
+sudo systemctl enable webapp.service
+sudo systemctl enable webapp.socket
+sudo service webapp start
+sudo service nginx restart
+
+python webapp/manage.py collectstatic --noinput
+
+DJANGO_SUPERUSER_PASSWORD="{{ webapp.admin_user.password }}"
+python webapp/manage.py createsuperuser --noinput \
+  --email "{{ webapp.admin_user.email }}" \
+  --first_name "{{ webapp.admin_user.first_name }}" \
+  --last_name "{{ webapp.admin_user.last_name }}"

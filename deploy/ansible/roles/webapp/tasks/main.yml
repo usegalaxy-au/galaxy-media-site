@@ -1,0 +1,17 @@
+---
+
+# https://www.tutorialworks.com/ansible-template-loop/
+- name: template webserver configuration
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  loop: {{ webapp.templates }}
+
+- name: copy webserver configuration
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    loop: {{ webapp.files }}
+
+- name: run webapp setup script
+  script: {{ server_root }}/setup.sh
