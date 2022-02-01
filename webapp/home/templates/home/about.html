@@ -4,18 +4,64 @@
 
 
 {% block head %}
+<link rel="stylesheet" href="{% static 'home/css/about.css' %}">
 {% endblock %}
 
 
 {% block content %}
 
+<div class="about-nav">
+  <button class="active" type="button" name="about" onclick="selectPage('about')">
+    About
+  </button>
+
+  <button type="button" name="feature-catalogue" onclick="selectPage('feature-catalogue')">
+    Feature catalogue
+  </button>
+
+  <button type="button" name="terms-of-service" onclick="selectPage('terms-of-service')">
+    Terms of service
+  </button>
+
+  <button type="button" name="data-privacy" onclick="selectPage('data-privacy')">
+    Data privacy
+  </button>
+
+  <button type="button" name="acceptable-use" onclick="selectPage('acceptable-use')">
+    Acceptable use
+  </button>
+
+  <button type="button" name="service-levels" onclick="selectPage('service-levels')">
+    Service levels
+  </button>
+</div>
+
 <main>
   <div class="container">
+    <section id="about" class="show">
+      {% include 'home/snippets/about/about.html' %}
+    </section>
 
-    <!-- Nav with butttons -->
+    <section id="feature-catalogue">
+      {% include 'home/snippets/about/feature-catalogue.html' %}
+    </section>
 
-    <!-- Sections with includes -->
+    <section id="terms-of-service">
+      {% include 'home/snippets/about/terms-of-service.html' %}
+    </section>
 
+    <section id="data-privacy">
+      {% include 'home/snippets/about/data-privacy.html' %}
+    </section>
+
+    <section id="acceptable-use">
+      {% include 'home/snippets/about/acceptable-use.html' %}
+    </section>
+
+    <section id="service-levels">
+      {% include 'home/snippets/about/service-levels.html' %}
+    </section>
+  </div>
 </main>
 {% endblock %}
 
@@ -24,12 +70,55 @@
 
 <script type="text/javascript">
 
-  // window load scrolltop 1ms timeout
+  if (location.hash) {
+    setTimeout(function() {
+      window.scrollTo(0, 0);
+    }, 1);
+  }
 
   // selectPage()
+  function selectPage(id) {
+    $('section').removeClass('show');
+    $(`#${id}`).addClass('show');
+    $('.about-nav button').removeClass('active');
+    $(`.about-nav button[name="${id}"]`).addClass('active');
+  }
 
-  // scrollToId()
+  function scrollToId(id) {
+    console.log(`scrollToId('${id}')`);
+    const el = $(`#${id}`);
 
+    // Check if id matches an element
+    if (!el) {
+      console.log(`No element matching #${id}`);
+      return
+    }
+    // Check if element is section
+    if (el.prop('tagName').toLowerCase() === 'section') {
+      console.log(`#${id} matches a section`);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant',
+      });
+      return selectPage(id);
+    }
+    // Check if element has a parent section that should be shown
+    const section = el.closest('section');
+    if (section) {
+      console.log(`Found parent section #${section.prop('id')} for element #${id}`);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant',
+      });
+      selectPage(section.prop('id'));
+    }
+    // Scroll to element
+    $([document.documentElement, document.body]).animate({
+        scrollTop: el.offset().top - 100
+    }, 1000);
+  }
 </script>
 
 {% endblock %}
@@ -37,8 +126,17 @@
 
 {% block onload %}
 
-// if window hash: scrollToId
+window.location.hash && scrollToId(window.location.hash.slice(1));
 
-// anchor.click(scrollToId)
+$('a').click( e => {
+  if (
+  e.target.href.startsWith(window.location.origin)
+  && e.target.href.includes('#')) {
+    // It's an internal link
+    e.preventDefault();
+    history.pushState({}, '', e.target.href);
+    scrollToId(e.target.href.split('#')[1]);
+  }
+})
 
 {% endblock %}

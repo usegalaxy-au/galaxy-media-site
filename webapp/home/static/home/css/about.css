@@ -45,10 +45,10 @@ main {
   color: #999;
   background: rgba(50,50,50,0.1);
 }
-.page {
+section {
   display: none;
 }
-.page.show {
+section.show {
   display: block;
 }
 .textbox {
