@@ -70,18 +70,25 @@
 
 <script type="text/javascript">
 
-  if (location.hash) {
-    setTimeout(function() {
-      window.scrollTo(0, 0);
-    }, 1);
-  }
-
-  // selectPage()
   function selectPage(id) {
+    // Select a <section> to display
     $('section').removeClass('show');
     $(`#${id}`).addClass('show');
     $('.about-nav button').removeClass('active');
     $(`.about-nav button[name="${id}"]`).addClass('active');
+    history.pushState({}, '', `#${id}`);
+  }
+
+  function tryScrollTop() {
+    // Scroll to top only if not already there
+    if (document.documentElement.scrollTop || document.body.scrollTop) {
+      console.log("tryScrollTop scrolling to top");
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant',
+      });
+    }
   }
 
   function scrollToId(id) {
@@ -96,28 +103,21 @@
     // Check if element is section
     if (el.prop('tagName').toLowerCase() === 'section') {
       console.log(`#${id} matches a section`);
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-      });
+      tryScrollTop();
       return selectPage(id);
     }
     // Check if element has a parent section that should be shown
     const section = el.closest('section');
     if (section) {
       console.log(`Found parent section #${section.prop('id')} for element #${id}`);
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-      });
+      tryScrollTop();
       selectPage(section.prop('id'));
     }
     // Scroll to element
     $([document.documentElement, document.body]).animate({
         scrollTop: el.offset().top - 100
     }, 1000);
+    history.pushState({}, '', `#${id}`);
   }
 </script>
 
@@ -126,7 +126,17 @@
 
 {% block onload %}
 
-window.location.hash && scrollToId(window.location.hash.slice(1));
+// Prevent default hash scroll
+if (location.hash) {
+  console.log("Set timeout to intercept hash scroll");
+  setTimeout(function() {
+    window.scrollTo(0, 0);
+  }, 10);
+}
+
+window.location.hash && setTimeout(function() {
+  scrollToId(window.location.hash.slice(1));
+}, 100);
 
 $('a').click( e => {
   if (
@@ -134,7 +144,6 @@ $('a').click( e => {
   && e.target.href.includes('#')) {
     // It's an internal link
     e.preventDefault();
-    history.pushState({}, '', e.target.href);
     scrollToId(e.target.href.split('#')[1]);
   }
 })
