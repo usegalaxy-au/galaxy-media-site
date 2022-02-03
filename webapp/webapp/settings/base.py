@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    'captcha',
     'home',
     'news',
     'events',
@@ -176,6 +176,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Random bits
 LOGOUT_REDIRECT_URL = '/'
-
-# Django form styling
-CRISPY_TEMPLATE_PACK = 'bootstrap4'

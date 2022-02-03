@@ -19,6 +19,8 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "secretkey"
 
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

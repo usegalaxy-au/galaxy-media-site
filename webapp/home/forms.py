@@ -2,14 +2,11 @@
 
 
 from django import forms
-from crispy_forms.helper import FormHelper
+from captcha import fields, widgets
 
 
 class ResourceRequestForm(forms.Form):
     """Form for requesting a tool or dataset."""
-
-    # For crispy bootstrap4 forms
-    helper = FormHelper()
 
     RESOURCE_CHOICES = (
         ('tool', 'Tool'),
@@ -34,13 +31,11 @@ class ResourceRequestForm(forms.Form):
     # Fields for dataset
     dataset_contact_consent = forms.BooleanField(required=False)
 
-    def clean(self):
-        """Validate and clean the dispatched form."""
-        pass
+    captcha = fields.ReCaptchaField()
 
     def dispatch(self):
-        """Dispatch the form content as an email."""
-        pass
+        """Dispatch the form content to the FreshDesk API."""
+        return
 
 
 class QuotaRequestForm(forms.Form):
@@ -50,6 +45,6 @@ class QuotaRequestForm(forms.Form):
 
 
 class SupportRequestForm(forms.Form):
-    """Form for requesting user support. Is this required?"""
+    """Form for requesting user support."""
 
     pass

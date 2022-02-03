@@ -33,3 +33,7 @@ span.material-icons {
 .form-check-label {
   margin-left: 1rem;
 }
+.g-recaptcha {
+  display: flex;
+  justify-content: center;
+}

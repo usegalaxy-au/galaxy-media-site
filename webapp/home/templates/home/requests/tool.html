@@ -240,7 +240,13 @@
       </div>
       <!-- End dataset specific -->
 
+
       <div class="text-center">
+        <div class="mb-10">
+          {{ form.captcha }}
+          {{ form.captcha.errors }}
+        </div>
+
         <button class="ga-btn" type="submit">Submit</button>
       </div>
 
