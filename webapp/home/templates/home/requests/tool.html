@@ -93,18 +93,19 @@
       <div class="tool-yes">
         <div class="row mb-10">
           <div class="col-md-5">
-            <input class="form-check-input" id="toolshedAvailableInput" type="checkbox" name="tool_toolshed_available"
-            value="{{form.tool_toolshed_available.value|default_if_none:'0'}}"
-            aria-describedby="toolshedAvailableHelp"
+            <input class="form-check-input" id="toolshedAvailableInput"
+              type="checkbox" name="tool_toolshed_available"
+              value="{{form.tool_toolshed_available.value|default_if_none:'0'}}"
+              aria-describedby="toolshedAvailableHelp"
             >
             <label for="toolshedAvailableInput" class="form-check-label">
-              Is the requested tool available on the
-              <a href="https://toolshed.g2.bx.psu.edu/" target="_blank">Galaxy Toolshed</a>?
+              Is the requested tool available on the Galaxy Toolshed?
             </label>
             <div id="toolshedAvailableHelp" class="form-text">
               The
               <a href="https://toolshed.g2.bx.psu.edu/" target="_blank">Galaxy Toolshed</a>
-              is like an app store for Galaxy tools.
+              is like an app store for Galaxy tools. These tools can be installed
+              on Galaxy Australia in a matter of days.
               Learn about the Galaxy Toolshed
               <a href="https://galaxyproject.org/toolshed/">here</a>.
             </div>
@@ -240,18 +241,24 @@
       </div>
       <!-- End dataset specific -->
 
-
-      <div class="text-center">
-        <div class="mb-10">
-          {{ form.captcha }}
-          {{ form.captcha.errors }}
-        </div>
-
-        <button class="ga-btn" type="submit">Submit</button>
+      <div class="mb-10">
+        {{ form.captcha }}
+        {{ form.captcha.errors }}
       </div>
 
+      <div class="text-center">
+        <button class="ga-btn" type="submit">Submit</button>
+      </div>
     </div>
   </form>
+
+  <div class="container mt-10">
+    <p class="text-center">
+      Need help?
+      <a href="/request/support">Contact support</a>
+    </p>
+  </div>
+
 </main>
 {% endblock %}
 
@@ -262,7 +269,7 @@
   $('#resourceToolRadio').click(function(e) {
     $('.tool-yes').show();
     $('.data-yes').hide();
-    $('.main').show();
+    $('.main').fadeIn(500);
   });
 
   $('#resourceDatasetRadio').click(function(e) {
@@ -270,12 +277,14 @@
     $('.tool-yes').hide();
     $('#toolshedAvailableInput').prop('checked', false);
     $('.toolshed-yes').toggle(0);
-    $('.main').show();
+    $('.main').fadeIn(500);
   });
 
   $('#toolshedAvailableInput').click(function() {
     console.log(`Toolshed available value: ${this.checked}`);
-    $('.toolshed-yes').toggle(this.checked);
+    this.checked ?
+      $('.toolshed-yes').fadeIn(500)
+      : $('.toolshed-yes').hide();
   });
 </script>
 
