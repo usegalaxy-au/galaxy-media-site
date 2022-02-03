@@ -29,3 +29,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# Galaxy AU mail server
+EMAIL_HOST = os.environ['MAIL_HOSTNAME']
+EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
+EMAIL_HOST_USER = os.environ['MAIL_SMTP_USERNAME']
+EMAIL_HOST_PASSWORD = os.environ['MAIL_SMTP_PASSWORD']
+EMAIL_HOST_USE_TLS = os.environ.get('MAIL_USE_TLS') or False

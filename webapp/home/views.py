@@ -5,9 +5,10 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 
-from home.models import Notice
 from events.models import Event
 from news.models import News
+from .models import Notice
+from .forms import ResourceRequestForm
 
 
 def index(request, landing=False):
@@ -40,6 +41,37 @@ def about(request):
 def support(request):
     """Show support page."""
     return render(request, 'home/support.html')
+
+
+def user_request(request):
+    """Show user request menu."""
+    return render(request, 'home/requests/menu.html')
+
+
+def user_request_tool(request):
+    """Handle user tool requests."""
+    form = ResourceRequestForm()
+    if request.POST:
+        form = ResourceRequestForm(request.POST)
+        if form.is_valid():
+            form.dispatch()
+            return user_request_success(request)
+    return render(request, 'home/requests/tool.html', {'form': form})
+
+
+def user_request_data(request):
+    """Handle user data quote requests."""
+    return render(request, 'home/requests/data.html')
+
+
+def user_request_support(request):
+    """Handle user support requests."""
+    return render(request, 'home/requests/support.html')
+
+
+def user_request_success(request):
+    """Show success page after form submission."""
+    pass
 
 
 def page(request):

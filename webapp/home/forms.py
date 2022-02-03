@@ -1,98 +1,55 @@
-"""Forms for managing generic content."""
+"""User-facing forms for making content requests (tools/data)."""
+
 
 from django import forms
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.core.exceptions import ValidationError
-
-from .models import User, Notice
+from crispy_forms.helper import FormHelper
 
 
-class UserCreationForm(forms.ModelForm):
-    """Create new user.
+class ResourceRequestForm(forms.Form):
+    """Form for requesting a tool or dataset."""
 
-    Includes all the required fields, plus a repeated password.
-    """
+    # For crispy bootstrap4 forms
+    helper = FormHelper()
 
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(
-        label='Password confirmation',
-        widget=forms.PasswordInput
+    RESOURCE_CHOICES = (
+        ('tool', 'Tool'),
+        ('dataset', 'Dataset'),
     )
 
-    class Meta:
-        model = User
-        fields = ('email', 'first_name', 'last_name')
+    name = forms.CharField()
+    email = forms.EmailField()
+    # tool/dataset
+    resource_type = forms.ChoiceField(choices=RESOURCE_CHOICES)
+    resource_name_version = forms.CharField()
+    resource_url = forms.URLField(required=False)
+    resource_justification = forms.CharField(required=False)
+    resource_research_count = forms.IntegerField(required=False)
+    resource_research_groups = forms.CharField(required=False)
 
-    def clean_password2(self):
-        # Check that the two password entries match
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise ValidationError("Passwords don't match")
-        return password2
+    # Fields for tool
+    tool_toolshed_available = forms.BooleanField(required=False)
+    tool_toolshed_url = forms.URLField(required=False)
+    tool_test_data = forms.BooleanField(required=False)
 
-    def save(self, commit=True):
-        # Save the provided password in hashed format
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
+    # Fields for dataset
+    dataset_contact_consent = forms.BooleanField(required=False)
 
+    def clean(self):
+        """Validate and clean the dispatched form."""
+        pass
 
-class UserChangeForm(forms.ModelForm):
-    """Update user.
-
-    Includes all the fields on
-    the user, but replaces the password field with admin's
-    disabled password hash display field.
-    """
-
-    password = ReadOnlyPasswordHashField()
-    password1 = forms.CharField(
-        label='Update Password',
-        widget=forms.PasswordInput,
-        required=False,
-    )
-    password2 = forms.CharField(
-        label='Password confirmation',
-        widget=forms.PasswordInput,
-        required=False,
-    )
-
-    class Meta:
-        model = User
-        fields = ('email', 'first_name', 'last_name')
-
-    def clean_password2(self):
-        # Check that the two password entries match
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise ValidationError("Passwords don't match")
-        return password2
-
-    def save(self, commit=True):
-        # Save the provided password in hashed format
-        user = super().save(commit=False)
-        if self.cleaned_data["password1"]:
-            user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
+    def dispatch(self):
+        """Dispatch the form content as an email."""
+        pass
 
 
-class NoticeAdminForm(forms.ModelForm):
-    """Update and create events."""
+class QuotaRequestForm(forms.Form):
+    """Form for requesting data quota."""
 
-    class Meta:
-        """Form metadata."""
+    pass
 
-        model = Notice
-        widgets = {
-            'body': forms.Textarea(attrs={
-                'rows': 30,
-                'cols': 120,
-            }),
-        }
-        fields = '__all__'
+
+class SupportRequestForm(forms.Form):
+    """Form for requesting user support. Is this required?"""
+
+    pass

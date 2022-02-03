@@ -35,7 +35,6 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'home',
     'news',
     'events',
@@ -80,7 +80,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'webapp.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -154,6 +153,13 @@ LOGGING = {
     },
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Mailtrap.io
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '7ac4110c7f742c'
+EMAIL_HOST_PASSWORD = '256cd0d8c23ce3'
+EMAIL_PORT = '2525'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -170,3 +176,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Random bits
 LOGOUT_REDIRECT_URL = '/'
+
+# Django form styling
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

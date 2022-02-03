@@ -1,0 +1,17 @@
+main {
+  margin-bottom: 12rem;
+}
+.main,
+.tool-yes,
+.toolshed-yes,
+.data-yes {
+  display: none;
+}
+.border {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+#toolshedUrlHelp img {
+  width: auto;
+  max-height: 500px;
+}
