@@ -1,0 +1,415 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container">
+  <h2>Galaxy Australia Quota Increase Application</h2>
+
+  <div class="m-5 p-5">
+    <p>
+      In line with other large public Galaxy services (such as usegalaxy.eu) with more and more users of our service, we are required to enable user quotas so there is enough working data storage for all our users of this shared service.
+    </p>
+
+    <p>
+      However, we do not want to restrict you and your research - therefore, for bigger projects, we offer larger quotas for a defined time frame.
+    </p>
+
+    <p>
+      After the defined time-frame, your quota will roll back to the default value. Additionally, after the defined time-frame, if you are over quota you will not be able to start any new jobs unless you clean up your working data storage. We will not remove any data, we will just restrict you to stay within your quota.
+    </p>
+
+    <p>
+      Please use this form to request an increase in your data storage quota on Galaxy Australia.
+    </p>
+  </div>
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    <div class="row mb-10">
+      <div class="col-md-6">
+        <label for="nameInput" class="form-label">Name</label>
+        {{ form.name.errors }}
+        <input class="form-control" id="nameInput" type="text" name="name"
+        value="{{form.name.value|default_if_none:''}}" required>
+      </div>
+
+      <div class="col-md-6">
+        <label for="emailInput" class="form-label">Email</label>
+        {{ form.email.errors }}
+        <input class="form-control" id="emailInput" type="text" name="email"
+        value="{{form.email.value|default_if_none:''}}"
+        aria-describedby="emailHelp" required
+        >
+        <div id="emailHelp" class="form-text">
+          We may contact you to request further detail.
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col-md-6">
+        <label for="institutionInput" class="form-label">Institution and address</label>
+        {{ form.institution.errors }}
+        <input class="form-control" id="institutionInput" type="text" name="institution"
+        value="{{form.institution.value|default_if_none:''}}" required>
+      </div>
+
+      <div class="col-md-6">
+        <label for="groupNameInput" class="form-label">Name of your working group & PI</label>
+        <input class="form-control" id="groupNameInput" type="text" name="group_name"
+        value="{{form.group_name.value|default_if_none:''}}" required>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <label for="dateInput" class="form-label">
+          When do you plan to start your data analysis?
+        </label>
+        {{ form.date.errors }}
+        <input class="form-control" id="dateInput" type="date" name="start_date"
+        value="{{form.start_date.value|default_if_none:''}}" required>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <p>
+          For how long do you need your extended Galaxy access beyond your registered allocation?
+        </p>
+        {{ form.duration.errors }}
+        <div class="form-check">
+          <input class="form-check-input"  id="durationInput1" type="radio" name="duration" value="1" {% if form.duration.value == '1' %}checked{% endif%}>
+          <label class="form-check-label" for="durationInput1">+ 1 month</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="durationInput3" type="radio" name="duration" value="3" {% if form.duration.value == '3' %}checked{% endif%}>
+          <label class="form-check-label" for="durationInput3">+ 3 months</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="durationInput6" type="radio" name="duration" value="6" {% if form.duration.value == '6' %}checked{% endif%}>
+          <label class="form-check-label" for="durationInput6">+ 6 months</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <p>
+          How much storage space do you need? "I need an overall quota of ..."
+        </p>
+        {{ form.disk_gb.errors }}
+        <div class="form-check">
+          <input class="form-check-input"  id="diskInput1" type="radio" name="disk_gb" value="500"
+            {% if form.disk_gb.value == '500' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="diskInput1">500 GB</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="diskInput2" type="radio" name="disk_gb" value="750"
+            {% if form.disk_gb.value == '750' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="diskInput2">750GB</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="diskInput3" type="radio" name="disk_gb" value="1000"
+            {% if form.disk_gb.value == '1000' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="diskInput3">1TB</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="diskInput4" type="radio" name="disk_gb" value=""
+            {% if form.disk_gb.value == '' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="diskInput4">I'm not sure, please contact me.</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <p> What organism are your samples derived from? </p>
+        {{ form.organism.errors }}
+        <div class="form-check">
+          <input class="form-check-input"  id="organism1" type="radio" name="organism" value="human"
+            {% if form.organism.value == 'human' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="organism1">Human</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="organism2" type="radio" name="organism" value="mouse"
+            {% if form.organism.value == 'mouse' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="organism2">Mouse</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="organism3" type="radio" name="organism" value="bacteria"
+            {% if form.organism.value == 'bacteria' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="organism3">Bacteria</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="organism4" type="radio" name="organism" value="plant"
+            {% if form.organism.value == 'plant' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="organism4">Plant</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="organism5" type="radio" name="organism" value=""
+            {% if form.organism.value == '' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="organism5">Something else</label>
+          <input class="show-other form-control" type="text" name="organism_other"
+            value="{{ form.organism_other.value|default_if_none:'' }}"
+            placeholder="Please describe"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <label for="descriptionInput" class="form-label">
+          Please describe very briefly your biological question and content of your data analysis
+        </label>
+        {{ form.description.errors }}
+        <textarea class="form-control" id="descriptionInput"
+          name="description" rows="4" required
+        >{{form.description.value|default_if_none:''}}</textarea>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <p> What kind of data will you use this quota for? </p>
+        {{ form.technology.errors }}
+        <div class="form-check">
+          <input class="form-check-input"  id="technology1" type="radio" name="technology" value="RNAseq"
+            {% if form.technology.value == 'RNAseq' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="technology1">RNAseq</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="technology2" type="radio" name="technology" value="ChIPseq"
+            {% if form.technology.value == 'ChIPseq' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="technology2">ChIPseq</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="technology3" type="radio" name="technology" value="Exomeseq"
+            {% if form.technology.value == 'Exomeseq' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="technology3">Exomeseq (variant calling)</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="technology4" type="radio" name="technology" value="Methylation analysis"
+            {% if form.technology.value == 'Methylation analysis' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="technology4">Methylation analysis</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="technology5" type="radio" name="technology" value="Protein data analysis"
+            {% if form.technology.value == 'Protein data analysis' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="technology5">Protein data analysis</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="technology6" type="radio" name="technology" value="Multi-omics analysis"
+            {% if form.technology.value == 'Multi-omics analysis' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="technology6">Multi-omics analysis</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="technology7" type="radio" name="technology" value=""
+            {% if form.technology.value == '' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="technology7">Something else</label>
+          <input class="show-other form-control" type="text" name="technology_other"
+            value="{{ form.technology_other.value|default_if_none:'' }}"
+            placeholder="Please describe"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <p> What file type do you want to upload? </p>
+        {{ form.file_type.errors }}
+        <div class="form-check">
+          <input class="form-check-input"  id="fileType1" type="radio" name="file_type" value="fastq"
+            {% if form.file_type.value == 'fastq' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="fileType1">fastq</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="fileType2" type="radio" name="file_type" value="fastqsanger"
+            {% if form.file_type.value == 'fastqsanger' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="fileType2">fastqsanger</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="fileType3" type="radio" name="file_type" value="fasta"
+            {% if form.file_type.value == 'fasta' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="fileType3">fasta</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="fileType4" type="radio" name="file_type" value=""
+            {% if form.file_type.value == '' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="fileType4">Other</label>
+          <input class="show-other form-control" type="text" name="file_type_other"
+            value="{{ form.file_type_other.value|default_if_none:'' }}"
+            placeholder="Please describe"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <p> How many samples (raw data) do you want to analyse? </p>
+        {{ form.max_samples.errors }}
+        <div class="form-check">
+          <input class="form-check-input"  id="sampleSize1" type="radio" name="max_samples" value="10"
+          {% if form.max_samples.value == '10' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="sampleSize1">1-10</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="sampleSize2" type="radio" name="max_samples" value="20"
+          {% if form.max_samples.value == '20' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="sampleSize2">11-20</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="sampleSize3" type="radio" name="max_samples" value="50"
+          {% if form.max_samples.value == '50' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="sampleSize3">21-50</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="sampleSize4" type="radio" name="max_samples" value="100"
+          {% if form.max_samples.value == '5000' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="sampleSize4">50-100</label>
+          </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="sampleSize6" type="radio" name="max_samples" value=""
+          {% if form.max_samples.value == '' %}checked{% endif%}
+          >
+          <label class="form-check-label" for="sampleSize6">Other</label>
+          <input class="show-other form-control" type="number" name="max_samples_other"
+            value="{{ form.max_samples_other.value|default_if_none:'' }}"
+            placeholder="Please describe"
+          >
+        </div>
+      </div>
+    </div>
+
+
+    <div class="m-5 p-5">
+      <hr>
+      <h4>Agreement on the use of the Galaxy Australia Server</h4>
+
+      <p>
+        Our service is free for you, but not free for us!
+      </p>
+
+      <p>
+        We want to maintain high competency and provide high quality data analysis services to all our Galaxy users.
+      </p>
+
+      <p>
+        Therefore we request you to acknowledge this service, by including the members of the Galaxy Australia Team as co-authors if they have made a significant intellectual and/or organizational contribution to the work described (conceptualization, design, data analysis, data interpretation and/or input into drafting, revising or writing any portion of the manuscript).
+      </p>
+
+      <p>
+        If no member of the Galaxy Australia team has contributed directly to your work, but you have used the Galaxy Australia platform, please acknowledge our service in the acknowledgements section. The more visible our service is, the more funding we can ask, the more service we can deliver to you :-)
+      </p>
+
+      <br>
+
+      <p class="lead"> Please confirm that you have read and accept the agreement </p>
+
+      <div class="form-check">
+        <input class="form-check-input"  id="acceptTerms" type="checkbox" name="accepted_terms" value="0" required>
+        <label class="form-check-label" for="acceptTerms">
+          I have read and accept the agreement
+        </label>
+      </div>
+
+      <hr>
+
+    </div>
+
+
+    <div class="m-5 p-5 text-center">
+      <p>A copy of your responses will be emailed to the address that you provided.</p>
+
+      <button class="ga-btn"type="submit">Submit request</button>
+    </div>
+  </form>
+
+</main>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+  $('input[type="radio"]').click( e => {
+    const other = $(`input[name="${e.target.name}_other"]`);
+    event.target.value === '' ? other.fadeIn(250) : other.fadeOut(250);
+  });
+</script>
+{% endblock %}
+
+
+{% block onload %}
+  // Trigger selected "other" fields display
+  $('input[type="radio"]').each( (i, item) => {
+    console.log('Clicking a radio button')
+    item.checked && $(item).click()
+  })
+
+  // Scroll to errors if present
+  if ($('.errorlist')) {
+    $('html, body').animate({
+        scrollTop: $('.errorlist').offset().top - 100,
+      }, 1000
+    )
+  }
+{% endblock %}

@@ -5,7 +5,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
-<link rel="stylesheet" href="{% static 'home/css/request-tool.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
 {% endblock %}
 
 
@@ -36,11 +36,11 @@
     </p>
   </div>
 
-  <form class="needs-validation" method="post">
+  <form method="post">
 
     {% csrf_token %}
 
-    <div class="row needs-validation mb-10">
+    <div class="row mb-10">
       <div class="col-md-6">
         <label for="nameInput" class="form-label">Name</label>
         <input class="form-control" id="nameInput" type="text" name="name"
@@ -247,7 +247,7 @@
       </div>
 
       <div class="text-center">
-        <button class="ga-btn" type="submit">Submit</button>
+        <button class="ga-btn" type="submit">Submit request</button>
       </div>
     </div>
   </form>

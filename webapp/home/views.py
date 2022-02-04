@@ -4,11 +4,12 @@ import os
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
+from pprint import pprint
 
 from events.models import Event
 from news.models import News
 from .models import Notice
-from .forms import ResourceRequestForm
+from .forms import ResourceRequestForm, QuotaRequestForm
 
 
 def index(request, landing=False):
@@ -59,9 +60,17 @@ def user_request_tool(request):
     return render(request, 'home/requests/tool.html', {'form': form})
 
 
-def user_request_data(request):
-    """Handle user data quote requests."""
-    return render(request, 'home/requests/data.html')
+def user_request_quota(request):
+    """Handle user data quota requests."""
+    form = QuotaRequestForm()
+    if request.POST:
+        form = QuotaRequestForm(request.POST)
+        if form.is_valid():
+            form.dispatch()
+            return user_request_success(request)
+        print("Form was invalid")
+        pprint(form.errors)
+    return render(request, 'home/requests/quota.html', {'form': form})
 
 
 def user_request_support(request):
@@ -71,7 +80,7 @@ def user_request_support(request):
 
 def user_request_success(request):
     """Show success page after form submission."""
-    pass
+    return render(request, 'home/requests/success.html')
 
 
 def page(request):

@@ -2,6 +2,7 @@
   --color: #2C3143;
   --tile-bg: #F8F9FA;
   --border: #70707033;
+  --error: #dc3545;
 }
 body {
   color: #2C3143;

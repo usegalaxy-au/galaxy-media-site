@@ -2,7 +2,9 @@
 
 
 from django import forms
-from captcha import fields, widgets
+from django.core.exceptions import ValidationError
+from captcha import fields
+from pprint import pprint
 
 
 class ResourceRequestForm(forms.Form):
@@ -34,14 +36,62 @@ class ResourceRequestForm(forms.Form):
     captcha = fields.ReCaptchaField()
 
     def dispatch(self):
-        """Dispatch the form content to the FreshDesk API."""
-        return
+        """Dispatch content via the FreshDesk API."""
+        print("Dispatch to the FreshDesk API!")
+        pprint(self.cleaned_data)
 
 
 class QuotaRequestForm(forms.Form):
     """Form for requesting data quota."""
 
-    pass
+    DURATION_MONTHS_CHOICES = (
+        ('1', '1 month'),
+        ('3', '3 months'),
+        ('6', '6 months'),
+    )
+
+    name = forms.CharField()
+    email = forms.EmailField()
+    institution = forms.CharField()
+    group_name = forms.CharField()
+    start_date = forms.DateField()
+    duration = forms.ChoiceField(choices=DURATION_MONTHS_CHOICES)
+    disk_gb = forms.IntegerField(required=False)  # null = don't know
+    description = forms.CharField()
+    organism = forms.CharField(required=False)
+    organism_other = forms.CharField(required=False)
+    technology = forms.CharField(required=False)
+    technology_other = forms.CharField(required=False)
+    file_type = forms.CharField(required=False)
+    file_type_other = forms.CharField(required=False)
+    max_samples = forms.IntegerField(required=False)
+    max_samples_other = forms.IntegerField(required=False)
+    accepted_terms = forms.BooleanField()
+
+    def clean(self):
+        """Validate and check 'other' values."""
+        data = super().clean()
+        OTHER_FIELDS = [
+            'organism',
+            'technology',
+            'file_type',
+            'max_samples',
+        ]
+
+        for field in OTHER_FIELDS:
+            if not data.get(field):
+                # User may have selected the 'other' field and typed a value
+                if not data.get(f'{field}_other'):
+                    self.add_error(
+                        field,
+                        ValidationError('This field is required'))
+                data[field] = data[f'{field}_other']
+        return data
+
+    def dispatch(self):
+        """Dispatch content via the FreshDesk API."""
+        print("Dispatch to the FreshDesk API!")
+        pprint(self.cleaned_data)
 
 
 class SupportRequestForm(forms.Form):
