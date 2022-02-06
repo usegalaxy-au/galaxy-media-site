@@ -69,7 +69,7 @@
       <p> Is your request for a new tool or a new dataset on Galaxy Australia?</p>
       <div class="form-check">
         <input class="form-check-input" type="radio" value="tool"
-          name="resource_type" id="resourceToolRadio"
+          name="resource_type" id="resourceToolRadio" required
         >
         <label class="form-check-label" for="resourceToolRadio">
           Tool
@@ -77,7 +77,7 @@
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" value="dataset"
-          name="resource_type" id="resourceDatasetRadio"
+          name="resource_type" id="resourceDatasetRadio" required
         >
         <label class="form-check-label" for="resourceDatasetRadio">
           Dataset
@@ -166,8 +166,11 @@
         </div>
       </div>
 
-      <div class="mb-10 data-yes toolshed-yes">
-        <label for="resourceUrlInput" class="form-label">URL of the specified resource</label>
+      <div class="mb-10 toolshed-no">
+        <label for="resourceUrlInput" class="form-label">
+          <span class="tool-yes">URL for the software code</span>
+          <span class="data-yes">URL of the specified resource</span>
+        </label>
         <input class="form-control" id="resourceUrlInput" type="text"
           name="resource_url"
           value="{{form.resource_url.value|default_if_none:''}}"
@@ -175,7 +178,7 @@
         >
         <div id="resourceUrlHelp" class="form-text">
           <span class="tool-yes">
-            In certain cases it may be possible for us to resource the wrapping of tools for inclusion in the Galaxy Toolshed. In this case, where should we download the software from (e.g. GitHub location).
+            In certain cases it may be possible for us to resource the wrapping of tools for inclusion in the Galaxy Toolshed - this could be any open-source tool that is of value to the Galaxy community. In this case, we will require a link to the software code (e.g. GitHub repository).
           </span>
           <span class="data-yes">
             What is the authoritative source to download the dataset from?
@@ -186,7 +189,7 @@
       <div class="mb-10">
         <label for="justificationInput" class="form-label">Justification for this resource</label>
         <textarea class="form-control" id="justificationInput" name="resource_justification"
-          aria-describedby="justificationHelp" rows="4"
+          aria-describedby="justificationHelp" rows="4" required
         >{{form.resource_justification.value|default_if_none:''}}</textarea>
         <div id="justificationHelp" class="form-text">
           <span class="tool-yes">
@@ -203,8 +206,12 @@
           How many researchers are you aware of across Australia who also require
           access to this reference dataset on Galaxy Australia?
         </label>
-        <input class="form-control" id="researchCountInput" type="text" name="resource_research_count"
-          value="{{form.resource_research_count.value|default_if_none:''}}" aria-describedby="researchCountHelp">
+        <input class="form-control" id="researchCountInput" type="text"
+          name="resource_research_count"
+          value="{{form.resource_research_count.value|default_if_none:''}}"
+          aria-describedby="researchCountHelp"
+          required
+        >
         <div id="researchCountHelp" class="form-text">
           <span class="tool-yes">
             Installation and testing of software can be time consuming and resource intensive, especially if the tool requires wrapping. For that reason, priority will be given to software that supports multiple researchers
@@ -219,8 +226,12 @@
         <label for="resourceGroupsInput" class="form-label">
           Please list the names of research groups you are aware of across Australia who also require access to this software (or software update) on Galaxy Australia
         </label>
-        <input class="form-control" id="resourceGroupsInput" type="text" name="resource_research_groups"
-          value="{{form.resource_research_groups.value|default_if_none:''}}" aria-describedby="resourceGroupsHelp">
+        <input class="form-control" id="resourceGroupsInput" type="text"
+          name="resource_research_groups"
+          value="{{form.resource_research_groups.value|default_if_none:''}}"
+          aria-describedby="resourceGroupsHelp"
+          required
+        >
         <div id="resourceGroupsHelp" class="form-text">
           <span class="tool-yes">
             Installation and testing of software can be time consuming and resource intensive, especially if the tool requires wrapping. For that reason, priority will be given to software that supports multiple research groups
@@ -236,8 +247,10 @@
         <label for="contactConsentInput" class="form-label">
           Can we contact you if we require more details about this dataset?
         </label>
-        <input class="form-control" id="contactConsentInput" type="text" name="dataset_contact_consent"
-          value="{{form.dataset_contact_consent.value|default_if_none:''}}">
+        <input class="form-control" id="contactConsentInput" type="text"
+          name="dataset_contact_consent"
+          value="{{form.dataset_contact_consent.value|default_if_none:''}}"
+        >
       </div>
       <!-- End dataset specific -->
 
@@ -270,21 +283,22 @@
     $('.tool-yes').show();
     $('.data-yes').hide();
     $('.main').fadeIn(500);
+    $('#toolshedAvailableInput')[0].checked ?
+      $('.toolshed-no').hide()
+      : $('.toolshed-no').show();
   });
 
   $('#resourceDatasetRadio').click(function(e) {
     $('.data-yes').show();
     $('.tool-yes').hide();
-    $('#toolshedAvailableInput').prop('checked', false);
-    $('.toolshed-yes').toggle(0);
     $('.main').fadeIn(500);
+    $('.toolshed-no').show();
   });
 
   $('#toolshedAvailableInput').click(function() {
-    console.log(`Toolshed available value: ${this.checked}`);
     this.checked ?
-      $('.toolshed-yes').fadeIn(500)
-      : $('.toolshed-yes').hide();
+      $('.toolshed-yes').fadeIn(500) && $('.toolshed-no').hide()
+      : $('.toolshed-yes').hide() && $('.toolshed-no').show();
   });
 </script>
 
