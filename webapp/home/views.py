@@ -4,12 +4,13 @@ import os
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
+from django.template.loader import render_to_string
 from pprint import pprint
 
 from events.models import Event
 from news.models import News
 from .models import Notice
-from .forms import ResourceRequestForm, QuotaRequestForm
+from .forms import ResourceRequestForm, QuotaRequestForm, SupportRequestForm
 
 
 def index(request, landing=False):
@@ -39,11 +40,6 @@ def about(request):
     return render(request, 'home/about.html')
 
 
-def support(request):
-    """Show support page."""
-    return render(request, 'home/support.html')
-
-
 def user_request(request):
     """Show user request menu."""
     return render(request, 'home/requests/menu.html')
@@ -55,8 +51,15 @@ def user_request_tool(request):
     if request.POST:
         form = ResourceRequestForm(request.POST)
         if form.is_valid():
-            form.dispatch()
+            template = (
+                'home/requests/mail/'
+                f"{form.cleaned_data['resource_type']}.html"
+            )
+            html_message = render_to_string(template, {'form': form})
+            form.dispatch(html_message)
             return user_request_success(request)
+        print("Form was invalid")
+        pprint(form.errors)
     return render(request, 'home/requests/tool.html', {'form': form})
 
 
@@ -75,7 +78,15 @@ def user_request_quota(request):
 
 def user_request_support(request):
     """Handle user support requests."""
-    return render(request, 'home/requests/support.html')
+    form = SupportRequestForm()
+    if request.POST:
+        form = SupportRequestForm(request.POST)
+        if form.is_valid():
+            form.dispatch()
+            return user_request_success(request)
+        print("Form was invalid")
+        pprint(form.errors)
+    return render(request, 'home/requests/support.html', {'form': form})
 
 
 def user_request_success(request):

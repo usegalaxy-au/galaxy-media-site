@@ -35,10 +35,11 @@ class ResourceRequestForm(forms.Form):
 
     captcha = fields.ReCaptchaField()
 
-    def dispatch(self):
+    def dispatch(self, html):
         """Dispatch content via the FreshDesk API."""
         print("Dispatch to the FreshDesk API!")
         pprint(self.cleaned_data)
+        print(html)
 
 
 class QuotaRequestForm(forms.Form):
@@ -95,6 +96,13 @@ class QuotaRequestForm(forms.Form):
 
 
 class SupportRequestForm(forms.Form):
-    """Form for requesting user support."""
+    """Form to request for user support."""
 
-    pass
+    name = forms.CharField()
+    email = forms.EmailField()
+    message = forms.CharField()
+
+    def dispatch(self):
+        """Dispatch content via the FreshDesk API."""
+        print("Dispatch to the FreshDesk API!")
+        pprint(self.cleaned_data)
