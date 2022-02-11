@@ -1,22 +1,14 @@
-- hosts: hosts
+---
+- hosts: usegalaxy-au-2.neoformit.com
+  remote_user: ubuntu
   become: true
+  vars_files:
+    - group_vars/vars.yml
   roles:
-    - { role: geerlingguy.nginx }
-    - { role: geerlingguy.certbot }
+    - geerlingguy.nginx
     - role: geerlingguy.postgresql
       become: true
-#    - webapp  # Nearly ready
+    - webapp
+    - geerlingguy.certbot
 
-
-postgresql_databases:
-  - name: webapp # required; the rest are optional
-    login_password: secret
-    login_user: webapp
-    port: 5432
-
-postgresql_users:
-  - name: webapp
-    password: secret
-    db: webapp
-    login_password: secret
-    login_user: webapp
+# Site working but certbot hasn't configured Nginx

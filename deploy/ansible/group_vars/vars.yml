@@ -1,41 +1,20 @@
-project_root: /home/ubuntu/galaxy-content-site
-server_root: /home/ubuntu/server
-web_root: /srv/sites/webapp
-venv_root: {{ project_root }}/.venv
-
-nginx_vhost_template: "templates/webapp.conf.tmpl"
-
-certbot_admin_email: c.hyde@qcif.edu.au
-certbot_create_if_missing: true
-certbot_certs:
-  - domains:
-    - usegalaxy-au.neoformit.com
-certbot_create_standalone_stop_services:
-  - nginx
-certbot_create_command: "{{ certbot_script }} --standalone --noninteractive --agree-tos --email {{ cert_item.email | default(certbot_admin_email) }} -d {{ cert_item.domains | join(',') }} --nginx"
+---
+domain_name: "{{ inventory_hostname }}"
+letsencrypt_email: c.hyde@qcif.edu.au
 
 gunicorn:
   web_workers: 4
 
-webapp:
-  templates:
-    gunicorn:
-      src: templates/gunicorn.py.tmpl
-      dest: {{ server_root }}/gunicorn.py
-    systemd:
-      src: templates/webapp.service.tmpl
-      dest: /etc/systemd/system/webapp.service
-    setup:
-      src: templates/setup.sh.tmpl
-      dest: {{ server_root }}/setup.sh
+postgresql_locales:
+  - 'en_US.UTF-8'
 
-  files:
-    socket:
-      src: files/webapp.socket
-      dest: /etc/systemd/system/webapp.socket
+postgresql_databases:
+  - name: webapp
+    port: 5432
 
-  admin_user:
-    first_name: admin
-    last_name: admin
-    email: admin@website.com
+postgresql_users:
+  - name: webapp
     password: secret
+    db: webapp
+
+postgres_users_no_log: false
