@@ -1,10 +1,36 @@
-"""User-facing forms for making content requests (tools/data)."""
+"""User facing forms for making support requests (help/tools/data)."""
 
-
+import logging
+import traceback
 from django import forms
+from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 from captcha import fields
-from pprint import pprint
+
+logger = logging.getLogger(__name__)
+
+
+def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):
+    """Send mail to support inbox.
+
+    This should probably be sent to a worker thread/queue.
+    """
+    logger.info(f"Sending mail to {settings.EMAIL_TO_ADDRESS}")
+    email = EmailMultiAlternatives(
+        subject,
+        text,
+        settings.EMAIL_FROM_ADDRESS,
+        [settings.EMAIL_TO_ADDRESS],
+        reply_to=[reply_to],
+    )
+    if html:
+        email.attach_alternative(html, "text/html")
+    try:
+        email.send()
+    except Exception:
+        logger.error("Error sending mail:\n" + traceback.format_exc())
 
 
 class ResourceRequestForm(forms.Form):
@@ -35,11 +61,22 @@ class ResourceRequestForm(forms.Form):
 
     captcha = fields.ReCaptchaField()
 
-    def dispatch(self, html):
-        """Dispatch content via the FreshDesk API."""
-        print("Dispatch to the FreshDesk API!")
-        pprint(self.cleaned_data)
-        print(html)
+    def dispatch(self):
+        """Dispatch form content as email."""
+        data = self.cleaned_data
+        template = (
+            'home/requests/mail/'
+            f"{data['resource_type']}"
+        )
+        dispatch_form_mail(
+            reply_to=data['email'],
+            subject=(
+                f"New {data['resource_type']}"
+                " request on Galaxy Australia"
+            ),
+            text=render_to_string(f'{template}.txt', {'form': self}),
+            html=render_to_string(f'{template}.html', {'form': self}),
+        )
 
 
 class QuotaRequestForm(forms.Form):
@@ -72,11 +109,17 @@ class QuotaRequestForm(forms.Form):
     def clean(self):
         """Validate and check 'other' values."""
         data = super().clean()
+        # These fields have an "other" option with text input
         OTHER_FIELDS = [
             'organism',
             'technology',
             'file_type',
             'max_samples',
+        ]
+        # These values for "organism" link to the "other" text input too
+        ORGANISM_OTHER_VALUES = [
+            'bacteria',
+            'plant',
         ]
 
         for field in OTHER_FIELDS:
@@ -86,13 +129,28 @@ class QuotaRequestForm(forms.Form):
                     self.add_error(
                         field,
                         ValidationError('This field is required'))
-                data[field] = data[f'{field}_other']
+                other_value = data.get(f'{field}_other')
+                if type(other_value) == str:
+                    data[field] = 'Other - ' + other_value
+                else:
+                    data[field] = other_value
+
+        for value in ORGANISM_OTHER_VALUES:
+            if data.get('organism') == value:
+                data['organism'] = (
+                    f"{value.title()} - {data['organism_other']}")
+
         return data
 
     def dispatch(self):
-        """Dispatch content via the FreshDesk API."""
-        print("Dispatch to the FreshDesk API!")
-        pprint(self.cleaned_data)
+        """Dispatch form content as email."""
+        template = 'home/requests/mail/quota'
+        dispatch_form_mail(
+            reply_to=self.cleaned_data['email'],
+            subject="New Quota request on Galaxy Australia",
+            text=render_to_string(f'{template}.txt', {'form': self}),
+            html=render_to_string(f'{template}.html', {'form': self}),
+        )
 
 
 class SupportRequestForm(forms.Form):
@@ -104,5 +162,13 @@ class SupportRequestForm(forms.Form):
 
     def dispatch(self):
         """Dispatch content via the FreshDesk API."""
-        print("Dispatch to the FreshDesk API!")
-        pprint(self.cleaned_data)
+        data = self.cleaned_data
+        dispatch_form_mail(
+            reply_to=data['email'],
+            subject="Galaxy Australia Support request",
+            text=(
+                f"Name: {data['name']}\n"
+                f"Email: {data['email']}\n\n"
+                + data['message']
+            )
+        )

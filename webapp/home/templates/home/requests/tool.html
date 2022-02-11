@@ -113,7 +113,7 @@
 
             <div class="toolshed-yes mt-5">
               <label for="toolshedUrl" class="form-label">Galaxy Toolshed URL</label>
-              <input class="form-control" id="toolshedUrl" type="text" name="tool_toolshed_url"
+              <input class="form-control" id="toolshedUrl" type="url" name="tool_toolshed_url"
                 value="{{form.tool_toolshed_url.value|default_if_none:''}}"
                 aria-describedby="toolshedUrlHelp"
                 placeholder="https://toolshed.g2.bx.psu.edu/"
@@ -175,7 +175,7 @@
           <span class="data-yes">URL of the specified resource</span>
         </label>
         {{ form.resource_url.errors }}
-        <input class="form-control" id="resourceUrlInput" type="text"
+        <input class="form-control" id="resourceUrlInput" type="url"
           name="resource_url"
           value="{{form.resource_url.value|default_if_none:''}}"
           aria-describedby="resourceUrlHelp"
@@ -267,6 +267,7 @@
       </div>
 
       <div class="text-center">
+        <p>A copy of your responses will be emailed to the address that you provided.</p>
         <button class="ga-btn" type="submit">Submit request</button>
       </div>
     </div>

@@ -1,16 +1,18 @@
 """Views for home app."""
 
 import os
+import logging
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
-from django.template.loader import render_to_string
-from pprint import pprint
+from pprint import pformat
 
 from events.models import Event
 from news.models import News
 from .models import Notice
 from .forms import ResourceRequestForm, QuotaRequestForm, SupportRequestForm
+
+logger = logging.getLogger(__name__)
 
 
 def index(request, landing=False):
@@ -51,15 +53,11 @@ def user_request_tool(request):
     if request.POST:
         form = ResourceRequestForm(request.POST)
         if form.is_valid():
-            template = (
-                'home/requests/mail/'
-                f"{form.cleaned_data['resource_type']}.html"
-            )
-            html_message = render_to_string(template, {'form': form})
-            form.dispatch(html_message)
+            logger.info('Form valid. Dispatch content as email.')
+            form.dispatch()
             return user_request_success(request)
-        print("Form was invalid")
-        pprint(form.errors)
+        logger.info("Form was invalid")
+        logger.info(pformat(form.errors))
     return render(request, 'home/requests/tool.html', {'form': form})
 
 
@@ -69,10 +67,11 @@ def user_request_quota(request):
     if request.POST:
         form = QuotaRequestForm(request.POST)
         if form.is_valid():
+            logger.info('Form valid. Dispatch content as email.')
             form.dispatch()
             return user_request_success(request)
-        print("Form was invalid")
-        pprint(form.errors)
+        logger.info("Form was invalid")
+        logger.info(pformat(form.errors))
     return render(request, 'home/requests/quota.html', {'form': form})
 
 
@@ -82,10 +81,11 @@ def user_request_support(request):
     if request.POST:
         form = SupportRequestForm(request.POST)
         if form.is_valid():
+            logger.info('Form valid. Dispatch content as email.')
             form.dispatch()
             return user_request_success(request)
-        print("Form was invalid")
-        pprint(form.errors)
+        logger.info("Form was invalid")
+        logger.info(pformat(form.errors))
     return render(request, 'home/requests/support.html', {'form': form})
 
 

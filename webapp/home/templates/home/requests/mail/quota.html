@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Galaxy Australia Quota Request</title>
+
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        margin: 24px auto;
+      }
+      th {
+        font-weight: bold;
+      }
+      th, td {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid grey;
+      }
+    </style>
+  </head>
+  <body>
+
+  <h3>New data quota request - Galaxy Australia</h3>
+
+  <table>
+    <tbody>
+      <tr>
+        <th> Your name </th>
+        <td>
+          {{ form.cleaned_data.name }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Your email </th>
+        <td>
+          <a href="mailto:{{ form.cleaned_data.email }}">
+            {{ form.cleaned_data.email }}
+          </a>
+        </td>
+      </tr>
+
+      <tr>
+        <th> Institution </th>
+        <td>
+          {{ form.cleaned_data.institution }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Group name / PI </th>
+        <td>
+          {{ form.cleaned_data.group_name }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Analysis start date (d-m-y) </th>
+        <td>
+          {{ form.cleaned_data.start_date|date:"d-m-Y" }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Duration of analysis</th>
+        <td>
+          {{ form.cleaned_data.duration }} month(s)
+        </td>
+      </tr>
+
+      <tr>
+        <th> Disk required </th>
+        <td>
+          {% if form.cleaned_data.disk_gb %}
+          {{ form.cleaned_data.disk_gb }}GB
+          {% else %}
+          I'm not sure, please contact me
+          {% endif %}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Description </th>
+        <td>
+          {{ form.cleaned_data.description }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Organism </th>
+        <td>
+          {{ form.cleaned_data.organism }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Technology </th>
+        <td>
+          {{ form.cleaned_data.technology }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> File type </th>
+        <td>
+            {{ form.cleaned_data.file_type }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Max samples to upload </th>
+        <td>
+            {{ form.cleaned_data.max_samples }}
+        </td>
+      </tr>
+
+      <tr>
+        <th> Terms accepted </th>
+        <td>
+            {{ form.cleaned_data.accepted_terms|yesno:"Yes,No" }}
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  </body>
+</html>
