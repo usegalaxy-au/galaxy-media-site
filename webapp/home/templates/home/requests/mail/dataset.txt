@@ -1,0 +1,13 @@
+New dataset requested - Galaxy Australia
+
+Your name: {{ form.cleaned_data.name }}
+Your email: {{ form.cleaned_data.email }}
+Dataset name/version: {{ form.cleaned_data.resource_name_version }}
+URL for dataset: {{ form.cleaned_data.resource_url }}
+
+Justification:
+{{ form.cleaned_data.resource_justification }}
+
+Research impact (researcher count): {{ form.cleaned_data.resource_research_count }}
+Research impact (research groups): {{ form.cleaned_data.resource_research_groups }}
+Contact consent: {{ form.cleaned_data.dataset_contact_consent|yesno:"Yes,No" }}

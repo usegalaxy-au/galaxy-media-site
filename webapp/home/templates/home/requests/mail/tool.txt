@@ -1,0 +1,18 @@
+New software request submitted - Galaxy Australia
+
+Your name: {{ form.cleaned_data.name }}
+Your email: {{ form.cleaned_data.email }}
+Tool name/version: {{ form.cleaned_data.resource_name_version }}
+Available on Toolshed: {{ form.cleaned_data.tool_toolshed_available|yesno:"Yes,No" }}
+{% if form.cleaned_data.tool_toolshed_available %}
+Toolshed URL: {{ form.cleaned_data.tool_toolshed_url }}
+{% else %}
+URL for software: {{ form.cleaned_data.resource_url }}
+{% endif %}
+
+Justification:
+{{ form.cleaned_data.resource_justification }}
+
+Research impact (researcher count): {{ form.cleaned_data.resource_research_count }}
+Research impact (research groups): {{ form.cleaned_data.resource_research_groups }}
+Has test data: {{ form.cleaned_data.tool_test_data|yesno:"Yes,No" }}

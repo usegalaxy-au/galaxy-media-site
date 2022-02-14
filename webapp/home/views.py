@@ -1,15 +1,18 @@
 """Views for home app."""
 
 import os
+import logging
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
-from pprint import pprint
+from pprint import pformat
 
 from events.models import Event
 from news.models import News
 from .models import Notice
-from .forms import ResourceRequestForm, QuotaRequestForm
+from .forms import ResourceRequestForm, QuotaRequestForm, SupportRequestForm
+
+logger = logging.getLogger(__name__)
 
 
 def index(request, landing=False):
@@ -39,11 +42,6 @@ def about(request):
     return render(request, 'home/about.html')
 
 
-def support(request):
-    """Show support page."""
-    return render(request, 'home/support.html')
-
-
 def user_request(request):
     """Show user request menu."""
     return render(request, 'home/requests/menu.html')
@@ -55,8 +53,11 @@ def user_request_tool(request):
     if request.POST:
         form = ResourceRequestForm(request.POST)
         if form.is_valid():
+            logger.info('Form valid. Dispatch content as email.')
             form.dispatch()
             return user_request_success(request)
+        logger.info("Form was invalid")
+        logger.info(pformat(form.errors))
     return render(request, 'home/requests/tool.html', {'form': form})
 
 
@@ -66,16 +67,26 @@ def user_request_quota(request):
     if request.POST:
         form = QuotaRequestForm(request.POST)
         if form.is_valid():
+            logger.info('Form valid. Dispatch content as email.')
             form.dispatch()
             return user_request_success(request)
-        print("Form was invalid")
-        pprint(form.errors)
+        logger.info("Form was invalid")
+        logger.info(pformat(form.errors))
     return render(request, 'home/requests/quota.html', {'form': form})
 
 
 def user_request_support(request):
     """Handle user support requests."""
-    return render(request, 'home/requests/support.html')
+    form = SupportRequestForm()
+    if request.POST:
+        form = SupportRequestForm(request.POST)
+        if form.is_valid():
+            logger.info('Form valid. Dispatch content as email.')
+            form.dispatch()
+            return user_request_success(request)
+        logger.info("Form was invalid")
+        logger.info(pformat(form.errors))
+    return render(request, 'home/requests/support.html', {'form': form})
 
 
 def user_request_success(request):

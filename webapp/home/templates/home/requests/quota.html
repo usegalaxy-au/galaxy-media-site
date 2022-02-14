@@ -178,6 +178,9 @@
             {% if form.organism.value == '' %}checked{% endif%}
           >
           <label class="form-check-label" for="organism5">Something else</label>
+        </div>
+
+        <div id="organismOther">
           <input class="show-other form-control" type="text" name="organism_other"
             value="{{ form.organism_other.value|default_if_none:'' }}"
             placeholder="Please describe"
@@ -377,7 +380,7 @@
     </div>
 
 
-    <div class="m-5 p-5 text-center">
+    <div class="mx-5 px-5 text-center">
       <p>A copy of your responses will be emailed to the address that you provided.</p>
 
       <button class="ga-btn"type="submit">Submit request</button>
@@ -392,6 +395,19 @@
 <script type="text/javascript">
   $('input[type="radio"]').click( e => {
     const other = $(`input[name="${e.target.name}_other"]`);
+
+    // Special treatment for organism input
+    if (event.target.name === 'organism') {
+      if (['bacteria', 'plant'].includes(event.target.value)) {
+        other.prop('placeholder', `Enter ${event.target.value} species`)
+        other.fadeIn(250)
+        return
+      } else {
+        other.prop('placeholder', 'Please describe')
+      }
+    }
+
+    // If radio button has no value it must be an "other" option
     event.target.value === '' ? other.fadeIn(250) : other.fadeOut(250);
   });
 </script>
