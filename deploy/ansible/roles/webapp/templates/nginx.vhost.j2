@@ -1,20 +1,20 @@
-# Server config for {{ HOSTNAME }} (Galaxy content site)
+# Server config for {{ inventory_hostname }} (Galaxy content site)
 
 server {
     # redirect www to non-www
-    server_name www.{{ HOSTNAME }};
-    return 301 $scheme://{{ HOSTNAME }}$request_uri;
+    server_name www.{{ inventory_hostname }};
+    return 301 $scheme://{{ inventory_hostname }}$request_uri;
 }
 
 
 server {
 
     listen 80;
-    server_name  {{ HOSTNAME }};
+    server_name  {{ inventory_hostname }};
     access_log   /var/log/nginx/webapp.access.log;
     error_log    /var/log/nginx/webapp.error.log;
 
-    if ( $host !~* ^({{ HOSTNAME }})$ ) {
+    if ( $host !~* ^({{ inventory_hostname }})$ ) {
         # Reject requests with incorrect host header
         return 444;
     }
@@ -24,15 +24,15 @@ server {
     }
 
     location = /favicon.ico {
-        alias  /srv/sites/webapp/webapp/static/favicon/favicon.ico;
+        alias  {{ web_root }}/webapp/static/favicon/favicon.ico;
     }
 
     location /static {
-        root /srv/sites/webapp/webapp;
+        root {{ web_root }}/webapp;
     }
 
     location /media {
-        root /srv/sites/webapp/webapp;
+        root {{ web_root }}/webapp;
     }
 
     location  / {
