@@ -33,6 +33,7 @@
 
             <div class="card-text">
               <table>
+                {% if p.email %}
                 <tr>
                   <td>
                     <i class="fas fa-envelope"></i>
@@ -43,6 +44,7 @@
                     </a>
                   </td>
                 </tr>
+                {% endif %}
 
                 {% if p.github %}
                 <tr>
