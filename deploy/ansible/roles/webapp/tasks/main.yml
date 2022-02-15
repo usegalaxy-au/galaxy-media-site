@@ -32,6 +32,8 @@
     name:
       - python3.8
       - python3-pip
+      - certbot
+      - python3-certbot-nginx
 
 - name: clone git repository for galaxy-content-site
   ansible.builtin.git:
@@ -66,10 +68,15 @@
   command: "bash {{ server_root }}/setup.sh"
 
 - name: Ensure webapp superuser login
-  command: |
-    export DJANGO_SUPERUSER_PASSWORD={{ webapp.admin_user.password }} &&
-    python manage.py createsuperuser --noinput \
-      --email {{ webapp.admin_user.email }} \
-      --first_name {{ webapp.admin_user.first_name }} \
-      --last_name {{ webapp.admin_user.last_name }}
+  shell: |
+    cd {{ web_root }} && \
+    export DJANGO_SUPERUSER_PASSWORD={{ admin_user.password }} && \
+    {{ venv_root }}/bin/python manage.py createsuperuser --noinput \
+      --email {{ admin_user.email }} \
+      --first_name {{ admin_user.first_name }} \
+      --last_name {{ admin_user.last_name }}
   ignore_errors: yes
+
+- name: create and install SSL certificate with letsencrypt
+  command: "certbot --nginx --noninteractive --agree-tos --redirect --email {{ certbot_renew_email }} -d {{ domain_name }}"
+  when: certbot_ssl

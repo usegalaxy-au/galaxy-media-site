@@ -1,14 +1,12 @@
 ---
-- hosts: usegalaxy-au-2.neoformit.com
+- hosts: webserver
   remote_user: ubuntu
   become: true
   vars_files:
-    - group_vars/vars.yml
+    - group_vars/secrets.yml
   roles:
     - geerlingguy.nginx
     - role: geerlingguy.postgresql
       become: true
     - webapp
     - geerlingguy.certbot
-
-# Site working but certbot hasn't configured Nginx

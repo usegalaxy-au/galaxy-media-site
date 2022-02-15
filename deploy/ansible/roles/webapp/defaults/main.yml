@@ -19,11 +19,7 @@ webapp:
     - src: "{{ role_path }}/files/webapp.socket"
       dest: /etc/systemd/system/webapp.socket
 
-  admin_user:
-    first_name: admin
-    last_name: admin
-    email: admin@example.com
-    password: secret
+certbot_ssl: true
 
 gunicorn:
   web_workers: 4

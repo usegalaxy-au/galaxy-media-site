@@ -4,8 +4,7 @@ webapp/webapp/media/
 webapp/webapp/static/
 
 # Deploy conf
-deploy/gunicorn.service
-deploy/nginx.conf
+.vault.pass
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
