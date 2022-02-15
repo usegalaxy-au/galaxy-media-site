@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 PIDFile=/run/gunicorn/pid
-User = ubuntu
+User = www-data
 Group = www-data
 RuntimeDirectory=gunicorn
 WorkingDirectory={{ web_root }}

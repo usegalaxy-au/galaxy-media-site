@@ -41,16 +41,22 @@
     dest: "{{ project_root }}"
     clone: yes
 
-- name: copy webapp .env file
-  copy:
-    src: ".env"
-    dest: "{{ project_root }}/.env"
+- name: update media file permissions
+  shell: "chown -R www-data:www-data {{ web_root }}/webapp/media"
+
+- name: update log file permissions
+  shell: "chown -R www-data:www-data {{ web_root }}/webapp/logs"
 
 - name: link webapp to /srv/sites
   ansible.builtin.file:
     src: "{{ project_root }}/webapp"
     dest: "{{ web_root }}"
     state: link
+
+- name: copy webapp .env file
+  copy:
+    src: ".env"
+    dest: "{{ project_root }}/.env"
 
 - name: link to enable nginx virtualhost
   ansible.builtin.file:

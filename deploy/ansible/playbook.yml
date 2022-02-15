@@ -9,4 +9,3 @@
     - role: geerlingguy.postgresql
       become: true
     - webapp
-    - geerlingguy.certbot
