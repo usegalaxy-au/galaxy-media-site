@@ -1,0 +1,40 @@
+---
+# The domain name that you've registered for the target webserver
+domain_name: "{{ inventory_hostname }}"
+
+# If you don't want SSL certs, just flip this:
+certbot_ssl: true
+certbot_renew_email: c.hyde@qcif.edu.au
+
+# 4 web workers should be plenty - increase for machines with >4 CPUs
+gunicorn:
+  web_workers: 4
+
+# Postgres database conf shouldn't need to be modified
+postgresql_locales:
+  - 'en_US.UTF-8'
+
+postgresql_databases:
+  - name: webapp
+    port: 5432
+
+postgresql_users:
+  - name: webapp
+    password: "{{ database_password_secret }}"
+    db: webapp
+
+postgres_users_no_log: false
+
+# GMS Webapp configuration
+# -----------------------------------------------------------------------------
+
+project_root: /home/ubuntu/galaxy-content-site
+server_root: /home/ubuntu/serve
+web_root: /srv/webapp
+venv_root: "{{ project_root }}/.venv"
+
+admin_user:
+  first_name: admin
+  last_name: admin
+  email: "{{ admin_email_secret }}"
+  password: "{{ admin_password_secret }}"

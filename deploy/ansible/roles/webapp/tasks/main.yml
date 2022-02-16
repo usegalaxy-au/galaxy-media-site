@@ -1,22 +1,88 @@
 ---
 
+- name: check for local.env file
+  delegate_to: localhost
+  stat:
+    path: .env
+  register: local_env
+
+- name: fail if .env does not exist
+  fail: msg="Please create .env file - for reference see .env.sample in project root."
+  when: not local_env.stat.exists
+
+- name: create server directory
+  file:
+    path: "{{ server_root }}"
+    state: directory
+
 - name: template webserver configuration
   template:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
-  # https://www.tutorialworks.com/ansible-template-loop/
-  loop: {{ webapp_templates }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop: "{{ webapp.templates }}"
 
 - name: copy webserver configuration
   copy:
-    src: 'files/webapp.socket'
-    dest: '/etc/systemd/system/webapp.socket'
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop: "{{ webapp.files }}"
 
-- name: template setup script
-  template:
-    src: 'templates/setup.sh.tmpl'
-    dest: 'scripts/setup.sh'
-    delegate_to: localhost
+- name: install systems dependencies
+  ansible.builtin.package:
+    name:
+      - python3.8
+      - python3-pip
+      - certbot
+      - python3-certbot-nginx
 
-- name: webapp setup
-  script: scripts/setup.sh
+- name: clone git repository for galaxy-content-site
+  ansible.builtin.git:
+    repo: https://github.com/neoformit/galaxy-content-site.git
+    dest: "{{ project_root }}"
+    clone: yes
+
+- name: update media file permissions
+  shell: "chown -R www-data:www-data {{ web_root }}/webapp/media"
+
+- name: update log file permissions
+  shell: "chown -R www-data:www-data {{ web_root }}/webapp/logs"
+
+- name: link webapp to /srv/sites
+  ansible.builtin.file:
+    src: "{{ project_root }}/webapp"
+    dest: "{{ web_root }}"
+    state: link
+
+- name: copy webapp .env file
+  copy:
+    src: ".env"
+    dest: "{{ project_root }}/.env"
+
+- name: link to enable nginx virtualhost
+  ansible.builtin.file:
+    src: "/etc/nginx/sites-available/{{ inventory_hostname }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ inventory_hostname }}"
+    state: link
+
+- name: Install Python requirements into venv
+  pip:
+    requirements: "{{ project_root }}/requirements.txt"
+    virtualenv: "{{ venv_root }}"
+    virtualenv_command: virtualenv-3.8
+
+- name: run webapp setup script
+  command: "bash {{ server_root }}/setup.sh"
+
+- name: Ensure webapp superuser login
+  shell: |
+    cd {{ web_root }} && \
+    export DJANGO_SUPERUSER_PASSWORD={{ admin_user.password }} && \
+    {{ venv_root }}/bin/python manage.py createsuperuser --noinput \
+      --email {{ admin_user.email }} \
+      --first_name {{ admin_user.first_name }} \
+      --last_name {{ admin_user.last_name }}
+  ignore_errors: yes
+
+- name: create and install SSL certificate with letsencrypt
+  command: "certbot --nginx --noninteractive --agree-tos --redirect --email {{ certbot_renew_email }} -d {{ domain_name }}"
+  when: certbot_ssl

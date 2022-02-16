@@ -5,14 +5,14 @@ After=network.target
 
 [Service]
 PIDFile=/run/gunicorn/pid
-User = ubuntu
+User = www-data
 Group = www-data
 RuntimeDirectory=gunicorn
-WorkingDirectory=/srv/sites/webapp
-Environment="PATH={{ PWD }}/.venv/bin:$PATH"
-ExecStart={{ PWD }}/.venv/bin/gunicorn --pid /run/gunicorn/pid   \
+WorkingDirectory={{ web_root }}
+Environment="PATH={{ venv_root }}/.venv/bin:$PATH"
+ExecStart={{ venv_root }}/bin/gunicorn --pid /run/gunicorn/pid   \
           --bind unix:/run/webapp.sock       \
-          -c {{ PWD }}/gunicorn.py webapp.wsgi
+          -c {{ server_root }}/gunicorn.py webapp.wsgi
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 PrivateTmp=true
