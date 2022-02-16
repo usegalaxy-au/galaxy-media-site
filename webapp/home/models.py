@@ -59,6 +59,13 @@ class Notice(models.Model):
         help_text=("Order of display on the landing page when multiple Notices"
                    " are enabled (i.e. lowest value shown first)")
     )
+    is_published = models.BooleanField(
+        default=False,
+        help_text=(
+            "Unpublished content is visible to admin users only."
+            " Use this to review content before release to public users."
+        ),
+    )
 
     def __str__(self):
         """Return string representation."""

@@ -81,6 +81,7 @@ class NoticeAdmin(admin.ModelAdmin):
         'datetime_modified',
         '__str__',
         'enabled',
+        'is_published',
     ]
 
 

@@ -15,14 +15,16 @@ def index(request, landing=False):
     if request.user.is_staff:
         news_items = News.objects.all()
         events = Event.objects.all()
+        notices = Notice.objects.filter(enabled=True)
     else:
         news_items = News.objects.filter(is_published=True)
         events = Event.objects.filter(is_published=True)
+        notices = Notice.objects.filter(enabled=True, is_published=True)
 
     return render(request, 'home/index.html', {
         'news_items': news_items.order_by('-datetime_created')[:6],
         'events': events.order_by('-datetime_created')[:6],
-        'notices': Notice.objects.filter(enabled=True).order_by('order'),
+        'notices': notices.order_by('order'),
         'landing': landing,
     })
 
