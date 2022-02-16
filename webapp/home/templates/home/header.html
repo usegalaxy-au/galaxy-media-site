@@ -135,6 +135,9 @@
           return new bootstrap.Tooltip(tooltipTriggerEl)
         })
 
+        // Bubbles shown on unpublished material (admins only)
+        $('.unpublished-bubble').parent().css('position', 'relative');
+
         {% block onload %}
         {% endblock %}
       });

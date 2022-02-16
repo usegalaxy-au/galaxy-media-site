@@ -25,11 +25,18 @@
 
     {% for notice in notices %}
     <div class="alert alert-{{ notice.notice_class }}">
+      {% if not notice.is_published %}
+      {% include 'home/snippets/unpublished-bubble.html' %}
+      {% endif %}
+
       {% if notice.material_icon %}
       <span class="material-icons">{{ notice.material_icon }}</span>
       {% endif %}
+
       <strong> {{ notice.title }} </strong>
+
       <br>
+
       {{ notice.body|markdown|safe }}
     </div>
     {% endfor %}
@@ -132,7 +139,11 @@
       {% for item in news_items %}
       <article
         class="row"
-        onclick="window.open('{{ item.url }}'{% if not item.external %}, '_self'{% endif %});">
+        onclick="window.open('{{ item.url }}'{% if not item.external %}, '_self'{% endif %});"
+      >
+        {% if not item.is_published %}
+        {% include 'home/snippets/unpublished-bubble.html' %}
+        {% endif %}
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
           <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>
@@ -161,7 +172,11 @@
       {% for item in events %}
       <article
         class="row"
-        onclick="window.open('{{ item.url }}'{% if not item.external %}, '_self'{% endif %});">
+        onclick="window.open('{{ item.url }}'{% if not item.external %}, '_self'{% endif %});"
+      >
+        {% if not item.is_published %}
+        {% include 'home/snippets/unpublished-bubble.html' %}
+        {% endif %}
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
           <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>

@@ -14,13 +14,9 @@ This web application is designed to host content related to a [Galaxy](https://g
 - News articles (including automated tool updates)
 - Team members
 
-The site also hosts some static pages including:
+The site also hosts support webforms and static pages like "about" content, terms of service etc.
 
-- Terms of service
-- Data policy
-- About page
-
-If you fork the repository, these templates can be updated with content relevant to your Galaxy instance, and new pages can be added too.
+This content is all embedded in HTML templates. If you fork the repository, these templates can be updated with content relevant to your Galaxy instance, and new pages can be added too.
 
 The GMS homepage (aka landing page) is designed to be displayed as your Galaxy instance "welcome" page. Just create a `welcome.html` file with an `iframe` that points to https://mygms.com/landing to get a landing page without the navbar.
 
@@ -28,38 +24,47 @@ The site is designed to be fully navigable from within your Galaxy instance, wit
 
 ![site navigation](.img/iframe-nav.png)
 
-For docs on the web admin, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration).
+For docs on web administration, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration).
 
 
 **A note on iframe behaviour**
- 
+
 When requested in an `<iframe>` from a Galaxy instance, GMS pages "know" that
 they are in an `iframe` and will render slightly differently than if the user
 was visting the GMS site directly. For developers, if there is content that
-you'd like to render differently you can use the Javascript function
-`inIframe()` on any page to check if you're currently in an iframe.
-
+you'd like to render differently you can use the global `inIframe()` JavaScript
+function on any page to check if you're currently in an iframe.
 
 ---
 
-## Installation and deployment
+## Deployment
 
 If you are setting this up for production, create a DNS record for your domain name before running the setup script - this should be an A record pointing to the IP address of the host machine. Subdomains are fine.
 
-**The site can be installed and deployed in the terminal as follows:**
+This app has been developed and tested on Ubuntu 20.04 LTS.
+Other operating systems may require manual installation.
+The application is installed on a Nginx-Gunicorn-Postgres stack
+and is not containerized. We recommend installation in a fresh
+virtual machine instance.
+
+### Deploy with Ansible
+
+If you're familiar with ansible, this may be the most reliable method of
+deployment. See `./deployment/ansible/` for instructions.
+
+### Deploy with shell
+
+**Installed and deploy the application in the terminal as follows:**
 
 ```bash
-# This app has been developed and tested on Ubuntu 20.04 LTS.
-# Other operating systems may require manual installation.
-# The application is installed on a Nginx-Gunicorn-Postgres stack
-# and is not containerized. We recommend installation in a fresh
-# virtual machine instance.
-
 cd <my-projects-directory>
 git clone https://github.com/neoformit/galaxy-content-site.git
 cd galaxy-content-site
 PROJECT_ROOT=$PWD
 
+# Create a .env file here - see .env.sample
+nano .env
+b
 # Follow prompts
 ./deploy/setup.sh
 

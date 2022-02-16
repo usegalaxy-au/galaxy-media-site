@@ -23,6 +23,10 @@
       </div>
 
       <div class="col-sm-auto">
+        {% if not article.is_published %}
+        {% include 'home/snippets/unpublished-bubble.html' %}
+        {% endif %}
+
         <p class="text-end text-muted">
           <span class="date">
             {{ article.datetime_created|date:'d-m-Y'}}
