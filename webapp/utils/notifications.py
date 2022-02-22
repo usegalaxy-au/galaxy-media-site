@@ -1,4 +1,7 @@
-"""Notifications to users and team."""
+"""Notifications to users and team.
+
+This is some very Galaxy-Australia-specific code for event-bound notifications.
+"""
 
 import requests
 from urllib.parse import urljoin
@@ -18,19 +21,17 @@ def notify_tool_update(article):
     if updates['installed']:
         body += "\n\n*Installed:*\n"
         body += '\n'.join([
-            f"{x[0]}: {x[1]}" for x in updates['installed']
+            f"{x[0]}: {x[1].strip('()')}" for x in updates['installed']
         ])
     if updates['updated']:
         body += "\n\n*Updated:*\n"
         body += '\n'.join([
-            f"{x[0]}: {x[1]}" for x in updates['updated']
+            f"{x[0]}: {x[1].strip('()')}" for x in updates['updated']
         ])
 
     requests.post(
         url=settings.SLACK_API_URL,
-        json={
-            "text": body,
-        },
+        json={"text": body},
     )
 
 
@@ -65,7 +66,17 @@ def get_tools_list(lines):
             tools += [
                 (
                     x.split('[')[0].strip(),      # name
-                    x.split(']')[1].strip('()'),  # toolshed url
+                    convert_toolshed_id_url(
+                        x.split(']')[1].strip('()')
+                    ),  # galaxy toolshed url id
                 ) for x in line.split('|')[2].split('<br/>')
             ]
     return tools
+
+
+def convert_toolshed_id_url(url):
+    """Convert a toolshed webpage URL to tool identifier URL."""
+    parts = url.split('//')[1].split('/')
+    tool_id = parts[-2]
+    new = '/'.join(parts[:-1] + [tool_id])
+    return new.replace('view', 'repos')
