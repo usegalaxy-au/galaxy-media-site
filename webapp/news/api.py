@@ -5,6 +5,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from utils.notifications import notify_tool_update
 from events.models import Tag, Supporter
 from .models import News, APIToken
 
@@ -14,6 +15,7 @@ def create_post(request):
     """Create a new post.
 
     To post a tool update:
+
     curl -X POST -d "api_token=<token>
         &tool_update=true
         &body=$(cat body.txt)"
@@ -86,6 +88,10 @@ def create_post(request):
     article.supporters.add(Supporter.objects.get(name="QCIF"))
     article.supporters.add(
         Supporter.objects.get(name="Melbourne Bioinformatics"))
+
+    if tool_update == 'true':
+        notify_tool_update(article)
+
     return HttpResponse(
         'News item created successfully\n',
         status=201,
