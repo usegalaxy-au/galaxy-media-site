@@ -15,7 +15,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 HOSTNAME = os.environ['HOSTNAME']
 
 ALLOWED_HOSTS.append(HOSTNAME)
-GALAXY_SITE_NAME = 'Media'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
+GALAXY_SITE_NAME = 'Australia'  # Rendered as "Galaxy <GALAXY_SITE_NAME> Media"
 
 # For posting tool update notifications to Slack
 SLACK_API_URL = (

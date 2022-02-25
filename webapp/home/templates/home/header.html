@@ -5,7 +5,7 @@
 
   <head>
     {% include 'home/snippets/head.html' %}
-    <title> {% if title %}{{ title }}{% else %}Galaxy Australia{% endif %} </title>
+    <title> {% if title %}{{ title }}{% else %}Galaxy {{ GALAXY_SITE_NAME }} Media{% endif %} </title>
     {% include 'home/snippets/imports.html' %}
 
     {% block head %}
@@ -26,8 +26,7 @@
 
     <nav class="navbar fixed-top navbar-expand-lg embedded">
       <a class="navbar-brand" href="/">
-        Galaxy <span class="australia">Australia</span>
-        <!-- <img src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy logo"> -->
+        <span class="australia">Galaxy {{ GALAXY_SITE_NAME }}</span> Media
       </a>
 
       <div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
@@ -93,7 +92,7 @@
       <div class="navbar-nav">
         <a href="/admin/logout">Log out</a>
       </div>
-        {% endif %}
+      {% endif %}
     </nav>
 
 
