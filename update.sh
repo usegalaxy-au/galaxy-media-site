@@ -13,6 +13,6 @@ fi
 git pull
 source deploy/.venv/bin/activate
 cd webapp
-python manage.py migrate
+python manage.py migrate || true
 python manage.py collectstatic --noinput
 sudo service webapp restart
