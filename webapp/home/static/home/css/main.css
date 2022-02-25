@@ -8,6 +8,11 @@ body {
   padding: 6rem 2rem 1rem 2rem;
   min-width: 99vw;
 }
+h1 {
+  margin-bottom: 3rem;
+}
+
+/* Navbar */
 nav {
   color: #ddd;
   background-color: var(--color);
@@ -36,15 +41,31 @@ nav .australia {
 nav a:hover .australia {
   color: #eedd5c;
 }
-#admin-login {
-  opacity: 0.1;
+nav #admin-login {
+  opacity: 0;
   transition-duration: .25s;
 }
-#admin-login:hover {
+nav #admin-login:hover {
   opacity: 1;
 }
-h1 {
-  margin-bottom: 3rem;
+
+/* For render in <iframe> */
+nav.embedded {
+  color: #aaa;
+  background-color: transparent;
+}
+nav.embedded a.active {
+  color: #555;
+}
+nav.embedded a:hover, a.nav-link:hover {
+  color: #555;
+}
+nav.embedded a.navbar-brand,
+nav.embedded .login {
+  display: none;
+}
+nav.embedded .navbar-collapse {
+  justify-content: center;
 }
 
 /* Footer */
@@ -85,16 +106,6 @@ footer small {
 footer p.tight {
   line-height: 1.15;
 }
-
-/* Iframe */
-nav.embedded a.navbar-brand,
-nav.embedded .login {
-  display: none;
-}
-nav.embedded .navbar-collapse {
-  justify-content: center;
-}
-
 
 /* Layout */
 main {
