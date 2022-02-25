@@ -28,21 +28,22 @@ class User(AbstractUser):
 class Notice(models.Model):
     """A site notice to be displayed on the home/landing pages."""
 
-    INFO = 'success'
-    WARNING = 'warning'
-    DANGER = 'danger'
-
     NOTICE_CLASSES = (
-        (INFO, 'info'),
-        (WARNING, 'warning'),
-        (DANGER, 'danger'),
+        ('info', 'info'),
+        ('warning', 'warning'),
+        ('danger', 'danger'),
+        ('none', 'none'),
     )
 
     datetime_modified = models.DateTimeField(auto_now=True)
     notice_class = models.CharField(
-        max_length=16, choices=NOTICE_CLASSES, default=INFO,
+        max_length=16, choices=NOTICE_CLASSES, default='',
+        help_text="A style class to set a color schema for the notice."
     )
     title = models.CharField(max_length=100)
+    display_title = models.BooleanField(
+        default=True,
+        help_text="Uncheck to hide the title when displaying the notice.")
     body = models.CharField(max_length=2000, help_text=MARKDOWN_HELP_TEXT)
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
