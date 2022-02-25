@@ -30,7 +30,10 @@ def index(request, landing=False):
 
 
 def landing(request):
-    """Show landing page for usegalaxy.org.au."""
+    """Show landing page for usegalaxy.org.au.
+
+    Same as index but without the navbar.
+    """
     return index(request, landing=True)
 
 

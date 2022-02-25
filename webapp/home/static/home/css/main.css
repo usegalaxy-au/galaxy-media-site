@@ -52,7 +52,7 @@ nav #admin-login:hover {
 /* For render in <iframe> */
 nav.embedded {
   color: #aaa;
-  background-color: transparent;
+  background-color: white;
 }
 nav.embedded a.active {
   color: #555;
