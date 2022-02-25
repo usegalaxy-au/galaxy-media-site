@@ -10,8 +10,9 @@ if [[ ! -f 'deploy/.venv/bin/activate' ]]; then
   exit 1
 fi
 
-source deploy/.venv/bin/activate
 git pull
+source deploy/.venv/bin/activate
+cd webapp
 python manage.py migrate
 python manage.py collectstatic --noinput
 sudo service webapp restart
