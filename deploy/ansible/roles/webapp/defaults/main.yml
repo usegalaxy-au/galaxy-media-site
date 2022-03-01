@@ -14,6 +14,8 @@ webapp:
       dest: "{{ server_root }}/setup.sh"
     - src: "{{ role_path }}/templates/nginx.vhost.j2"
       dest: "/etc/nginx/sites-available/{{ inventory_hostname }}.conf"
+    - src: "{{ role_path }}/templates/.env.j2"
+      dest: "{{ project_root }}/.env"
 
   files:
     - src: "{{ role_path }}/files/webapp.socket"
