@@ -1,6 +1,7 @@
 """Register models with the Django admin."""
 
 from django.contrib import admin
+from django.utils.html import format_html
 
 from events.models import Tag, Supporter
 from .models import News, NewsImage, APIToken
@@ -43,11 +44,17 @@ class NewsAdmin(admin.ModelAdmin):
     form = NewsAdminForm
     list_display = [
         'id',
+        'view_page',
         'datetime_created',
         'title',
         'external',
     ]
     inlines = [NewsImageInline]
+
+    @admin.display(empty_value='')
+    def view_page(self, obj):
+        """Render link to view news article page."""
+        return format_html("<a href={href}> View page </a>", href=obj.url)
 
 
 class APITokenAdmin(admin.ModelAdmin):

@@ -41,7 +41,7 @@ class Tag(models.Model):
     color = models.CharField(max_length=7)  # Hex color
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
-        help_text=('A valid material design icon identifier.'
+        help_text=('A valid Material Design icon identifier to be displayed with the title.'
                    ' See: https://fonts.google.com/icons')
     )
     archived = models.BooleanField(default=False)

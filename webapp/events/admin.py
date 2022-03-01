@@ -34,8 +34,8 @@ class EventAdmin(admin.ModelAdmin):
     form = EventAdminForm
     list_display = [
         'id',
-        'datetime_created',
         'view_page',
+        'datetime_created',
         'title',
         'date_start',
         'date_end',

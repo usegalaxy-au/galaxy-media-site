@@ -38,7 +38,10 @@ class Notice(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
     notice_class = models.CharField(
         max_length=16, choices=NOTICE_CLASSES, default='',
-        help_text="A style class to set a color schema for the notice."
+        help_text=(
+            "A style class to set a color schema for the notice. Select"
+            " 'none' for no styling (e.g. inserting an image)."
+        )
     )
     title = models.CharField(max_length=100)
     display_title = models.BooleanField(
@@ -47,7 +50,7 @@ class Notice(models.Model):
     body = models.CharField(max_length=2000, help_text=MARKDOWN_HELP_TEXT)
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
-        help_text=('Optional. A valid Material Design icon identifier.'
+        help_text=('Optional. A valid Material Design icon identifier to be displayed with the title.'
                    ' <a href="https://fonts.google.com/icons" target="_blank">'
                    ' Browse icons here </a>')
     )
