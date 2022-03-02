@@ -1,0 +1,46 @@
+hr {
+  margin: 5rem 0;
+}
+.m-10 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.mt-10 {
+  margin-top: 5rem;
+}
+.mb-10 {
+  margin-bottom: 5rem;
+}
+.request-buttons {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 70vh;
+  justify-content: space-between;
+  align-items: center;
+}
+.request-buttons .col {
+  padding: 25px;
+  border-right:
+    1px solid var(--border);
+}
+.request-buttons
+.col:last-child {
+  border: none;
+}
+.request-buttons
+span.material-icons {
+  font-size: 4rem;
+}
+.request-buttons p {
+  display: block;
+  height: 4rem;
+}
+.form-check-label {
+  margin-left: 1rem;
+}
+.g-recaptcha {
+  display: flex;
+  justify-content: center;
+}

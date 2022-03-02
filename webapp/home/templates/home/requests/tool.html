@@ -1,0 +1,329 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container"">
+
+  <h2>
+    Request for installation of software tool or reference dataset on Galaxy Australia
+  </h2>
+
+  <div class="m-5 p-5">
+    <p>
+      This form has been developed to allow life science researchers across Australia to request software or reference data to be installed or updated on the national NCRIS-funded
+      <a href="https://usegalaxy.org.au/" target="_blank">Galaxy Australia</a>
+      service.
+    </p>
+
+    <p>
+      The information you provide will allow us to identify the applicability of the requested tool/data across the life science community as a whole and to help us in identifying resources that will be able to update/install the software/data for you.
+    </p>
+
+    <p>
+      Submissions are reviewed weekly.
+    </p>
+
+    <p>
+      Please note that due to resourcing constraints, submitting a request for software or reference dataset installation using this form doesn't necessarily guarantee that assistance can be provided.
+    </p>
+  </div>
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    <div class="row mb-10">
+      <div class="col-md-6">
+        <label for="nameInput" class="form-label">Name</label>
+        {{ form.name.errors }}
+        <input class="form-control" id="nameInput" type="text" name="name"
+        value="{{form.name.value|default_if_none:''}}" required>
+      </div>
+
+      <div class="col-md-6">
+        <label for="emailInput" class="form-label">Email</label>
+        {{ form.email.errors }}
+        <input class="form-control" id="emailInput" type="text" name="email"
+        value="{{form.email.value|default_if_none:''}}"
+        aria-describedby="emailHelp" required
+        >
+        <div id="emailHelp" class="form-text">
+          We may contact you to request further detail.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <p> Is your request for a new tool or a new dataset on Galaxy Australia?</p>
+      {{ form.resource_type.errors }}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" value="tool"
+          name="resource_type" id="resourceToolRadio" required
+          {% if form.resource_type.value == 'tool' %}checked{% endif %}
+        >
+        <label class="form-check-label" for="resourceToolRadio">
+          Tool
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" value="dataset"
+          name="resource_type" id="resourceDatasetRadio" required
+          {% if form.resource_type.value == 'dataset' %}checked{% endif %}
+        >
+        <label class="form-check-label" for="resourceDatasetRadio">
+          Dataset
+        </label>
+      </div>
+    </div>
+
+    <div class="main">
+
+      <!-- Tool/dataset specific section toggled by javascript -->
+
+      <!-- Tool-specific -->
+
+      <div class="tool-yes">
+        <div class="row mb-10">
+          <div class="col-md-5">
+            <input class="form-check-input" id="toolshedAvailableInput"
+              type="checkbox" name="tool_toolshed_available"
+              value="{{form.tool_toolshed_available.value|default_if_none:'0'}}"
+              aria-describedby="toolshedAvailableHelp"
+            >
+            <label for="toolshedAvailableInput" class="form-check-label">
+              Is the requested tool available on the Galaxy Toolshed?
+            </label>
+            {{ form.tool_toolshed_url.errors }}
+            <div id="toolshedAvailableHelp" class="form-text">
+              The
+              <a href="https://toolshed.g2.bx.psu.edu/" target="_blank">Galaxy Toolshed</a>
+              is like an app store for Galaxy tools. These tools can be installed
+              on Galaxy Australia in a matter of days.
+              Learn about the Galaxy Toolshed
+              <a href="https://galaxyproject.org/toolshed/">here</a>.
+            </div>
+
+            <div class="toolshed-yes mt-5">
+              <label for="toolshedUrl" class="form-label">Galaxy Toolshed URL</label>
+              <input class="form-control" id="toolshedUrl" type="url" name="tool_toolshed_url"
+                value="{{form.tool_toolshed_url.value|default_if_none:''}}"
+                aria-describedby="toolshedUrlHelp"
+                placeholder="https://toolshed.g2.bx.psu.edu/"
+              >
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="toolshed-yes border p-3" id="toolshedUrlHelp" class="form-text">
+              <p>
+                <small>
+                  See the screenshot below for where to find the link to a tool on
+                  <a href="https://toolshed.g2.bx.psu.edu/" target="_blank">the toolshed website</a>.
+                  Click on the copy to clipboard icon for your tool and paste the URL here.
+                </small>
+              </p>
+              <div class="text-center">
+                <img src="{% static 'home/img/toolshed-url-help.png' %}" alt="Toolshed help screenshot">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-10">
+          <input class="form-check-input" id="testDataInput" type="checkbox" name="tool_test_data"
+            value="{{form.tool_test_data.value|default_if_none:''}}"
+            aria-describedby="testDataHelp">
+          <label for="testDataInput" class="form-check-label">
+            Do you have data that we can use to test this tool?
+          </label>
+          {{ form.tool_test_data.errors }}
+          <div id="testDataHelp" class="form-text">
+            Test data will help us to validate and test this tool more quickly.
+          </div>
+        </div>
+      </div>
+
+      <!-- End tool/dataset specific section -->
+
+      <div class="mb-10">
+        <label for="resourceNameInput" class="form-label">Please provide the name and version of the requested resource</label>
+        {{ form.resource_name_version.errors }}
+        <input class="form-control" id="resourceNameInput" type="text"
+          name="resource_name_version"
+          value="{{form.resource_name_version.value|default_if_none:''}}"
+          aria-describedby="resourceNameHelp"
+          required
+        >
+        <div id="resourceNameHelp" class="form-text">
+          <span class="tool-yes">
+            Please remember that different versions of a tool will likely produce different results.
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-10 toolshed-no">
+        <label for="resourceUrlInput" class="form-label">
+          <span class="tool-yes">URL for the software code</span>
+          <span class="data-yes">URL of the specified resource</span>
+        </label>
+        {{ form.resource_url.errors }}
+        <input class="form-control" id="resourceUrlInput" type="url"
+          name="resource_url"
+          value="{{form.resource_url.value|default_if_none:''}}"
+          aria-describedby="resourceUrlHelp"
+        >
+        <div id="resourceUrlHelp" class="form-text">
+          <span class="tool-yes">
+            In certain cases it may be possible for us to resource the wrapping of tools for inclusion in the Galaxy Toolshed - this could be any open-source tool that is of value to the Galaxy community. In this case, we will require a link to the software code (e.g. GitHub repository).
+          </span>
+          <span class="data-yes">
+            What is the authoritative source to download the dataset from?
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-10">
+        <label for="justificationInput" class="form-label">Justification for this resource</label>
+        {{ form.resource_justification.errors }}
+        <textarea class="form-control" id="justificationInput" name="resource_justification"
+          aria-describedby="justificationHelp" rows="4" required
+        >{{form.resource_justification.value|default_if_none:''}}</textarea>
+        <div id="justificationHelp" class="form-text">
+          <span class="tool-yes">
+            Please provide as much information as you can to explain why this software should be installed/updated. e.g. a new version of the software has been deployed that produces significantly improved results from the version that is currently installed. Please include links to relevant references.
+          </span>
+          <span class="data-yes">
+            Please provide as much information as you can to explain why this reference dataset should be installed.
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-10">
+        <label for="researchCountInput" class="form-label">
+          How many researchers are you aware of across Australia who also require
+          access to this reference dataset on Galaxy Australia?
+        </label>
+        {{ form.resource_research_count.errors }}
+        <input class="form-control" id="researchCountInput" type="number"
+          name="resource_research_count"
+          value="{{form.resource_research_count.value|default_if_none:''}}"
+          aria-describedby="researchCountHelp"
+          required
+        >
+        <div id="researchCountHelp" class="form-text">
+          <span class="tool-yes">
+            Installation and testing of software can be time consuming and resource intensive, especially if the tool requires wrapping. For that reason, priority will be given to software that supports multiple researchers
+          </span>
+          <span class="data-yes">
+            Installation of reference data can be time consuming and resource intensive. For that reason, priority will be given to datasets that support multiple researchers.
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-10">
+        <label for="resourceGroupsInput" class="form-label">
+          Please list the names of research groups you are aware of across Australia who also require access to this software (or software update) on Galaxy Australia
+        </label>
+        {{ form.resource_research_groups.errors }}
+        <input class="form-control" id="resourceGroupsInput" type="text"
+          name="resource_research_groups"
+          value="{{form.resource_research_groups.value|default_if_none:''}}"
+          aria-describedby="resourceGroupsHelp"
+          required
+        >
+        <div id="resourceGroupsHelp" class="form-text">
+          <span class="tool-yes">
+            Installation and testing of software can be time consuming and resource intensive, especially if the tool requires wrapping. For that reason, priority will be given to software that supports multiple research groups
+          </span>
+          <span class="data-yes">
+            Installation of reference data can be time consuming and resource intensive. For that reason, priority will be given to datasets that support multiple research groups.
+          </span>
+        </div>
+      </div>
+
+      <!-- Dataset-specific -->
+      <div class="mb-10 data-yes">
+        <input class="form-check-input" id="contactConsentInput" type="checkbox"
+          name="dataset_contact_consent"
+          {% if form.dataset_contact_consent.value %}checked{% endif %}
+        >
+        <label for="contactConsentInput" class="form-check-label">
+          Can we contact you if we require more details about this dataset?
+        </label>
+      </div>
+      <!-- End dataset specific -->
+
+      <div class="mb-10">
+        {{ form.captcha }}
+        {{ form.captcha.errors }}
+      </div>
+
+      <div class="text-center">
+        <p>A copy of your responses will be emailed to the address that you provided.</p>
+        <button class="ga-btn" type="submit">Submit request</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="container mt-10">
+    <p class="text-center">
+      Need help?
+      <a href="/request/support">Contact support</a>
+    </p>
+  </div>
+
+</main>
+{% endblock %}
+
+
+{% block script %}
+
+<script type="text/javascript">
+  $('#resourceToolRadio').click(function(e) {
+    $('.tool-yes').show();
+    $('.data-yes').hide();
+    $('.main').fadeIn(500);
+    $('#toolshedAvailableInput')[0].checked ?
+      $('.toolshed-no').hide()
+      : $('.toolshed-no').show();
+  });
+
+  $('#resourceDatasetRadio').click(function(e) {
+    $('.data-yes').show();
+    $('.tool-yes').hide();
+    $('.main').fadeIn(500);
+    $('.toolshed-no').show();
+  });
+
+  $('#toolshedAvailableInput').click(function() {
+    this.checked ?
+      $('.toolshed-yes').fadeIn(500) && $('.toolshed-no').hide()
+      : $('.toolshed-yes').hide() && $('.toolshed-no').show();
+  });
+</script>
+
+{% endblock %}
+
+
+{% block onload %}
+
+// Trigger show elements if form populated
+$('input[type="radio"]:checked').click();
+$('input[type="checkbox"]:checked').click();
+
+$('.errorlist') && setTimeout(function() {
+  window.scrollTo({
+    top: $('.errorlist').offset().top - 100,
+    left: 0,
+  })
+}, 500);
+
+{% endblock %}

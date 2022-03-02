@@ -1,0 +1,39 @@
+main {
+  margin-bottom: 12rem;
+}
+.main,
+.tool-yes,
+.toolshed-yes,
+.data-yes,
+.show-other {
+  display: none;
+}
+.show-other {
+  margin: 1rem;
+}
+.border {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+#toolshedUrlHelp img {
+  width: auto;
+  max-height: 500px;
+}
+ul.errorlist {
+  padding: .5rem 1rem;
+  color: var(--error);
+  list-style-type: none;
+  border: 1px solid var(--error);
+  border-radius: .5rem;
+}
+/*
+.show-other
+
+radio input onclick
+  if value == ''
+  get input name
+  append to get '<name>_other'
+  get input with name above
+  get closest .show_other
+  .fadeIn(250)
+*/

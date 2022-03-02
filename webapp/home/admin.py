@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.conf import settings
 
 from .models import User, Notice
-from .forms import NoticeAdminForm, UserCreationForm, UserChangeForm
+from .admin_forms import NoticeAdminForm, UserCreationForm, UserChangeForm
 
 
 class UserAdmin(BaseUserAdmin):

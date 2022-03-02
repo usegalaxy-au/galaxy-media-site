@@ -1,0 +1,31 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container-centered">
+  <div class="text-center">
+    <h2> Thanks for your submission </h2>
+
+    <p> We'll get back to you as soon as possible. </p>
+
+    <div class="my-5">
+      <a class="ga-btn" href="/"> Home </a>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

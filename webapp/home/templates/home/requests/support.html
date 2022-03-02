@@ -1,0 +1,70 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container">
+
+  <h2 class="mb-10"> Galaxy Australia User Support </h2>
+
+  <p class="mb-10">
+    Please leave us a message describing your query and we'll get back to you
+    as soon as we can.
+  </p>
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    <div class="row mb-10">
+      <div class="col-md-6">
+        <label for="nameInput" class="form-label">Name</label>
+        <input class="form-control" id="nameInput" type="text" name="name"
+          value="{{form.name.value|default_if_none:''}}" required
+        >
+      </div>
+
+      <div class="col-md-6">
+        <label for="emailInput" class="form-label">Email</label>
+        <input class="form-control" id="emailInput" type="text" name="email"
+          value="{{form.email.value|default_if_none:''}}"
+          aria-describedby="emailHelp" required
+        >
+        <div id="emailHelp" class="form-text">
+          We may contact you to request further detail. If possible, please use
+          your Galaxy login email.
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <div class="col">
+        <label for="messageInput" class="form-label">Your message</label>
+        <textarea class="form-control" id="messageInput" name="message" rows="8" cols="80" required
+          >{{form.message.value|default_if_none:''}}</textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center mb-10">
+        <button class='ga-btn' type="submit"> Submit </button>
+      </div>
+    </div>
+  </form>
+
+</main>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

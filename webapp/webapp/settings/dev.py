@@ -23,6 +23,8 @@ SLACK_API_URL = (
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "secretkey"
 
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -33,3 +35,12 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# Galaxy AU mail server
+# EMAIL_HOST = os.environ['MAIL_HOSTNAME']
+# EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
+# EMAIL_HOST_USER = os.environ['MAIL_SMTP_USERNAME']
+# EMAIL_HOST_PASSWORD = os.environ['MAIL_SMTP_PASSWORD']
+# EMAIL_HOST_USE_TLS = os.environ.get('MAIL_USE_TLS') or False
+EMAIL_FROM_ADDRESS = os.environ['MAIL_TO_ADDRESS']
+EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']

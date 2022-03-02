@@ -2,6 +2,7 @@
   --color: #2C3143;
   --tile-bg: #F8F9FA;
   --border: #70707033;
+  --error: #dc3545;
 }
 body {
   color: #2C3143;
@@ -123,6 +124,18 @@ section {
 .row.no-gutter {
   margin-left: 0;
   margin-right: 0;
+}
+.container-centered {
+  /*
+  For content centered on full
+  page e.g. success/confirmation
+  page */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 85vh;
 }
 
 /* Components */
