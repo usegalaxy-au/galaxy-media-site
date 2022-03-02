@@ -38,7 +38,7 @@ main {
 }
 .about-nav button.active {
   color: #eee;
-  background: dodgerblue;
+  background: var(--color);
   cursor: default;
 }
 .about-nav button:not(.active):hover {
