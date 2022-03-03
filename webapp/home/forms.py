@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from captcha import fields
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('django')
 
 
 def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):

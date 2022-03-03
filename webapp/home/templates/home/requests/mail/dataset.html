@@ -3,38 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title>Galaxy Australia Tool Request</title>
-
-    <style>
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        margin: 24px auto;
-      }
-      th {
-        font-weight: bold;
-      }
-      th, td {
-        text-align: center;
-        padding: 10px;
-        border: 1px solid grey;
-      }
-    </style>
   </head>
   <body>
 
   <h3>New dataset request submitted - Galaxy Australia</h3>
 
-  <table>
+  <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
     <tbody>
       <tr>
-        <th> Your name </th>
-        <td> {{ form.cleaned_data.name }} </td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Your name </th>
+        <td style="padding: 10px; border: 1px solid grey;"> {{ form.cleaned_data.name }} </td>
       </tr>
 
       <tr>
-        <th> Your email </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Your email </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           <a href="mailto:{{ form.cleaned_data.email }}">
             {{ form.cleaned_data.email }}
           </a>
@@ -42,13 +25,13 @@
       </tr>
 
       <tr>
-        <th> Name and version of dataset to be installed/updated </th>
-        <td> {{ form.cleaned_data.resource_name_version }} </td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Name and version of dataset to be installed/updated </th>
+        <td style="padding: 10px; border: 1px solid grey;"> {{ form.cleaned_data.resource_name_version }} </td>
       </tr>
 
       <tr>
-        <th> URL for dataset source </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> URL for dataset source </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           <a href="{{ form.cleaned_data.resource_url }}">
             {{ form.cleaned_data.resource_url }}
           </a>
@@ -56,23 +39,23 @@
       </tr>
 
       <tr>
-        <th> Justification </th>
-        <td> {{ form.cleaned_data.resource_justification }} </td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Justification </th>
+        <td style="padding: 10px; border: 1px solid grey;"> {{ form.cleaned_data.resource_justification }} </td>
       </tr>
 
       <tr>
-        <th> How many researchers are you aware of across Australia who also require access to this software (or updated software) on Galaxy Australia? </th>
-        <td> {{ form.cleaned_data.resource_research_count }} </td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> How many researchers are you aware of across Australia who also require access to this software (or updated software) on Galaxy Australia? </th>
+        <td style="padding: 10px; border: 1px solid grey;"> {{ form.cleaned_data.resource_research_count }} </td>
       </tr>
 
       <tr>
-        <th> Please list the names of research groups you are aware of across Australia who also require access to this software (or updated software) on Galaxy Australia </th>
-        <td> {{ form.cleaned_data.resource_research_groups }} </td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Please list the names of research groups you are aware of across Australia who also require access to this software (or updated software) on Galaxy Australia </th>
+        <td style="padding: 10px; border: 1px solid grey;"> {{ form.cleaned_data.resource_research_groups }} </td>
       </tr>
 
       <tr>
-        <th> Can we contact you if we require more details about this dataset? </th>
-        <td> {{ form.cleaned_data.dataset_contact_consent|yesno:"Yes,No" }} </td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Can we contact you if we require more details about this dataset? </th>
+        <td style="padding: 10px; border: 1px solid grey;"> {{ form.cleaned_data.dataset_contact_consent|yesno:"Yes,No" }} </td>
       </tr>
     </tbody>
   </table>

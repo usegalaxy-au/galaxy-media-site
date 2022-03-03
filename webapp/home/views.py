@@ -12,7 +12,7 @@ from news.models import News
 from .models import Notice
 from .forms import ResourceRequestForm, QuotaRequestForm, SupportRequestForm
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('django')
 
 
 def index(request, landing=False):
@@ -86,10 +86,9 @@ def user_request_support(request):
     if request.POST:
         form = SupportRequestForm(request.POST)
         if form.is_valid():
-            logger.info('Form valid. Dispatch content as email.')
             form.dispatch()
             return user_request_success(request)
-        logger.info("Form was invalid")
+        logger.info("Form was invalid. Returning errors:")
         logger.info(pformat(form.errors))
     return render(request, 'home/requests/support.html', {'form': form})
 

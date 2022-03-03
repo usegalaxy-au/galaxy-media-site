@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 may be overidden by the importing file.*
 """
 
+import os
 from pathlib import Path
-
+from dotenv import load_dotenv
 from utils.paths import ensure_dir
+
+load_dotenv('../.env', override=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -154,20 +157,20 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'django.utils.autoreload': {
+            'level': 'WARNING',  # This logger is way too noisy on DEBUG
+        }
     },
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# Mailtrap.io
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '7ac4110c7f742c'
-EMAIL_HOST_PASSWORD = '256cd0d8c23ce3'
-EMAIL_PORT = '2525'
-
-# For sending support request mail
-EMAIL_FROM_ADDRESS = 'noreply@usegalaxy.org.au'
-EMAIL_TO_ADDRESS = 'support@myinbox.com'
+EMAIL_HOST = os.environ['MAIL_HOSTNAME']
+EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
+EMAIL_HOST_USER = os.environ['MAIL_SMTP_USERNAME']
+EMAIL_HOST_PASSWORD = os.environ['MAIL_SMTP_PASSWORD']
+EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
+EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
+EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

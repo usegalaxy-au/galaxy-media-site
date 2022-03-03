@@ -3,40 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Galaxy Australia Quota Request</title>
-
-    <style>
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        margin: 24px auto;
-      }
-      th {
-        font-weight: bold;
-      }
-      th, td {
-        text-align: center;
-        padding: 10px;
-        border: 1px solid grey;
-      }
-    </style>
   </head>
   <body>
 
   <h3>New data quota request - Galaxy Australia</h3>
 
-  <table>
+  <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
     <tbody>
       <tr>
-        <th> Your name </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Your name </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.name }}
         </td>
       </tr>
 
       <tr>
-        <th> Your email </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Your email </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           <a href="mailto:{{ form.cleaned_data.email }}">
             {{ form.cleaned_data.email }}
           </a>
@@ -44,36 +27,36 @@
       </tr>
 
       <tr>
-        <th> Institution </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Institution </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.institution }}
         </td>
       </tr>
 
       <tr>
-        <th> Group name / PI </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Group name / PI </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.group_name }}
         </td>
       </tr>
 
       <tr>
-        <th> Analysis start date (d-m-y) </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Analysis start date (d-m-y) </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.start_date|date:"d-m-Y" }}
         </td>
       </tr>
 
       <tr>
-        <th> Duration of analysis</th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Duration of analysis</th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.duration }} month(s)
         </td>
       </tr>
 
       <tr>
-        <th> Disk required </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Disk required </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {% if form.cleaned_data.disk_gb %}
           {{ form.cleaned_data.disk_gb }}GB
           {% else %}
@@ -83,43 +66,43 @@
       </tr>
 
       <tr>
-        <th> Description </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Description </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.description }}
         </td>
       </tr>
 
       <tr>
-        <th> Organism </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Organism </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.organism }}
         </td>
       </tr>
 
       <tr>
-        <th> Technology </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Technology </th>
+        <td style="padding: 10px; border: 1px solid grey;">
           {{ form.cleaned_data.technology }}
         </td>
       </tr>
 
       <tr>
-        <th> File type </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> File type </th>
+        <td style="padding: 10px; border: 1px solid grey;">
             {{ form.cleaned_data.file_type }}
         </td>
       </tr>
 
       <tr>
-        <th> Max samples to upload </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Max samples to upload </th>
+        <td style="padding: 10px; border: 1px solid grey;">
             {{ form.cleaned_data.max_samples }}
         </td>
       </tr>
 
       <tr>
-        <th> Terms accepted </th>
-        <td>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Terms accepted </th>
+        <td style="padding: 10px; border: 1px solid grey;">
             {{ form.cleaned_data.accepted_terms|yesno:"Yes,No" }}
         </td>
       </tr>

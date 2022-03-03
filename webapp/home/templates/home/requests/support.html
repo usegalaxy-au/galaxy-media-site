@@ -25,6 +25,7 @@
     <div class="row mb-10">
       <div class="col-md-6">
         <label for="nameInput" class="form-label">Name</label>
+        {{ form.name.errors }}
         <input class="form-control" id="nameInput" type="text" name="name"
           value="{{form.name.value|default_if_none:''}}" required
         >
@@ -32,7 +33,8 @@
 
       <div class="col-md-6">
         <label for="emailInput" class="form-label">Email</label>
-        <input class="form-control" id="emailInput" type="text" name="email"
+        {{ form.email.errors }}
+        <input class="form-control" id="emailInput" type="email" name="email"
           value="{{form.email.value|default_if_none:''}}"
           aria-describedby="emailHelp" required
         >
@@ -46,6 +48,7 @@
     <div class="row mb-10">
       <div class="col">
         <label for="messageInput" class="form-label">Your message</label>
+        {{ form.message.errors }}
         <textarea class="form-control" id="messageInput" name="message" rows="8" cols="80" required
           >{{form.message.value|default_if_none:''}}</textarea>
       </div>

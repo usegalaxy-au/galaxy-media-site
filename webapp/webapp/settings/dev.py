@@ -1,11 +1,8 @@
 """Development settings."""
 
 import os
-from dotenv import load_dotenv
 
 from .base import *
-
-load_dotenv('../.env', override=True)
 
 DEBUG = False
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
@@ -14,7 +11,7 @@ if os.environ.get('HOSTNAME'):
     HOSTNAME = os.environ.get('HOSTNAME')
     ALLOWED_HOSTS.append(HOSTNAME)
 
-# For posting tool update notifications to Slack
+# For posting tool update notifications to a Slack channel
 SLACK_API_URL = (
     "https://hooks.slack.com/services"
     "/T01BG9M9LFJ/B034ECV1Y8Z/8BcMUWPZE3LCDcxJXkqmT4b6"
@@ -35,12 +32,3 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-# Galaxy AU mail server
-# EMAIL_HOST = os.environ['MAIL_HOSTNAME']
-# EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
-# EMAIL_HOST_USER = os.environ['MAIL_SMTP_USERNAME']
-# EMAIL_HOST_PASSWORD = os.environ['MAIL_SMTP_PASSWORD']
-# EMAIL_HOST_USE_TLS = os.environ.get('MAIL_USE_TLS') or False
-EMAIL_FROM_ADDRESS = os.environ['MAIL_TO_ADDRESS']
-EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
