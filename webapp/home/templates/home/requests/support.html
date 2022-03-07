@@ -66,6 +66,12 @@
 
 
 {% block script %}
+<script type="text/javascript">
+  $('form').submit( (e) => {
+    $('button[type="submit"]').prop('disabled', true);
+    $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
+  });
+</script>
 {% endblock %}
 
 

@@ -13,26 +13,12 @@
 <main class="container"">
 
   <h2>
-    Request for installation of software tool or reference dataset on Galaxy Australia
+    Request for installation of software or dataset on Galaxy Australia
   </h2>
 
   <div class="m-5 p-5">
     <p>
-      This form has been developed to allow life science researchers across Australia to request software or reference data to be installed or updated on the national NCRIS-funded
-      <a href="https://usegalaxy.org.au/" target="_blank">Galaxy Australia</a>
-      service.
-    </p>
-
-    <p>
-      The information you provide will allow us to identify the applicability of the requested tool/data across the life science community as a whole and to help us in identifying resources that will be able to update/install the software/data for you.
-    </p>
-
-    <p>
-      Submissions are reviewed weekly.
-    </p>
-
-    <p>
-      Please note that due to resourcing constraints, submitting a request for software or reference dataset installation using this form doesn't necessarily guarantee that assistance can be provided.
+      Please use this form to request a new resource on Galaxy Australia. The information you provide will allow us to identify the suitability of the requested tool/data across the life science community. Please note that due to resource constraints, submitting a request for software or reference dataset doesn't guarantee that assistance can be provided.
     </p>
   </div>
 
@@ -42,7 +28,7 @@
 
     <div class="row mb-10">
       <div class="col-md-6">
-        <label for="nameInput" class="form-label">Name</label>
+        <label for="nameInput" class="form-label">Full name</label>
         {{ form.name.errors }}
         <input class="form-control" id="nameInput" type="text" name="name"
         value="{{form.name.value|default_if_none:''}}" required>
@@ -146,7 +132,8 @@
           </label>
           {{ form.tool_test_data.errors }}
           <div id="testDataHelp" class="form-text">
-            Test data will help us to validate and test this tool more quickly.
+            Test data can help us to validate and test this tool more quickly.
+            We may contact you to request this data.
           </div>
         </div>
       </div>
@@ -163,6 +150,9 @@
           required
         >
         <div id="resourceNameHelp" class="form-text">
+          <span class="data-yes">
+            For example: MM10, Bor Tauras v6.2, Hg38
+          </span>
           <span class="tool-yes">
             Please remember that different versions of a tool will likely produce different results.
           </span>
@@ -205,61 +195,6 @@
           </span>
         </div>
       </div>
-
-      <div class="mb-10">
-        <label for="researchCountInput" class="form-label">
-          How many researchers are you aware of across Australia who also require
-          access to this reference dataset on Galaxy Australia?
-        </label>
-        {{ form.resource_research_count.errors }}
-        <input class="form-control" id="researchCountInput" type="number"
-          name="resource_research_count"
-          value="{{form.resource_research_count.value|default_if_none:''}}"
-          aria-describedby="researchCountHelp"
-          required
-        >
-        <div id="researchCountHelp" class="form-text">
-          <span class="tool-yes">
-            Installation and testing of software can be time consuming and resource intensive, especially if the tool requires wrapping. For that reason, priority will be given to software that supports multiple researchers
-          </span>
-          <span class="data-yes">
-            Installation of reference data can be time consuming and resource intensive. For that reason, priority will be given to datasets that support multiple researchers.
-          </span>
-        </div>
-      </div>
-
-      <div class="mb-10">
-        <label for="resourceGroupsInput" class="form-label">
-          Please list the names of research groups you are aware of across Australia who also require access to this software (or software update) on Galaxy Australia
-        </label>
-        {{ form.resource_research_groups.errors }}
-        <input class="form-control" id="resourceGroupsInput" type="text"
-          name="resource_research_groups"
-          value="{{form.resource_research_groups.value|default_if_none:''}}"
-          aria-describedby="resourceGroupsHelp"
-          required
-        >
-        <div id="resourceGroupsHelp" class="form-text">
-          <span class="tool-yes">
-            Installation and testing of software can be time consuming and resource intensive, especially if the tool requires wrapping. For that reason, priority will be given to software that supports multiple research groups
-          </span>
-          <span class="data-yes">
-            Installation of reference data can be time consuming and resource intensive. For that reason, priority will be given to datasets that support multiple research groups.
-          </span>
-        </div>
-      </div>
-
-      <!-- Dataset-specific -->
-      <div class="mb-10 data-yes">
-        <input class="form-check-input" id="contactConsentInput" type="checkbox"
-          name="dataset_contact_consent"
-          {% if form.dataset_contact_consent.value %}checked{% endif %}
-        >
-        <label for="contactConsentInput" class="form-check-label">
-          Can we contact you if we require more details about this dataset?
-        </label>
-      </div>
-      <!-- End dataset specific -->
 
       <div class="mb-10">
         {{ form.captcha }}
@@ -307,6 +242,11 @@
     this.checked ?
       $('.toolshed-yes').fadeIn(500) && $('.toolshed-no').hide()
       : $('.toolshed-yes').hide() && $('.toolshed-no').show();
+  });
+
+  $('form').submit( (e) => {
+    $('button[type="submit"]').prop('disabled', true);
+    $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
   });
 </script>
 

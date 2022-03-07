@@ -13,6 +13,4 @@ URL for software: {{ form.cleaned_data.resource_url }}
 Justification:
 {{ form.cleaned_data.resource_justification }}
 
-Research impact (researcher count): {{ form.cleaned_data.resource_research_count }}
-Research impact (research groups): {{ form.cleaned_data.resource_research_groups }}
 Has test data: {{ form.cleaned_data.tool_test_data|yesno:"Yes,No" }}

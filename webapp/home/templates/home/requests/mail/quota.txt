@@ -2,14 +2,8 @@ New data quota request - Galaxy Australia
 
 Your name: {{ form.cleaned_data.name }}
 Your email: {{ form.cleaned_data.email }}
-Institution: {{ form.cleaned_data.institution }}
-Group name / PI: {{ form.cleaned_data.group_name }}
-Analysis start date (d-m-y): {{ form.cleaned_data.start_date|date:"d-m-Y" }}
-Duration of analysis: {{ form.cleaned_data.duration }}
-Disk required: {% if form.cleaned_data.disk_gb %}{{ form.cleaned_data.disk_gb }}GB{% else %}I'm not sure, please contact me{% endif %}
-Description: {{ form.cleaned_data.description }}
-Organism: {{ form.cleaned_data.organism }}
-Technology: {{ form.cleaned_data.technology }}
-File type: {{ form.cleaned_data.file_type }}
-Max samples to upload: {{ form.cleaned_data.max_samples }}
+Analysis start date (dd-mm-yyyy): {{ form.cleaned_data.start_date|date:"d-m-Y" }}
+Duration of analysis: {{ form.cleaned_data.duration_months }} months
+Disk required: {% if form.cleaned_data.disk_tb %}{{ form.cleaned_data.disk_tb }}TB{% else %}I'm not sure, please contact me{% endif %}
+Justification: {{ form.cleaned_data.description }}
 Terms accepted: {{ form.cleaned_data.accepted_terms|yesno:"Yes,No" }}
