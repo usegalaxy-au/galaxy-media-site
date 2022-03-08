@@ -7,6 +7,7 @@
     {% include 'home/snippets/head.html' %}
     <title> {% if title %}{{ title }}{% else %}Galaxy {{ GALAXY_SITE_NAME }} Media{% endif %} </title>
     {% include 'home/snippets/imports.html' %}
+    {% include 'home/snippets/posthog.html' %}
 
     {% block head %}
     {% endblock %}
