@@ -54,7 +54,7 @@ deployment. See `./deployment/ansible/` for instructions.
 
 ### Deploy with shell
 
-**Installed and deploy the application in the terminal as follows:**
+**Install and deploy the application in your webserver terminal:**
 
 ```bash
 cd <my-projects-directory>
@@ -64,7 +64,7 @@ PROJECT_ROOT=$PWD
 
 # Create a .env file here - see .env.sample
 nano .env
-b
+
 # Follow prompts
 ./deploy/setup.sh
 
