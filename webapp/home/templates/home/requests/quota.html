@@ -134,12 +134,15 @@
     <div class="row mb-10">
       <div class="col">
         <label for="descriptionInput" class="form-label">
-          Please briefly justify your need for additional data storage
+          Justification and comments
         </label>
         {{ form.description.errors }}
         <textarea class="form-control" id="descriptionInput"
           name="description" rows="4" required
         >{{form.description.value|default_if_none:''}}</textarea>
+      </div>
+      <div id="descriptionHelp" class="form-text">
+        Please briefly justify your need for additional data storage.
       </div>
     </div>
 
