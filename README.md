@@ -112,9 +112,11 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 
 1. Grab a db dump on the old machine:
 
-  `sudo -u postgres pg_dump <dbname> > gm.sql`
+  ```
+  sudo -u postgres pg_dump <dbname> > gms.sql
+  ```
 
-2. Git clone and run `deploy/setup.sh` on the new server (N.B your superuser will be overwritten in the following steps)
+2. Install GMS on the new webserver with ansible or over the CLI (N.B your superuser will be overwritten in the following steps)
 
 3. Drop and recreate the new database
   ```
@@ -125,7 +127,7 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 
 4. Load the db dump
 
-  `sudo -u postgres psql -d <dbname> < gm.sql`
+  `sudo -u postgres psql -d <dbname> < gms.sql`
 
 5. Check out the new site, the content should be there.
 
