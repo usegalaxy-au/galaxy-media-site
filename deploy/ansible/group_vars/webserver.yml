@@ -1,6 +1,6 @@
 ---
 
-# secrets.yml:
+# Read vault from secrets.yml:
 # admin_email: <str>
 # admin_password: <str>
 # database_password: <str>
