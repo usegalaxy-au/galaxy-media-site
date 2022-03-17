@@ -133,13 +133,18 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 
 6. Images/media must be migrated separately. `tar` the `webapp/webapp/media` directory and send to the new server:
   ```
+  # N.B. you will need sudo access on the remote to update the ownership
+
   cd $PROJECT_ROOT
-  tar czf - webapp/webapp/media \
+  tar cf - webapp/webapp/media \
       | ssh <REMOTE-ADDRESS> \ "(
           cd <NEW_PROJECT_ROOT>/webapp/webapp;
-          cat > media.tar.gz;
-          tar -xzf media.tar.gz && rm media.tar.gz)"
+          cat > media.tar;
+          tar -xf media.tar && rm media.tar;
+          sudo chown -R www-data:www-data media)"
   ```
-  Images should now be display on the new site.
+  Your images should now be display on the new site.
+
+7. Make sure that you correct the ownership
 
 7. If you are using a Jenkins task for automated news posts, you will need to update the Jenkins config if the hostname has changed. The API key should be unchanged.

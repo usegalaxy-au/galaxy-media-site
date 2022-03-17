@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: dev_webservers
   remote_user: ubuntu
   become: true
   vars_files:

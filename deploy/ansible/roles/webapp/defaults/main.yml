@@ -16,6 +16,8 @@ webapp:
       dest: "/etc/nginx/sites-available/{{ inventory_hostname }}.conf"
     - src: "{{ role_path }}/templates/.env.j2"
       dest: "{{ project_root }}/.env"
+    - src: "{{ role_path }}/templates/update.sh.j2"
+      dest: "/home/ubuntu/update.sh"
 
   files:
     - src: "{{ role_path }}/files/webapp.socket"

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Update Galaxy Media Site
+
+set -e
+
+# Source virtual environment and git pull
+cd galaxy-content-site
+source '{{ venv_root }}/bin/activate'
+git pull
+
+# Migrate the database (if necessary)
+cd webapp
+python manage.py migrate
+
+# Collect any new static files for Nginx if neccessary
+python manage.py collectstatic --noinput
+
+# Update file ownership to allow www-data to write logs/media
+sudo chown -R www-data:www-data webapp/logs
+sudo chown -R www-data:www-data webapp/media
+
+# Restart the GMS web service
+sudo service webapp restart
+echo ""
+echo "~~~ Restarted Galaxy Media Site ~~~"
+echo ""

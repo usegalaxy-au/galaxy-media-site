@@ -129,7 +129,9 @@ sudo ln -s $PWD/nginx.conf /etc/nginx/sites-available/webapp.conf
 sudo ln -s /etc/nginx/sites-available/webapp.conf /etc/nginx/sites-enabled/webapp
 sudo mkdir -p /srv/sites
 sudo ln -s "$(dirname $PWD)/webapp" /srv/sites/webapp
-sudo chown ubuntu:ubuntu /srv/sites/webapp
+sudo chown -R ubuntu:ubuntu /srv/sites/webapp
+sudo chown -R www-data:www-data /srv/sites/webapp/webapp/media
+sudo chown -R www-data:www-data /srv/sites/webapp/webapp/logs
 
 echo ""
 if [[ $ssl = 'y' ]]; then
