@@ -110,7 +110,7 @@ def page(request):
     return render(request, template)
 
 
-def aaf_institutions(request):
+def aaf_info(request):
     """Show current list of AAF institutions."""
     return render(request, 'home/aaf-institutions.html', {
         'entities': aaf.get_entities(),
