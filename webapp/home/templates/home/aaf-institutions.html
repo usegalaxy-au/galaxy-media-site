@@ -1,0 +1,41 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  <h3>Australian Access Federation (AAF) institutions</h3>
+
+  <p>
+    These institutions are reported to be registered with AAF. If you have an
+    email address associated with an institution on this list, you can sign into
+    Galaxy Australia with the "AAF" button and access extra resources.
+  </p>
+
+  <table class="table table-striped">
+    <tbody>
+      {% for e in entities %}
+      <tr>
+        <td> {{ e }} </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from pprint import pformat
 
+from utils import aaf
 from events.models import Event
 from news.models import News
 from .models import Notice
@@ -107,3 +108,10 @@ def page(request):
     if os.path.basename(template) not in os.listdir(templates_dir):
         return HttpResponseNotFound('<h1>Page not found</h1>')
     return render(request, template)
+
+
+def aaf_institutions(request):
+    """Show current list of AAF institutions."""
+    return render(request, 'home/aaf-institutions.html', {
+        'entities': aaf.get_entities(),
+    })
