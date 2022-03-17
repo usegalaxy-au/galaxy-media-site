@@ -50,6 +50,7 @@ class NewsAdmin(admin.ModelAdmin):
         'external',
     ]
     inlines = [NewsImageInline]
+    order = ('-datetime_created',)
 
     @admin.display(empty_value='')
     def view_page(self, obj):

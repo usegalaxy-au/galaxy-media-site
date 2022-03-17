@@ -83,6 +83,7 @@ class NoticeAdmin(admin.ModelAdmin):
         'enabled',
         'is_published',
     ]
+    order = ('-datetime_modified',)
 
 
 admin.site.site_header = (

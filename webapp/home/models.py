@@ -50,7 +50,8 @@ class Notice(models.Model):
     body = models.CharField(max_length=2000, help_text=MARKDOWN_HELP_TEXT)
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
-        help_text=('Optional. A valid Material Design icon identifier to be displayed with the title.'
+        help_text=('Optional. A valid Material Design icon identifier to be'
+                   ' displayed with the title.'
                    ' <a href="https://fonts.google.com/icons" target="_blank">'
                    ' Browse icons here </a>')
     )

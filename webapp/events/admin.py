@@ -42,6 +42,7 @@ class EventAdmin(admin.ModelAdmin):
         'external',
     ]
     inlines = [EventImageInline]
+    order = ('-datetime_created',)
 
     def render_change_form(self, request, context, *args, **kwargs):
         """Filter objects available in add/change forms."""
