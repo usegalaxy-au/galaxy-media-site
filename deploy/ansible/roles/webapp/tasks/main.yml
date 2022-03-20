@@ -115,4 +115,8 @@
     group: www-data
 
 - name: make update.sh executable
-  file: dest=/home/ubuntu/update.sh mode=a+x
+  file: dest={{ ansible_env.HOME }}/update.sh mode=a+x
+
+- name: remove default update.sh from git repo
+  path: "{{ project_root }}/update.sh"
+  state: absent
