@@ -26,6 +26,12 @@ SLACK_API_URL = os.environ.get("SLACK_API_URL")
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
 
+# See base.py for mail config, read from .env
+
+ADMINS = [
+    ('Cameron', 'c.hyde@qcif.edu.au'),
+]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
