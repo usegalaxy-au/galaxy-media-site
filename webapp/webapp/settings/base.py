@@ -17,6 +17,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from utils.paths import ensure_dir
+from .logging_config import configure_logging
 
 load_dotenv('../.env', override=True)
 
@@ -33,7 +34,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'webapp/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'webapp/media'
-LOGGING_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
+LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
+LOGGING = configure_logging(LOG_ROOT)
 
 # Hostnames
 ALLOWED_HOSTS = [
@@ -117,52 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} | {asctime} | {module}: {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'debug_file': {
-            'delay': True,
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'maxBytes': 1000000,  # 1MB ~ 20k rows
-            'backupCount': 5,
-            'filename': LOGGING_ROOT / 'main.log',
-            'formatter': 'verbose',
-        },
-        'error_file': {
-            'delay': True,
-            'level': 'ERROR',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'maxBytes': 1000000,  # 1MB ~ 20k rows
-            'backupCount': 5,
-            'filename': LOGGING_ROOT / 'error.log',
-            'formatter': 'verbose',
-        },
-        'console': {
-            'class': 'logging.StreamHandler',
-            'level': 'INFO',
-            'formatter': 'verbose',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['debug_file', 'error_file', 'console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django.utils.autoreload': {
-            'level': 'WARNING',  # This logger is way too noisy on DEBUG
-        }
-    },
-}
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
