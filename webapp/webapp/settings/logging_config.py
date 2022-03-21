@@ -41,6 +41,16 @@ def configure_logging(LOG_ROOT):
                 'class': 'logging.handlers.RotatingFileHandler',
                 'maxBytes': 1000000,  # 1MB ~ 20k rows
                 'backupCount': 5,
+                'filename': LOG_ROOT / 'debug.log',
+                'formatter': 'verbose',
+                'filters': ['filter_exc_type'],
+            },
+            'main_file': {
+                'delay': True,
+                'level': 'INFO',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'maxBytes': 1000000,  # 1MB ~ 20k rows
+                'backupCount': 5,
                 'filename': LOG_ROOT / 'main.log',
                 'formatter': 'verbose',
             },
@@ -51,6 +61,11 @@ def configure_logging(LOG_ROOT):
                 'maxBytes': 1000000,  # 1MB ~ 20k rows
                 'backupCount': 5,
                 'filename': LOG_ROOT / 'error.log',
+                'formatter': 'verbose',
+            },
+            'error_mail': {
+                'level': 'ERROR',
+                'class': 'django.utils.log.AdminEmailHandler',
                 'formatter': 'verbose',
             },
             'console': {
