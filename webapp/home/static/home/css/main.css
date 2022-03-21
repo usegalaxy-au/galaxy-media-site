@@ -58,7 +58,7 @@ nav.embedded {
 nav.embedded a.active {
   color: #555;
 }
-nav.embedded a:hover, a.nav-link:hover {
+nav.embedded a:hover, nav.embedded a.nav-link:hover {
   color: #555;
 }
 nav.embedded a.navbar-brand,
