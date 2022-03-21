@@ -4,6 +4,7 @@ import os
 
 from .base import *
 from . import validate
+from .log import config
 
 validate.env()
 
@@ -45,3 +46,5 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+LOGGING = config.configure_logging(LOG_ROOT, SLACK_API_KEY, SLACK_CHANNEL_ID)

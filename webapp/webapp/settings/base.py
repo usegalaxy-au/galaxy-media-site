@@ -17,7 +17,6 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from utils.paths import ensure_dir
-from .logging_config import configure_logging
 
 load_dotenv('../.env', override=True)
 
@@ -35,7 +34,6 @@ STATIC_ROOT = BASE_DIR / 'webapp/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'webapp/media'
 LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
-LOGGING = configure_logging(LOG_ROOT)
 
 # Hostnames
 ALLOWED_HOSTS = [
@@ -130,6 +128,7 @@ EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
 SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
+EMAIL_SUBJECT_PREFIX = 'GMS: '
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

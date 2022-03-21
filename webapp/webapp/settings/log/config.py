@@ -2,6 +2,7 @@
 
 from django.template.base import VariableDoesNotExist
 
+
 EXCLUDE_EXCEPTIONS = [
     VariableDoesNotExist,
 ]
@@ -17,7 +18,7 @@ def filter_exc_types(record):
     return True
 
 
-def configure_logging(LOG_ROOT):
+def configure_logging(LOG_ROOT, SLACK_API_KEY, SLACK_CHANNEL_ID):
     """Return logging configuration."""
     return {
         'version': 1,
@@ -68,6 +69,11 @@ def configure_logging(LOG_ROOT):
                 'class': 'django.utils.log.AdminEmailHandler',
                 'formatter': 'verbose',
             },
+            'error_slack': {
+                # Credentials are read directly from .env
+                'level': 'ERROR',
+                'class': 'webapp.settings.log.handlers.SlackHandler',
+            },
             'console': {
                 'class': 'logging.StreamHandler',
                 'level': 'INFO',
@@ -81,6 +87,7 @@ def configure_logging(LOG_ROOT):
                     'main_file',
                     'error_file',
                     'error_mail',
+                    'error_slack',
                     'console'
                 ],
                 'level': 'DEBUG',

@@ -3,6 +3,7 @@
 import os
 
 from .base import *
+from .log import config
 
 DEBUG = False
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
@@ -15,10 +16,7 @@ GALAXY_SITE_NAME = 'Australia'
 GALAXY_SITE_SUFFIX = 'Media'
 
 # For posting tool update notifications to a Slack channel
-SLACK_API_URL = (
-    "https://hooks.slack.com/services"
-    "/T01BG9M9LFJ/B034ECV1Y8Z/8BcMUWPZE3LCDcxJXkqmT4b6"
-)
+SLACK_API_URL = os.environ.get('SLACK_API_URL')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "secretkey"
@@ -35,3 +33,5 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+LOGGING = config.configure_logging(LOG_ROOT, SLACK_API_KEY, SLACK_CHANNEL_ID)
