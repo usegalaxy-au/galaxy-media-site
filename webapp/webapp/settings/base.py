@@ -129,7 +129,7 @@ EMAIL_HOST_PASSWORD = os.environ['MAIL_SMTP_PASSWORD']
 EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
-SERVER_EMAIL = EMAIL_FROM_ADDRESS
+SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

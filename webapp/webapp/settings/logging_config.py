@@ -76,7 +76,12 @@ def configure_logging(LOG_ROOT):
         },
         'loggers': {
             'django': {
-                'handlers': ['debug_file', 'error_file', 'console'],
+                'handlers': [
+                    'debug_file',
+                    'main_file',
+                    'error_file',
+                    'console'
+                ],
                 'level': 'DEBUG',
                 'propagate': True,
             },
