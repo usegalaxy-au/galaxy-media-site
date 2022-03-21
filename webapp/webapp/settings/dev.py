@@ -34,4 +34,4 @@ DATABASES = {
     }
 }
 
-LOGGING = config.configure_logging(LOG_ROOT, SLACK_API_KEY, SLACK_CHANNEL_ID)
+LOGGING = config.configure_logging(LOG_ROOT)
