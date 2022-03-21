@@ -3,7 +3,7 @@
 import os
 import logging
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound
 from pprint import pformat
 
@@ -33,6 +33,11 @@ def index(request, landing=False):
         'notices': notices.order_by('order'),
         'landing': landing,
     })
+
+
+def galaxy_homepage(request):
+    """Redirect requests to the homepage."""
+    return redirect('/')
 
 
 def landing(request):
