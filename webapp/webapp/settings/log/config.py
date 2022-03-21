@@ -18,7 +18,7 @@ def filter_exc_types(record):
     return True
 
 
-def configure_logging(LOG_ROOT, SLACK_API_KEY, SLACK_CHANNEL_ID):
+def configure_logging(LOG_ROOT):
     """Return logging configuration."""
     return {
         'version': 1,
