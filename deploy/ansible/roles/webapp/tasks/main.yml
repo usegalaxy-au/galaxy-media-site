@@ -104,7 +104,7 @@
     path: "{{ web_root }}/webapp/media"
     state: directory
     recurse: yes
-    owner: www-data
+    owner: ubuntu
     group: www-data
 
 - name: update log file ownership
@@ -112,7 +112,7 @@
     path: "{{ web_root }}/webapp/logs"
     state: directory
     recurse: yes
-    owner: www-data
+    owner: ubuntu
     group: www-data
 
 - name: make update.sh executable
