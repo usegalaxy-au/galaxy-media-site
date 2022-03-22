@@ -52,19 +52,10 @@
                     <i class="fab fa-github"></i>
                   </td>
                   <td>
-                    <a href="https://github.com/{{ p.github }}">
+                    <a href="https://github.com/{{ p.github }}" target="_blank">
                       {{ p.github }}
                     </a>
                   </td>
-                </tr>
-                {% endif %}
-
-                {% if p.phone %}
-                <tr>
-                  <td>
-                    <i class="fas fa-phone-alt"></i>
-                  </td>
-                  <td>{{ p.phone }}</td>
                 </tr>
                 {% endif %}
 
@@ -82,19 +73,19 @@
             <div class="card-footer">
               <small>
                 {% if p.gitter %}
-                <a href="https://gitter.im/{{ p.gitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Gitter IM">
+                <a href="https://gitter.im/{{ p.gitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Gitter IM" target="_blank">
                   <i class="fas fa-comments"></i>
                 </a>
                 {% endif %}
 
                 {% if p.twitter %}
-                <a href="https://twitter.com/{{ p.twitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Twitter">
+                <a href="https://twitter.com/{{ p.twitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Twitter" target="_blank">
                   <i class="fab fa-twitter"></i>
                 </a>
                 {% endif %}
 
                 {% if p.orcid %}
-                <a href="https://orcid.org/{{ p.orcid }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Orcid">
+                <a href="https://orcid.org/{{ p.orcid }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Orcid" target="_blank">
                   <img src="{% static 'home/img/orcid-logo.png' %}" style="width: 1rem; height: auto; padding-bottom: 0.15rem; margin-left: 0.5rem;">
                 </a>
                 {% endif %}
