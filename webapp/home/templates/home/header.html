@@ -32,42 +32,42 @@
       <div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a {% if request.path == '/' %}
-            class="nav-link active"
+            class="nav-link active" href="/"
             {% else %}
             class="nav-link" href="/"
             {% endif %}>
             Home
           </a>
-          <a {% if '/news/' in request.path %}
+          <a {% if request.path|slice:":5" == '/news' %}
             class="nav-link active" href="/news"
             {% else %}
             class="nav-link" href="/news"
             {% endif %}>
             News
           </a>
-          <a {% if '/events/' in request.path %}
+          <a {% if request.path|slice:":7" == '/events' %}
             class="nav-link active" href="/events"
             {% else %}
             class="nav-link" href="/events"
             {% endif %}>
             Events
           </a>
-          <a {% if '/people/' in request.path %}
-            class="nav-link active"
+          <a {% if request.path|slice:":7" == '/people' %}
+            class="nav-link active" href="/people"
             {% else %}
             class="nav-link" href="/people"
             {% endif %}>
             People
           </a>
-          <a {% if '/about/' in request.path %}
-            class="nav-link active"
+          <a {% if request.path|slice:":6" == '/about' %}
+            class="nav-link active" href="/about"
             {% else %}
             class="nav-link" href="/about"
             {% endif %}>
             About
           </a>
-          <a {% if '/support/' in request.path %}
-              class="nav-link active"
+          <a {% if request.path|slice:":8" == '/request' %}
+              class="nav-link active" href="/request"
               {% else %}
               class="nav-link" href="/request"
               {% endif %}
