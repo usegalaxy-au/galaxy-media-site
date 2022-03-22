@@ -89,10 +89,11 @@
       --first_name {{ admin_user.first_name }} \
       --last_name {{ admin_user.last_name }}
   ignore_errors: yes
+  when: not skip_database_migration
 
 - name: update project ownership
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}"
+    path: /home/ubuntu
     state: directory
     recurse: yes
     owner: ubuntu
@@ -115,8 +116,11 @@
     group: www-data
 
 - name: make update.sh executable
-  file: dest={{ ansible_env.HOME }}/update.sh mode=a+x
+  file: dest=/home/ubuntu/update.sh mode=a+x
 
-- name: remove default update.sh from git repo
-  path: "{{ project_root }}/update.sh"
-  state: absent
+# This doesn't work as it's marked by git as a tracked change so clone fails
+# in future...
+# - name: remove default update.sh from git repo
+#   ansible.builtin.file:
+#     path: "{{ project_root }}/update.sh"
+#     state: absent

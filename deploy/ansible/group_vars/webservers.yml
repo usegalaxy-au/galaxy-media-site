@@ -63,6 +63,8 @@ smtp:
   to_address: help@genome.edu.au
   use_tls: true
 
+skip_database_migration: true
+
 # For error notifications
 slack:
   errors:

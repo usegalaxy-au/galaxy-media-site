@@ -65,3 +65,6 @@ smtp:
   from_address: noreply@genome.edu.au
   to_address: help@genome.edu.au
   use_tls: true
+
+# For manual manipulation of the database
+skip_database_migration: false

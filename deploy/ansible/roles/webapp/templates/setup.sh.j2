@@ -5,9 +5,13 @@ set -e
 source {{ venv_root }}/bin/activate
 cd {{ project_root }}/webapp
 
-# Migrate database
+# Set Django settings
 export DJANGO_SETTINGS_MODULE=webapp.settings.prod
+
+{% if not skip_database_migration %}
+# Migrate database
 python manage.py migrate
+{% endif %}
 
 # Collect static files for Nginx
 python manage.py collectstatic --noinput
