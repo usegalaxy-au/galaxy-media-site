@@ -20,9 +20,9 @@ This content is all embedded in HTML templates. If you fork the repository, thes
 
 The GMS homepage (aka landing page) is designed to be displayed as your Galaxy instance "welcome" page. Just create a `welcome.html` file with an `iframe` that points to https://mygms.com/landing to get a landing page without the navbar.
 
-The site is designed to be fully navigable from within your Galaxy instance, with the GMS Navbar being nested under the main Galaxy navbar once a user has interacted with GMS:
+The site is designed to be fully navigable from within your Galaxy instance, with the GMS Navbar being nested under the main Galaxy navbar:
 
-![site navigation](.img/iframe-nav.png)
+![site navigation](.img/iframe-view.png)
 
 For docs on web administration, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration).
 
