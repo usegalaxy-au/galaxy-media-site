@@ -119,6 +119,16 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 2. Install GMS on the new webserver with ansible or over the CLI (N.B your superuser will be overwritten in the following steps)
 
 3. Drop and recreate the new database
+
+  **For Ansible deployment**
+
+  Update `webservers.yml` with:
+
+  ```yaml
+  skip_database_migration: true
+  ```
+
+  **For script/CLI deployment**
   ```
   sudo -u postgres psql -c "DROP DATABASE <dbname>"
   sudo -u postgres psql -c "CREATE DATABASE <dbname>"
@@ -133,7 +143,7 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 
 6. Images/media must be migrated separately. `tar` the `webapp/webapp/media` directory and send to the new server:
   ```
-  # N.B. you will need sudo access on the remote to update the ownership
+  # N.B. you will ssh access to the new server with sudo privileges
 
   cd $PROJECT_ROOT
   tar cf - webapp/webapp/media \
