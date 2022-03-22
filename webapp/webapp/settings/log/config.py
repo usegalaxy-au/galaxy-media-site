@@ -7,14 +7,27 @@ EXCLUDE_EXCEPTIONS = [
     VariableDoesNotExist,
 ]
 
+# Lowercase only
+EXCLUDE_PHRASES = [
+    'invalid http_host header',
+]
 
-def filter_exc_types(record):
-    """Exclude whitelisted exception types."""
+
+def filter_exc_by_type(record):
+    """Exclude blacklisted exception types."""
     if record.exc_info:
         exc = record.exc_info[1]
         for excluded in EXCLUDE_EXCEPTIONS:
             if isinstance(exc, excluded):
                 return False
+    return True
+
+
+def filter_exc_by_phrase(record):
+    """Exclude exceptions based on string content."""
+    for phrase in EXCLUDE_PHRASES:
+        if phrase in record.msg.lower():
+            return False
     return True
 
 
@@ -30,9 +43,13 @@ def configure_logging(LOG_ROOT):
             },
         },
         'filters': {
-            'filter_exc_type': {
+            'filter_exc_by_type': {
                 '()': 'django.utils.log.CallbackFilter',
-                'callback': filter_exc_types,
+                'callback': filter_exc_by_type,
+            },
+            'filter_exc_by_phrase': {
+                '()': 'django.utils.log.CallbackFilter',
+                'callback': filter_exc_by_phrase,
             },
         },
         'handlers': {
@@ -44,7 +61,7 @@ def configure_logging(LOG_ROOT):
                 'backupCount': 5,
                 'filename': LOG_ROOT / 'debug.log',
                 'formatter': 'verbose',
-                'filters': ['filter_exc_type'],
+                'filters': ['filter_exc_by_type'],
             },
             'main_file': {
                 'delay': True,
@@ -68,11 +85,13 @@ def configure_logging(LOG_ROOT):
                 'level': 'ERROR',
                 'class': 'django.utils.log.AdminEmailHandler',
                 'formatter': 'verbose',
+                'filters': ['filter_exc_by_phrase'],
             },
             'error_slack': {
                 # Credentials are read directly from .env
                 'level': 'ERROR',
                 'class': 'webapp.settings.log.handlers.SlackHandler',
+                'filters': ['filter_exc_by_phrase'],
             },
             'console': {
                 'class': 'logging.StreamHandler',
