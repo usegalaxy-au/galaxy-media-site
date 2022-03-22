@@ -62,3 +62,12 @@ smtp:
   from_address: noreply@genome.edu.au
   to_address: help@genome.edu.au
   use_tls: true
+
+# For error notifications
+slack:
+  errors:
+    api_key: "{{ slack_error_api_key }}"  # secrets.yml
+    channel_id: CJVFNFKGD
+    mention_user_id: U024MUHM23W
+  tools:
+    url: "{{ slack_api_url }}"  # secrets.yml
