@@ -125,6 +125,7 @@ Application state is stored in the PostgreSQL database, with images in the `weba
   Update `webservers.yml` with:
 
   ```yaml
+  # Don't forget to remove this afterwards to resume migrations in the future!
   skip_database_migration: true
   ```
 
