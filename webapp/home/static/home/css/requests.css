@@ -12,7 +12,7 @@ hr {
   margin-bottom: 5rem;
 }
 #request-menu-cards {
-  margin: 15vh 0;
+  margin: 20vh 0 25vh 0;
   justify-content: center;
 }
 #request-menu-cards .card {

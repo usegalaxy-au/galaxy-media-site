@@ -73,7 +73,7 @@
               {% endif %}
           >Support</a>
           {% if user.is_staff %}
-          <a class="nav-link" href="/admin">Admin</a>
+          <a class="nav-link" href="/admin" target="_blank">Admin</a>
           {% endif %}
         </div>
       </div>
@@ -126,7 +126,7 @@
 
       $(document).ready( () => {
         // Switch to centered nav if embedded in iframe
-        // inIframe() || $('nav').removeClass("embedded");
+        inIframe() || $('nav').removeClass("embedded");
 
         // Enable bootstrap tooltips
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
