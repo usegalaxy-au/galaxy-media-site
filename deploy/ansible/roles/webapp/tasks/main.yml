@@ -18,6 +18,7 @@
     repo: https://github.com/neoformit/galaxy-content-site.git
     dest: "{{ project_root }}"
     clone: yes
+    force: yes
 
 - name: link webapp to /srv/sites
   ansible.builtin.file:
@@ -89,7 +90,7 @@
       --first_name {{ admin_user.first_name }} \
       --last_name {{ admin_user.last_name }}
   ignore_errors: yes
-  when: not skip_database_migration
+  when: admin_user and not skip_database_migration
 
 - name: update project ownership
   ansible.builtin.file:
@@ -118,9 +119,8 @@
 - name: make update.sh executable
   file: dest=/home/ubuntu/update.sh mode=a+x
 
-# This doesn't work as it's marked by git as a tracked change so clone fails
-# in future...
-# - name: remove default update.sh from git repo
-#   ansible.builtin.file:
-#     path: "{{ project_root }}/update.sh"
-#     state: absent
+- name: remove redundant update.sh from git repo
+  ansible.builtin.file:
+    path: "{{ project_root }}/update.sh"
+    state: absent
+  ignore_errors: yes

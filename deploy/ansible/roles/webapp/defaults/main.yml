@@ -27,3 +27,7 @@ certbot_ssl: true
 
 gunicorn:
   web_workers: 4
+
+skip_database_migration: false
+
+admin_user: null
