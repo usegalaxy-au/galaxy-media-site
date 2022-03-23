@@ -24,7 +24,7 @@
 
   <body>
 
-    <nav class="navbar fixed-top navbar-expand-sm embedded">
+    <nav class="navbar fixed-top navbar-expand embedded">
       <a class="navbar-brand" href="/">
         <span class="australia">Galaxy {{ GALAXY_SITE_NAME }}</span> {{ GALAXY_SITE_SUFFIX }}
       </a>
@@ -126,7 +126,7 @@
 
       $(document).ready( () => {
         // Switch to centered nav if embedded in iframe
-        inIframe() || $('nav').removeClass("embedded");
+        // inIframe() || $('nav').removeClass("embedded");
 
         // Enable bootstrap tooltips
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
