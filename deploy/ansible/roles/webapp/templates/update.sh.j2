@@ -4,6 +4,12 @@
 
 set -e
 
+# Make sure this isn't being run as root
+if [[ $EUID = 0 ]]; then
+    echo "Don't run this as root - ubuntu is fine!"
+    exit 0
+fi
+
 # Source virtual environment and git pull
 cd galaxy-content-site
 source '{{ venv_root }}/bin/activate'
