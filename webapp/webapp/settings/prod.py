@@ -19,6 +19,7 @@ ALLOWED_HOSTS.append("staging.usegalaxy.org.au")
 
 # To allow cross-site resource sharing with the base domain
 CSRF_COOKIE_DOMAIN = ".usegalaxy.org.au"
+CSRF_TRUSTED_ORIGINS = "https://*.usegalaxy.org.au"
 
 # Rendered as "Galaxy <GALAXY_SITE_NAME> <GALAXY_SITE_SUFFIX>"
 GALAXY_SITE_NAME = 'Australia'
