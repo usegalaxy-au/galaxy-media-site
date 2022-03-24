@@ -43,10 +43,10 @@
       <tr>
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Disk required </th>
         <td style="padding: 10px; border: 1px solid grey;">
-          {% if form.cleaned_data.disk_tb %}
-          {{ form.cleaned_data.disk_tb }}TB
-          {% else %}
+          {% if form.cleaned_data.disk_tb == -1 %}
           I'm not sure, please contact me
+          {% else %}
+          {{ form.cleaned_data.disk_tb }}TB
           {% endif %}
         </td>
       </tr>

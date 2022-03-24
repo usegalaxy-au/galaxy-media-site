@@ -98,23 +98,26 @@
         <p>
           What is the total storage space you require?
         </p>
+
+        {{ form.disk_tb.errors }}
+
         <div class="form-check">
           <input class="form-check-input"  id="diskInput1" type="radio" name="disk_tb" value="1"
-            {% if form.disk_tb.value == '1' %}checked{% endif%}
+            {% if form.disk_tb.value == '1' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput1">1TB</label>
         </div>
 
         <div class="form-check">
           <input class="form-check-input"  id="diskInput2" type="radio" name="disk_tb" value="2"
-            {% if form.disk_tb.value == '2' %}checked{% endif%}
+            {% if form.disk_tb.value == '2' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput2">2TB</label>
         </div>
 
         <div class="form-check">
-          <input class="form-check-input"  id="diskInput3" type="radio" name="disk_tb" value=""
-            {% if form.disk_tb.value == '' %}checked{% endif%}
+          <input class="form-check-input"  id="diskInput3" type="radio" name="disk_tb" value="0"
+            {% if form.disk_tb.value == '' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput3">More</label>
         </div>
@@ -132,11 +135,12 @@
           </div>
         </div>
 
-
-        <div id="diskHelp" class="form-text">
-          If you are unsure, please leave this field blank.
+        <div class="form-check">
+          <input class="form-check-input"  id="diskInput4" type="radio" name="disk_tb" value="-1"
+            {% if form.disk_tb.value == '' %}checked{% endif%} required
+          >
+          <label class="form-check-label" for="diskInput4">Unsure</label>
         </div>
-        {{ form.disk_tb.errors }}
       </div>
     </div>
 
@@ -211,16 +215,9 @@
 
 {% block script %}
 <script type="text/javascript">
-  $('input[type="radio"]').click( e => {
-    let other = $(`input[name="${e.target.name}_other"]`);
-
-    // Special treatment for disk_gb input
-    if (event.target.name === 'disk_tb') {
-      other = other.closest('.show-other');
-    }
-
-    // If radio button has no value it must be an "other" option
-    event.target.value === '' ? other.fadeIn(250) : other.fadeOut(250);
+  $('input[type="radio"][name="disk_tb"]').click( e => {
+    const other = $(`input[name="${e.target.name}_other"]`).closest('.show-other');
+    event.target.value === '0' ? other.fadeIn(250) : other.fadeOut(250);
   });
 
   $('form').submit( (e) => {

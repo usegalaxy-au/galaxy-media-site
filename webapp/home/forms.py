@@ -81,7 +81,7 @@ class QuotaRequestForm(forms.Form):
     email = forms.EmailField()
     start_date = forms.DateField()
     duration_months = forms.IntegerField()
-    disk_tb = forms.IntegerField(required=False)  # null = don't know
+    disk_tb = forms.IntegerField()
     disk_tb_other = forms.IntegerField(required=False)
     description = forms.CharField()
     captcha = fields.ReCaptchaField()
@@ -98,15 +98,11 @@ class QuotaRequestForm(forms.Form):
             if not data.get(field):
                 # User may have selected the 'other' field and typed a value
                 if not data.get(f'{field}_other'):
-
-                    from pprint import pprint
-                    pprint(dir(self.fields))
-
-                    if not self.fields[field].required:
+                    if self.fields[field].required:
+                        self.add_error(
+                            field,
+                            ValidationError('This field is required'))
                         continue
-                    self.add_error(
-                        field,
-                        ValidationError('This field is required'))
                 other_value = data.get(f'{field}_other')
                 if type(other_value) == str:
                     data[field] = 'Other - ' + other_value

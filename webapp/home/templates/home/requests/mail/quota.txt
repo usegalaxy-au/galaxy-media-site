@@ -4,6 +4,6 @@ Your name: {{ form.cleaned_data.name }}
 Your email: {{ form.cleaned_data.email }}
 Analysis start date (dd-mm-yyyy): {{ form.cleaned_data.start_date|date:"d-m-Y" }}
 Duration of analysis: {{ form.cleaned_data.duration_months }} months
-Disk required: {% if form.cleaned_data.disk_tb %}{{ form.cleaned_data.disk_tb }}TB{% else %}I'm not sure, please contact me{% endif %}
+Disk required: {% if form.cleaned_data.disk_tb == -1 %}I'm not sure, please contact me{% else %}{{ form.cleaned_data.disk_tb }}TB{% endif %}
 Justification: {{ form.cleaned_data.description }}
 Terms accepted: {{ form.cleaned_data.accepted_terms|yesno:"Yes,No" }}
