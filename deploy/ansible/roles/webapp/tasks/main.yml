@@ -68,18 +68,9 @@
 - name: run webapp setup script
   command: "bash {{ server_root }}/setup.sh"
 
-- name: register SSL cert state
-  stat:
-    path: "/etc/letsencrypt/live/{{ inventory_hostname }}"
-  register: ssl_cert_path
-
 - name: create and install SSL certificate with letsencrypt
   command: "certbot --nginx --noninteractive --agree-tos --redirect --email {{ certbot_renew_email }} -d {{ inventory_hostname }}"
-  when: certbot_ssl and not ssl_cert_path.stat.exists
-
-- name: renew SSL certificates with letsencrypt
-  command: "certbot certonly --nginx --noninteractive --agree-tos -d {{ inventory_hostname }}"
-  when: certbot_ssl and ssl_cert_path.stat.exists
+  when: certbot_ssl
 
 - name: Ensure webapp superuser login
   shell: |
