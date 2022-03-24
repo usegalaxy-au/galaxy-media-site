@@ -125,8 +125,8 @@
       }
 
       $(document).ready( () => {
-        // Switch to centered nav if embedded in iframe
-        inIframe() || $('nav').removeClass("embedded");
+        // Switch to solid navbar if not embedded in iframe
+        // inIframe() || $('nav').removeClass("embedded");
 
         // Enable bootstrap tooltips
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

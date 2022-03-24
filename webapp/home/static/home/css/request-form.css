@@ -27,14 +27,6 @@ ul.errorlist {
   border: 1px solid var(--error);
   border-radius: .5rem;
 }
-/*
-.show-other
-
-radio input onclick
-  if value == ''
-  get input name
-  append to get '<name>_other'
-  get input with name above
-  get closest .show_other
-  .fadeIn(250)
-*/
+[class^="col"] {
+  padding-bottom: 1rem;
+}

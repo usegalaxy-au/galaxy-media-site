@@ -26,6 +26,7 @@ hr {
 #request-menu-cards .card-body,
 #request-menu-cards .card-footer {
   border: none;
+  background: none;
 }
 #request-menu-cards .card:last-child {
   border: none;
