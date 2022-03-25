@@ -32,8 +32,9 @@ def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):
     while True:
         try:
             email.send()
-            break
+            return
         except Exception:
+            logger.warning(f"Send mail error - attempt {tries}")
             tries += 1
             if tries < 3:
                 continue
@@ -42,7 +43,7 @@ def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):
                 + traceback.format_exc()
                 + f"\n\nMail content:\n\n{text}"
             )
-            break
+            return
 
 
 class ResourceRequestForm(forms.Form):
