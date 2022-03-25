@@ -5,7 +5,7 @@ import logging
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
-from pprint import pformat
+# from pprint import pformat
 
 from utils import aaf
 from events.models import Event
@@ -61,9 +61,9 @@ def user_request_tool(request):
         if form.is_valid():
             logger.info('Form valid. Dispatch content as email.')
             form.dispatch()
-            return user_request_success(request)
-        logger.info("Form was invalid")
-        logger.info(pformat(form.errors))
+            return render(request, 'home/requests/success.html')
+        logger.info("Form was invalid. Returning invalid feedback.")
+        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/tool.html', {'form': form})
 
 
@@ -75,9 +75,9 @@ def user_request_quota(request):
         if form.is_valid():
             logger.info('Form valid. Dispatch content as email.')
             form.dispatch()
-            return user_request_success(request)
-        logger.info("Form was invalid")
-        logger.info(pformat(form.errors))
+            return render(request, 'home/requests/success.html')
+        logger.info("Form was invalid. Returning invalid feedback.")
+        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/quota.html', {'form': form})
 
 
@@ -88,15 +88,10 @@ def user_request_support(request):
         form = SupportRequestForm(request.POST)
         if form.is_valid():
             form.dispatch()
-            return user_request_success(request)
-        logger.info("Form was invalid. Returning errors:")
-        logger.info(pformat(form.errors))
+            return render(request, 'home/requests/success.html')
+        logger.info("Form was invalid. Returning invalid feedback.")
+        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/support.html', {'form': form})
-
-
-def user_request_success(request):
-    """Show success page after form submission."""
-    return render(request, 'home/requests/success.html')
 
 
 def page(request):

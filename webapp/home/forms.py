@@ -27,10 +27,19 @@ def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):
     )
     if html:
         email.attach_alternative(html, "text/html")
-    try:
-        email.send()
-    except Exception:
-        logger.error("Error sending mail:\n" + traceback.format_exc())
+
+    tries = 0
+    while True:
+        try:
+            email.send()
+        except Exception:
+            tries += 1
+            if tries >= 3:
+                logger.error(
+                    "Error sending mail. The user did not receive an error.\n"
+                    + traceback.format_exc()
+                    + f"\n\nMail content:\n\n{text}"
+                )
 
 
 class ResourceRequestForm(forms.Form):
