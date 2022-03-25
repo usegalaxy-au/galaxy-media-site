@@ -32,14 +32,17 @@ def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):
     while True:
         try:
             email.send()
+            break
         except Exception:
             tries += 1
-            if tries >= 3:
-                logger.error(
-                    "Error sending mail. The user did not receive an error.\n"
-                    + traceback.format_exc()
-                    + f"\n\nMail content:\n\n{text}"
-                )
+            if tries < 3:
+                continue
+            logger.error(
+                "Error sending mail. The user did not receive an error.\n"
+                + traceback.format_exc()
+                + f"\n\nMail content:\n\n{text}"
+            )
+            break
 
 
 class ResourceRequestForm(forms.Form):
