@@ -35,6 +35,12 @@ was visting the GMS site directly. For developers, if there is content that
 you'd like to render differently you can use the global `inIframe()` JavaScript
 function on any page to check if you're currently in an iframe.
 
+## This repository
+
+- `deploy/`: for deployment of GMS with Ansible and shell script
+- `scrape`: python scripts for scraping content from the old jekyll site codebase
+- `webapp`: this is the Django app
+
 ---
 
 ## Deployment
@@ -49,8 +55,8 @@ virtual machine instance.
 
 ### Deploy with Ansible
 
-If you're familiar with ansible, this may be the most reliable method of
-deployment. See `./deployment/ansible/` for instructions.
+If you're familiar with ansible, this is the recommended method of
+deployment. See `deploy/ansible/`.
 
 ### Deploy with shell
 
@@ -88,7 +94,9 @@ adequately, based on the Locust model.
 
 ## Site administration
 
-Visit `/admin/login` and log in with a staff user account. If you don't have one, you can create one with the Django CLI:
+Visit `/admin/login` and log in with a staff user account. If you don't have one, you can create one with the Django CLI.
+
+*N.B. superuser creation is included in the Ansible playbook*
 
 ```bash
 cd $PROJECT_ROOT
@@ -113,12 +121,10 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 1. Grab a db dump on the old machine:
 
   ```
-  sudo -u postgres pg_dump <dbname> > gms.sql
+  sudo -u postgres pg_dump <DBNAME> > gms.sql
   ```
 
 2. Install GMS on the new webserver with ansible or over the CLI (N.B your superuser will be overwritten in the following steps)
-
-3. Drop and recreate the new database
 
   **For Ansible deployment**
 
@@ -129,22 +135,27 @@ Application state is stored in the PostgreSQL database, with images in the `weba
   skip_database_migration: true
   ```
 
+3. Drop and recreate the new database
+
   **For script/CLI deployment**
   ```
-  sudo -u postgres psql -c "DROP DATABASE <dbname>"
-  sudo -u postgres psql -c "CREATE DATABASE <dbname>"
-  sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE <dbname> TO <user>"
+  sudo -u postgres psql -c "DROP DATABASE <DBNAME>"
+  sudo -u postgres psql -c "CREATE DATABASE <DBNAME>"
+  sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE <DBNAME> TO <user>"
   ```
+
+  **For Ansible deployment**
+  You already handled this in step 2, well done!
 
 4. Load the db dump
 
-  `sudo -u postgres psql -d <dbname> < gms.sql`
+  `sudo -u postgres psql -d <DBNAME> < gms.sql`
 
 5. Check out the new site, the content should be there.
 
 6. Images/media must be migrated separately. `tar` the `webapp/webapp/media` directory and send to the new server:
   ```
-  # N.B. you will ssh access to the new server with sudo privileges
+  # N.B. you will ssh access to the new webserver with sudo privileges
 
   cd $PROJECT_ROOT
   tar cf - webapp/webapp/media \
@@ -156,6 +167,4 @@ Application state is stored in the PostgreSQL database, with images in the `weba
   ```
   Your images should now be display on the new site.
 
-7. Make sure that you correct the ownership
-
-7. If you are using a Jenkins task for automated news posts, you will need to update the Jenkins config if the hostname has changed. The API key should be unchanged.
+8. If you are using a Jenkins task for automated news posts, you will need to update the Jenkins config if the hostname has changed. The API key should be unchanged.
