@@ -6,7 +6,7 @@ import requests
 SLACK_URL = "https://slack.com/api/chat.postMessage"
 
 
-def post(message=None, channel_id=None, user_id=None, key=None):
+def post(message):
     """Post a message to Slack."""
     key = os.environ.get("SLACK_API_KEY")
     user_id = os.environ.get("SLACK_MENTION_USER_ID")

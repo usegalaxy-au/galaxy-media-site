@@ -21,4 +21,4 @@ class SlackHandler(StreamHandler):
 
     def emit(self, record):
         """Log a message to Slack."""
-        slack.post(message=self.format(record))
+        slack.post(self.format(record))
