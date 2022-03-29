@@ -18,7 +18,7 @@ from utils.markdown import (
 
 def get_upload_dir(instance, filename):
     """Return media path for uploaded images."""
-    return f"uploads/events/{instance.news.id}/{filename}"
+    return f"uploads/news/{instance.news.id}/{filename}"
 
 
 class News(models.Model):

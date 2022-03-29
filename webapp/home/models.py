@@ -1,8 +1,11 @@
 """Models for storing generic and homepage content."""
 
+import os
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from urllib.parse import urljoin
 
 from utils.markdown import MARKDOWN_HELP_TEXT
 from .managers import CustomUserManager
@@ -81,3 +84,26 @@ class Notice(models.Model):
         super().clean()
         if self.material_icon:
             self.material_icon = self.material_icon.lower().replace(' ', '_')
+
+
+def get_upload_path(instance, filename):
+    """Return media path for uploaded images."""
+    return f"uploads/images/{filename}"
+
+
+class MediaImage(models.Model):
+    """An uploaded images that can be served as a media file."""
+
+    image = models.FileField(
+        upload_to=get_upload_path,
+    )
+
+    @property
+    def uri(self):
+        """Return media URI for image."""
+        return urljoin(settings.MEDIA_URL, str(self.image))
+
+    @property
+    def filename(self):
+        """Return string filename."""
+        return os.path.basename(str(self.image))

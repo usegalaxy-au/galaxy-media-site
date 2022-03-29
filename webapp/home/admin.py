@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.conf import settings
 
-from .models import User, Notice
+from .models import User, Notice, MediaImage
 from .admin_forms import NoticeAdminForm, UserCreationForm, UserChangeForm
 
 
@@ -86,8 +86,18 @@ class NoticeAdmin(admin.ModelAdmin):
     order = ('-datetime_modified',)
 
 
+class MediaImageAdmin(admin.ModelAdmin):
+    """Administer media images."""
+
+    list_display = [
+        'filename',
+        'uri',
+    ]
+
+
 admin.site.site_header = (
     f"Galaxy {settings.GALAXY_SITE_NAME} content administration")
 admin.site.register(User, UserAdmin)
 admin.site.register(Notice, NoticeAdmin)
 admin.site.unregister(Group)
+admin.site.register(MediaImage, MediaImageAdmin)
