@@ -141,9 +141,9 @@
 
         // Remove links to usegalaxy.org.au if in iframe
         if ( inIframe() ) {
-          $('a').each( (i, a) => {
-            if (a.href.includes('usegalaxy.org.au')) {
-              console.log(`Remove href from anchor: ${a.href}`);
+          $('a').each( () => {
+            if (this.href.includes('usegalaxy.org.au')) {
+              console.log(`Remove href from anchor: ${this.href}`);
               $(a).removeAttr("href");
             }
           });
