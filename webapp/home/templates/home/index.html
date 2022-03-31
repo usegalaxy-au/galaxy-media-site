@@ -7,6 +7,7 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
 {% if landing %}
+<!-- Now obsolete - all rendering done by Javascript inIframe() -->
 <link rel="stylesheet" href="{% static 'home/css/landing.css' %}">
 {% endif %}
 {% endblock %}
@@ -16,7 +17,7 @@
 
 <main>
   <section class="container-flex text-center my-3">
-    <a {{ landing|yesno:",href=https://usegalaxy.org.au" }}>
+    <a href="https://usegalaxy.org.au">
       <img id="header-logo" src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy Australia Logo">
     </a>
   </section>
