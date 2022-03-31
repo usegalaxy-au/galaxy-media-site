@@ -212,6 +212,14 @@ i {
   margin: 0;
   vertical-align: middle;
 }
+span.action {
+  /* For prompting user navigation within text
+     e.g. User > Preferences */
+  padding: .1rem .5rem;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+}
 
 /* Font */
 a {
