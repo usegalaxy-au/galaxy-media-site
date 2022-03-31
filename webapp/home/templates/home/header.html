@@ -137,6 +137,15 @@
         // Bubbles shown on unpublished material (admins only)
         $('.unpublished-bubble').parent().css('position', 'relative');
 
+        // Remove links to usegalaxy.org.au if in iframe
+        if ( inIframe() ) {
+          $('a').each( (i, a) => {
+            if (a.href.includes('usegalaxy.org.au')) {
+              $(a).removeAttr("href");
+            }
+          });
+        }
+
         {% block onload %}
         {% endblock %}
       });
