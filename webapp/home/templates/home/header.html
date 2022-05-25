@@ -140,6 +140,7 @@
         $('.unpublished-bubble').parent().css('position', 'relative');
 
         // Remove links to usegalaxy.org.au if in iframe
+        // ...otherwise risk having galaxy-in-galaxy which is very weird!
         if ( inIframe() ) {
           const links = document.getElementsByTagName('a');
           for (var i in links) {
