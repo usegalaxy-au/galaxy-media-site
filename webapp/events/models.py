@@ -2,7 +2,6 @@
 
 import os
 from django.db import models
-from django.template.defaultfilters import slugify
 from django.conf import settings
 from timezone_field import TimeZoneField
 from urllib.parse import urljoin
@@ -41,8 +40,9 @@ class Tag(models.Model):
     color = models.CharField(max_length=7)  # Hex color
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
-        help_text=('A valid Material Design icon identifier to be displayed with the title.'
-                   ' See: https://fonts.google.com/icons')
+        help_text=(
+            'A valid Material Design icon identifier to be displayed with the'
+            ' title. See: https://fonts.google.com/icons')
     )
     archived = models.BooleanField(default=False)
 
@@ -127,9 +127,9 @@ class EventLocation(models.Model):
         """Return full location as string."""
         loc = []
         for f in self.FIELDS:
-            v = getattr(self, f).title()
+            v = getattr(self, f)
             if v:
-                loc.append(v.replace(',', '\\,'))
+                loc.append(v.replace(',', '\\,').title())
         return '\\, '.join(loc)
 
 
