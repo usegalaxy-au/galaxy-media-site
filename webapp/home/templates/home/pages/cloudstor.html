@@ -20,20 +20,14 @@
   <div class="container">
     <p class="lead">
       Galaxy Australia features integrations with many third-party data
-      providers, including CloudStor. This document shows how to import and
-      export data between your Galaxy Australia and CloudStor accounts.
+      providers, including CloudStor. This document describes how to import and
+      export data between your CloudStor and Galaxy Australia accounts.
     </p>
   </div>
 
   <hr class="mt-5">
 
   <div class="container py-5">
-
-    <p class="alert alert-danger">
-      CAUTION: the export tool WILL overwrite existing CloudStor files, so
-      choose your target folder carefully!
-    </p>
-
     <p>
       The import/export tools allow you to transfer one or more files to a registered
       <a href="https://www.aarnet.edu.au/network-and-services/cloud-services/cloudstor/" target="_blank">AARNet CloudStor</a>
@@ -68,8 +62,8 @@
       this password/token again.
       <br><br>
       Once the app password is created you will see it in the list of app
-      passwords. You can also see when that password was last used as well as
-      delete the app password.
+      passwords. You can also see when that password was last used. You also
+      have the option to unlink your accounts by deleting the app password.
       <br><br>
       <a href="https://support.aarnet.edu.au/hc/en-us/articles/236034707-How-do-I-manage-change-my-passwords-" target="_blank">
         Click here
@@ -100,14 +94,50 @@
     </div>
 
     <p>
-      If the details above are configured properly, the next time you load the
-      import/export tools, the files and directories in your CloudStor account will be
-      displayed. Select the files or directory you want to transfer and click
-      "Execute".
+      If the details above are configured properly, the next time you access the
+      Cloudstor import/export functions in Galaxy (below) your folder/files will
+      be visible.
+    </p>
+
+    <h3 class="mt-5">Data import from CloudStor</h3>
+
+    <ol>
+      <li>
+        File or files to be imported into your Galaxy history from Cloudstor are
+        accessed from the "Upload Data / Choose Remote Files" tool:
+        <br>
+        <img src="{% static 'home/img/cloudstor-choose-remote-files.png' %}" alt="Choose remote files screenshot" style="width: 800px; max-width: 100%;">
+      </li>
+
+      <li>
+        Single or multiple files can be selected for Import. Folders selected
+        will import all files as individual files, not a Collection, into your
+        History
+      </li>
+    </ol>
+
+    <h3 class="mt-5">Data export to CloudStor</h3>
+
+    <ol>
+      <li>
+        To export data to Cloudstor, use the
+        <a href="https://usegalaxy.org.au/root?tool_id=export_remote">Export datasets to files source tool</a>
+      </li>
+
+      <li>
+        If your Cloudstor account is configured inside Galaxy the "Directory URI" option will show your Cloudstor folder:
+        <br>
+        <img src="{% static 'home/img/cloudtor-directory-option.png' %}" alt="CloudStor directory option screenshot">
+      </li>
+    </ol>
+
+    <p class="alert alert-danger">
+      CAUTION: the export tool WILL overwrite existing CloudStor files, so
+      choose your target folder carefully!
     </p>
 
     <p class="alert alert-warning">
-      Your CloudStor credentials will be stored on this server. While reasonable
+      WARNING: Your CloudStor credentials will be stored on this server. While reasonable
       efforts have been made to store these credentials safely, you must be
       aware and accept the risks of storing these credentials. In the event that
       the server is compromised, it may be possible for an attacker to gain
