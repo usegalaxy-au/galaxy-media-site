@@ -15,18 +15,6 @@
     </div>
   </div>
 
-  <br>
-
-  <div class="container">
-    <p class="lead">
-      Galaxy Australia features integrations with many third-party data
-      providers, including CloudStor. This document describes how to import and
-      export data between your CloudStor and Galaxy Australia accounts.
-    </p>
-  </div>
-
-  <hr class="mt-5">
-
   <div class="container py-5">
     <p>
       The import/export tools allow you to transfer one or more files to a registered
@@ -41,6 +29,8 @@
       for Galaxy to use. You must then let Galaxy know what that app password
       is.
     </p>
+
+    <hr class="mt-5">
 
     <h3 class="mt-5">Setting up an app password in CloudStor</h3>
 
@@ -99,6 +89,14 @@
       be visible.
     </p>
 
+    <p class="alert alert-warning">
+      WARNING: Your CloudStor credentials will be stored on this server. While reasonable
+      efforts have been made to store these credentials safely, you must be
+      aware and accept the risks of storing these credentials. In the event that
+      the server is compromised, it may be possible for an attacker to gain
+      access to your CloudStor account.
+    </p>
+
     <h3 class="mt-5">Data import from CloudStor</h3>
 
     <ol>
@@ -127,21 +125,13 @@
       <li>
         If your Cloudstor account is configured inside Galaxy the "Directory URI" option will show your Cloudstor folder:
         <br>
-        <img src="{% static 'home/img/cloudtor-directory-option.png' %}" alt="CloudStor directory option screenshot">
+        <img src="{% static 'home/img/cloudstor-directory-option.png' %}" alt="CloudStor directory option screenshot">
       </li>
     </ol>
 
     <p class="alert alert-danger">
       CAUTION: the export tool WILL overwrite existing CloudStor files, so
       choose your target folder carefully!
-    </p>
-
-    <p class="alert alert-warning">
-      WARNING: Your CloudStor credentials will be stored on this server. While reasonable
-      efforts have been made to store these credentials safely, you must be
-      aware and accept the risks of storing these credentials. In the event that
-      the server is compromised, it may be possible for an attacker to gain
-      access to your CloudStor account.
     </p>
   </div>
 </main>
