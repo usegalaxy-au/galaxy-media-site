@@ -219,6 +219,7 @@ span.action {
   background-color: #eee;
   border: 1px solid #ccc;
   border-radius: .25rem;
+  white-space: nowrap;
 }
 
 /* Font */
