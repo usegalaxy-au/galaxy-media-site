@@ -72,6 +72,12 @@
               class="nav-link" href="/request"
               {% endif %}
           >Support</a>
+          <a {% if request.path|slice:":10" == '/docs.html' %}
+              class="nav-link active" href="/docs.html"
+              {% else %}
+              class="nav-link" href="/docs.html"
+              {% endif %}
+          >Docs</a>
           {% if user.is_staff %}
           <a class="nav-link" href="/admin" target="_blank">Admin</a>
           {% endif %}

@@ -1,0 +1,36 @@
+{% extends 'home/header.html' %}  {% load static %}
+
+
+{% block content %}
+
+<main>
+  <h1> Galaxy Australia documentation </h1>
+
+  <br>
+
+  <p class="lead">
+    This page contains a list of guides specific to features on Galaxy Australia.
+    General Galaxy training material can be found
+    <a href="https://training.galaxyproject.org/training-material/">here</a>.
+  </p>
+
+  <br>
+
+  <div class="container my-5">
+    <ul class="lead">
+      <li>
+        <a href="/cloudstor.html">File transfer with CloudStor</a>
+      </li>
+
+      <li>
+        <a href="/list-of-institutions.html">Australian research institutions</a>
+      </li>
+
+      <li>
+        <a href="/aaf">Australian access federation institutions</a>
+      </li>
+    </ul>
+  </div>
+</main>
+
+{% endblock %}
