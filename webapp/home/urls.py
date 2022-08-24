@@ -13,6 +13,8 @@ urlpatterns = [
     path('request/quota', views.user_request_quota, name="user_request_quota"),
     path('request/support',
          views.user_request_support, name="user_request_support"),
+    path('request/alphafold',
+         views.user_request_alphafold, name="user_request_alphafold"),
     path('aaf', views.aaf_info, name="home_aaf_info"),
     re_path(r'^[\w\d\_-]+.html$', views.page, name='home_page'),
 

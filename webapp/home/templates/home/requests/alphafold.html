@@ -1,0 +1,198 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container mt-4">
+
+  <div class="mb-10">
+    <h2> Galaxy Australia AlphaFold 2.0 Access Request </h2>
+    <small>
+      <a href="/request">
+        <span class="material-icons">arrow_back</span>
+        Back to support menu
+      </a>
+    </small>
+  </div>
+
+  <p class="lead mb-10">
+    Alphafold 2.0 is available on Galaxy Australia for Australian researchers.
+    Please apply for access, using your institutional email.
+  </p>
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    <div class="row mb-10">
+      <div class="col-sm-12">
+        <label for="nameInput" class="form-label">Name</label>
+        {{ form.name.errors }}
+        <input class="form-control" id="nameInput" type="text" name="name"
+          value="{{form.name.value|default_if_none:''}}" required
+        >
+      </div>
+
+      <div class="col-sm-12">
+        <label for="emailInput" class="form-label">Institutional email</label>
+        {{ form.email.errors }}
+        <input class="form-control" id="emailInput" type="email" name="email"
+          value="{{form.email.value|default_if_none:''}}"
+          aria-describedby="emailHelp" required
+        >
+      </div>
+
+      <div class="col-sm-12">
+        <label for="institutionInput" class="form-label">Institution</label>
+        {{ form.institution.errors }}
+        <input
+        class="form-control"
+        id="institutionInput"
+        name="institution"
+        type="text"
+        value="{{form.institution.value|default_if_none:''}}"
+        aria-describedby="institutionHelp"
+        required
+        />
+        <div class="form-text" id="institutionHelp">
+          Your department, organization or research institute
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <p class="lead">
+        The following questions will not affect the outcome of this application
+        but are used to help us continue to optimise Alphafold on Galaxy
+        Australia.
+      </p>
+
+      <div class="col-sm-12">
+        <label for="speciesInput" class="form-label">Species of interest</label>
+        {{ form.species.errors }}
+        <input
+          class="form-control"
+          id="speciesInput"
+          name="species"
+          type="text"
+          value="{{form.species.value|default_if_none:''}}"
+          aria-describedby="speciesHelp"
+          required
+        />
+      </div>
+
+      <div class="col-sm-12">
+        <label for="domainInput" class="form-label">Domain of interest</label>
+        {{ form.domain.errors }}
+        <input
+          class="form-control"
+          id="domainInput"
+          name="domain"
+          type="text"
+          value="{{form.domain.value|default_if_none:''}}"
+          aria-describedby="domainHelp"
+          required
+        />
+        <div class="form-text" id="domainHelp">
+          For example Immunology, Drug Design, Cancer, Evolution.
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <label for="proteinInput" class="form-label">Protein(s) of interest</label>
+        {{ form.proteins.errors }}
+        <input
+          class="form-control"
+          id="proteinInput"
+          name="proteins"
+          type="text"
+          value="{{form.proteins.value|default_if_none:''}}"
+          aria-describedby="proteinHelp"
+          required
+        />
+        <div class="form-text" id="proteinHelp">
+          If known, please provide name, UniProt ID or accession number(s).
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <label for="size_aaInput" class="form-label">Length of proteins (AA)</label>
+        {{ form.size_aa.errors }}
+        <input
+          class="form-control"
+          id="size_aaInput"
+          name="size_aa"
+          type="number"
+          min="0"
+          value="{{form.size_aa.value|default_if_none:''}}"
+          aria-describedby="size_aaHelp"
+          required
+        />
+        <div class="form-text" id="size_aaHelp">
+          Please provide an estimate of the typical amino acid length of your
+          protein queries.
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <label for="count_aaInput" class="form-label">Total amino acid length</label>
+        {{ form.count_aa.errors }}
+        <input
+          class="form-control"
+          id="count_aaInput"
+          name="count_aa"
+          type="number"
+          min="0"
+          value="{{form.count_aa.value|default_if_none:''}}"
+          aria-describedby="count_aaHelp"
+          required
+        />
+        <div class="form-text" id="count_aaHelp">
+          Please provide an estimate of the total amino acid length of your
+          protein queries combined.
+        </div>
+      </div>
+    </div>
+
+    <div class="container mb-10">
+      Privacy Collection Notice By completing this form you agree that your
+      responses will be provided to the Australian BioCommons and Galaxy
+      Australia and will be used solely for the purposes of determining
+      suitability for beta testing of the Australian AlphaFold Service. Your
+      responses will be protected against unauthorised access and use; providing
+      your name is required to enable any follow ups. For more information,
+      please see the
+      <a href="https://www.biocommons.org.au/privacy/">
+        BioCommons Privacy Statement</a>.
+    </div>
+
+    <div class="row mb-10">
+      <div class="col text-center">
+        <button class='ga-btn' type="submit"> Submit </button>
+      </div>
+    </div>
+  </form>
+
+</main>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+  $('form').submit( (e) => {
+    $('button[type="submit"]').prop('disabled', true);
+    $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
+  });
+</script>
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

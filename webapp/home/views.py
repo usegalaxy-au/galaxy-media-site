@@ -11,7 +11,12 @@ from utils import aaf
 from events.models import Event
 from news.models import News
 from .models import Notice
-from .forms import ResourceRequestForm, QuotaRequestForm, SupportRequestForm
+from .forms import (
+    ResourceRequestForm,
+    QuotaRequestForm,
+    SupportRequestForm,
+    AlphafoldRequestForm,
+)
 
 logger = logging.getLogger('django')
 
@@ -92,6 +97,19 @@ def user_request_support(request):
         logger.info("Form was invalid. Returning invalid feedback.")
         # logger.info(pformat(form.errors))
     return render(request, 'home/requests/support.html', {'form': form})
+
+
+def user_request_alphafold(request):
+    """Handle alphafold access requests."""
+    form = AlphafoldRequestForm()
+    if request.POST:
+        form = AlphafoldRequestForm(request.POST)
+        if form.is_valid():
+            form.dispatch()
+            return render(request, 'home/requests/success.html')
+        logger.info("Form was invalid. Returning invalid feedback.")
+        # logger.info(pformat(form.errors))
+    return render(request, 'home/requests/alphafold.html', {'form': form})
 
 
 def page(request):

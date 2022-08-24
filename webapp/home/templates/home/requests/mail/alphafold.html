@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>AlphaFold Access Request</title>
+  </head>
+  <body>
+
+  <h3>New AlphaFold access request submitted - Galaxy Australia</h3>
+
+  <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
+    <tbody>
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Your name </th>
+        <td style="padding: 10px; border: 1px solid grey;"> {{ form.cleaned_data.name }} </td>
+      </tr>
+
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Your email </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          <a href="mailto:{{ form.cleaned_data.email }}">
+            {{ form.cleaned_data.email }}
+          </a>
+        </td>
+      </tr>
+
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Your institution </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {{ form.cleaned_data.institution }}
+        </td>
+      </tr>
+
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Species of study </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {{ form.cleaned_data.species }}
+        </td>
+      </tr>
+
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Domain of study </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {{ form.cleaned_data.domain }}
+        </td>
+      </tr>
+
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Target proteins </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {{ form.cleaned_data.proteins }}
+        </td>
+      </tr>
+
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Typical protein length </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {{ form.cleaned_data.size_aa }} AA
+        </td>
+      </tr>
+
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Total protein length </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {{ form.cleaned_data.count_aa }} AA
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  </body>
+</html>

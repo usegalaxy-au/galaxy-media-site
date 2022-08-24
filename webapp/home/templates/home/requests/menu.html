@@ -10,58 +10,77 @@
 
 {% block content %}
 
-<main class="container">
+<main class="container mt-4">
   <h1> Galaxy Australia Support </h1>
 
-  <div class="card-group" id="request-menu-cards">
-    <div class="card">
-      <h1><span class="material-icons">help</span></h1>
-      <div class="card-body">
-        <p>
-          Need some assistance?
-          <br>
-          The Galaxy Australia team are here to help.
-        </p>
-      </div>
+  <div class="m-10" style="margin-top: 15vh;">
+    <div class="card-group request-menu-cards">
+      <div class="card">
+        <h1><span class="material-icons">help</span></h1>
+        <div class="card-body">
+          <p>
+            Need some assistance?
+            <br>
+            The Galaxy Australia team are here to help.
+          </p>
+        </div>
 
-      <div class="card-footer">
-        <a class="ga-btn" href="/request/support">
-          Request support
-        </a>
+        <div class="card-footer">
+          <a class="ga-btn" href="/request/support">
+            Request support
+          </a>
+        </div>
       </div>
-    </div>
-
-    <div class="card">
-      <h1><span class="material-icons">construction</span></h1>
-      <div class="card-body">
-        <p>
-          Thousands of tools are waiting to be installed from the
-          <a href="https://toolshed.g2.bx.psu.edu/" target="_blank">Galaxy Toolshed</a>.
-          You can also request additions to Galaxy's reference datasets (e.g. genomes).
-        </p>
-      </div>
-
-      <div class="card-footer">
-        <a class="ga-btn" href="/request/tool">
-          Request tool/dataset
-        </a>
-      </div>
-    </div>
 
       <div class="card">
-      <h1><span class="material-icons">save</span></h1>
-      <div class="card-body">
-        <p>
-          Need more data storage on Galaxy Australia?
-          <br>
-          Just ask!
-        </p>
+        <h1><span class="material-icons">construction</span></h1>
+        <div class="card-body">
+          <p>
+            Thousands of tools are waiting to be installed from the
+            <a href="https://toolshed.g2.bx.psu.edu/" target="_blank">Galaxy Toolshed</a>.
+            You can also request additions to Galaxy's reference datasets (e.g. genomes).
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a class="ga-btn" href="/request/tool">
+            Request tool/dataset
+          </a>
+        </div>
       </div>
 
-      <div class="card-footer">
-        <a class="ga-btn" href="/request/quota">
-          Request data quota
-        </a>
+      <div class="card">
+        <h1><span class="material-icons">save</span></h1>
+        <div class="card-body">
+          <p>
+            Need more data storage on Galaxy Australia?
+            <br>
+            Just ask!
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a class="ga-btn" href="/request/quota">
+            Request data quota
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-group request-menu-cards">
+      <div class="card">
+        <h1><span class="material-icons">fingerprint</span></h1>
+        <div class="card-body">
+          <p>
+            Apply to use AlphaFold 2.0 on Galaxy Australia
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a class="ga-btn" href="/request/alphafold">
+            Apply now
+          </a>
+        </div>
       </div>
     </div>
   </div>

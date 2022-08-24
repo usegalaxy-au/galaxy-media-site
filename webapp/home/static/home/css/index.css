@@ -3,6 +3,9 @@
   max-width: 450px;
   height: auto;
 }
+.notice p {
+  margin: 0;
+}
 #stats-panel {
   position: relative;
   padding-top: 1rem;

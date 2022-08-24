@@ -29,7 +29,7 @@
     {% if notice.notice_class == 'none' %}
     <div class="container my-5">
     {% else %}
-    <div class="alert alert-{{ notice.notice_class }}">
+    <div class="notice alert alert-{{ notice.notice_class }}">
     {% endif %}
 
       {% if not notice.is_published %}
@@ -63,6 +63,15 @@
   <section class="row justify-content-between text-center" id="header-cards">
     <div class="tile">
       <div class="card-body">
+        <h1 class="card-title"><span class="material-icons">fingerprint</span></h1>
+        <p>
+          Alphafold 2.0 on Galaxy Australia
+        </p>
+        <a class="ga-btn" href="/request/alphafold">
+          Apply now
+        </a>
+      </div>
+      <!-- <div class="card-body">
         <h1 class="card-title"><span class="material-icons">book</span></h1>
         <p>
           200+
@@ -75,7 +84,7 @@
           Start learning
           {% include 'home/snippets/icons/new-tab.html' %}
         </a>
-      </div>
+      </div> -->
     </div>
 
     <div class="tile">

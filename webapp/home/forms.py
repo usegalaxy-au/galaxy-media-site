@@ -153,3 +153,26 @@ class SupportRequestForm(forms.Form):
                 + data['message']
             )
         )
+
+
+class AlphafoldRequestForm(forms.Form):
+    """Form to request AlphaFold access."""
+
+    name = forms.CharField()
+    email = forms.EmailField()
+    institution = forms.CharField()
+    species = forms.CharField()
+    domain = forms.CharField()
+    proteins = forms.CharField()
+    size_aa = forms.IntegerField()
+    count_aa = forms.IntegerField()
+
+    def dispatch(self):
+        """Dispatch form content as email."""
+        template = 'home/requests/mail/alphafold'
+        dispatch_form_mail(
+            reply_to=self.cleaned_data['email'],
+            subject="New AlphaFold request on Galaxy Australia",
+            text=render_to_string(f'{template}.txt', {'form': self}),
+            html=render_to_string(f'{template}.html', {'form': self}),
+        )
