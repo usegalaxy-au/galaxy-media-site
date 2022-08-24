@@ -161,11 +161,11 @@ class AlphafoldRequestForm(forms.Form):
     name = forms.CharField()
     email = forms.EmailField()
     institution = forms.CharField()
-    species = forms.CharField()
-    domain = forms.CharField()
-    proteins = forms.CharField()
-    size_aa = forms.IntegerField()
-    count_aa = forms.IntegerField()
+    species = forms.CharField(required=False)
+    domain = forms.CharField(required=False)
+    proteins = forms.CharField(required=False)
+    size_aa = forms.IntegerField(required=False)
+    count_aa = forms.IntegerField(required=False)
 
     def dispatch(self):
         """Dispatch form content as email."""

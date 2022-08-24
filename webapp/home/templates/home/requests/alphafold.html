@@ -76,6 +76,7 @@
 
       <div class="col-sm-12">
         <label for="speciesInput" class="form-label">Species of interest</label>
+        <small>(Optional)</small>
         {{ form.species.errors }}
         <input
           class="form-control"
@@ -84,12 +85,12 @@
           type="text"
           value="{{form.species.value|default_if_none:''}}"
           aria-describedby="speciesHelp"
-          required
         />
       </div>
 
       <div class="col-sm-12">
         <label for="domainInput" class="form-label">Domain of interest</label>
+        <small>(Optional)</small>
         {{ form.domain.errors }}
         <input
           class="form-control"
@@ -98,7 +99,6 @@
           type="text"
           value="{{form.domain.value|default_if_none:''}}"
           aria-describedby="domainHelp"
-          required
         />
         <div class="form-text" id="domainHelp">
           For example Immunology, Drug Design, Cancer, Evolution.
@@ -107,6 +107,7 @@
 
       <div class="col-sm-12">
         <label for="proteinInput" class="form-label">Protein(s) of interest</label>
+        <small>(Optional)</small>
         {{ form.proteins.errors }}
         <input
           class="form-control"
@@ -115,7 +116,6 @@
           type="text"
           value="{{form.proteins.value|default_if_none:''}}"
           aria-describedby="proteinHelp"
-          required
         />
         <div class="form-text" id="proteinHelp">
           If known, please provide name, UniProt ID or accession number(s).
@@ -124,6 +124,7 @@
 
       <div class="col-sm-12">
         <label for="size_aaInput" class="form-label">Length of proteins (AA)</label>
+        <small>(Optional)</small>
         {{ form.size_aa.errors }}
         <input
           class="form-control"
@@ -133,16 +134,16 @@
           min="0"
           value="{{form.size_aa.value|default_if_none:''}}"
           aria-describedby="size_aaHelp"
-          required
         />
         <div class="form-text" id="size_aaHelp">
           Please provide an estimate of the typical amino acid length of your
           protein queries.
         </div>
-      </div>
+        </div>
 
       <div class="col-sm-12">
         <label for="count_aaInput" class="form-label">Total amino acid length</label>
+        <small>(Optional)</small>
         {{ form.count_aa.errors }}
         <input
           class="form-control"
@@ -152,7 +153,6 @@
           min="0"
           value="{{form.count_aa.value|default_if_none:''}}"
           aria-describedby="count_aaHelp"
-          required
         />
         <div class="form-text" id="count_aaHelp">
           Please provide an estimate of the total amino acid length of your
