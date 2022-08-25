@@ -34,35 +34,55 @@
       <tr>
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Species of study </th>
         <td style="padding: 10px; border: 1px solid grey;">
+          {% if form.cleaned_data.species %}
           {{ form.cleaned_data.species }}
+          {% else %}
+          None
+          {% endif %}
         </td>
       </tr>
 
       <tr>
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Domain of study </th>
         <td style="padding: 10px; border: 1px solid grey;">
+          {% if form.cleaned_data.domain %}
           {{ form.cleaned_data.domain }}
+          {% else %}
+          None
+          {% endif %}
         </td>
       </tr>
 
       <tr>
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Target proteins </th>
         <td style="padding: 10px; border: 1px solid grey;">
+          {% if form.cleaned_data.proteins %}
           {{ form.cleaned_data.proteins }}
+          {% else %}
+          None
+          {% endif %}
         </td>
       </tr>
 
-      <tr>
+          <tr>
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Typical protein length </th>
         <td style="padding: 10px; border: 1px solid grey;">
+          {% if form.cleaned_data.size_aa %}
           {{ form.cleaned_data.size_aa }} AA
+          {% else %}
+          None
+          {% endif %}
         </td>
       </tr>
 
       <tr>
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> Total protein length </th>
         <td style="padding: 10px; border: 1px solid grey;">
+          {% if form.cleaned_data.count_aa %}
           {{ form.cleaned_data.count_aa }} AA
+          {% else %}
+          None
+          {% endif %}
         </td>
       </tr>
     </tbody>

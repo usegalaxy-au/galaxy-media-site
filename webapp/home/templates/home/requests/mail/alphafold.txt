@@ -3,8 +3,8 @@ New AlphaFold access request submitted - Galaxy Australia
 Name: {{ form.cleaned_data.name }}
 Email: {{ form.cleaned_data.email }}
 Institution: {{ form.cleaned_data.institution }}
-Species: {{ form.cleaned_data.species }}
-Domain: {{ form.cleaned_data.domain }}
-Target proteins: {{ form.cleaned_data.proteins }}
-Typical protein length: {{ form.cleaned_data.size_aa}} AA
-Total protein length: {{ form.cleaned_data.count_aa}} AA
+Species: {% if form.cleaned_data.species %}{{ form.cleaned_data.species }}{% else %} None {% endif %}
+Domain: {% if form.cleaned_data.domain %}{{ form.cleaned_data.domain }}{% else %} None {% endif %}
+Target proteins: {% if form.cleaned_data.proteins %}{{ form.cleaned_data.proteins }}{% else %} None {% endif %}
+Typical protein length:{% if form.cleaned_data.size_aa %}{{ form.cleaned_data.size_aa }} AA {% else %} None {% endif %}
+Total protein length:{% if form.cleaned_data.count_aa %}{{ form.cleaned_data.count_aa }} AA {% else %} None {% endif %}
