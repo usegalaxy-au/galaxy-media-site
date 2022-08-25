@@ -47,19 +47,22 @@
           value="{{form.email.value|default_if_none:''}}"
           aria-describedby="emailHelp" required
         >
+        <div class="form-text" id="emailHelp">
+          Your Galaxy Australia account must be registered to this email.
+        </div>
       </div>
 
       <div class="col-sm-12">
         <label for="institutionInput" class="form-label">Institution</label>
         {{ form.institution.errors }}
         <input
-        class="form-control"
-        id="institutionInput"
-        name="institution"
-        type="text"
-        value="{{form.institution.value|default_if_none:''}}"
-        aria-describedby="institutionHelp"
-        required
+          class="form-control"
+          id="institutionInput"
+          name="institution"
+          type="text"
+          value="{{form.institution.value|default_if_none:''}}"
+          aria-describedby="institutionHelp"
+          required
         />
         <div class="form-text" id="institutionHelp">
           Your department, organization or research institute
