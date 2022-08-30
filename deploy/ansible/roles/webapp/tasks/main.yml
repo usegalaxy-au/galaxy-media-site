@@ -115,3 +115,18 @@
     path: "{{ project_root }}/update.sh"
     state: absent
   ignore_errors: yes
+
+- name: check whether news scraper in GMS version
+  ansible.builtin.shell: "{{ venv_root }}/bin/python manage.py scrape_news --help"
+  args:
+    chdir: "{{ web_root }}"
+  register: check_scraper
+
+- name: add cron job to scrape news feed
+  ansible.builtin.cron:
+    name: "scrape news feed"
+    user: ubuntu
+    hour: 9
+    minute: 0
+    job: "cd {{ web_root }} && {{ venv_root }}/bin/python manage.py scrape_news"
+  when: check_scraper.rc == 0
