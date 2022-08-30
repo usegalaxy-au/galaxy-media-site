@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
     def set_is_tool_update_field(self, schema_editor):
         """Set is_tool_update field for appropriate news records."""
         News = self.get_model('news', 'News')
-        for n in News.objects.filter(title__contains="Tool Update"):
+        for n in News.objects.filter(title__icontains="tool update"):
             n.is_tool_update = True
             n.save()
 
