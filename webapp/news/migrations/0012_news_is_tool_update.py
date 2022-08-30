@@ -5,6 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
+    def set_is_tool_update_field(self, schema_editor):
+        """Set is_tool_update field for appropriate news records."""
+        News = self.get_model('news', 'News')
+        for n in News.objects.filter(title__contains="Tool Update"):
+            n.is_tool_update = True
+            n.save()
+
     dependencies = [
         ('news', '0011_alter_news_body'),
     ]
@@ -14,5 +21,9 @@ class Migration(migrations.Migration):
             model_name='news',
             name='is_tool_update',
             field=models.BooleanField(default=False),
+        ),
+        migrations.RunPython(
+            set_is_tool_update_field,
+            migrations.RunPython.noop,
         ),
     ]
