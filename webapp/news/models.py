@@ -50,6 +50,7 @@ class News(models.Model):
         blank=True,
         help_text='Show logos/links')
     is_published = models.BooleanField(default=False)
+    is_tool_update = models.BooleanField(default=False)
 
     def __str__(self):
         """Return string definition."""

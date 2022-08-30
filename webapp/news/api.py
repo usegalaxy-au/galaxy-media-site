@@ -60,8 +60,8 @@ def create_post(request):
 
     title = request.POST.get('title')
     body = request.POST.get('body')
-    tool_update = request.POST.get('tool_update')
-    if tool_update == 'true':
+    tool_update = request.POST.get('tool_update').lower() == 'true'
+    if tool_update:
         today = date.today().strftime('%Y-%m-%d')
         title = f"Galaxy {settings.GALAXY_SITE_NAME} Tool Update {today}"
     if not body:
@@ -72,7 +72,7 @@ def create_post(request):
         )
     if not title:
         return HttpResponse(
-            'Bad request: "body" field is required\n.',
+            'Bad request: "title" field is required\n.',
             content_type="text/plain",
             status=400,
         )
@@ -82,6 +82,7 @@ def create_post(request):
         title=title,
         body=body_markdown,
         is_published=True,
+        is_tool_update=tool_update,
     )
     article.tags.add(Tag.objects.get(name="tools"))
     article.supporters.add(Supporter.objects.get(name="Galaxy Australia"))
@@ -89,7 +90,7 @@ def create_post(request):
     article.supporters.add(
         Supporter.objects.get(name="Melbourne Bioinformatics"))
 
-    if tool_update == 'true':
+    if tool_update:
         notify_tool_update(article)
 
     return HttpResponse(
