@@ -17,19 +17,15 @@ hr {
 }
 .request-menu-cards .card {
   text-align: center;
-  padding: 25px;
-  border: none;
-  border-right:
-    1px solid var(--border);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
   max-width: 30%;
 }
 .request-menu-cards .card-body,
 .request-menu-cards .card-footer {
   border: none;
   background: none;
-}
-.request-menu-cards .card:last-child {
-  border: none;
 }
 .request-menu-cards
 span.material-icons {

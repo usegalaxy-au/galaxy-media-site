@@ -23,20 +23,23 @@ logger = logging.getLogger('django')
 
 def index(request, landing=False):
     """Show homepage/landing page."""
-    if request.user.is_staff:
-        news_items = News.objects.all()
-        events = Event.objects.all()
-        notices = Notice.objects.filter(enabled=True)
-    else:
-        news_items = News.objects.filter(is_published=True)
-        events = Event.objects.filter(is_published=True)
-        notices = Notice.objects.filter(enabled=True, is_published=True)
+    news_items = News.objects.filter(is_tool_update=False)
+    events = Event.objects.all()
+    notices = Notice.objects.filter(enabled=True)
+    tool_updates = News.objects.filter(is_tool_update=True)
+
+    if not request.user.is_staff:
+        news_items = news_items.filter(is_published=True)
+        events = events.filter(is_published=True)
+        notices = notices.filter(is_published=True)
+        tool_updates = tool_updates.filter(is_published=True)
 
     return render(request, 'home/index.html', {
+        'landing': landing,
+        'notices': notices.order_by('order'),
         'news_items': news_items.order_by('-datetime_created')[:6],
         'events': events.order_by('-datetime_created')[:6],
-        'notices': notices.order_by('order'),
-        'landing': landing,
+        'tool_updates': tool_updates.order_by('-datetime_created')[:6],
     })
 
 

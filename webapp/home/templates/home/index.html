@@ -212,6 +212,32 @@
     </div>
   </section>
 
+  {% if tool_updates %}
+  <section id="tool-updates">
+    <div class="tool-update-row">
+      <div class="head">
+        <div class="row">
+          <div class="col">
+            <span class="australia text-nowrap">
+              Galaxy {{ GALAXY_SITE_NAME }}
+            </span>
+            <br>
+            Tool updates
+          </div>
+          <div class="col" style="align-self: center;">
+            <span class="material-icons">build</span>
+          </div>
+        </div>
+      </div>
+      {% for item in tool_updates %}
+      <div class="item" onclick="window.location = '{{ item.url }}';">
+        <span>{{ item.datetime_created|date:"Y-m-d"}}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
   <section id="tiias">
     <h4 class="header"> Training Infrastructure as a Service (TIaaS) </h4>
 

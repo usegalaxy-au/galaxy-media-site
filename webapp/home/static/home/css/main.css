@@ -1,6 +1,7 @@
 :root {
   --color: #2C3143;
   --tile-bg: #F8F9FA;
+  --tile-bg-hover: #E8E9EA;
   --border: #70707033;
   --error: #dc3545;
 }
@@ -36,10 +37,10 @@ nav a.active {
   color: white;
   font-weight: bold;
 }
-nav .australia {
+.australia {
   color: #cebd2c;
 }
-nav a:hover .australia {
+a:hover .australia {
   color: #eedd5c;
 }
 nav #admin-login {
