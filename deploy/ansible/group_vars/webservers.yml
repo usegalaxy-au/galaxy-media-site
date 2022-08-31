@@ -56,10 +56,10 @@ admin_user:
   password: "{{ admin_password }}"
 
 smtp:
-  hostname: mail.usegalaxy.org.au
-  port: 22
-  username: galaxy-australia
-  from_address: noreply@genome.edu.au
+  hostname: smtp.office365.com
+  port: 587
+  username: qfab_smtp@qfab.org
+  from_address: qfab_smtp@qfab.org
   to_address: help@genome.edu.au
   use_tls: true
 
@@ -69,7 +69,7 @@ smtp:
 slack:
   errors:
     api_key: "{{ slack_error_api_key }}"  # secrets.yml
-    channel_id: CJVFNFKGD
+    channel_id: C038ESFSXLN
     mention_user_id: U024MUHM23W
   tools:
     url: "{{ slack_api_url }}"  # secrets.yml
