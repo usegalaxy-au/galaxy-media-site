@@ -92,18 +92,10 @@
     group: ubuntu
 
 - name: update media file ownership
-  ansible.builtin.file:
-    path: "{{ web_root }}/webapp/media"
-    state: directory
-    recurse: yes
-    mode: 0666
+  file: dest={{ web_root }}/webapp/media owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
 
 - name: update log file ownership
-  ansible.builtin.file:
-    path: "{{ web_root }}/webapp/logs"
-    state: directory
-    recurse: yes
-    mode: 0666
+  file: dest={{ web_root }}/webapp/logs owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
 
 - name: make update.sh executable
   file: dest=/home/ubuntu/update.sh mode=a+x
