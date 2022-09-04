@@ -41,14 +41,39 @@
       </div>
 
       <div class="col-sm-12">
-        <label for="emailInput" class="form-label">Institutional email</label>
+        <label for="emailInput" class="form-label">Galaxy account email</label>
         {{ form.email.errors }}
+
         <input class="form-control" id="emailInput" type="email" name="email"
           value="{{form.email.value|default_if_none:''}}"
-          aria-describedby="emailHelp" required
+          aria-describedby="emailHelp"
+          onclick="$('#emailHelp').show();"
+          required
+          autocomplete="off"
         >
-        <div class="form-text" id="emailHelp">
-          Your Galaxy Australia account must be registered to this email.
+
+        <div
+          class="form-text"
+          id="emailHelp"
+          style="display: none;"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          data-bs-title='Go to User > Preferences > Manage information to see your registered email address on usegalaxy.org.au'
+        >
+          <div class="alert alert-danger">
+            <ul style="margin: 0;">
+              <li>
+                Your Galaxy Australia account must be registered to this email
+                for us to provide access
+              </li>
+              <li>
+                Access will be provided only to recognised
+                <a href="/list-of-institutions.html">
+                  Australian institution email addresses
+                </a>
+              </li>
+            <ul>
+          </div>
         </div>
       </div>
 
