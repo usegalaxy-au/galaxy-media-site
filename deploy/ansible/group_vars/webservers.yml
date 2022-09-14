@@ -74,3 +74,8 @@ slack:
     mention_user_id: U024MUHM23W
   tools:
     url: "{{ slack_api_url }}"  # secrets.yml
+
+# For API authentication (requires admin key)
+galaxy_api:
+  url: https://usegalaxy.org.au
+  key: "{{ galaxy_api_key }}"
