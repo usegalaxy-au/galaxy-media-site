@@ -8,6 +8,9 @@ from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from captcha import fields
+from utils.institution import is_institution_email
+from . import validators
+
 
 logger = logging.getLogger('django')
 
@@ -159,13 +162,26 @@ class AlphafoldRequestForm(forms.Form):
     """Form to request AlphaFold access."""
 
     name = forms.CharField()
-    email = forms.EmailField()
+    email = forms.EmailField(validators=[validators.institutional_email])
     institution = forms.CharField()
     species = forms.CharField(required=False)
     domain = forms.CharField(required=False)
     proteins = forms.CharField(required=False)
     size_aa = forms.IntegerField(required=False)
     count_aa = forms.IntegerField(required=False)
+
+    def clean_email(self):
+        """Validate email address."""
+        email = self.cleaned_data['email']
+        if not is_institution_email(email):
+            raise ValidationError(
+                (
+                    'Sorry, this is not a recognised Australian institute'
+                    ' email address.'
+                ),
+                field="email",
+            )
+        return email
 
     def dispatch(self):
         """Dispatch form content as email."""
