@@ -131,3 +131,10 @@ def aaf_info(request):
     return render(request, 'home/aaf-institutions.html', {
         'entities': aaf.get_entities(),
     })
+
+
+def australian_institutions(request):
+    """Show list of recognised AU research institution email domains."""
+    return render(request, 'home/au-institutions.html', {
+        'institutions': get_institution_list(),
+    })

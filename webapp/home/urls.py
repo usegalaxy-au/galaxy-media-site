@@ -16,6 +16,8 @@ urlpatterns = [
     path('request/alphafold',
          views.user_request_alphafold, name="user_request_alphafold"),
     path('aaf', views.aaf_info, name="home_aaf_info"),
+    path('institutions', views.australian_institutions,
+         name="home_au_institutions"),
     re_path(r'^[\w\d\_-]+.html$', views.page, name='home_page'),
 
     # Redirect
