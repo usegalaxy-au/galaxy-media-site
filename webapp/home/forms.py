@@ -15,18 +15,24 @@ from . import validators
 logger = logging.getLogger('django')
 
 
-def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):
+def dispatch_form_mail(
+        to_address=None,
+        reply_to=None,
+        subject=None,
+        text=None,
+        html=None):
     """Send mail to support inbox.
 
     This should probably be sent to a worker thread/queue.
     """
     logger.info(f"Sending mail to {settings.EMAIL_TO_ADDRESS}")
+    reply_to_value = [reply_to] if reply_to else None
     email = EmailMultiAlternatives(
         subject,
         text,
-        settings.EMAIL_FROM_ADDRESS,
-        [settings.EMAIL_TO_ADDRESS],
-        reply_to=[reply_to],
+        to_address or settings.EMAIL_FROM_ADDRESS,
+        [to_address],
+        reply_to=reply_to_value,
     )
     if html:
         email.attach_alternative(html, "text/html")
@@ -189,6 +195,16 @@ class AlphafoldRequestForm(forms.Form):
         dispatch_form_mail(
             reply_to=self.cleaned_data['email'],
             subject="New AlphaFold request on Galaxy Australia",
+            text=render_to_string(f'{template}.txt', {'form': self}),
+            html=render_to_string(f'{template}.html', {'form': self}),
+        )
+
+    def dispatch_warning(self):
+        """Dispatch warning email to let user know their email is invalid."""
+        template = 'home/requests/mail/alphafold-email-invalid'
+        dispatch_form_mail(
+            to_address=self.cleaned_data['email'],
+            subject="Access to AlphaFold could not be granted",
             text=render_to_string(f'{template}.txt', {'form': self}),
             html=render_to_string(f'{template}.html', {'form': self}),
         )
