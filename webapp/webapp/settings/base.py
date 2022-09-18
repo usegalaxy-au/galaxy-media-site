@@ -130,6 +130,10 @@ EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
 SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_SUBJECT_PREFIX = 'GMS: '
 
+# Galaxy API auth
+GALAXY_URL = os.environ.get('GALAXY_URL')
+GALAXY_API_KEY = os.environ.get('GALAXY_API_KEY')
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

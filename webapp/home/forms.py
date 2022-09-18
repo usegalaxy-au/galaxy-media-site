@@ -8,22 +8,31 @@ from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from captcha import fields
+from utils.institution import is_institution_email
+from . import validators
+
 
 logger = logging.getLogger('django')
 
 
-def dispatch_form_mail(reply_to=None, subject=None, text=None, html=None):
+def dispatch_form_mail(
+        to_address=None,
+        reply_to=None,
+        subject=None,
+        text=None,
+        html=None):
     """Send mail to support inbox.
 
     This should probably be sent to a worker thread/queue.
     """
     logger.info(f"Sending mail to {settings.EMAIL_TO_ADDRESS}")
+    reply_to_value = [reply_to] if reply_to else None
     email = EmailMultiAlternatives(
         subject,
         text,
-        settings.EMAIL_FROM_ADDRESS,
-        [settings.EMAIL_TO_ADDRESS],
-        reply_to=[reply_to],
+        to_address or settings.EMAIL_FROM_ADDRESS,
+        [to_address],
+        reply_to=reply_to_value,
     )
     if html:
         email.attach_alternative(html, "text/html")
@@ -159,13 +168,26 @@ class AlphafoldRequestForm(forms.Form):
     """Form to request AlphaFold access."""
 
     name = forms.CharField()
-    email = forms.EmailField()
+    email = forms.EmailField(validators=[validators.institutional_email])
     institution = forms.CharField()
     species = forms.CharField(required=False)
     domain = forms.CharField(required=False)
     proteins = forms.CharField(required=False)
     size_aa = forms.IntegerField(required=False)
     count_aa = forms.IntegerField(required=False)
+
+    def clean_email(self):
+        """Validate email address."""
+        email = self.cleaned_data['email']
+        if not is_institution_email(email):
+            raise ValidationError(
+                (
+                    'Sorry, this is not a recognised Australian institute'
+                    ' email address.'
+                ),
+                field="email",
+            )
+        return email
 
     def dispatch(self):
         """Dispatch form content as email."""
@@ -175,4 +197,18 @@ class AlphafoldRequestForm(forms.Form):
             subject="New AlphaFold request on Galaxy Australia",
             text=render_to_string(f'{template}.txt', {'form': self}),
             html=render_to_string(f'{template}.html', {'form': self}),
+        )
+
+    def dispatch_warning(self, request):
+        """Dispatch warning email to let user know their email is invalid."""
+        template = 'home/requests/mail/alphafold-email-invalid'
+        dispatch_form_mail(
+            to_address=self.cleaned_data['email'],
+            subject="Access to AlphaFold could not be granted",
+            text=render_to_string(f'{template}.txt', {'form': self}),
+            html=render_to_string(f'{template}.html', {
+                'form': self,
+                'hostname': settings.HOSTNAME,
+                'scheme': request.scheme,
+            }),
         )

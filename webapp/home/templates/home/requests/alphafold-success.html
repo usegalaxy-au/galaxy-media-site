@@ -1,0 +1,36 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container-centered">
+  <div class="text-center">
+    <h2> Thanks for your submission </h2>
+
+    <br>
+
+    <p class="alert alert-success" style="max-width: 600px;">
+      If we find a Galaxy Australia account registed to {{ email }}, an
+      administrator will enable AlphaFold access for this account.
+    </p>
+
+    <div class="my-5">
+      <a class="ga-btn" href="/"> Home </a>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

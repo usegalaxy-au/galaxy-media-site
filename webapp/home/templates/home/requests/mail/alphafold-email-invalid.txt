@@ -1,0 +1,15 @@
+Dear {{ form.cleaned_data.name }},
+
+A user has requested access to AlphaFold on Galaxy Australia with your email address ({{ form.cleaned_data.email }}).
+Unfortunately we cannot process this request, because we could not find a Galaxy Australia account registered to this email address.
+
+If you would still like to access AlphaFold on Galaxy Australia, please do one of the following:
+
+- Open a Galaxy Australia account with this email address
+  - OR -
+- Re-submit the access request form with an institutional email address that is registered to a Galaxy Australia account
+
+If this was not you, please disregard this email and no action will be taken.
+
+Regards,
+The Galaxy Australia Team

@@ -31,6 +31,8 @@
 
     {% csrf_token %}
 
+    {{ form.non_field_errors }}
+
     <div class="row mb-10">
       <div class="col-sm-12">
         <label for="nameInput" class="form-label">Name</label>
@@ -68,7 +70,7 @@
               </li>
               <li>
                 Access will be provided only to recognised
-                <a href="/list-of-institutions.html">
+                <a href="/institutions">
                   Australian institution email addresses
                 </a>
               </li>

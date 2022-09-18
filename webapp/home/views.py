@@ -8,6 +8,8 @@ from django.http import HttpResponseNotFound
 # from pprint import pformat
 
 from utils import aaf
+from utils.galaxy import is_registered_galaxy_email
+from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
 from .models import Notice
@@ -108,8 +110,16 @@ def user_request_alphafold(request):
     if request.POST:
         form = AlphafoldRequestForm(request.POST)
         if form.is_valid():
-            form.dispatch()
-            return render(request, 'home/requests/success.html')
+            email = form.cleaned_data['email']
+            if is_registered_galaxy_email(email):
+                logger.info(f"Dispatching AlphaFold request for email {email}")
+                form.dispatch()
+            else:
+                logger.info(f"Dispatching AlphaFold warning to {email}")
+                form.dispatch_warning(request)
+            return render(request, 'home/requests/alphafold-success.html', {
+                'email': email,
+            })
         logger.info("Form was invalid. Returning invalid feedback.")
         # logger.info(pformat(form.errors))
     return render(request, 'home/requests/alphafold.html', {'form': form})
@@ -130,4 +140,11 @@ def aaf_info(request):
     """Show current list of AAF institutions."""
     return render(request, 'home/aaf-institutions.html', {
         'entities': aaf.get_entities(),
+    })
+
+
+def australian_institutions(request):
+    """Show list of recognised AU research institution email domains."""
+    return render(request, 'home/au-institutions.html', {
+        'institutions': get_institution_list(),
     })
