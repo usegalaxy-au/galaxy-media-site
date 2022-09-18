@@ -1,16 +1,13 @@
-AlphaFold access request on Galaxy Australia
-
 Dear {{ form.cleaned_data.name }},
 
 A user has requested access to AlphaFold on Galaxy Australia with your email address ({{ form.cleaned_data.email }}).
-Unfortunately we cannot process this request, because we did not find a Galaxy Australia account registered to this email address.
+Unfortunately we cannot process this request, because we could not find a Galaxy Australia account registered to this email address.
 
-If you would still like to access AlphaFold on Galaxy, please do one of the following:
+If you would still like to access AlphaFold on Galaxy Australia, please do one of the following:
 
-1. Open a Galaxy AU account with this email address
-2. Re-submit the access request form with an institutional email address that is registered to a Galaxy AU account
-
-Galaxy AU receives additional funding dedicated to Australian researchers. By associating yourself with an Australian institution in Galaxy AU, you will gain access to additional resources such as storage, compute and special tools like AlphaFold.
+- Open a Galaxy Australia account with this email address
+  - OR -
+- Re-submit the access request form with an institutional email address that is registered to a Galaxy Australia account
 
 If this was not you, please disregard this email and no action will be taken.
 

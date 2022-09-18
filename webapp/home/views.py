@@ -116,7 +116,7 @@ def user_request_alphafold(request):
                 form.dispatch()
             else:
                 logger.info(f"Dispatching AlphaFold warning to {email}")
-                form.dispatch_warning()
+                form.dispatch_warning(request)
             return render(request, 'home/requests/alphafold-success.html', {
                 'email': email,
             })

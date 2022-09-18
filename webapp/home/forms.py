@@ -199,12 +199,16 @@ class AlphafoldRequestForm(forms.Form):
             html=render_to_string(f'{template}.html', {'form': self}),
         )
 
-    def dispatch_warning(self):
+    def dispatch_warning(self, request):
         """Dispatch warning email to let user know their email is invalid."""
         template = 'home/requests/mail/alphafold-email-invalid'
         dispatch_form_mail(
             to_address=self.cleaned_data['email'],
             subject="Access to AlphaFold could not be granted",
             text=render_to_string(f'{template}.txt', {'form': self}),
-            html=render_to_string(f'{template}.html', {'form': self}),
+            html=render_to_string(f'{template}.html', {
+                'form': self,
+                'hostname': settings.HOSTNAME,
+                'scheme': request.scheme,
+            }),
         )

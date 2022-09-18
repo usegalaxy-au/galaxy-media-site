@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,31 +17,27 @@
       A user has requested access to AlphaFold on Galaxy Australia with your
       email address ({{ form.cleaned_data.email }}).
       <b>Unfortunately we cannot process this request</b>,
-      because we did not find a Galaxy Australia account registered to this
+      because we could not find a Galaxy Australia account registered to this
       email address.
     </p>
 
     <p>
-      If you would still like to access AlphaFold on Galaxy, please do one of
-      the following:
+      If you would still like to access AlphaFold on Galaxy Australia, please
+      do one of the following:
     </p>
 
     <ul>
       <li>
-        Open a Galaxy AU account with this email address
+        Open a Galaxy Australia account with this email address
+      </li>
+      <li style="list-style-type: none;">
+        - OR -
       </li>
       <li>
         Re-submit the access request form with an institutional email address
-        that is registered to a Galaxy AU account
+        that is registered to a Galaxy Australia account
       </li>
     </ul>
-
-    <p>
-      Galaxy AU receives additional funding dedicated to Australian researchers.
-      By associating yourself with an Australian institution in Galaxy AU,
-      you will gain access to resources such as additional storage, compute and
-      special tools like AlphaFold.
-    </p>
 
     <p>
       If this was not you, please disregard this email and no action will be
@@ -50,6 +48,14 @@
       Regards,
       <br>
       The Galaxy Australia Team
+    </p>
+
+    <p>
+      <img
+        src="{{ scheme }}://{{ hostname }}{% static 'home/img/ga-logo.png' %}"
+        alt="Galaxy Australia logo"
+        style="width: 175px;"
+      >
     </p>
   </body>
 </html>
