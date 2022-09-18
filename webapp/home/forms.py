@@ -182,7 +182,7 @@ class AlphafoldRequestForm(forms.Form):
         if not is_institution_email(email):
             raise ValidationError(
                 (
-                    'Sorry, this is not a recognised Australian institute'
+                    'Sorry, this is not a recognised Australian institution'
                     ' email address.'
                 ),
                 field="email",
