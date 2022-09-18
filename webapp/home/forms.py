@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from captcha import fields
 from utils.institution import is_institution_email
+from utils.mail import send_smtp_mail
 from . import validators
 
 
@@ -23,7 +24,7 @@ def dispatch_form_mail(
         html=None):
     """Send mail to support inbox.
 
-    This should probably be sent to a worker thread/queue.
+    This should probably be sent to a worker thread.
     """
     recipient = to_address or settings.EMAIL_TO_ADDRESS
     reply_to_value = [reply_to] if reply_to else None
@@ -41,19 +42,19 @@ def dispatch_form_mail(
     tries = 0
     while True:
         try:
-            email.send()
-            return
+            if settings.EMAIL_HOST == 'mail.usegalaxy.org.au':
+                return send_smtp_mail(email)
+            return email.send()
         except Exception:
             logger.warning(f"Send mail error - attempt {tries}")
             tries += 1
             if tries < 3:
                 continue
-            logger.error(
+            return logger.error(
                 "Error sending mail. The user did not receive an error.\n"
                 + traceback.format_exc()
                 + f"\n\nMail content:\n\n{text}"
             )
-            return
 
 
 class ResourceRequestForm(forms.Form):
