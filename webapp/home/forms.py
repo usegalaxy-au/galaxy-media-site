@@ -25,13 +25,14 @@ def dispatch_form_mail(
 
     This should probably be sent to a worker thread/queue.
     """
-    logger.info(f"Sending mail to {settings.EMAIL_TO_ADDRESS}")
+    recipient = to_address or settings.EMAIL_TO_ADDRESS
     reply_to_value = [reply_to] if reply_to else None
+    logger.info(f"Sending mail to {recipient}")
     email = EmailMultiAlternatives(
         subject,
         text,
-        to_address or settings.EMAIL_FROM_ADDRESS,
-        [to_address],
+        settings.EMAIL_FROM_ADDRESS,
+        [recipient],
         reply_to=reply_to_value,
     )
     if html:
