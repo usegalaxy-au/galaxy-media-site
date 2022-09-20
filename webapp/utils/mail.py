@@ -22,12 +22,17 @@ def send_smtp_mail(email):
         else:
             body = email.body
             content_type = 'text/plain'
+        if email.reply_to:
+            reply_to_header = f'Reply-To: <{email.reply_to[0]}>\n'
+        else:
+            reply_to_header = ''
         data = (
             f'Content-Type: {content_type}; charset="us-ascii\n'
             'MIME-Version: 1.0\n'
             'Content-Transfer-Encoding: 7bit\n'
-            f'From: {email.from_email}\n'
-            f'To: {email.to[0]}\n'
+            f'From: <{email.from_email}>\n'
+            f'To: <{email.to[0]}>\n'
+            f'{reply_to_header}'
             f'Subject: {email.subject}\n\n'
             + body
         )
