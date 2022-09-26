@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from captcha import fields
 from utils.institution import is_institution_email
-from utils.mail import send_smtp_mail
+from utils import postal
 from . import validators
 
 
@@ -43,7 +43,8 @@ def dispatch_form_mail(
     while True:
         try:
             if settings.EMAIL_HOST == 'mail.usegalaxy.org.au':
-                return send_smtp_mail(email)
+                # Special SMTP setup for GA mail server
+                return postal.send_mail(email)
             return email.send()
         except Exception:
             logger.warning(f"Send mail error - attempt {tries}")
