@@ -27,7 +27,7 @@ def send_mail(email):
         m['From'] = email.from_email
         m['Subject'] = email.subject
         if email.reply_to:
-            m['Reply to'] = email.reply_to[0]
+            m['reply-to'] = email.reply_to[0]
 
         text = MIMEText(email.body, 'plain')
         m.attach(text)
