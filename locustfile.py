@@ -4,11 +4,6 @@
 
 See locust.sh for example run with 4 CPUs.
 
-N.B. You may need to change your machine's "open file limits".
-On Linux you can do this on a per-session basis with:
-
-    $ ulimit -S -n 20000
-
 Start a master process:
 
     HOST=https://usegalaxy-au-2.neoformit.com
@@ -18,6 +13,13 @@ Start a worker process (probably fork and run several in separate terminal):
 
     locust --host=$HOST --locustfile locustfile.py --worker &
 
+N.B. You may need to change your host machine's "open file limits".
+On Linux you can do this on a per-session basis with:
+
+    $ ulimit -S -n 20000
+
+You may also need to change fail2ban settings on the target weserver in order
+to allow such a high volume of requests to be accepted from a single IP.
 """
 
 from locust import FastHttpUser, task, between
