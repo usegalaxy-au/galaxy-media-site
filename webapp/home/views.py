@@ -3,7 +3,7 @@
 import os
 import logging
 from django.conf import settings
-from django.core.exceptions import TemplateDoesNotExist
+from django.template import TemplateDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.template.loader import get_template
