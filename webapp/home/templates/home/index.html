@@ -297,6 +297,7 @@
 
 
 {% block script %}
+
 <script type="text/javascript">
 
   const IFRAME_COUNT = 5;
@@ -310,7 +311,15 @@
     }
   }
 
+  // Ensure that notice links open in new tab if external
+  $('.notice a').each( (i, item) => {
+    if (item.href[0] !== '/') {
+      item.target = '_blank';
+    }
+  });
+
 </script>
+
 {% endblock %}
 
 
