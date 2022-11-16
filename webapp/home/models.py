@@ -28,6 +28,21 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name} <{self.email}>"
 
 
+class Subsite(models.Model):
+    """Galaxy subsite which will consume a custom landing page."""
+
+    name = models.CharField(max_length=30, unique=True, help_text=(
+        "This field should match the subdomain name. e.g."
+        " for a 'genome.usegalaxy.org' subsite, the name should be 'genome'."
+        " This also determines the URL as: '/landing/<subsite.name>'. The"
+        " HTML template for this landing page must be created manually."
+    ))
+
+    def __str__(self):
+        """Represent self as string."""
+        return self.name
+
+
 class Notice(models.Model):
     """A site notice to be displayed on the home/landing pages."""
 
@@ -72,6 +87,12 @@ class Notice(models.Model):
         help_text=(
             "Unpublished content is visible to admin users only."
             " Use this to review content before release to public users."
+        ),
+    )
+    subsites = models.ManyToManyField(
+        Subsite,
+        help_text=(
+            "Select which subdomain sites should display the notice."
         ),
     )
 

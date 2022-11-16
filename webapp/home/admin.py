@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.conf import settings
 
-from .models import User, Notice, MediaImage
+from .models import User, Notice, MediaImage, Subsite
 from .admin_forms import NoticeAdminForm, UserCreationForm, UserChangeForm
 
 
@@ -101,3 +101,4 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Notice, NoticeAdmin)
 admin.site.unregister(Group)
 admin.site.register(MediaImage, MediaImageAdmin)
+admin.site.register(Subsite)

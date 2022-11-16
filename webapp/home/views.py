@@ -3,8 +3,10 @@
 import os
 import logging
 from django.conf import settings
+from django.core.exceptions import TemplateDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
+from django.template.loader import get_template
 # from pprint import pformat
 
 from utils import aaf
@@ -27,7 +29,10 @@ def index(request, landing=False):
     """Show homepage/landing page."""
     news_items = News.objects.filter(is_tool_update=False)
     events = Event.objects.all()
-    notices = Notice.objects.filter(enabled=True)
+    notices = Notice.objects.filter(
+        enabled=True,
+        subsites__name='main',
+    )
     tool_updates = News.objects.filter(is_tool_update=True)
 
     if not request.user.is_staff:
@@ -45,12 +50,19 @@ def index(request, landing=False):
     })
 
 
-def landing(request):
-    """Show landing page for usegalaxy.org.au.
-
-    Same as index but without the navbar.
-    """
-    return index(request, landing=True)
+def landing(request, subdomain):
+    """Show landing pages for *.usegalaxy.org.au subsites."""
+    template = f'home/subdomains/{subdomain}.html'
+    try:
+        get_template(template)
+    except TemplateDoesNotExist:
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+    notices = Notice.objects.filter(enabled=True, subsites__name=subdomain)
+    if not request.user.is_staff:
+        notices = notices.filter(is_published=True)
+    return render(request, template, {
+        'notices': notices,
+    })
 
 
 def about(request):

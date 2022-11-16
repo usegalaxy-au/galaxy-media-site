@@ -1,0 +1,128 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+{% load markdown %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% if landing %}
+<!-- Now obsolete - all rendering done by Javascript inIframe() -->
+<link rel="stylesheet" href="{% static 'home/css/landing.css' %}">
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  <section class="container-flex text-center my-3">
+    <a href="https://usegalaxy.org.au">
+      <img id="header-logo" src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy Australia Logo">
+    </a>
+  </section>
+
+  <section class="container-fluid my-5" id="tagline">
+
+    {% for notice in notices %}
+
+    {% if notice.notice_class == 'none' %}
+    <div class="container my-5">
+    {% else %}
+    <div class="notice alert alert-{{ notice.notice_class }}">
+    {% endif %}
+
+      {% if not notice.is_published %}
+      {% include 'home/snippets/unpublished-bubble.html' %}
+      {% endif %}
+
+      {% if notice.material_icon %}
+      <span class="material-icons">{{ notice.material_icon }}</span>
+      {% endif %}
+
+      {% if notice.display_title %}
+      <strong> {{ notice.title }} </strong>
+      <br>
+      {% endif %}
+
+      {{ notice.body|markdown|safe }}
+    </div>
+    {% endfor %}
+
+    <h3>
+      Galaxy Australia for Genome Assembly and Annotation
+    </h3>
+
+    <p>
+      Welcome to the community built location for genome assembly and
+      annotation. All the tools and workflows necessary for assembling genomes
+      from Illumina, ONT and PacBio data (others, all with hyperlinks) and
+      automatic annotation for gene prediction have been curated from
+      Galaxy Australia’s toolbox and displayed here for ease of use.
+    </p>
+  </section>
+
+  <section class="my-5">
+    <h3>Genome assembly</h3>
+    <div class="row">
+      <div class="col py-3 px-5">
+        <h5>Tutorials</h5>
+        <ul>
+          <li>TSI how-to</li>
+          <li>TSI how-to</li>
+          <li>GTN link/button</li>
+        </ul>
+      </div>
+      <div class="col py-3 px-5">
+        <h5>Workflows</h5>
+        <ul>
+          <li>WFH</li>
+          <li>WFH</li>
+          <li>VGP (click to see list)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-5">
+    <h3>Genome annotation</h3>
+    <div class="row">
+      <div class="col py-3 px-5">
+        <h5>Tutorials</h5>
+        <ul>
+          <li>Apollo pages?</li>
+          <li>Other resources?</li>
+        </ul>
+      </div>
+      <div class="col py-3 px-5">
+        <h5>Workflows</h5>
+        <ul>
+          <li>WFH?</li>
+          <li>Other WF links?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Other BioCommons services</h3>
+    <p>(Show these as "nice" cards)</p>
+    <ul>
+      <li>Apollo</li>
+      <li>FGenesH++</li>
+      <li>ABLES</li>
+    </ul>
+  </section>
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+</script>
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}
