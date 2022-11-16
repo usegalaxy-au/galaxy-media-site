@@ -31,7 +31,11 @@ class User(AbstractUser):
 class Subsite(models.Model):
     """Galaxy subsite which will consume a custom landing page."""
 
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=30, unique=True, help_text=(
+        "This field should match the subdomain name. e.g."
+        " for a 'genome.usegalaxy.org' subsite, the name should be 'genome'."
+        " This also determines the URL as: '/landing/<subsite.name>'."
+    ))
 
     def __str__(self):
         """Represent self as string."""
