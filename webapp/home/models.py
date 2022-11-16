@@ -34,7 +34,8 @@ class Subsite(models.Model):
     name = models.CharField(max_length=30, unique=True, help_text=(
         "This field should match the subdomain name. e.g."
         " for a 'genome.usegalaxy.org' subsite, the name should be 'genome'."
-        " This also determines the URL as: '/landing/<subsite.name>'."
+        " This also determines the URL as: '/landing/<subsite.name>'. The"
+        " HTML template for this landing page must be created manually."
     ))
 
     def __str__(self):
