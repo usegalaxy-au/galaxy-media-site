@@ -1,0 +1,42 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+{% load markdown %}
+
+{% block head %}
+<!-- <link rel="stylesheet" href="{% static 'home/css/custom.css' %}"> -->
+{% endblock %}
+
+
+{% block content %}
+<main>
+  <a class="ga-btn" href="/"> &lt; Back</a>
+
+  <br><br>
+
+  <h3>{{ notice.title }}</h3>
+
+  <p class="lead">{{ notice.short_description|safe }}</p>
+
+  <hr>
+
+  <p>
+    {{ notice.body|markdown|safe }}
+  </p>
+
+</main>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+// Ensure that notice links open in new tab if external
+$('a').each( (i, item) => {
+  if (item.href[0] !== '/') {
+    item.target = '_blank';
+  }
+});
+{% endblock %}

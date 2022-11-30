@@ -6,6 +6,9 @@
 .notice p {
   margin: 0;
 }
+#notice-rotation .notice {
+  height: 100px;
+}
 #stats-panel {
   position: relative;
   padding-top: 1rem;

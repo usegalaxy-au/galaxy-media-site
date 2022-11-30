@@ -26,8 +26,8 @@ SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ga_site',
-        'USER': 'cameron',
+        'NAME': 'gms',
+        'USER': 'gms',
         'PASSWORD': 'secret',
         'HOST': '127.0.0.1',
         'PORT': '5432',

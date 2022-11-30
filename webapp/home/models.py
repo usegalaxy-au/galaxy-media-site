@@ -44,7 +44,17 @@ class Subsite(models.Model):
 
 
 class Notice(models.Model):
-    """A site notice to be displayed on the home/landing pages."""
+    """A site notice to be displayed on the home/landing pages.
+
+    A notice contains a brief message for display on the home page, and a
+    longer message that will be linked to on a separate page.
+
+    Notices of lower priority will be cycled through by fade in/out such
+    that multiple notices can be displayed without clogging up the UI.
+
+    Notices of the 'danger' class will always be displayed, in addition to
+    the others.
+    """
 
     NOTICE_CLASSES = (
         ('info', 'info'),
@@ -57,15 +67,29 @@ class Notice(models.Model):
     notice_class = models.CharField(
         max_length=16, choices=NOTICE_CLASSES, default='',
         help_text=(
-            "A style class to set a color schema for the notice. Select"
-            " 'none' for no styling (e.g. inserting an image)."
+            "A style class to set a color scheme for the notice. Select"
+            " <em>none</em> for no styling (e.g. inserting an image).<br>"
+            " <b>Notices with the <em>danger</em> class will always be"
+            " displayed.</b> All other notices will be cycled through when"
+            " multiple notices are enabled."
         )
     )
     title = models.CharField(max_length=100)
     display_title = models.BooleanField(
         default=True,
         help_text="Uncheck to hide the title when displaying the notice.")
-    body = models.CharField(max_length=2000, help_text=MARKDOWN_HELP_TEXT)
+    short_description = models.CharField(
+        max_length=200,
+        help_text=(
+            "This will be displayed on the landing page (max 200 chars)."
+            " Plain text or inline HTML e.g. &lt;b&gt;, &lt;img&gt;."
+            " Will be displayed with a max height of 100px."))
+    body = models.CharField(max_length=10000, null=True, blank=True,
+        help_text=(
+            "<b>This text will be displayed on a dedicated webpage</b>"
+            " - if this field is blank, no link will be displayed.<br><br>"
+            + MARKDOWN_HELP_TEXT)
+    )
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
         help_text=('Optional. A valid Material Design icon identifier to be'
@@ -99,6 +123,11 @@ class Notice(models.Model):
     def __str__(self):
         """Return string representation."""
         return f"[{self.get_notice_class_display()}] {self.title}"
+
+    @property
+    def url(self):
+        """Return the URL for this notice."""
+        return f"/notice/{self.id}"
 
     def clean(self):
         """Clean fields before saving."""

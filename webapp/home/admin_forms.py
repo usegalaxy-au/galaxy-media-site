@@ -94,5 +94,9 @@ class NoticeAdminForm(forms.ModelForm):
                 'rows': 30,
                 'cols': 120,
             }),
+            'short_description': forms.Textarea(attrs={
+                'rows': 6,
+                'cols': 80,
+            }),
         }
         fields = '__all__'
