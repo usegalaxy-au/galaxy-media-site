@@ -339,16 +339,6 @@
 {% block script %}
 
 <script type="text/javascript">
-
-  // Ignore websocket errors
-  window.onerror = function (msg, url, line) {
-    console.log("Error received");
-    if (msg.includes("WebSocket connection")) {
-      console.log("Ignoring websocket error");
-      return true
-    }
-  }
-
   const IFRAME_COUNT = 5;
   let loaded = [];
 
@@ -367,7 +357,7 @@
 {% block onload %}
   // Ensure that notice links open in new tab if external
   $('.notice a').each( (i, item) => {
-    if (item.href[0] !== '/') {
+    if (!item.href.includes("{{ HOSTNAME }}")) {
       item.target = '_blank';
     }
   });

@@ -35,7 +35,8 @@
 {% block onload %}
 // Ensure that notice links open in new tab if external
 $('a').each( (i, item) => {
-  if (item.href[0] !== '/') {
+  if (!item.href.includes("{{ HOSTNAME }}")) {
+    console.log(`Setting _blank on href ${item.href}`)
     item.target = '_blank';
   }
 });
