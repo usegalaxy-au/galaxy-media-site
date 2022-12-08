@@ -27,6 +27,8 @@ const fadeAnimateNotices = () => {
   // Defer cycle if user is hovering
   if ( $('#notice-bar:hover').length || $('.notice-control:hover').length ) {
     console.log("Deferring cycle due to mouse hover");
+    console.log("#notice-bar length: " + $('#notice-bar:hover').length);
+    console.log(".notice-control length: " + $('.notice-control:hover').length);
     return setTimeout(fadeAnimateNotices, PAUSE_MS);
   }
 

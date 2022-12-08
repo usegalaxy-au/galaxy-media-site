@@ -43,15 +43,18 @@ def index(request, landing=False):
         notices = notices.filter(is_published=True)
         tool_updates = tool_updates.filter(is_published=True)
 
-    # Separate notices by class for display
-    danger_notices = notices.filter(notice_class='danger')
-    notices = list(notices.exclude(notice_class='danger'))
-    shuffle(notices)
+    # Separate notices for static/rotating/image display
+    image_notices = notices.filter(notice_class='image')
+    text_notices = notices.exclude(notice_class='image')
+    static_notices = text_notices.filter(static_display=True)
+    rotating_notices = list(text_notices.filter(static_display=False))
+    shuffle(rotating_notices)
 
     return render(request, 'home/index.html', {
         'landing': landing,
-        'notices': notices,
-        'danger_notices': danger_notices.order_by('order'),
+        'image_notices': image_notices,
+        'rotating_notices': rotating_notices,
+        'static_notices': static_notices.order_by('order'),
         'news_items': news_items.order_by('-datetime_created')[:6],
         'events': events.order_by('-datetime_created')[:6],
         'tool_updates': tool_updates.order_by('-datetime_created')[:6],

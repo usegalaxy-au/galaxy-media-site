@@ -60,57 +60,140 @@ class Notice(models.Model):
         ('info', 'info'),
         ('warning', 'warning'),
         ('danger', 'danger'),
-        ('none', 'none'),
+        ('none', 'image'),
     )
 
     datetime_modified = models.DateTimeField(auto_now=True)
     notice_class = models.CharField(
         max_length=16, choices=NOTICE_CLASSES, default='',
         help_text=(
-            "A style class to set a color scheme for the notice. Select"
-            " <em>none</em> for no styling (e.g. inserting an image).<br>"
-            " <b>Notices with the <em>danger</em> class will always be"
-            " displayed.</b> All other notices will be cycled through when"
-            " multiple notices are enabled."
+"""
+<ul style='margin-left: 2rem;'>
+    <li style='list-style: disc;'>
+        A style class to set a color scheme for the notice - uses
+        <a
+            href='https://getbootstrap.com/docs/5.0/components/alerts/'
+            target='_blank'
+        >standard bootstrap styling</a>
+        (
+            <em>info</em>: blue,
+            <em>warning</em>: orange,
+            <em>danger</em>: red
+        ).
+    </li>
+    <li style='list-style: disc;'>
+        Use the <em>image</em> class for displaying an image. For this,
+        the body should consist of an HTML <code>&lt;img&gt;</code> tag
+        only (or markdown equivalent).
+    </li>
+    <li style='list-style: disc;'>
+        Static notices show the <b>body</b> on the landing page instead
+        of the <b>short description</b> and do not link to a webpage.
+    </li>
+    <li style='list-style: disc;'>
+        An image notice will always be displayed as a static block, with
+        no title/description text. Use for displaying banners e.g.
+        event posters.
+    </li>
+</ul>
+"""
+        )
+    )
+    static_display = models.BooleanField(
+        default=False,
+        help_text=(
+"""
+<ul style='margin-left: 2rem;'>
+    <li style='list-style: disc;'>
+        Display the notice as a static block beneath the GA logo, rather than
+        the default rotating notice (i.e. the banner beneath the navbar).
+    </li>
+    <li style='list-style: disc;'>
+        Ideally, this should only be checked for
+        <b style='color: firebrick;'>a single, high-priority notice</b>
+        to prevent cluttering of the landing page.
+    </li>
+    <li style='list-style: disc;'>
+        Static notices show the <b>body</b> on the landing page instead
+        of the <b>short description</b> and do not link to a webpage.
+    </li>
+    <li style='list-style: disc;'>
+        Notices with <em>image</em> class always have static display,
+        so this option will be ignored.
+    </li>
+</ul>
+"""
         )
     )
     title = models.CharField(max_length=100)
     display_title = models.BooleanField(
         default=True,
-        help_text="Uncheck to hide the title when displaying the notice.")
+        help_text=(
+            "Show the notice title when displaying as a static"
+            " notice. The title is always shown on the notice webpage"
+            " for non-static (rotating) notices.")
+    )
     short_description = models.CharField(
         max_length=200,
+        null=True,
+        blank=True,
         help_text=(
-            "This will be displayed on the landing page (max 200 chars)."
-            " Plain text or inline HTML e.g. &lt;b&gt;, &lt;img&gt;."
-            " Will be displayed with a max height of 100px."))
+"""
+<ul style='margin-left: 2rem;'>
+    <li style='list-style: disc;'>
+        This will be displayed on the landing page (200 char max) as plain
+        text or inline HTML (e.g.
+        <code>&lt;a&gt;</code>,
+        <code>&lt;b&gt;</code>
+        tags).
+    </li>
+    <li style='list-style: disc;'>
+        If not <em>static</em> display (default), this will be shown as a
+        single line of text above the navbar,
+        <b>which will be cut off if too long</b>,
+        especially on small screens!
+    </li>
+    <li style='list-style: disc;'>
+        If <em>static</em> display is enabled, this field is ignored in favour
+        of the <em>title</em> and <em>body</em> fields.
+    </li>
+</ul>
+"""
+        ),
+    )
     body = models.CharField(max_length=10000, null=True, blank=True,
         help_text=(
-            "<b>This text will be displayed on a dedicated webpage</b>"
-            " - if this field is blank, no link will be displayed.<br><br>"
-            + MARKDOWN_HELP_TEXT)
+            MARKDOWN_HELP_TEXT + "<br><br>"
+            "Unless <em>static display</em> is enabled,"
+            " <b>This text will be displayed on a dedicated webpage</b>"
+            " that is linked to from the landing page notice."
+            " If this field is left blank, there will be no link."
+            )
     )
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
-        help_text=('Optional. A valid Material Design icon identifier to be'
-                   ' displayed with the title.'
+        help_text=('Optional. A valid Material Design icon ID to be'
+                   ' displayed with the title (e.g. <em>check_box</em>).'
                    ' <a href="https://fonts.google.com/icons" target="_blank">'
-                   ' Browse icons here </a>')
+                   ' Browse 2500+ icons here </a>.')
     )
     enabled = models.BooleanField(
         default=False,
-        help_text="Display on the Galaxy Australia landing page.")
-    order = models.IntegerField(
-        null=True, blank=True,
-        validators=[MinValueValidator(1), MaxValueValidator(99)],
-        help_text=("Order of display on the landing page when multiple Notices"
-                   " are enabled (i.e. lowest value shown first)")
+        help_text="Display on the Galaxy Australia landing page."
     )
     is_published = models.BooleanField(
         default=False,
         help_text=(
             "Unpublished content is visible to admin users only."
             " Use this to review content before release to public users."
+        ),
+    )
+    order = models.IntegerField(
+        null=True, blank=True,
+        validators=[MinValueValidator(1), MaxValueValidator(99)],
+        help_text=(
+            "Display order on the landing page when multiple <em>static</em>"
+            " notices are enabled (i.e. lowest value shown first)"
         ),
     )
     subsites = models.ManyToManyField(

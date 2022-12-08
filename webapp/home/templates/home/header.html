@@ -22,10 +22,10 @@
     </style>
   </head>
 
-  <body {% if notices %}style="padding-top: 0;"{% endif %}>
+  <body {% if rotating_notices %}style="padding-top: 0;"{% endif %}>
 
     <!-- Notice bar -->
-    {% if notices %}
+    {% if rotating_notices %}
     <div id="notice-bar" class="embedded">
 
       <div class="notice-control" id="notice-left" onclick="moveNotice('left');">
@@ -35,7 +35,7 @@
         <span class="material-icons">chevron_right</span>
       </div>
 
-      {% for notice in notices %}
+      {% for notice in rotating_notices %}
       <div
         {% if notice.url %}
         class="notice alert alert-{{ notice.notice_class }} clickable"
@@ -63,7 +63,7 @@
     {% endif %}
 
     <nav
-      {% if notices %}
+      {% if rotating_notices %}
       class="navbar navbar-expand embedded"
       {% else %}
       class="navbar fixed-top navbar-expand embedded"
@@ -144,7 +144,7 @@
       </div>
       {% endif %}
     </nav>
-    {% if notices %}
+    {% if rotating_notices %}
     </div>
     {% endif %}
 

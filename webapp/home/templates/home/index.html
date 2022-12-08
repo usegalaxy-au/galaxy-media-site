@@ -24,8 +24,7 @@
 
   <section class="container-fluid my-5" id="tagline">
 
-    {% for notice in danger_notices %}
-
+    {% for notice in static_notices %}
     <div class="notice alert alert-{{ notice.notice_class }}">
       {% if not notice.is_published %}
       {% include 'home/snippets/unpublished-bubble.html' %}
@@ -44,9 +43,7 @@
     </div>
     {% endfor %}
 
-    {% if notices %}
-    {% for notice in notices %}
-    {% if notice.notice_class == 'none' %}
+    {% for notice in image_notices %}
     <div
       class="container my-5"
     >
@@ -54,12 +51,10 @@
       {% include 'home/snippets/unpublished-bubble.html' %}
       {% endif %}
 
-      {{ notice.short_description|markdown|safe }}
+      {{ notice.body|markdown|safe }}
 
     </div>
-    {% endif %}
     {% endfor %}
-    {% endif %}
 
     <p>
       Galaxy Australia is an
