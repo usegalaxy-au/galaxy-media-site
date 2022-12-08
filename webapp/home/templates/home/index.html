@@ -26,12 +26,7 @@
 
     {% for notice in danger_notices %}
 
-    {% if notice.notice_class == 'none' %}
-    <div class="container my-5">
-    {% else %}
     <div class="notice alert alert-{{ notice.notice_class }}">
-    {% endif %}
-
       {% if not notice.is_published %}
       {% include 'home/snippets/unpublished-bubble.html' %}
       {% endif %}
@@ -50,43 +45,20 @@
     {% endfor %}
 
     {% if notices %}
-    <div id="notice-rotation">
-      {% for notice in notices %}
-
-      {% if notice.notice_class == 'none' %}
-      <div
-        class="container my-5"
-        id="notice-{{ forloop.counter }}"
-        {% if forloop.counter0 %}style="display: none;"{% endif %}
-      >
-      {% else %}
-      <div
-        class="notice alert alert-{{ notice.notice_class }}"
-        id="notice-{{ forloop.counter }}"
-        {% if forloop.counter0 %}style="display: none;"{% endif %}
-      >
+    {% for notice in notices %}
+    {% if notice.notice_class == 'none' %}
+    <div
+      class="container my-5"
+    >
+      {% if not notice.is_published %}
+      {% include 'home/snippets/unpublished-bubble.html' %}
       {% endif %}
 
-        {% if not notice.is_published %}
-        {% include 'home/snippets/unpublished-bubble.html' %}
-        {% endif %}
+      {{ notice.short_description|markdown|safe }}
 
-        {% if notice.material_icon %}
-        <span class="material-icons">{{ notice.material_icon }}</span>
-        {% endif %}
-
-        {% if notice.display_title %}
-        <strong> {{ notice.title }} </strong>
-        <br>
-        {% endif %}
-
-        {{ notice.short_description|safe }}
-        {% if notice.body %}
-        <a href="{{ notice.url }}">Read more</a>.
-        {% endif %}
-      </div>
-      {% endfor %}
     </div>
+    {% endif %}
+    {% endfor %}
     {% endif %}
 
     <p>
@@ -338,6 +310,8 @@
 
 {% block script %}
 
+<script src="{% static 'home/js/notices.js' %}"></script>
+
 <script type="text/javascript">
   const IFRAME_COUNT = 5;
   let loaded = [];
@@ -355,6 +329,7 @@
 
 
 {% block onload %}
+
   // Ensure that notice links open in new tab if external
   $('.notice a').each( (i, item) => {
     if (!item.href.includes("{{ HOSTNAME }}")) {
@@ -363,45 +338,16 @@
   });
 
   // Set notice height dynamically
-  const noticeHeight = $('#notice-rotation .notice').toArray().reduce( (acc, item) => {
+  const noticeHeight = $('#notice-bar .notice').toArray().reduce( (acc, item) => {
     return Math.max(acc, item.offsetHeight);
   }, 0);
   if (noticeHeight > 100) {
     // Max height is larger than default
     console.log('Increasing hard-height on rotating notices')
-    $('#notice-rotation .notice').css('height', `${noticeHeight}px`)
+    $('#notice-bar .notice').css('height', `${noticeHeight}px`)
   }
 
   // Rotate low-priority notices
-  const PAUSE_MS = 4000;
-  const FADE_MS = 500;
-  const notices = $('#notice-rotation .notice');
-  let ix = 0;
-  let next;
-  console.log(notices.length + " notices to rotate");
-  const fadeAnimate = () => {
-    console.log("FadeAnimate")
-    const current = notices[ix];
-    next = notices[ix + 1];
-    if (ix + 1 >= notices.length) {
-      ix = -1;
-      next = notices[0];
-      console.log("Reset notice ix")
-    }
+  notices.length > 1 && setTimeout(fadeAnimateNotices, PAUSE_MS);
 
-    // Defer cycle if user is hovering
-    if ( $('.notice:hover').length ) {
-      console.log("Deferring cycle due to mouse hover");
-      return setTimeout(fadeAnimate, PAUSE_MS);
-    }
-
-    $(current).fadeOut(FADE_MS, () => {
-      console.log("Fading to notice " + (ix + 1))
-      $(next).fadeIn(FADE_MS);
-      ix++;
-      setTimeout(fadeAnimate, PAUSE_MS);
-    });
-  };
-
-  notices.length > 1 && setTimeout(fadeAnimate, PAUSE_MS);
-{% endblock %}
+  {% endblock %}
