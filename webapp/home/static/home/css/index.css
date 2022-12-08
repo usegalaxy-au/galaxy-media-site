@@ -11,7 +11,7 @@
   margin: 0 -2rem;
   position: relative;
 }
-.notice-control {
+#notice-bar .notice-control {
   color: var(--color);
   background: transparent;
   border: 1px solid transparent;
@@ -29,7 +29,7 @@
   z-index: 100;
   line-height: 0.85;
 }
-.notice-control:hover {
+#notice-bar .notice-control:hover {
   background-color: rgba(0,0,0,0.1);
 }
 #notice-left {
@@ -38,28 +38,42 @@
 #notice-right {
   right: 2rem;
 }
-.notice {
+#notice-bar .notice {
   margin: 0;
   padding: .5rem;
   width: 100%;
   white-space: nowrap;
 }
-.notice.clickable {
+#notice-bar .notice.clickable {
   cursor: pointer;
 }
-.notice.clickable:hover .body {
+#notice-bar .notice.clickable:hover .body {
   text-decoration: underline;
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   -o-transition: all .5s;
   transition: all .5s;
 }
-.notice .body {
+#notice-bar .notice .body {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 5rem;
   width: 100%;
+}
+#tagline .notice .body {
+  margin-top: .5rem;
+}
+#tagline .notice-image img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 250px;
+  margin: 1rem 0;
+}
+.notice p {
+  margin-bottom: .5rem;
+  font-size: .9rem;
 }
 #stats-panel {
   position: relative;

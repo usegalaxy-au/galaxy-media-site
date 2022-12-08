@@ -35,18 +35,18 @@
       {% endif %}
 
       {% if notice.display_title %}
-      <strong> {{ notice.title }} </strong>
+      <strong class="mx-2"> {{ notice.title }} </strong>
       <br>
       {% endif %}
 
-      {{ notice.body|markdown|safe }}
+      <div class="body">
+        {{ notice.body|markdown|safe }}
+      </div>
     </div>
     {% endfor %}
 
     {% for notice in image_notices %}
-    <div
-      class="container my-5"
-    >
+    <div class="notice-image text-center">
       {% if not notice.is_published %}
       {% include 'home/snippets/unpublished-bubble.html' %}
       {% endif %}

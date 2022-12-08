@@ -44,8 +44,8 @@ def index(request, landing=False):
         tool_updates = tool_updates.filter(is_published=True)
 
     # Separate notices for static/rotating/image display
-    image_notices = notices.filter(notice_class='image')
-    text_notices = notices.exclude(notice_class='image')
+    image_notices = notices.filter(notice_class='none')
+    text_notices = notices.exclude(notice_class='none')
     static_notices = text_notices.filter(static_display=True)
     rotating_notices = list(text_notices.filter(static_display=False))
     shuffle(rotating_notices)

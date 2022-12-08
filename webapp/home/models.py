@@ -95,6 +95,9 @@ class Notice(models.Model):
         no title/description text. Use for displaying banners e.g.
         event posters.
     </li>
+    <li>
+        Note that wide images work much better than square ones!
+    </li>
 </ul>
 """
         )
@@ -163,12 +166,26 @@ class Notice(models.Model):
     )
     body = models.CharField(max_length=10000, null=True, blank=True,
         help_text=(
-            MARKDOWN_HELP_TEXT + "<br><br>"
-            "Unless <em>static display</em> is enabled,"
-            " <b>This text will be displayed on a dedicated webpage</b>"
-            " that is linked to from the landing page notice."
-            " If this field is left blank, there will be no link."
-            )
+f"""
+<ul style='margin-left: 2rem;'>
+    <li style='list-style: disc;'>
+        {MARKDOWN_HELP_TEXT}
+    </li>
+    <li style='list-style: disc;'>
+        Unless <em>static display</em> is enabled,
+        <b>This text will be displayed on a dedicated webpage</b>
+        that is linked to from the landing page notice.
+        If this field is left blank, there will be no link.
+    </li>
+    <li style='list-style: disc;'>
+        When using the <em>image</em> notice class, images will be rendered
+        with full width and max-height of 250px. You can override this by using
+        an <code>&lt;img&gt;</code> tag and setting the <code>style</code>
+        attribute.
+    </li>
+</ul>
+"""
+            ),
     )
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
