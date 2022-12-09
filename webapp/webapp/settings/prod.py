@@ -51,3 +51,5 @@ DATABASES = {
 }
 
 LOGGING = config.configure_logging(LOG_ROOT)
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
