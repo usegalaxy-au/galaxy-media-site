@@ -67,6 +67,9 @@ const _moveNotice = (direction) => {
     if (ix < 0) {
       ix = notices.length - 1;
     }
+    if (ix > notices.length - 1) {
+      ix = 0;
+    }
     $(notices[ix]).fadeIn(100);
   });
 }
