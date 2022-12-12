@@ -1,6 +1,7 @@
 """Models for storing generic and homepage content."""
 
 import os
+from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -120,32 +121,38 @@ class Notice(models.Model):
     )
 
     @classmethod
-    def get_notices_by_type(cls, request):
+    def get_notices_by_type(cls, request, subsite=None):
         """Return dictionary of notices by type for given user."""
+        subsite_name = subsite or 'main'
         notices = cls.objects.filter(
             enabled=True,
-            subsites__name='main',
+            subsites__name=subsite_name,
         )
         if not request.user.is_staff:
             notices = notices.filter(is_published=True)
 
         # Separate notices for static/rotating/image display
-        image_notices = notices.filter(notice_class='none')
+        image_notices = list(notices.filter(notice_class='none'))
         text_notices = notices.exclude(notice_class='none')
         dismissed = request.session.get('dismissed_notices', [])
-        static_notices = (
-            text_notices
-            .filter(static_display=True)
-            .exclude(datetime_modified__in=dismissed)
-        )
+        static_notices = [
+            n for n in
+            text_notices.filter(static_display=True).order_by('order')
+            if n.timestamp not in dismissed
+        ]
         rotating_notices = list(text_notices.filter(static_display=False))
         shuffle(rotating_notices)
 
         return {
-            'image': list(image_notices),
+            'image': image_notices,
             'rotating': rotating_notices,
-            'static': list(static_notices.order_by('order')),
+            'static': static_notices,
         }
+
+    @property
+    def timestamp(self):
+        """Return timestamp for notice."""
+        return self.datetime_modified.isoformat()
 
     @property
     def url(self):
