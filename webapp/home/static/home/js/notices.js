@@ -8,16 +8,16 @@ let ix = 0;
 let next;
 let changeNotice = false;
 
-console.log(notices.length + " notices to rotate");
+// console.log(notices.length + " notices to rotate");
 
 const fadeAnimateNotices = () => {
-  console.log(`fadeAnimateNotices (ix = ${ix})`);
+  // console.log(`fadeAnimateNotices (ix = ${ix})`);
   const current = notices[ix];
   next = notices[ix + 1];
 
   // Defer cycle if user has just changed manually
   if ( changeNotice ) {
-    console.log("Deferring cycle due to user change");
+    // console.log("Deferring cycle due to user change");
     changeNotice = false;
     return setTimeout(fadeAnimateNotices, PAUSE_MS);
   }
@@ -26,14 +26,14 @@ const fadeAnimateNotices = () => {
 
   // Defer cycle if user is hovering
   if ( $('#notice-bar:hover').length || $('.notice-control:hover').length ) {
-    console.log("Deferring cycle due to mouse hover");
-    console.log("#notice-bar length: " + $('#notice-bar:hover').length);
-    console.log(".notice-control length: " + $('.notice-control:hover').length);
+    // console.log("Deferring cycle due to mouse hover");
+    // console.log("#notice-bar length: " + $('#notice-bar:hover').length);
+    // console.log(".notice-control length: " + $('.notice-control:hover').length);
     return setTimeout(fadeAnimateNotices, PAUSE_MS);
   }
 
   if (ix + 1 >= notices.length) {
-    console.log("Reset notice ix")
+    // console.log("Reset notice ix")
     ix = -1;
     next = notices[0];
   } else if (ix < 0) {
@@ -41,7 +41,7 @@ const fadeAnimateNotices = () => {
   }
 
   $(current).fadeOut(FADE_MS, () => {
-    console.log("Fading to notice " + (ix + 1));
+    // console.log("Fading to notice " + (ix + 1));
     $(next).fadeIn(FADE_MS);
     setTimeout(fadeAnimateNotices, PAUSE_MS );
     ix++;
@@ -56,7 +56,7 @@ const moveNotice = (d) => _.debounce(
 )();
 
 const _moveNotice = (direction) => {
-  console.log("MoveNotice " + direction);
+  // console.log("MoveNotice " + direction);
   changeNotice = true;
   $(notices[ix]).fadeOut(150, () => {
     if (direction === 'left') {
@@ -73,3 +73,14 @@ const _moveNotice = (direction) => {
     $(notices[ix]).fadeIn(100);
   });
 }
+
+
+// Make request for persistent (session) notice dismissal
+const requestDismissNotice = (dtm) => fetch('/notice/dismiss', {
+  method: 'POST',
+  body: JSON.stringify({ datetime_modified: dtm }),
+  headers: {
+    'X-CSRFToken': Cookies.get('csrftoken'),
+    'Content-Type': 'application/json',
+  },
+});

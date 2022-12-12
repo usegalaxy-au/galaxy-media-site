@@ -2,7 +2,6 @@
 
 import os
 import logging
-from random import shuffle
 from django.conf import settings
 from django.template import TemplateDoesNotExist
 from django.shortcuts import render, get_object_or_404
@@ -32,29 +31,15 @@ def index(request, landing=False):
     news_items = News.objects.filter(is_tool_update=False)
     events = Event.objects.all()
     tool_updates = News.objects.filter(is_tool_update=True)
-    notices = Notice.objects.filter(
-        enabled=True,
-        subsites__name='main',
-    )
 
     if not request.user.is_staff:
         news_items = news_items.filter(is_published=True)
         events = events.filter(is_published=True)
-        notices = notices.filter(is_published=True)
         tool_updates = tool_updates.filter(is_published=True)
-
-    # Separate notices for static/rotating/image display
-    image_notices = notices.filter(notice_class='none')
-    text_notices = notices.exclude(notice_class='none')
-    static_notices = text_notices.filter(static_display=True)
-    rotating_notices = list(text_notices.filter(static_display=False))
-    shuffle(rotating_notices)
 
     return render(request, 'home/index.html', {
         'landing': landing,
-        'image_notices': image_notices,
-        'rotating_notices': rotating_notices,
-        'static_notices': static_notices.order_by('order'),
+        'notices': Notice.get_notices_by_type(request),
         'news_items': news_items.order_by('-datetime_created')[:6],
         'events': events.order_by('-datetime_created')[:6],
         'tool_updates': tool_updates.order_by('-datetime_created')[:6],

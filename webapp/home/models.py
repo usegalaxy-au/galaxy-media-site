@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from random import shuffle
 from urllib.parse import urljoin
 
 from utils.markdown import MARKDOWN_HELP_TEXT
@@ -220,14 +221,42 @@ f"""
         ),
     )
 
-    def __str__(self):
-        """Return string representation."""
-        return f"[{self.get_notice_class_display()}] {self.title}"
+    @classmethod
+    def get_notices_by_type(cls, request):
+        """Return dictionary of notices by type for given user."""
+        notices = cls.objects.filter(
+            enabled=True,
+            subsites__name='main',
+        )
+        if not request.user.is_staff:
+            notices = notices.filter(is_published=True)
+
+        # Separate notices for static/rotating/image display
+        image_notices = notices.filter(notice_class='none')
+        text_notices = notices.exclude(notice_class='none')
+        dismissed = request.session.get('dismissed_notices', [])
+        static_notices = (
+            text_notices
+            .filter(static_display=True)
+            .exclude(datetime_modified__in=dismissed)
+        )
+        rotating_notices = list(text_notices.filter(static_display=False))
+        shuffle(rotating_notices)
+
+        return {
+            'image': list(image_notices),
+            'rotating': rotating_notices,
+            'static': list(static_notices.order_by('order')),
+        }
 
     @property
     def url(self):
         """Return the URL for this notice."""
         return f"/notice/{self.id}"
+
+    def __str__(self):
+        """Return string representation."""
+        return f"[{self.get_notice_class_display()}] {self.title}"
 
     def clean(self):
         """Clean fields before saving."""

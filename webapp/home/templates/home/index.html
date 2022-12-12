@@ -24,11 +24,19 @@
 
   <section class="container-fluid my-5" id="tagline">
 
-    {% for notice in static_notices %}
-    <div class="notice alert alert-{{ notice.notice_class }}">
+    {% for notice in notices.static %}
+    <div class="notice alert alert-{{ notice.notice_class }} alert-dismissible fade show" role="alert">
       {% if not notice.is_published %}
       {% include 'home/snippets/unpublished-bubble.html' %}
       {% endif %}
+
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        onclick="requestDismissNotice('{{ notice.datetime_modified|date:"c" }}');"
+      ></button>
 
       {% if notice.material_icon %}
       <span class="material-icons">{{ notice.material_icon }}</span>
@@ -45,7 +53,7 @@
     </div>
     {% endfor %}
 
-    {% for notice in image_notices %}
+    {% for notice in notices.image %}
     <div class="notice-image text-center">
       {% if not notice.is_published %}
       {% include 'home/snippets/unpublished-bubble.html' %}
