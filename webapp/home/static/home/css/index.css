@@ -27,7 +27,7 @@
   cursor: pointer;
   transition-duration: .25s;
   z-index: 100;
-  line-height: 0.85;
+  line-height: 0.82;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -42,7 +42,7 @@
   right: 2rem;
 }
 #notice-bar .notice {
-  margin: 0;
+  margin: 0 0 .1rem 0;
   padding: .5rem;
   width: 100%;
   white-space: nowrap;

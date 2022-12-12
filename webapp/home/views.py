@@ -53,11 +53,8 @@ def landing(request, subdomain):
         get_template(template)
     except TemplateDoesNotExist:
         raise Http404
-    notices = Notice.objects.filter(enabled=True, subsites__name=subdomain)
-    if not request.user.is_staff:
-        notices = notices.filter(is_published=True)
     return render(request, template, {
-        'notices': notices,
+        'notices': Notice.get_notices_by_type(request, subsite=subdomain),
     })
 
 

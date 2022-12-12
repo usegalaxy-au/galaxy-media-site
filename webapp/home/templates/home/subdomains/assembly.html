@@ -24,28 +24,43 @@
 
   <section class="container-fluid my-5" id="tagline">
 
-    {% for notice in notices %}
-
-    {% if notice.notice_class == 'none' %}
-    <div class="container my-5">
-    {% else %}
-    <div class="notice alert alert-{{ notice.notice_class }}">
-    {% endif %}
-
+    {% for notice in notices.static %}
+    <div class="notice alert alert-{{ notice.notice_class }} alert-dismissible fade show" role="alert">
       {% if not notice.is_published %}
       {% include 'home/snippets/unpublished-bubble.html' %}
       {% endif %}
+
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        onclick="requestDismissNotice('{{ notice.timestamp }}');"
+      ></button>
 
       {% if notice.material_icon %}
       <span class="material-icons">{{ notice.material_icon }}</span>
       {% endif %}
 
       {% if notice.display_title %}
-      <strong> {{ notice.title }} </strong>
+      <strong class="mx-2"> {{ notice.title }} </strong>
       <br>
       {% endif %}
 
+      <div class="body">
+        {{ notice.body|markdown|safe }}
+      </div>
+    </div>
+    {% endfor %}
+
+    {% for notice in notices.image %}
+    <div class="notice-image text-center">
+      {% if not notice.is_published %}
+      {% include 'home/snippets/unpublished-bubble.html' %}
+      {% endif %}
+
       {{ notice.body|markdown|safe }}
+
     </div>
     {% endfor %}
 
@@ -119,10 +134,20 @@
 
 
 {% block script %}
-<script type="text/javascript">
-</script>
+<script src="{% static 'home/js/notices.js' %}"></script>
 {% endblock %}
 
 
 {% block onload %}
-{% endblock %}
+
+  // Ensure that notice links open in new tab if external
+  $('.notice a').each( (i, item) => {
+    if (!item.href.includes("{{ HOSTNAME }}")) {
+      item.target = '_blank';
+    }
+  });
+
+  // Rotate low-priority notices
+  notices.length > 1 && setTimeout(fadeAnimateNotices, PAUSE_MS);
+
+  {% endblock %}

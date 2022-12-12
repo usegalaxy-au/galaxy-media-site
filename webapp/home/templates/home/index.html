@@ -340,16 +340,6 @@
     }
   });
 
-  // Set notice height dynamically
-  const noticeHeight = $('#notice-bar .notice').toArray().reduce( (acc, item) => {
-    return Math.max(acc, item.offsetHeight);
-  }, 0);
-  if (noticeHeight > 100) {
-    // Max height is larger than default
-    console.log('Increasing hard-height on rotating notices')
-    $('#notice-bar .notice').css('height', `${noticeHeight}px`)
-  }
-
   // Rotate low-priority notices
   notices.length > 1 && setTimeout(fadeAnimateNotices, PAUSE_MS);
 
