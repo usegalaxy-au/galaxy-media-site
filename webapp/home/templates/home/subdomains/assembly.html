@@ -6,10 +6,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
-{% if landing %}
-<!-- Now obsolete - all rendering done by Javascript inIframe() -->
-<link rel="stylesheet" href="{% static 'home/css/landing.css' %}">
-{% endif %}
+<link rel="stylesheet" href="{% static 'home/css/subdomains/assembly.css' %}">
 {% endblock %}
 
 
@@ -24,28 +21,43 @@
 
   <section class="container-fluid my-5" id="tagline">
 
-    {% for notice in notices %}
-
-    {% if notice.notice_class == 'none' %}
-    <div class="container my-5">
-    {% else %}
-    <div class="notice alert alert-{{ notice.notice_class }}">
-    {% endif %}
-
+    {% for notice in notices.static %}
+    <div class="notice alert alert-{{ notice.notice_class }} alert-dismissible fade show" role="alert">
       {% if not notice.is_published %}
       {% include 'home/snippets/unpublished-bubble.html' %}
       {% endif %}
+
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        onclick="requestDismissNotice('{{ notice.timestamp }}');"
+      ></button>
 
       {% if notice.material_icon %}
       <span class="material-icons">{{ notice.material_icon }}</span>
       {% endif %}
 
       {% if notice.display_title %}
-      <strong> {{ notice.title }} </strong>
+      <strong class="mx-2"> {{ notice.title }} </strong>
       <br>
       {% endif %}
 
+      <div class="body">
+        {{ notice.body|markdown|safe }}
+      </div>
+    </div>
+    {% endfor %}
+
+    {% for notice in notices.image %}
+    <div class="notice-image text-center">
+      {% if not notice.is_published %}
+      {% include 'home/snippets/unpublished-bubble.html' %}
+      {% endif %}
+
       {{ notice.body|markdown|safe }}
+
     </div>
     {% endfor %}
 
@@ -58,60 +70,486 @@
       annotation. All the tools and workflows necessary for assembling genomes
       from Illumina, ONT and PacBio data (others, all with hyperlinks) and
       automatic annotation for gene prediction have been curated from
-      Galaxy Australia’s toolbox and displayed here for ease of use.
+      Galaxy Australia&apos;s toolbox and displayed here for ease of use.
     </p>
   </section>
 
   <section class="my-5">
-    <h3>Genome assembly</h3>
+    <h4>Genome assembly</h4>
+
     <div class="row">
       <div class="col py-3 px-5">
         <h5>Tutorials</h5>
         <ul>
-          <li>TSI how-to</li>
-          <li>TSI how-to</li>
-          <li>GTN link/button</li>
+          <li>
+            BioCommons
+            <ul>
+              <li>
+                <a
+                  href="https://australianbiocommons.github.io/how-to-guides/genome_assembly/hifi_assembly"
+                  target="_blank"
+                >
+                  Genome assembly with <code>hifiasm</code> on Galaxy Australia
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://australianbiocommons.github.io/how-to-guides/genome_assembly/assembly_qc"
+                  target="_blank"
+                >
+                  Assess the quality of your genome assembly
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="https://training.galaxyproject.org/training-material/topics/assembly/" target="_blank">Galaxy Training Network</a>
+            <ul>
+              <li>
+                <a
+                  href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/general-introduction/tutorial.html"
+                  target="_blank"
+                >
+                  An Introduction to Genome Assembly
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_genome_assembly/tutorial.html"
+                  target="_blank"
+                  data-bs-toggle="tooltip"
+                  title="Vertebrate genome project"
+                >
+                  VGP assembly pipeline
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_workflow_training/tutorial.html"
+                  target="_blank"
+                  data-bs-toggle="tooltip"
+                  title="Vertebrate genome project"
+                >
+                  VGP assembly pipeline (short version)
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
+
       <div class="col py-3 px-5">
         <h5>Workflows</h5>
         <ul>
-          <li>WFH</li>
-          <li>WFH</li>
-          <li>VGP (click to see list)</li>
+          <li>
+            BioCommons workflows
+            <ul>
+              <li>
+                <a
+                  href="https://workflowhub.eu/collections/5"
+                  target="_blank"
+                >
+                  HiFi genome assembly on Galaxy
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://workflowhub.eu/workflows/220"
+                  target="_blank"
+                >
+                  BAM to FASTQ + QC v1.0
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://workflowhub.eu/workflows/221"
+                  target="_blank"
+                >
+                  PacBio HiFi genome assembly using hifiasm v2.1
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://workflowhub.eu/workflows/237"
+                  target="_blank"
+                >
+                  Purge duplicates from hifiasm assembly v1.0
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://workflowhub.eu/workflows/403"
+                  target="_blank"
+                >
+                  Genome assessment post-assembly
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
+      </div>
+    </div>
+
+
+    <div class="container border rounded shadow">
+      <h2 class="my-3">Vertebrate genome project workflows</h2>
+
+      <hr>
+
+      <div id="workflow-table">
+        <table class="table table-striped">
+          <tr>
+            <td>MerylDB creation</td>
+            <td>
+              <button class="ga-btn sm" onclick="downloadFile('https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-meryldb-creation/meryldb-creation.ga')">Download</button>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-meryldb-creation/meryldb-creation.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Purged assembly export</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Purged-Assembly-Export/Galaxy-Workflow-Purged_assembly_export.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Purged-Assembly-Export/Galaxy-Workflow-Purged_assembly_export.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>MerylDB creation trio</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-meryldb-creation-trio/meryldb-creation-trio.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-meryldb-creation-trio/meryldb-creation-trio.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Plot GFA stats</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Plot_gfastats/Galaxy-Workflow-Plot_gfastats_output.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Plot_gfastats/Galaxy-Workflow-Plot_gfastats_output.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>VGP path creation</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Path_creation/Galaxy-Workflow-VGP_Path_Creation_-_Haplotypes.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Path_creation/Galaxy-Workflow-VGP_Path_Creation_-_Haplotypes.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Purge duplicates</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Purge-assembly/Galaxy-Workflow-Purgedups.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Purge-assembly/Galaxy-Workflow-Purgedups.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Purge duplicates - with custom cutoff for primary assembly</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Purge-assembly-custom-cutoffs-1/Galaxy-Workflow-Purgedups-_custom_cutoffs_for_primary_assembly.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Purge-assembly-custom-cutoffs-1/Galaxy-Workflow-Purgedups-_custom_cutoffs_for_primary_assembly.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Purge duplicates - with custom cutoff for alternative assembly</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Purge-Assembly-custom-cutoffs-2/Galaxy-Workflow-Purgedups-_custom_cutoffs_for_alternate_assembly.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Purge-Assembly-custom-cutoffs-2/Galaxy-Workflow-Purgedups-_custom_cutoffs_for_alternate_assembly.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>HiC assembly</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-HiC/Galaxy-Workflow-VGP_HiC.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-HiC/Galaxy-Workflow-VGP_HiC.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Bionano</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Bionano/Galaxy-Workflow-VGP_Bionano.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Bionano/Galaxy-Workflow-VGP_Bionano.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Long read assembly with Hifiasm and HiC</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm-HiC-assembly/Galaxy-Workflow-Long_read_assembly_with_Hifiasm_and_HiC_data.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm-HiC-assembly/Galaxy-Workflow-Long_read_assembly_with_Hifiasm_and_HiC_data.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Long read assembly with Hifiasm</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm/Galaxy-Workflow-Long_read_assembly_with_Hifiasm.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm/Galaxy-Workflow-Long_read_assembly_with_Hifiasm.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Trio assembly with Hifiasm</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm-Trio/Galaxy-Workflow-Trio_assembly_with_Hifiasm.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm-Trio/Galaxy-Workflow-Trio_assembly_with_Hifiasm.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>HiC Yahs assembly</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-HiC-Yahs/Galaxy-Workflow-VGP_HiC_Yahs.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-HiC-Yahs/Galaxy-Workflow-VGP_HiC_Yahs.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>HiC scaffolding export</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-HiC-Export/Galaxy-Workflow-HiC_Scaffolding_export.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-HiC-Export/Galaxy-Workflow-HiC_Scaffolding_export.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Bionano scaffolding export</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Bionano-Export/Galaxy-Workflow-Bionano_Scaffolding_export.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Bionano-Export/Galaxy-Workflow-Bionano_Scaffolding_export.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Hifiasm trio assembly export</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP_Hifiasm_Trio_Export/Galaxy-Workflow-Hifiasm_Trio_assembly_export.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP_Hifiasm_Trio_Export/Galaxy-Workflow-Hifiasm_Trio_assembly_export.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Hifiasm HiC assembly export</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm_HiC-export/Galaxy-Workflow-Hifiasm_HiC_assembly_export.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm_HiC-export/Galaxy-Workflow-Hifiasm_HiC_assembly_export.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Hifiasm assembly export</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm-export/Galaxy-Workflow-Hifiasm_assembly_export.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP-Hifiasm-export/Galaxy-Workflow-Hifiasm_assembly_export.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Assembly decontamination pipeline</td>
+            <td>
+              <a class="ga-btn sm" href="https://raw.githubusercontent.com/Delphine-L/iwc/VGP/workflows/VGP-assembly-v2/VGP_decontamination/Galaxy-Workflow-VGP_assembly_decontamination_pipeline.ga" Download>Download</a>
+            </td>
+            <td>
+              <a class="btn" style="font-size: large;" href="https://github.com/Delphine-L/iwc/tree/VGP/workflows/VGP-assembly-v2/VGP_decontamination/Galaxy-Workflow-VGP_assembly_decontamination_pipeline.ga" target="_blank">
+                <i class="fab fa-github" data-bs-toggle="tooltip" title="View on GitHub"></i>
+              </a>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </section>
 
   <section class="my-5">
-    <h3>Genome annotation</h3>
+    <h2>Genome annotation</h2>
     <div class="row">
       <div class="col py-3 px-5">
         <h5>Tutorials</h5>
         <ul>
-          <li>Apollo pages?</li>
-          <li>Other resources?</li>
-        </ul>
-      </div>
-      <div class="col py-3 px-5">
-        <h5>Workflows</h5>
-        <ul>
-          <li>WFH?</li>
-          <li>Other WF links?</li>
+          <li>
+            <a
+              href="https://training.galaxyproject.org/training-material/topics/genome-annotation/tutorials/apollo-euk/tutorial.html"
+              target="_blank"
+            >
+              Refining Genome Annotations with Apollo (eukaryotes)
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section>
-    <h3>Other BioCommons services</h3>
-    <p>(Show these as "nice" cards)</p>
-    <ul>
-      <li>Apollo</li>
-      <li>FGenesH++</li>
-      <li>ABLES</li>
-    </ul>
+  <section id="biocommons-services">
+    <h2>Other BioCommons services</h2>
+
+    <br>
+
+    <div class="card-group my-2">
+      <div class="card p-4" style="flex: 1;">
+        <div class="card-body">
+          <p class="card-text">
+            <img class="logo" src="{% static 'home/img/subdomains/assembly/apollo.png' %}" alt="Web Apollo logo">
+            <br>
+            <span class="lead">
+              Apollo is a web-based system facilitating real-time collaborative curation and genome annotation editing.
+            </span>
+            <br><br>
+            The Australian Apollo Portal is a hosted service where your genome assembly and supporting evidence files can be hosted, and all the system administration is taken care of, so you and your team can focus on the annotation curation itself. Apollo Portal is free to use for Australian-based research groups and research consortia and is resourced to support genomes of any size.
+          </p>
+        </div>
+
+        <div>
+          <a class="ga-btn" href="https://apollo-portal.genome.edu.au/" target="_blank">Learn more</a>
+        </div>
+      </div>
+
+      <div class="card p-4">
+        <div class="card-body">
+          <p class="card-text">
+            <img class="logo" src="{% static 'home/img/subdomains/assembly/fgenesh.png' %}" alt="FGenesh++ logo">
+            <br>
+            <span class="lead">
+              <a href="http://www.softberry.com/berry.phtml?group=help&subgroup=pipelines&topic=fgenesh_plus_plus">Fgenesh++</a>
+              is a bioinformatics pipeline for automatic prediction of genes in eukaryotic genomes.
+            </span>
+            <br><br>
+            It can produce fully automated genome annotations of a quality
+            <a href="http://www.softberry.com/berry.phtml?topic=fgeneshplus2">similar to manual annotation</a>,
+            and is extremely fast compared to some other automated genome annotation pipelines.
+          </p>
+        </div>
+
+        <div>
+          <a class="ga-btn" href="https://www.biocommons.org.au/fgenesh-plus-plus" target="_blank">Learn more</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-group">
+      <div class="card p-4">
+        <div class="card-body">
+          <p class="card-text">
+            <h3>ABLeS</h3>
+            <span class="lead">
+              Community-lead computational resources, specialist expertise, centrally supported tools and software.
+            </span>
+            <br><br>
+            This Australian BioCommons program offers ABLeS communities a variety of resources through and a shared repository of tools and software, tailored to support the generation of valuable data assets e.g. reference genome assemblies.
+          </p>
+        </div>
+
+        <div>
+          <a class="ga-btn" href="https://australianbiocommons.github.io/ables/index" target="_blank">Learn more</a>
+        </div>
+      </div>
+
+      <div class="card p-4">
+        <div class="card-body">
+          <p class="card-text">
+            <h3>BPA Data Portal</h3>
+            <span class="lead">
+              BioPlatforms Australia provides access to a range of community data through their data portal.
+            </span>
+            <br><br>
+            The database feeatures integrated 'omics data which support some of Australia&apos;s biggest scientific challenges. These challenges span agriculture, biomedicine, the environment and industry, as well as extending to relevant international endeavours.
+          </p>
+        </div>
+
+        <div>
+          <a class="ga-btn" href="https://data.bioplatforms.com/" target="_blank">Learn more</a>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
 
@@ -119,10 +557,41 @@
 
 
 {% block script %}
+
 <script type="text/javascript">
+  // This doesn't really work because we can't trigger a click on a download link
+  // The users has to click for it to work
+  const downloadFile = (anchor) => {
+    console.log(`Downloading ${url}...`);
+    fetch(url).then( (r) => r.text() ).then( (content) => {
+      const filename = url.split('/').pop();
+      console.log(`Download to filename: ${filename}`);
+      console.log(`Fetched content: ${content.slice(0, 100)}...`);
+      let element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+      element.setAttribute('download', filename);
+      element.id = 'download-anchor';
+      element.innerText = 'LINK';
+      console.log("Created anchor element:");
+      console.log(element);
+      element.style.display = 'none';
+      $('div.container.border').append(element);
+      $('#download-anchor').click();
+      $('#download-anchor').remove();
+    });
+  }
 </script>
+
 {% endblock %}
 
 
 {% block onload %}
+
+  // Ensure that notice links open in new tab if external
+  $('.notice a').each( (i, item) => {
+    if (!item.href.includes("{{ HOSTNAME }}")) {
+      item.target = '_blank';
+    }
+  });
+
 {% endblock %}
