@@ -135,17 +135,22 @@ class Notice(models.Model):
         image_notices = list(notices.filter(notice_class='none'))
         text_notices = notices.exclude(notice_class='none')
         dismissed = request.session.get('dismissed_notices', [])
+
         static_notices = [
             n for n in
             text_notices.filter(static_display=True).order_by('order')
             if n.timestamp not in dismissed
         ]
-        rotating_notices = list(text_notices.filter(static_display=False))
-        shuffle(rotating_notices)
 
+        rotating_notices = list(text_notices.exclude(static_display=True))
+        shuffle(rotating_notices)
+        all_rotating_notices = (
+            list(text_notices.exclude(static_display=False))
+            + rotating_notices
+        )
         return {
             'image': image_notices,
-            'rotating': rotating_notices,
+            'rotating': all_rotating_notices,
             'static': static_notices,
         }
 

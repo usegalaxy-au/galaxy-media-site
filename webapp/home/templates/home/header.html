@@ -40,7 +40,6 @@
         {% if notice.url %}
         class="notice alert alert-{{ notice.notice_class }} clickable"
         onclick="window.location.href = '{{ notice.url }}';"
-        {% elif notice.notice_class == 'info' %}
         {% else %}
         class="notice alert alert-{{ notice.notice_class }}"
         {% endif %}
