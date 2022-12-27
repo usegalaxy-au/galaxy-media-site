@@ -83,7 +83,10 @@ class UserChangeForm(forms.ModelForm):
 
 
 class NoticeAdminForm(forms.ModelForm):
-    """Update and create events."""
+    """Update and create Notices.
+
+    Make the body widget bigger.
+    """
 
     class Meta:
         """Form metadata."""
