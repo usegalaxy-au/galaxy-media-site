@@ -1,6 +1,7 @@
 """Development settings."""
 
 import os
+from pathlib import Path
 
 from .base import *
 from .log import config
@@ -16,7 +17,7 @@ GALAXY_SITE_NAME = 'Australia'
 GALAXY_SITE_SUFFIX = 'Media'
 
 # For posting tool update notifications to a Slack channel
-SLACK_API_URL = os.environ.get('SLACK_API_URL')
+SLACK_API_URL = None
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
@@ -32,3 +33,5 @@ DATABASES = {
 }
 
 LOGGING = config.configure_logging(LOG_ROOT)
+
+MEDIA_ROOT = Path('/tmp/gms-media')
