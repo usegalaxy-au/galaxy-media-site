@@ -1,7 +1,8 @@
-from django.test import TestCase
 from django.test import Client
 from django.core.files import File
+from django.conf import settings
 
+from webapp.test import TestCase
 from news.models import News
 from news.test.data import TEST_NEWS
 from events.models import Event, Supporter, Tag

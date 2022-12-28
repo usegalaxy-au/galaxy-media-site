@@ -12,26 +12,16 @@ against double-firing (e.g. check if file exists before creating).
 Must be called in apps.py to work.
 """
 
+import os
 from django.dispatch import receiver
 from django.db.models.signals import (
     # pre_delete,
-    # post_delete,
-    # pre_save,
+    post_delete,
+    pre_save,
     post_save,
 )
 
 from .models import Event, EventImage
-
-#
-# @receiver(post_save, sender=Event)
-# def render_markdown_image_uris(sender, instance, using, **kwargs):
-#     """Replace EventImage identifiers with real URIs in submitted markdown.
-#
-#     !!! Need to validate markdown on submission.
-#
-#     !!! This requires double-saving of Event
-#     """
-#     instance.render_markdown_uris()
 
 
 @receiver(post_save, sender=EventImage)
@@ -39,3 +29,28 @@ def render_markdown_image_uris(sender, instance, using, **kwargs):
     """Replace EventImage identifiers with real URIs in submitted markdown."""
     event = Event.objects.get(id=instance.event_id)
     event.render_markdown_uris()
+
+
+@receiver(post_delete, sender=EventImage)
+def delete_image_file(sender, instance, using, **kwargs):
+    """Delete image file if it exists."""
+    if os.path.isfile(instance.file.path):
+        os.remove(instance.file.path)
+
+
+@receiver(pre_save, sender=EventImage)
+def delete_old_image_file(sender, instance, using, **kwargs):
+    """Delete old image file if it exists."""
+    if not instance.id:
+        return False
+
+    try:
+        old_image = EventImage.objects.filter(id=instance.id)
+    except EventImage.DoesNotExist:
+        return False
+
+    if (
+        old_image.file != instance.file
+        and os.path.isfile(old_image.file)
+    ):
+        old_image.file.delete(save=False)

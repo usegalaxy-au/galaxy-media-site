@@ -1,7 +1,9 @@
-from django.test import TestCase
+import shutil
 from django.test import Client
 from django.core.files import File
+from django.conf import settings
 
+from webapp.test import TestCase
 from events.test.data import TEST_SUPPORTERS, TEST_TAGS
 from events.models import Supporter, Tag
 from home.test.decorators import suppress_request_warnings
@@ -34,7 +36,6 @@ class NewsTestCase(TestCase):
             for supporter in supporters:
                 supporter = Supporter.objects.get(name=supporter['data']['name'])
                 news_item.supporters.add(supporter)
-
 
     def test_news_article_webpage(self):
         article = News.objects.get(title=TEST_NEWS[0]['data']['title'])

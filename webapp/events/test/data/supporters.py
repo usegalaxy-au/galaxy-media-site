@@ -2,9 +2,7 @@
 
 from django.conf import settings
 
-TEST_LOGO_PATH = (
-    settings.BASE_DIR / "events/test/data/media/supporter-a-logo.png"
-)
+SUPPORTER_FILE_PREFIX = '~test-supporter'
 
 TEST_SUPPORTERS = [
     {
@@ -13,7 +11,10 @@ TEST_SUPPORTERS = [
             "url": "https://supporter-a-website.com",
         },
         "files": {
-            "logo": TEST_LOGO_PATH,
+            "logo": (
+                settings.BASE_DIR
+                / f"events/test/data/media/supporter-a-logo.png"
+            ),
         },
     },
     {
@@ -22,7 +23,10 @@ TEST_SUPPORTERS = [
             "url": "https://supporter-b-website.com",
         },
         "files": {
-            "logo": TEST_LOGO_PATH,
+            "logo": (
+                settings.BASE_DIR
+                / f"events/test/data/media/supporter-b-logo.png"
+            ),
         },
     },
 ]

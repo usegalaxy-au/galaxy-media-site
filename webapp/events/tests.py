@@ -1,7 +1,9 @@
-from django.test import TestCase
+import shutil
 from django.test import Client
 from django.core.files import File
+from django.conf import settings
 
+from webapp.test import TestCase
 from home.test.decorators import suppress_request_warnings
 from .models import Event, Supporter, Tag
 from .test.data import TEST_EVENTS, TEST_SUPPORTERS, TEST_TAGS
