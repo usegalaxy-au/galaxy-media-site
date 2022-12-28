@@ -13,3 +13,5 @@ locust
 bioblend
 lxml
 requests
+django-debug-toolbar
+django-cleanup
