@@ -14,7 +14,7 @@ from utils.galaxy import is_registered_galaxy_email
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
-from .models import Notice
+from .models import Notice, Subsite
 from .forms import (
     ResourceRequestForm,
     QuotaRequestForm,
@@ -57,7 +57,10 @@ def landing(request, subdomain):
         get_template(template)
     except TemplateDoesNotExist:
         return HttpResponseNotFound('<h1>Page not found</h1>')
-    notices = Notice.objects.filter(enabled=True, subsites__name=subdomain)
+    subsite = Subsite.objects.get(name=subdomain)
+    notices = subsite.notice_set.filter(
+        enabled=True,
+    )
     if not request.user.is_staff:
         notices = notices.filter(is_published=True)
     return render(request, template, {

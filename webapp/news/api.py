@@ -84,11 +84,14 @@ def create_post(request):
         is_published=True,
         is_tool_update=tool_update,
     )
-    article.tags.add(Tag.objects.get(name="tools"))
-    article.supporters.add(Supporter.objects.get(name="Galaxy Australia"))
-    article.supporters.add(Supporter.objects.get(name="QCIF"))
-    article.supporters.add(
-        Supporter.objects.get(name="Melbourne Bioinformatics"))
+    tags = Tag.objects.filter(name="tools")
+    supporters = Supporter.objects.filter(
+        name__in=["Galaxy Australia", "QCIF", "Melbourne Bioinformatics"]
+    )
+    for tag in tags:
+        article.tags.add(tag)
+    for supporter in supporters:
+        article.supporters.add(supporter)
 
     if tool_update:
         notify_tool_update(article)
