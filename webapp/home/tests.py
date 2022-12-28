@@ -136,8 +136,6 @@ class HomeTestCase(TestCase):
     def test_aaf_webpage(self):
         response = self.client.get('/aaf')
 
-        # print(response.content.decode('utf-8'))
-
         self.assertEqual(response.status_code, 200)
         self.assertContains(
             response,
