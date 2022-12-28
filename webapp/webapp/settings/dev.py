@@ -20,6 +20,13 @@ SLACK_API_URL = os.environ.get('SLACK_API_URL')
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+INSTALLED_APPS.append('debug_toolbar')
+MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
