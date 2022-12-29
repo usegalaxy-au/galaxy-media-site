@@ -13,7 +13,7 @@ TEST_SUPPORTERS = [
         "files": {
             "logo": (
                 settings.BASE_DIR
-                / f"events/test/data/media/supporter-a-logo.png"
+                / "events/test/data/media/supporter-a-logo.png"
             ),
         },
     },
@@ -25,7 +25,7 @@ TEST_SUPPORTERS = [
         "files": {
             "logo": (
                 settings.BASE_DIR
-                / f"events/test/data/media/supporter-b-logo.png"
+                / "events/test/data/media/supporter-b-logo.png"
             ),
         },
     },

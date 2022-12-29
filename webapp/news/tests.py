@@ -56,14 +56,11 @@ class NewsTestCase(TestCase):
 
     def test_tool_update_api(self):
         key = APIToken.objects.create(name="key")
-        response = self.client.post(
-            '/news/api/create',
-            {
-                'api_token': key.token,
-                'body': TEST_NEWS[2]['data']['body'],
-                'tool_update': 'true',
-            },
-        )
+        response = self.client.post('/news/api/create', {
+            'api_token': key.token,
+            'body': TEST_NEWS[2]['data']['body'],
+            'tool_update': 'true',
+        })
         self.assertEqual(response.status_code, 201)
         news_item = News.objects.filter(is_tool_update=True).last()
         assert "### Tools installed" in news_item.body, (
