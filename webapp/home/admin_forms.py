@@ -100,3 +100,15 @@ class NoticeAdminForm(forms.ModelForm):
             }),
         }
         fields = '__all__'
+
+    def clean(self):
+        """Clean form data."""
+        data = self.cleaned_data
+        if data['notice_class'] == 'none':
+            data['static_display'] = False
+            data['title'] = ''
+            data['display_title'] = False
+            data['short_description'] = ''
+            data['material_icon'] = ''
+
+        return data
