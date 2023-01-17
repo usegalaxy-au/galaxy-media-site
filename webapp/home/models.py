@@ -68,11 +68,11 @@ class Notice(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
     notice_class = models.CharField(
         max_length=16, choices=NOTICE_CLASSES, default='',
-        help_text=help_text.Notice.notice_class,
+        help_text=help_text.Notice.NOTICE_CLASS,
     )
     static_display = models.BooleanField(
         default=False,
-        help_text=help_text.Notice.static_display,
+        help_text=help_text.Notice.STATIC_DISPLAY,
     )
     title = models.CharField(max_length=100)
     display_title = models.BooleanField(
@@ -82,17 +82,20 @@ class Notice(models.Model):
             " notice. This option is ignored for image notices.")
     )
     short_description = models.CharField(
-        max_length=200,
+        max_length=150,
         null=True,
         blank=True,
-        help_text=help_text.Notice.short_description,
+        help_text=help_text.Notice.SHORT_DESCRIPTION,
     )
-    body = models.CharField(max_length=10000, null=True, blank=True,
-        help_text=help_text.Notice.body,
+    body = models.CharField(
+        max_length=10000,
+        null=True,
+        blank=True,
+        help_text=help_text.Notice.BODY,
     )
     material_icon = models.CharField(
         max_length=50, null=True, blank=True,
-        help_text=help_text.Notice.material_icon,
+        help_text=help_text.Notice.MATERIAL_ICON,
     )
     enabled = models.BooleanField(
         default=False,

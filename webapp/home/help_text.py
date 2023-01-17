@@ -6,7 +6,7 @@ from utils.markdown import MARKDOWN_HELP_TEXT
 class Notice:
     """Help text for Notice model fields."""
 
-    notice_class = """
+    NOTICE_CLASS = """
     <ul style='margin-left: 2rem;'>
         <li style='list-style: disc;'>
             A style class to set a color scheme for the notice - uses
@@ -29,13 +29,13 @@ class Notice:
             Image notices always have <b>static display</b>, with no
             title/description text. Use for displaying banners e.g. event posters.
         </li>
-        <li>
-            N.B. short/wide images work much better than square ones!
+        <li style='list-style: disc;'>
+            Short/wide images work much better than square ones!
         </li>
     </ul>
     """
 
-    static_display = """
+    STATIC_DISPLAY = """
     <ul style='margin-left: 2rem;'>
         <li style='list-style: disc;'>
             Display the notice as a static block beneath the GA logo, in addition
@@ -59,7 +59,7 @@ class Notice:
     </ul>
     """
 
-    short_description = """
+    SHORT_DESCRIPTION = """
     <ul style='margin-left: 2rem;'>
         <li style='list-style: disc;'>
             This will be displayed on the landing page (200 char max) as plain
@@ -81,7 +81,7 @@ class Notice:
     </ul>
     """
 
-    body = f"""
+    BODY = f"""
     <ul style='margin-left: 2rem;'>
         <li style='list-style: disc;'>
             {MARKDOWN_HELP_TEXT}
@@ -100,10 +100,17 @@ class Notice:
             using an <code>&lt;img&gt;</code> tag and setting the
             <code>style</code> attribute.
         </li>
+        <li style='list-style: disc;'>
+            When using the <em>image</em> notice class, you can upload an image
+            and link to it using the
+            <a href="/admin/home/mediaimage/">Media images</a> model.
+            Otherwise you might just link to images hosted elsewhere e.g.
+            github.
+        </li>
     </ul>
     """
 
-    material_icon = """
+    MATERIAL_ICON = """
     Optional. A valid Material Design icon ID to be displayed with the title
     (e.g. <em>check_box</em>).
     <a href="https://fonts.google.com/icons" target="_blank">
