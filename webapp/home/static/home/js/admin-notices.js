@@ -7,6 +7,7 @@
       $('.field-display_title').hide();
       $('.field-short_description').hide();
       $('.field-material_icon').hide();
+      $('.field-title').removeAttr('required');
     } else {
       // Show fields
       $('.field-static_display').show();
@@ -14,6 +15,7 @@
       $('.field-display_title').show();
       $('.field-short_description').show();
       $('.field-material_icon').show();
+      $('.field-title').prop('required', true);
     }
   }
 

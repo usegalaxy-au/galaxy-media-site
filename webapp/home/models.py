@@ -74,7 +74,7 @@ class Notice(models.Model):
         default=False,
         help_text=help_text.Notice.STATIC_DISPLAY,
     )
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=True)
     display_title = models.BooleanField(
         default=True,
         help_text=(

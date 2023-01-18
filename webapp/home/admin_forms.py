@@ -110,5 +110,13 @@ class NoticeAdminForm(forms.ModelForm):
             data['display_title'] = False
             data['short_description'] = ''
             data['material_icon'] = ''
+        else:
+            for x in ('title', 'short_description', 'body'):
+                self.require(x)
 
         return data
+
+    def require(self, field):
+        """Require a field."""
+        if not self.cleaned_data[field]:
+            self.add_error(field, 'This field is required.')
