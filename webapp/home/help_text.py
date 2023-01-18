@@ -17,7 +17,6 @@ class Notice:
             (
                 <em>info</em>: blue,
                 <em>warning</em>: orange,
-                <em>danger</em>: red
             ).
         </li>
         <li style='list-style: disc;'>

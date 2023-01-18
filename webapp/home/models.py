@@ -51,11 +51,12 @@ class Notice(models.Model):
     A notice contains a brief message for display on the home page, and a
     longer message that will be linked to on a separate page.
 
-    Notices of lower priority will be cycled through by fade in/out such
-    that multiple notices can be displayed without clogging up the UI.
+    All notices will shown as rotating - displayed in a top banner and cycled
+    through by fade in/out such that multiple notices can be displayed without
+    clogging up the UI.
 
-    Notices of the 'danger' class will always be displayed, in addition to
-    the others.
+    Notices can be also be displayed as static by setting
+    ``static_display = True``.
     """
 
     NOTICE_CLASSES = (
