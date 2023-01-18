@@ -61,7 +61,6 @@ class Notice(models.Model):
     NOTICE_CLASSES = (
         ('info', 'info'),
         ('warning', 'warning'),
-        ('danger', 'danger'),
         ('none', 'image'),
     )
 
