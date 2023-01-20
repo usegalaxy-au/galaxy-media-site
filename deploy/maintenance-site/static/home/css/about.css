@@ -1,0 +1,93 @@
+h3 {
+  margin-top: 3rem;
+}
+h5 {
+  color: #888;
+  margin-top: 1.5rem;
+}
+hr {
+  margin: 2rem 0;
+}
+main {
+  margin-bottom: 10rem;
+}
+
+.about-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+.about-nav button {
+  display: inline-block;
+  color: #aaa;
+  font-size: 1rem;
+  text-decoration: none;
+  margin: .5rem;
+  padding: .25rem 1rem;
+  min-width: 150px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-radius: .25rem;
+  transition-duration: .25s;
+  cursor: pointer;
+}
+.about-nav button.active {
+  color: #eee;
+  background: var(--color);
+  cursor: default;
+}
+.about-nav button:not(.active):hover {
+  color: #999;
+  background: rgba(50,50,50,0.1);
+}
+section {
+  display: none;
+}
+section.show {
+  display: block;
+}
+.textbox {
+  margin: 4rem;
+}
+
+/* Lists */
+ol.nested > li {
+  margin-top: 2rem;
+}
+ol.nested ol > li {
+  list-style-type: lower-alpha;
+}
+ol.nested ol ol > li {
+  list-style-type: lower-roman;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .about-nav {
+    padding: 1rem;
+  }
+  .about-nav button {
+    font-size: 0.85rem;
+    margin: .25rem;
+    padding: .25rem;
+    min-width: 125px;
+  }
+  .textbox {
+    margin: 2rem;
+  }
+}
+@media (max-width: 880px) {
+  .about-nav button {
+    margin: .25rem;
+    padding: .25rem;
+    min-width: 0px;
+  }
+  .textbox {
+    margin: 1rem;
+  }
+}
