@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" href="/static/favicon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+
+    <title> Galaxy Australia Media </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="/static/vendor/fontawesome-5.15.4/css/all.css">
+    <link rel="stylesheet" href="/static/vendor/material-icons.css">
+    <link rel="stylesheet" href="/static/home/css/main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="/static/home/css/index.css">
+    
+    <style>
+      .material-icons {
+        opacity: 0;
+        max-width: 2rem;
+        overflow: hidden;
+        transition-duration: 0.25s;
+      }
+    </style>
+  </head>
+
+
+<body>
+  <main>
+    <section class="container-flex text-center my-3">
+      <a href="https://usegalaxy.org.au">
+        <img id="header-logo" src="/static/home/img/ga-logo.png" alt="Galaxy Australia Logo">
+      </a>
+    </section>
+
+    <section class="container-fluid my-5" id="tagline">
+      <!--
+      <div class="notice alert alert-info">
+        <p>
+          Admins - put a block notice in here if you want
+        </p>
+      </div>
+      -->
+      <p>
+        Galaxy Australia is an
+        <b> open, web-based </b>
+        platform for accessible, reproducible
+        and transparent computational research. Galaxy supports thousands of
+        documented and maintained tools that are free to use. We facilitate on-demand
+        training capacities and provision
+        <b>600GB</b> for Australian institutional (and 100GB for other) users.
+      </p>
+    </section>
+
+
+    <section id="stats-panel">
+      <div>
+        <iframe id="iframe-chart" src="https://stats.usegalaxy.org.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=10s&amp;panelId=2" frameborder="0" onload="notifyLoaded(1);" style="opacity: 1;"></iframe>
+      </div>
+
+      <div class="row justify-content-between counters">
+        <img class="loading" src="/static/home/img/spinner.svg" alt="Loading stats" style="display: none;">
+
+        <div class="col">
+          <iframe src="https://stats.usegalaxy.org.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=19" frameborder="0" onload="notifyLoaded(2);" style="opacity: 1;"></iframe>
+        </div>
+
+        <div class="col">
+          <iframe src="https://stats.usegalaxy.org.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=21" frameborder="0" onload="notifyLoaded(3);" style="opacity: 1;"></iframe>
+        </div>
+
+        <div class="col">
+          <iframe src="https://stats.usegalaxy.org.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=23" frameborder="0" onload="notifyLoaded(4);" style="opacity: 1;"></iframe>
+        </div>
+
+        <div class="col">
+          <iframe src="https://stats.usegalaxy.org.au/d-solo/-D4mtTAik/for_embedding?orgId=1&amp;refresh=1d&amp;panelId=25" frameborder="0" onload="notifyLoaded(5);" style="opacity: 1;"></iframe>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="tiias">
+      <h4 class="header"> Training Infrastructure as a Service (TIaaS) </h4>
+
+      <div class="row">
+        <div class="col">
+          <p>
+            Are you looking to run bioinformatics training using the Galaxy
+            service? We provide free infrastructure for hosting Galaxy training
+            events, so your participants experience the fastest possible job times.
+            Don't let a job queue ruin your workshop!
+          </p>
+        </div>
+
+        <div class="col">
+          <p class="text-center">
+            <a class="ga-btn" href="https://usegalaxy.org.au/tiaas" target="_blank">
+              Learn more
+            </a>
+            <br>
+            <a class="ga-btn" href="https://usegalaxy.org.au/tiaas/new" target="_blank">
+              Enquire now
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="data-policy">
+      <h4 class="header"> Our data policy </h4>
+
+      <div class="row">
+        <div class="col">
+          <p>
+            Your data limits on Galaxy Australia depend on how you register with
+            the service. We provide greater privileges to verified
+            Australian Researchers.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <div class="container logo">
+      <div class="text-center">
+        <a href="https://www.biocommons.org.au" target="_blank">
+          <img src="/static/logos/footer/au-biocommons.png">
+        </a>
+
+        <a href="https://www.qcif.edu.au" target="_blank">
+          <img src="/static/logos/footer/qcif.png">
+        </a>
+
+        <a href="https://www.melbournebioinformatics.org.au" target="_blank">
+          <img src="/static/logos/footer/melb-bio-short.png">
+        </a>
+
+        <a href="https://www.aarnet.edu.au" target="_blank">
+          <img src="/static/logos/footer/aarnet.png">
+        </a>
+      </div>
+
+      <div class="text-center second">
+        <a href="https://www.uq.edu.au" target="_blank">
+          <img src="/static/logos/footer/uq-grayscale.png">
+        </a>
+
+        <a href="https://ardc.edu.au" target="_blank">
+          <img src="/static/logos/footer/ardc-grayscale.png">
+        </a>
+
+        <a href="https://www.unimelb.edu.au" target="_blank">
+          <img src="/static/logos/footer/uni-melbourne.png">
+        </a>
+
+        <a href="https://bioplatforms.com" target="_blank">
+          <img src="/static/logos/footer/bpa-grayscale.png">
+        </a>
+
+        <a href="https://nci.org.au" target="_blank">
+          <img src="/static/logos/footer/nci-grayscale.png">
+        </a>
+
+        <a href="https://pawsey.org.au" target="_blank">
+          <img src="/static/logos/footer/pawsey-grayscale.png">
+        </a>
+
+        <a href="https://www.dese.gov.au/ncris" target="_blank">
+          <img src="/static/logos/footer/ncris-grayscale.png">
+        </a>
+
+        <a href="https://www.qld.gov.au" target="_blank">
+          <img src="/static/logos/footer/qld-gov.png">
+        </a>
+      </div>
+    </div>
+
+
+    <div class="container links">
+      <hr>
+      <div class="row" id="footer-links-row">
+        <div class="col" id="footer-galaxy-logo">
+          <a href="/">
+            <img src="/static/logos/footer/galaxy-black.svg" alt="Galaxy logo black">
+          </a>
+        </div>
+
+        <div class="col-6">
+          <div class="row">
+            <div class="col-md-6">
+              <h6>ACKNOWLEDGEMENTS</h6>
+              <p class="tight">
+                <small>
+                  We acknowledge and pay respect to the Elders and Traditional Owners
+                  of the lands on which our partner organisations stand.
+                </small>
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <h6>CONNECT</h6>
+              <p>
+                <a href="mailto:help@genome.edu.au">
+                  <i class="fas fa-envelope"></i>
+                </a>
+
+                <a href="https://github.com/usegalaxy-au" target="_blank">
+                  <i class="fab fa-github"></i>
+                </a>
+
+                <a href="https://twitter.com/galaxyaustralia" target="_blank">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script type="text/javascript" src="https://app.posthog.com/static/toolbar.js?_ts=1674185430000"></script><script type="text/javascript">
+
+    const IFRAME_COUNT = 5;
+    let loaded = [];
+
+    const notifyLoaded = (id) => {
+      loaded.push(id);
+      if (loaded.length === IFRAME_COUNT) {
+        $('#stats-panel img.loading').hide();
+        $('#stats-panel iframe').css('opacity', '1');
+      }
+    }
+
+    // Ensure that notice links open in new tab if external
+    $('.notice a').each( (i, item) => {
+      if (item.href[0] !== '/') {
+        item.target = '_blank';
+      }
+    });
+
+  </script>
+
+
+  <script type="text/javascript">
+
+    // Load material icons and display when page has loaded
+    document.fonts.onloadingdone = () => {
+      $('.material-icons').css({
+        'opacity': 1,
+        'max-width': 'unset',
+        'overflow': 'visible'
+      });
+    }
+
+    // Determine whether page is being viewed in iframe
+    function inIframe () {
+      try {
+          return window.self !== window.top;
+      } catch (e) {
+          return true;
+      }
+    }
+
+    $(document).ready( () => {
+      // Switch to solid navbar if not embedded in iframe
+      inIframe() || $('nav').removeClass("embedded");
+
+      // Enable bootstrap tooltips
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+
+      // Bubbles shown on unpublished material (admins only)
+      $('.unpublished-bubble').parent().css('position', 'relative');
+
+      // Remove links to usegalaxy.org.au if in iframe
+      // ...otherwise risk having galaxy-in-galaxy which is very weird!
+      if ( inIframe() ) {
+        const links = document.getElementsByTagName('a');
+        for (var i in links) {
+          if (
+            links[i].href
+            && links[i].href.includes('//usegalaxy.org.au')
+            && !links[i].href.includes('tiaas')
+          ) {
+            console.log(`Remove href from anchor: ${links[i].href}`);
+            $(links[i]).removeAttr("href");
+          }
+        };
+      }
+
+
+
+    });
+
+  </script>
+</body>
