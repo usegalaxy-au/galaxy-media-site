@@ -3,17 +3,18 @@
 This is some very Galaxy-Australia-specific code for event-bound notifications.
 """
 
+import logging
 import requests
 from urllib.parse import urljoin
 from django.conf import settings
+from django.core.mail import send_mail
+
+logger = logging.getLogger('django')
 
 
 def notify_tool_update(article):
     """Send a notification to the team of posted tool updates/installs."""
-    if not settings.SLACK_API_URL:
-        return
     updates = parse_tool_updates(article.body)
-
     body = (
         "*New tool updates on Galaxy Australia*:\n"
         + urljoin(f'http://{settings.HOSTNAME}', f"/news/{article.id}")
@@ -28,10 +29,34 @@ def notify_tool_update(article):
         body += '\n'.join([
             f"{x[0]}: {x[1].strip('()')}" for x in updates['updated']
         ])
+    notify_slack(body)
+    notify_emails(body)
 
+
+def notify_slack(message):
+    """Send a message to the team Slack channel."""
+    if not settings.SLACK_API_URLS:
+        logger.warning("No Slack API URL configured for notifications.")
+        return
     requests.post(
-        url=settings.SLACK_API_URL,
-        json={"text": body},
+        url=settings.SLACK_API_URLS,
+        json={"text": message},
+    )
+
+
+def notify_emails(message):
+    """Send a message to the team email addresses."""
+    if not settings.TOOL_UPDATE_EMAILS:
+        logger.warning("No email addresses configured for notifications.")
+        return
+    logger.info(
+        "Sending tool update notification emails to:"
+        f" {settings.TOOL_UPDATE_EMAILS}...")
+    send_mail(
+        "Galaxy Australia tool updates",
+        message,
+        settings.EMAIL_FROM_ADDRESS,
+        settings.TOOL_UPDATE_EMAILS,
     )
 
 

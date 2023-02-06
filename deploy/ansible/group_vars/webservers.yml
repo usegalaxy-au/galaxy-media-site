@@ -73,7 +73,7 @@ slack:
     channel_id: C038ESFSXLN
     mention_user_id: U024MUHM23W
   tools:
-    url: "{{ slack_api_url }}"  # secrets.yml
+    urls: "{{ slack_api_urls }}"  # secrets.yml; comma separated list
 
 # For API authentication (requires admin key)
 galaxy_api:

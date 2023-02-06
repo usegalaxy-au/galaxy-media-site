@@ -5,6 +5,7 @@ import os
 from .base import *
 from . import validate
 from .log import config
+from utils.parse import parse_list
 
 validate.env()
 
@@ -28,7 +29,8 @@ GALAXY_SITE_NAME = 'Australia'
 GALAXY_SITE_SUFFIX = 'Media'
 
 # For posting tool update notifications to Slack
-SLACK_API_URL = os.environ.get("SLACK_API_URL")
+SLACK_API_URLS = parse_list(os.environ.get('SLACK_API_URLS'))
+TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')

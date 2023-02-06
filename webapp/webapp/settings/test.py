@@ -5,6 +5,7 @@ from pathlib import Path
 
 from .base import *
 from .log import config
+from utils.parse import parse_list
 
 DEBUG = True
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
@@ -17,7 +18,8 @@ GALAXY_SITE_NAME = 'Australia'
 GALAXY_SITE_SUFFIX = 'Media'
 
 # For posting tool update notifications to a Slack channel
-SLACK_API_URL = None
+SLACK_API_URLS = parse_list(os.environ.get('SLACK_API_URLS'))
+TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
