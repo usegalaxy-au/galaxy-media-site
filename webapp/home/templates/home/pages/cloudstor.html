@@ -1,5 +1,8 @@
 {% extends 'home/header.html' %}  {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/docs.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -29,8 +32,6 @@
       for Galaxy to use. You must then let Galaxy know what that app password
       is.
     </p>
-
-    <hr class="mt-5">
 
     <h3 class="mt-5">Setting up an app password in CloudStor</h3>
 
@@ -100,6 +101,7 @@
     </p>
 
     <p class="alert alert-warning">
+      <span class="material-icons">warning</span>
       WARNING: Your CloudStor credentials will be stored on this server. While reasonable
       efforts have been made to store these credentials safely, you must be
       aware and accept the risks of storing these credentials. In the event that
@@ -145,8 +147,9 @@
       </li>
     </ol>
 
-    <p class="alert alert-danger">
-      CAUTION: the export tool WILL overwrite existing CloudStor files, so
+    <p class="alert alert-warning">
+      <span class="material-icons">warning</span>
+      WARNING: the export tool WILL overwrite existing CloudStor files, so
       choose your target folder carefully!
     </p>
   </div>
