@@ -31,7 +31,10 @@ class User(AbstractUser):
 
 
 class Subsite(models.Model):
-    """Galaxy subsite which will consume a custom landing page."""
+    """Galaxy subsite which will consume a custom landing page.
+
+    The migration for this model creates a default 'main' subsite.
+    """
 
     name = models.CharField(max_length=30, unique=True, help_text=(
         "This field should match the subdomain name. e.g."
@@ -43,6 +46,11 @@ class Subsite(models.Model):
     def __str__(self):
         """Represent self as string."""
         return self.name
+
+
+def default_subsite():
+    """The first ID will always be 'main', as created in migration."""
+    return [1]
 
 
 class Notice(models.Model):
@@ -121,6 +129,7 @@ class Notice(models.Model):
         help_text=(
             "Select which subdomain sites should display the notice."
         ),
+        default=default_subsite,
     )
 
     @classmethod
