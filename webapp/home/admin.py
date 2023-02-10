@@ -69,6 +69,7 @@ class NoticeAdmin(admin.ModelAdmin):
             '//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js',
             'home/js/admin-required-fields.js',
             'home/js/admin-mde.js',
+            'home/js/admin-notices.js',
         )
         css = {
             'screen': (
