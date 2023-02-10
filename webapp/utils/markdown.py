@@ -69,7 +69,7 @@ def render_image_uri(markdown, images):
     """
     if not (markdown and images):
         return markdown
-    new = markdown.replace('', '')
+    new = markdown
     for i, image in enumerate(images):
         for e in IMAGE_URI_EXPRESSIONS:
             p = re.compile(e['re'], re.MULTILINE)

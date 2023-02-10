@@ -29,10 +29,10 @@ def fetch_metadata():
 def get_entities():
     """Return a list of domain names under AAF registration."""
     content = fetch_metadata()
-    soup = BeautifulSoup(content, 'html.parser')
+    soup = BeautifulSoup(content, 'xml')
     entities = []
-    for el in soup.find_all('entitydescriptor'):
-        title = el.find("organizationdisplayname").text
+    for el in soup.find_all('EntityDescriptor'):
+        title = el.find("OrganizationDisplayName").text
         if title.lower() == "australian access federation":
             continue
         if title not in entities:

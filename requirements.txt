@@ -11,3 +11,7 @@ django-recaptcha
 beautifulsoup4
 locust
 bioblend
+lxml
+requests
+django-debug-toolbar
+django-cleanup

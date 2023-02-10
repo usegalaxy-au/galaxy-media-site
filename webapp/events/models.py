@@ -262,7 +262,7 @@ class Event(models.Model):
 
     def render_markdown_uris(self):
         """Render EventImage URIs into markdown placeholders."""
-        images = EventImage.objects.filter(event_id=self.id).order_by('id')
+        images = self.images.order_by('id')
         new_body = render_image_uri(self.body, images)
         if new_body != self.body:
             # Avoid the dreaded infinite loop - only save if body changed

@@ -38,8 +38,8 @@ function on any page to check if you're currently in an iframe.
 ## This repository
 
 - `deploy/`: for deployment of GMS with Ansible and shell script
-- `scrape`: python scripts for scraping content from the old jekyll site codebase
-- `webapp`: this is the Django app
+- `scrape/`: python scripts for scraping content from the old jekyll site codebase
+- `webapp/`: this is the Django app
 
 ---
 

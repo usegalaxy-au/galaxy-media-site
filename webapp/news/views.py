@@ -1,8 +1,6 @@
 """News views."""
 
-from django.http import Http404
-from django.shortcuts import render
-from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404, render
 
 from .models import News
 
@@ -19,9 +17,17 @@ def index(request):
 
 def show(request, pk=None):
     """Show news article page."""
-    try:
-        return render(request, 'news/article.html', {
-            'article': News.objects.get(id=pk),
-        })
-    except ObjectDoesNotExist:
-        raise Http404
+    if request.user.is_staff:
+        article = get_object_or_404(
+            News,
+            id=pk,
+        )
+    else:
+        article = get_object_or_404(
+            News,
+            id=pk,
+            is_published=True,
+        )
+    return render(request, 'news/article.html', {
+        'article': article,
+    })

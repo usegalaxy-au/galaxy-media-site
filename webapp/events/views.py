@@ -1,8 +1,6 @@
 """Event views."""
 
-from django.http import Http404
-from django.shortcuts import render
-from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404, render
 
 from .models import Event
 
@@ -20,14 +18,20 @@ def index(request):
 
 def show(request, pk=None):
     """Show event article page."""
-    if not pk:
-        raise Http404
-    try:
-        return render(request, 'events/event.html', {
-            'event': Event.objects.get(id=pk),
-        })
-    except ObjectDoesNotExist:
-        raise Http404
+    if request.user.is_staff:
+        event = get_object_or_404(
+            Event,
+            id=pk,
+        )
+    else:
+        event = get_object_or_404(
+            Event,
+            id=pk,
+            is_published=True,
+        )
+    return render(request, 'events/event.html', {
+        'event': event,
+    })
 
 
 def ical(request, pk=None):

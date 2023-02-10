@@ -15,7 +15,7 @@ from utils.galaxy import is_registered_galaxy_email
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
-from .models import Notice
+from .models import Notice, Subsite
 from .forms import (
     ResourceRequestForm,
     QuotaRequestForm,

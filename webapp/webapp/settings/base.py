@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'news',
     'events',
     'people',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

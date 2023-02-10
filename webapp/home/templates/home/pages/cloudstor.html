@@ -1,5 +1,8 @@
 {% extends 'home/header.html' %}  {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/docs.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -9,13 +12,31 @@
       <h1> Connecting to CloudStor </h1>
     </div>
     <div class="col text-end p-3">
-      <a href="https://cloudstor.aarnet.edu.au">
+      <a href="https://www.aarnet.edu.au/cloudstor">
         <img src="{% static 'home/img/cloudstor-logo.png' %}" alt="CloudStor logo" width="128px">
       </a>
     </div>
   </div>
 
-  <div class="container py-5">
+  <p class="alert alert-warning">
+    <span class="material-icons">warning</span>
+    AARNet have announced that
+    <a href="https://support.aarnet.edu.au/hc/en-us/articles/5697089309711" target="_blank">
+      CloudStor will be decommissioned
+    </a>
+    by the end of 2023.
+    For long-term storage of your Galaxy data, we recommend archiving your
+    histories to storage solutions provisioned by your institution.
+    Find information on managing your Galaxy histories on the
+    <a
+      target="_blank"
+      href="https://training.galaxyproject.org/training-material/topics/galaxy-interface/tutorials/download-delete-data/tutorial.html"
+    >Galaxy Training Network</a>.
+    If you have any concerns about this transition, please
+    <a href="/request/support">make a support request</a>.
+  </p>
+
+  <div class="container my-3">
     <p>
       The import/export tools allow you to transfer one or more files to a registered
       <a href="https://www.aarnet.edu.au/network-and-services/cloud-services/cloudstor/" target="_blank">AARNet CloudStor</a>
@@ -29,8 +50,6 @@
       for Galaxy to use. You must then let Galaxy know what that app password
       is.
     </p>
-
-    <hr class="mt-5">
 
     <h3 class="mt-5">Setting up an app password in CloudStor</h3>
 
@@ -100,6 +119,7 @@
     </p>
 
     <p class="alert alert-warning">
+      <span class="material-icons">warning</span>
       WARNING: Your CloudStor credentials will be stored on this server. While reasonable
       efforts have been made to store these credentials safely, you must be
       aware and accept the risks of storing these credentials. In the event that
@@ -145,8 +165,9 @@
       </li>
     </ol>
 
-    <p class="alert alert-danger">
-      CAUTION: the export tool WILL overwrite existing CloudStor files, so
+    <p class="alert alert-warning">
+      <span class="material-icons">warning</span>
+      WARNING: the export tool WILL overwrite existing CloudStor files, so
       choose your target folder carefully!
     </p>
   </div>

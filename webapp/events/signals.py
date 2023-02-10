@@ -22,17 +22,6 @@ from django.db.models.signals import (
 
 from .models import Event, EventImage
 
-#
-# @receiver(post_save, sender=Event)
-# def render_markdown_image_uris(sender, instance, using, **kwargs):
-#     """Replace EventImage identifiers with real URIs in submitted markdown.
-#
-#     !!! Need to validate markdown on submission.
-#
-#     !!! This requires double-saving of Event
-#     """
-#     instance.render_markdown_uris()
-
 
 @receiver(post_save, sender=EventImage)
 def render_markdown_image_uris(sender, instance, using, **kwargs):
