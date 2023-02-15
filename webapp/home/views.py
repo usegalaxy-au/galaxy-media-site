@@ -4,9 +4,10 @@ import os
 import logging
 from django.conf import settings
 from django.template import TemplateDoesNotExist
-from django.shortcuts import render
-from django.http import HttpResponseNotFound
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from django.template.loader import get_template
+from django.core.exceptions import ObjectDoesNotExist
 # from pprint import pformat
 
 from utils import aaf
@@ -29,21 +30,16 @@ def index(request, landing=False):
     """Show homepage/landing page."""
     news_items = News.objects.filter(is_tool_update=False)
     events = Event.objects.all()
-    notices = Notice.objects.filter(
-        enabled=True,
-        subsites__name='main',
-    )
     tool_updates = News.objects.filter(is_tool_update=True)
 
     if not request.user.is_staff:
         news_items = news_items.filter(is_published=True)
         events = events.filter(is_published=True)
-        notices = notices.filter(is_published=True)
         tool_updates = tool_updates.filter(is_published=True)
 
     return render(request, 'home/index.html', {
         'landing': landing,
-        'notices': notices.order_by('order'),
+        'notices': Notice.get_notices_by_type(request),
         'news_items': news_items.order_by('-datetime_created')[:6],
         'events': events.order_by('-datetime_created')[:6],
         'tool_updates': tool_updates.order_by('-datetime_created')[:6],
@@ -56,15 +52,16 @@ def landing(request, subdomain):
     try:
         get_template(template)
     except TemplateDoesNotExist:
-        return HttpResponseNotFound('<h1>Page not found</h1>')
-    subsite = Subsite.objects.get(name=subdomain)
-    notices = subsite.notice_set.filter(
-        enabled=True,
-    )
-    if not request.user.is_staff:
-        notices = notices.filter(is_published=True)
+        raise Http404
     return render(request, template, {
-        'notices': notices,
+        'notices': Notice.get_notices_by_type(request, subsite=subdomain),
+    })
+
+
+def notice(request, notice_id):
+    """Display notice body page."""
+    return render(request, 'home/notice.html', {
+        'notice': get_object_or_404(Notice, id=notice_id),
     })
 
 
@@ -147,7 +144,7 @@ def page(request):
         settings.BASE_DIR,
         'home/templates/home/pages')
     if os.path.basename(template) not in os.listdir(templates_dir):
-        return HttpResponseNotFound('<h1>Page not found</h1>')
+        raise Http404
     return render(request, template)
 
 

@@ -22,9 +22,52 @@
     </style>
   </head>
 
-  <body>
+  <body {% if notices.rotating %}style="padding-top: 0;"{% endif %}>
 
-    <nav class="navbar fixed-top navbar-expand embedded">
+    <!-- Notice bar -->
+    {% if notices.rotating %}
+    <div id="notice-bar" class="embedded">
+
+      <div class="notice-control" id="notice-left" onclick="moveNotice('left');">
+        <span class="material-icons">chevron_left</span>
+      </div>
+      <div class="notice-control" id="notice-right" onclick="moveNotice('right');">
+        <span class="material-icons">chevron_right</span>
+      </div>
+
+      {% for notice in notices.rotating %}
+      <div
+        {% if notice.url %}
+        class="notice alert alert-{{ notice.notice_class }} clickable"
+        onclick="window.location.href = '{{ notice.url }}';"
+        {% else %}
+        class="notice alert alert-{{ notice.notice_class }}"
+        {% endif %}
+        id="notice-{{ forloop.counter }}"
+        {% if forloop.counter0 %}style="display: none;"{% endif %}
+      >
+        {% if not notice.is_published %}
+        {% include 'home/snippets/unpublished-bubble.html' %}
+        {% endif %}
+
+        <span class="body">
+          {% if notice.material_icon %}
+          <span class="material-icons mx-2">{{ notice.material_icon }}</span>
+          {% endif %}
+          {{ notice.short_description|safe }}
+        </span>
+      </div>
+
+      {% endfor %}
+    {% endif %}
+
+    <nav
+      {% if notices.rotating %}
+      class="navbar navbar-expand embedded"
+      {% else %}
+      class="navbar fixed-top navbar-expand embedded"
+      {% endif %}
+    >
       <a class="navbar-brand" href="/">
         <span class="australia">Galaxy {{ GALAXY_SITE_NAME }}</span> {{ GALAXY_SITE_SUFFIX }}
       </a>
@@ -100,6 +143,9 @@
       </div>
       {% endif %}
     </nav>
+    {% if notices.rotating %}
+    </div>
+    {% endif %}
 
 
     {% block content %}
@@ -133,8 +179,13 @@
       }
 
       $(document).ready( () => {
-        // Switch to solid navbar if not embedded in iframe
-        inIframe() || $('nav').removeClass("embedded");
+        // Restyle navbar if not embedded in iframe
+        if ( !inIframe() ) {
+          $('nav').removeClass('embedded');
+          $('#notice-bar').before($('nav'));
+          $('nav').css({margin: '0 -2rem'});
+          window.scrollTo(0,0);
+        }
 
         // Enable bootstrap tooltips
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

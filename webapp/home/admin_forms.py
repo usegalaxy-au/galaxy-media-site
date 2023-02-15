@@ -97,5 +97,42 @@ class NoticeAdminForm(forms.ModelForm):
                 'rows': 30,
                 'cols': 120,
             }),
+            'short_description': forms.Textarea(attrs={
+                'rows': 6,
+                'cols': 80,
+            }),
         }
         fields = '__all__'
+
+    def clean(self):
+        """Clean form data."""
+        data = self.cleaned_data
+        if data['notice_class'] == 'none':
+            data['static_display'] = False
+            data['title'] = ''
+            data['display_title'] = False
+            data['short_description'] = ''
+            data['material_icon'] = ''
+        else:
+            for x in ('title', 'short_description', 'body'):
+                self.require(x)
+
+        return data
+
+    def clean_short_description(self):
+        """Clean short description."""
+        description = self.cleaned_data['short_description']
+        if '</a>' in description:
+            self.add_error(
+                'short_description',
+                (
+                    'Please remove <a> tags as this creates a confusing user'
+                    ' experience (link within link).'
+                ),
+            )
+        return description
+
+    def require(self, field):
+        """Require a field."""
+        if not self.cleaned_data[field]:
+            self.add_error(field, 'This field is required.')

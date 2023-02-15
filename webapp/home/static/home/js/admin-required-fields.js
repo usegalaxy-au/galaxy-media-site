@@ -4,12 +4,16 @@ const TAGS = ['input', 'textarea'];
 
 ($ => {
   $(document).ready( () => {
-    // Create a 'required' label to place beneath fields
-    const label = $('<small style="color: #ffb042; line-height: 3;"><em>Required</em></small>')
 
     TAGS.forEach( (tag) => {
+      // Create a 'required' label to place beneath fields
+      const margin = 10 + $(`${tag}[required]`).first().siblings('label').width();
+      const label = tag === 'textarea' ?
+        $(`<small style="color: #ffb042; line-height: 3; margin-left: ${margin}px;"><em>Required</em></small>`)
+        : $('<small style="color: #ffb042; line-height: 3;"><em>Required</em></small>');
+
       // Append label to required elements for each tag
-      $(`${tag}[required]`).after(label.clone()[0]);
+      $(`${tag}[required]`).after(label);
       $(`${tag}[required]`).after($('<br>')[0]);
     })
   });
