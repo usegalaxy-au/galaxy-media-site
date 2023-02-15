@@ -38,10 +38,11 @@ def notify_slack(message):
     if not settings.SLACK_API_URLS:
         logger.warning("No Slack API URL configured for notifications.")
         return
-    requests.post(
-        url=settings.SLACK_API_URLS,
-        json={"text": message},
-    )
+    for url in settings.SLACK_API_URLS:
+        requests.post(
+            url=url,
+            json={"text": message},
+        )
 
 
 def notify_emails(message):
