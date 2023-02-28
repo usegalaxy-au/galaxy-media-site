@@ -1,0 +1,75 @@
+{% load static %}
+
+<div class="card h-100">
+  <img class="card-img-top" src="{{ p.img_uri }}" alt="{{ p.full_name }}">
+  <div class="card-body">
+    <div class="card-title text-center">
+      {{ p.full_name }}
+      <br>
+      <small>
+        {{ p.position }}
+      </small>
+    </div>
+
+    <div class="card-text">
+      <table>
+        {% if p.email %}
+        <tr>
+          <td>
+            <i class="fas fa-envelope"></i>
+          </td>
+          <td>
+            <a href="mailto:{{ p.email }}">
+              {{ p.email }}
+            </a>
+          </td>
+        </tr>
+        {% endif %}
+
+        {% if p.github %}
+        <tr>
+          <td>
+            <i class="fab fa-github"></i>
+          </td>
+          <td>
+            <a href="https://github.com/{{ p.github }}" target="_blank">
+              {{ p.github }}
+            </a>
+          </td>
+        </tr>
+        {% endif %}
+
+        {% if p.location %}
+        <tr>
+          <td>
+            <i class="fas fa-map-pin"></i>
+          </td>
+          <td>{{ p.location }}</td>
+        </tr>
+        {% endif %}
+      </table>
+    </div>
+
+    <div class="card-footer">
+      <small>
+        {% if p.gitter %}
+        <a href="https://gitter.im/{{ p.gitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Gitter IM" target="_blank">
+          <i class="fas fa-comments"></i>
+        </a>
+        {% endif %}
+
+        {% if p.twitter %}
+        <a href="https://twitter.com/{{ p.twitter }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Twitter" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        {% endif %}
+
+        {% if p.orcid %}
+        <a href="https://orcid.org/{{ p.orcid }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Orcid" target="_blank">
+          <img src="{% static 'home/img/orcid-logo.png' %}" style="width: 1rem; height: auto; padding-bottom: 0.15rem; margin-left: 0.5rem;">
+        </a>
+        {% endif %}
+      </small>
+    </div>
+  </div>
+</div>

@@ -34,6 +34,7 @@ class Person(models.Model):
         null=True,
         blank=True,
     )
+    alumni = models.BooleanField(default=False)
 
     def __str__(self):
         """Return string representation."""
