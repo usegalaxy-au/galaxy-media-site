@@ -122,6 +122,8 @@ class NoticeAdminForm(forms.ModelForm):
     def clean_short_description(self):
         """Clean short description."""
         description = self.cleaned_data['short_description']
+        if not description:
+            return description
         if '</a>' in description:
             self.add_error(
                 'short_description',
