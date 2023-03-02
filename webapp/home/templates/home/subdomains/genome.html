@@ -21,31 +21,7 @@
 
   <section class="container-fluid my-5" id="tagline">
 
-    {% for notice in notices %}
-
-    {% if notice.notice_class == 'none' %}
-    <div class="container my-5">
-    {% else %}
-    <div class="notice alert alert-{{ notice.notice_class }}">
-    {% endif %}
-
-      {% if not notice.is_published %}
-      {% include 'home/snippets/unpublished-bubble.html' %}
-      {% endif %}
-
-      {% if notice.material_icon %}
-      <span class="material-icons">{{ notice.material_icon }}</span>
-      {% endif %}
-
-      {% if notice.display_title %}
-      <strong> {{ notice.title }} </strong>
-      <br>
-      {% endif %}
-
-      {{ notice.body|markdown|safe }}
-    </div>
-
-    {% endfor %}
+    {% include 'home/snippets/static-notices.html' %}
 
     <h3>
       Galaxy Australia for Genome Assembly and Annotation
