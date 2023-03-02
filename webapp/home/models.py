@@ -144,7 +144,10 @@ class Notice(models.Model):
             notices = notices.filter(is_published=True)
 
         # Separate notices for static/rotating/image display
-        image_notices = list(notices.filter(notice_class='none'))
+        image_notices = list(
+            notices.filter(notice_class='none')
+            .order_by('order')
+        )
         text_notices = notices.exclude(notice_class='none')
         dismissed = request.session.get('dismissed_notices', [])
 
