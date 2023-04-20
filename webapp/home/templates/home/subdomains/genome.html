@@ -5,6 +5,10 @@
 
 
 {% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'home/css/subdomains/genome.css' %}">
 {% endblock %}
@@ -12,29 +16,28 @@
 
 {% block content %}
 
+
 <main>
+  {% include 'home/subdomains/genome/floating-info-button.html' %}
+
   <section class="container-flex text-center my-3">
-    <a href="https://usegalaxy.org.au">
-      <img id="header-logo" src="{% static 'home/img/ga-logo.png' %}" alt="Galaxy Australia Logo">
-    </a>
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <img id="header-logo" src="{% static 'home/img/subdomains/genome/logo.png' %}" alt="Galaxy Australia Logo">
+      </div>
+      <div class="col-auto">
+        <h1 class="header-genome australia">
+          GENOMICS
+        </h1>
+      </div>
+    </div>
   </section>
 
   <section class="container-fluid my-5" id="tagline">
-
     {% include 'home/snippets/static-notices.html' %}
 
-    <h1>
-      Galaxy Australia - Genome
-    </h1>
-
-    <p>
-      A community page for genome assembly and annotation.
-      <ul>
-        <li><a href="#">What is this page?</a></li>
-        <li><a href="#">What is a community page and how can I use it?</a></li>
-        <li><a href="#">What is Galaxy Australia?</a></li>
-        <li><a href="/request/support">Galaxy Australia support</a></li>
-      </ul>
+    <p class="lead">
+      Welcome to the Galaxy Australia Genomics community site. This site is connected to the same server as <em>usegalaxy.org.au</em>, but with an interface dedicated to helping our genomics researchers. Your history, jobs and data quota are shared with the main server.
     </p>
   </section>
 
@@ -127,6 +130,14 @@
       </div>
     </div>
   </section>
+
+  <section class="my-5">
+    <h4 class="mb-3">Connect with the Genomics Community</h4>
+
+    <a class="ga-btn" href="">Link</a>
+
+  </section>
+
 
 </main>
 

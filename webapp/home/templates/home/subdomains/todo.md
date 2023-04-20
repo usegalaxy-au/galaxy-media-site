@@ -4,6 +4,5 @@
 - test all links
 - "accepted datatypes" -> "required inputs" ?
 - change links to genome.usegalaxy.org.au
-- Improve heading
-- Floating help/info button
+- Floating help content
 - Intro text beneath
