@@ -1,0 +1,186 @@
+<div class="container py-3 border">
+  <div class="accordion" id="annotation-tools-accordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="annotation-tools-import-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#annotation-tools-import-collapse" aria-expanded="false" aria-controls="annotation-tools-import-collapse">
+        Importing a genome into Galaxy
+        </button>
+      </h2>
+      <div id="annotation-tools-import-collapse" class="accordion-collapse collapse" aria-labelledby="annotation-tools-import-accordion" data-bs-parent="#annotation-tools-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                TBC info
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/tool_runner?tool_id=upload1"
+                class="btn btn-primary"
+                target="_blank"
+              >
+                Upload data
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="annotation-tools-maker-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#annotation-tools-maker-collapse" aria-expanded="false" aria-controls="annotation-tools-maker-collapse">
+        <code>MAKER</code> - genome annotation pipeline
+        </button>
+      </h2>
+      <div id="annotation-tools-maker-collapse" class="accordion-collapse collapse" aria-labelledby="annotation-tools-maker-accordion" data-bs-parent="#annotation-tools-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                MAKER is designed to allow smaller eukaryotic and prokaryotic genome projects to independently annotate their genomes and to create genome databases. MAKER identifies repeats, aligns ESTs and proteins to a genome, produces ab-initio gene predictions and automatically synthesizes these data into gene annotations.
+                <br>
+                <br>
+                <em>Accepted datatypes:</em>
+                <code>fasta</code> - genome assembly
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fmaker%2Fmaker"
+                class="btn btn-primary"
+                target="_blank"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="annotation-tools-funannotate-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#annotation-tools-funannotate-collapse" aria-expanded="false" aria-controls="annotation-tools-funannotate-collapse">
+        <code>Funannotate</code> - gene prediction and functional annotation
+        </button>
+      </h2>
+      <div id="annotation-tools-funannotate-collapse" class="accordion-collapse collapse" aria-labelledby="annotation-tools-funannotate-accordion" data-bs-parent="#annotation-tools-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                <code>Funannotate predict</code> performs a comprehensive whole genome gene prediction. Uses AUGUSTUS, GeneMark, Snap, GlimmerHMM, BUSCO, EVidence Modeler, tbl2asn, tRNAScan-SE, Exonerate, minimap2. The genome should be soft-masked before ... TBC
+                <br>
+                <br>
+                <em>Accepted datatypes:</em>
+                <code>fasta</code> - genome assembly (soft-masked)
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Ffunannotate_predict%2Ffunannotate_predict"
+                class="btn btn-primary"
+                target="_blank"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="my-3">
+
+          <div class="row">
+            <div class="col">
+              <p>
+                <code>Funannotate functional?</code> + 3 others
+                <br>
+                <br>
+                <em>Accepted datatypes:</em>
+                <code>fasta</code> TBC
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href=""
+                class="btn btn-primary"
+                target="_blank"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="annotation-tools-repeatmasker-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#annotation-tools-repeatmasker-collapse" aria-expanded="false" aria-controls="annotation-tools-repeatmasker-collapse">
+        <code>RepeatMasker</code> - screen DNA sequences for interspersed repeats and low complexity regions
+        </button>
+      </h2>
+      <div id="annotation-tools-repeatmasker-collapse" class="accordion-collapse collapse" aria-labelledby="annotation-tools-repeatmasker-accordion" data-bs-parent="#annotation-tools-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                RepeatMasker is a program that screens DNA for interspersed repeats and low complexity DNA sequences. Galaxy AU has installed the full and curated DFam screening databases, or a custom database can be provided in <code>fasta</code> format. Additional reference data can be downloaded from
+                <a
+                  href="https://www.girinst.org/repbase/"
+                  target="_blank">
+                  RepBase</a>.
+                <br>
+                <br>
+                <em>Accepted datatypes:</em>
+                <code>fasta</code> - genome assembly
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Frepeat_masker%2Frepeatmasker_wrapper"
+                class="btn btn-primary"
+                target="_blank"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="annotation-tools-interproscan-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#annotation-tools-interproscan-collapse" aria-expanded="false" aria-controls="annotation-tools-interproscan-collapse">
+        <code>InterProScan</code> - functional annotation
+        </button>
+      </h2>
+      <div id="annotation-tools-interproscan-collapse" class="accordion-collapse collapse" aria-labelledby="annotation-tools-interproscan-accordion" data-bs-parent="#annotation-tools-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Interproscan is a batch tool to query the InterPro database. It provides annotations based on multiple searches of profile and other functional databases.
+                <br>
+                <br>
+                <em>Accepted datatypes:</em>
+                <code>fasta</code>
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Finterproscan%2Finterproscan"
+                class="btn btn-primary"
+                target="_blank"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
