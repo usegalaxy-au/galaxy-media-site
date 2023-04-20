@@ -16,3 +16,13 @@ code {
   height: 80px;
   width: auto;
   padding-bottom: 1rem;
+}
+
+/* BS override */
+.nav-link {
+  color: var(--color);
+}
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  background-color: var(--color);
+}

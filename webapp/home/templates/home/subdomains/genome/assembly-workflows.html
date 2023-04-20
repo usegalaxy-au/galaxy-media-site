@@ -1,0 +1,670 @@
+<div class="container py-3 border">
+
+  <p class="my-3">
+    A workflow is a series of Galaxy tools that have been linked together to perform a specific analysis.
+    <a href="https://galaxyproject.org/learn/advanced-workflow/" target="_blank">Learn how to use Galaxy workflows.</a>
+  </p>
+
+  <div class="accordion" id="assembly-workflow-pacbio-accordion">
+
+    <p class="lead">Assembly with PacBio HiFi data</p>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-1-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-1-collapse" aria-expanded="false" aria-controls="assembly-workflow-1-collapse">
+          About these workflows
+        </button>
+      </h2>
+      <div id="assembly-workflow-1-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-1-accordion" data-bs-parent="#assembly-workflow-pacbio-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                This
+                <a
+                  href="https://australianbiocommons.github.io/how-to-guides/genome_assembly/hifi_assembly"
+                  target="_blank"
+                >
+                  How-to-Guide
+                </a>
+                will describe the steps required to assemble your genome on the Galaxy Australia platform, using multiple workflows.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-2-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-2-collapse" aria-expanded="false" aria-controls="assembly-workflow-2-collapse">
+          Workflow - BAM to FASTQ + QC v1.0
+        </button>
+      </h2>
+      <div id="assembly-workflow-2-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-2-accordion" data-bs-parent="#assembly-workflow-pacbio-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Convert a BAM file to FASTQ format to perform QC analysis
+                (required if your data is in BAM format).
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>bam</code> - PacBio <em>subreads.bam</em>
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://workflowhub.eu/workflows/220"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in WorkflowHub"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=220"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-3-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-3-collapse" aria-expanded="false" aria-controls="assembly-workflow-3-collapse">
+          Workflow - PacBio HiFi genome assembly using hifiasm v2.1
+        </button>
+      </h2>
+      <div id="assembly-workflow-3-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-3-accordion" data-bs-parent="#assembly-workflow-pacbio-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Assemble a genome using PacBio HiFi reads.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastqsanger</code> - HiFi reads
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://workflowhub.eu/workflows/221"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in WorkflowHub"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=221"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-4-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-4-collapse" aria-expanded="false" aria-controls="assembly-workflow-4-collapse">
+          Workflow - purge duplicates from hifiasm assembly v1.0
+        </button>
+      </h2>
+      <div id="assembly-workflow-4-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-4-accordion" data-bs-parent="#assembly-workflow-pacbio-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Optional workflow to purge duplicates from the contig assembly.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastqsanger</code> - HiFi reads <br>
+                <code>fasta</code> - primary assembly contigs
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://workflowhub.eu/workflows/237"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in WorkflowHub"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=237"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-5-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-5-collapse" aria-expanded="false" aria-controls="assembly-workflow-5-collapse">
+          Workflow - genome assessment post-assembly
+        </button>
+      </h2>
+      <div id="assembly-workflow-5-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-5-accordion" data-bs-parent="#assembly-workflow-pacbio-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Evaluate the quality of your genome assembly with a comprehensive report including FASTA stats, BUSCO, QUAST, Meryl and Merqury.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fasta</code> - primary assembly contigs
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://workflowhub.eu/workflows/403"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in WorkflowHub"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=403"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion pt-5" id="assembly-workflow-nanopore-accordion">
+
+    <p class="lead">Assembly with Nanopore data and polishing with Illumina data</p>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-6-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-6-collapse" aria-expanded="false" aria-controls="assembly-workflow-6-collapse">
+          About these workflows
+        </button>
+      </h2>
+      <div id="assembly-workflow-6-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-6-accordion" data-bs-parent="#assembly-workflow-nanopore-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                This
+                <a
+                  href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/largegenome/tutorial.html"
+                  target="_blank"
+                >
+                  tutorial
+                </a>
+                describes the steps required to assemble a genome on Galaxy with Nanopore and Illumina data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-7-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-7-collapse" aria-expanded="false" aria-controls="assembly-workflow-7-collapse">
+          Workflow - Flye assembly with Nanopore data
+        </button>
+      </h2>
+      <div id="assembly-workflow-7-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-7-accordion" data-bs-parent="#assembly-workflow-nanopore-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Assemble Nanopore long reads. This workflow can be run alone or as part of a combined workflow for large genome assembly.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastq</code> - long reads (may be raw, filtered and/or corrected)
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://workflowhub.eu/workflows/225"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in WorkflowHub"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=225"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-8-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-8-collapse" aria-expanded="false" aria-controls="assembly-workflow-8-collapse">
+          Workflow - assembly polishing
+        </button>
+      </h2>
+      <div id="assembly-workflow-8-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-8-accordion" data-bs-parent="#assembly-workflow-nanopore-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Polishes (corrects) an assembly, using long reads (with the tools Racon and Medaka) and short reads (with the tool Racon).
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fasta</code> - assembly to polish <br>
+                <code>fastq</code> - long reads (those used in assembly) <br>
+                <code>fastq</code> - short reads to be used for polishing (R1 only)
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://workflowhub.eu/workflows/226"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in WorkflowHub"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=226"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-9-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-9-collapse" aria-expanded="false" aria-controls="assembly-workflow-9-collapse">
+          Workflow - assess genome quality
+        </button>
+      </h2>
+      <div id="assembly-workflow-9-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-9-accordion" data-bs-parent="#assembly-workflow-nanopore-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                Assesses the quality of the genome assembly. Generates statistics, determines if expected genes are present and align contigs to a reference genome.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fasta</code> - polished assembly <br>
+                <code>fasta</code> - reference genome assembly (e.g. related species)
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://workflowhub.eu/workflows/229"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in WorkflowHub"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=229"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion pt-5" id="assembly-workflow-hic-accordion">
+
+    <p class="lead">Assembly with PacBio HiFi and HiC data</p>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-10-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-10-collapse" aria-expanded="false" aria-controls="assembly-workflow-10-collapse">
+          About these workflows
+        </button>
+      </h2>
+      <div id="assembly-workflow-10-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-10-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                These workflows have been developed as part of the global Vertebrate Genome Project (VGP). A complete guide can be found
+                <a
+                  href="https://galaxyproject.org/projects/vgp/workflows/"
+                  target="_blank"
+                >here</a>.
+                There are many different ways that these workflows can be used in practice - for a comprehensive example, check out this
+                <a
+                  href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_genome_assembly/tutorial.html"
+                  target="_blank">Galaxy tutorial</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-11-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-11-collapse" aria-expanded="false" aria-controls="assembly-workflow-11-collapse">
+          Workflow - Kmer profiling
+        </button>
+      </h2>
+      <div id="assembly-workflow-11-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-11-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                This workflow produces a Meryl database and Genomescope outputs that will be used to determine parameters for following workflows, and assess the quality of genome assemblies. Specifically, it provides information about the genomic complexity, such as the genome size and levels of heterozygosity and repeat content, as well about the data quality.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastq</code> - PacBio HiFi long reads
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF1-kmer_profiling_and_QC:VGP"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in DockStore"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF1-kmer_profiling_and_QC"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-12-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-12-collapse" aria-expanded="false" aria-controls="assembly-workflow-12-collapse">
+          Workflow - Hifi assembly and HiC phasing
+        </button>
+      </h2>
+      <div id="assembly-workflow-12-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-12-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                TBC: Assemble HiFi reads and phase with your HiC data.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastq</code> TBC
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF4-Assembly_with_HiC:VGP"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in DockStore"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF4-Assembly_with_HiC"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-13-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-13-collapse" aria-expanded="false" aria-controls="assembly-workflow-13-collapse">
+          Workflow - purge duplicates
+        </button>
+      </h2>
+      <div id="assembly-workflow-13-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-13-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                TBC remove duplicates from your HiFi assembly.
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastq</code> - TBC
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF6-Purgedups:VGP"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in DockStore"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF6-Purgedups"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-14-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-14-collapse" aria-expanded="false" aria-controls="assembly-workflow-14-collapse">
+          Workflow - HiC scaffolding
+        </button>
+      </h2>
+      <div id="assembly-workflow-14-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-14-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                TBC description
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastq</code> - TBC
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF8a-Scaffolding_HiC_Yahs:VGP"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in DockStore"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF8a-Scaffolding_HiC_Yahs"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="assembly-workflow-15-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-15-collapse" aria-expanded="false" aria-controls="assembly-workflow-15-collapse">
+          Workflow - Decontamination
+        </button>
+      </h2>
+      <div id="assembly-workflow-15-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-15-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
+        <div class="accordion-body">
+          <div class="row">
+            <div class="col">
+              <p>
+                TBC description
+                <br>
+                <br>
+                Required inputs: <br>
+                <code>fastq</code> - TBC
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF9-Decontamination:VGP"
+                class="btn btn-primary"
+                target="_blank"
+                title="View in DockStore"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                <span class="material-icons">visibility</span>
+              </a>
+            </div>
+            <div class="col col-auto">
+              <a
+                href="https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF9-Decontamination"
+                class="btn btn-primary"
+                target="_blank"
+                title="Import to Galaxy AU"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+              >
+                Run <span class="material-icons">play_arrow</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
