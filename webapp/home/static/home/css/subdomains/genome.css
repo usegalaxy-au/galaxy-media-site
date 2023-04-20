@@ -1,12 +1,15 @@
+#header-logo {
+  width: 45vw;
+  max-width: 400px;
+}
 .header-genome {
-  font-size: 5rem;
+  font-size: 4rem;
   font-family: 'Exo 2', sans-serif;
-  margin: 1.25rem 0;
 }
 #floating-info-button {
   position: fixed;
   top: 8rem;
-  right: 2rem;
+  right: 2vw;
   cursor: pointer;
 }
 #floating-info-button button {
