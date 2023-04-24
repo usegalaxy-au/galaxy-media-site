@@ -8,32 +8,12 @@
       </h2>
       <div id="data-import-collapse" class="accordion-collapse collapse" aria-labelledby="data-import-accordion" data-bs-parent="#data-tools-accordion">
         <div class="accordion-body">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col">
               <p>Standard upload of data to Galaxy, from your computer or from the web.</p>
             </div>
             <div class="col col-auto">
               <a href="https://usegalaxy.org.au/tool_runner?tool_id=upload1" class="btn btn-primary" target="_blank">Run</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="data-import-bpa-accordion">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#data-import-bpa-collapse" aria-expanded="false" aria-controls="data-import-bpa-collapse">
-          Import data from BPA
-        </button>
-      </h2>
-      <div id="data-import-bpa-collapse" class="accordion-collapse collapse" aria-labelledby="data-import-bpa-accordion" data-bs-parent="#data-tools-accordion">
-        <div class="accordion-body">
-          <div class="row">
-            <div class="col">
-              <p>Import data to Galaxy from BioPlatforms Australia.</p>
-            </div>
-            <div class="col col-auto">
-              (no button for this?)
             </div>
           </div>
         </div>
@@ -48,7 +28,7 @@
       </h2>
       <div id="data-fastqc-collapse" class="accordion-collapse collapse" aria-labelledby="data-fastqc-accordion" data-bs-parent="#data-tools-accordion">
         <div class="accordion-body">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col">
               <p>Before using your sequencing data, it's important first ensure that the data quality is sufficient for your analysis.</p>
               <p>
@@ -69,14 +49,14 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="data-fastp-accordion">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#data-fastp-collapse" aria-expanded="false" aria-controls="data-fastp-collapse">
-          <code>FastP</code> - filter and trim raw reads
+          <code>FastP</code> - sequence quality reports, trimming & filtering
         </button>
       </h2>
       <div id="data-fastp-collapse" class="accordion-collapse collapse" aria-labelledby="data-fastp-accordion" data-bs-parent="#data-tools-accordion">
         <div class="accordion-body">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col">
-              <p>FastP is different to FastQC because...</p>
+              <p>Faster run than FastQC, this tool can also trim reads and filter by quality.</p>
               <p>
                 <em>Accepted datatypes:</em>
                 <code>fastq</code>
@@ -98,12 +78,13 @@
       </h2>
       <div id="data-nanoplot-collapse" class="accordion-collapse collapse" aria-labelledby="data-nanoplot-accordion" data-bs-parent="#data-tools-accordion">
         <div class="accordion-body">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col">
               <p>A plotting suite for Oxford Nanopore sequencing data and alignments.</p>
               <p>
                 <em>Accepted datatypes:</em>
                 <code>fastq</code>
+                <code>fasta</code>
                 <code>vcf_bgzip</code>
               </p>
             </div>
@@ -123,12 +104,12 @@
       </h2>
       <div id="data-genomescope-collapse" class="accordion-collapse collapse" aria-labelledby="data-genomescope-accordion" data-bs-parent="#data-tools-accordion">
         <div class="accordion-body">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col">
               <p>A set of metrics and graphs to visualize genome size and complexity prior to assembly.</p>
               <p>
                 <em>Accepted datatypes:</em>
-                <code>tabular</code> (<code>jellyfish histo</code> output)
+                <code>tabular</code> (output from <code>Meryl</code> or <code>Jellyfish histo</code>)
               </p>
             </div>
             <div class="col col-auto">
@@ -137,6 +118,39 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="data-meryl-accordion">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#data-meryl-collapse" aria-expanded="false" aria-controls="data-meryl-collapse">
+          <code>Meryl</code> - count kmers
+        </button>
+      </h2>
+      <div id="data-meryl-collapse" class="accordion-collapse collapse" aria-labelledby="data-meryl-accordion" data-bs-parent="#data-tools-accordion">
+        <div class="accordion-body">
+          <div class="row align-items-center">
+            <div class="col">
+              <p>Prepare kmer count histogram for input to GenomeScope.</p>
+              <p>
+                <em>Accepted datatypes:</em>
+                <code>fastq</code>
+                <code>fasta</code>
+              </p>
+            </div>
+            <div class="col col-auto">
+              <a href="https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fmeryl%2Fmeryl" class="btn btn-primary" target="_blank">Run <span class="material-icons">play_arrow</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed static">
+          <span style="font-size: 2rem; margin: -1rem 1rem 0 0;">&larr;</span> Find more tools in the tool panel
+        </button>
+      </h2>
     </div>
   </div>
 </div>

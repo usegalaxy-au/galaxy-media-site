@@ -51,3 +51,12 @@ code {
 .nav-pills .show>.nav-link {
   background-color: var(--color);
 }
+.accordion-button.static::after {
+  content: none;
+}
+.accordion-button.static {
+  cursor: default;
+}
+.accordion-button.static:focus {
+  box-shadow: none;
+}
