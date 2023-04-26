@@ -434,7 +434,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="assembly-workflow-11-accordion">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-11-collapse" aria-expanded="false" aria-controls="assembly-workflow-11-collapse">
-          Workflow - Kmer profiling
+          Kmer profiling
         </button>
       </h2>
       <div id="assembly-workflow-11-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-11-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
@@ -481,7 +481,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="assembly-workflow-12-accordion">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-12-collapse" aria-expanded="false" aria-controls="assembly-workflow-12-collapse">
-          Workflow - Hifi assembly and HiC phasing
+          Hifi assembly and HiC phasing
         </button>
       </h2>
       <div id="assembly-workflow-12-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-12-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
@@ -489,11 +489,21 @@
           <div class="row align-items-center">
             <div class="col">
               <p>
-                TBC: Assemble HiFi reads and phase with your HiC data.
+                This workflow uses <code>hifiasm</code> (HiC mode) to generate HiC-phased haplotypes (hap1 and hap2). This is in contrast to its default mode, which generates primary and alternate pseudohaplotype assemblies. This workflow includes three tools for evaluating assembly quality: <code>gfastats</code>, <code>BUSCO</code> and <code>Merqury</code>.
                 <br>
                 <br>
                 Required inputs: <br>
-                <code>fastq</code> TBC
+                <code>fasta</code> - PacBio HiFi reads <br>
+                <code>fastq</code> - PacBio HiC reads (forward) <br>
+                <code>fastq</code> - PacBio HiC reads (reverse) <br>
+                <code>meryldb</code> - kmer database <br>
+                <code>txt</code> - <code>GenomeScope</code> genome profile summary
+              </p>
+
+              <p>
+                <small>
+                  Note: if multiple input files for each HiC set, they need to be concatenated. The forward set needs to be concatenated in the same order as reverse set.
+                </small>
               </p>
             </div>
             <div class="col col-auto">
@@ -528,7 +538,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="assembly-workflow-13-accordion">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-13-collapse" aria-expanded="false" aria-controls="assembly-workflow-13-collapse">
-          Workflow - purge duplicates
+          Purge duplicates
         </button>
       </h2>
       <div id="assembly-workflow-13-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-13-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
@@ -536,11 +546,15 @@
           <div class="row align-items-center">
             <div class="col">
               <p>
-                TBC remove duplicates from your HiFi assembly.
+                This workflow identifies and reassigns heterozygous contigs.
                 <br>
                 <br>
                 Required inputs: <br>
-                <code>fastq</code> - TBC
+                <code>fasta</code> - <code>hifiasm</code> primary assembly - <code>hap1</code> <br>
+                <code>fasta</code> - <code>hifiasm</code> alternate assembly - <code>hap2</code>
+                <code>fasta</code><code>fastq</code> - trimmed PacBio reads <br>
+                <code>meryldb</code> - kmer database <br>
+                <code>txt</code> - <code>GenomeScope</code> model parameters <br>
               </p>
             </div>
             <div class="col col-auto">
@@ -575,7 +589,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="assembly-workflow-14-accordion">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-14-collapse" aria-expanded="false" aria-controls="assembly-workflow-14-collapse">
-          Workflow - HiC scaffolding
+          HiC scaffolding
         </button>
       </h2>
       <div id="assembly-workflow-14-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-14-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
@@ -583,11 +597,20 @@
           <div class="row align-items-center">
             <div class="col">
               <p>
-                TBC description
+                This workflow scaffolds the assembly contigs using information from HiC data.
                 <br>
                 <br>
                 Required inputs: <br>
-                <code>fastq</code> - TBC
+                <code>fasta</code> - Assembly <br>
+                <code>fastq</code> - HiC forward reads <br>
+                <code>fastq</code> - HiC reverse reads <br>
+                <code>txt</code> - restriction enzyme sequence
+              </p>
+
+              <p>
+                <small>
+                  Note: if multiple input files for each HiC set, they need to be concatenated. The forward set needs to be concatenated in the same order as reverse set.
+                </small>
               </p>
             </div>
             <div class="col col-auto">
@@ -622,7 +645,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="assembly-workflow-15-accordion">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#assembly-workflow-15-collapse" aria-expanded="false" aria-controls="assembly-workflow-15-collapse">
-          Workflow - Decontamination
+          Decontamination
         </button>
       </h2>
       <div id="assembly-workflow-15-collapse" class="accordion-collapse collapse" aria-labelledby="assembly-workflow-15-accordion" data-bs-parent="#assembly-workflow-hic-accordion">
@@ -630,11 +653,11 @@
           <div class="row align-items-center">
             <div class="col">
               <p>
-                TBC description
+                This workflow identifies and removes contaminants from the assembly.
                 <br>
                 <br>
                 Required inputs: <br>
-                <code>fastq</code> - TBC
+                <code>fasta</code> - assembly
               </p>
             </div>
             <div class="col col-auto">
