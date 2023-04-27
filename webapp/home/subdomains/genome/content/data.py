@@ -153,6 +153,13 @@ help = [
         "button_html": "More info",
     },
     {
+        "title_html": 'How can I subsample my data?',
+        "description_html": """
+            <p>
+              We recommend subsampling large data sets to test tools and workflows. A useful tool is <code>seqtk_seq</code>, setting the parameter at "Sample fraction of sequences"
+            </p>""",
+    },
+    {
         "title_html": 'How can I import data from the BPA portal?',
         "description_html": """
             <p>
