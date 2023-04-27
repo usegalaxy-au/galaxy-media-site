@@ -1,15 +1,20 @@
 <div id="floating-info-button">
-  <button
+  <!-- <button
     type="button"
-    class="btn"
     data-bs-toggle="modal"
     data-bs-target="#infoModal">
     <span class="material-icons">help</span>
-  </button>
+  </button> -->
+  <a
+    href="#"
+    data-bs-toggle="modal"
+    data-bs-target="#infoModal">
+    What is this page?
+  </a>
 </div>
 
 <div class="modal fade" id="infoModal" tabindex="-1">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Galaxy AU Genomics</h5>
@@ -19,9 +24,12 @@
         <p>
           <em>genome.usegalaxy.org.au</em>
           is a community site for genome assembly and annotation. All the tools and functionality of Galaxy Australia are still available in this site, but the homepage content is dedicated to helping genomics researchers.
+        </p>
+        <p>
+          This site is connected to the same server as <em>usegalaxy.org.au</em>, but with an interface dedicated to helping our genomics researchers. Your history, jobs and data quota are shared with the main server.
           <p><a href="https://usegalaxy.org.au" target="_blank">Take me back to normal Galaxy Australia!</a></p>
           <p><a href="#">What is a community site and how can I use it?</a></p>
-          <p><a href="#">What is Galaxy Australia?</a></p>
+          <p><a href="/about">What is Galaxy Australia?</a></p>
           <p><a href="/request/support">Galaxy Australia support</a></p>
         </p>
       </div>

@@ -14,9 +14,9 @@ code {
   font-family: 'Exo 2', sans-serif;
 }
 #floating-info-button {
-  position: fixed;
-  top: 8rem;
-  right: 2vw;
+  position: absolute;
+  top: 7rem;
+  right: 2rem;
   cursor: pointer;
 }
 #floating-info-button button {
