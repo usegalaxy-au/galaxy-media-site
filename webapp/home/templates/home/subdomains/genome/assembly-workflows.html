@@ -49,7 +49,7 @@
                 (required if your data is in BAM format).
                 <br>
                 <br>
-                Required inputs: <br>
+                Required inputs:
                 <code>bam</code> - PacBio <em>subreads.bam</em>
               </p>
             </div>
@@ -489,7 +489,7 @@
           <div class="row align-items-center">
             <div class="col">
               <p>
-                This workflow uses <code>hifiasm</code> (HiC mode) to generate HiC-phased haplotypes (hap1 and hap2). This is in contrast to its default mode, which generates primary and alternate pseudohaplotype assemblies. This workflow includes three tools for evaluating assembly quality: <code>gfastats</code>, <code>BUSCO</code> and <code>Merqury</code>.
+                This workflow uses <code>hifiasm</code> (HiC mode) to generate HiC-phased haplotypes (<code>hap1</code> and <code>hap2</code>). This is in contrast to its default mode, which generates primary and alternate pseudohaplotype assemblies. This workflow includes three tools for evaluating assembly quality: <code>gfastats</code>, <code>BUSCO</code> and <code>Merqury</code>.
                 <br>
                 <br>
                 Required inputs: <br>
@@ -502,7 +502,7 @@
 
               <p>
                 <small>
-                  Note: if multiple input files for each HiC set, they need to be concatenated. The forward set needs to be concatenated in the same order as reverse set.
+                  Note: if you have multiple input files for each HiC set, they need to be concatenated. The forward set needs to be concatenated in the same order as reverse set.
                 </small>
               </p>
             </div>
@@ -551,7 +551,7 @@
                 <br>
                 Required inputs: <br>
                 <code>fasta</code> - <code>hifiasm</code> primary assembly - <code>hap1</code> <br>
-                <code>fasta</code> - <code>hifiasm</code> alternate assembly - <code>hap2</code>
+                <code>fasta</code> - <code>hifiasm</code> alternate assembly - <code>hap2</code> <br>
                 <code>fasta</code><code>fastq</code> - trimmed PacBio reads <br>
                 <code>meryldb</code> - kmer database <br>
                 <code>txt</code> - <code>GenomeScope</code> model parameters <br>
@@ -603,13 +603,12 @@
                 Required inputs: <br>
                 <code>fasta</code> - Assembly <br>
                 <code>fastq</code> - HiC forward reads <br>
-                <code>fastq</code> - HiC reverse reads <br>
-                <code>txt</code> - restriction enzyme sequence
+                <code>fastq</code> - HiC reverse reads
               </p>
 
               <p>
                 <small>
-                  Note: if multiple input files for each HiC set, they need to be concatenated. The forward set needs to be concatenated in the same order as reverse set.
+                  Note: if you have multiple input files for each HiC set, they need to be concatenated. The forward set needs to be concatenated in the same order as reverse set.
                 </small>
               </p>
             </div>

@@ -1,8 +1,9 @@
 <div class="container py-3 border">
+  {% if tab.heading_html %}
   <p class="my-3">
-    A workflow is a series of Galaxy tools that have been linked together to perform a specific analysis. You can use and customize the example workflows below.
-    <a href="https://galaxyproject.org/learn/advanced-workflow/" target="_blank">Learn more.</a>
+    {{ tab.heading_html }}
   </p>
+  {% endif %}
 
   <div class="accordion" id="data-workflow-accordion">
     <div class="accordion-item">

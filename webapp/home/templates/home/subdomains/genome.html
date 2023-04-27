@@ -45,104 +45,15 @@
     </p>
   </section>
 
-  <section class="my-5">
-    <h4 class="mb-3">Data import and preparation</h4>
-
-    <ul class="nav nav-pills" id="dataTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="data-tools-tab" data-bs-toggle="tab" data-bs-target="#data-tools-panel" type="button" role="tab" aria-controls="home" aria-selected="true">Common tools</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="data-workflows-tab" data-bs-toggle="tab" data-bs-target="#data-workflows-panel" type="button" role="tab" aria-controls="profile" aria-selected="false">Workflows</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="data-help-tab" data-bs-toggle="tab" data-bs-target="#data-help-panel" type="button" role="tab" aria-controls="contact" aria-selected="false">Help</button>
-      </li>
-    </ul>
-
-    <div class="tab-content" id="dataTabContent">
-      <div class="tab-pane fade show active" id="data-tools-panel" role="tabpanel" aria-labelledby="data-tools-tab">
-        {% include 'home/subdomains/genome/data-tools.html' %}
-      </div>
-
-      <div class="tab-pane fade" id="data-workflows-panel" role="tabpanel" aria-labelledby="data-workflows-tab">
-        {% include 'home/subdomains/genome/data-workflows.html' %}
-      </div>
-
-      <div class="tab-pane fade" id="data-help-panel" role="tabpanel" aria-labelledby="data-help-tab">
-        {% include 'home/subdomains/genome/data-help.html' %}
-      </div>
-    </div>
-  </section>
-
-  <section class="my-5">
-    <h4 class="mb-3">Genome assembly</h4>
-
-    <ul class="nav nav-pills" id="assemblyTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="assembly-tools-tab" data-bs-toggle="tab" data-bs-target="#assembly-tools-panel" type="button" role="tab" aria-controls="home" aria-selected="true">Common tools</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="assembly-workflows-tab" data-bs-toggle="tab" data-bs-target="#assembly-workflows-panel" type="button" role="tab" aria-controls="profile" aria-selected="false">Workflows</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="assembly-help-tab" data-bs-toggle="tab" data-bs-target="#assembly-help-panel" type="button" role="tab" aria-controls="contact" aria-selected="false">Help</button>
-      </li>
-    </ul>
-
-    <div class="tab-content" id="assemblyTabContent">
-      <div class="tab-pane fade show active" id="assembly-tools-panel" role="tabpanel" aria-labelledby="assembly-tools-tab">
-        {% include 'home/subdomains/genome/assembly-tools.html' %}
-      </div>
-
-      <div class="tab-pane fade" id="assembly-workflows-panel" role="tabpanel" aria-labelledby="assembly-workflows-tab">
-        {% include 'home/subdomains/genome/assembly-workflows.html' %}
-      </div>
-
-      <div class="tab-pane fade" id="assembly-help-panel" role="tabpanel" aria-labelledby="assembly-help-tab">
-        {% include 'home/subdomains/genome/assembly-help.html' %}
-      </div>
-    </div>
-  </section>
-
-  <section class="my-5">
-    <h4 class="mb-3">Genome annotation</h4>
-
-    <ul class="nav nav-pills" id="annotationTabs" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="annotation-tools-tab" data-bs-toggle="tab" data-bs-target="#annotation-tools-panel" type="button" role="tab" aria-controls="home" aria-selected="true">Common tools</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="annotation-workflows-tab" data-bs-toggle="tab" data-bs-target="#annotation-workflows-panel" type="button" role="tab" aria-controls="profile" aria-selected="false">Workflows</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="annotation-help-tab" data-bs-toggle="tab" data-bs-target="#annotation-help-panel" type="button" role="tab" aria-controls="contact" aria-selected="false">Help</button>
-      </li>
-    </ul>
-
-    <div class="tab-content" id="annotationTabContent">
-      <div class="tab-pane fade show active" id="annotation-tools-panel" role="tabpanel" aria-labelledby="annotation-tools-tab">
-        {% include 'home/subdomains/genome/annotation-tools.html' %}
-      </div>
-
-      <div class="tab-pane fade" id="annotation-workflows-panel" role="tabpanel" aria-labelledby="annotation-workflows-tab">
-        {% include 'home/subdomains/genome/annotation-workflows.html' %}
-      </div>
-
-      <div class="tab-pane fade" id="annotation-help-panel" role="tabpanel" aria-labelledby="annotation-help-tab">
-        {% include 'home/subdomains/genome/annotation-help.html' %}
-      </div>
-    </div>
-  </section>
+  {% for section in sections %}
+    <!-- Data section only for now -->
+    {% include 'home/subdomains/section.html' with section=section %}
+  {% endfor %}
 
   <section class="my-5">
     <h4 class="mb-3">Connect with the Genomics Community</h4>
-
     <a class="ga-btn" href="">Link</a>
-
   </section>
-
-
 </main>
 
 {% endblock %}

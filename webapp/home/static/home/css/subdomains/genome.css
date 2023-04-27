@@ -1,3 +1,10 @@
+code {
+  padding: .15rem .35rem;
+  margin: 0 .25rem;
+  color: var(--bs-gray-800);
+  background-color: var(--bs-gray-300);
+  border-radius: 3px;
+}
 #header-logo {
   width: 45vw;
   max-width: 400px;
@@ -23,13 +30,6 @@
 #floating-info-button .btn:focus {
   box-shadow: none;
 }
-code {
-  padding: .15rem .35rem;
-  margin: 0 .25rem;
-  color: var(--bs-gray-800);
-  background-color: var(--bs-gray-300);
-  border-radius: 3px;
-}
 #workflow-table {
   max-height: 400px;
   overflow-y: auto;
@@ -41,6 +41,9 @@ code {
   height: 80px;
   width: auto;
   padding-bottom: 1rem;
+}
+.table-inputs td {
+  padding: .2rem .5rem;
 }
 
 /* BS override */

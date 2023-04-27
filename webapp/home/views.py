@@ -22,6 +22,7 @@ from .forms import (
     SupportRequestForm,
     AlphafoldRequestForm,
 )
+from . import subdomains
 
 logger = logging.getLogger('django')
 
@@ -53,8 +54,16 @@ def landing(request, subdomain):
         get_template(template)
     except TemplateDoesNotExist:
         raise Http404
+
+    try:
+        sections = getattr(subdomains, subdomain).sections
+    except AttributeError:
+        raise AttributeError(
+            f"No content files found for subdomain '{subdomain}'.")
+
     return render(request, template, {
         'notices': Notice.get_notices_by_type(request, subsite=subdomain),
+        'sections': sections,
     })
 
 
