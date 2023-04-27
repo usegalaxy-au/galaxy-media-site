@@ -38,10 +38,10 @@
         {% if tab.content.subsections %}
           {% for subsection in tab.content.subsections %}
           <p class="fw-bold my-3 mt-4 mx-3">{{ subsection.title }}</p>
-          {% include 'home/subdomains/accordion.html' with content=subsection.content tab_id=tab.id accordion_id=subsection.id %}
+          {% include 'home/subdomains/components/accordion.html' with content=subsection.content tab_id=tab.id accordion_id=subsection.id %}
           {% endfor %}
         {% else %}
-          {% include 'home/subdomains/accordion.html' with content=tab.content tab_id=tab.id %}
+          {% include 'home/subdomains/components/accordion.html' with content=tab.content tab_id=tab.id %}
         {% endif %}
       </div>
     </div>

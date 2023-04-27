@@ -24,7 +24,7 @@
           <div class="col">
             {{ item.description_html|safe }}
             {% if item.inputs %}
-            {% include 'home/subdomains/inputs.html' with inputs=item.inputs %}
+            {% include 'home/subdomains/components/inputs.html' with inputs=item.inputs %}
             {% endif %}
           </div>
 
