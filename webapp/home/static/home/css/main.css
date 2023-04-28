@@ -148,6 +148,12 @@ section {
   height: 85vh;
 }
 
+/* Forms */
+input.invalid,
+textarea.invalid {
+  border-color: var(--bs-red);
+}
+
 /* Components */
 .tile {
   display: flex;

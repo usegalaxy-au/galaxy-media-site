@@ -20,6 +20,9 @@ urlpatterns = [
     path('aaf', views.aaf_info, name="home_aaf_info"),
     path('institutions', views.australian_institutions,
          name="home_au_institutions"),
+    path('feedback/<subdomain>',
+         api.subdomain_feedback,
+         name="subdomain_feedback"),
     re_path(r'^[\w\d\_-]+.html$', views.page, name='home_page'),
 
     # Redirect

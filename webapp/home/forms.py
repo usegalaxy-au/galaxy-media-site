@@ -153,12 +153,12 @@ class SupportRequestForm(forms.Form):
     email = forms.EmailField()
     message = forms.CharField()
 
-    def dispatch(self):
+    def dispatch(self, subject=None):
         """Dispatch content via the FreshDesk API."""
         data = self.cleaned_data
         dispatch_form_mail(
             reply_to=data['email'],
-            subject="Galaxy Australia Support request",
+            subject=subject or "Galaxy Australia Support request",
             text=(
                 f"Name: {data['name']}\n"
                 f"Email: {data['email']}\n\n"

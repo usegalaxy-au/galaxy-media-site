@@ -7,7 +7,6 @@ from django.template import TemplateDoesNotExist
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.template.loader import get_template
-from django.core.exceptions import ObjectDoesNotExist
 # from pprint import pformat
 
 from utils import aaf
@@ -15,7 +14,7 @@ from utils.galaxy import is_registered_galaxy_email
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
-from .models import Notice, Subsite
+from .models import Notice
 from .forms import (
     ResourceRequestForm,
     QuotaRequestForm,
@@ -48,7 +47,11 @@ def index(request, landing=False):
 
 
 def landing(request, subdomain):
-    """Show landing pages for *.usegalaxy.org.au subsites."""
+    """Show landing pages for *.usegalaxy.org.au subsites.
+
+    A support request form is passed to the template which can be submitted
+    with AJAX and processed by an API handler.
+    """
     template = f'home/subdomains/{subdomain}.html'
     try:
         get_template(template)
@@ -64,6 +67,7 @@ def landing(request, subdomain):
     return render(request, template, {
         'notices': Notice.get_notices_by_type(request, subsite=subdomain),
         'sections': sections,
+        'form': SupportRequestForm(),
     })
 
 

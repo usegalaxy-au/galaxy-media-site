@@ -18,7 +18,8 @@
 
 
 <main>
-  {% include 'home/subdomains/floating-info-button.html' %}
+  {% include 'home/subdomains/components/floating-info-button.html' %}
+  {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
 
   <section class="container-flex text-center my-3">
     <div class="row justify-content-center">
@@ -51,6 +52,13 @@
   <section class="my-5">
     <h4 class="mb-3">Connect with the Genomics Community</h4>
     <a class="ga-btn" href="">Link</a>
+    <button
+      class="ga-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#feedbackModal"
+    >
+      Feedback
+  </button>
   </section>
 </main>
 
