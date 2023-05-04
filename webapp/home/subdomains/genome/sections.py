@@ -39,6 +39,7 @@ sections = [
             {
                 "id": "workflows",
                 "title": "Workflows",
+                "heading_html": workflow_heading_html,
                 "content": content.assembly.workflows,
             },
             {
@@ -60,6 +61,7 @@ sections = [
             {
                 "id": "workflows",
                 "title": "Workflows",
+                "heading_html": workflow_heading_html,
                 "content": content.annotation.workflows,
             },
             {
