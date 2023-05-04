@@ -128,17 +128,6 @@ workflows = [
         "view_link": "https://workflowhub.eu/workflows/224",
         "view_tip": "View in WorkflowHub",
     },
-    {
-        "title_html": 'Subsample data for testing',
-        "description_html": """
-            <p>
-              TBC Take a sample of your data for building and testing workflows (in development, not yet available).
-            </p>""",
-        "button_link": "",  # TBC
-        "button_tip": "Import to Galaxy AU",
-        "view_link": "",  # TBC
-        "view_tip": "View in WorkflowHub",
-    },
 ]
 
 
