@@ -32,6 +32,17 @@ tools = [
         "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fflye%2Fflye",
     },
     {
+        "title_html": '<code>Unicycler</code> - assembly with Illumina, PacBio or Nanopore data - bacteria only',
+        "description_html": """
+            <p>
+              Hybrid assembly pipeline for bacterial genomes, uses both Illumina reads and long reads (PacBio or Nanopore).
+              </p>""",
+        "inputs": [
+            {'datatypes': ['fastq']},
+        ],
+        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler%2F0.5.0%2Bgalaxy1",
+    },   
+    {
         "title_html": '<code>Salsa</code> - scaffold assembly with HiC data',
         "description_html": """
             <p>
