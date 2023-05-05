@@ -40,7 +40,7 @@ tools = [
         "inputs": [
             {'datatypes': ['fastq']},
         ],
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler%2F0.5.0%2Bgalaxy1",
+        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler",
     },   
     {
         "title_html": '<code>Salsa</code> - scaffold assembly with HiC data',
