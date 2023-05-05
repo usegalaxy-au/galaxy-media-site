@@ -117,7 +117,7 @@ tools = [
         "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fjbrowse%2Fjbrowse",
     },
     {
-        "title_html": '<code>Prokka</code>' - 'Genome annotation, prokaryotes only',
+        "title_html": '<code>Prokka</code> - Genome annotation, prokaryotes only',
         "description_html": "",
         "inputs": [
             {
