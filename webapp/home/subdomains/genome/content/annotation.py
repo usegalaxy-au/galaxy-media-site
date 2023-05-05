@@ -164,6 +164,13 @@ help = [
             </p>""",
     },
     {
+        "title_html": 'Genome annotation overview',
+        "description_html": """
+            <p>The flowchart below shows how you might use your input data (in green) with different Galaxy tools (in blue) to annotate a genome assembly. For example, one pathway would be taking an assembled genome, plus information about repeats, and data from RNA-seq, to run in the Maker pipeline. The annotatations can then be viewed in JBrowse.</p>
+            <img class="img-fluid" src="/static/home/img/subdomains/genome/annotation-overview.png" alt="Genome annotation flowchart">
+            <p class="text-center">A graphical representation of genome annotation</p>""",
+    },
+    {
         "title_html": 'Can I use Fgenesh++ for annotation?',
         "description_html": """
             <p>
