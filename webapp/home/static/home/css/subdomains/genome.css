@@ -6,29 +6,13 @@ code {
   border-radius: 3px;
 }
 #header-logo {
-  width: 45vw;
-  max-width: 400px;
+  height: 5rem;
+  width: 4rem;
+  margin-right: 3rem;
 }
 .header-genome {
   font-size: 4rem;
   font-family: 'Exo 2', sans-serif;
-}
-#floating-info-button {
-  position: absolute;
-  top: 8rem;
-  right: 2rem;
-  cursor: pointer;
-}
-#floating-info-button button {
-  color: var(--bs-primary);
-  line-height: 0;
-}
-#floating-info-button button
-.material-icons {
-  font-size: 2.5rem;
-}
-#floating-info-button .btn:focus {
-  box-shadow: none;
 }
 #workflow-table {
   max-height: 400px;
@@ -47,6 +31,13 @@ code {
 }
 
 /* BS override */
+ul.nav-pills {
+  background-color: var(--bs-gray-100);
+  padding: 1rem;
+}
+ul.nav-pills li.nav-item {
+  margin: 0 1rem;
+}
 .nav-link {
   color: var(--color);
 }
@@ -60,6 +51,16 @@ code {
 .accordion-button.static {
   cursor: default;
 }
-.accordion-button.static:focus {
+.accordion-button:focus {
   box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+  color: inherit;
+  background-color: inherit;
+  box-shadow: none;
+}
+.btn.btn-galaxy {
+  color: white;
+  background-color: #25537B;
+  padding: 0.25rem 0.5rem;
 }

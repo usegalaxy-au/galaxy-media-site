@@ -13,7 +13,7 @@ sections = [
         "tabs": [
             {
                 "id": "tools",
-                "title": "Tools",
+                "title": "Common tools",
                 "heading_html": tools_heading_html,
                 "content": content.data.tools,
             },
@@ -36,7 +36,7 @@ sections = [
         "tabs": [
             {
                 "id": "tools",
-                "title": "Tools",
+                "title": "Common tools",
                 "heading_html": tools_heading_html,
                 "content": content.assembly.tools,
             },
@@ -59,7 +59,7 @@ sections = [
         "tabs": [
             {
                 "id": "tools",
-                "title": "Tools",
+                "title": "Common tools",
                 "heading_html": tools_heading_html,
                 "content": content.annotation.tools,
             },

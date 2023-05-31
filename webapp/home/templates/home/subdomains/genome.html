@@ -18,29 +18,25 @@
 
 
 <main>
-  {% include 'home/subdomains/components/floating-info-button.html' %}
+  {% include 'home/subdomains/components/info-modal.html' %}
   {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
 
-  <section class="container-flex text-center my-3">
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        <div class="d-flex align-items-center h-100">
-          <img id="header-logo" src="{% static 'home/img/subdomains/genome/logo.png' %}" alt="Galaxy Australia Logo">
-        </div>
-      </div>
-      <div class="col-auto">
-        <div class="header-genome australia d-flex align-items-center h-100">
-          GENOME
-        </div>
-      </div>
-    </div>
+  <section  class="header-genome australia d-flex align-items-center h-100">
+    <img id="header-logo" src="{% static 'home/img/subdomains/genome/logo.png' %}" alt="Galaxy Australia Logo">
+    GENOME
   </section>
 
-  <section class="container-fluid my-5" id="tagline">
+  <section class="my-5" id="tagline">
     {% include 'home/snippets/static-notices.html' %}
 
-    <p class="lead">
-      Welcome to the Galaxy Australia Genomics community site. Get quick access to tools, workflows and tutorials for genome assembly and annotation.
+    <p>
+      Welcome to the Galaxy Australia Genome lab. Get quick access to tools, workflows and tutorials for genome assembly and annotation.
+      <a
+        href="#"
+        data-bs-toggle="modal"
+        data-bs-target="#infoModal">
+        What is this page?
+      </a>
     </p>
   </section>
 

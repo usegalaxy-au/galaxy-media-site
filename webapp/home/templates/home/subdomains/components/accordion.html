@@ -32,7 +32,7 @@
           <div class="col col-auto">
             <a
               href="{{ item.view_link }}"
-              class="btn btn-primary"
+              class="btn btn-galaxy"
               {% if item.view_link|first != '/' %}target="_blank"{% endif %}
               {% if item.view_tip %}
               title="{{ item.view_tip }}"
@@ -49,15 +49,13 @@
           <div class="col col-auto">
             <a
               href="{{ item.button_link }}"
-              class="btn btn-primary"
+              class="btn btn-galaxy"
               {% if item.button_link|first != '/' %}target="_blank"{% endif %}
-              {% if item.button_tip %}
-              title="{{ item.button_tip }}"
+              title="{{ item.button_tip|default:'Run tool' }}"
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"
-              {% endif %}
             >
-              {{ item.button_html|default:'Run <span class="material-icons">play_arrow</span>' }}
+              {{ item.button_html|default:'<span class="material-icons">play_arrow</span>' }}
             </a>
           </div>
           {% endif %}
