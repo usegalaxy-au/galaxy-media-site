@@ -117,7 +117,7 @@ tools = [
         "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fjbrowse%2Fjbrowse",
     },
     {
-        "title_html": '<code>Prokka</code>',
+        "title_html": '<code>Prokka</code> - Genome annotation, prokaryotes only',
         "description_html": "",
         "inputs": [
             {
@@ -162,6 +162,13 @@ help = [
                 </a>
                 from the Galaxy training network explain the process of genome annotation in detail. You can use the <code style="font-size: 1.5rem;">&larr;</code> and <code style="font-size: 1.5rem;">&rarr;</code> keys to navigate through the slides.
             </p>""",
+    },
+    {
+        "title_html": 'Genome annotation overview',
+        "description_html": """
+            <p>The flowchart below shows how you might use your input data (in green) with different Galaxy tools (in blue) to annotate a genome assembly. For example, one pathway would be taking an assembled genome, plus information about repeats, and data from RNA-seq, to run in the Maker pipeline. The annotatations can then be viewed in JBrowse.</p>
+            <img class="img-fluid" src="/static/home/img/subdomains/genome/annotation-overview.png" alt="Genome annotation flowchart">
+            <p class="text-center">A graphical representation of genome annotation</p>""",
     },
     {
         "title_html": 'Can I use Fgenesh++ for annotation?',

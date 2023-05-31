@@ -4,6 +4,8 @@ workflow_heading_html = """A workflow is a series of Galaxy tools that have been
 <a href="https://galaxyproject.org/learn/advanced-workflow/" target="_blank">Learn more.</a>
 """
 
+tools_heading_html = """Common tools are listed here, or search for more in the full tool panel to the left."""
+
 sections = [
     {
         "id": "data",
@@ -12,6 +14,7 @@ sections = [
             {
                 "id": "tools",
                 "title": "Tools",
+                "heading_html": tools_heading_html,
                 "content": content.data.tools,
             },
             {
@@ -34,6 +37,7 @@ sections = [
             {
                 "id": "tools",
                 "title": "Tools",
+                "heading_html": tools_heading_html,
                 "content": content.assembly.tools,
             },
             {
@@ -56,6 +60,7 @@ sections = [
             {
                 "id": "tools",
                 "title": "Tools",
+                "heading_html": tools_heading_html,
                 "content": content.annotation.tools,
             },
             {
