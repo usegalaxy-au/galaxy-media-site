@@ -20,6 +20,7 @@
 <main>
   {% include 'home/subdomains/components/info-modal.html' %}
   {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
+  {% include 'home/subdomains/components/community_connect.html' with subdomain='genome' %}
 
   <section  class="header-genome australia d-flex align-items-center h-100">
     <img id="header-logo" src="{% static 'home/img/subdomains/genome/logo.png' %}" alt="Galaxy Australia Logo">
@@ -54,6 +55,17 @@
       data-bs-target="#feedbackModal"
     >
       Page Feedback
+  </button>
+  </section>
+    <section class="my-5">
+    <h4 class="mb-3">What's happening in the Australian Genomics Community?</h4>
+    <a class="ga-btn" href="">Explore</a>
+    <button
+      class="ga-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#communityConnectModal"
+    >
+      Community information
   </button>
   </section>
 </main>
