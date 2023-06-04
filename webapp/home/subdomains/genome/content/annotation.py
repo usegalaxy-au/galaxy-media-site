@@ -134,7 +134,7 @@ workflows = [
         "title_html": 'Annotation with Maker',
         "description_html": """
             <p>
-              Annotates a genome using multiple rounds of Maker, including gene prediction using SNAP and Augustus
+              Annotates a genome using multiple rounds of Maker, including gene prediction using SNAP and Augustus.
               <br>
               <br>
               Tools:
@@ -143,7 +143,7 @@ workflows = [
               <code>augustus</code>
               <code>busco</code>
               <code>jbrowse</code>
-            </p>""", 
+            </p>""",
         "inputs": [
              {
                 'datatypes': ['fasta'],
@@ -157,7 +157,7 @@ workflows = [
                 'datatypes': ['fasta'],
                 'label': 'proteins',
             },
-        ],          
+        ],
         "button_link": "https://usegalaxy.org.au/u/anna/w/genome-annotation-with-maker",
         "button_tip": "Run in Galaxy AU",
     },
@@ -165,7 +165,7 @@ workflows = [
         "title_html": 'Annotation with Funannotate',
         "description_html": """
             <p>
-              AAnnotates a genome using Funannotate, includes RNAseq data with RNAstar, and protein predictions from EggNOG
+              Annotates a genome using Funannotate, includes RNAseq data with RNAstar, and protein predictions from EggNOG.
               <br>
               <br>
               Tools:
@@ -175,7 +175,7 @@ workflows = [
               <code>busco</code>
               <code>jbrowse</code>
                <code>aegean parseval</code>
-            </p>""", 
+            </p>""",
         "inputs": [
              {
                 'datatypes': ['fasta'],
@@ -193,7 +193,7 @@ workflows = [
                 'datatypes': ['gbk'],
                 'label': 'alternative annotation',
             },
-        ],          
+        ],
         "button_link": "https://usegalaxy.org.au/u/anna/w/annotation-funannotate",
         "button_tip": "Run in Galaxy AU",
     },
