@@ -1,4 +1,5 @@
 # Project paths
+.vscode
 webapp/webapp/logs/
 webapp/webapp/media/
 webapp/webapp/static/
