@@ -4,12 +4,6 @@ from .data import galaxy_au_support_item
 
 tools = [
     {
-        "title_html": 'Importing a genome into Galaxy',
-        "description_html": 'TBC',
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=upload1",
-        "button_html": "Upload data",
-    },
-    {
         "title_html": '<code>MAKER</code> - genome annotation pipeline',
         "description_html": """
             <p>
@@ -131,20 +125,71 @@ tools = [
 
 workflows = [
     {
-        "title_html": 'TBC',
-        "description_html": """<p>TBC</p>""",
+        "title_html": 'Annotation with Maker',
+        "description_html": """
+            <p>
+              Annotates a genome using multiple rounds of Maker, including gene prediction using SNAP and Augustus.
+              <br>
+              <br>
+              Tools:
+              <code>maker</code>
+              <code>snap</code>
+              <code>augustus</code>
+              <code>busco</code>
+              <code>jbrowse</code>
+            </p>""",
         "inputs": [
+             {
+                'datatypes': ['fasta'],
+                'label': 'Genome assembly',
+            },
             {
-                'datatypes': [''],
-                'label': '',
+                'datatypes': ['fastq'],
+                'label': 'RNAseq Illumina reads',
+            },
+            {
+                'datatypes': ['fasta'],
+                'label': 'Proteins',
             },
         ],
-        "view_link": "",
-        "view_html": "",
-        "view_tip": "",
-        "button_link": "",
-        "button_html": "",
-        "button_tip": "",
+        "button_link": "https://usegalaxy.org.au/u/anna/w/genome-annotation-with-maker",
+        "button_tip": "Run in Galaxy AU",
+    },
+    {
+        "title_html": 'Annotation with Funannotate',
+        "description_html": """
+            <p>
+              Annotates a genome using Funannotate, includes RNAseq data with RNAstar, and protein predictions from EggNOG.
+              <br>
+              <br>
+              Tools:
+              <code>RNAstar</code>
+              <code>funannotate</code>
+              <code>eggnog</code>
+              <code>busco</code>
+              <code>jbrowse</code>
+               <code>aegean parseval</code>
+            </p>""",
+        "inputs": [
+             {
+                'datatypes': ['fasta'],
+                'label': 'Genome assembly (soft-masked)',
+            },
+            {
+                'datatypes': ['fastq'],
+                'label': 'RNAseq Illumina reads',
+            },
+            {
+                'datatypes': ['gff3'],
+                'label': 'Alternative annotation',
+            },
+            {
+                'datatypes': ['gbk'],
+                'label': 'Alternative annotation',
+            },
+        ],
+        "button_link": "https://usegalaxy.org.au/u/anna/w/annotation-funannotate",
+        "button_tip": "Run in Galaxy AU",
     },
 ]
 
@@ -229,13 +274,13 @@ help = [
 
             <hr>
 
-            <p class="lead">Genome annotation with <code>Funannotate</code></p>
+            <p class="lead">Genome annotation with Funannotate</p>
             <p>
                 This
                 <a href="https://training.galaxyproject.org/training-material/topics/genome-annotation/tutorials/funannotate/tutorial.html" target="_blank">
                   Galaxy tutorial
                 </a>
-                provides a complete walkthrough of the process of Genome annotation with Funannotate.
+                provides a complete walkthrough of the process of annotation with Funannotate, including the preparation of RNAseq data, structural annotation, functional annotation, visualisation, and comparing annotations.
             </p>
             """,
     },
