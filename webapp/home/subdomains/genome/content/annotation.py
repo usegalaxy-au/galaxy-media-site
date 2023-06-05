@@ -4,12 +4,6 @@ from .data import galaxy_au_support_item
 
 tools = [
     {
-        "title_html": 'Importing a genome into Galaxy',
-        "description_html": 'TBC',
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=upload1",
-        "button_html": "Upload data",
-    },
-    {
         "title_html": '<code>MAKER</code> - genome annotation pipeline',
         "description_html": """
             <p>
@@ -147,7 +141,7 @@ workflows = [
         "inputs": [
              {
                 'datatypes': ['fasta'],
-                'label': 'genome',
+                'label': 'Genome assembly',
             },
             {
                 'datatypes': ['fastq'],
@@ -155,7 +149,7 @@ workflows = [
             },
             {
                 'datatypes': ['fasta'],
-                'label': 'proteins',
+                'label': 'Proteins',
             },
         ],
         "button_link": "https://usegalaxy.org.au/u/anna/w/genome-annotation-with-maker",
@@ -179,7 +173,7 @@ workflows = [
         "inputs": [
              {
                 'datatypes': ['fasta'],
-                'label': 'soft-masked genome',
+                'label': 'Genome assembly (soft-masked)',
             },
             {
                 'datatypes': ['fastq'],
@@ -187,11 +181,11 @@ workflows = [
             },
             {
                 'datatypes': ['gff3'],
-                'label': 'alternative annotation',
+                'label': 'Alternative annotation',
             },
             {
                 'datatypes': ['gbk'],
-                'label': 'alternative annotation',
+                'label': 'Alternative annotation',
             },
         ],
         "button_link": "https://usegalaxy.org.au/u/anna/w/annotation-funannotate",
