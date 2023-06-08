@@ -19,6 +19,7 @@
 
 <main>
   {% include 'home/subdomains/components/info-modal.html' %}
+  {% include 'home/subdomains/components/community-modal.html' %}
   {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
 
   <section  class="header-genome australia d-flex align-items-center h-100">
@@ -46,15 +47,24 @@
   {% endfor %}
 
   <section class="my-5">
-    <h4 class="mb-3">Connect with the Genomics Community</h4>
-    <a class="ga-btn" href="">Link</a>
+    <h4 class="mb-3">Connect with Australian genomics research</h4>
+    <button
+      class="ga-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#communityConnectModal"
+    >
+      Explore
+    </button>
+    <br>
+    <br>
+    <h4 class="mb-3">We want to hear from you!</h4>
     <button
       class="ga-btn"
       data-bs-toggle="modal"
       data-bs-target="#feedbackModal"
     >
-      Page Feedback
-  </button>
+      Leave feedback
+    </button>
   </section>
 </main>
 
