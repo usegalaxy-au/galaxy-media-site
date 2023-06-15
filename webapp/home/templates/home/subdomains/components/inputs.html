@@ -1,0 +1,13 @@
+<p><em>Input data:</em></p>
+<table class="table-inputs mx-3">
+  {% for input in inputs %}
+  <tr>
+    <td>
+      {% for datatype in input.datatypes %}
+      <code>{{ datatype }}</code>
+      {% endfor %}
+    </td>
+    <td>{{ input.label|safe }}</td>
+  </tr>
+  {% endfor %}
+</table>

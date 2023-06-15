@@ -8,7 +8,7 @@
 body {
   color: #2C3143;
   padding: 6rem 2rem 1rem 2rem;
-  min-width: 99vw;
+  min-width: calc(99vw - 2rem);
 }
 h1 {
   margin-bottom: 3rem;
@@ -146,6 +146,12 @@ section {
   justify-content: center;
   width: 100%;
   height: 85vh;
+}
+
+/* Forms */
+input.invalid,
+textarea.invalid {
+  border-color: var(--bs-red);
 }
 
 /* Components */

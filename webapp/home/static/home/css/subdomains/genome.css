@@ -1,3 +1,19 @@
+code {
+  padding: .15rem .35rem;
+  margin: 0 .25rem;
+  color: var(--bs-gray-800);
+  background-color: var(--bs-gray-300);
+  border-radius: 3px;
+}
+#header-logo {
+  height: 5rem;
+  width: 4rem;
+  margin-right: 3rem;
+}
+.header-genome {
+  font-size: 4rem;
+  font-family: 'Exo 2', sans-serif;
+}
 #workflow-table {
   max-height: 400px;
   overflow-y: auto;
@@ -9,4 +25,42 @@
   height: 80px;
   width: auto;
   padding-bottom: 1rem;
+}
+.table-inputs td {
+  padding: .2rem .5rem;
+}
+
+/* BS override */
+ul.nav-pills {
+  background-color: var(--bs-gray-100);
+  padding: 1rem;
+}
+ul.nav-pills li.nav-item {
+  margin: 0 1rem;
+}
+.nav-link {
+  color: var(--color);
+}
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  background-color: var(--color);
+}
+.accordion-button.static::after {
+  content: none;
+}
+.accordion-button.static {
+  cursor: default;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+  color: inherit;
+  background-color: inherit;
+  box-shadow: none;
+}
+.btn.btn-galaxy {
+  color: white;
+  background-color: #25537B;
+  padding: 0.25rem 0.5rem;
 }
