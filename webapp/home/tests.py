@@ -64,18 +64,32 @@ class HomeTestCase(TestCase):
         # Appropriate notices are being shown
         self.assertContains(
             response,
-            TEST_NOTICES[0]['data']['title'],
-        )
-        self.assertContains(
-            response,
-            TEST_NOTICES[1]['data']['title'],
-        )
-        self.assertContains(
-            response,
-            TEST_NOTICES[3]['data']['title'],
+            # shown as rotating (short) notice:
+            TEST_NOTICES[0]['data']['short_description'],
         )
         self.assertNotContains(
             response,
+            # shown as rotating (short) notice (should not display body):
+            TEST_NOTICES[0]['data']['body'],
+        )
+        self.assertContains(
+            response,
+            # shown as rotating (short) notice:
+            TEST_NOTICES[1]['data']['short_description'],
+        )
+        self.assertContains(
+            response,
+            # shown as block (long) notice:
+            TEST_NOTICES[3]['data']['title'],
+        )
+        self.assertContains(
+            response,
+            # shown as block (long) notice:
+            TEST_NOTICES[3]['data']['body'].split('\n')[-1],
+        )
+        self.assertNotContains(
+            response,
+            # unpublished notice:
             TEST_NOTICES[2]['data']['title'],
         )
 
