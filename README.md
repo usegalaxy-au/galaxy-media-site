@@ -4,6 +4,9 @@ A simple content site for a Galaxy instance, built with Django.
 
 ---
 
+For developer docs, please [check out the wiki](https://github.com/neoformit/galaxy-content-site/wiki/Development).
+[Administration](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration) is also well-documented there.
+
 ## What it does
 
 This web application is designed to host content related to a [Galaxy](https://galaxyproject.org/) instance. It is lightweight, easy to install and maintain, and provides interfaces for publishing:
@@ -24,7 +27,6 @@ The site is designed to be fully navigable from within your Galaxy instance, wit
 
 ![site navigation](.img/iframe-view.png)
 
-For docs on web administration, check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration).
 
 
 **A note on iframe behaviour**
