@@ -106,11 +106,11 @@
 
         <div class="col">
           <p class="text-center">
-            <a class="ga-btn" href="https://usegalaxy.org.au/tiaas" target="_blank">
+            <a class="ga-btn" data-nostrip="true" href="https://usegalaxy.org.au/tiaas" target="_blank">
               Learn more
             </a>
             <br>
-            <a class="ga-btn" href="https://usegalaxy.org.au/tiaas/new" target="_blank">
+            <a class="ga-btn" data-nostrip="true" href="https://usegalaxy.org.au/tiaas/new" target="_blank">
               Enquire now
             </a>
           </p>
@@ -299,7 +299,7 @@
           if (
             links[i].href
             && links[i].href.includes('//usegalaxy.org.au')
-            && !links[i].href.includes('tiaas')
+            && !links[i].dataset.nostrip
           ) {
             console.log(`Remove href from anchor: ${links[i].href}`);
             $(links[i]).removeAttr("href");

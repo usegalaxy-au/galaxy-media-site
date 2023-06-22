@@ -204,7 +204,7 @@
             if (
               links[i].href
               && links[i].href.includes('//usegalaxy.org.au')
-              && !links[i].href.includes('tiaas')
+              && !links[i].dataset.nostrip
             ) {
               console.log(`Remove href from anchor: ${links[i].href}`);
               $(links[i]).removeAttr("href");
