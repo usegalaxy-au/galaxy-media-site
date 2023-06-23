@@ -178,6 +178,8 @@
         }
       }
 
+      const subdomainLanding = () => window.location.pathname.includes('/landing/');
+
       $(document).ready( () => {
         // Restyle navbar if not embedded in iframe
         if ( !inIframe() ) {
@@ -203,8 +205,8 @@
           for (var i in links) {
             if (
               links[i].href
-              && links[i].href.includes('//usegalaxy.org.au')
-              && !links[i].dataset.nostrip
+              && links[i].href == ('https://usegalaxy.org.au')
+              && !subdomainLanding()
             ) {
               console.log(`Remove href from anchor: ${links[i].href}`);
               $(links[i]).removeAttr("href");
