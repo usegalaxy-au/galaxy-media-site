@@ -47,7 +47,7 @@ tools = [
         "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Ffastp%2Ffastp",
     },
     {
-        "title_html": '<code>NanoPlot</code> - visulalize Oxford Nanopore data',
+        "title_html": '<code>NanoPlot</code> - visualize Oxford Nanopore data',
         "description_html": '<p>A plotting suite for Oxford Nanopore sequencing data and alignments.</p>',
         "inputs": [
             {'datatypes': ['fastq']},
