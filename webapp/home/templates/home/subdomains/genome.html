@@ -1,5 +1,11 @@
 {% extends 'home/header.html' %}
 
+{% comment %}
+  This template renders the Genome Lab subdomain landing page.
+  See webapp/home/subdomains/genome for content to be rendered into this
+  template (sections, tools, workflows, etc).
+{% endcomment %}
+
 {% load static %}
 {% load markdown %}
 
@@ -15,7 +21,6 @@
 
 
 {% block content %}
-
 
 <main>
   {% include 'home/subdomains/components/info-modal.html' %}
