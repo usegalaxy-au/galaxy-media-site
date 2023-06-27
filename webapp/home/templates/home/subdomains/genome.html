@@ -24,14 +24,14 @@
 
   <section  class="header-genome australia d-flex align-items-center h-100">
     <img id="header-logo" src="{% static 'home/img/subdomains/genome/logo.png' %}" alt="Galaxy Australia Logo">
-    GENOMES LAB
+    GENOME LAB
   </section>
 
   <section class="my-5" id="tagline">
     {% include 'home/snippets/static-notices.html' %}
 
     <p>
-      Welcome to the Galaxy Australia Genomes Lab. Get quick access to tools, workflows and tutorials for genome assembly and annotation.
+      Welcome to the Galaxy Australia Genome Lab. Get quick access to tools, workflows and tutorials for genome assembly and annotation.
       <a
         href="#"
         data-bs-toggle="modal"
@@ -42,7 +42,6 @@
   </section>
 
   {% for section in sections %}
-    <!-- Data section only for now -->
     {% include 'home/subdomains/components/section.html' with section=section %}
   {% endfor %}
 
@@ -57,7 +56,7 @@
     </button>
     <br>
     <br>
-    <h4 class="mb-3">What do you think of the Genomes Lab?</h4>
+    <h4 class="mb-3">What do you think of the Genome Lab?</h4>
     <button
       class="ga-btn"
       data-bs-toggle="modal"
@@ -82,16 +81,4 @@
       item.target = '_blank';
     }
   });
-
-  // TODO: Remove - development only (don't leave behind TBC text)
-  $('p').filter( (i, el) => el.innerText.toLowerCase().includes('tbc') ).each(
-    (i, item) => {
-      item.innerHTML = item.innerHTML
-        .replace('TBC', '<span class="text-danger fw-bold">TBC</span>')
-        .replace('tbc', '<span class="text-danger fw-bold">TBC</span>');
-      $(item).closest('.accordion-item').find('.accordion-button').addClass('bg-danger');
-      const paneId = $(item).closest('.tab-pane')[0].id;
-      $(`#${paneId.replace('-panel', '-tab')}`).addClass('bg-danger');
-    }
-  );
 {% endblock %}
