@@ -6,6 +6,22 @@ import_workflow_tip = "Import to Galaxy Australia"
 view_workflow_tip = "View in WorkflowHub"
 
 tools = [
+    # {   # Accordion item schema:
+    #     "title_html": '',
+    #     "description_html": """""",
+    #     "inputs": [
+    #         {
+    #             'datatypes': [''],
+    #             'label': '',
+    #         },
+    #     ],
+    #     "button_link": "",
+    #     "button_html": "",
+    #     "button_tip": "",
+    #     "view_link": "",
+    #     "view_html": "",
+    #     "view_tip": "",
+    # },
     {
         "title_html": '<code>Hifiasm</code> - assembly with PacBio HiFi data',
         "description_html": """
@@ -15,7 +31,7 @@ tools = [
         "inputs": [
             {'datatypes': ['fasta']},
         ],
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fhifiasm%2Fhifiasm",
+        "button_link": "https://genome.usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fhifiasm%2Fhifiasm",
     },
     {
         "title_html": '<code>Flye</code> - assembly with PacBio or Nanopore data',
@@ -29,7 +45,7 @@ tools = [
             {'datatypes': ['fasta']},
             {'datatypes': ['fastq']},
         ],
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fflye%2Fflye",
+        "button_link": "https://genome.usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fflye%2Fflye",
     },
     {
         "title_html": '<code>Unicycler</code> - assembly with Illumina, PacBio or Nanopore data - bacteria only',
@@ -40,7 +56,7 @@ tools = [
         "inputs": [
             {'datatypes': ['fastq']},
         ],
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler",
+        "button_link": "https://genome.usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler",
     },   
     {
         "title_html": '<code>Salsa</code> - scaffold assembly with HiC data',
@@ -53,7 +69,7 @@ tools = [
         "inputs": [
             {'datatypes': ['fasta']},
         ],
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fsalsa%2Fsalsa",
+        "button_link": "https://genome.usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fsalsa%2Fsalsa",
     },
     {
         "title_html": '<code>Quast</code> - assess genome assembly quality',
@@ -64,7 +80,7 @@ tools = [
         "inputs": [
             {'datatypes': ['fasta']},
         ],
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fquast%2Fquast",
+        "button_link": "https://genome.usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fquast%2Fquast",
     },
     {
         "title_html": '<code>Busco</code> - assess genome assembly quality',
@@ -75,7 +91,7 @@ tools = [
         "inputs": [
             {'datatypes': ['fasta']},
         ],
-        "button_link": "https://usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fbusco%2Fbusco",
+        "button_link": "https://genome.usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fbusco%2Fbusco",
     },
 ]
 
@@ -108,7 +124,7 @@ workflows_pacbio = [
                 'label': 'PacBio <em>subreads.bam</em>',
             },
         ],
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=220",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=220",
         "button_tip": import_workflow_tip,
         "view_link": "https://workflowhub.eu/workflows/220",
         "view_tip": view_workflow_tip,
@@ -125,7 +141,7 @@ workflows_pacbio = [
                 'label': 'HiFi reads',
             },
         ],
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=221",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=221",
         "button_tip": import_workflow_tip,
         "view_link": "https://workflowhub.eu/workflows/221",
         "view_tip": view_workflow_tip,
@@ -146,7 +162,7 @@ workflows_pacbio = [
                 'label': 'Primary assembly contigs',
             },
         ],
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=237",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=237",
         "button_tip": import_workflow_tip,
         "view_link": "https://workflowhub.eu/workflows/237",
         "view_tip": view_workflow_tip,
@@ -163,7 +179,7 @@ workflows_pacbio = [
                 'label': 'Primary assembly contigs',
             },
         ],
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=403",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=403",
         "button_tip": import_workflow_tip,
         "view_link": "https://workflowhub.eu/workflows/403",
         "view_tip": view_workflow_tip,
@@ -197,7 +213,7 @@ workflows_nanopore = [
                 'label': 'Long reads (may be raw, filtered and/or corrected)',
             },
         ],
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=225",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=225",
         "button_tip": import_workflow_tip,
         "view_link": "https://workflowhub.eu/workflows/225",
         "view_tip": view_workflow_tip,
@@ -222,7 +238,7 @@ workflows_nanopore = [
                 'label': 'Short reads to be used for polishing (R1 only)',
             },
         ],
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=226",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=226",
         "button_tip": import_workflow_tip,
         "view_link": "https://workflowhub.eu/workflows/226",
         "view_tip": view_workflow_tip,
@@ -245,7 +261,7 @@ workflows_nanopore = [
         ],
         "view_link": "https://workflowhub.eu/workflows/229",
         "view_tip": view_workflow_tip,
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=229",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=229",
         "button_tip": import_workflow_tip,
     },
 ]
@@ -280,7 +296,7 @@ workflows_hic = [
         ],
         "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF1-kmer_profiling_and_QC:VGP",
         "view_tip": view_workflow_tip,
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF1-kmer_profiling_and_QC",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF1-kmer_profiling_and_QC",
         "button_tip": import_workflow_tip,
     },
     {
@@ -319,7 +335,7 @@ workflows_hic = [
         ],
         "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF4-Assembly_with_HiC:VGP",
         "view_tip": view_workflow_tip,
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF4-Assembly_with_HiC",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF4-Assembly_with_HiC",
         "button_tip": import_workflow_tip,
     },
     {
@@ -352,7 +368,7 @@ workflows_hic = [
         ],
         "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF6-Purgedups:VGP",
         "view_tip": view_workflow_tip,
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF6-Purgedups",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF6-Purgedups",
         "button_tip": import_workflow_tip,
     },
     {
@@ -377,7 +393,7 @@ workflows_hic = [
         ],
         "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF8a-Scaffolding_HiC_Yahs:VGP",
         "view_tip": view_workflow_tip,
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF8a-Scaffolding_HiC_Yahs",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF8a-Scaffolding_HiC_Yahs",
         "button_tip": import_workflow_tip,
     },
     {
@@ -394,7 +410,7 @@ workflows_hic = [
         ],
         "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF9-Decontamination:VGP",
         "view_tip": view_workflow_tip,
-        "button_link": "https://usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF9-Decontamination",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF9-Decontamination",
         "button_tip": import_workflow_tip,
     },
 ]
