@@ -1,3 +1,7 @@
+"""Content for landing page is modularize in Python code and imported from this
+file.
+"""
+
 from . import content
 
 workflow_heading_html = """A workflow is a series of Galaxy tools that have been linked together to perform a specific analysis. You can use and customize the example workflows below.
