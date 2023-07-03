@@ -265,3 +265,9 @@ class FgeneshRequestForm(forms.Form):
                 'scheme': request.scheme,
             }),
         )
+
+
+ACCESS_FORMS = {
+    'alphafold': AlphafoldRequestForm,
+    'fgenesh': FgeneshRequestForm,
+}

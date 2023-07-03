@@ -11,3 +11,8 @@ def homepage(request):
 def support(request):
     """Redirect requests to the homepage."""
     return redirect('/request')
+
+
+def user_request_alphafold(request):
+    """Redirect alphafold requests to generic access request form."""
+    return redirect('/request/access/alphafold')

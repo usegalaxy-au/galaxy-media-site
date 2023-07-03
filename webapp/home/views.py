@@ -19,7 +19,7 @@ from .forms import (
     ResourceRequestForm,
     QuotaRequestForm,
     SupportRequestForm,
-    AlphafoldRequestForm,
+    ACCESS_FORMS,
 )
 from . import subdomains
 
@@ -132,25 +132,27 @@ def user_request_support(request):
     return render(request, 'home/requests/support.html', {'form': form})
 
 
-def user_request_alphafold(request):
-    """Handle alphafold access requests."""
-    form = AlphafoldRequestForm()
+def user_request_resource_access(request, resource):
+    """Handle resource (e.g. tool) access requests."""
+    Form = ACCESS_FORMS[resource]
+    form = Form()
     if request.POST:
-        form = AlphafoldRequestForm(request.POST)
+        form = Form(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             if is_registered_galaxy_email(email):
-                logger.info(f"Dispatching AlphaFold request for email {email}")
+                logger.info(f"Dispatching {resource} request for email {email}")
                 form.dispatch()
             else:
-                logger.info(f"Dispatching AlphaFold warning to {email}")
+                logger.info(f"Dispatching {resource} warning to {email}")
                 form.dispatch_warning(request)
-            return render(request, 'home/requests/alphafold-success.html', {
-                'email': email,
+            success_template = 'home/requests/access-request-success.html'
+            return render(request, success_template, {
+                'form': form.cleaned_data,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
-    return render(request, 'home/requests/alphafold.html', {'form': form})
+    template = f'home/requests/access/{resource}.html'
+    return render(request, template, {'form': form})
 
 
 def page(request):
