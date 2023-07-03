@@ -73,10 +73,11 @@ tools = [
     },
     {
         "title_html": '<code>Meryl</code> - count kmers',
-        "description_html": '<p>Prepare kmer count histogram for input to GenomeScope.</p>',
+        "description_html": '<p>Prepare kmer count histogram for input to GenomeScope. First run with sequence reads as input, and choose "count operations"; then run again using the created meryldb file and choose "generate a histogram".</p>',
         "inputs": [
             {'datatypes': ['fastq']},
             {'datatypes': ['fasta']},
+            {'datatypes': ['meryldb']},
         ],
         "button_link": "https://genome.usegalaxy.org.au/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fmeryl%2Fmeryl",
     },
