@@ -10,7 +10,9 @@ from django.core.mail import EmailMultiAlternatives
 from captcha import fields
 from utils.institution import is_institution_email
 from utils import postal
+
 from . import validators
+from .fields import OtherChoiceField
 
 
 logger = logging.getLogger('django')
@@ -210,6 +212,52 @@ class AlphafoldRequestForm(forms.Form):
         dispatch_form_mail(
             to_address=self.cleaned_data['email'],
             subject="Access to AlphaFold could not be granted",
+            text=render_to_string(f'{template}.txt', {'form': self}),
+            html=render_to_string(f'{template}.html', {
+                'form': self,
+                'hostname': settings.HOSTNAME,
+                'scheme': request.scheme,
+            }),
+        )
+
+
+class FgeneshRequestForm(forms.Form):
+    """Form to request AlphaFold access."""
+
+    RESOURCE_NAME = 'FGenesH++'
+    SPECIES_CHOICES = (  # TODO: populate choices from API?
+        (0, 'Caenorhabditis elegans (NR)'),
+        (1, 'Gallus gallus domesticus (NR)'),
+        (2, 'Gene matrix 522 species'),
+        (3, 'Non-redundant DB'),
+        (4, 'Other, please specify:'),
+    )
+
+    name = forms.CharField()
+    email = forms.EmailField(validators=[validators.institutional_email])
+    institution = forms.CharField()
+    agree_terms = forms.BooleanField()
+    agree_acknowledge = forms.BooleanField()
+    agree_citation = forms.BooleanField()
+    species = OtherChoiceField(choices=SPECIES_CHOICES)
+
+    def dispatch(self):
+        """Dispatch form content as email."""
+        # TODO: implement auto-group assign and email confirmation only
+        template = 'home/requests/mail/access-request'
+        dispatch_form_mail(
+            reply_to=self.cleaned_data['email'],
+            subject="New FGenesH request on Galaxy Australia",
+            text=render_to_string(f'{template}.txt', {'form': self}),
+            html=render_to_string(f'{template}.html', {'form': self}),
+        )
+
+    def dispatch_warning(self, request):
+        """Dispatch warning email to let user know their email is invalid."""
+        template = 'home/requests/mail/invalid-institutional-email'
+        dispatch_form_mail(
+            to_address=self.cleaned_data['email'],
+            subject="Access to FGenesH++ could not be granted",
             text=render_to_string(f'{template}.txt', {'form': self}),
             html=render_to_string(f'{template}.html', {
                 'form': self,
