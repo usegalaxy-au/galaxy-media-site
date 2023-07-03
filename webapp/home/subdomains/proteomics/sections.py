@@ -2,6 +2,6 @@
 file.
 """
 
-from . import content
+# from . import content
 
 sections = []
