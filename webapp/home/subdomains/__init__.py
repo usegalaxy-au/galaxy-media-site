@@ -1,1 +1,1 @@
-from . import genome
+from . import genome, proteomics

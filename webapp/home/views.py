@@ -60,11 +60,14 @@ def landing(request, subdomain):
 
     try:
         sections = getattr(subdomains, subdomain).sections
-    except AttributeError:
+    except AttributeError as exc:
         raise AttributeError(
-            f"No content files found for subdomain '{subdomain}'.")
+            f"{exc}\n\n"
+            f"No content files found for subdomain '{subdomain}'"
+            " at 'webapp/home/subdomains/{subdomain}/'")
 
     return render(request, template, {
+        'name': subdomain,
         'notices': Notice.get_notices_by_type(request, subsite=subdomain),
         'sections': sections,
         'form': SupportRequestForm(),

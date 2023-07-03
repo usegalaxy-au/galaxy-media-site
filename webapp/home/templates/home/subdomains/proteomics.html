@@ -1,8 +1,8 @@
 {% extends 'home/header.html' %}
 
 {% comment %}
-  This template renders the Genome Lab subdomain landing page.
-  See webapp/home/subdomains/genome for content to be rendered into this
+  This template renders the Proteomics Lab subdomain landing page.
+  See webapp/home/subdomains/proteomics for content to be rendered into this
   template (sections, tools, workflows, etc).
 {% endcomment %}
 
@@ -22,20 +22,20 @@
 {% block content %}
 
 <main>
-  {% include 'home/subdomains/components/genome-community-modal.html' %}
-  {% include 'home/subdomains/components/info-modal.html' with subdomain='genome' site_name="Genome Lab" researchers="genomics" %}
-  {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
+  {% include 'home/subdomains/components/proteomics-community-modal.html' %}
+  {% include 'home/subdomains/components/info-modal.html' with subdomain='proteomics' site_name="Proteomics Lab" researchers="proteomics"  %}
+  {% include 'home/subdomains/components/feedback.html' with subdomain='proteomics' %}
 
   <section  class="header-subdomain australia d-flex align-items-center h-100">
-    <img id="header-logo" src="{% static 'home/img/subdomains/'|add:name|add:'/logo.png' %}" alt="Galaxy Australia Logo">
-    GENOME LAB
+    <img id="header-logo" src="{% static 'home/img/subdomains/'|add:name|add:'/logo.png' %}" alt="Galaxy Australia Logo" style="width: 5rem;">
+    PROTEOMICS LAB
   </section>
 
   <section class="my-5" id="tagline">
     {% include 'home/snippets/static-notices.html' %}
 
     <p>
-      Welcome to the Galaxy Australia Genome Lab. Get quick access to tools, workflows and tutorials for genome assembly and annotation.
+      Welcome to the Galaxy Australia Proteomics Lab. This page is currently under construction. Watch this space!
       <br>
       <a
         href="#"
@@ -50,18 +50,20 @@
     {% include 'home/subdomains/components/section.html' with section=section %}
   {% endfor %}
 
+<!--
   <section class="my-5">
-    <h4 class="mb-3">What's happening in Australian genomics research?</h4>
+    <h4 class="mb-3">What's happening in Australian proteomics research?</h4>
     <button
       class="ga-btn"
       data-bs-toggle="modal"
       data-bs-target="#communityConnectModal"
+      disabled
     >
       Explore
     </button>
     <br>
     <br>
-    <h4 class="mb-3">What do you think of the Genome Lab?</h4>
+    <h4 class="mb-3">What do you think of the Proteomics Lab?</h4>
     <button
       class="ga-btn"
       data-bs-toggle="modal"
@@ -70,6 +72,7 @@
       Give feedback
     </button>
   </section>
+-->
 </main>
 
 {% endblock %}
