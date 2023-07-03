@@ -55,6 +55,8 @@ tools = [
         "description_html": """
             <p>
               Hybrid assembly pipeline for bacterial genomes, uses both Illumina reads and long reads (PacBio or Nanopore).
+              One of the outputs is an assembly graph - use the tool <code>Bandage image</code> to view this.
+              Another output is the assembly in fasta format - use the tool <code>Fasta Statistics</code> to summarise the information.
               </p>""",
         "inputs": [
             {'datatypes': ['fastq']},
