@@ -170,6 +170,8 @@ class SupportRequestForm(forms.Form):
 class AlphafoldRequestForm(forms.Form):
     """Form to request AlphaFold access."""
 
+    RESOURCE_NAME = 'AlphaFold'
+
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
     institution = forms.CharField()
@@ -204,7 +206,7 @@ class AlphafoldRequestForm(forms.Form):
 
     def dispatch_warning(self, request):
         """Dispatch warning email to let user know their email is invalid."""
-        template = 'home/requests/mail/alphafold-email-invalid'
+        template = 'home/requests/mail/invalid-institutional-email'
         dispatch_form_mail(
             to_address=self.cleaned_data['email'],
             subject="Access to AlphaFold could not be granted",
