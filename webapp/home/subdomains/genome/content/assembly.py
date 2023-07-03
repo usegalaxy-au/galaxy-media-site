@@ -26,7 +26,10 @@ tools = [
         "title_html": '<code>Hifiasm</code> - assembly with PacBio HiFi data',
         "description_html": """
             <p>
-              A haplotype-resolved assembler for PacBio HiFi reads.
+              A haplotype-resolved assembler for PacBio HiFi reads. 
+              One of the outputs is a primary assembly contig graph. 
+              You can convert this to a fasta file with the tool <code>GFA to FASTA</code>,
+              and then run <code>Fasta Statistics</code>
             </p>""",
         "inputs": [
             {'datatypes': ['fasta']},
