@@ -10,9 +10,13 @@ logger = logging.getLogger('django')
 
 def is_registered_galaxy_email(email):
     """Return True if a Galaxy account exists on the given server."""
+    if settings.MOCK_GALAXY_EMAIL_VALIDATION:
+        return True
+
     if not (settings.GALAXY_URL and settings.GALAXY_API_KEY):
         logging.error("Trying to access Galaxy with no credentials set!")
         return False
+
     gi = GalaxyInstance(settings.GALAXY_URL, key=settings.GALAXY_API_KEY)
     t0 = time.time()
     users = gi.users.get_users()  # Cache this?
