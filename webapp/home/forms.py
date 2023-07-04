@@ -227,13 +227,12 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
 class FgeneshRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
-    RESOURCE_NAME = 'FGenesH++'
+    RESOURCE_NAME = 'Fgenesh++'
     SPECIES_CHOICES = (  # TODO: populate choices from remote API/GitHub?
-        (0, 'Caenorhabditis elegans (NR)'),
-        (1, 'Gallus gallus domesticus (NR)'),
-        (2, 'Gene matrix 522 species'),
-        (3, 'Non-redundant DB'),
-        (4, 'Other, please specify'),
+        ('1', 'Caenorhabditis elegans (Non-redundant database)'),
+        ('2', 'Gallus gallus domesticus (Non-redundant database)'),
+        ('3', 'Gene matrix (522 species)'),
+        ('0', 'Other, please specify'),
     )
 
     name = forms.CharField()
@@ -241,7 +240,6 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     institution = forms.CharField()
     agree_terms = forms.BooleanField()
     agree_acknowledge = forms.BooleanField()
-    agree_citation = forms.BooleanField()
     species = forms.ChoiceField(choices=SPECIES_CHOICES)
     species_other = forms.CharField(required=False)
 

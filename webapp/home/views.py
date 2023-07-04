@@ -7,7 +7,7 @@ from django.template import TemplateDoesNotExist
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.template.loader import get_template
-# from pprint import pformat
+from pprint import pformat
 
 from utils import aaf
 from utils.galaxy import is_registered_galaxy_email
@@ -141,7 +141,8 @@ def user_request_resource_access(request, resource):
         if form.is_valid():
             email = form.cleaned_data['email']
             if is_registered_galaxy_email(email):
-                logger.info(f"Dispatching {resource} request for email {email}")
+                logger.info(
+                    f"Dispatching {resource} request for email {email}")
                 form.dispatch()
             else:
                 logger.info(f"Dispatching {resource} warning to {email}")
@@ -151,6 +152,7 @@ def user_request_resource_access(request, resource):
                 'form': form.cleaned_data,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
+        logger.info(pformat(form.errors))  # TODO: remove
     template = f'home/requests/access/{resource}.html'
     return render(request, template, {'form': form})
 

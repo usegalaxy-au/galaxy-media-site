@@ -1,0 +1,257 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container mt-4">
+
+  <div class="mb-10">
+    <h2> Galaxy Australia Fgenesh++ Access Request </h2>
+    <small>
+      <a href="/request">
+        <span class="material-icons">arrow_back</span>
+        Back to support menu
+      </a>
+    </small>
+  </div>
+
+  <p class="lead">
+    Fgenesh++ is a bioinformatics pipeline for automatic prediction of genes in eukaryotic genomes.  It can produce fully automated genome annotations of a quality similar to manual annotation, and is extremely fast compared to some other automated genome annotation pipelines.
+  </p>
+  <p class="lead mb-10">
+    Fgenesh++ is available on Galaxy Australia for Australian researchers. Please apply for access, using your institutional email.
+  </p>
+
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <div class="row mb-5">
+      <div class="col-sm-12">
+        <label for="nameInput" class="form-label">Name</label>
+        {{ form.name.errors }}
+        <input class="form-control" id="nameInput" type="text" name="name"
+          value="{{form.name.value|default_if_none:''}}" required
+        >
+      </div>
+
+      <div class="col-sm-12">
+        <label for="emailInput" class="form-label">Galaxy account email</label>
+        {{ form.email.errors }}
+
+        <input class="form-control" id="emailInput" type="email" name="email"
+          value="{{form.email.value|default_if_none:''}}"
+          aria-describedby="emailHelp"
+          onclick="$('#emailHelp').show();"
+          required
+          autocomplete="off"
+        >
+
+        <div
+          class="form-text"
+          id="emailHelp"
+          style="display: none;"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          data-bs-title='Go to User > Preferences > Manage information to see your registered email address on usegalaxy.org.au'
+        >
+          <div class="alert alert-danger">
+            <ul style="margin: 0;">
+              <li>
+                Your Galaxy Australia account must be registered to this email
+                for us to provide access
+              </li>
+              <li>
+                Access will be provided only to recognised
+                <a href="/institutions">
+                  Australian institution email addresses
+                </a>
+              </li>
+            <ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <label for="institutionInput" class="form-label">Institution</label>
+        {{ form.institution.errors }}
+        <input
+          class="form-control"
+          id="institutionInput"
+          name="institution"
+          type="text"
+          value="{{form.institution.value|default_if_none:''}}"
+          aria-describedby="institutionHelp"
+          required
+        />
+        <div class="form-text" id="institutionHelp">
+          Your department, organization or research institute
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-5">
+      <div class="col-sm-12 mb-5">
+        <p>
+          The
+          <a href="{% static 'home/documents/fgenesh-biocommons-terms.pdf' %}">
+            FGenesH++ Terms of Use and Acknowledgement Statement
+          </a>
+          are required to be acknowledged prior to access.
+        </p>
+        <div class="form-check">
+          {{ form.agree_terms.errors }}
+          <input
+            class="form-check-input"
+            id="agreeTermsInput"
+            name="agree_terms"
+            type="checkbox"
+            required
+            {% if form.agree_terms.value %}checked{% endif %}
+          />
+          <label for="agreeTermsInput" class="form-check-label">
+            I, the Principal Investigator have read and acknowledged the
+            Fgenesh++ Service Terms of Use and Policies
+          </label>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="col-sm-12 mb-5">
+        <p>
+          The Australian Fgenesh++ Service is provided by the Australian
+          Biocommons in collaboration with and underpinned by resources
+          provided by Pawsey Supercomputing Centre and Bioplatforms Australia.
+          When papers acknowledge the Australian Fgenesh++ Service, they
+          support continued research infrastructure investments by institutions
+          and governments. Please acknowledge the Australian Fgenesh++ Service
+          with the following statement:
+        </p>
+        <blockquote class="blockquote">
+          This work was supported by the Australian Fgenesh++ Service
+          (<a
+            href="https://biocommons.org.au/fgenesh-plus-plus"
+            target="_blank"
+          >https://biocommons.org.au/fgenesh-plus-plus</a>)
+          provided by the Australian BioCommons and the Pawsey Supercomputing
+          Centre.
+        </blockquote>
+        <div class="form-check">
+          {{ form.agree_acknowledge.errors }}
+          <input
+            class="form-check-input"
+            id="agreeAcknowledgeInput"
+            name="agree_acknowledge"
+            type="checkbox"
+            required
+            {% if form.agree_acknowledge.value %}checked{% endif %}
+          />
+          <label for="agreeAcknowledgeInput" class="form-check-label">
+            I, the Principal Investigator or End User will cite the use of the
+            Fgenesh++ Service using the above acknowledgement statement and
+            web address.
+          </label>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="col-sm-12">
+        <p>
+          Matrices from your species / or related species will need to be
+          installed prior to use. You can request these during your
+          application. Please indicate the species you intend to annotate:
+        </p>
+        {{ form.species.errors }}
+        {% for value, text in form.species.field.choices %}
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            name="species"
+            type="radio"
+            id="species{{ forloop.counter }}"
+            value="{{ value }}"
+            required
+            {% if form.species.value == value %}checked{% endif %}
+          />
+          <label for="species{{ forloop.counter }}" class="form-check-label">
+            {{ text }}
+          </label>
+        </div>
+        {% endfor %}
+        <div class="show-other">
+          {{ form.species_other.errors }}
+          <div class="input-group">
+            <input
+              class="form-control"
+              type="text"
+              name="species_other"
+              maxlength="150"
+              value="{{ form.species_other.value|default_if_none:'' }}"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="container mb-10">
+      Privacy Collection Notice By completing this form you agree that your
+      responses will be provided to the Australian BioCommons and Galaxy
+      Australia and will be used solely for the purposes of determining
+      suitability for access to the Australian AlphaFold Service. Your
+      responses will be protected against unauthorised access and use; providing
+      your name is required to enable any follow ups. For more information,
+      please see the
+      <a href="https://www.biocommons.org.au/privacy/">
+        BioCommons Privacy Statement</a>.
+    </div>
+
+    <div class="row mb-10">
+      <div class="col text-center">
+        <button class='ga-btn' type="submit"> Submit </button>
+      </div>
+    </div>
+  </form>
+</main>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+  $('input[type="radio"][name="species"]').click( e => {
+    const other = $(`input[name="${e.target.name}_other"]`).closest('.show-other');
+    if (e.target.value === '0') {
+      other.find('input').prop('required', true);
+      other.fadeIn(250);
+    } else {
+      other.find('input').prop('required', false);
+      other.fadeOut(250);
+    }
+  });
+  $('input[type="radio"][name="species"][value="0"][checked]').click();
+
+  $('form').submit( (e) => {
+    $('button[type="submit"]').prop('disabled', true);
+    $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
+  });
+</script>
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

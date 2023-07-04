@@ -30,3 +30,10 @@ ul.errorlist {
 [class^="col"] {
   padding-bottom: 1rem;
 }
+.blockquote {
+  opacity: 0.7;
+  font-style: italic;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-left: 5px solid var(--border);
+}

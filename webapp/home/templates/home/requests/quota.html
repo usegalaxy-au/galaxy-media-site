@@ -218,8 +218,15 @@
 <script type="text/javascript">
   $('input[type="radio"][name="disk_tb"]').click( e => {
     const other = $(`input[name="${e.target.name}_other"]`).closest('.show-other');
-    event.target.value === '0' ? other.fadeIn(250) : other.fadeOut(250);
+    if (e.target.value === '0') {
+      other.find('input').prop('required', true);
+      other.fadeIn(250);
+    } else {
+      other.find('input').prop('required', false);
+      other.fadeOut(250);
+    }
   });
+  $('input[type="radio"][name="disk_tb"][value="0"][checked]').click();
 
   $('form').submit( (e) => {
     $('button[type="submit"]').prop('disabled', true);
