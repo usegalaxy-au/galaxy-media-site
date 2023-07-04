@@ -12,7 +12,6 @@ from utils.institution import is_institution_email
 from utils import postal
 
 from . import validators
-from .fields import OtherChoiceField
 
 
 logger = logging.getLogger('django')
@@ -169,19 +168,8 @@ class SupportRequestForm(forms.Form):
         )
 
 
-class AlphafoldRequestForm(forms.Form):
-    """Form to request AlphaFold access."""
-
-    RESOURCE_NAME = 'AlphaFold'
-
-    name = forms.CharField()
-    email = forms.EmailField(validators=[validators.institutional_email])
-    institution = forms.CharField()
-    species = forms.CharField(required=False)
-    domain = forms.CharField(required=False)
-    proteins = forms.CharField(required=False)
-    size_aa = forms.IntegerField(required=False)
-    count_aa = forms.IntegerField(required=False)
+class BaseAccessRequestForm(forms.Form):
+    """Abstract form for requesting access to a resource."""
 
     def clean_email(self):
         """Validate email address."""
@@ -198,10 +186,10 @@ class AlphafoldRequestForm(forms.Form):
 
     def dispatch(self):
         """Dispatch form content as email."""
-        template = 'home/requests/mail/alphafold'
+        template = 'home/requests/mail/access-request'
         dispatch_form_mail(
             reply_to=self.cleaned_data['email'],
-            subject="New AlphaFold request on Galaxy Australia",
+            subject=f"New {self.RESOURCE_NAME} request on Galaxy Australia",
             text=render_to_string(f'{template}.txt', {'form': self}),
             html=render_to_string(f'{template}.html', {'form': self}),
         )
@@ -211,7 +199,7 @@ class AlphafoldRequestForm(forms.Form):
         template = 'home/requests/mail/invalid-institutional-email'
         dispatch_form_mail(
             to_address=self.cleaned_data['email'],
-            subject="Access to AlphaFold could not be granted",
+            subject=f"Access to {self.RESOURCE_NAME} could not be granted",
             text=render_to_string(f'{template}.txt', {'form': self}),
             html=render_to_string(f'{template}.html', {
                 'form': self,
@@ -221,16 +209,31 @@ class AlphafoldRequestForm(forms.Form):
         )
 
 
-class FgeneshRequestForm(forms.Form):
+class AlphafoldRequestForm(BaseAccessRequestForm):
+    """Form to request AlphaFold access."""
+
+    RESOURCE_NAME = 'AlphaFold'
+
+    name = forms.CharField()
+    email = forms.EmailField(validators=[validators.institutional_email])
+    institution = forms.CharField()
+    species = forms.CharField(required=False)
+    domain = forms.CharField(required=False, label="Domain of study")
+    proteins = forms.CharField(required=False, label="Target proteins")
+    size_aa = forms.IntegerField(required=False, label="Size (AA)")
+    count_aa = forms.IntegerField(required=False, label="Total count (AA)")
+
+
+class FgeneshRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
     RESOURCE_NAME = 'FGenesH++'
-    SPECIES_CHOICES = (  # TODO: populate choices from API?
+    SPECIES_CHOICES = (  # TODO: populate choices from remote API/GitHub?
         (0, 'Caenorhabditis elegans (NR)'),
         (1, 'Gallus gallus domesticus (NR)'),
         (2, 'Gene matrix 522 species'),
         (3, 'Non-redundant DB'),
-        (4, 'Other, please specify:'),
+        (4, 'Other, please specify'),
     )
 
     name = forms.CharField()
@@ -239,32 +242,20 @@ class FgeneshRequestForm(forms.Form):
     agree_terms = forms.BooleanField()
     agree_acknowledge = forms.BooleanField()
     agree_citation = forms.BooleanField()
-    species = OtherChoiceField(choices=SPECIES_CHOICES)
+    species = forms.ChoiceField(choices=SPECIES_CHOICES)
+    species_other = forms.CharField(required=False)
 
-    def dispatch(self):
-        """Dispatch form content as email."""
-        # TODO: implement auto-group assign and email confirmation only
-        template = 'home/requests/mail/access-request'
-        dispatch_form_mail(
-            reply_to=self.cleaned_data['email'],
-            subject="New FGenesH request on Galaxy Australia",
-            text=render_to_string(f'{template}.txt', {'form': self}),
-            html=render_to_string(f'{template}.html', {'form': self}),
-        )
-
-    def dispatch_warning(self, request):
-        """Dispatch warning email to let user know their email is invalid."""
-        template = 'home/requests/mail/invalid-institutional-email'
-        dispatch_form_mail(
-            to_address=self.cleaned_data['email'],
-            subject="Access to FGenesH++ could not be granted",
-            text=render_to_string(f'{template}.txt', {'form': self}),
-            html=render_to_string(f'{template}.html', {
-                'form': self,
-                'hostname': settings.HOSTNAME,
-                'scheme': request.scheme,
-            }),
-        )
+    def clean(self):
+        """Validate and check 'other' values."""
+        data = self.cleaned_data
+        if data.get('species') == '4':
+            if not data.get('species_other'):
+                self.add_error(
+                    'species_other',
+                    ValidationError('This field is required'))
+            else:
+                data['species'] = data['species_other']
+        return data
 
 
 ACCESS_FORMS = {

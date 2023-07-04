@@ -1,1 +1,0 @@
-from other_choice_field import OtherChoiceField

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ form.RESOURCE_NAME }} Access Request</title>
+  </head>
+  <body>
+
+  <h3>New {{ form.RESOURCE_NAME }} access request submitted - Galaxy Australia</h3>
+
+  <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
+    <tbody>
+
+      {% for field in form %}
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {% if field.value %}
+          {{ field.value }}
+          {% else %}
+          None
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+  </body>
+</html>
