@@ -1,0 +1,5 @@
+New {{ form.RESOURCE_NAME }} access request submitted - Galaxy Australia
+
+{% for field in form %}
+{{ field.label }}: {% if field.value %}{{ field.value }}{% else %}None{% endif %}
+{% endfor %}
