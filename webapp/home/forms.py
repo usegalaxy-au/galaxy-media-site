@@ -2,12 +2,12 @@
 
 import logging
 import traceback
+from captcha import fields
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
-from captcha import fields
 from utils.institution import is_institution_email
 from utils import postal
 
@@ -59,6 +59,51 @@ def dispatch_form_mail(
             )
 
 
+class OtherFieldFormMixin:
+    """Handle validation/cleaning of 'other' fields.
+
+    The inheriting class must define cls.OTHER_FIELDS as a tuple of field names
+    for which a "field_other" field is expected. This field will be populated
+    with the value of "other" if:
+        not field
+        str(field) == "0"
+
+    Typically this is involves an "Other" radiobuttom with a value of "0".
+    """
+
+    def __init__(self, *args, **kwargs):
+        """Assert required other fields."""
+        super().__init__(*args, **kwargs)
+        for field in self.OTHER_FIELDS:
+            if f'{field}_other' not in self.fields:
+                raise AttributeError(
+                    f"Expected field '{field}_other' not found in form."
+                    " Fields declared as OTHER_FIELDS must be accompanied by"
+                    " an '_other' field to provide the 'other' value."
+                )
+
+    def clean(self):
+        data = self.cleaned_data
+        for field in self.OTHER_FIELDS:
+            field_value = data.get(field)
+            if not field_value or str(field_value) == '0':
+                # User selected the 'other' field and typed a value
+                other_value = data.get(f'{field}_other')
+                logger.info(f"field_value: {field_value}")
+                logger.info(f"other_value: {other_value}")
+                if not other_value:
+                    if self.fields[field].required:
+                        self.add_error(
+                            field,
+                            ValidationError('This field is required'))
+                        continue
+                if type(other_value) == str:
+                    data[field] = 'Other - ' + other_value
+                else:
+                    data[field] = other_value
+        return data
+
+
 class ResourceRequestForm(forms.Form):
     """Form for requesting a tool or dataset."""
 
@@ -100,7 +145,7 @@ class ResourceRequestForm(forms.Form):
         )
 
 
-class QuotaRequestForm(forms.Form):
+class QuotaRequestForm(OtherFieldFormMixin, forms.Form):
     """Form for requesting data quota."""
 
     name = forms.CharField()
@@ -113,28 +158,7 @@ class QuotaRequestForm(forms.Form):
     captcha = fields.ReCaptchaField()
     accepted_terms = forms.BooleanField()
 
-    def clean(self):
-        """Validate and check 'other' values."""
-        data = super().clean()
-        # These fields have an "other" option with text input
-        OTHER_FIELDS = [
-            'disk_tb',
-        ]
-        for field in OTHER_FIELDS:
-            if not data.get(field):
-                # User may have selected the 'other' field and typed a value
-                if not data.get(f'{field}_other'):
-                    if self.fields[field].required:
-                        self.add_error(
-                            field,
-                            ValidationError('This field is required'))
-                        continue
-                other_value = data.get(f'{field}_other')
-                if type(other_value) == str:
-                    data[field] = 'Other - ' + other_value
-                else:
-                    data[field] = other_value
-        return data
+    OTHER_FIELDS = ('disk_tb',)
 
     def dispatch(self):
         """Dispatch form content as email."""
@@ -169,7 +193,11 @@ class SupportRequestForm(forms.Form):
 
 
 class BaseAccessRequestForm(forms.Form):
-    """Abstract form for requesting access to a resource."""
+    """Abstract form for requesting access to a resource.
+
+    Form fields in the format 'X_other' are substituted into the 'X' field
+    on submission and excluded from dispatched email.
+    """
 
     def clean_email(self):
         """Validate email address."""
@@ -187,11 +215,26 @@ class BaseAccessRequestForm(forms.Form):
     def dispatch(self):
         """Dispatch form content as email."""
         template = 'home/requests/mail/access-request'
+        context = {
+            'data': {
+                field.name: {
+                    'label': field.label,
+                    'value': self.cleaned_data[field.name],
+                }
+                for field in self
+                if not (
+                    field.name.endswith("_other")
+                    and field.name[:-6] in self.OTHER_FIELDS
+                )
+            },
+            'resource_name': self.RESOURCE_NAME,
+
+        }
         dispatch_form_mail(
             reply_to=self.cleaned_data['email'],
             subject=f"New {self.RESOURCE_NAME} request on Galaxy Australia",
-            text=render_to_string(f'{template}.txt', {'form': self}),
-            html=render_to_string(f'{template}.html', {'form': self}),
+            text=render_to_string(f'{template}.txt', context),
+            html=render_to_string(f'{template}.html', context),
         )
 
     def dispatch_warning(self, request):
@@ -224,7 +267,7 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
     count_aa = forms.IntegerField(required=False, label="Total count (AA)")
 
 
-class FgeneshRequestForm(BaseAccessRequestForm):
+class FgeneshRequestForm(OtherFieldFormMixin, BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
     RESOURCE_NAME = 'Fgenesh++'
@@ -234,6 +277,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
         ('3', 'Gene matrix (522 species)'),
         ('0', 'Other, please specify'),
     )
+    OTHER_FIELDS = ('species',)
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
@@ -242,18 +286,6 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     agree_acknowledge = forms.BooleanField()
     species = forms.ChoiceField(choices=SPECIES_CHOICES)
     species_other = forms.CharField(required=False)
-
-    def clean(self):
-        """Validate and check 'other' values."""
-        data = self.cleaned_data
-        if data.get('species') == '4':
-            if not data.get('species_other'):
-                self.add_error(
-                    'species_other',
-                    ValidationError('This field is required'))
-            else:
-                data['species'] = data['species_other']
-        return data
 
 
 ACCESS_FORMS = {
