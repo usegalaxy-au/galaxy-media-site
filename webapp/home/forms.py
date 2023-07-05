@@ -64,9 +64,7 @@ class OtherFieldFormMixin:
 
     The inheriting class must define cls.OTHER_FIELDS as a tuple of field names
     for which a "field_other" field is expected. This field will be populated
-    with the value of "other" if:
-        not field
-        str(field) == "0"
+    with the value of "other" if str(value) == "0".
 
     Typically this is involves an "Other" radiobuttom with a value of "0".
     """
@@ -86,7 +84,7 @@ class OtherFieldFormMixin:
         data = self.cleaned_data
         for field in self.OTHER_FIELDS:
             field_value = data.get(field)
-            if not field_value or str(field_value) == '0':
+            if str(field_value) == '0':
                 # User selected the 'other' field and typed a value
                 other_value = data.get(f'{field}_other')
                 logger.info(f"field_value: {field_value}")
@@ -272,9 +270,9 @@ class FgeneshRequestForm(OtherFieldFormMixin, BaseAccessRequestForm):
 
     RESOURCE_NAME = 'Fgenesh++'
     SPECIES_CHOICES = (  # TODO: populate choices from remote API/GitHub?
-        ('1', 'Caenorhabditis elegans (Non-redundant database)'),
-        ('2', 'Gallus gallus domesticus (Non-redundant database)'),
-        ('3', 'Gene matrix (522 species)'),
+        ('C. elegans', 'Caenorhabditis elegans (Non-redundant database)'),
+        ('G. gallus', 'Gallus gallus domesticus (Non-redundant database)'),
+        ('Gene matrix', 'Gene matrix (522 species)'),
         ('0', 'Other, please specify'),
     )
     OTHER_FIELDS = ('species',)
