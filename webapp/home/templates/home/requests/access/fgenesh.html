@@ -243,7 +243,6 @@
       other.fadeOut(250);
     }
   });
-  $('input[type="radio"][name="species"][value="0"][checked]').click();
 
   $('form').submit( (e) => {
     $('button[type="submit"]').prop('disabled', true);
@@ -254,4 +253,6 @@
 
 
 {% block onload %}
+// Trigger other field if selected
+$('input[type="radio"][name="disk_tb"][value="0"][checked]').click();
 {% endblock %}

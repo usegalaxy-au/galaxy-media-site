@@ -117,7 +117,7 @@
 
         <div class="form-check">
           <input class="form-check-input"  id="diskInput3" type="radio" name="disk_tb" value="0"
-            {% if form.disk_tb.value == '' %}checked{% endif%} required
+            {% if form.disk_tb.value == '0' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput3">More</label>
         </div>
@@ -137,7 +137,7 @@
 
         <div class="form-check">
           <input class="form-check-input"  id="diskInput4" type="radio" name="disk_tb" value="-1"
-            {% if form.disk_tb.value == '' %}checked{% endif%} required
+            {% if form.disk_tb.value == '-1' %}checked{% endif %} required
           >
           <label class="form-check-label" for="diskInput4">Unsure</label>
         </div>
@@ -226,7 +226,6 @@
       other.fadeOut(250);
     }
   });
-  $('input[type="radio"][name="disk_tb"][value="0"][checked]').click();
 
   $('form').submit( (e) => {
     $('button[type="submit"]').prop('disabled', true);
@@ -237,10 +236,8 @@
 
 
 {% block onload %}
-  // Trigger selected "other" fields display
-  $('input[type="radio"]').each( (i, item) => {
-    item.checked && $(item).click()
-  })
+  // Trigger other field if selected
+  $('input[type="radio"][name="disk_tb"][value="0"][checked]').click();
 
   // Scroll to errors if present
   if ($('.errorlist').length) {

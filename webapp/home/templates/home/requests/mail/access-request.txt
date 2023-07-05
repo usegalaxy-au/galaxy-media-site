@@ -1,5 +1,5 @@
-New {{ form.RESOURCE_NAME }} access request submitted - Galaxy Australia
+New {{ resource_name }} access request submitted - Galaxy Australia
 
-{% for field in form %}
+{% for name, field in data.items %}
 {{ field.label }}: {% if field.value %}{{ field.value }}{% else %}None{% endif %}
 {% endfor %}

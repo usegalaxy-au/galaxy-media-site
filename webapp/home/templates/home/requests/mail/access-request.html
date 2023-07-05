@@ -2,16 +2,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>{{ form.RESOURCE_NAME }} Access Request</title>
+    <title>{{ resource_name }} Access Request</title>
   </head>
   <body>
 
-  <h3>New {{ form.RESOURCE_NAME }} access request submitted - Galaxy Australia</h3>
+  <h3>New {{ resource_name }} access request submitted - Galaxy Australia</h3>
 
   <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
     <tbody>
 
-      {% for field in form %}
+      {% for name, field in data.items %}
       <tr>
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
         <td style="padding: 10px; border: 1px solid grey;">
