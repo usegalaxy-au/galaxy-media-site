@@ -39,18 +39,18 @@ tools = [
                 'label': 'Experimental design template',
             },
         ],
-        "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/maxquant/maxquant/2.0.3.0+galaxy0",
+        "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/maxquant/maxquant/",
     },
     {
         "title_html": '<code>FlashLFQ</code>',
         "description_html": '<p>Ultrafast label-free quantification for mass-spectrometry proteomics.</p>',
         "inputs": [
             {
-                'datatypes': ['Identification file'],
+                'datatypes': ['tabular'],
                 'label': 'MetaMorpheus, Morpheus, PeptideShaker PSM Report, MaxQuant',
             }
         ],
-        "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/flashlfq/flashlfq/1.0.3.1",
+        "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/flashlfq/flashlfq/",
     }
 ]
 
