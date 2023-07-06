@@ -7,10 +7,9 @@ from django.template import TemplateDoesNotExist
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.template.loader import get_template
-from pprint import pformat
 
 from utils import aaf
-from utils.galaxy import is_registered_galaxy_email
+from utils import galaxy
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
@@ -101,7 +100,6 @@ def user_request_tool(request):
             form.dispatch()
             return render(request, 'home/requests/success.html')
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/tool.html', {'form': form})
 
 
@@ -115,7 +113,6 @@ def user_request_quota(request):
             form.dispatch()
             return render(request, 'home/requests/success.html')
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/quota.html', {'form': form})
 
 
@@ -128,7 +125,6 @@ def user_request_support(request):
             form.dispatch()
             return render(request, 'home/requests/success.html')
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/support.html', {'form': form})
 
 
@@ -139,20 +135,32 @@ def user_request_resource_access(request, resource):
     if request.POST:
         form = Form(request.POST)
         if form.is_valid():
+            error = None
             email = form.cleaned_data['email']
-            if is_registered_galaxy_email(email):
+            if galaxy.is_registered_email(email):
                 logger.info(
                     f"Dispatching {resource} request for email {email}")
-                form.dispatch()
+                group_name = resource
+                try:
+                    galaxy.add_user_to_group(
+                        form.cleaned_data['email'],
+                        group_name)
+                except Exception as exc:
+                    logger.error(
+                        f"Error assigning user to Galaxy group:\n{exc}\n"
+                        "This error was not fatal and the user's request has"
+                        " been passed to the support email.")
+                    error = exc
+                form.dispatch(exception=error)
             else:
                 logger.info(f"Dispatching {resource} warning to {email}")
                 form.dispatch_warning(request)
-            success_template = 'home/requests/access-request-success.html'
+            success_template = 'home/requests/access/success.html'
             return render(request, success_template, {
                 'form': form.cleaned_data,
+                'actioned': error is None,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
-        logger.info(pformat(form.errors))  # TODO: remove
     template = f'home/requests/access/{resource}.html'
     return render(request, template, {'form': form})
 
