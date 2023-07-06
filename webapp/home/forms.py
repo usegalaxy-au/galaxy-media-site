@@ -14,7 +14,30 @@ from utils import postal
 from . import validators
 
 
+SEND_MAIL_RETRIES = 3
+
 logger = logging.getLogger('django')
+
+
+def retry_send_mail(mail):
+    """Attempt sending email with error log fallback."""
+    tries = 0
+    while True:
+        try:
+            if settings.EMAIL_HOST == 'mail.usegalaxy.org.au':
+                # Special SMTP setup for GA mail server
+                return postal.send_mail(mail)
+            return mail.send()
+        except Exception:
+            logger.warning(f"Send mail error - attempt {tries}")
+            tries += 1
+            if tries < SEND_MAIL_RETRIES:
+                continue
+            return logger.error(
+                "Error sending mail. The user did not receive an error.\n"
+                + traceback.format_exc()
+                + f"\n\nMail content:\n\n{mail.body}"
+            )
 
 
 def dispatch_form_mail(
@@ -30,7 +53,7 @@ def dispatch_form_mail(
     recipient = to_address or settings.EMAIL_TO_ADDRESS
     reply_to_value = [reply_to] if reply_to else None
     logger.info(f"Sending mail to {recipient}")
-    email = EmailMultiAlternatives(
+    mail = EmailMultiAlternatives(
         subject,
         text,
         settings.EMAIL_FROM_ADDRESS,
@@ -38,25 +61,35 @@ def dispatch_form_mail(
         reply_to=reply_to_value,
     )
     if html:
-        email.attach_alternative(html, "text/html")
+        mail.attach_alternative(html, "text/html")
+    retry_send_mail(mail)
 
-    tries = 0
-    while True:
-        try:
-            if settings.EMAIL_HOST == 'mail.usegalaxy.org.au':
-                # Special SMTP setup for GA mail server
-                return postal.send_mail(email)
-            return email.send()
-        except Exception:
-            logger.warning(f"Send mail error - attempt {tries}")
-            tries += 1
-            if tries < 3:
-                continue
-            return logger.error(
-                "Error sending mail. The user did not receive an error.\n"
-                + traceback.format_exc()
-                + f"\n\nMail content:\n\n{text}"
-            )
+
+def user_success_mail(name, email, resource):
+    """Dispatch access request success email to user."""
+    subject = f"Access to {resource} granted"
+    template = 'home/requests/mail/access-user-success'
+    context = {
+        'name': name,
+        'resource_name': resource,
+        'hostname': settings.HOSTNAME,
+    }
+    text = render_to_string(
+        f'{template}.txt',
+        context,
+    )
+    html = render_to_string(
+        f'{template}.html',
+        context,
+    )
+    mail = EmailMultiAlternatives(
+        subject,
+        text,
+        settings.EMAIL_FROM_ADDRESS,
+        [email],
+    )
+    mail.attach_alternative(html, "text/html")
+    retry_send_mail(mail)
 
 
 class OtherFieldFormMixin:
@@ -210,8 +243,13 @@ class BaseAccessRequestForm(forms.Form):
             )
         return email
 
-    def dispatch(self):
+    def dispatch(self, exception=None):
         """Dispatch form content as email."""
+        subject = (
+            f"ERROR actioning {self.RESOURCE_NAME} request on Galaxy Australia"
+            if exception else
+            f"Approved {self.RESOURCE_NAME} request on Galaxy Australia"
+        )
         template = 'home/requests/mail/access-request'
         context = {
             'data': {
@@ -226,14 +264,20 @@ class BaseAccessRequestForm(forms.Form):
                 )
             },
             'resource_name': self.RESOURCE_NAME,
-
+            'exception': exception,
         }
         dispatch_form_mail(
             reply_to=self.cleaned_data['email'],
-            subject=f"New {self.RESOURCE_NAME} request on Galaxy Australia",
+            subject=subject,
             text=render_to_string(f'{template}.txt', context),
             html=render_to_string(f'{template}.html', context),
         )
+        if not exception:
+            user_success_mail(
+                self.cleaned_data['name'],
+                self.cleaned_data['email'],
+                self.RESOURCE_NAME,
+            )
 
     def dispatch_warning(self, request):
         """Dispatch warning email to let user know their email is invalid."""

@@ -1,4 +1,16 @@
+{% if exception %}
+Error actioning {{ resource_name }} access request - Galaxy Australia
+
+This request could not be actioned by Galaxy Media Site - please follow up with this request manually.
+
+Exception:
+{{ exception }}
+
+{% else %}
 New {{ resource_name }} access request submitted - Galaxy Australia
+
+This request has been actioned by Galaxy Media Site - no action is necessary but this request should be kept for reporting purposes.
+{% endif %}
 
 {% for name, field in data.items %}
 {{ field.label }}: {% if field.value %}{{ field.value }}{% else %}None{% endif %}

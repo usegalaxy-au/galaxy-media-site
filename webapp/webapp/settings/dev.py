@@ -22,7 +22,7 @@ SLACK_API_URLS = parse_list(os.environ.get('SLACK_API_URLS'))
 TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 
 # Validating whether submitted email is valid Galaxy AU account
-MOCK_GALAXY_EMAIL_VALIDATION = True
+MOCK_GALAXY_EMAIL_VALIDATION = False
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 

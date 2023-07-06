@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ resource_name }} Access Request Approved</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <p style="font-size: 14pt;">
+      Dear {{ name }},
+    </p>
+
+    <p style="font-size: 14pt;">
+      Your request for {{ resource_name }} access has been
+      approved.
+      <br>
+      You should now be able to access {{ resource_name }} on Galaxy Australia.
+    </p>
+
+    <p style="font-size: 14pt;">
+      Regards,
+      <br>
+      The Galaxy Australia Team
+    </p>
+
+    <img
+      src="http://{{ hostname }}{% static 'home/img/ga-logo.png' %}"
+      alt="Galaxy Australia logo"
+      style="width: 180px; height: auto; margin: 15px 0;"
+    >
+  </body>
+</html>

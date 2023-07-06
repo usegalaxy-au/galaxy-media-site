@@ -6,7 +6,25 @@
   </head>
   <body>
 
+  {% if exception %}
+  <h3>Error actioning {{ resource_name }} access request - Galaxy Australia</h3>
+  <em style="font-size: 16pt; color: firebrick;">
+    This request could not be actioned by Galaxy Media Site - please follow up
+    with this request manually.
+  </em>
+  <p>
+    Exception: <br>
+    <code>
+      {{ exception }}
+    </code>
+  </p>
+  {% else %}
   <h3>New {{ resource_name }} access request submitted - Galaxy Australia</h3>
+  <em style="font-size: 16pt; color: forestgreen;">
+    This request has been actioned by Galaxy Media Site - no action is necessary
+    but this request should be kept for reporting purposes.
+  </em>
+  {% endif %}
 
   <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
     <tbody>
