@@ -31,8 +31,14 @@ tools = [
         "title_html": '<code>LFQ Analyst</code>',
         "description_html": '<p>Analyze and Visualize Label-Free Proteomics output from MaxQuant.</p>',
         "inputs": [
-            {'datatypes': ['ProteinGroups.txt']},
-            {'datatypes': ['Experimental Design Matrix']}
+            {
+                'datatypes': ['txt'],
+                'label': 'Protein groups (MaxQuant output)',
+            },
+            {
+                'datatypes': ['txt'],
+                'label': 'Experimental Design Matrix (MaxQuant output)',
+            }
         ],
         "button_link": "https://usegalaxy.org.au/root?tool_id=interactive_tool_lfqanalyst",
         "view_link": "Shah AD, Goode RJA, Huang C, Powell DR, Schittenhelm RB. LFQ-Analyst: An easy-to-use interactive web-platform to analyze and visualize proteomics data preprocessed with MaxQuant. https://doi.org/10.1021/acs.jproteome.9b00496",
@@ -41,7 +47,10 @@ tools = [
         "title_html": '<code>MSstats</code>',
         "description_html": '<p>Statistical relative protein significance analysis in DDA, SRM and DIA Mass Spectrometry.</p>',
         "inputs": [
-            {'datatypes': ['MSstats 10-column input'], label: 'Data in tabular or csv format, either in the 10-column MSstats format or the outputs of spectral processing tools such as MaxQuant, OpenSWATH.'}
+            {
+                'datatypes': ['tabular', 'csv'],
+                'label': 'Either the 10-column MSstats format or the outputs of spectral processing tools such as MaxQuant, OpenSWATH.',
+            }
         ],
         "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/msstats/msstats/4.0.0+galaxy1",
     }

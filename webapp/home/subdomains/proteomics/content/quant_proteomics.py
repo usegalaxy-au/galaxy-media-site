@@ -31,10 +31,13 @@ tools = [
         "title_html": '<code>MaxQuant</code>',
         "description_html": '<p>MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.</p>',
         "inputs": [
-            {'datatypes': ['Thermo RAW']},
+            {'datatypes': ['thermo.raw']},
             {'datatypes': ['mzML']},
             {'datatypes': ['mzXML']},
-            {'datatypes': ['Tabular file with experimental design template']}
+            {
+                'datatypes': ['tabular'],
+                'label': 'Experimental design template',
+            },
         ],
         "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/maxquant/maxquant/2.0.3.0+galaxy0",
     },
@@ -42,8 +45,13 @@ tools = [
         "title_html": '<code>FlashLFQ</code>',
         "description_html": '<p>Ultrafast label-free quantification for mass-spectrometry proteomics.</p>',
         "inputs": [
-            {'datatypes': ['Identification file'], label: 'MetaMorpheus, Morpheus, PeptideShaker PSM Report, MaxQuant'}
+            {
+                'datatypes': ['Identification file'],
+                'label': 'MetaMorpheus, Morpheus, PeptideShaker PSM Report, MaxQuant',
+            }
         ],
         "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/flashlfq/flashlfq/1.0.3.1",
     }
 ]
+
+help = []  # Todo
