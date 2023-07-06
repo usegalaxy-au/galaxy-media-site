@@ -107,7 +107,7 @@
         <p>
           The
           <a href="{% static 'home/documents/fgenesh-biocommons-terms.pdf' %}">
-            FGenesH++ Terms of Use and Acknowledgement Statement
+            Fgenesh++ Terms of Use and Acknowledgement Statement
           </a>
           are required to be acknowledged prior to access.
         </p>
@@ -122,8 +122,8 @@
             {% if form.agree_terms.value %}checked{% endif %}
           />
           <label for="agreeTermsInput" class="form-check-label">
-            I, the Principal Investigator have read and acknowledged the
-            Fgenesh++ Service Terms of Use and Policies
+            I, the Principal Investigator or End User have read and acknowledged
+            the Fgenesh++ Service Terms of Use and Policies.
           </label>
         </div>
       </div>
@@ -146,8 +146,10 @@
             href="https://biocommons.org.au/fgenesh-plus-plus"
             target="_blank"
           >https://biocommons.org.au/fgenesh-plus-plus</a>)
-          provided by the Australian BioCommons and the Pawsey Supercomputing
-          Centre.
+          provided by the Australian BioCommons
+          <span style="color: firebrick;">
+            and the Pawsey Supercomputing Centre (?).
+          </span>
         </blockquote>
         <div class="form-check">
           {{ form.agree_acknowledge.errors }}
@@ -200,6 +202,7 @@
               type="text"
               name="species_other"
               maxlength="150"
+              placeholder="Your target species"
               value="{{ form.species_other.value|default_if_none:'' }}"
             >
           </div>
@@ -213,7 +216,7 @@
       Privacy Collection Notice By completing this form you agree that your
       responses will be provided to the Australian BioCommons and Galaxy
       Australia and will be used solely for the purposes of determining
-      suitability for access to the Australian AlphaFold Service. Your
+      suitability for access to the Australian Fgenesh++ Service. Your
       responses will be protected against unauthorised access and use; providing
       your name is required to enable any follow ups. For more information,
       please see the
