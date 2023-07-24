@@ -1,3 +1,6 @@
+from django import setup
+setup()
+
 from django.test import Client
 from django.core.files import File
 from django.conf import settings

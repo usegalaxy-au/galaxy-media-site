@@ -1,7 +1,7 @@
 """Scrape news articles from BioCommons website."""
 
 from django.core.management.base import BaseCommand
-from news.scrape import biocommons
+from news.scrape import SCRAPERS
 
 
 class Command(BaseCommand):
@@ -15,7 +15,9 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         """Run the command."""
         print("Fetching news articles...")
-        articles = biocommons.fetch_articles()
-        print(f"Added {len(articles)} articles to the database:")
-        for a in articles:
-            print(a)
+        for scraper in SCRAPERS:
+            print(f'Running scraper "{scraper.__name__}"')
+            articles = scraper.fetch_articles()
+            print(f"Added {len(articles)} articles to the database:")
+            for a in articles:
+                print(a)
