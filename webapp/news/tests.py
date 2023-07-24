@@ -1,18 +1,51 @@
-import shutil
+from django import setup
+setup()
+
 from django.test import Client
 from django.core.files import File
-from django.conf import settings
+from unittest import mock
+from types import SimpleNamespace
 
 from webapp.test import TestCase
 from events.test.data import TEST_SUPPORTERS, TEST_TAGS
 from events.models import Supporter, Tag
 from home.test.decorators import suppress_request_warnings
 from .models import News, APIToken
-from .scrape import biocommons
-from .test.data import TEST_NEWS
+from .scrape import biocommons, hub
+from .test.data import TEST_NEWS, MOCK_REQUESTS
+
+
+class MockResponse:
+    def __init__(self, data=None, html=None, status_code=200):
+        self.json_data = data
+        self.html_data = html
+        self.status_code = status_code
+        self.content = SimpleNamespace(decode=lambda x: self.html_data)
+
+    def raise_for_status(self):
+        pass
+
+    def json(self):
+        return self.json_data
+
+
+def mocked_requests_get(*args, **kwargs):
+    """Not sure if mock is necessary or just use a real requests.get."""
+    url = args[0]
+    if url in MOCK_REQUESTS:
+        content = MOCK_REQUESTS[url]
+        if isinstance(content, dict):
+            return MockResponse(data=content)
+        return MockResponse(html=content)
+    return MockResponse(None, 404)
 
 
 class NewsTestCase(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        import django
+        django.setup()
 
     def setUp(self) -> None:
         """Create some data."""
@@ -67,6 +100,22 @@ class NewsTestCase(TestCase):
             f'"### Tools installed" not found in string:\n{news_item.body}'
         )
 
+    @mock.patch('requests.get', side_effect=mocked_requests_get)
     def test_biocommons_news_web_scraper(self):
         articles = biocommons.Article.fetch_all()
         assert len(articles) > 0, "No articles scraped from BioCommons webpage"
+        # assert article content
+
+    @mock.patch('requests.get', side_effect=mocked_requests_get)
+    def test_hub_news_scraper(self):
+        articles = hub.Article.fetch_all()
+        self.assertEquals(
+            len(articles),
+            3,
+            f"Scraped {len(articles)} from Hub JSON feed but expected 3."
+        )
+        # assert article content
+        self.assertEquals(
+            articles[0].title,
+            "Carbon Emissions Reporting in Galaxy",
+        )
