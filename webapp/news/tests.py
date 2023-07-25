@@ -1,6 +1,3 @@
-from django import setup
-setup()
-
 from django.test import Client
 from django.core.files import File
 from unittest import mock
@@ -12,7 +9,7 @@ from events.models import Supporter, Tag
 from home.test.decorators import suppress_request_warnings
 from .models import News, APIToken
 from .scrape import biocommons, hub
-from .test.data import TEST_NEWS, MOCK_REQUESTS
+from .test.data import HUB_JSON, MOCK_REQUESTS, TEST_NEWS
 
 
 class MockResponse:
@@ -42,11 +39,6 @@ def mocked_requests_get(*args, **kwargs):
 
 class NewsTestCase(TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        import django
-        django.setup()
-
     def setUp(self) -> None:
         """Create some data."""
         self.client = Client()
@@ -67,7 +59,8 @@ class NewsTestCase(TestCase):
                 tag = Tag.objects.get(name=tag['name'])
                 news_item.tags.add(tag)
             for supporter in supporters:
-                supporter = Supporter.objects.get(name=supporter['data']['name'])
+                supporter = Supporter.objects.get(
+                    name=supporter['data']['name'])
                 news_item.supporters.add(supporter)
 
     def test_news_article_webpage(self):
@@ -101,21 +94,30 @@ class NewsTestCase(TestCase):
         )
 
     @mock.patch('requests.get', side_effect=mocked_requests_get)
-    def test_biocommons_news_web_scraper(self):
+    def test_biocommons_news_web_scraper(self, mock_get):
         articles = biocommons.Article.fetch_all()
         assert len(articles) > 0, "No articles scraped from BioCommons webpage"
         # assert article content
 
     @mock.patch('requests.get', side_effect=mocked_requests_get)
-    def test_hub_news_scraper(self):
+    def test_hub_news_scraper(self, mock_get):
         articles = hub.Article.fetch_all()
         self.assertEquals(
             len(articles),
             3,
             f"Scraped {len(articles)} from Hub JSON feed but expected 3."
         )
-        # assert article content
-        self.assertEquals(
-            articles[0].title,
-            "Carbon Emissions Reporting in Galaxy",
-        )
+        for i, a in enumerate(articles):
+            expected = HUB_JSON['news'][i]
+            self.assertEquals(
+                a.title,
+                expected['title'],
+            )
+            self.assertEquals(
+                a.url,
+                hub.BASE_URL + expected['path'],
+            )
+            self.assertEquals(
+                a.datetime_created.strftime('%d %B %Y'),
+                expected['date'],
+            )

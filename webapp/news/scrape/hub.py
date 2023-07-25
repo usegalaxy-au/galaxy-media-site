@@ -5,41 +5,7 @@ news items published in the last 30 days. Items are tagged with a 'subsites'
 field which lists Galaxy servers for which the content is relevant and should
 be consumed.
 
-response_schema = {
-    "id": "4d078ad4",
-    "title": "Carbon Emissions Reporting in Galaxy",
-    "tease": "Dynamic carbon emissions reporting for jobs in Galaxy",
-    "days_ago": 7,
-    "date": "11 July 2023",
-    "subsites": [
-        "global",
-        "freiburg",
-        "pasteur",
-        "belgium",
-        "ifb",
-        "genouest",
-        "erasmusmc",
-        "elixir-it",
-        "au",
-        "eu",
-        "us"
-    ],
-    "main_subsite": None,
-    "tags": [
-        "UI/UX",
-        "highlight"
-    ],
-    "contact": "",
-    "image": None,
-    "authors": "Rendani Gangazhe",
-    "authors_structured": [
-        {
-            "github": "Renni771",
-        },
-    ],
-    "external_url": "",
-    "path": "/news/2023-07-11-carbon-emissions-reporting/",
-}
+See ../test/data/news.py for example JSON response schema.
 """
 
 import logging
@@ -109,8 +75,8 @@ def fetch_articles():
             title=a.title,
             external=a.url,
             is_published=True,
-            datetime_created=a.date,
         )
+        item.datetime_created = a.date
         item.save()
         articles.append(a)
 
