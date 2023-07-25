@@ -39,11 +39,6 @@ def mocked_requests_get(*args, **kwargs):
 
 class NewsTestCase(TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        import django
-        django.setup()
-
     def setUp(self) -> None:
         """Create some data."""
         self.client = Client()
