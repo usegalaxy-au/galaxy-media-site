@@ -1,4 +1,5 @@
 # Project paths
+*.sqlite3
 .vscode/
 webapp/webapp/logs/
 webapp/webapp/media/
