@@ -109,7 +109,6 @@ class NoticeAdminForm(forms.ModelForm):
         data = self.cleaned_data
         if data['notice_class'] == 'none':
             data['static_display'] = False
-            data['title'] = ''
             data['display_title'] = False
             data['short_description'] = ''
             data['material_icon'] = ''
