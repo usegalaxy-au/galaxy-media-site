@@ -6,6 +6,7 @@ field which lists Galaxy servers for which the content is relevant and should
 be consumed.
 
 See ../test/data/news.py for example JSON response schema.
+
 """
 
 import logging
