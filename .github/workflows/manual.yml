@@ -3,11 +3,10 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   run_pull:
-    name: run pull
+    name: run server update
     runs-on: ubuntu-latest
     
     steps:
