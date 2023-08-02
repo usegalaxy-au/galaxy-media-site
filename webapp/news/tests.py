@@ -118,6 +118,6 @@ class NewsTestCase(TestCase):
                 hub.BASE_URL + expected['path'],
             )
             self.assertEquals(
-                a.datetime_created.strftime('%d %B %Y'),
+                a.date.strftime('%-d %B %Y'),
                 expected['date'],
             )
