@@ -8,7 +8,8 @@ jobs:
   run_pull:
     name: run server update
     runs-on: ubuntu-latest
-    
+    environment: deployment
+
     steps:
     - name: install ssh keys
       # check this thread to understand why its needed:
