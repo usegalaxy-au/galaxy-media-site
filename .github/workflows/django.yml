@@ -6,6 +6,25 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  DJANGO_SECRET_KEY: secret
+  HOSTNAME: 127.0.0.1:5000
+  DB_NAME: gms
+  DB_USER: gms
+  DB_PASSWORD: secret
+  MAIL_FROM_ADDRESS: galaxy-no-reply@usegalaxy.org.au
+  MAIL_TO_ADDRESS: help@genome.edu.au
+  MAIL_USE_TLS: true
+  MAIL_HOSTNAME: smtp.mailtrap.io
+  MAIL_SMTP_PORT: 2525
+  MAIL_SMTP_USERNAME: ""
+  MAIL_SMTP_PASSWORD: ""
+  RECAPTCHA_SITE_KEY: ""
+  RECAPTCHA_SECRET_KEY: ""
+  TOOL_UPDATE_EMAILS: test-notification@example.com
+  GALAXY_URL: https://usegalaxy.org.au
+  GALAXY_API_KEY: ""
+  
 jobs:
   build:
 
