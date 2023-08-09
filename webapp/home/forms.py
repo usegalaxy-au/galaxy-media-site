@@ -230,6 +230,9 @@ class BaseAccessRequestForm(forms.Form):
     on submission and excluded from dispatched email.
     """
 
+    OTHER_FIELDS = []
+    RESOURCE_NAME = None
+
     def clean_email(self):
         """Validate email address."""
         email = self.cleaned_data['email']
@@ -312,22 +315,24 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
 class FgeneshRequestForm(OtherFieldFormMixin, BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
-    RESOURCE_NAME = 'Fgenesh++'
-    SPECIES_CHOICES = (  # TODO: populate choices from remote API/GitHub?
+    RESOURCE_NAME = 'FGENESH++'
+    MATRIX_CHOICES = (  # TODO: populate choices from remote API/GitHub?
         ('C. elegans', 'Caenorhabditis elegans (Non-redundant database)'),
         ('G. gallus', 'Gallus gallus domesticus (Non-redundant database)'),
         ('Gene matrix', 'Gene matrix (522 species)'),
-        ('0', 'Other, please specify'),
+        ('0', 'Not listed, please specify'),
     )
-    OTHER_FIELDS = ('species',)
+    OTHER_FIELDS = ('matrix',)
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
     institution = forms.CharField()
     agree_terms = forms.BooleanField()
     agree_acknowledge = forms.BooleanField()
-    species = forms.ChoiceField(choices=SPECIES_CHOICES)
-    species_other = forms.CharField(required=False)
+    matrix = forms.ChoiceField(choices=MATRIX_CHOICES) # TODO: populate from remote
+    matrix_other = forms.CharField(max_length=200, required=False)
+    research_description = forms.CharField(max_length=200, required=False)
+    research_topics = forms.CharField(max_length=200, required=False)
 
 
 ACCESS_FORMS = {
