@@ -6,6 +6,7 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
 <link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/tree-list.css' %}">
 {% endblock %}
 
 
@@ -145,11 +146,12 @@
         <p>
           Matrices from your species or a related species may need to be
           installed prior to use. You should nominate a matrix with the closest
-          taxonomic proximity to your subject species:
+          taxonomic proximity to your subject species. If you have more than
+          one species of interest, you can select multiple matrices:
         </p>
         {{ form.matrix.errors }}
 
-        <!-- Matrix choice field -->
+        {{ form.render_matrix_field|safe }}
 
       </div>
     </div>
@@ -286,6 +288,7 @@
 
 
 {% block script %}
+<script src="{% static 'home/js/tree-list.js' %}"></script>
 <script type="text/javascript">
   $('input[type="radio"][name="species"]').click( e => {
     const other = $(`input[name="${e.target.name}_other"]`).closest('.show-other');
