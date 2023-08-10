@@ -1,3 +1,7 @@
+// TODO: on load, set value of terms statement
+// TODO: on load, set value of matrices
+// TODO: fix form validation
+
 $(document).ready(function() {
     let i;
     const toggler = document.getElementsByClassName("caret");

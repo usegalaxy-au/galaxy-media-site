@@ -2,6 +2,7 @@
 
 import os
 import logging
+import pprint
 from django.conf import settings
 from django.template import TemplateDoesNotExist
 from django.shortcuts import render, get_object_or_404
@@ -161,6 +162,7 @@ def user_request_resource_access(request, resource):
                 'actioned': error is None,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
+        logger.debug(pprint.pformat(form.errors))
     template = f'home/requests/access/{resource}.html'
     return render(request, template, {'form': form})
 
