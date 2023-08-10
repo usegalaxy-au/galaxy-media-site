@@ -13,6 +13,14 @@ ul, .tree-select {
   margin-right: 10px;
 }
 
+.tree-select li {
+  color: var(--bs-gray-600);
+}
+
+.tree-select .choice {
+  color: black;
+}
+
 /* Style the caret/arrow */
 .caret {
   cursor: pointer;
