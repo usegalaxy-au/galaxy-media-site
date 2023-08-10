@@ -325,7 +325,7 @@ class FgeneshRequestForm(OtherFieldFormMixin, BaseAccessRequestForm):
     agree_acknowledge = forms.BooleanField()
     research_description = forms.CharField(max_length=200, required=False)
     research_topics = forms.CharField(max_length=200, required=False)
-    matrix = forms.CharField(max_length=300)
+    matrices = forms.MultipleChoiceField(choices=genematrix_tree.as_choices())
 
     def render_matrix_field(self):
         return genematrix_tree.as_ul()

@@ -143,13 +143,28 @@
       <hr>
 
       <div class="col-sm-12">
+        <h3 class="mb-3">Select matrices</h3>
+
         <p>
-          Matrices from your species or a related species may need to be
-          installed prior to use. You should nominate a matrix with the closest
+          An annotation matrix for your species (or a related species) may need
+          to be installed prior to use. This will be used as a reference to
+          annotate your genome, so you should nominate a matrix with the closest
           taxonomic proximity to your subject species. If you have more than
-          one species of interest, you can select multiple matrices:
+          one species of interest, you can select multiple matrices.
         </p>
+
         {{ form.matrix.errors }}
+
+        <p>
+          <button class="ga-btn btn-sm" type="button" onclick="resetTreeList();">Collapse all</button>
+          <button class="ga-btn btn-sm" type="button" onclick="clearTreeSelection();">Clear selection</button>
+        </p>
+
+        <p class="lead" id="matrixCount">
+          <span>0</span> matrices selected
+        </p>
+
+        <ul id="selectedMatrices"></ul>
 
         {{ form.render_matrix_field|safe }}
 
@@ -202,11 +217,13 @@
                   frameborder="0"
                 ></iframe>
               </div>
-              <div class="modal-footer">
-                <p class="mx-3">
-                  I, the Principal Investigator or End User have read and acknowledged
-                  the FGENESH++ Service Terms of Use and Policies.
-                </p>
+              <div class="modal-footer justify-content-center">
+                <div class="w-100">
+                  <p class="text-center">
+                    I, the Principal Investigator or End User have read and acknowledged
+                    the FGENESH++ Service Terms of Use and Policies.
+                  </p>
+                </div>
                 <button
                   type="button"
                   class="btn btn-primary"
@@ -239,10 +256,7 @@
             href="https://biocommons.org.au/fgenesh-plus-plus"
             target="_blank"
           >https://biocommons.org.au/fgenesh-plus-plus</a>)
-          provided by the Australian BioCommons
-          <span style="color: firebrick;">
-            and the Pawsey Supercomputing Centre (?).
-          </span>
+          provided by the Australian BioCommons and Galaxy Australia.
         </blockquote>
         <div class="form-check">
           {{ form.agree_acknowledge.errors }}
