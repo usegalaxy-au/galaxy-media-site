@@ -31,7 +31,7 @@ def as_choices():
     for k, v in taxonomy_tree.items():
         items.extend(get_items(v, k))
 
-    if len(set(items) != len(items)):
+    if len(set(items)) != len(items):
         raise ValueError("Duplicate indexes found in tree.")
 
     return items
