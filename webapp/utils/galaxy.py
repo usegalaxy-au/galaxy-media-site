@@ -17,7 +17,10 @@ def get_galaxy_instance():
 
 def is_registered_email(email):
     """Return True if a Galaxy account exists on the given server."""
-    if settings.MOCK_GALAXY_EMAIL_VALIDATION:
+    if settings.MOCK_GALAXY_INTERACTIONS:
+        logger.warning(
+            "Mocking galaxy.is_registered_email()"
+            " - settings.MOCK_GALAXY_INTERACTIONS=True")
         return True
 
     if not (settings.GALAXY_URL and settings.GALAXY_API_KEY):
@@ -33,10 +36,11 @@ def is_registered_email(email):
 
 def add_user_to_group(email, group):
     """Add a Galaxy user to the given group."""
-
-    # TODO: remove
-    raise ValueError("A fake error has occurred.")
-
+    if settings.MOCK_GALAXY_INTERACTIONS:
+        logger.warning(
+            "Mocking galaxy.add_user_to_group()"
+            " - settings.MOCK_GALAXY_INTERACTIONS=True")
+        return
     gi = get_galaxy_instance()
     if not gi:
         return
