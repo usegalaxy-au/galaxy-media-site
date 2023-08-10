@@ -17,6 +17,7 @@ ALLOWED_HOSTS.append(HOSTNAME)
 ALLOWED_HOSTS.append("usegalaxy.org.au")
 ALLOWED_HOSTS.append("dev.usegalaxy.org.au")
 ALLOWED_HOSTS.append("staging.usegalaxy.org.au")
+MOCK_GALAXY_INTERACTIONS = 'MOCK_GALAXY_INTERACTIONS' in os.environ
 
 # To allow cross-site resource sharing with the base domain
 CSRF_COOKIE_DOMAIN = ".usegalaxy.org.au"
