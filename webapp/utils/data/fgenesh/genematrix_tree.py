@@ -6,22 +6,22 @@ from pathlib import Path
 tree_path = Path(__file__).parent / 'genematrix_taxonomy_m.json'
 
 
-def get_input_val(key, parent_key):
-    return f"{parent_key}-{key.replace(' ', '-')}"
+def get_input_val(key1, key2):
+    return f"{key1}-{key2.replace(' ', '-')}"
 
 
 def as_choices():
     """Return a list of all input IDs available in the tree."""
-    def get_items(node, parent_key):
+    def get_items(parent_key, key, node):
         items = []
         if 'desc' in node:
-            value = get_input_val(parent_key, parent_key)
+            value = get_input_val(parent_key, key)
             choice = (value, value)
             items.append(choice)
         for k, v in node.items():
             if k == 'desc':
                 continue
-            items.extend(get_items(v, k))
+            items.extend(get_items(key, k, v))
         return items
 
     with open(tree_path, 'r') as f:
@@ -29,7 +29,7 @@ def as_choices():
 
     items = []
     for k, v in taxonomy_tree.items():
-        items.extend(get_items(v, k))
+        items.extend(get_items('root', k, v))
 
     if len(set(items)) != len(items):
         raise ValueError("Duplicate indexes found in tree.")
@@ -68,7 +68,7 @@ def as_ul():
             indent_str = "  " * (indent + 1)
             if 'desc' in node:
                 # Create li with checkbox
-                input_val = get_input_val(key, parent_key)
+                input_val = get_input_val(parent_key, key)
                 checkbox = (f'{indent_str}<input type="checkbox"'
                             f' name="matrices" value="{input_val}"'
                             f' id="{input_val}">')

@@ -153,6 +153,8 @@
           one species of interest, you can select multiple matrices.
         </p>
 
+        <div id="matricesValue" style="display: none;">{{ form.matrices.value }}</div>
+
         {{ form.matrices.errors }}
 
         <p>
@@ -316,6 +318,7 @@
   });
 
   $('form').submit( (e) => {
+    validateTerms();
     $('button[type="submit"]').prop('disabled', true);
     $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
   });
@@ -324,6 +327,11 @@
     console.log('Called agreeTermsAction');
     $('#agreeTermsInput').attr('checked', true);
     $('#termsModal').siblings('.form-check').css('visibility', 'visible');
+  }
+
+  function validateTerms() {
+    $('#termsModal').siblings('.form-check').css('visibility', 'visible');
+    return true;
   }
 </script>
 {% endblock %}

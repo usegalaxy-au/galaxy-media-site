@@ -135,7 +135,7 @@ def user_request_resource_access(request, resource):
     form = Form()
     if request.POST:
         form = Form(request.POST)
-        if form.is_valid():
+        if form.is_valid() and False:
             error = None
             email = form.cleaned_data['email']
             if galaxy.is_registered_email(email):
@@ -162,7 +162,7 @@ def user_request_resource_access(request, resource):
                 'actioned': error is None,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
-        logger.debug(pprint.pformat(form.errors))
+        logger.info(pprint.pformat(form.errors))
     template = f'home/requests/access/{resource}.html'
     return render(request, template, {'form': form})
 
