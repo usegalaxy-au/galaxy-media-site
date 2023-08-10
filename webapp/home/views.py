@@ -135,7 +135,7 @@ def user_request_resource_access(request, resource):
     form = Form()
     if request.POST:
         form = Form(request.POST)
-        if form.is_valid() and False:
+        if form.is_valid():
             error = None
             email = form.cleaned_data['email']
             if galaxy.is_registered_email(email):
