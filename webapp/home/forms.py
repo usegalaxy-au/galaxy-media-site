@@ -8,8 +8,9 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
-from utils.institution import is_institution_email
 from utils import postal
+from utils.data.fgenesh import genematrix_tree
+from utils.institution import is_institution_email
 
 from . import validators
 
@@ -316,23 +317,18 @@ class FgeneshRequestForm(OtherFieldFormMixin, BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
     RESOURCE_NAME = 'FGENESH++'
-    MATRIX_CHOICES = (  # TODO: populate choices from remote API/GitHub?
-        ('C. elegans', 'Caenorhabditis elegans (Non-redundant database)'),
-        ('G. gallus', 'Gallus gallus domesticus (Non-redundant database)'),
-        ('Gene matrix', 'Gene matrix (522 species)'),
-        ('0', 'Not listed, please specify'),
-    )
-    OTHER_FIELDS = ('matrix',)
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
     institution = forms.CharField()
     agree_terms = forms.BooleanField()
     agree_acknowledge = forms.BooleanField()
-    matrix = forms.ChoiceField(choices=MATRIX_CHOICES) # TODO: populate from remote
-    matrix_other = forms.CharField(max_length=200, required=False)
     research_description = forms.CharField(max_length=200, required=False)
     research_topics = forms.CharField(max_length=200, required=False)
+    matrix = forms.CharField(max_length=300)
+
+    def render_matrix_field(self):
+        return genematrix_tree.as_ul()
 
 
 ACCESS_FORMS = {
