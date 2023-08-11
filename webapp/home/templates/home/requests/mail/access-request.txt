@@ -9,7 +9,7 @@ Exception:
 {% else %}
 New {{ resource_name }} access request submitted - Galaxy Australia
 
-This request has been actioned by Galaxy Media Site - no action is necessary but this request should be kept for reporting purposes.
+{{ success_message }}
 {% endif %}
 
 {% for name, field in data.items %}
