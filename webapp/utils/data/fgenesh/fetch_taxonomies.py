@@ -1,6 +1,16 @@
 """Annotate FGENESH gene matrix with taxonomy information.
 
 Queries the GBIF species API for taxonomic data.
+
+TODO: There are issues with the GBIF API - posted issues:
+
+- https://github.com/gbif/portal-feedback/issues/4906
+- https://github.com/gbif/portal-feedback/issues/4907
+
+- Currently the Reptilia and Actinopterygii are not being annotated correctly,
+  resulting in most records being lost.
+- Gobiidae, Sciaenidae, Cichlidae wrongly allocated to order Perciformes.
+
 """
 
 import json
@@ -20,10 +30,11 @@ TAXONOMY_LEVELS = [
 ]
 
 ROOT = Path(__file__).parent
-outfile = ROOT / 'genematrix_taxonomy.json'
-missing_debug_file = ROOT / 'missing_debug.txt'
-missing_response_file = ROOT / 'missing_response.json'
-rank_debug_file = ROOT / 'rank_mismatch_debug.json'
+OUTFILE = ROOT / 'genematrix_taxonomy.json'
+MISSING_DEBUG_FILE = ROOT / 'missing_debug.txt'
+MISSING_RESPONSE_FILE = ROOT / 'missing_response.json'
+RANK_DEBUG_FILE = ROOT / 'rank_mismatch_debug.json'
+
 missing_responses = {}
 
 
@@ -79,9 +90,9 @@ class SpeciesSearch:
 
 def annotate():
     """Annotate gene matrix with taxonomic information."""
-    def set_taxon_tree(taxa, species, desc):
+    def set_taxon_tree(tree, species, desc):
         """Traverse dict to add current species taxonomy levels."""
-        branch = taxa
+        branch = tree
         if TAXONOMY_LEVELS[0] not in species.data:
             raise KeyError("No taxonomic data found")
         for level in TAXONOMY_LEVELS:
@@ -92,9 +103,9 @@ def annotate():
                 branch[taxon] = {}
             branch = branch[taxon]
         branch['desc'] = desc
-        return taxa
+        return tree
 
-    taxa = {}
+    tree = {}
     rank_count = Counter()
     missing = []
     rank_mismatch = []
@@ -116,7 +127,7 @@ def annotate():
                 warn(f"Rank {rank} not in taxonomy levels")
                 rank_mismatch.append({'name': name, 'rank': rank})
                 continue
-            taxa = set_taxon_tree(taxa, species, desc)
+            tree = set_taxon_tree(tree, species, desc)
         except KeyError:
             warn(f"No taxonomic data found for {name}")
             missing.append(name)
@@ -124,13 +135,13 @@ def annotate():
             continue
 
     if missing:
-        with open(missing_debug_file, 'w') as f:
+        with open(MISSING_DEBUG_FILE, 'w') as f:
             f.write('\n'.join(missing))
     if rank_mismatch:
-        with open(rank_debug_file, 'w') as f:
+        with open(RANK_DEBUG_FILE, 'w') as f:
             json.dump(rank_mismatch, f, indent=2)
     if missing_responses:
-        with open(missing_response_file, 'a') as f:
+        with open(MISSING_RESPONSE_FILE, 'a') as f:
             json.dump(missing_responses, f, indent=2)
 
     success(f"\nCompleted with {len(missing)} missing and"
@@ -139,9 +150,9 @@ def annotate():
     for rank in TAXONOMY_LEVELS:
         print(f"{rank.title()}: {rank_count[rank]}")
 
-    print(f"\nWriting to file {outfile}...")
-    with open(outfile, 'w') as f:
-        json.dump(taxa, f, indent=2)
+    print(f"\nWriting to file {OUTFILE}...")
+    with open(OUTFILE, 'w') as f:
+        json.dump(tree, f, indent=2)
 
 
 if __name__ == '__main__':

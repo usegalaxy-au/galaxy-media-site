@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-tree_path = Path(__file__).parent / 'genematrix_taxonomy_m.json'
+tree_path = Path(__file__).parent / 'genematrix_taxonomy_curated.json'
 
 
 def get_input_val(key1, key2):
@@ -32,7 +32,11 @@ def as_choices():
         items.extend(get_items('root', k, v))
 
     if len(set(items)) != len(items):
-        raise ValueError("Duplicate indexes found in tree.")
+        duplicates = [x for x in items if items.count(x) > 1]
+        raise ValueError(
+            f"Duplicate indexes found in tree: {duplicates}\n"
+            "Please check the FGENESH GeneMatrix taxonomy tree for this"
+            f" duplicate key: {tree_path}")
 
     return items
 
