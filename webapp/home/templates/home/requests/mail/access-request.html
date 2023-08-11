@@ -9,8 +9,7 @@
   {% if exception %}
   <h3>Error actioning {{ resource_name }} access request - Galaxy Australia</h3>
   <em style="font-size: 16pt; color: firebrick;">
-    This request could not be actioned by Galaxy Media Site - please follow up
-    with this request manually.
+    &#128128; {{ failed_message }}
   </em>
   <p>
     Exception: <br>
@@ -21,8 +20,7 @@
   {% else %}
   <h3>New {{ resource_name }} access request submitted - Galaxy Australia</h3>
   <em style="font-size: 16pt; color: forestgreen;">
-    This request has been actioned by Galaxy Media Site - no action is necessary
-    but this request should be kept for reporting purposes.
+    &#129395; {{ success_message }}
   </em>
   {% endif %}
 

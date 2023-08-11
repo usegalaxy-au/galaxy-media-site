@@ -233,6 +233,14 @@ class BaseAccessRequestForm(forms.Form):
 
     OTHER_FIELDS = []
     RESOURCE_NAME = None
+    MAIL_SUCCESS_MESSAGE = (
+        "This request has been actioned by Galaxy Media Site - no action is"
+        " necessary but this request should be kept for reporting purposes."
+    )
+    MAIL_FAILED_MESSAGE = (
+        "This request could not be actioned by Galaxy Media Site - please"
+        " follow up on this request manually."
+    )
 
     def clean_email(self):
         """Validate email address."""
@@ -247,7 +255,7 @@ class BaseAccessRequestForm(forms.Form):
             )
         return email
 
-    def dispatch(self, exception=None):
+    def dispatch(self, exception=None, notify_user_success=True):
         """Dispatch form content as email."""
         subject = (
             f"ERROR actioning {self.RESOURCE_NAME} request on Galaxy Australia"
@@ -269,6 +277,8 @@ class BaseAccessRequestForm(forms.Form):
             },
             'resource_name': self.RESOURCE_NAME,
             'exception': exception,
+            'success_message': self.MAIL_SUCCESS_MESSAGE,
+            'failed_message': self.MAIL_FAILED_MESSAGE,
         }
         dispatch_form_mail(
             reply_to=self.cleaned_data['email'],
@@ -276,7 +286,7 @@ class BaseAccessRequestForm(forms.Form):
             text=render_to_string(f'{template}.txt', context),
             html=render_to_string(f'{template}.html', context),
         )
-        if not exception:
+        if not exception and notify_user_success:
             user_success_mail(
                 self.cleaned_data['name'],
                 self.cleaned_data['email'],
@@ -313,10 +323,16 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
     count_aa = forms.IntegerField(required=False, label="Total count (AA)")
 
 
-class FgeneshRequestForm(OtherFieldFormMixin, BaseAccessRequestForm):
+class FgeneshRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
     RESOURCE_NAME = 'FGENESH++'
+    MAIL_SUCCESS_MESSAGE = (
+        "This request has been actioned by Galaxy Media Site and the user has"
+        " been assigned to the 'fgenesh' group on Galaxy AU. An admin should"
+        "  ensure that the required matrices are installed before notifying"
+        " the user that the service is ready for use."
+    )
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
@@ -329,6 +345,13 @@ class FgeneshRequestForm(OtherFieldFormMixin, BaseAccessRequestForm):
 
     def render_matrix_field(self):
         return genematrix_tree.as_ul()
+
+    def dispatch(self, exception=None, notify_user_success=False):
+        """Dispatch form without notifying user by default."""
+        super().dispatch(
+            exception=exception,
+            notify_user_success=notify_user_success,
+        )
 
 
 ACCESS_FORMS = {
