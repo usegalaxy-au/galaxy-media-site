@@ -295,7 +295,7 @@
 
     <div class="row mb-10">
       <div class="col text-center">
-        <button class='ga-btn' type="submit"> Submit </button>
+        <button class='ga-btn' type="submit" onclick="showTermsInput();"> Submit </button>
       </div>
     </div>
   </form>
@@ -318,21 +318,20 @@
   });
 
   $('form').submit( (e) => {
-    validateTerms();
+    showTermsInput();
     $('button[type="submit"]').prop('disabled', true);
     $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
+    return true;
   });
 
   function agreeTermsAction(el) {
-    console.log('Called agreeTermsAction');
+    showTermsInput();
     $('#agreeTermsInput').attr('checked', true);
-    $('#termsModal').siblings('.form-check').css('visibility', 'visible');
   }
 
-  function validateTerms() {
-    $('#termsModal').siblings('.form-check').css('visibility', 'visible');
-    return true;
-  }
+  const showTermsInput = () =>  $('#termsModal')
+    .siblings('.form-check')
+    .css('visibility', 'visible');
 </script>
 {% endblock %}
 
