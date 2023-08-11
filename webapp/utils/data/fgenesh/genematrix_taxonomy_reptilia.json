@@ -1,0 +1,54 @@
+{
+  "Animalia": {
+    "Chordata": {
+      "Reptilia": {
+        "Crocodylia": {
+          "Alligatoridae": {
+            "Alligator": {
+              "Alligator mississippiensis": {
+                "desc": "American alligator"
+              },
+              "Alligator sinensis": {
+                "desc": "Chinese alligator"
+              }
+            }
+          }
+        },
+        "Squamata": {
+          "Dactyloidae": {
+            "Anolis": {
+              "Anolis carolinensis": {
+                "desc": "Green anole, Carolina anole"
+              }
+            }
+          }
+        },
+        "Testudines": {
+          "Cheloniidae": {
+            "Chelonia": {
+              "Chelonia mydas": {
+                "desc": "Green sea turtle"
+              }
+            }
+          },
+          "Emydidae": {
+            "Chrysemys": {
+              "Chrysemys picta": {
+                "desc": "Painted turtle"
+              }
+            }
+          }
+        }
+      },
+      "Amphibia": {
+        "Anura": {
+          "Pipidae": {
+            "Xenopus": {
+              "desc": "generic, frog"
+            }
+          }
+        }
+      }
+    }
+  }
+}

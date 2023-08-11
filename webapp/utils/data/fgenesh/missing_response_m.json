@@ -1,0 +1,88 @@
+{
+  "Curvularia": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Curvularia",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Fungi",
+    "phylum":"Ascomycota",
+    "order":"Pleosporales",
+    "family":"Pleosporaceae",
+    "genus":"Curvularia"
+  },
+  "Preussia": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Preussia",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Fungi",
+    "phylum":"Ascomycota",
+    "order":"Pleosporales",
+    "family":"Sporormiaceae",
+    "genus":"Preussia"
+  },
+  "Cryptococcus": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Cryptococcus",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Fungi",
+    "phylum":"Tremellomycetes",
+    "order":"Tremellales",
+    "family":"Tremellaceae",
+    "genus":"Cryptococcus"
+  },
+  "Paxillus": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Paxillus",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Animalia",
+    "phylum":"Arthropoda",
+    "order":"Coleoptera",
+    "family":"Passallidae",
+    "genus":"Paxillus"
+  },
+  "Monocot plants": {
+    "confidence": 100,
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Plantae",
+    "phylum":"Tracheophyta",
+    "class":"Monocotyledonae"
+  },
+  "Coccomyxa": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Coccomyxa",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Plantae",
+    "phylum":"Chlorophyta",
+    "order":"Chlamydomonadales",
+    "family":"Coccomyxaceae",
+    "genus":"Coccomyxa"
+  },
+  "Oryzias Latipes": {
+    "confidence": 100,
+    "note": "No match because of too little confidence",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Metazoa",
+    "phylum":"Chordata",
+    "order":"Beloniformes",
+    "family":"Adrianichthyidae",
+    "genus":"Oryzias",
+    "species":"Oryzias sinensis"
+  },
+  "Babesia": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Babesia",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Chromista",
+    "phylum":"Apicomplexa",
+    "order":"Piroplasmorida",
+    "family":"Babesiidae",
+    "genus":"Babesia"
+  }
+}
