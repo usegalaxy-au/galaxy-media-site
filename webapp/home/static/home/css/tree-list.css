@@ -49,3 +49,26 @@ ul, .tree-select {
 .active {
   display: block;
 }
+
+/* Search box */
+#treeSearch {
+  max-width: 300px;
+  position: relative;
+}
+#treeSearch .dropdown {
+  position: absolute;
+  z-index: 1;
+  top: 35px;
+  max-height: 350px;
+  overflow-y: auto;
+  background-color: var(--tile-bg);
+  border: 1px solid var(--border);
+}
+#treeSearch option {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#treeSearch option:hover {
+  color: white;
+  background-color: var(--color);
+}
