@@ -162,6 +162,18 @@
           <button class="ga-btn btn-sm" type="button" onclick="clearTreeSelection();">Clear selection</button>
         </p>
 
+        <div id="treeSearch" class="mb-2">
+          <input
+            class="form-control"
+            type="text"
+            id="treeSearchInput"
+            placeholder="Search matrices by name"
+            onkeyup="debouncedSearchTree(this.value);"
+          />
+          <div class="dropdown">
+          </div>
+        </div>
+
         <p class="lead" id="matrixCount">
           <span>0</span> matrices selected
         </p>
