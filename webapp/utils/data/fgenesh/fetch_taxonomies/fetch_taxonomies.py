@@ -38,7 +38,7 @@ MISSING_DEBUG_FILE = ROOT / 'missing_debug.txt'
 MISSING_RESPONSE_FILE = ROOT / 'missing_response.json'
 RANK_DEBUG_FILE = ROOT / 'rank_mismatch_debug.json'
 DUPLICATES_ENTRIES_FILE = ROOT / 'duplicates_entries.json'
-MISSING_CLASS_FILE = Path(__file__).parent / "missing_classes.json"
+MISSING_CLASS_FILE = ROOT / "missing_classes.json"
 
 missing_responses = {}
 duplicate_entries = {}
