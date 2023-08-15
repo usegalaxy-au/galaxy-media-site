@@ -37,10 +37,44 @@ ACTINOPTERYGII_ORDERS = [
 CHONDRICHTHYES_ORDERS = [
     "Chimaeriformes",
 ]
+HYPEROARTIA_ORDERS = [
+    "Petromyzontiformes",
+]
 PERCIFORMES_CORRECTION = {
     "Cichlidae": "Cichliformes",
     "Gobiidae": "Gobiiformes",
     "Sciaenidae": "Acanthuriformes",
+}
+GENERAL_CORRECTIONS = {
+    # Map genematrix name substring to correction data
+    "Piriformospora indica": {
+        "species": "Serendipita indica",
+        "genus": "Serendipita",
+        "family": "Serendipitaceae",
+        "order": "Sebacinales",
+        "class": "Agaricomycetes",
+    },
+    "Serendipita vermifera": {
+        "species": "Sebacina vermifera",
+        "genus": "Sebacina",
+        "family": "Sebacinaceae",
+        "order": "Sebacinales",
+        "class": "Agaricomycetes",
+    },
+    "Trichoplax adhaerens": {
+        "species": "Trichoplax adhaerens",
+        "genus": "Trichoplax",
+        "family": "Trichoplacidae",
+        "order": "Trichoplacida",
+        "class": "Uniplacotomia",
+    },
+    "Paulinella chromatophora": {
+        "species": "Paulinella chromatophora",
+        "genus": "Paulinella",
+        "family": "Paulinellaceae",
+        "order": "Euglyphida",
+        "class": "Imbricatea",
+    },
 }
 
 with open(MISSING_DATA_FILE) as f:
@@ -65,6 +99,8 @@ def fish(data):
             data['class'] = 'Actinopterygii'
         elif data.get('order') in CHONDRICHTHYES_ORDERS:
             data['class'] = 'Chondrichthyes'
+        elif data.get('order') in HYPEROARTIA_ORDERS:
+            data['class'] = 'Hyperoartia'
     return data
 
 
@@ -88,7 +124,8 @@ def missing(data, query):
     return data
 
 
-if __name__ == '__main__':
-    print('Fill in missing data for Babesia:')
-    data = missing({'matchType': 'NONE'}, 'Babesia')
-    print(data)
+def corrections(data, query):
+    for substring, correction in GENERAL_CORRECTIONS.items():
+        if substring.lower() in query.lower():
+            data.update(correction)
+    return data

@@ -80,6 +80,29 @@
     "synonym": false
   }
 }{
+  "Paulinella chromatophora": {
+    "usageKey": 5425552,
+    "scientificName": "Paulinella chromatophora Lauterborn, 1895",
+    "canonicalName": "Paulinella chromatophora",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Chromista",
+    "phylum": "Cercozoa",
+    "family": "Paulinellideae",
+    "genus": "Paulinella",
+    "species": "Paulinella chromatophora",
+    "kingdomKey": 4,
+    "phylumKey": 38,
+    "familyKey": 6789158,
+    "genusKey": 3212296,
+    "speciesKey": 5425552,
+    "synonym": false
+  }
+}
+// The rest are just fish
+{
   "Amphilophus citrinellus": {
     "usageKey": 2370102,
     "scientificName": "Amphilophus citrinellus (G\u00fcnther, 1864)",

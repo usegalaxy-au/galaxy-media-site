@@ -1,0 +1,603 @@
+diff ../genematrix_taxonomy_curated.json genematrix_taxonomy.json
+141c141
+<           "desc": ["Streptothrix mycetomatis"],
+---
+>           "desc": ["Streptotrix mycetomatis"],
+465a466,470
+>           "Sporormiaceae": {
+>             "Preussia": {
+>               "desc": ["generic"]
+>             }
+>           },
+477,479d481
+<           },
+<           "Preussia": {
+<             "desc": ["generic"]
+728c730
+<                 "desc": ["Brettanomyces bruxellensis"]
+---
+>                 "desc": ["yeast", "Brettanomyces bruxellensis"]
+978,987c980,983
+<           "Serendipitaceae": {
+<             "Serendipita": {
+<               "Serendipita indica": {
+<                 "desc": ["Piriformospora indica, Achlamydospora indica"]
+<               },
+<               "Serendipita vermifera": {
+<                 "desc": ["Sebacina vermifera"]
+<               }
+<             }
+<           }
+---
+>           "desc": [
+>             "Serendipita indica, Achlamydospora indica",
+>             "Sebacina vermifera"
+>           ]
+1217a1214
+>               "desc": ["generic, encapsulated yeast"],
+1230,1231c1227
+<           },
+<           "desc": ["Cryptococcus generic"]
+---
+>           }
+1379,1386c1375
+<           "desc": ["103 sequences, chytrids"],
+<           "Batrachochytriaceae": {
+<             "Batrachochytrium": {
+<               "Batrachochytrium dendrobatidis": {
+<                 "desc": ["amphibian chytrid fungus"]
+<               }
+<             }
+<           }
+---
+>           "desc": ["amphibian chytrid fungus", "103 sequences, chytrids"]
+1629,1850d1617
+<       "Chondrichthyes": {
+<         "Chimaeriformes": {
+<           "Callorhinchidae": {
+<             "Callorhinchus": {
+<               "Callorhinchus milii": {
+<                 "desc": ["Elephant shark"]
+<               }
+<             }
+<           }
+<         }
+<       },
+<       "Actinopterygii": {
+<         "Beloniformes": {
+<           "Adrianichthyidae": {
+<             "Oryzias": {
+<               "Oryzias sinensis": {
+<                 "desc": ["Japanese rice fish"]
+<               }
+<             }
+<           }
+<         },
+<         "Cichliformes": {
+<           "Cichlidae": {
+<             "Amphilophus": {
+<               "Amphilophus citrinellus": {
+<                 "desc": ["Midas cichlid, red devil cichlid"]
+<               }
+<             },
+<             "Neolamprologus": {
+<               "Neolamprologus brichardi": {
+<                 "desc": ["Lyretail cichlid, Princess of Burundi"]
+<               }
+<             },
+<             "Oreochromis": {
+<               "Oreochromis niloticus": {
+<                 "desc": ["African cichlid"]
+<               }
+<             },
+<             "Astatotilapia": {
+<               "Astatotilapia burtoni": {
+<                 "desc": ["Burton's mouthbrooder"]
+<               }
+<             }
+<           }
+<         },
+<         "Gobiiformes": {
+<           "Gobiidae": {
+<             "Boleophthalmus": {
+<               "Boleophthalmus pectinirostris": {
+<                 "desc": ["great blue-spotted mudskipper, 122 genes"]
+<               }
+<             }
+<           }
+<         },
+<         "Perciformes": {
+<           "Moronidae": {
+<             "Dicentrarchus": {
+<               "Dicentrarchus labrax": {
+<                 "desc": ["European seabass"]
+<               }
+<             }
+<           },
+<           "Nototheniidae": {
+<             "Notothenia": {
+<               "Notothenia coriiceps": {
+<                 "desc": ["yellowbelly rockcod, black rockcod"]
+<               }
+<             }
+<           }
+<         },
+<         "Acanthuriformes": {
+<           "Sciaenidae": {
+<             "Larimichthys": {
+<               "Larimichthys crocea": {
+<                 "desc": ["large yellow croaker"]
+<               }
+<             }
+<           }
+<         },
+<         "Anguilliformes": {
+<           "Anguillidae": {
+<             "Anguilla": {
+<               "Anguilla anguilla": {
+<                 "desc": ["European eel, 109 genes"]
+<               }
+<             }
+<           }
+<         },
+<         "Scorpaeniformes": {
+<           "Anoplopomatidae": {
+<             "Anoplopoma": {
+<               "Anoplopoma fimbria": {
+<                 "desc": ["sablefish"]
+<               }
+<             }
+<           },
+<           "Cottidae": {
+<             "Cottus": {
+<               "Cottus rhenanus": {
+<                 "desc": ["small benthic Rhine sculpin"]
+<               }
+<             }
+<           }
+<         },
+<         "Characiformes": {
+<           "Characidae": {
+<             "Astyanax": {
+<               "Astyanax mexicanus": {
+<                 "desc": ["Mexican tetra or blind cave fish"]
+<               }
+<             }
+<           }
+<         },
+<         "Cyprinodontiformes": {
+<           "Rivulidae": {
+<             "Austrofundulus": {
+<               "Austrofundulus limnaeus": {
+<                 "desc": ["bony fishes"]
+<               }
+<             }
+<           },
+<           "Cyprinodontidae": {
+<             "Cyprinodon": {
+<               "desc": ["Cyprinodon_nevadensis+variega"]
+<             }
+<           },
+<           "Fundulidae": {
+<             "Fundulus": {
+<               "Fundulus heteroclitus": {
+<                 "desc": ["Mummichog , killifish"]
+<               }
+<             }
+<           }
+<         },
+<         "Clupeiformes": {
+<           "Clupeidae": {
+<             "Clupea": {
+<               "Clupea harengus": {
+<                 "desc": ["Atlantic herring"]
+<               }
+<             }
+<           }
+<         },
+<         "Cypriniformes": {
+<           "Cyprinidae": {
+<             "Ctenopharyngodon": {
+<               "Ctenopharyngodon idella": {
+<                 "desc": ["grass carp"]
+<               }
+<             },
+<             "Cyprinus": {
+<               "Cyprinus carpio": {
+<                 "desc": ["mirror carp, common carp"]
+<               }
+<             },
+<             "Danio": {
+<               "Danio rerio": {
+<                 "desc": ["Zebrafish, leopard danio"]
+<               }
+<             }
+<           }
+<         },
+<         "Pleuronectiformes": {
+<           "Cynoglossidae": {
+<             "Cynoglossus": {
+<               "Cynoglossus semilaevis": {
+<                 "desc": ["Tonguefish"]
+<               }
+<             }
+<           }
+<         },
+<         "Esociformes": {
+<           "Esocidae": {
+<             "Esox": {
+<               "Esox lucius": {
+<                 "desc": ["northern pike"]
+<               }
+<             }
+<           }
+<         },
+<         "Gasterosteiformes": {
+<           "Gasterosteidae": {
+<             "Gasterosteus": {
+<               "Gasterosteus aculeatus": {
+<                 "desc": ["Three-spined stickleback"]
+<               }
+<             }
+<           }
+<         },
+<         "Lepisosteiformes": {
+<           "Lepisosteidae": {
+<             "Lepisosteus": {
+<               "Lepisosteus oculatus": {
+<                 "desc": ["spotted gar"]
+<               }
+<             }
+<           }
+<         },
+<         "Salmoniformes": {
+<           "Salmonidae": {
+<             "Oncorhynchus": {
+<               "Oncorhynchus mykiss": {
+<                 "desc": ["rainbow trout"]
+<               }
+<             }
+<           }
+<         },
+<         "Tetraodontiformes": {
+<           "Tetraodontidae": {
+<             "Takifugu": {
+<               "Takifugu rubripes": {
+<                 "desc": ["Torafugu"]
+<               }
+<             },
+<             "Dichotomyctere": {
+<               "Dichotomyctere nigroviridis": {
+<                 "desc": ["Spotted green pufferfish"]
+<               }
+<             }
+<           }
+<         }
+<       },
+1954c1721
+<                 "desc": ["Human"]
+---
+>                 "desc": [""]
+2271a2039,2041
+>       "Leptocardii": {
+>         "desc": ["lancelet"]
+>       },
+2320c2090,2279
+<       "Hyperoartia": {
+---
+>       "Actinopterygii": {
+>         "Cichliformes": {
+>           "Cichlidae": {
+>             "Amphilophus": {
+>               "Amphilophus citrinellus": {
+>                 "desc": ["Midas cichlid, red devil cichlid"]
+>               }
+>             },
+>             "Astatotilapia": {
+>               "Astatotilapia burtoni": {
+>                 "desc": ["Burton's mouthbrooder"]
+>               }
+>             },
+>             "Neolamprologus": {
+>               "Neolamprologus brichardi": {
+>                 "desc": ["Lyretail cichlid, Princess of Burundi"]
+>               }
+>             },
+>             "Oreochromis": {
+>               "Oreochromis niloticus": {
+>                 "desc": ["African cichlid"]
+>               }
+>             }
+>           }
+>         },
+>         "Anguilliformes": {
+>           "Anguillidae": {
+>             "Anguilla": {
+>               "Anguilla anguilla": {
+>                 "desc": ["European eel, 109 genes"]
+>               }
+>             }
+>           }
+>         },
+>         "Scorpaeniformes": {
+>           "Anoplopomatidae": {
+>             "Anoplopoma": {
+>               "Anoplopoma fimbria": {
+>                 "desc": ["sablefish"]
+>               }
+>             }
+>           },
+>           "Cottidae": {
+>             "Cottus": {
+>               "Cottus rhenanus": {
+>                 "desc": ["small benthic Rhine sculpin"]
+>               }
+>             }
+>           }
+>         },
+>         "Characiformes": {
+>           "Characidae": {
+>             "Astyanax": {
+>               "Astyanax mexicanus": {
+>                 "desc": ["Mexican tetra or blind cave fish"]
+>               }
+>             }
+>           }
+>         },
+>         "Cyprinodontiformes": {
+>           "Rivulidae": {
+>             "Austrofundulus": {
+>               "Austrofundulus limnaeus": {
+>                 "desc": ["bony fishes"]
+>               }
+>             }
+>           },
+>           "Cyprinodontidae": {
+>             "Cyprinodon": {
+>               "desc": ["Cyprinodon_nevadensis+variega"]
+>             }
+>           },
+>           "Fundulidae": {
+>             "Fundulus": {
+>               "Fundulus heteroclitus": {
+>                 "desc": ["Mummichog , killifish"]
+>               }
+>             }
+>           }
+>         },
+>         "Gobiiformes": {
+>           "Gobiidae": {
+>             "Boleophthalmus": {
+>               "Boleophthalmus pectinirostris": {
+>                 "desc": ["great blue-spotted mudskipper, 122 genes"]
+>               }
+>             }
+>           }
+>         },
+>         "Clupeiformes": {
+>           "Clupeidae": {
+>             "Clupea": {
+>               "Clupea harengus": {
+>                 "desc": ["Atlantic herring"]
+>               }
+>             }
+>           }
+>         },
+>         "Cypriniformes": {
+>           "Cyprinidae": {
+>             "Ctenopharyngodon": {
+>               "Ctenopharyngodon idella": {
+>                 "desc": ["grass carp"]
+>               }
+>             },
+>             "Cyprinus": {
+>               "Cyprinus carpio": {
+>                 "desc": ["mirror carp, common carp"]
+>               }
+>             },
+>             "Danio": {
+>               "Danio rerio": {
+>                 "desc": [
+>                   "Zebrafish, additional variant",
+>                   "Zebrafish, leopard danio"
+>                 ]
+>               }
+>             }
+>           }
+>         },
+>         "Pleuronectiformes": {
+>           "Cynoglossidae": {
+>             "Cynoglossus": {
+>               "Cynoglossus semilaevis": {
+>                 "desc": ["Tonguefish"]
+>               }
+>             }
+>           }
+>         },
+>         "Perciformes": {
+>           "Moronidae": {
+>             "Dicentrarchus": {
+>               "Dicentrarchus labrax": {
+>                 "desc": ["European seabass"]
+>               }
+>             }
+>           },
+>           "Nototheniidae": {
+>             "Notothenia": {
+>               "Notothenia coriiceps": {
+>                 "desc": ["yellowbelly rockcod, black rockcod"]
+>               }
+>             }
+>           }
+>         },
+>         "Esociformes": {
+>           "Esocidae": {
+>             "Esox": {
+>               "Esox lucius": {
+>                 "desc": ["northern pike"]
+>               }
+>             }
+>           }
+>         },
+>         "Gasterosteiformes": {
+>           "Gasterosteidae": {
+>             "Gasterosteus": {
+>               "Gasterosteus aculeatus": {
+>                 "desc": ["Three-spined stickleback"]
+>               }
+>             }
+>           }
+>         },
+>         "Acanthuriformes": {
+>           "Sciaenidae": {
+>             "Larimichthys": {
+>               "Larimichthys crocea": {
+>                 "desc": ["large yellow croaker"]
+>               }
+>             }
+>           }
+>         },
+>         "Lepisosteiformes": {
+>           "Lepisosteidae": {
+>             "Lepisosteus": {
+>               "Lepisosteus oculatus": {
+>                 "desc": ["spotted gar"]
+>               }
+>             }
+>           }
+>         },
+>         "Salmoniformes": {
+>           "Salmonidae": {
+>             "Oncorhynchus": {
+>               "Oncorhynchus mykiss": {
+>                 "desc": ["rainbow trout"]
+>               }
+>             }
+>           }
+>         },
+2328a2288,2312
+>         },
+>         "Tetraodontiformes": {
+>           "Tetraodontidae": {
+>             "Takifugu": {
+>               "Takifugu rubripes": {
+>                 "desc": ["Torafugu"]
+>               }
+>             },
+>             "Dichotomyctere": {
+>               "Dichotomyctere nigroviridis": {
+>                 "desc": ["Spotted green pufferfish"]
+>               }
+>             }
+>           }
+>         }
+>       },
+>       "Chondrichthyes": {
+>         "Chimaeriformes": {
+>           "Callorhinchidae": {
+>             "Callorhinchus": {
+>               "Callorhinchus milii": {
+>                 "desc": ["Elephant shark"]
+>               }
+>             }
+>           }
+2333a2318,2331
+>         "Coleoptera": {
+>           "Passallidae": {
+>             "Paxillus": {
+>               "desc": ["generic, Paxillus_involutus+rubicundulus"]
+>             }
+>           },
+>           "Tenebrionidae": {
+>             "Tribolium": {
+>               "Tribolium castaneum": {
+>                 "desc": ["red flour beetle"]
+>               }
+>             }
+>           }
+>         },
+2465,2478d2462
+<         },
+<         "Coleoptera": {
+<           "Tenebrionidae": {
+<             "Tribolium": {
+<               "Tribolium castaneum": {
+<                 "desc": ["red flour beetle"]
+<               }
+<             }
+<           },
+<           "Passallidae": {
+<             "Paxillus": {
+<               "desc": ["generic, Paxillus_involutus+rubicundulus"]
+<             }
+<           }
+2630c2614
+<                 "desc": ["additional variant; sea urchin", "sea urchin"]
+---
+>                 "desc": ["sea urchin", "additional variant; sea urchin"]
+2640,2642d2623
+<       "Monocots": {
+<         "desc": ["generic"]
+<       },
+2859c2840
+<                 "desc": ["generic, tomato", "Lycopersicon esculentum, tomato"]
+---
+>                 "desc": ["tomato, Solanum lycopersicum", "generic, tomato"]
+3169a3151,3153
+>       "Monocot plants": {
+>         "desc": ["generic, Corn, Rice, Wheat, Barley"]
+>       },
+3183,3187d3166
+<       "Coccomyxaceae": {
+<         "Coccomyxa": {
+<           "desc": ["green algae"]
+<         }
+<       },
+3201a3181,3187
+>         },
+>         "incertae sedis": {
+>           "Coccomyxaceae": {
+>             "Coccomyxa": {
+>               "desc": ["green algae"]
+>             }
+>           }
+3260,3270d3245
+<     "Apicomplexa": {
+<       "Aconoidasida": {
+<         "Piroplasmorida": {
+<           "Babesiidae": {
+<             "Babesia": {
+<               "desc": ["generic, piroplasms"]
+<             }
+<           }
+<         }
+<       }
+<     },
+3333a3309,3319
+>     "Apicomplexa": {
+>       "Aconoidasida": {
+>         "Piroplasmorida": {
+>           "Babesiidae": {
+>             "Babesia": {
+>               "desc": ["generic, piroplasms"]
+>             }
+>           }
+>         }
+>       }
+>     },
+3443a3430,3444
+>               }
+>             }
+>           }
+>         }
+>       }
+>     }
+>   },
+>   "Metazoa": {
+>     "Chordata": {
+>       "Actinopterygii": {
+>         "Beloniformes": {
+>           "Adrianichthyidae": {
+>             "Oryzias": {
+>               "Oryzias sinensis": {
+>                 "desc": ["Japanese rice fish"]
