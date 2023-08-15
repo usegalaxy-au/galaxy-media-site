@@ -51,11 +51,14 @@ function showTreeMatches(matched) {
 
 function selectTreeMatch(id) {
   $('#treeSearch .dropdown').empty();
-  let parent = $(`#taxonomy-tree input[value="${id}"]`).closest('ul');
+  const input = $(`#taxonomy-tree input[value="${id}"]`);
+  input.prop('checked', true);
+  let parent = input.closest('ul');
   while (parent.hasClass('nested')) {
     parent.siblings('.caret').click();
     parent = $(parent).parent().parent();
   }
+  updateTreeSelection();
 }
 
 function scrollToErrors() {
