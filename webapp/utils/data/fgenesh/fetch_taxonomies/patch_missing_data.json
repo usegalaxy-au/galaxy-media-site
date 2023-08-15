@@ -8,7 +8,8 @@
     "phylum":"Ascomycota",
     "order":"Pleosporales",
     "family":"Pleosporaceae",
-    "genus":"Curvularia"
+    "genus":"Curvularia",
+    "class": "Dothideomycetes"
   },
   "Preussia": {
     "confidence": 100,
@@ -19,7 +20,8 @@
     "phylum":"Ascomycota",
     "order":"Pleosporales",
     "family":"Sporormiaceae",
-    "genus":"Preussia"
+    "genus":"Preussia",
+    "class": "Dothideomycetes"
   },
   "Cryptococcus": {
     "confidence": 100,
@@ -27,10 +29,11 @@
     "matchType": "NONE",
     "synonym": false,
     "kingdom":"Fungi",
-    "phylum":"Tremellomycetes",
+    "phylum": "Basidiomycota",
     "order":"Tremellales",
     "family":"Tremellaceae",
-    "genus":"Cryptococcus"
+    "genus":"Cryptococcus",
+    "class": "Tremellomycetes"
   },
   "Paxillus": {
     "confidence": 100,
@@ -41,7 +44,8 @@
     "phylum":"Arthropoda",
     "order":"Coleoptera",
     "family":"Passallidae",
-    "genus":"Paxillus"
+    "genus":"Paxillus",
+    "class": "Insecta"
   },
   "Monocot plants": {
     "confidence": 100,
@@ -49,7 +53,7 @@
     "synonym": false,
     "kingdom":"Plantae",
     "phylum":"Tracheophyta",
-    "class":"Monocotyledonae"
+    "class":"Monocot plants"
   },
   "Coccomyxa": {
     "confidence": 100,
@@ -58,7 +62,8 @@
     "synonym": false,
     "kingdom":"Plantae",
     "phylum":"Chlorophyta",
-    "order":"Chlamydomonadales",
+    "class": "Trebouxiophyceae",
+    "order": "incertae sedis",
     "family":"Coccomyxaceae",
     "genus":"Coccomyxa"
   },
@@ -72,7 +77,8 @@
     "order":"Beloniformes",
     "family":"Adrianichthyidae",
     "genus":"Oryzias",
-    "species":"Oryzias sinensis"
+    "species":"Oryzias sinensis",
+    "class": "Actinopterygii"
   },
   "Babesia": {
     "confidence": 100,
@@ -83,6 +89,7 @@
     "phylum":"Apicomplexa",
     "order":"Piroplasmorida",
     "family":"Babesiidae",
-    "genus":"Babesia"
+    "genus":"Babesia",
+    "class": "Aconoidasida"
   }
 }
