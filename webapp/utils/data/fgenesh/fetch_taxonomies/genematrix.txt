@@ -374,7 +374,7 @@ Fukomys damarensis ( Damaraland mole-rat, Damara mole rat, Damaraland blesmol )
 Galeopterus variegatus ( Sunda flying lemur, Malayan flying lemur, Sunda Colugo or Malayan colugo )
 Gorilla gorilla ( Western gorilla )
 Heterocephalus glaber ( naked mole-rat, sand puppy, desert mole rat )
-Homo sapiens
+Homo sapiens (Human)
 Ictidomys tridecemlineatus ( thirteen-lined ground squirrel,striped gopher )
 Jaculus jaculus ( lesser Egyptian jerboa )
 Leptonychotes weddellii ( Weddell seal )

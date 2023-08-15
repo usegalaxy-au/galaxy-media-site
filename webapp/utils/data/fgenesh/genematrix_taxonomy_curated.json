@@ -40,7 +40,9 @@
               }
             },
             "Metacordyceps": {
-              "desc": ["generic, Metacordyceps brittlebankisoides+ chlamydosporia+ taii"]
+              "desc": [
+                "generic, Metacordyceps brittlebankisoides+ chlamydosporia+ taii"
+              ]
             },
             "Metarhizium": {
               "desc": ["generic"]
@@ -58,7 +60,9 @@
               }
             },
             "Fusarium": {
-              "desc": ["generic, Fusarium graminearum+ fujikuroi+ oxysporum+ solani+ verticillioides"],
+              "desc": [
+                "generic, Fusarium graminearum+ fujikuroi+ oxysporum+ solani+ verticillioides"
+              ],
               "Fusarium graminearum": {
                 "desc": ["generic, haploid homothallic ascomycete"]
               }
@@ -74,7 +78,9 @@
               }
             },
             "Hypocrea": {
-              "desc": ["generic, Hypocrea jecorina+ lixii+ pseudokoningii+ virens"]
+              "desc": [
+                "generic, Hypocrea jecorina+ lixii+ pseudokoningii+ virens"
+              ]
             }
           },
           "Ophiocordycipitaceae": {
@@ -112,7 +118,9 @@
                 "desc": ["Scedosporium apiospermum"]
               },
               "Pseudallescheria boydii": {
-                "desc": ["Pseudallescheria apiosperma, causes of resistant life-threatening infections in immunocompromised patients"]
+                "desc": [
+                  "Pseudallescheria apiosperma, causes of resistant life-threatening infections in immunocompromised patients"
+                ]
               }
             }
           }
@@ -124,7 +132,9 @@
             },
             "Thermothelomyces": {
               "Thermothelomyces thermophilus": {
-                "desc": ["Sporotrichum thermophilum, Chrysosporium thermophilum"]
+                "desc": [
+                  "Sporotrichum thermophilum, Chrysosporium thermophilum"
+                ]
               }
             }
           },
@@ -152,13 +162,17 @@
         "Diaporthales": {
           "Cryphonectriaceae": {
             "Chrysoporthe": {
-              "desc": ["generic, Chrysoporthe austroafricana+cubensis+deuterocubensis"]
+              "desc": [
+                "generic, Chrysoporthe austroafricana+cubensis+deuterocubensis"
+              ]
             }
           },
           "Diaporthaceae": {
             "Diaporthe": {
               "Diaporthe ampelina": {
-                "desc": ["Phomopsis viticola, Phomopsis ampelina, Fusicoccum viticolum"]
+                "desc": [
+                  "Phomopsis viticola, Phomopsis ampelina, Fusicoccum viticolum"
+                ]
               }
             }
           }
@@ -166,7 +180,9 @@
         "Glomerellales": {
           "Glomerellaceae": {
             "Colletotrichum": {
-              "desc": ["Colletotrichum fioriniae+gloeosporioides+graminicola+higginsianum+orbiculare+sublineola"]
+              "desc": [
+                "Colletotrichum fioriniae+gloeosporioides+graminicola+higginsianum+orbiculare+sublineola"
+              ]
             }
           }
         },
@@ -313,7 +329,9 @@
               "desc": ["Capronia coronata+epimyces+semiimmersa"]
             },
             "Cladophialophora": {
-              "desc": ["Cladophialophora bantiana+carrionii+immunda+psammophila+yegresii"]
+              "desc": [
+                "Cladophialophora bantiana+carrionii+immunda+psammophila+yegresii"
+              ]
             },
             "Coniosporium": {
               "Coniosporium apollinis": {
@@ -321,7 +339,9 @@
               }
             },
             "Exophiala": {
-              "desc": ["Exophiala_aquamarina+dermatitidis+mesophila+oligosperma+sideris+spinifera+xenobiotica"]
+              "desc": [
+                "Exophiala_aquamarina+dermatitidis+mesophila+oligosperma+sideris+spinifera+xenobiotica"
+              ]
             },
             "Fonsecaea": {
               "Fonsecaea pedrosoi": {
@@ -330,7 +350,9 @@
             },
             "Rhinocladiella": {
               "Rhinocladiella mackenziei": {
-                "desc": ["Ramichloridium mackenziei, cause of cerebral phaeohyphomycosis"]
+                "desc": [
+                  "Ramichloridium mackenziei, cause of cerebral phaeohyphomycosis"
+                ]
               }
             }
           },
@@ -364,7 +386,9 @@
               "desc": ["generic"]
             },
             "Cochliobolus": {
-              "desc": ["generic, Cochliobolus carbonum+heterostrophus+ miyabeanus+ sativus+ victoriae"]
+              "desc": [
+                "generic, Cochliobolus carbonum+heterostrophus+ miyabeanus+ sativus+ victoriae"
+              ]
             },
             "Curvularia": {
               "desc": ["generic, Curvularia lunata+ papendorfii"]
@@ -393,7 +417,9 @@
           "Didymellaceae": {
             "Peyronellaea": {
               "Peyronellaea obtusa": {
-                "desc": ["plant pathogen that causes Frogeye leaf spot, Black rot and cankers"]
+                "desc": [
+                  "plant pathogen that causes Frogeye leaf spot, Black rot and cankers"
+                ]
               }
             },
             "Stagonosporopsis": {
@@ -444,11 +470,15 @@
           },
           "Shiraiaceae": {
             "Shiraia": {
-              "desc": ["a parasitic fungus on twigs of several genera of bamboos"]
+              "desc": [
+                "a parasitic fungus on twigs of several genera of bamboos"
+              ]
             }
           },
-          "Preussia": {
-            "desc": ["generic"]
+          "Sporormiaceae": {
+            "Preussia": {
+              "desc": ["generic"]
+            }
           }
         },
         "Dothideales": {
@@ -478,7 +508,9 @@
               }
             },
             "Mycosphaerella": {
-              "desc": ["generic, Mycosphaerella arachidis+ dearnessii+ fijiensis+ graminicola+ laricina+ pini+ populicola+populorum"]
+              "desc": [
+                "generic, Mycosphaerella arachidis+ dearnessii+ fijiensis+ graminicola+ laricina+ pini+ populicola+populorum"
+              ]
             },
             "Fulvia": {
               "Fulvia fulva": {
@@ -487,7 +519,9 @@
             },
             "Pseudocercospora": {
               "Pseudocercospora fijiensis": {
-                "desc": ["black leaf streak, Mycosphaerella fijiensis , Cercospora fijiensis, Paracercospora fijiensis"]
+                "desc": [
+                  "black leaf streak, Mycosphaerella fijiensis , Cercospora fijiensis, Paracercospora fijiensis"
+                ]
               }
             },
             "Ramularia": {
@@ -497,7 +531,9 @@
             },
             "Zymoseptoria": {
               "Zymoseptoria passerinii": {
-                "desc": ["Zymoseptoria passerinii, plant pathogen infecting barley"]
+                "desc": [
+                  "Zymoseptoria passerinii, plant pathogen infecting barley"
+                ]
               }
             },
             "Sphaerulina": {
@@ -563,7 +599,9 @@
           "Patellariaceae": {
             "Rhytidhysteron": {
               "Rhytidhysteron rufulum": {
-                "desc": ["Rhytidhysterium rufulum, fungal plant pathogen infecting citruses"]
+                "desc": [
+                  "Rhytidhysterium rufulum, fungal plant pathogen infecting citruses"
+                ]
               }
             }
           }
@@ -630,7 +668,9 @@
               "Hymenoscyphus herbarum": {
                 "desc": ["Hymenoscyphus herbarum"]
               },
-              "desc": ["generic, Hymenoscyphus fraxineus+ fructigenus+ infarciens+ laetus+ repandus+ salicellus+ scutula+ varicosporoides"]
+              "desc": [
+                "generic, Hymenoscyphus fraxineus+ fructigenus+ infarciens+ laetus+ repandus+ salicellus+ scutula+ varicosporoides"
+              ]
             },
             "Glarea": {
               "Glarea lozoyensis": {
@@ -662,7 +702,9 @@
           "Thelebolaceae": {
             "Pseudogymnoascus": {
               "Pseudogymnoascus destructans": {
-                "desc": ["Pseudogymnoascus destructans, a psychrophilic fungus that causes white-nose syndrome (WNS"]
+                "desc": [
+                  "Pseudogymnoascus destructans, a psychrophilic fungus that causes white-nose syndrome (WNS"
+                ]
               },
               "desc": ["generic, Pseudogymnoascus destructans+pannorum"]
             }
@@ -685,7 +727,7 @@
           "Pichiaceae": {
             "Dekkera": {
               "Dekkera bruxellensis": {
-                "desc": ["Brettanomyces bruxellensis"]
+                "desc": ["yeast", "Brettanomyces bruxellensis"]
               }
             },
             "Komagataella": {
@@ -695,7 +737,9 @@
             },
             "Issatchenkia": {
               "Issatchenkia orientalis": {
-                "desc": ["Candida krusei, Issatchenkia orientalis, Candida acidothermophilum"]
+                "desc": [
+                  "Candida krusei, Issatchenkia orientalis, Candida acidothermophilum"
+                ]
               }
             }
           },
@@ -825,7 +869,9 @@
         "Taphrinales": {
           "Taphrinaceae": {
             "Taphrina": {
-              "desc": ["generic, Taphrina deformans+ flavorubra+ populina+ wiesneri"]
+              "desc": [
+                "generic, Taphrina deformans+ flavorubra+ populina+ wiesneri"
+              ]
             }
           }
         }
@@ -916,7 +962,9 @@
           "Schizophyllaceae": {
             "Schizophyllum": {
               "Schizophyllum commune": {
-                "desc": ["common in rotting wood, but can also cause disease in humans"]
+                "desc": [
+                  "common in rotting wood, but can also cause disease in humans"
+                ]
               }
             }
           }
@@ -1146,7 +1194,9 @@
         "Pucciniales": {
           "Cronartiaceae": {
             "Cronartium": {
-              "desc": ["generic, Cronartium comandrae+ quercuum+ ribicola 206 genes only"]
+              "desc": [
+                "generic, Cronartium comandrae+ quercuum+ ribicola 206 genes only"
+              ]
             }
           },
           "Melampsoraceae": {
@@ -1228,7 +1278,9 @@
         "Ustilaginales": {
           "Ustilaginaceae": {
             "Pseudozyma": {
-              "desc": ["generic, Pseudozyma antarctica+aphidis+brasiliensis+flocculosa+hubeiensis"]
+              "desc": [
+                "generic, Pseudozyma antarctica+aphidis+brasiliensis+flocculosa+hubeiensis"
+              ]
             },
             "Ustilago": {
               "desc": ["smuts"]
@@ -1962,7 +2014,9 @@
           "Bathyergidae": {
             "Fukomys": {
               "Fukomys damarensis": {
-                "desc": ["Damaraland mole-rat, Damara mole rat, Damaraland blesmol"]
+                "desc": [
+                  "Damaraland mole-rat, Damara mole rat, Damaraland blesmol"
+                ]
               }
             },
             "Heterocephalus": {
@@ -2148,7 +2202,9 @@
           "Cynocephalidae": {
             "Galeopterus": {
               "Galeopterus variegatus": {
-                "desc": ["Sunda flying lemur, Malayan flying lemur, Sunda Colugo or Malayan colugo"]
+                "desc": [
+                  "Sunda flying lemur, Malayan flying lemur, Sunda Colugo or Malayan colugo"
+                ]
               }
             }
           }
@@ -2573,10 +2629,7 @@
           "Strongylocentrotidae": {
             "Strongylocentrotus": {
               "Strongylocentrotus purpuratus": {
-                "desc": [
-                  "additional variant; sea urchin",
-                  "sea urchin"
-                ]
+                "desc": ["additional variant; sea urchin", "sea urchin"]
               }
             }
           }
@@ -2798,15 +2851,14 @@
           "Solanaceae": {
             "Capsicum": {
               "Capsicum annuum": {
-                "desc": ["chilli pepper, bell pepper, paprika, cayenne, halapenos"]
+                "desc": [
+                  "chilli pepper, bell pepper, paprika, cayenne, halapenos"
+                ]
               }
             },
             "Solanum": {
               "Solanum lycopersicum": {
-                "desc": [
-                  "generic, tomato",
-                  "Lycopersicon esculentum, tomato"
-                ]
+                "desc": ["generic, tomato", "Lycopersicon esculentum, tomato"]
               }
             },
             "Nicotiana": {
@@ -2888,7 +2940,9 @@
             },
             "Silybum": {
               "Silybum marianum": {
-                "desc": ["milk thistle, lady's thistle, holy thistle, variegated thistle, Scotch thistle"]
+                "desc": [
+                  "milk thistle, lady's thistle, holy thistle, variegated thistle, Scotch thistle"
+                ]
               }
             }
           }
@@ -3093,7 +3147,9 @@
           "Musaceae": {
             "Ensete": {
               "Ensete ventricosum": {
-                "desc": ["Ethiopian banana, Abyssinian banana, false banana, or ensete"]
+                "desc": [
+                  "Ethiopian banana, Abyssinian banana, false banana, or ensete"
+                ]
               }
             },
             "Musa": {
@@ -3135,7 +3191,9 @@
         "Chlorellales": {
           "Chlorellaceae": {
             "Chlorella": {
-              "desc": ["green algae, generic, Chlorella variabilis+pyrenoidosa+vulgaris"]
+              "desc": [
+                "green algae, generic, Chlorella variabilis+pyrenoidosa+vulgaris"
+              ]
             },
             "Parachlorella": {
               "Parachlorella kessleri": {

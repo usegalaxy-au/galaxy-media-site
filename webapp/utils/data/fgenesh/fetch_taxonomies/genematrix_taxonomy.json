@@ -6,51 +6,37 @@
           "Bionectriaceae": {
             "Acremonium": {
               "Acremonium chrysogenum": {
-                "desc": [
-                  "Cephalosporium acremonium"
-                ]
+                "desc": ["Cephalosporium acremonium"]
               }
             }
           },
           "Cordycipitaceae": {
             "Beauveria": {
-              "desc": [
-                "generic, asexually-reproducing fungi"
-              ]
+              "desc": ["generic, asexually-reproducing fungi"]
             },
             "Cordyceps": {
               "Cordyceps militaris": {
-                "desc": [
-                  "entomopathogenic fungi"
-                ]
+                "desc": ["entomopathogenic fungi"]
               },
               "Cordyceps farinosa": {
-                "desc": [
-                  "Paecilomyces farinosus"
-                ]
+                "desc": ["Paecilomyces farinosus"]
               }
             }
           },
           "Clavicipitaceae": {
             "Claviceps": {
               "Claviceps purpurea": {
-                "desc": [
-                  "ergot fungus"
-                ]
+                "desc": ["ergot fungus"]
               }
             },
             "Epichloe": {
               "Epichloe typhina": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Hypocrella": {
               "Hypocrella siamensis": {
-                "desc": [
-                  "anamorph: Aschersonia badia"
-                ]
+                "desc": ["anamorph: Aschersonia badia"]
               }
             },
             "Metacordyceps": {
@@ -59,24 +45,18 @@
               ]
             },
             "Metarhizium": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             },
             "Periglandula": {
               "Periglandula ipomoeae": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               }
             }
           },
           "Nectriaceae": {
             "Dactylonectria": {
               "Dactylonectria macrodidyma": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Fusarium": {
@@ -84,23 +64,17 @@
                 "generic, Fusarium graminearum+ fujikuroi+ oxysporum+ solani+ verticillioides"
               ],
               "Fusarium graminearum": {
-                "desc": [
-                  "generic, haploid homothallic ascomycete"
-                ]
+                "desc": ["generic, haploid homothallic ascomycete"]
               }
             },
             "Gibberella": {
-              "desc": [
-                "generic, Gibberella circinata+fujikuroi"
-              ]
+              "desc": ["generic, Gibberella circinata+fujikuroi"]
             }
           },
           "Hypocreaceae": {
             "Escovopsis": {
               "Escovopsis weberi": {
-                "desc": [
-                  "parasitic microfungus"
-                ]
+                "desc": ["parasitic microfungus"]
               }
             },
             "Hypocrea": {
@@ -112,24 +86,18 @@
           "Ophiocordycipitaceae": {
             "Hirsutella": {
               "Hirsutella minnesotensis": {
-                "desc": [
-                  "pathogen of the soybean cyst nematode"
-                ]
+                "desc": ["pathogen of the soybean cyst nematode"]
               }
             },
             "Ophiocordyceps": {
               "Ophiocordyceps sinensis": {
-                "desc": [
-                  "Cordyceps sinensis"
-                ]
+                "desc": ["Cordyceps sinensis"]
               }
             }
           },
           "Stachybotryaceae": {
             "Stachybotrys": {
-              "desc": [
-                "generic, Stachybotrys chartarum+chlorohalonata"
-              ]
+              "desc": ["generic, Stachybotrys chartarum+chlorohalonata"]
             }
           }
         },
@@ -137,23 +105,17 @@
           "Ceratocystidaceae": {
             "Ceratocystis": {
               "Ceratocystis platani": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Huntiella": {
-              "desc": [
-                "generic, Huntiella omanensis+ savannae"
-              ]
+              "desc": ["generic, Huntiella omanensis+ savannae"]
             }
           },
           "Microascaceae": {
             "Pseudallescheria": {
               "Pseudallescheria apiosperma": {
-                "desc": [
-                  "Scedosporium apiospermum"
-                ]
+                "desc": ["Scedosporium apiospermum"]
               },
               "Pseudallescheria boydii": {
                 "desc": [
@@ -166,9 +128,7 @@
         "Sordariales": {
           "Chaetomiaceae": {
             "Chaetomium": {
-              "desc": [
-                "Chaetomium_globosum+thermophilum"
-              ]
+              "desc": ["Chaetomium_globosum+thermophilum"]
             },
             "Thermothelomyces": {
               "Thermothelomyces thermophilus": {
@@ -178,31 +138,23 @@
               }
             }
           },
-          "desc": [
-            "Streptotrix mycetomatis"
-          ],
+          "desc": ["Streptotrix mycetomatis"],
           "Sordariaceae": {
             "Neurospora": {
               "Neurospora crassa": {
-                "desc": [
-                  "red bread mold"
-                ]
+                "desc": ["red bread mold"]
               }
             },
             "Sordaria": {
               "Sordaria macrospora": {
-                "desc": [
-                  "microscopic fungus"
-                ]
+                "desc": ["microscopic fungus"]
               }
             }
           },
           "Lasiosphaeriaceae": {
             "Triangularia": {
               "Triangularia anserina": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               }
             }
           }
@@ -238,9 +190,7 @@
           "Diatrypaceae": {
             "Eutypa": {
               "Eutypa lata": {
-                "desc": [
-                  "causal agent of Eutypa dieback"
-                ]
+                "desc": ["causal agent of Eutypa dieback"]
               }
             }
           }
@@ -249,20 +199,14 @@
           "Magnaporthaceae": {
             "Gaeumannomyces": {
               "Gaeumannomyces graminis": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Harpophora": {
-              "desc": [
-                "Falciphora oryzae"
-              ]
+              "desc": ["Falciphora oryzae"]
             },
             "Magnaporthe": {
-              "desc": [
-                "generic, fungi"
-              ]
+              "desc": ["generic, fungi"]
             }
           }
         },
@@ -270,39 +214,27 @@
           "Ophiostomataceae": {
             "Graphilbum": {
               "Graphilbum fragrans": {
-                "desc": [
-                  "Pesotum fragrans"
-                ]
+                "desc": ["Pesotum fragrans"]
               }
             },
             "Grosmannia": {
               "Grosmannia clavigera": {
-                "desc": [
-                  "blue stain fungus"
-                ]
+                "desc": ["blue stain fungus"]
               }
             },
             "Knoxdaviesia": {
-              "desc": [
-                "generic, Knoxdaviesia capensis+proteae"
-              ]
+              "desc": ["generic, Knoxdaviesia capensis+proteae"]
             },
             "Leptographium": {
-              "desc": [
-                "generic, Leptographium lundbergii+ procerum"
-              ]
+              "desc": ["generic, Leptographium lundbergii+ procerum"]
             },
             "Pesotum": {
               "Pesotum piceae": {
-                "desc": [
-                  "pine saprophyte"
-                ]
+                "desc": ["pine saprophyte"]
               }
             },
             "Sporothrix": {
-              "desc": [
-                "generic, Sporothrix brasiliensis+schenckii"
-              ]
+              "desc": ["generic, Sporothrix brasiliensis+schenckii"]
             }
           }
         },
@@ -310,9 +242,7 @@
           "Pestalotiopsidaceae": {
             "Pestalotiopsis": {
               "Pestalotiopsis fici": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             }
           }
@@ -322,63 +252,43 @@
         "Onygenales": {
           "Ajellomycetaceae": {
             "Ajellomyces": {
-              "desc": [
-                "generic, Ajellomyces capsulatus+dermatitidis"
-              ]
+              "desc": ["generic, Ajellomyces capsulatus+dermatitidis"]
             },
             "Histoplasma": {
-              "desc": [
-                "generic, dimorphic fungi"
-              ],
+              "desc": ["generic, dimorphic fungi"],
               "Histoplasma capsulatum": {
-                "desc": [
-                  "cause the histoplasmosis"
-                ]
+                "desc": ["cause the histoplasmosis"]
               }
             },
             "Paracoccidioides": {
-              "desc": [
-                "generic, Paracoccidioides_brasiliensis+lutzii"
-              ]
+              "desc": ["generic, Paracoccidioides_brasiliensis+lutzii"]
             }
           },
           "Arthrodermataceae": {
             "Arthroderma": {
-              "desc": [
-                "generic, causal agent of dermatophytosis"
-              ]
+              "desc": ["generic, causal agent of dermatophytosis"]
             },
             "Microsporum": {
               "Microsporum gypseum": {
-                "desc": [
-                  "soil-associated dermatophyte, Arthroderma gypseum"
-                ]
+                "desc": ["soil-associated dermatophyte, Arthroderma gypseum"]
               }
             }
           },
           "Onygenaceae": {
             "Blastomyces": {
-              "desc": [
-                "generic, causal agent of blastomycosis"
-              ]
+              "desc": ["generic, causal agent of blastomycosis"]
             },
             "Coccidioides": {
               "Coccidioides immitis": {
-                "desc": [
-                  "pathogenic fungus"
-                ]
+                "desc": ["pathogenic fungus"]
               }
             },
             "Emmonsia": {
-              "desc": [
-                "generic, Emmonsia crescens+parva"
-              ]
+              "desc": ["generic, Emmonsia crescens+parva"]
             },
             "Uncinocarpus": {
               "Uncinocarpus reesii": {
-                "desc": [
-                  "non-pathogenic fungus"
-                ]
+                "desc": ["non-pathogenic fungus"]
               }
             }
           }
@@ -387,50 +297,36 @@
           "Aspergillaceae": {
             "Byssochlamys": {
               "Byssochlamys spectabilis": {
-                "desc": [
-                  "anamorph Paecilomyces variotii"
-                ]
+                "desc": ["anamorph Paecilomyces variotii"]
               }
             },
             "Emericella": {
-              "desc": [
-                "Aspergillus; filamentous fungi"
-              ]
+              "desc": ["Aspergillus; filamentous fungi"]
             },
             "Aspergillus": {
               "Aspergillus fischeri": {
-                "desc": [
-                  "Aspergillus fischeri"
-                ]
+                "desc": ["Aspergillus fischeri"]
               }
             },
             "Penicillium": {
               "Penicillium chrysogenum": {
-                "desc": [
-                  "fungus, Penicillium notatum"
-                ]
+                "desc": ["fungus, Penicillium notatum"]
               }
             },
             "Rasamsonia": {
               "Rasamsonia emersonii": {
-                "desc": [
-                  "Talaromyces emersonii, Penicillium emersonii"
-                ]
+                "desc": ["Talaromyces emersonii, Penicillium emersonii"]
               }
             },
             "Talaromyces": {
-              "desc": [
-                "generic, Talaromyces marneffei+stipitatus"
-              ]
+              "desc": ["generic, Talaromyces marneffei+stipitatus"]
             }
           }
         },
         "Chaetothyriales": {
           "Herpotrichiellaceae": {
             "Capronia": {
-              "desc": [
-                "Capronia coronata+epimyces+semiimmersa"
-              ]
+              "desc": ["Capronia coronata+epimyces+semiimmersa"]
             },
             "Cladophialophora": {
               "desc": [
@@ -439,9 +335,7 @@
             },
             "Coniosporium": {
               "Coniosporium apollinis": {
-                "desc": [
-                  "rock-inhabiting microcolonial fungi"
-                ]
+                "desc": ["rock-inhabiting microcolonial fungi"]
               }
             },
             "Exophiala": {
@@ -451,9 +345,7 @@
             },
             "Fonsecaea": {
               "Fonsecaea pedrosoi": {
-                "desc": [
-                  "major causative agent of chromoblastomycosis"
-                ]
+                "desc": ["major causative agent of chromoblastomycosis"]
               }
             },
             "Rhinocladiella": {
@@ -467,9 +359,7 @@
           "Cyphellophoraceae": {
             "Cyphellophora": {
               "Cyphellophora europaea": {
-                "desc": [
-                  "Cyphellophora europaea"
-                ]
+                "desc": ["Cyphellophora europaea"]
               }
             }
           }
@@ -478,9 +368,7 @@
           "Phaeomoniellaceae": {
             "Phaeomoniella": {
               "Phaeomoniella chlamydospora": {
-                "desc": [
-                  "Phaeoacremonium chlamydosporum"
-                ]
+                "desc": ["Phaeoacremonium chlamydosporum"]
               }
             }
           }
@@ -491,15 +379,11 @@
           "Pleosporaceae": {
             "Alternaria": {
               "Alternaria brassicicola": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Bipolaris": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             },
             "Cochliobolus": {
               "desc": [
@@ -507,36 +391,26 @@
               ]
             },
             "Curvularia": {
-              "desc": [
-                "generic, Curvularia lunata+ papendorfii"
-              ]
+              "desc": ["generic, Curvularia lunata+ papendorfii"]
             },
             "Pyrenophora": {
-              "desc": [
-                "generic, plant pathogen"
-              ]
+              "desc": ["generic, plant pathogen"]
             },
             "Exserohilum": {
               "Exserohilum turcicum": {
-                "desc": [
-                  "northern corn leaf blight"
-                ]
+                "desc": ["northern corn leaf blight"]
               }
             },
             "Stemphylium": {
               "Stemphylium lycopersici": {
-                "desc": [
-                  "pathogen of tomatoes, Capsicum and papayas"
-                ]
+                "desc": ["pathogen of tomatoes, Capsicum and papayas"]
               }
             }
           },
           "Biatriosporaceae": {
             "Nigrograna": {
               "Nigrograna mackinnonii": {
-                "desc": [
-                  "ascomycetes"
-                ]
+                "desc": ["ascomycetes"]
               }
             }
           },
@@ -550,73 +424,53 @@
             },
             "Stagonosporopsis": {
               "Stagonosporopsis tanaceti": {
-                "desc": [
-                  "cause of ray blight of pyrethrum"
-                ]
+                "desc": ["cause of ray blight of pyrethrum"]
               }
             }
           },
           "Corynesporascaceae": {
             "Corynespora": {
               "Corynespora cassiicola": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             }
           },
           "Massarinaceae": {
             "Helminthosporium": {
               "Helminthosporium solani": {
-                "desc": [
-                  "infecting potato tubers"
-                ]
+                "desc": ["infecting potato tubers"]
               }
             }
           },
           "Leptosphaeriaceae": {
             "Leptosphaeria": {
-              "desc": [
-                "generic, fungi"
-              ],
+              "desc": ["generic, fungi"],
               "Leptosphaeria maculans": {
-                "desc": [
-                  "blackleg of rapeseed fungus"
-                ]
+                "desc": ["blackleg of rapeseed fungus"]
               }
             }
           },
           "Phaeosphaeriaceae": {
             "Phaeosphaeria": {
               "Phaeosphaeria nodorum": {
-                "desc": [
-                  "Leptosphaeria nodorum"
-                ]
+                "desc": ["Leptosphaeria nodorum"]
               }
             },
             "Parastagonospora": {
               "Parastagonospora nodorum": {
-                "desc": [
-                  "pathogen of wheat"
-                ]
+                "desc": ["pathogen of wheat"]
               }
             }
           },
-          "desc": [
-            "generic"
-          ],
+          "desc": ["generic"],
           "Sporormiaceae": {
             "Preussia": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             }
           },
           "Cucurbitariaceae": {
             "Pyrenochaeta": {
-              "desc": [
-                "cause a eumycetoma"
-              ]
+              "desc": ["cause a eumycetoma"]
             }
           },
           "Shiraiaceae": {
@@ -630,9 +484,7 @@
         "Dothideales": {
           "Saccotheciaceae": {
             "Aureobasidium": {
-              "desc": [
-                "generic, black, yeast-like fungus"
-              ]
+              "desc": ["generic, black, yeast-like fungus"]
             }
           }
         },
@@ -640,25 +492,19 @@
           "Teratosphaeriaceae": {
             "Baudoinia": {
               "Baudoinia compniacensis": {
-                "desc": [
-                  "Angels' Share fungus"
-                ]
+                "desc": ["Angels' Share fungus"]
               }
             },
             "Hortaea": {
               "Hortaea werneckii": {
-                "desc": [
-                  "268 genes, halotolerant black yeast"
-                ]
+                "desc": ["268 genes, halotolerant black yeast"]
               }
             }
           },
           "Mycosphaerellaceae": {
             "Cercospora": {
               "Cercospora canescens": {
-                "desc": [
-                  "causes olive leaf spot"
-                ]
+                "desc": ["causes olive leaf spot"]
               }
             },
             "Mycosphaerella": {
@@ -668,9 +514,7 @@
             },
             "Fulvia": {
               "Fulvia fulva": {
-                "desc": [
-                  "Cladosporium fulvum, Fulvia fulva"
-                ]
+                "desc": ["Cladosporium fulvum, Fulvia fulva"]
               }
             },
             "Pseudocercospora": {
@@ -682,9 +526,7 @@
             },
             "Ramularia": {
               "Ramularia collo-cygni": {
-                "desc": [
-                  "pathogen of barley"
-                ]
+                "desc": ["pathogen of barley"]
               }
             },
             "Zymoseptoria": {
@@ -696,55 +538,41 @@
             },
             "Sphaerulina": {
               "Sphaerulina musiva": {
-                "desc": [
-                  "pathogen of poplar trees"
-                ]
+                "desc": ["pathogen of poplar trees"]
               }
             }
           },
           "Cladosporiaceae": {
             "Cladosporium": {
               "Cladosporium sphaerospermum": {
-                "desc": [
-                  "mold"
-                ]
+                "desc": ["mold"]
               }
             }
           }
         },
-        "desc": [
-          "ascomycetes"
-        ],
+        "desc": ["ascomycetes"],
         "Botryosphaeriales": {
           "Botryosphaeriaceae": {
             "Diplodia": {
               "Diplodia seriata": {
-                "desc": [
-                  "cause of bot canker of grapevine"
-                ]
+                "desc": ["cause of bot canker of grapevine"]
               }
             },
             "Macrophomina": {
               "Macrophomina phaseolina": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Neofusicoccum": {
               "Neofusicoccum parvum": {
-                "desc": [
-                  "Fusicoccum parvum"
-                ]
+                "desc": ["Fusicoccum parvum"]
               }
             }
           },
           "Phyllostictaceae": {
             "Phyllosticta": {
               "Phyllosticta citricarpa": {
-                "desc": [
-                  "Phyllosticta citricarpa, causes Citrus Black Spot"
-                ]
+                "desc": ["Phyllosticta citricarpa, causes Citrus Black Spot"]
               }
             }
           }
@@ -753,9 +581,7 @@
           "Hysteriaceae": {
             "Hysterium": {
               "Hysterium pulicare": {
-                "desc": [
-                  "occurs on living tree bark or dead wood"
-                ]
+                "desc": ["occurs on living tree bark or dead wood"]
               }
             }
           }
@@ -764,9 +590,7 @@
           "Sympoventuriaceae": {
             "Scolecobasidium": {
               "Scolecobasidium constrictum": {
-                "desc": [
-                  "Dactylaria gallopava"
-                ]
+                "desc": ["Dactylaria gallopava"]
               }
             }
           }
@@ -788,32 +612,24 @@
           "Amorphothecaceae": {
             "Amorphotheca": {
               "Amorphotheca resinae": {
-                "desc": [
-                  "creosote fungus"
-                ]
+                "desc": ["creosote fungus"]
               }
             },
             "Oidiodendron": {
               "Oidiodendron majus": {
-                "desc": [
-                  "ascomycetes"
-                ]
+                "desc": ["ascomycetes"]
               }
             }
           },
           "Erysiphaceae": {
             "Blumeria": {
               "Blumeria graminis": {
-                "desc": [
-                  "grass mildew"
-                ]
+                "desc": ["grass mildew"]
               }
             },
             "Erysiphe": {
               "Erysiphe necator": {
-                "desc": [
-                  "grape powdery mildew"
-                ]
+                "desc": ["grape powdery mildew"]
               }
             }
           }
@@ -822,49 +638,35 @@
           "Gelatinodiscaceae": {
             "Ascocoryne": {
               "Ascocoryne sarcoides": {
-                "desc": [
-                  "jelly drops, purple jellydisc"
-                ]
+                "desc": ["jelly drops, purple jellydisc"]
               }
             }
           },
           "Sclerotiniaceae": {
             "Botryotinia": {
               "Botryotinia fuckeliana": {
-                "desc": [
-                  "plant pathogen, Botrytis cinerea"
-                ]
+                "desc": ["plant pathogen, Botrytis cinerea"]
               }
             },
             "Botrytis": {
-              "desc": [
-                "generic, plant pathogen"
-              ]
+              "desc": ["generic, plant pathogen"]
             },
             "Ciborinia": {
               "Ciborinia camelliae": {
-                "desc": [
-                  "causal agent of Camellia flower blight"
-                ]
+                "desc": ["causal agent of Camellia flower blight"]
               }
             },
             "Sclerotinia": {
-              "desc": [
-                "generic, Sclerotinia borealis+sclerotiorum"
-              ],
+              "desc": ["generic, Sclerotinia borealis+sclerotiorum"],
               "Sclerotinia sclerotiorum": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             }
           },
           "Helotiaceae": {
             "Hymenoscyphus": {
               "Hymenoscyphus herbarum": {
-                "desc": [
-                  "Hymenoscyphus herbarum"
-                ]
+                "desc": ["Hymenoscyphus herbarum"]
               },
               "desc": [
                 "generic, Hymenoscyphus fraxineus+ fructigenus+ infarciens+ laetus+ repandus+ salicellus+ scutula+ varicosporoides"
@@ -872,34 +674,26 @@
             },
             "Glarea": {
               "Glarea lozoyensis": {
-                "desc": [
-                  "ascomycetes"
-                ]
+                "desc": ["ascomycetes"]
               }
             },
             "Lanzia": {
               "Lanzia echinophila": {
-                "desc": [
-                  "Sclerotinia echinophila"
-                ]
+                "desc": ["Sclerotinia echinophila"]
               }
             }
           },
           "Drepanopezizaceae": {
             "Drepanopeziza": {
               "Drepanopeziza brunnea": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             }
           },
           "Rutstroemiaceae": {
             "Rutstroemia": {
               "Rutstroemia sydowiana": {
-                "desc": [
-                  "Rutstroemia sydowiana"
-                ]
+                "desc": ["Rutstroemia sydowiana"]
               }
             }
           }
@@ -912,9 +706,7 @@
                   "Pseudogymnoascus destructans, a psychrophilic fungus that causes white-nose syndrome (WNS"
                 ]
               },
-              "desc": [
-                "generic, Pseudogymnoascus destructans+pannorum"
-              ]
+              "desc": ["generic, Pseudogymnoascus destructans+pannorum"]
             }
           }
         }
@@ -924,9 +716,7 @@
           "Orbiliaceae": {
             "Arthrobotrys": {
               "Arthrobotrys oligosporus": {
-                "desc": [
-                  "mitosporic predatory fungi"
-                ]
+                "desc": ["mitosporic predatory fungi"]
               }
             }
           }
@@ -937,17 +727,12 @@
           "Pichiaceae": {
             "Dekkera": {
               "Dekkera bruxellensis": {
-                "desc": [
-                  "yeast",
-                  "Brettanomyces bruxellensis"
-                ]
+                "desc": ["yeast", "Brettanomyces bruxellensis"]
               }
             },
             "Komagataella": {
               "Komagataella pastoris": {
-                "desc": [
-                  "methylotrophic yeast, Pichia pastoris"
-                ]
+                "desc": ["methylotrophic yeast, Pichia pastoris"]
               }
             },
             "Issatchenkia": {
@@ -961,127 +746,89 @@
           "Debaryomycetaceae": {
             "Candida": {
               "Candida albicans": {
-                "desc": [
-                  "diploid yeast, human pathogen"
-                ]
+                "desc": ["diploid yeast, human pathogen"]
               },
               "Candida glabrata": {
-                "desc": [
-                  "haploid yeast, human pathogen"
-                ]
+                "desc": ["haploid yeast, human pathogen"]
               }
             },
             "Millerozyma": {
               "Millerozyma farinosa": {
-                "desc": [
-                  "yeast"
-                ]
+                "desc": ["yeast"]
               }
             },
             "Scheffersomyces": {
               "Scheffersomyces stipitis": {
-                "desc": [
-                  "yeast, Pichia stipitis"
-                ]
+                "desc": ["yeast, Pichia stipitis"]
               }
             }
           },
           "Metschnikowiaceae": {
             "Clavispora": {
               "Clavispora lusitaniae": {
-                "desc": [
-                  "yeast"
-                ]
+                "desc": ["yeast"]
               }
             },
             "Metschnikowia": {
               "Metschnikowia fructicola": {
-                "desc": [
-                  "ascosporic yeast, 137 sequences"
-                ]
+                "desc": ["ascosporic yeast, 137 sequences"]
               }
             }
           },
           "Phaffomycetaceae": {
             "Cyberlindnera": {
-              "desc": [
-                "generic, Cyberlindnera fabianii+ jadinii"
-              ]
+              "desc": ["generic, Cyberlindnera fabianii+ jadinii"]
             }
           },
           "Eremotheciaceae": {
             "Eremothecium": {
-              "desc": [
-                "generic, Eremothecium coryli+ cymbalariae+ gossypii"
-              ]
+              "desc": ["generic, Eremothecium coryli+ cymbalariae+ gossypii"]
             }
           },
           "Dipodascaceae": {
             "Dipodascus": {
               "Dipodascus geotrichum": {
-                "desc": [
-                  "Oospora lactis, teleomorph: Geotrichum candidum"
-                ]
+                "desc": ["Oospora lactis, teleomorph: Geotrichum candidum"]
               }
             },
             "Yarrowia": {
               "Yarrowia lipolytica": {
-                "desc": [
-                  "yeast"
-                ]
+                "desc": ["yeast"]
               }
             }
           },
           "Saccharomycetaceae": {
             "Kazachstania": {
-              "desc": [
-                "yeast, generic"
-              ]
+              "desc": ["yeast, generic"]
             },
             "Kluyveromyces": {
               "Kluyveromyces lactis": {
-                "desc": [
-                  "yeast"
-                ]
+                "desc": ["yeast"]
               }
             },
             "Lachancea": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             },
             "Nakaseomyces": {
-              "desc": [
-                "generic, Nakaseomyces bacillisporus+ delphensis"
-              ]
+              "desc": ["generic, Nakaseomyces bacillisporus+ delphensis"]
             },
             "Naumovozyma": {
-              "desc": [
-                "generic, Naumovozyma_castellii+dairenensis"
-              ]
+              "desc": ["generic, Naumovozyma_castellii+dairenensis"]
             },
             "Ogataea": {
-              "desc": [
-                "generic, Ogataea parapolymorpha+ polymorpha"
-              ]
+              "desc": ["generic, Ogataea parapolymorpha+ polymorpha"]
             },
             "Saccharomyces": {
               "Saccharomyces cerevisiae": {
-                "desc": [
-                  "baker's yeast"
-                ]
+                "desc": ["baker's yeast"]
               }
             },
             "Spathaspora": {
-              "desc": [
-                "generic, Spathaspora arborariae+ passalidarum"
-              ]
+              "desc": ["generic, Spathaspora arborariae+ passalidarum"]
             },
             "Zygosaccharomyces": {
               "Zygosaccharomyces rouxii": {
-                "desc": [
-                  "osmoresistant yeast"
-                ]
+                "desc": ["osmoresistant yeast"]
               }
             }
           }
@@ -1091,9 +838,7 @@
         "Pneumocystales": {
           "Pneumocystaceae": {
             "Pneumocystis": {
-              "desc": [
-                "generic, Pneumocystis carinii+ jirovecii+ murina"
-              ]
+              "desc": ["generic, Pneumocystis carinii+ jirovecii+ murina"]
             }
           }
         }
@@ -1103,9 +848,7 @@
           "Pyronemataceae": {
             "Pyronema": {
               "Pyronema omphalodes": {
-                "desc": [
-                  "Pyronema confluens"
-                ]
+                "desc": ["Pyronema confluens"]
               }
             }
           }
@@ -1116,9 +859,7 @@
           "Schizosaccharomycetaceae": {
             "Schizosaccharomyces": {
               "Schizosaccharomyces pombe": {
-                "desc": [
-                  "fission yeast"
-                ]
+                "desc": ["fission yeast"]
               }
             }
           }
@@ -1141,106 +882,80 @@
         "Agaricales": {
           "Agaricaceae": {
             "Agaricus": {
-              "desc": [
-                "generic, champignons"
-              ]
+              "desc": ["generic, champignons"]
             },
             "Coprinus": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             }
           },
           "Amanitaceae": {
             "Amanita": {
               "Amanita muscaria": {
-                "desc": [
-                  "fly agaric, fly amanita"
-                ]
+                "desc": ["fly agaric, fly amanita"]
               }
             }
           },
           "Psathyrellaceae": {
             "Coprinopsis": {
               "Coprinopsis cinerea": {
-                "desc": [
-                  "Coprinus macrorhizus"
-                ]
+                "desc": ["Coprinus macrorhizus"]
               }
             }
           },
           "Physalacriaceae": {
             "Cylindrobasidium": {
               "Cylindrobasidium torrendii": {
-                "desc": [
-                  "corticioid fungi"
-                ]
+                "desc": ["corticioid fungi"]
               }
             }
           },
           "Fistulinaceae": {
             "Fistulina": {
               "Fistulina hepatica": {
-                "desc": [
-                  "beefsteak polypore or ox tongue"
-                ]
+                "desc": ["beefsteak polypore or ox tongue"]
               }
             }
           },
           "Hymenogastraceae": {
             "Galerina": {
               "Galerina marginata": {
-                "desc": [
-                  "poisonous fungus"
-                ]
+                "desc": ["poisonous fungus"]
               }
             },
             "Hebeloma": {
               "Hebeloma cylindrosporum": {
-                "desc": [
-                  "mushroom-forming fungus"
-                ]
+                "desc": ["mushroom-forming fungus"]
               }
             }
           },
           "Omphalotaceae": {
             "Gymnopus": {
               "Gymnopus luxurians": {
-                "desc": [
-                  "fungus"
-                ]
+                "desc": ["fungus"]
               }
             }
           },
           "Strophariaceae": {
             "Hypholoma": {
               "Hypholoma lateritium": {
-                "desc": [
-                  "brick cap"
-                ]
+                "desc": ["brick cap"]
               }
             }
           },
           "Hydnangiaceae": {
             "Laccaria": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             }
           },
           "Marasmiaceae": {
             "Moniliophthora": {
-              "desc": [
-                "generic, Moniliophthora perniciosa+roreri"
-              ]
+              "desc": ["generic, Moniliophthora perniciosa+roreri"]
             }
           },
           "Pleurotaceae": {
             "Pleurotus": {
               "Pleurotus ostreatus": {
-                "desc": [
-                  "oyster mushroom"
-                ]
+                "desc": ["oyster mushroom"]
               }
             }
           },
@@ -1258,9 +973,7 @@
           "Auriculariaceae": {
             "Auricularia": {
               "Auricularia subglabra": {
-                "desc": [
-                  "basidiomycetes"
-                ]
+                "desc": ["basidiomycetes"]
               }
             }
           },
@@ -1273,18 +986,14 @@
           "Botryobasidiaceae": {
             "Botryobasidium": {
               "Botryobasidium vagum": {
-                "desc": [
-                  "botryosum"
-                ]
+                "desc": ["botryosum"]
               }
             }
           },
           "Ceratobasidiaceae": {
             "Rhizoctonia": {
               "Rhizoctonia solani": {
-                "desc": [
-                  "Rhizoctonia praticola, plant pathogen"
-                ]
+                "desc": ["Rhizoctonia praticola, plant pathogen"]
               }
             }
           }
@@ -1292,66 +1001,48 @@
         "Polyporales": {
           "Phanerochaetaceae": {
             "Ceriporiopsis": {
-              "desc": [
-                "basidiomycetes"
-              ],
+              "desc": ["basidiomycetes"],
               "Ceriporiopsis subvermispora": {
-                "desc": [
-                  "Poria subvermispora"
-                ]
+                "desc": ["Poria subvermispora"]
               }
             },
             "Phanerochaete": {
               "Phanerochaete carnosa": {
-                "desc": [
-                  "plant pathogen infecting plane trees"
-                ]
+                "desc": ["plant pathogen infecting plane trees"]
               }
             },
             "Phanerodontia": {
               "Phanerodontia chrysosporium": {
-                "desc": [
-                  "New version USTILAGO+WREST"
-                ]
+                "desc": ["New version USTILAGO+WREST"]
               }
             },
             "Phlebiopsis": {
               "Phlebiopsis gigantea": {
-                "desc": [
-                  "Thelephora gigantea, Peniophora gigantea"
-                ]
+                "desc": ["Thelephora gigantea, Peniophora gigantea"]
               }
             }
           },
           "Polyporaceae": {
             "Fibroporia": {
               "Fibroporia radiculosa": {
-                "desc": [
-                  "Antrodia radiculosa"
-                ]
+                "desc": ["Antrodia radiculosa"]
               }
             },
             "Rhodonia": {
               "Rhodonia placenta": {
-                "desc": [
-                  "Rhodonia placenta, brown rot fungus"
-                ]
+                "desc": ["Rhodonia placenta, brown rot fungus"]
               }
             }
           },
           "Fomitopsidaceae": {
             "Fomitopsis": {
               "Fomitopsis pinicola": {
-                "desc": [
-                  "pine bolete, pinewood king bolete"
-                ]
+                "desc": ["pine bolete, pinewood king bolete"]
               }
             },
             "Taiwanofungus": {
               "Taiwanofungus camphoratus": {
-                "desc": [
-                  "stout camphor fungus"
-                ]
+                "desc": ["stout camphor fungus"]
               }
             }
           }
@@ -1360,50 +1051,38 @@
           "Coniophoraceae": {
             "Coniophora": {
               "Coniophora puteana": {
-                "desc": [
-                  "cellar fungus, which causes a rot in wood"
-                ]
+                "desc": ["cellar fungus, which causes a rot in wood"]
               }
             }
           },
           "Hygrophoropsidaceae": {
             "Leucogyrophana": {
               "Leucogyrophana pinastri": {
-                "desc": [
-                  "spiny dry rot fungus"
-                ]
+                "desc": ["spiny dry rot fungus"]
               }
             }
           },
           "Sclerodermataceae": {
             "Pisolithus": {
-              "desc": [
-                "generic, Pisolithus_microcarpus+tinctorius"
-              ]
+              "desc": ["generic, Pisolithus_microcarpus+tinctorius"]
             },
             "Scleroderma": {
               "Scleroderma citrinum": {
-                "desc": [
-                  "common earthball, pigskin poison puffball"
-                ]
+                "desc": ["common earthball, pigskin poison puffball"]
               }
             }
           },
           "Serpulaceae": {
             "Serpula": {
               "Serpula lacrymans": {
-                "desc": [
-                  "dry rot fungus"
-                ]
+                "desc": ["dry rot fungus"]
               }
             }
           },
           "Suillaceae": {
             "Suillus": {
               "Suillus luteus": {
-                "desc": [
-                  "slippery jack, sticky bun"
-                ]
+                "desc": ["slippery jack, sticky bun"]
               }
             }
           }
@@ -1412,32 +1091,24 @@
           "Hymenochaetaceae": {
             "Fomitiporia": {
               "Fomitiporia mediterranea": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Pyrrhoderma": {
               "Pyrrhoderma noxium": {
-                "desc": [
-                  "plant pathogen, Phellinidium noxium"
-                ]
+                "desc": ["plant pathogen, Phellinidium noxium"]
               }
             },
             "Sanghuangporus": {
               "Sanghuangporus baumii": {
-                "desc": [
-                  "Phellinus baumii, Inonotus baumii"
-                ]
+                "desc": ["Phellinus baumii, Inonotus baumii"]
               }
             }
           },
           "Schizoporaceae": {
             "Schizopora": {
               "Schizopora paradoxa": {
-                "desc": [
-                  "Hyphodontia paradoxa"
-                ]
+                "desc": ["Hyphodontia paradoxa"]
               }
             }
           }
@@ -1446,9 +1117,7 @@
           "Gloeophyllaceae": {
             "Gloeophyllum": {
               "Gloeophyllum trabeum": {
-                "desc": [
-                  "plant fungal pathogen"
-                ]
+                "desc": ["plant fungal pathogen"]
               }
             }
           }
@@ -1457,18 +1126,14 @@
           "Bondarzewiaceae": {
             "Heterobasidion": {
               "Heterobasidion irregulare": {
-                "desc": [
-                  "tree root rotting pathogenic fungus"
-                ]
+                "desc": ["tree root rotting pathogenic fungus"]
               }
             }
           },
           "Stereaceae": {
             "Stereum": {
               "Stereum hirsutum": {
-                "desc": [
-                  "False Turkey Tail"
-                ]
+                "desc": ["False Turkey Tail"]
               }
             }
           }
@@ -1477,9 +1142,7 @@
           "Jaapiaceae": {
             "Jaapia": {
               "Jaapia argillacea": {
-                "desc": [
-                  "fungus"
-                ]
+                "desc": ["fungus"]
               }
             }
           }
@@ -1488,9 +1151,7 @@
           "Atheliaceae": {
             "Piloderma": {
               "Piloderma bicolor": {
-                "desc": [
-                  "Piloderma fallax"
-                ]
+                "desc": ["Piloderma fallax"]
               }
             }
           }
@@ -1499,9 +1160,7 @@
           "Amylocorticiaceae": {
             "Plicaturopsis": {
               "Plicaturopsis crispa": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               }
             }
           }
@@ -1510,9 +1169,7 @@
           "Corticiaceae": {
             "Punctularia": {
               "Punctularia strigosozonata": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               }
             }
           }
@@ -1521,9 +1178,7 @@
           "Geastraceae": {
             "Sphaerobolus": {
               "Sphaerobolus stellatus": {
-                "desc": [
-                  "cannonball fungi"
-                ]
+                "desc": ["cannonball fungi"]
               }
             }
           }
@@ -1541,17 +1196,13 @@
           "Melampsoraceae": {
             "Melampsora": {
               "Melampsora larici-populina": {
-                "desc": [
-                  "poplar leaf rust fungus"
-                ]
+                "desc": ["poplar leaf rust fungus"]
               }
             }
           },
           "Pucciniaceae": {
             "Puccinia": {
-              "desc": [
-                "rusts"
-              ]
+              "desc": ["rusts"]
             }
           }
         }
@@ -1560,26 +1211,18 @@
         "Tremellales": {
           "Tremellaceae": {
             "Cryptococcus": {
-              "desc": [
-                "generic, encapsulated yeast"
-              ],
+              "desc": ["generic, encapsulated yeast"],
               "Cryptococcus gattii": {
-                "desc": [
-                  "encapsulated yeast"
-                ]
+                "desc": ["encapsulated yeast"]
               },
               "Cryptococcus neoformans": {
-                "desc": [
-                  "encapsulated yeast"
-                ]
+                "desc": ["encapsulated yeast"]
               }
             }
           },
           "Cryptococcaceae": {
             "Kwoniella": {
-              "desc": [
-                "generic, Kwoniella heveanensis+ mangroviensis"
-              ]
+              "desc": ["generic, Kwoniella heveanensis+ mangroviensis"]
             }
           }
         }
@@ -1589,9 +1232,7 @@
           "Microbotryaceae": {
             "Microbotryum": {
               "Microbotryum violaceum": {
-                "desc": [
-                  "anther smut fungus, Ustilago violacea"
-                ]
+                "desc": ["anther smut fungus, Ustilago violacea"]
               }
             }
           }
@@ -1600,23 +1241,17 @@
           "Sporidiobolaceae": {
             "Rhodotorula": {
               "Rhodotorula glutinis": {
-                "desc": [
-                  "pink yeast"
-                ]
+                "desc": ["pink yeast"]
               },
               "Rhodotorula toruloides": {
-                "desc": [
-                  "oleaginous yeast"
-                ]
+                "desc": ["oleaginous yeast"]
               }
             }
           },
           "Sporobolomycetaceae": {
             "Sporidiobolus": {
               "Sporidiobolus salmonicolor": {
-                "desc": [
-                  "yeast-like fungus"
-                ]
+                "desc": ["yeast-like fungus"]
               }
             }
           }
@@ -1627,9 +1262,7 @@
           "Mixiaceae": {
             "Mixia": {
               "Mixia osmundae": {
-                "desc": [
-                  "Taphrina osmundae"
-                ]
+                "desc": ["Taphrina osmundae"]
               }
             }
           }
@@ -1644,9 +1277,7 @@
               ]
             },
             "Ustilago": {
-              "desc": [
-                "smuts"
-              ]
+              "desc": ["smuts"]
             }
           }
         }
@@ -1658,77 +1289,57 @@
           "Cunninghamellaceae": {
             "Absidia": {
               "Absidia idahoensis": {
-                "desc": [
-                  "pathogenic fungus"
-                ]
+                "desc": ["pathogenic fungus"]
               }
             }
           },
           "Saksenaeaceae": {
             "Apophysomyces": {
-              "desc": [
-                "generic, Apophysomyces elegans+trapeziformis"
-              ]
+              "desc": ["generic, Apophysomyces elegans+trapeziformis"]
             },
             "Saksenaea": {
               "Saksenaea oblongispora": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               }
             }
           },
           "Mycotyphaceae": {
             "Cokeromyces": {
               "Cokeromyces recurvatus": {
-                "desc": [
-                  "pathogenic fungus"
-                ]
+                "desc": ["pathogenic fungus"]
               }
             }
           },
           "Lichtheimiaceae": {
             "Lichtheimia": {
               "Lichtheimia corymbifera": {
-                "desc": [
-                  "Absidia corymbifera, pathogenic fungus"
-                ]
+                "desc": ["Absidia corymbifera, pathogenic fungus"]
               }
             },
             "Rhizomucor": {
-              "desc": [
-                "generic, Rhizomucor miehei+ variabilis"
-              ]
+              "desc": ["generic, Rhizomucor miehei+ variabilis"]
             }
           },
           "Mucoraceae": {
             "Mucor": {
-              "desc": [
-                "generic, Mucor ambiguus+circinelloides"
-              ]
+              "desc": ["generic, Mucor ambiguus+circinelloides"]
             },
             "Parasitella": {
               "Parasitella parasitica": {
-                "desc": [
-                  "Parasitella simplex"
-                ]
+                "desc": ["Parasitella simplex"]
               }
             }
           },
           "Rhizopodaceae": {
             "Rhizopus": {
               "Rhizopus arrhizus": {
-                "desc": [
-                  "opportunistic human pathogen"
-                ]
+                "desc": ["opportunistic human pathogen"]
               }
             }
           },
           "Syncephalastraceae": {
             "Syncephalastrum": {
-              "desc": [
-                "generic, Syncephalastrum monosporum+ racemosum"
-              ]
+              "desc": ["generic, Syncephalastrum monosporum+ racemosum"]
             }
           }
         }
@@ -1738,9 +1349,7 @@
           "Mortierellaceae": {
             "Mortierella": {
               "Mortierella verticillata": {
-                "desc": [
-                  "soil fungi"
-                ]
+                "desc": ["soil fungi"]
               }
             }
           }
@@ -1753,9 +1362,7 @@
           "Blastocladiaceae": {
             "Allomyces": {
               "Allomyces macrogynus": {
-                "desc": [
-                  "blastocladiomycetes"
-                ]
+                "desc": ["blastocladiomycetes"]
               }
             }
           }
@@ -1765,10 +1372,7 @@
     "Chytridiomycota": {
       "Rhizophydiomycetes": {
         "Rhizophydiales": {
-          "desc": [
-            "amphibian chytrid fungus",
-            "103 sequences, chytrids"
-          ]
+          "desc": ["amphibian chytrid fungus", "103 sequences, chytrids"]
         }
       },
       "Chytridiomycetes": {
@@ -1776,9 +1380,7 @@
           "Spizellomycetaceae": {
             "Spizellomyces": {
               "Spizellomyces punctatus": {
-                "desc": [
-                  "chytrids"
-                ]
+                "desc": ["chytrids"]
               }
             }
           }
@@ -1791,9 +1393,7 @@
           "Glomeraceae": {
             "Rhizophagus": {
               "Rhizophagus irregularis": {
-                "desc": [
-                  "glomeromycetes, Glomus irregulare"
-                ]
+                "desc": ["glomeromycetes, Glomus irregulare"]
               }
             }
           }
@@ -1808,45 +1408,35 @@
           "Acanthisittidae": {
             "Acanthisitta": {
               "Acanthisitta chloris": {
-                "desc": [
-                  "Rifleman"
-                ]
+                "desc": ["Rifleman"]
               }
             }
           },
           "Corvidae": {
             "Corvus": {
               "Corvus brachyrhynchos": {
-                "desc": [
-                  "American crow"
-                ]
+                "desc": ["American crow"]
               }
             }
           },
           "Muscicapidae": {
             "Ficedula": {
               "Ficedula albicollis": {
-                "desc": [
-                  "collared flycatcher"
-                ]
+                "desc": ["collared flycatcher"]
               }
             }
           },
           "Thraupidae": {
             "Geospiza": {
               "Geospiza fortis": {
-                "desc": [
-                  "medium ground finch"
-                ]
+                "desc": ["medium ground finch"]
               }
             }
           },
           "Pipridae": {
             "Manacus": {
               "Manacus vitellinus": {
-                "desc": [
-                  "golden-collared manakin"
-                ]
+                "desc": ["golden-collared manakin"]
               }
             }
           }
@@ -1855,16 +1445,12 @@
           "Anatidae": {
             "Anas": {
               "Anas platyrhynchos": {
-                "desc": [
-                  "Mallard"
-                ]
+                "desc": ["Mallard"]
               }
             },
             "Anser": {
               "Anser cygnoides": {
-                "desc": [
-                  "Swan goose, Chinese goose"
-                ]
+                "desc": ["Swan goose, Chinese goose"]
               }
             }
           }
@@ -1873,9 +1459,7 @@
           "Spheniscidae": {
             "Aptenodytes": {
               "Aptenodytes forsteri": {
-                "desc": [
-                  "Emperor penguin"
-                ]
+                "desc": ["Emperor penguin"]
               }
             }
           }
@@ -1884,9 +1468,7 @@
           "Apterygidae": {
             "Apteryx": {
               "Apteryx australis": {
-                "desc": [
-                  "Brown kiwi"
-                ]
+                "desc": ["Brown kiwi"]
               }
             }
           }
@@ -1895,16 +1477,12 @@
           "Accipitridae": {
             "Aquila": {
               "Aquila chrysaetos": {
-                "desc": [
-                  "Golden eagle"
-                ]
+                "desc": ["Golden eagle"]
               }
             },
             "Haliaeetus": {
               "Haliaeetus leucocephalus": {
-                "desc": [
-                  "bald eagle"
-                ]
+                "desc": ["bald eagle"]
               }
             }
           }
@@ -1913,9 +1491,7 @@
           "Bucerotidae": {
             "Buceros": {
               "Buceros rhinoceros": {
-                "desc": [
-                  "Rhinoceros hornbill"
-                ]
+                "desc": ["Rhinoceros hornbill"]
               }
             }
           }
@@ -1924,18 +1500,14 @@
           "Scolopacidae": {
             "Philomachus": {
               "Philomachus pugnax": {
-                "desc": [
-                  "Ruff, Philomachus pugnax"
-                ]
+                "desc": ["Ruff, Philomachus pugnax"]
               }
             }
           },
           "Charadriidae": {
             "Charadrius": {
               "Charadrius vociferus": {
-                "desc": [
-                  "Killdeer"
-                ]
+                "desc": ["Killdeer"]
               }
             }
           }
@@ -1944,18 +1516,14 @@
           "Trochilidae": {
             "Calypte": {
               "Calypte anna": {
-                "desc": [
-                  "Anna's hummingbird"
-                ]
+                "desc": ["Anna's hummingbird"]
               }
             }
           },
           "Apodidae": {
             "Chaetura": {
               "Chaetura pelagica": {
-                "desc": [
-                  "Chimney swift"
-                ]
+                "desc": ["Chimney swift"]
               }
             }
           }
@@ -1964,9 +1532,7 @@
           "Caprimulgidae": {
             "Antrostomus": {
               "Antrostomus carolinensis": {
-                "desc": [
-                  "Chuck-will's-widow"
-                ]
+                "desc": ["Chuck-will's-widow"]
               }
             }
           }
@@ -1975,9 +1541,7 @@
           "Cariamidae": {
             "Cariama": {
               "Cariama cristata": {
-                "desc": [
-                  "Red-legged seriema"
-                ]
+                "desc": ["Red-legged seriema"]
               }
             }
           }
@@ -1986,16 +1550,12 @@
           "Phasianidae": {
             "Gallus": {
               "Gallus gallus": {
-                "desc": [
-                  "Aves generic"
-                ]
+                "desc": ["Aves generic"]
               }
             },
             "Meleagris": {
               "Meleagris gallopavo": {
-                "desc": [
-                  "Wild Turkey"
-                ]
+                "desc": ["Wild Turkey"]
               }
             }
           }
@@ -2004,9 +1564,7 @@
           "Otididae": {
             "Chlamydotis": {
               "Chlamydotis macqueenii": {
-                "desc": [
-                  "MacQueen's bustard"
-                ]
+                "desc": ["MacQueen's bustard"]
               }
             }
           }
@@ -2015,9 +1573,7 @@
           "Coliidae": {
             "Colius": {
               "Colius striatus": {
-                "desc": [
-                  "Speckled mousebird"
-                ]
+                "desc": ["Speckled mousebird"]
               }
             }
           }
@@ -2026,9 +1582,7 @@
           "Columbidae": {
             "Columba": {
               "Columba livia": {
-                "desc": [
-                  "Rock pigeon"
-                ]
+                "desc": ["Rock pigeon"]
               }
             }
           }
@@ -2037,9 +1591,7 @@
           "Cuculidae": {
             "Cuculus": {
               "Cuculus canorus": {
-                "desc": [
-                  "Common cuckoo"
-                ]
+                "desc": ["Common cuckoo"]
               }
             }
           }
@@ -2048,9 +1600,7 @@
           "Ardeidae": {
             "Egretta": {
               "Egretta garzetta": {
-                "desc": [
-                  "Little egret"
-                ]
+                "desc": ["Little egret"]
               }
             }
           }
@@ -2059,9 +1609,7 @@
           "Falconidae": {
             "Falco": {
               "Falco cherrug": {
-                "desc": [
-                  "Saker falcon"
-                ]
+                "desc": ["Saker falcon"]
               }
             }
           }
@@ -2072,66 +1620,50 @@
           "Felidae": {
             "Acinonyx": {
               "Acinonyx jubatus": {
-                "desc": [
-                  "Cheetah"
-                ]
+                "desc": ["Cheetah"]
               }
             },
             "Felis": {
               "Felis catus": {
-                "desc": [
-                  "domestic cat"
-                ]
+                "desc": ["domestic cat"]
               }
             },
             "Lynx": {
               "Lynx pardinus": {
-                "desc": [
-                  "Iberian lynx"
-                ]
+                "desc": ["Iberian lynx"]
               }
             }
           },
           "Ursidae": {
             "Ailuropoda": {
               "Ailuropoda melanoleuca": {
-                "desc": [
-                  "Giant panda"
-                ]
+                "desc": ["Giant panda"]
               }
             }
           },
           "Canidae": {
             "Canis": {
               "Canis lupus": {
-                "desc": [
-                  "gray wolf"
-                ]
+                "desc": ["gray wolf"]
               }
             },
             "Vulpes": {
               "Vulpes vulpes": {
-                "desc": [
-                  "Fox generic"
-                ]
+                "desc": ["Fox generic"]
               }
             }
           },
           "Phocidae": {
             "Leptonychotes": {
               "Leptonychotes weddellii": {
-                "desc": [
-                  "Weddell seal"
-                ]
+                "desc": ["Weddell seal"]
               }
             }
           },
           "Mustelidae": {
             "Mustela": {
               "Mustela putorius": {
-                "desc": [
-                  "European Polecat"
-                ]
+                "desc": ["European Polecat"]
               }
             }
           }
@@ -2140,96 +1672,72 @@
           "Aotidae": {
             "Aotus": {
               "Aotus nancymai": {
-                "desc": [
-                  "Ma's night monkey, Aotus nancymai"
-                ]
+                "desc": ["Ma's night monkey, Aotus nancymai"]
               }
             }
           },
           "Callitrichidae": {
             "Callithrix": {
               "Callithrix jacchus": {
-                "desc": [
-                  "White-tufted-ear marmoset"
-                ]
+                "desc": ["White-tufted-ear marmoset"]
               }
             }
           },
           "Cercopithecidae": {
             "Cercocebus": {
               "Cercocebus atys": {
-                "desc": [
-                  "Sooty mangabey"
-                ]
+                "desc": ["Sooty mangabey"]
               }
             },
             "Chlorocebus": {
               "Chlorocebus sabaeus": {
-                "desc": [
-                  "Green monkey"
-                ]
+                "desc": ["Green monkey"]
               }
             },
             "Colobus": {
               "Colobus angolensis": {
-                "desc": [
-                  "Angolan colobus"
-                ]
+                "desc": ["Angolan colobus"]
               }
             },
             "Macaca": {
               "Macaca mulatta": {
-                "desc": [
-                  "Rhesus monkey"
-                ]
+                "desc": ["Rhesus monkey"]
               }
             },
             "Mandrillus": {
               "Mandrillus leucophaeus": {
-                "desc": [
-                  "drill"
-                ]
+                "desc": ["drill"]
               }
             }
           },
           "Hominidae": {
             "Gorilla": {
               "Gorilla gorilla": {
-                "desc": [
-                  "Western gorilla"
-                ]
+                "desc": ["Western gorilla"]
               }
             },
             "Homo": {
               "Homo sapiens": {
-                "desc": [
-                  ""
-                ]
+                "desc": ["Human"]
               }
             },
             "Pan": {
               "Pan troglodytes": {
-                "desc": [
-                  "Common chimpanzee"
-                ]
+                "desc": ["Common chimpanzee"]
               }
             }
           },
           "Hylobatidae": {
             "Nomascus": {
               "Nomascus leucogenys": {
-                "desc": [
-                  "gibbon"
-                ]
+                "desc": ["gibbon"]
               }
             }
           },
           "Galagidae": {
             "Otolemur": {
               "Otolemur garnettii": {
-                "desc": [
-                  "Northern greater galago, small-eared galago"
-                ]
+                "desc": ["Northern greater galago, small-eared galago"]
               }
             }
           }
@@ -2238,43 +1746,33 @@
           "Muridae": {
             "Apodemus": {
               "Apodemus sylvaticus": {
-                "desc": [
-                  "wood mouse"
-                ]
+                "desc": ["wood mouse"]
               }
             },
             "Mus": {
               "Mus musculus": {
-                "desc": [
-                  "generic, mouse"
-                ]
+                "desc": ["generic, mouse"]
               }
             }
           },
           "Chinchillidae": {
             "Chinchilla": {
               "Chinchilla lanigera": {
-                "desc": [
-                  "Long-tailed chinchilla"
-                ]
+                "desc": ["Long-tailed chinchilla"]
               }
             }
           },
           "Cricetidae": {
             "Cricetulus": {
               "Cricetulus barabensis": {
-                "desc": [
-                  "Chinese hamster"
-                ]
+                "desc": ["Chinese hamster"]
               }
             }
           },
           "Heteromyidae": {
             "Dipodomys": {
               "Dipodomys ordii": {
-                "desc": [
-                  "Kangaroo rat"
-                ]
+                "desc": ["Kangaroo rat"]
               }
             }
           },
@@ -2288,34 +1786,26 @@
             },
             "Heterocephalus": {
               "Heterocephalus glaber": {
-                "desc": [
-                  "naked mole-rat, sand puppy, desert mole rat"
-                ]
+                "desc": ["naked mole-rat, sand puppy, desert mole rat"]
               }
             }
           },
           "Sciuridae": {
             "Ictidomys": {
               "Ictidomys tridecemlineatus": {
-                "desc": [
-                  "thirteen-lined ground squirrel,striped gopher"
-                ]
+                "desc": ["thirteen-lined ground squirrel,striped gopher"]
               }
             },
             "Marmota": {
               "Marmota marmota": {
-                "desc": [
-                  "alpine marmot"
-                ]
+                "desc": ["alpine marmot"]
               }
             }
           },
           "Dipodidae": {
             "Jaculus": {
               "Jaculus jaculus": {
-                "desc": [
-                  "lesser Egyptian jerboa"
-                ]
+                "desc": ["lesser Egyptian jerboa"]
               }
             }
           }
@@ -2324,27 +1814,21 @@
           "Balaenidae": {
             "Balaena": {
               "Balaena mysticetus": {
-                "desc": [
-                  "bowhead whale"
-                ]
+                "desc": ["bowhead whale"]
               }
             }
           },
           "Balaenopteridae": {
             "Balaenoptera": {
               "Balaenoptera acutorostrata": {
-                "desc": [
-                  "common minke whale or northern minke whale"
-                ]
+                "desc": ["common minke whale or northern minke whale"]
               }
             }
           },
           "Lipotidae": {
             "Lipotes": {
               "Lipotes vexillifer": {
-                "desc": [
-                  "baiji, Chinese river dolphin"
-                ]
+                "desc": ["baiji, Chinese river dolphin"]
               }
             }
           }
@@ -2353,51 +1837,37 @@
           "Bovidae": {
             "Bison": {
               "Bison bison": {
-                "desc": [
-                  "American bison"
-                ]
+                "desc": ["American bison"]
               }
             },
             "Bos": {
               "Bos grunniens": {
-                "desc": [
-                  "wild yak"
-                ]
+                "desc": ["wild yak"]
               },
               "Bos taurus": {
-                "desc": [
-                  "cattle"
-                ]
+                "desc": ["cattle"]
               }
             },
             "Bubalus": {
               "Bubalus bubalis": {
-                "desc": [
-                  "Water buffalo"
-                ]
+                "desc": ["Water buffalo"]
               }
             },
             "Capra": {
               "Capra hircus": {
-                "desc": [
-                  "Goat"
-                ]
+                "desc": ["Goat"]
               }
             }
           },
           "Camelidae": {
             "Camelus": {
               "Camelus dromedarius": {
-                "desc": [
-                  "Bactrian camel"
-                ]
+                "desc": ["Bactrian camel"]
               }
             },
             "Vicugna": {
               "Vicugna pacos": {
-                "desc": [
-                  "alpaca"
-                ]
+                "desc": ["alpaca"]
               }
             }
           }
@@ -2406,9 +1876,7 @@
           "Rhinocerotidae": {
             "Ceratotherium": {
               "Ceratotherium simum": {
-                "desc": [
-                  "White rhinoceros"
-                ]
+                "desc": ["White rhinoceros"]
               }
             }
           }
@@ -2417,9 +1885,7 @@
           "Megalonychidae": {
             "Choloepus": {
               "Choloepus hoffmanni": {
-                "desc": [
-                  "Hoffmann's two-fingered sloth"
-                ]
+                "desc": ["Hoffmann's two-fingered sloth"]
               }
             }
           }
@@ -2428,9 +1894,7 @@
           "Chrysochloridae": {
             "Chrysochloris": {
               "Chrysochloris asiatica": {
-                "desc": [
-                  "Cape golden mole"
-                ]
+                "desc": ["Cape golden mole"]
               }
             }
           }
@@ -2439,18 +1903,14 @@
           "Talpidae": {
             "Condylura": {
               "Condylura cristata": {
-                "desc": [
-                  "Star-nosed mole"
-                ]
+                "desc": ["Star-nosed mole"]
               }
             }
           },
           "Soricidae": {
             "Sorex": {
               "Sorex araneus": {
-                "desc": [
-                  "Common shrew"
-                ]
+                "desc": ["Common shrew"]
               }
             }
           }
@@ -2459,9 +1919,7 @@
           "Dasypodidae": {
             "Dasypus": {
               "Dasypus novemcinctus": {
-                "desc": [
-                  "Nine-banded armadillo"
-                ]
+                "desc": ["Nine-banded armadillo"]
               }
             }
           }
@@ -2470,9 +1928,7 @@
           "Macroscelididae": {
             "Elephantulus": {
               "Elephantulus edwardii": {
-                "desc": [
-                  "Cape long-eared elephant shrew"
-                ]
+                "desc": ["Cape long-eared elephant shrew"]
               }
             }
           }
@@ -2481,25 +1937,19 @@
           "Vespertilionidae": {
             "Eptesicus": {
               "Eptesicus fuscus": {
-                "desc": [
-                  "Big brown bat"
-                ]
+                "desc": ["Big brown bat"]
               }
             },
             "Myotis": {
               "Myotis lucifugus": {
-                "desc": [
-                  "Little brown bat"
-                ]
+                "desc": ["Little brown bat"]
               }
             }
           },
           "Pteropodidae": {
             "Pteropus": {
               "Pteropus vampyrus": {
-                "desc": [
-                  "Large flying fox"
-                ]
+                "desc": ["Large flying fox"]
               }
             }
           }
@@ -2508,9 +1958,7 @@
           "Erinaceidae": {
             "Erinaceus": {
               "Erinaceus europaeus": {
-                "desc": [
-                  "hedgehog"
-                ]
+                "desc": ["hedgehog"]
               }
             }
           }
@@ -2530,9 +1978,7 @@
           "Manidae": {
             "Manis": {
               "Manis pentadactyla": {
-                "desc": [
-                  "Chinese pangolin"
-                ]
+                "desc": ["Chinese pangolin"]
               }
             }
           }
@@ -2541,9 +1987,7 @@
           "Didelphidae": {
             "Monodelphis": {
               "Monodelphis domestica": {
-                "desc": [
-                  "gray short-tailed opossum"
-                ]
+                "desc": ["gray short-tailed opossum"]
               }
             }
           }
@@ -2552,18 +1996,14 @@
           "Ochotonidae": {
             "Ochotona": {
               "Ochotona princeps": {
-                "desc": [
-                  "American pika"
-                ]
+                "desc": ["American pika"]
               }
             }
           },
           "Leporidae": {
             "Oryctolagus": {
               "Oryctolagus cuniculus": {
-                "desc": [
-                  "European rabbit"
-                ]
+                "desc": ["European rabbit"]
               }
             }
           }
@@ -2572,9 +2012,7 @@
           "Ornithorhynchidae": {
             "Ornithorhynchus": {
               "Ornithorhynchus anatinus": {
-                "desc": [
-                  "Platypus"
-                ]
+                "desc": ["Platypus"]
               }
             }
           }
@@ -2583,9 +2021,7 @@
           "Procaviidae": {
             "Procavia": {
               "Procavia capensis": {
-                "desc": [
-                  "Rock hyrax"
-                ]
+                "desc": ["Rock hyrax"]
               }
             }
           }
@@ -2594,32 +2030,24 @@
           "Dasyuridae": {
             "Sarcophilus": {
               "Sarcophilus harrisii": {
-                "desc": [
-                  "Tasmanian devil"
-                ]
+                "desc": ["Tasmanian devil"]
               }
             }
           }
         }
       },
       "Leptocardii": {
-        "desc": [
-          "lancelet"
-        ]
+        "desc": ["lancelet"]
       },
       "Reptilia": {
         "Crocodylia": {
           "Alligatoridae": {
             "Alligator": {
               "Alligator mississippiensis": {
-                "desc": [
-                  "American alligator"
-                ]
+                "desc": ["American alligator"]
               },
               "Alligator sinensis": {
-                "desc": [
-                  "Chinese alligator"
-                ]
+                "desc": ["Chinese alligator"]
               }
             }
           }
@@ -2628,9 +2056,7 @@
           "Dactyloidae": {
             "Anolis": {
               "Anolis carolinensis": {
-                "desc": [
-                  "Green anole, Carolina anole"
-                ]
+                "desc": ["Green anole, Carolina anole"]
               }
             }
           }
@@ -2639,18 +2065,14 @@
           "Cheloniidae": {
             "Chelonia": {
               "Chelonia mydas": {
-                "desc": [
-                  "Green sea turtle"
-                ]
+                "desc": ["Green sea turtle"]
               }
             }
           },
           "Emydidae": {
             "Chrysemys": {
               "Chrysemys picta": {
-                "desc": [
-                  "Painted turtle"
-                ]
+                "desc": ["Painted turtle"]
               }
             }
           }
@@ -2660,9 +2082,7 @@
         "Anura": {
           "Pipidae": {
             "Xenopus": {
-              "desc": [
-                "generic, frog"
-              ]
+              "desc": ["generic, frog"]
             }
           }
         }
@@ -2672,30 +2092,22 @@
           "Cichlidae": {
             "Amphilophus": {
               "Amphilophus citrinellus": {
-                "desc": [
-                  "Midas cichlid, red devil cichlid"
-                ]
+                "desc": ["Midas cichlid, red devil cichlid"]
               }
             },
             "Astatotilapia": {
               "Astatotilapia burtoni": {
-                "desc": [
-                  "Burton's mouthbrooder"
-                ]
+                "desc": ["Burton's mouthbrooder"]
               }
             },
             "Neolamprologus": {
               "Neolamprologus brichardi": {
-                "desc": [
-                  "Lyretail cichlid, Princess of Burundi"
-                ]
+                "desc": ["Lyretail cichlid, Princess of Burundi"]
               }
             },
             "Oreochromis": {
               "Oreochromis niloticus": {
-                "desc": [
-                  "African cichlid"
-                ]
+                "desc": ["African cichlid"]
               }
             }
           }
@@ -2704,9 +2116,7 @@
           "Anguillidae": {
             "Anguilla": {
               "Anguilla anguilla": {
-                "desc": [
-                  "European eel, 109 genes"
-                ]
+                "desc": ["European eel, 109 genes"]
               }
             }
           }
@@ -2715,18 +2125,14 @@
           "Anoplopomatidae": {
             "Anoplopoma": {
               "Anoplopoma fimbria": {
-                "desc": [
-                  "sablefish"
-                ]
+                "desc": ["sablefish"]
               }
             }
           },
           "Cottidae": {
             "Cottus": {
               "Cottus rhenanus": {
-                "desc": [
-                  "small benthic Rhine sculpin"
-                ]
+                "desc": ["small benthic Rhine sculpin"]
               }
             }
           }
@@ -2735,9 +2141,7 @@
           "Characidae": {
             "Astyanax": {
               "Astyanax mexicanus": {
-                "desc": [
-                  "Mexican tetra or blind cave fish"
-                ]
+                "desc": ["Mexican tetra or blind cave fish"]
               }
             }
           }
@@ -2746,25 +2150,19 @@
           "Rivulidae": {
             "Austrofundulus": {
               "Austrofundulus limnaeus": {
-                "desc": [
-                  "bony fishes"
-                ]
+                "desc": ["bony fishes"]
               }
             }
           },
           "Cyprinodontidae": {
             "Cyprinodon": {
-              "desc": [
-                "Cyprinodon_nevadensis+variega"
-              ]
+              "desc": ["Cyprinodon_nevadensis+variega"]
             }
           },
           "Fundulidae": {
             "Fundulus": {
               "Fundulus heteroclitus": {
-                "desc": [
-                  "Mummichog , killifish"
-                ]
+                "desc": ["Mummichog , killifish"]
               }
             }
           }
@@ -2773,9 +2171,7 @@
           "Gobiidae": {
             "Boleophthalmus": {
               "Boleophthalmus pectinirostris": {
-                "desc": [
-                  "great blue-spotted mudskipper, 122 genes"
-                ]
+                "desc": ["great blue-spotted mudskipper, 122 genes"]
               }
             }
           }
@@ -2784,9 +2180,7 @@
           "Clupeidae": {
             "Clupea": {
               "Clupea harengus": {
-                "desc": [
-                  "Atlantic herring"
-                ]
+                "desc": ["Atlantic herring"]
               }
             }
           }
@@ -2795,16 +2189,12 @@
           "Cyprinidae": {
             "Ctenopharyngodon": {
               "Ctenopharyngodon idella": {
-                "desc": [
-                  "grass carp"
-                ]
+                "desc": ["grass carp"]
               }
             },
             "Cyprinus": {
               "Cyprinus carpio": {
-                "desc": [
-                  "mirror carp, common carp"
-                ]
+                "desc": ["mirror carp, common carp"]
               }
             },
             "Danio": {
@@ -2821,9 +2211,7 @@
           "Cynoglossidae": {
             "Cynoglossus": {
               "Cynoglossus semilaevis": {
-                "desc": [
-                  "Tonguefish"
-                ]
+                "desc": ["Tonguefish"]
               }
             }
           }
@@ -2832,18 +2220,14 @@
           "Moronidae": {
             "Dicentrarchus": {
               "Dicentrarchus labrax": {
-                "desc": [
-                  "European seabass"
-                ]
+                "desc": ["European seabass"]
               }
             }
           },
           "Nototheniidae": {
             "Notothenia": {
               "Notothenia coriiceps": {
-                "desc": [
-                  "yellowbelly rockcod, black rockcod"
-                ]
+                "desc": ["yellowbelly rockcod, black rockcod"]
               }
             }
           }
@@ -2852,9 +2236,7 @@
           "Esocidae": {
             "Esox": {
               "Esox lucius": {
-                "desc": [
-                  "northern pike"
-                ]
+                "desc": ["northern pike"]
               }
             }
           }
@@ -2863,9 +2245,7 @@
           "Gasterosteidae": {
             "Gasterosteus": {
               "Gasterosteus aculeatus": {
-                "desc": [
-                  "Three-spined stickleback"
-                ]
+                "desc": ["Three-spined stickleback"]
               }
             }
           }
@@ -2874,9 +2254,7 @@
           "Sciaenidae": {
             "Larimichthys": {
               "Larimichthys crocea": {
-                "desc": [
-                  "large yellow croaker"
-                ]
+                "desc": ["large yellow croaker"]
               }
             }
           }
@@ -2885,9 +2263,7 @@
           "Lepisosteidae": {
             "Lepisosteus": {
               "Lepisosteus oculatus": {
-                "desc": [
-                  "spotted gar"
-                ]
+                "desc": ["spotted gar"]
               }
             }
           }
@@ -2896,9 +2272,7 @@
           "Salmonidae": {
             "Oncorhynchus": {
               "Oncorhynchus mykiss": {
-                "desc": [
-                  "rainbow trout"
-                ]
+                "desc": ["rainbow trout"]
               }
             }
           }
@@ -2907,9 +2281,7 @@
           "Petromyzontidae": {
             "Petromyzon": {
               "Petromyzon marinus": {
-                "desc": [
-                  "Sea lamprey"
-                ]
+                "desc": ["Sea lamprey"]
               }
             }
           }
@@ -2918,16 +2290,12 @@
           "Tetraodontidae": {
             "Takifugu": {
               "Takifugu rubripes": {
-                "desc": [
-                  "Torafugu"
-                ]
+                "desc": ["Torafugu"]
               }
             },
             "Dichotomyctere": {
               "Dichotomyctere nigroviridis": {
-                "desc": [
-                  "Spotted green pufferfish"
-                ]
+                "desc": ["Spotted green pufferfish"]
               }
             }
           }
@@ -2938,9 +2306,7 @@
           "Callorhinchidae": {
             "Callorhinchus": {
               "Callorhinchus milii": {
-                "desc": [
-                  "Elephant shark"
-                ]
+                "desc": ["Elephant shark"]
               }
             }
           }
@@ -2952,17 +2318,13 @@
         "Coleoptera": {
           "Passallidae": {
             "Paxillus": {
-              "desc": [
-                "generic, Paxillus_involutus+rubicundulus"
-              ]
+              "desc": ["generic, Paxillus_involutus+rubicundulus"]
             }
           },
           "Tenebrionidae": {
             "Tribolium": {
               "Tribolium castaneum": {
-                "desc": [
-                  "red flour beetle"
-                ]
+                "desc": ["red flour beetle"]
               }
             }
           }
@@ -2971,63 +2333,45 @@
           "Formicidae": {
             "Acromyrmex": {
               "Acromyrmex echinatior": {
-                "desc": [
-                  "Panamanian leaf-cutter ant"
-                ]
+                "desc": ["Panamanian leaf-cutter ant"]
               }
             },
             "Atta": {
               "Atta cephalotes": {
-                "desc": [
-                  "leaf cutting ant"
-                ]
+                "desc": ["leaf cutting ant"]
               }
             }
           },
           "Apidae": {
             "Apis": {
-              "desc": [
-                "generic, apis"
-              ],
+              "desc": ["generic, apis"],
               "Apis dorsata": {
-                "desc": [
-                  "giant honey bee"
-                ]
+                "desc": ["giant honey bee"]
               },
               "Apis florea": {
-                "desc": [
-                  "red dwarf honey bee"
-                ]
+                "desc": ["red dwarf honey bee"]
               }
             },
             "Bombus": {
               "Bombus impatiens": {
-                "desc": [
-                  "common eastern bumble bee"
-                ]
+                "desc": ["common eastern bumble bee"]
               },
               "Bombus terrestris": {
-                "desc": [
-                  "buff-tailed bumble bee"
-                ]
+                "desc": ["buff-tailed bumble bee"]
               }
             }
           },
           "Tenthredinidae": {
             "Athalia": {
               "Athalia rosae": {
-                "desc": [
-                  "turnip sawfly"
-                ]
+                "desc": ["turnip sawfly"]
               }
             }
           },
           "Pteromalidae": {
             "Nasonia": {
               "Nasonia vitripennis": {
-                "desc": [
-                  "parasitoid wasp"
-                ]
+                "desc": ["parasitoid wasp"]
               }
             }
           }
@@ -3036,25 +2380,19 @@
           "Aphididae": {
             "Acyrthosiphon": {
               "Acyrthosiphon pisum": {
-                "desc": [
-                  "pea aphid"
-                ]
+                "desc": ["pea aphid"]
               }
             },
             "Cerataphis": {
               "Cerataphis brasiliensis": {
-                "desc": [
-                  "Palm Aphid"
-                ]
+                "desc": ["Palm Aphid"]
               }
             }
           },
           "Delphacidae": {
             "Nilaparvata": {
               "Nilaparvata lugens": {
-                "desc": [
-                  "brown planthopper"
-                ]
+                "desc": ["brown planthopper"]
               }
             }
           }
@@ -3063,44 +2401,32 @@
           "Culicidae": {
             "Aedes": {
               "Aedes aegypti": {
-                "desc": [
-                  "yellow fever mosquito"
-                ]
+                "desc": ["yellow fever mosquito"]
               }
             },
             "Anopheles": {
               "Anopheles gambiae": {
-                "desc": [
-                  "malaria mosquito"
-                ]
+                "desc": ["malaria mosquito"]
               }
             },
             "Culex": {
-              "desc": [
-                "generic, culex"
-              ]
+              "desc": ["generic, culex"]
             }
           },
           "Tephritidae": {
             "Bactrocera": {
               "Bactrocera cucurbitae": {
-                "desc": [
-                  "melon fly"
-                ]
+                "desc": ["melon fly"]
               },
               "Bactrocera dorsalis": {
-                "desc": [
-                  "oriental fruit fly"
-                ]
+                "desc": ["oriental fruit fly"]
               }
             }
           },
           "Drosophilidae": {
             "Drosophila": {
               "Drosophila melanogaster": {
-                "desc": [
-                  "generic, fruit fly"
-                ]
+                "desc": ["generic, fruit fly"]
               }
             }
           }
@@ -3109,25 +2435,19 @@
           "Bombycidae": {
             "Bombyx": {
               "Bombyx mori": {
-                "desc": [
-                  "silkworm"
-                ]
+                "desc": ["silkworm"]
               }
             }
           },
           "Nymphalidae": {
             "Danaus": {
               "Danaus plexippus": {
-                "desc": [
-                  "butterfly"
-                ]
+                "desc": ["butterfly"]
               }
             },
             "Heliconius": {
               "Heliconius melpomene": {
-                "desc": [
-                  "postman butterfly"
-                ]
+                "desc": ["postman butterfly"]
               }
             }
           }
@@ -3136,9 +2456,7 @@
           "Pediculidae": {
             "Pediculus": {
               "Pediculus humanus": {
-                "desc": [
-                  "human louse"
-                ]
+                "desc": ["human louse"]
               }
             }
           }
@@ -3149,9 +2467,7 @@
           "Daphniidae": {
             "Daphnia": {
               "Daphnia pulex": {
-                "desc": [
-                  "water flea"
-                ]
+                "desc": ["water flea"]
               }
             }
           }
@@ -3162,9 +2478,7 @@
           "Ixodidae": {
             "Ixodes": {
               "Ixodes scapularis": {
-                "desc": [
-                  "deer tick"
-                ]
+                "desc": ["deer tick"]
               }
             }
           }
@@ -3175,9 +2489,7 @@
           "Linotaeniidae": {
             "Strigamia": {
               "Strigamia maritima": {
-                "desc": [
-                  "centipede"
-                ]
+                "desc": ["centipede"]
               }
             }
           }
@@ -3190,32 +2502,24 @@
           "Onchocercidae": {
             "Brugia": {
               "Brugia malayi": {
-                "desc": [
-                  "parasitic nematode"
-                ]
+                "desc": ["parasitic nematode"]
               }
             }
           },
           "Rhabditidae": {
             "Caenorhabditis": {
               "Caenorhabditis brenneri": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               },
               "Caenorhabditis elegans": {
-                "desc": [
-                  "C.elegans"
-                ]
+                "desc": ["C.elegans"]
               }
             }
           },
           "Diplogastridae": {
             "Pristionchus": {
               "Pristionchus pacificus": {
-                "desc": [
-                  "nematode"
-                ]
+                "desc": ["nematode"]
               }
             }
           }
@@ -3226,9 +2530,7 @@
           "Trichinellidae": {
             "Trichinella": {
               "Trichinella spiralis": {
-                "desc": [
-                  "parasitic nematode"
-                ]
+                "desc": ["parasitic nematode"]
               }
             }
           }
@@ -3241,9 +2543,7 @@
           "Niphatidae": {
             "Amphimedon": {
               "Amphimedon queenslandica": {
-                "desc": [
-                  "sponge"
-                ]
+                "desc": ["sponge"]
               }
             }
           }
@@ -3256,9 +2556,7 @@
           "Aplysiidae": {
             "Aplysia": {
               "Aplysia californica": {
-                "desc": [
-                  "california sea hare"
-                ]
+                "desc": ["california sea hare"]
               }
             }
           }
@@ -3271,9 +2569,7 @@
           "Bolinopsidae": {
             "Mnemiopsis": {
               "Mnemiopsis leidyi": {
-                "desc": [
-                  "warty comb jelly"
-                ]
+                "desc": ["warty comb jelly"]
               }
             }
           }
@@ -3286,9 +2582,7 @@
           "Edwardsiidae": {
             "Nematostella": {
               "Nematostella vectensis": {
-                "desc": [
-                  "sea anemone"
-                ]
+                "desc": ["sea anemone"]
               }
             }
           }
@@ -3301,9 +2595,7 @@
           "Schistosomatidae": {
             "Schistosoma": {
               "Schistosoma mansoni": {
-                "desc": [
-                  "parasitic trematode"
-                ]
+                "desc": ["parasitic trematode"]
               }
             }
           }
@@ -3311,9 +2603,7 @@
       }
     },
     "Placozoa": {
-      "desc": [
-        "placozoans"
-      ]
+      "desc": ["placozoans"]
     },
     "Echinodermata": {
       "Echinoidea": {
@@ -3321,10 +2611,7 @@
           "Strongylocentrotidae": {
             "Strongylocentrotus": {
               "Strongylocentrotus purpuratus": {
-                "desc": [
-                  "sea urchin",
-                  "additional variant; sea urchin"
-                ]
+                "desc": ["sea urchin", "additional variant; sea urchin"]
               }
             }
           }
@@ -3339,17 +2626,13 @@
           "Actinidiaceae": {
             "Actinidia": {
               "Actinidia chinensis": {
-                "desc": [
-                  "fruit tree and medicinal plant"
-                ]
+                "desc": ["fruit tree and medicinal plant"]
               }
             }
           },
           "Primulaceae": {
             "Primula": {
-              "desc": [
-                "generic, Primula veris + vulgaris"
-              ]
+              "desc": ["generic, Primula veris + vulgaris"]
             }
           }
         },
@@ -3357,71 +2640,49 @@
           "Brassicaceae": {
             "Aethionema": {
               "Aethionema arabicum": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               }
             },
             "Arabidopsis": {
               "Arabidopsis thaliana": {
-                "desc": [
-                  "rockcress, thale cress"
-                ]
+                "desc": ["rockcress, thale cress"]
               },
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             },
             "Arabis": {
-              "desc": [
-                "generic, Arabis alpina+montbretiana+nordmanniana"
-              ]
+              "desc": ["generic, Arabis alpina+montbretiana+nordmanniana"]
             },
             "Brassica": {
               "Brassica rapa": {
-                "desc": [
-                  "turnip, field mustard"
-                ]
+                "desc": ["turnip, field mustard"]
               }
             },
             "Camelina": {
               "Camelina sativa": {
-                "desc": [
-                  "false flax, gold-of-pleasure"
-                ]
+                "desc": ["false flax, gold-of-pleasure"]
               }
             },
             "Capsella": {
               "Capsella rubella": {
-                "desc": [
-                  "pink shepherd's-purse"
-                ]
+                "desc": ["pink shepherd's-purse"]
               }
             },
             "Eutrema": {
-              "desc": [
-                "generic, Eutrema halophilum+parvulum+salsugineum"
-              ]
+              "desc": ["generic, Eutrema halophilum+parvulum+salsugineum"]
             },
             "Leavenworthia": {
               "Leavenworthia alabamica": {
-                "desc": [
-                  "gladecresses"
-                ]
+                "desc": ["gladecresses"]
               }
             },
             "Raphanus": {
               "Raphanus sativus": {
-                "desc": [
-                  "radish"
-                ]
+                "desc": ["radish"]
               }
             },
             "Sisymbrium": {
               "Sisymbrium irio": {
-                "desc": [
-                  "London rocket"
-                ]
+                "desc": ["London rocket"]
               }
             }
           }
@@ -3430,9 +2691,7 @@
           "Amborellaceae": {
             "Amborella": {
               "Amborella trichopoda": {
-                "desc": [
-                  "rare understory shrub"
-                ]
+                "desc": ["rare understory shrub"]
               }
             }
           }
@@ -3441,54 +2700,38 @@
           "Fabaceae": {
             "Arachis": {
               "Arachis duranensis": {
-                "desc": [
-                  "Arachis spegazzinii"
-                ]
+                "desc": ["Arachis spegazzinii"]
               }
             },
             "Cicer": {
               "Cicer arietinum": {
-                "desc": [
-                  "chickpea"
-                ]
+                "desc": ["chickpea"]
               }
             },
             "Glycine": {
               "Glycine max": {
-                "desc": [
-                  "soybean"
-                ]
+                "desc": ["soybean"]
               }
             },
             "Lotus": {
               "Lotus japonicus": {
-                "desc": [
-                  "wild legume"
-                ]
+                "desc": ["wild legume"]
               }
             },
             "Lupinus": {
               "Lupinus angustifolius": {
-                "desc": [
-                  "narrow-leaved blue lupine"
-                ]
+                "desc": ["narrow-leaved blue lupine"]
               }
             },
             "Medicago": {
-              "desc": [
-                "generic"
-              ],
+              "desc": ["generic"],
               "Medicago truncatula": {
-                "desc": [
-                  "barrel medic, leguminous"
-                ]
+                "desc": ["barrel medic, leguminous"]
               }
             },
             "Phaseolus": {
               "Phaseolus vulgaris": {
-                "desc": [
-                  "common bean, French bean , string bean, kidney bean"
-                ]
+                "desc": ["common bean, French bean , string bean, kidney bean"]
               }
             }
           }
@@ -3497,32 +2740,24 @@
           "Amaranthaceae": {
             "Beta": {
               "Beta vulgaris": {
-                "desc": [
-                  "beet"
-                ]
+                "desc": ["beet"]
               }
             },
             "Spinacia": {
               "Spinacia oleracea": {
-                "desc": [
-                  "spinach"
-                ]
+                "desc": ["spinach"]
               }
             }
           },
           "Caryophyllaceae": {
             "Dianthus": {
               "Dianthus caryophyllus": {
-                "desc": [
-                  "clove pink, carnation"
-                ]
+                "desc": ["clove pink, carnation"]
               }
             },
             "Silene": {
               "Silene latifolia": {
-                "desc": [
-                  "white campion"
-                ]
+                "desc": ["white campion"]
               }
             }
           }
@@ -3531,27 +2766,21 @@
           "Betulaceae": {
             "Betula": {
               "Betula nana": {
-                "desc": [
-                  "alpine birch"
-                ]
+                "desc": ["alpine birch"]
               }
             }
           },
           "Fagaceae": {
             "Castanea": {
               "Castanea mollissima": {
-                "desc": [
-                  "Chinese chestnut"
-                ]
+                "desc": ["Chinese chestnut"]
               }
             }
           },
           "Juglandaceae": {
             "Juglans": {
               "Juglans regia": {
-                "desc": [
-                  "common walnut, English walnut, Persian walnut"
-                ]
+                "desc": ["common walnut, English walnut, Persian walnut"]
               }
             }
           }
@@ -3559,54 +2788,40 @@
         "Rosales": {
           "Cannabaceae": {
             "Cannabis": {
-              "desc": [
-                ""
-              ]
+              "desc": [""]
             },
             "Humulus": {
               "Humulus lupulus": {
-                "desc": [
-                  "european hop, common hop"
-                ]
+                "desc": ["european hop, common hop"]
               }
             }
           },
           "Rosaceae": {
             "Fragaria": {
               "Fragaria vesca": {
-                "desc": [
-                  "wild strawberry"
-                ]
+                "desc": ["wild strawberry"]
               }
             },
             "Malus": {
               "Malus domestica": {
-                "desc": [
-                  "apple"
-                ]
+                "desc": ["apple"]
               }
             },
             "Prunus": {
               "Prunus persica": {
-                "desc": [
-                  "peach"
-                ]
+                "desc": ["peach"]
               }
             },
             "Pyrus": {
               "Pyrus bretschneideri": {
-                "desc": [
-                  "Chinese white pear, bai li"
-                ]
+                "desc": ["Chinese white pear, bai li"]
               }
             }
           },
           "Moraceae": {
             "Morus": {
               "Morus notabilis": {
-                "desc": [
-                  "mulberries"
-                ]
+                "desc": ["mulberries"]
               }
             }
           }
@@ -3622,29 +2837,20 @@
             },
             "Solanum": {
               "Solanum lycopersicum": {
-                "desc": [
-                  "tomato, Solanum lycopersicum",
-                  "generic, tomato"
-                ]
+                "desc": ["tomato, Solanum lycopersicum", "generic, tomato"]
               }
             },
             "Nicotiana": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             }
           },
           "Convolvulaceae": {
             "Ipomoea": {
               "Ipomoea batatas": {
-                "desc": [
-                  "sweet potato"
-                ]
+                "desc": ["sweet potato"]
               },
               "Ipomoea trifida": {
-                "desc": [
-                  "wild sweet potato"
-                ]
+                "desc": ["wild sweet potato"]
               }
             }
           }
@@ -3653,18 +2859,14 @@
           "Apocynaceae": {
             "Catharanthus": {
               "Catharanthus roseus": {
-                "desc": [
-                  "Madagascar periwinkle , old-maid, chula, chatas"
-                ]
+                "desc": ["Madagascar periwinkle , old-maid, chula, chatas"]
               }
             }
           },
           "Rubiaceae": {
             "Coffea": {
               "Coffea canephora": {
-                "desc": [
-                  "robusta coffee"
-                ]
+                "desc": ["robusta coffee"]
               }
             }
           }
@@ -3673,16 +2875,12 @@
           "Cucurbitaceae": {
             "Citrullus": {
               "Citrullus lanatus": {
-                "desc": [
-                  "wild melon"
-                ]
+                "desc": ["wild melon"]
               }
             },
             "Cucumis": {
               "Cucumis melo": {
-                "desc": [
-                  "muskmelon"
-                ]
+                "desc": ["muskmelon"]
               }
             }
           }
@@ -3691,9 +2889,7 @@
           "Rutaceae": {
             "Citrus": {
               "Citrus aurantium": {
-                "desc": [
-                  "sweet orange"
-                ]
+                "desc": ["sweet orange"]
               }
             }
           }
@@ -3702,33 +2898,23 @@
           "Asteraceae": {
             "Erigeron": {
               "Erigeron canadensis": {
-                "desc": [
-                  "horseweed"
-                ]
+                "desc": ["horseweed"]
               }
             },
             "Cynara": {
               "Cynara cardunculus": {
-                "desc": [
-                  "cardoon"
-                ]
+                "desc": ["cardoon"]
               }
             },
             "Helianthus": {
-              "desc": [
-                "Sonflower, generic"
-              ],
+              "desc": ["Sonflower, generic"],
               "Helianthus annuus": {
-                "desc": [
-                  "Sunflower, generic"
-                ]
+                "desc": ["Sunflower, generic"]
               }
             },
             "Lactuca": {
               "Lactuca sativa": {
-                "desc": [
-                  "147 genes, cultivated lettuce, garden lettuce"
-                ]
+                "desc": ["147 genes, cultivated lettuce, garden lettuce"]
               }
             },
             "Silybum": {
@@ -3744,9 +2930,7 @@
           "Apiaceae": {
             "Daucus": {
               "Daucus carota": {
-                "desc": [
-                  "carrot"
-                ]
+                "desc": ["carrot"]
               }
             }
           }
@@ -3755,48 +2939,36 @@
           "Phrymaceae": {
             "Erythranthe": {
               "Erythranthe guttata": {
-                "desc": [
-                  "spotted monkey flower"
-                ]
+                "desc": ["spotted monkey flower"]
               },
-              "desc": [
-                "spotted monkey flower"
-              ]
+              "desc": ["spotted monkey flower"]
             }
           },
           "Oleaceae": {
             "Fraxinus": {
               "Fraxinus excelsior": {
-                "desc": [
-                  "European ash"
-                ]
+                "desc": ["European ash"]
               }
             }
           },
           "Lentibulariaceae": {
             "Genlisea": {
               "Genlisea aurea": {
-                "desc": [
-                  "Genlisea minor, Genlisea ornata"
-                ]
+                "desc": ["Genlisea minor, Genlisea ornata"]
               }
             }
           },
           "Lamiaceae": {
             "Ocimum": {
               "Ocimum tenuiflorum": {
-                "desc": [
-                  "Ocimum tenuiflorum"
-                ]
+                "desc": ["Ocimum tenuiflorum"]
               }
             }
           },
           "Pedaliaceae": {
             "Sesamum": {
               "Sesamum indicum": {
-                "desc": [
-                  "sesame, benne"
-                ]
+                "desc": ["sesame, benne"]
               }
             }
           }
@@ -3805,18 +2977,14 @@
           "Myrtaceae": {
             "Eucalyptus": {
               "Eucalyptus grandis": {
-                "desc": [
-                  "rose gum"
-                ]
+                "desc": ["rose gum"]
               }
             }
           },
           "Lythraceae": {
             "Punica": {
               "Punica granatum": {
-                "desc": [
-                  "pomegranate, granado, zakuro, shi liu, grenadier"
-                ]
+                "desc": ["pomegranate, granado, zakuro, shi liu, grenadier"]
               }
             }
           }
@@ -3825,9 +2993,7 @@
           "Malvaceae": {
             "Gossypium": {
               "Gossypium raimondii": {
-                "desc": [
-                  "diploid cotton"
-                ]
+                "desc": ["diploid cotton"]
               }
             }
           }
@@ -3835,47 +3001,35 @@
         "Malpighiales": {
           "Euphorbiaceae": {
             "Hevea": {
-              "desc": [
-                "generic"
-              ]
+              "desc": ["generic"]
             },
             "Jatropha": {
               "Jatropha curcas": {
-                "desc": [
-                  "Barbados nut, purging nut, physic nut, JCL"
-                ]
+                "desc": ["Barbados nut, purging nut, physic nut, JCL"]
               }
             },
             "Manihot": {
               "Manihot esculenta": {
-                "desc": [
-                  "cassava, tapioca, yuca, manioc"
-                ]
+                "desc": ["cassava, tapioca, yuca, manioc"]
               }
             },
             "Ricinus": {
               "Ricinus communis": {
-                "desc": [
-                  "castor bean"
-                ]
+                "desc": ["castor bean"]
               }
             }
           },
           "Linaceae": {
             "Linum": {
               "Linum usitatissimum": {
-                "desc": [
-                  "common flax, linseed"
-                ]
+                "desc": ["common flax, linseed"]
               }
             }
           },
           "Salicaceae": {
             "Populus": {
               "Populus trichocarpa": {
-                "desc": [
-                  "poplar, black cottonwood"
-                ]
+                "desc": ["poplar, black cottonwood"]
               }
             }
           }
@@ -3884,9 +3038,7 @@
           "Nelumbonaceae": {
             "Nelumbo": {
               "Nelumbo nucifera": {
-                "desc": [
-                  "sacred lotus, padma, Indian lotus"
-                ]
+                "desc": ["sacred lotus, padma, Indian lotus"]
               }
             }
           }
@@ -3895,9 +3047,7 @@
           "Vitaceae": {
             "Vitis": {
               "Vitis vinifera": {
-                "desc": [
-                  "wine grape"
-                ]
+                "desc": ["wine grape"]
               }
             }
           }
@@ -3908,79 +3058,57 @@
           "Poaceae": {
             "Aegilops": {
               "Aegilops tauschii": {
-                "desc": [
-                  "Tausch's goatgrass"
-                ]
+                "desc": ["Tausch's goatgrass"]
               }
             },
             "Brachypodium": {
               "Brachypodium distachyon": {
-                "desc": [
-                  "purple false brome"
-                ]
+                "desc": ["purple false brome"]
               }
             },
             "Eragrostis": {
               "Eragrostis tef": {
-                "desc": [
-                  "tef"
-                ]
+                "desc": ["tef"]
               }
             },
             "Hordeum": {
               "Hordeum vulgare": {
-                "desc": [
-                  "barley"
-                ]
+                "desc": ["barley"]
               }
             },
             "Leersia": {
               "Leersia perrieri": {
-                "desc": [
-                  "cutgrasses"
-                ]
+                "desc": ["cutgrasses"]
               }
             },
             "Oropetium": {
               "Oropetium thomaeum": {
-                "desc": [
-                  "desiccation-tolerant grass"
-                ]
+                "desc": ["desiccation-tolerant grass"]
               }
             },
             "Oryza": {
               "Oryza sativa": {
-                "desc": [
-                  "long-grained rice"
-                ]
+                "desc": ["long-grained rice"]
               }
             },
             "Setaria": {
               "Setaria italica": {
-                "desc": [
-                  ""
-                ]
+                "desc": [""]
               }
             },
             "Sorghum": {
               "Sorghum bicolor": {
-                "desc": [
-                  "Sorghum"
-                ]
+                "desc": ["Sorghum"]
               }
             },
             "Triticum": {
               "Triticum aestivum": {
-                "desc": [
-                  "wheat"
-                ]
+                "desc": ["wheat"]
               }
             },
             "Zea": {
               "Zea mays": {
-                "desc": [
-                  "sweetcorn"
-                ]
+                "desc": ["sweetcorn"]
               }
             }
           }
@@ -3989,9 +3117,7 @@
           "Dioscoreaceae": {
             "Dioscorea": {
               "Dioscorea alata": {
-                "desc": [
-                  "yam"
-                ]
+                "desc": ["yam"]
               }
             }
           }
@@ -4007,9 +3133,7 @@
             },
             "Musa": {
               "Musa acuminata": {
-                "desc": [
-                  "dwarf banana"
-                ]
+                "desc": ["dwarf banana"]
               }
             }
           }
@@ -4018,27 +3142,21 @@
           "Arecaceae": {
             "Phoenix": {
               "Phoenix dactylifera": {
-                "desc": [
-                  "date palm"
-                ]
+                "desc": ["date palm"]
               }
             }
           }
         }
       },
       "Monocot plants": {
-        "desc": [
-          "generic, Corn, Rice, Wheat, Barley"
-        ]
+        "desc": ["generic, Corn, Rice, Wheat, Barley"]
       },
       "Lycopodiopsida": {
         "Selaginellales": {
           "Selaginellaceae": {
             "Selaginella": {
               "Selaginella moellendorffii": {
-                "desc": [
-                  "Lycophyte, Club-mosses"
-                ]
+                "desc": ["Lycophyte, Club-mosses"]
               }
             }
           }
@@ -4056,9 +3174,7 @@
             },
             "Parachlorella": {
               "Parachlorella kessleri": {
-                "desc": [
-                  "Chlorella kessleri, unicellular green alga"
-                ]
+                "desc": ["Chlorella kessleri, unicellular green alga"]
               }
             }
           }
@@ -4066,9 +3182,7 @@
         "incertae sedis": {
           "Coccomyxaceae": {
             "Coccomyxa": {
-              "desc": [
-                "green algae"
-              ]
+              "desc": ["green algae"]
             }
           }
         }
@@ -4077,18 +3191,14 @@
         "Sphaeropleales": {
           "Selenastraceae": {
             "Monoraphidium": {
-              "desc": [
-                ""
-              ]
+              "desc": [""]
             }
           }
         },
         "Volvocales": {
           "Chlamydomonadaceae": {
             "Chlamydomonas": {
-              "desc": [
-                "Chlamydomonas generic"
-              ]
+              "desc": ["Chlamydomonas generic"]
             }
           }
         }
@@ -4098,9 +3208,7 @@
           "Bathycoccaceae": {
             "Ostreococcus": {
               "Ostreococcus lucimarinus": {
-                "desc": [
-                  "green algae"
-                ]
+                "desc": ["green algae"]
               }
             }
           }
@@ -4113,9 +3221,7 @@
           "Klebsormidiaceae": {
             "Klebsormidium": {
               "Klebsormidium flaccidum": {
-                "desc": [
-                  "filamentous terrestrial alga"
-                ]
+                "desc": ["filamentous terrestrial alga"]
               }
             }
           }
@@ -4128,9 +3234,7 @@
           "Funariaceae": {
             "Physcomitrella": {
               "Physcomitrella patens": {
-                "desc": [
-                  "Bryophyte, mosses"
-                ]
+                "desc": ["Bryophyte, mosses"]
               }
             }
           }
@@ -4145,9 +3249,7 @@
           "Albuginaceae": {
             "Albugo": {
               "Albugo laibachii": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             }
           }
@@ -4155,9 +3257,7 @@
         "Saprolegniales": {
           "Leptolegniaceae": {
             "Aphanomyces": {
-              "desc": [
-                "water moulds"
-              ]
+              "desc": ["water moulds"]
             }
           }
         },
@@ -4165,23 +3265,17 @@
           "Peronosporaceae": {
             "Hyaloperonospora": {
               "Hyaloperonospora arabidopsidis": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             },
             "Phytophthora": {
-              "desc": [
-                "plant pathogen"
-              ]
+              "desc": ["plant pathogen"]
             }
           },
           "Pythiaceae": {
             "Globisporangium": {
               "Globisporangium ultimum": {
-                "desc": [
-                  "plant pathogen"
-                ]
+                "desc": ["plant pathogen"]
               }
             }
           }
@@ -4194,9 +3288,7 @@
           "Pelagomonadaceae": {
             "Aureococcus": {
               "Aureococcus anophagefferens": {
-                "desc": [
-                  "heterokont alga"
-                ]
+                "desc": ["heterokont alga"]
               }
             }
           }
@@ -4207,9 +3299,7 @@
           "Phaeodactylaceae": {
             "Phaeodactylum": {
               "Phaeodactylum tricornutum": {
-                "desc": [
-                  "Diatoms"
-                ]
+                "desc": ["Diatoms"]
               }
             }
           }
@@ -4221,9 +3311,7 @@
         "Piroplasmorida": {
           "Babesiidae": {
             "Babesia": {
-              "desc": [
-                "generic, piroplasms"
-              ]
+              "desc": ["generic, piroplasms"]
             }
           }
         }
@@ -4235,9 +3323,7 @@
           "Geminigeraceae": {
             "Guillardia": {
               "Guillardia theta": {
-                "desc": [
-                  "cryptomonads"
-                ]
+                "desc": ["cryptomonads"]
               }
             }
           }
@@ -4245,9 +3331,7 @@
       }
     },
     "Cercozoa": {
-      "desc": [
-        "cercozoans, freshwater amoeboids"
-      ]
+      "desc": ["cercozoans, freshwater amoeboids"]
     },
     "Myzozoa": {
       "Aconoidasida": {
@@ -4255,9 +3339,7 @@
           "Plasmodiidae": {
             "Plasmodium": {
               "Plasmodium falciparum": {
-                "desc": [
-                  "malaria parasite"
-                ]
+                "desc": ["malaria parasite"]
               }
             }
           }
@@ -4268,9 +3350,7 @@
           "Sarcocystidae": {
             "Toxoplasma": {
               "Toxoplasma gondii": {
-                "desc": [
-                  "apicomplexans"
-                ]
+                "desc": ["apicomplexans"]
               }
             }
           }
@@ -4280,16 +3360,12 @@
   },
   "Protozoa": {
     "Microsporidia": {
-      "desc": [
-        "microsporidians, generic, Nematocida_parisii+sp_1"
-      ],
+      "desc": ["microsporidians, generic, Nematocida_parisii+sp_1"],
       "Microsporea": {
         "Dissociodihaplophasida": {
           "Nosematidae": {
             "Nosema": {
-              "desc": [
-                "generic, Nosema_apis+bombycis+ceranae, microsporidians"
-              ]
+              "desc": ["generic, Nosema_apis+bombycis+ceranae, microsporidians"]
             }
           }
         }
@@ -4301,18 +3377,14 @@
           "Acanthamoebidae": {
             "Acanthamoeba": {
               "Acanthamoeba castellanii": {
-                "desc": [
-                  "amoebae"
-                ]
+                "desc": ["amoebae"]
               }
             }
           },
           "Entamoebidae": {
             "Entamoeba": {
               "Entamoeba histolytica": {
-                "desc": [
-                  "anaerobic parasitic protozoan"
-                ]
+                "desc": ["anaerobic parasitic protozoan"]
               }
             }
           }
@@ -4325,9 +3397,7 @@
           "Dictyosteliaceae": {
             "Dictyostelium": {
               "Dictyostelium discoideum": {
-                "desc": [
-                  "cellular slime molds"
-                ]
+                "desc": ["cellular slime molds"]
               }
             }
           }
@@ -4340,9 +3410,7 @@
           "Hexamitidae": {
             "Giardia": {
               "Giardia duodenalis": {
-                "desc": [
-                  "diplomonads, Giardia lamblia"
-                ]
+                "desc": ["diplomonads, Giardia lamblia"]
               }
             }
           }
@@ -4354,15 +3422,11 @@
         "Trypanosomatida": {
           "Trypanosomatidae": {
             "Leishmania": {
-              "desc": [
-                "kinetoplastids"
-              ]
+              "desc": ["kinetoplastids"]
             },
             "Trypanosoma": {
               "Trypanosoma brucei": {
-                "desc": [
-                  "kinetoplastids"
-                ]
+                "desc": ["kinetoplastids"]
               }
             }
           }
@@ -4377,9 +3441,7 @@
           "Adrianichthyidae": {
             "Oryzias": {
               "Oryzias sinensis": {
-                "desc": [
-                  "Japanese rice fish"
-                ]
+                "desc": ["Japanese rice fish"]
               }
             }
           }
