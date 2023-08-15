@@ -3,7 +3,11 @@
 import json
 from pathlib import Path
 
-tree_path = Path(__file__).parent / 'genematrix_taxonomy_curated.json'
+# Manually curated:
+# tree_path = Path(__file__).parent / 'genematrix_taxonomy_curated.json'
+
+# Programatically curated:
+tree_path = Path(__file__).parent / 'genematrix_taxonomy.json'
 
 
 def get_input_val(key, desc):
