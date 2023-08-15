@@ -1,6 +1,7 @@
 """Render the JSON taxonomy tree as an HTML list."""
 
 import json
+import re
 from pathlib import Path
 
 # Manually curated:
@@ -11,7 +12,11 @@ tree_path = Path(__file__).parent / 'genematrix_taxonomy.json'
 
 
 def get_input_val(key, desc):
-    return f"{key.replace(' ', '-')}-{desc.replace(' ', '-')}"
+    def clean(s):
+        ss = re.sub(r'[^A-z0-9]', '-', s)
+        return re.sub(r'-+', '-', ss)
+
+    return f"{clean(key)}-{clean(desc)}"
 
 
 def as_choices():
