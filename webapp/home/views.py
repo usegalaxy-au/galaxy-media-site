@@ -152,14 +152,14 @@ def user_request_resource_access(request, resource):
                         "This error was not fatal and the user's request has"
                         " been passed to the support email.")
                     error = exc
-                form.dispatch(exception=error)
+                actioned = form.dispatch(exception=error)
             else:
                 logger.info(f"Dispatching {resource} warning to {email}")
                 form.dispatch_warning(request)
             success_template = 'home/requests/access/success.html'
             return render(request, success_template, {
                 'form': form.cleaned_data,
-                'actioned': error is None,
+                'actioned': actioned,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
         logger.info(pprint.pformat(form.errors))
