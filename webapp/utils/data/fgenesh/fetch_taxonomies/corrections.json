@@ -1,0 +1,37 @@
+{
+    "Piriformospora indica": {
+        "species": "Serendipita indica",
+        "genus": "Serendipita",
+        "family": "Serendipitaceae",
+        "order": "Sebacinales",
+        "class": "Agaricomycetes"
+    },
+    "Serendipita vermifera": {
+        "species": "Sebacina vermifera",
+        "genus": "Sebacina",
+        "family": "Sebacinaceae",
+        "order": "Sebacinales",
+        "class": "Agaricomycetes"
+    },
+    "Trichoplax adhaerens": {
+        "species": "Trichoplax adhaerens",
+        "genus": "Trichoplax",
+        "family": "Trichoplacidae",
+        "order": "Trichoplacida",
+        "class": "Uniplacotomia"
+    },
+    "Paulinella chromatophora": {
+        "species": "Paulinella chromatophora",
+        "genus": "Paulinella",
+        "family": "Paulinellaceae",
+        "order": "Euglyphida",
+        "class": "Imbricatea"
+    },
+    "Branchiostoma floridae": {
+        "species": "Branchiostoma floridae",
+        "genus": "Branchiostoma",
+        "family": "Branchiostomidae",
+        "order": "Amphioxiformes",
+        "class": "Leptocardii"
+    }
+}

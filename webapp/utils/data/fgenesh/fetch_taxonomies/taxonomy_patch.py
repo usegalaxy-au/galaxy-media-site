@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 MISSING_DATA_FILE = Path(__file__).parent / "patch_missing_data.json"
+CORRECTIONS_FILE = Path(__file__).parent / "corrections.json"
 TAXONOMY_LEVELS = [
     'kingdom',
     'phylum',
@@ -45,37 +46,9 @@ PERCIFORMES_CORRECTION = {
     "Gobiidae": "Gobiiformes",
     "Sciaenidae": "Acanthuriformes",
 }
-GENERAL_CORRECTIONS = {
-    # Map genematrix name substring to correction data
-    "Piriformospora indica": {
-        "species": "Serendipita indica",
-        "genus": "Serendipita",
-        "family": "Serendipitaceae",
-        "order": "Sebacinales",
-        "class": "Agaricomycetes",
-    },
-    "Serendipita vermifera": {
-        "species": "Sebacina vermifera",
-        "genus": "Sebacina",
-        "family": "Sebacinaceae",
-        "order": "Sebacinales",
-        "class": "Agaricomycetes",
-    },
-    "Trichoplax adhaerens": {
-        "species": "Trichoplax adhaerens",
-        "genus": "Trichoplax",
-        "family": "Trichoplacidae",
-        "order": "Trichoplacida",
-        "class": "Uniplacotomia",
-    },
-    "Paulinella chromatophora": {
-        "species": "Paulinella chromatophora",
-        "genus": "Paulinella",
-        "family": "Paulinellaceae",
-        "order": "Euglyphida",
-        "class": "Imbricatea",
-    },
-}
+
+with open(CORRECTIONS_FILE) as f:
+    general_corrections = json.load(f)
 
 with open(MISSING_DATA_FILE) as f:
     missing_data = json.load(f)
@@ -125,7 +98,7 @@ def missing(data, query):
 
 
 def corrections(data, query):
-    for substring, correction in GENERAL_CORRECTIONS.items():
+    for substring, correction in general_corrections.items():
         if substring.lower() in query.lower():
             data.update(correction)
     return data
