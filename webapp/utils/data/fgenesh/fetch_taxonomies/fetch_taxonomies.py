@@ -11,11 +11,14 @@ TODO: There are issues with the GBIF API - posted issues:
   resulting in most records being lost.
 - Gobiidae, Sciaenidae, Cichlidae wrongly allocated to order Perciformes.
 
+The above have been fixed with the taxonomy_patch module.
+
 """
 
 import json
 import requests
 import genematrix
+import taxonomy_patch
 from pathlib import Path
 from collections import Counter
 
@@ -34,8 +37,15 @@ OUTFILE = ROOT / 'genematrix_taxonomy.json'
 MISSING_DEBUG_FILE = ROOT / 'missing_debug.txt'
 MISSING_RESPONSE_FILE = ROOT / 'missing_response.json'
 RANK_DEBUG_FILE = ROOT / 'rank_mismatch_debug.json'
+DUPLICATES_ENTRIES_FILE = ROOT / 'duplicates_entries.json'
+MISSING_CLASS_FILE = Path(__file__).parent / "missing_classes.json"
 
 missing_responses = {}
+duplicate_entries = {}
+
+for f in [MISSING_CLASS_FILE, MISSING_RESPONSE_FILE, DUPLICATES_ENTRIES_FILE]:
+    if f.exists():
+        f.unlink()
 
 
 class BColors:
@@ -81,11 +91,22 @@ class SpeciesSearch:
     def __init__(self, query):
         url = ('https://api.gbif.org/v1/species/match?'
                f'name={query}')
+        self.query = query
         try:
             response = requests.get(url, timeout=5)
             self.data = json.loads(response.text)
         except requests.ReadTimeout:
             self.data = None
+            return
+
+        if not self.data.get('class'):
+            with open(MISSING_CLASS_FILE, 'a') as f:
+                json.dump({query: self.data}, f, indent=2)
+
+        self.data = taxonomy_patch.reptilia(self.data)
+        self.data = taxonomy_patch.fish(self.data)
+        self.data = taxonomy_patch.perciformes(self.data)
+        self.data = taxonomy_patch.missing(self.data, query)
 
 
 def annotate():
@@ -102,7 +123,21 @@ def annotate():
             if taxon not in branch:
                 branch[taxon] = {}
             branch = branch[taxon]
-        branch['desc'] = desc
+        if 'desc' in branch:
+            key = f"{species.query}_{branch['desc']}"
+            entry = {
+                'name': taxon,
+                'desc': desc,
+                'data': species.data,
+            }
+            if key in duplicate_entries:
+                duplicate_entries[key].append(entry)
+            else:
+                duplicate_entries[key] = [entry]
+
+            branch['desc'].append(desc)
+        else:
+            branch['desc'] = [desc]
         return tree
 
     tree = {}
@@ -144,8 +179,14 @@ def annotate():
         with open(MISSING_RESPONSE_FILE, 'a') as f:
             json.dump(missing_responses, f, indent=2)
 
-    success(f"\nCompleted with {len(missing)} missing and"
-            f" {len(rank_mismatch)} mismatching records")
+    with open(DUPLICATES_ENTRIES_FILE, 'a') as f:
+        json.dump(duplicate_entries, f, indent=2)
+
+    success(f"\nCompleted with:\n"
+            f"  {len(missing)} missing\n"
+            f"  {len(rank_mismatch)} mismatching\n"
+            f"  {len(duplicate_entries)} duplicate entries")
+
     print("\nTaxon rank counts:")
     for rank in TAXONOMY_LEVELS:
         print(f"{rank.title()}: {rank_count[rank]}")

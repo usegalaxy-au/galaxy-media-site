@@ -6,8 +6,8 @@ from pathlib import Path
 tree_path = Path(__file__).parent / 'genematrix_taxonomy_curated.json'
 
 
-def get_input_val(key1, key2):
-    return f"{key1}-{key2.replace(' ', '-')}"
+def get_input_val(key, desc):
+    return f"{key.replace(' ', '-')}-{desc.replace(' ', '-')}"
 
 
 def as_choices():
@@ -15,9 +15,10 @@ def as_choices():
     def get_items(parent_key, key, node):
         items = []
         if 'desc' in node:
-            value = get_input_val(parent_key, key)
-            choice = (value, value)
-            items.append(choice)
+            for desc in node['desc']:
+                value = get_input_val(key, desc)
+                choice = (value, value)
+                items.append(choice)
         for k, v in node.items():
             if k == 'desc':
                 continue
@@ -42,7 +43,7 @@ def as_choices():
 
 
 def as_ul():
-    def render_li(node, key, parent_key, indent):
+    def render_li(node, key, indent):
         def is_leaf(obj):
             if not isinstance(obj, dict):
                 return True
@@ -64,48 +65,63 @@ def as_ul():
             keys.sort(key=lambda k: get_order(node[k]))
             return keys
 
+        def render_leaf_li(key, desc):
+            """Render a list item representing a matrix choice."""
+            tag = f'{"  " * indent}<li>\n'
+            indent_str = "  " * (indent + 1)
+            input_val = get_input_val(key, desc)
+            checkbox = (f'{indent_str}<input type="checkbox"'
+                        f' name="matrices" value="{input_val}"'
+                        f' id="{input_val}">')
+            text = key
+            if desc:
+                text += f' - {desc}'
+            return (
+                f'{tag}{indent_str}<span class="choice">'
+                f'{checkbox}'
+                f'<label for="{input_val}">'
+                f"{text}"
+                '</label>'
+                '</span>\n'
+            )
+
         if key == 'desc':
             return ""
 
-        if node:
-            li = f'{"  " * indent}<li>\n'
-            indent_str = "  " * (indent + 1)
-            if 'desc' in node:
-                # Create li with checkbox
-                input_val = get_input_val(parent_key, key)
-                checkbox = (f'{indent_str}<input type="checkbox"'
-                            f' name="matrices" value="{input_val}"'
-                            f' id="{input_val}">')
-                if is_leaf(node):
-                    li += f'{indent_str}<span class="choice">'
-                else:
-                    li += f'{indent_str}<span class="caret choice">'
-                li += checkbox
-                li += f'<label for="{input_val}">'
-                li += f'{key} - {node["desc"]}'
-                li += '</label>'
-                li += '</span>\n'
-            else:
-                # Create li with caret and ul
-                li += f'{indent_str}<span class="caret">{key}</span>\n'
-            if not is_leaf(node):
-                ul = f'{indent_str}<ul class="nested">\n'
-                for k in sorted_keys(node):
-                    v = node[k]
-                    ul += render_li(v, k, key, indent + 2)
-                ul += f'{indent_str}</ul>\n'
-                li += ul
-            li += f'{"  " * indent}</li>\n'
-            return li
+        if not node:
+            return ""
 
-        return ""
+        if is_leaf(node):
+            # Create a <li> for each [desc]
+            lis = []
+            for desc in node['desc']:
+                li = render_leaf_li(key, desc)
+                lis.append(li)
+            return "\n".join(lis)
+
+        # Else, create branch with caret and ul
+        li = f'{"  " * indent}<li>\n'
+        indent_str = "  " * (indent + 1)
+        li += f'{indent_str}<span class="caret">{key}</span>\n'
+        ul = f'{indent_str}<ul class="nested">\n'
+        for k in sorted_keys(node):
+            v = node[k]
+            ul += render_li(v, k, indent + 2)
+        if 'desc' in node:
+            # for each desc[] add leaf to branch
+            for desc in node['desc']:
+                ul += render_leaf_li(key, desc)
+        ul += f'{indent_str}</ul>\n'
+        li += ul
+        li += f'{"  " * indent}</li>\n'
+        return li
 
     with open(tree_path, 'r') as f:
         taxonomy_tree = json.load(f)
 
     ul = '<ul id="taxonomy-tree" class="tree-select">\n'
     for k, v in taxonomy_tree.items():
-        ul += render_li(v, k, 'root', 0)
+        ul += render_li(v, k, 0)
     ul += '</ul>\n'
 
     return ul
