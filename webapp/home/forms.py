@@ -292,6 +292,7 @@ class BaseAccessRequestForm(forms.Form):
                 self.cleaned_data['email'],
                 self.RESOURCE_NAME,
             )
+        return exception
 
     def dispatch_warning(self, request):
         """Dispatch warning email to let user know their email is invalid."""
@@ -352,6 +353,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
             exception=exception,
             notify_user_success=notify_user_success,
         )
+        return False
 
 
 ACCESS_FORMS = {
