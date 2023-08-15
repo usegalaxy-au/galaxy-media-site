@@ -57,3 +57,6 @@ LOGGING = config.configure_logging(LOG_ROOT)
 
 # Use manifest to manage static file versions for cache busting:
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+if MOCK_GALAXY_INTERACTIONS:
+    print("Mocking galaxy interactions; MOCK_GALAXY_INTERACTIONS=True")
