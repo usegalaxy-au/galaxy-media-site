@@ -21,9 +21,6 @@ GALAXY_SITE_SUFFIX = 'Media'
 SLACK_API_URLS = parse_list(os.environ.get('SLACK_API_URLS'))
 TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 
-# Validating whether submitted email is valid Galaxy AU account
-MOCK_GALAXY_INTERACTIONS = os.environ.get('MOCK_GALAXY_INTERACTIONS')
-
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 INTERNAL_IPS = [
@@ -41,7 +38,3 @@ DATABASES = {
 }
 
 LOGGING = config.configure_logging(LOG_ROOT)
-
-
-if MOCK_GALAXY_INTERACTIONS:
-    print("Mocking galaxy interactions; MOCK_GALAXY_INTERACTIONS=True")

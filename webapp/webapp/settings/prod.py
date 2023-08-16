@@ -17,7 +17,6 @@ ALLOWED_HOSTS.append(HOSTNAME)
 ALLOWED_HOSTS.append("usegalaxy.org.au")
 ALLOWED_HOSTS.append("dev.usegalaxy.org.au")
 ALLOWED_HOSTS.append("staging.usegalaxy.org.au")
-MOCK_GALAXY_INTERACTIONS = 'MOCK_GALAXY_INTERACTIONS' in os.environ
 
 # To allow cross-site resource sharing with the base domain
 CSRF_COOKIE_DOMAIN = ".usegalaxy.org.au"
@@ -57,6 +56,3 @@ LOGGING = config.configure_logging(LOG_ROOT)
 
 # Use manifest to manage static file versions for cache busting:
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
-if MOCK_GALAXY_INTERACTIONS:
-    print("Mocking galaxy interactions; MOCK_GALAXY_INTERACTIONS=True")
