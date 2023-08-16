@@ -14,9 +14,7 @@ from utils.institution import is_institution_email
 
 from . import validators
 
-
 SEND_MAIL_RETRIES = 3
-
 logger = logging.getLogger('django')
 
 
