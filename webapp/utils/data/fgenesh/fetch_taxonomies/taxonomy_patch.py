@@ -1,4 +1,13 @@
-"""Fix incorrect taxonomies resulting from errors in GBIF API."""
+"""Fix incorrect taxonomies resulting from errors in GBIF API.
+
+- Currently the Reptilia and Actinopterygii are not being annotated correctly,
+  resulting in most records being lost.
+- Gobiidae, Sciaenidae, Cichlidae wrongly allocated to order Perciformes.
+- A number of taxa are missing class information.
+- A number of taxa are missing taxonomic data entireley (ambiguous query or
+  no match).
+
+"""
 
 import json
 from pathlib import Path

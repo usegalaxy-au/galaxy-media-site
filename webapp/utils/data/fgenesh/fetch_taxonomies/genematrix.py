@@ -6,6 +6,14 @@ from pathlib import Path
 PATH = Path(__file__).parent / 'genematrix.txt'
 
 
+def get_input_val(key, desc):
+    def clean(s):
+        ss = re.sub(r'[^A-z0-9]', '-', s)
+        return re.sub(r'-+', '-', ss)
+
+    return f"{clean(key)}-{clean(desc)}"
+
+
 def clean_desc(line):
     """Remove parentheses and whitespace from description."""
     match = re.findall(r'\([^\)]+\)', line)

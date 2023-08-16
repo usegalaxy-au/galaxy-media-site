@@ -2,17 +2,12 @@
 
 Queries the GBIF species API for taxonomic data.
 
-TODO: There are issues with the GBIF API - posted issues:
+There are errors with the GBIF API data - posted GitHub issues:
 
 - https://github.com/gbif/portal-feedback/issues/4906
 - https://github.com/gbif/portal-feedback/issues/4907
 
-- Currently the Reptilia and Actinopterygii are not being annotated correctly,
-  resulting in most records being lost.
-- Gobiidae, Sciaenidae, Cichlidae wrongly allocated to order Perciformes.
-
-The above have been fixed with the taxonomy_patch module.
-
+Errors have been fixed with the taxonomy_patch module.
 """
 
 import json
@@ -39,11 +34,17 @@ MISSING_RESPONSE_FILE = ROOT / 'missing_response.json'
 RANK_DEBUG_FILE = ROOT / 'rank_mismatch_debug.json'
 DUPLICATES_ENTRIES_FILE = ROOT / 'duplicates_entries.json'
 MISSING_CLASS_FILE = ROOT / "missing_classes.json"
+IDENTIFIER_MAP_FILE = ROOT / "identifier_map.txt"
 
 missing_responses = {}
 duplicate_entries = {}
 
-for f in [MISSING_CLASS_FILE, MISSING_RESPONSE_FILE, DUPLICATES_ENTRIES_FILE]:
+for f in [
+    MISSING_CLASS_FILE,
+    MISSING_RESPONSE_FILE,
+    DUPLICATES_ENTRIES_FILE,
+    IDENTIFIER_MAP_FILE,
+]:
     if f.exists():
         f.unlink()
 
@@ -111,35 +112,6 @@ class SpeciesSearch:
 
 def annotate():
     """Annotate gene matrix with taxonomic information."""
-    def set_taxon_tree(tree, species, desc):
-        """Traverse dict to add current species taxonomy levels."""
-        branch = tree
-        if TAXONOMY_LEVELS[0] not in species.data:
-            raise KeyError("No taxonomic data found")
-        for level in TAXONOMY_LEVELS:
-            if level not in species.data:
-                break
-            taxon = species.data[level]
-            if taxon not in branch:
-                branch[taxon] = {}
-            branch = branch[taxon]
-        if 'desc' in branch:
-            key = f"{species.query}_{branch['desc']}"
-            entry = {
-                'name': taxon,
-                'desc': desc,
-                'data': species.data,
-            }
-            if key in duplicate_entries:
-                duplicate_entries[key].append(entry)
-            else:
-                duplicate_entries[key] = [entry]
-
-            branch['desc'].append(desc)
-        else:
-            branch['desc'] = [desc]
-        return tree
-
     tree = {}
     rank_count = Counter()
     missing = []
@@ -194,6 +166,52 @@ def annotate():
     print(f"\nWriting to file {OUTFILE}...")
     with open(OUTFILE, 'w') as f:
         json.dump(tree, f, indent=2)
+
+
+def set_id_map(taxon, species, desc):
+    """Write ID mapping to file for manual cross-referencing later.
+
+    Taxon is be used as the key to set the form field ID.
+    """
+    genematrix_name = f"{species.query} ({desc})"
+    identifier = genematrix.get_input_val(taxon, desc)
+    with open(IDENTIFIER_MAP_FILE, 'a') as f:
+        f.write(f"{identifier[:45].ljust(50)}{genematrix_name}\n")
+
+
+def set_taxon_tree(tree, species, desc):
+    """Traverse dict to add current species taxonomy levels."""
+    branch = tree
+    if TAXONOMY_LEVELS[0] not in species.data:
+        raise KeyError("No taxonomic data found")
+    for level in TAXONOMY_LEVELS:
+        if level not in species.data:
+            break
+        taxon = species.data[level]
+        if taxon not in branch:
+            branch[taxon] = {}
+        branch = branch[taxon]
+    if 'desc' in branch:
+        # This branch already has a description so this must be a duplicate
+        # entry for this taxon. Add to duplicate_entries.
+        key = f"{species.query}_{branch['desc']}"
+        entry = {
+            'name': taxon,
+            'desc': desc,
+            'data': species.data,
+        }
+        if key in duplicate_entries:
+            duplicate_entries[key].append(entry)
+        else:
+            duplicate_entries[key] = [entry]
+
+        branch['desc'].append(desc)
+    else:
+        branch['desc'] = [desc]
+
+    set_id_map(taxon, species, desc)
+
+    return tree
 
 
 if __name__ == '__main__':

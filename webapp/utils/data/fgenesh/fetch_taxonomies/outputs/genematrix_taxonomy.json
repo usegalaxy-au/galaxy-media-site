@@ -1139,6 +1139,18 @@
     "Basidiomycota": {
       "Agaricomycetes": {
         "Agaricales": {
+          "Agaricaceae": {
+            "Agaricus": {
+              "desc": [
+                "generic, champignons"
+              ]
+            },
+            "Coprinus": {
+              "desc": [
+                "generic"
+              ]
+            }
+          },
           "Amanitaceae": {
             "Amanita": {
               "Amanita muscaria": {
@@ -1155,18 +1167,6 @@
                   "Coprinus macrorhizus"
                 ]
               }
-            }
-          },
-          "Agaricaceae": {
-            "Agaricus": {
-              "desc": [
-                "generic, champignons"
-              ]
-            },
-            "Coprinus": {
-              "desc": [
-                "generic"
-              ]
             }
           },
           "Physalacriaceae": {
@@ -4291,15 +4291,9 @@
   },
   "Protozoa": {
     "Microsporidia": {
-      "incertae sedis": {
-        "Nematocida": {
-          "Nematocida parisii": {
-            "desc": [
-              "microsporidians, generic, Nematocida_parisii+sp_1"
-            ]
-          }
-        }
-      },
+      "desc": [
+        "microsporidians, generic, Nematocida_parisii+sp_1"
+      ],
       "Microsporea": {
         "Dissociodihaplophasida": {
           "Nosematidae": {
