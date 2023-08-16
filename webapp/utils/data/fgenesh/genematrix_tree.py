@@ -1,8 +1,8 @@
 """Render the JSON taxonomy tree as an HTML list."""
 
 import json
-import re
 from pathlib import Path
+from .fetch_taxonomies.genematrix import get_input_val
 
 # Manually curated:
 # tree_path = Path(__file__).parent / 'genematrix_taxonomy_curated.json'
@@ -11,17 +11,9 @@ from pathlib import Path
 tree_path = Path(__file__).parent / 'genematrix_taxonomy.json'
 
 
-def get_input_val(key, desc):
-    def clean(s):
-        ss = re.sub(r'[^A-z0-9]', '-', s)
-        return re.sub(r'-+', '-', ss)
-
-    return f"{clean(key)}-{clean(desc)}"
-
-
 def as_choices():
     """Return a list of all input IDs available in the tree."""
-    def get_items(parent_key, key, node):
+    def get_items(key, node):
         items = []
         if 'desc' in node:
             for desc in node['desc']:
@@ -31,7 +23,7 @@ def as_choices():
         for k, v in node.items():
             if k == 'desc':
                 continue
-            items.extend(get_items(key, k, v))
+            items.extend(get_items(k, v))
         return items
 
     with open(tree_path, 'r') as f:
@@ -39,7 +31,7 @@ def as_choices():
 
     items = []
     for k, v in taxonomy_tree.items():
-        items.extend(get_items('root', k, v))
+        items.extend(get_items(k, v))
 
     if len(set(items)) != len(items):
         duplicates = [x for x in items if items.count(x) > 1]
