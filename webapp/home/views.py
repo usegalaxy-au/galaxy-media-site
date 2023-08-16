@@ -2,7 +2,6 @@
 
 import os
 import logging
-import pprint
 from django.conf import settings
 from django.template import TemplateDoesNotExist
 from django.shortcuts import render, get_object_or_404
@@ -130,7 +129,10 @@ def user_request_support(request):
 
 
 def user_request_resource_access(request, resource):
-    """Handle resource (e.g. tool) access requests."""
+    """Handle resource (e.g. tool) access requests.
+
+    The galaxy group name must match the <resource> string encoded in the URL.
+    """
     Form = ACCESS_FORMS[resource]
     form = Form()
     if request.POST:
@@ -138,7 +140,19 @@ def user_request_resource_access(request, resource):
         if form.is_valid():
             error = None
             email = form.cleaned_data['email']
-            if galaxy.is_registered_email(email):
+            try:
+                is_registered_email = galaxy.is_registered_email(email)
+            except Exception as exc:
+                logger.error(
+                    f"Error calling galaxy.is_registered_email():\n"
+                    f"{exc[:1000]}\n")
+                error = (
+                    "Galaxy connection refused (could not check account"
+                    " status)."
+                )
+                # Let admins figure it out manually
+                actioned = form.dispatch(exception=error)
+            if is_registered_email:
                 logger.info(
                     f"Dispatching {resource} request for email {email}")
                 group_name = resource
@@ -162,7 +176,6 @@ def user_request_resource_access(request, resource):
                 'actioned': actioned,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
-        logger.info(pprint.pformat(form.errors))
     template = f'home/requests/access/{resource}.html'
     return render(request, template, {'form': form})
 
