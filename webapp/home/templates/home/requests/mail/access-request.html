@@ -1,3 +1,5 @@
+{% load get_type %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -13,7 +15,7 @@
   </em>
   <p>
     Exception: <br>
-    <code style="background-color: #f0d5cc; color: #c43f1a; font-size: 12pt; padding: 8px;">
+    <code style="background-color: #f0d5cc; color: #c43f1a; font-size: 12pt; padding: 8px; max-height: 600px; max-width: 80%; overflow: auto;">
       {{ exception }}
     </code>
   </p>
@@ -32,7 +34,13 @@
         <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
         <td style="padding: 10px; border: 1px solid grey;">
           {% if field.value %}
-          {{ field.value }}
+          {% if field.value|get_type == "list" %}
+            <ul>
+              {{ field.value|unordered_list }}
+            </ul>
+          {% else %}
+            {{ field.value }}
+          {% endif %}
           {% else %}
           None
           {% endif %}
