@@ -31,6 +31,16 @@ function searchTree(query) {
   showTreeMatches(matched);
 }
 
+function expandTreeSelected() {
+  const selected = $('#taxonomy-tree input:checked');
+  if (selected.length) {
+    selected.each( (i, node) => {
+      const ul = $(node).closest('ul');
+      expandTreeBranch(ul);
+    });
+  }
+}
+
 function showTreeMatches(matched) {
   dropdown = $('#treeSearch .dropdown');
   dropdown.empty();
@@ -53,12 +63,17 @@ function selectTreeMatch(id) {
   $('#treeSearch .dropdown').empty();
   const input = $(`#taxonomy-tree input[value="${id}"]`);
   input.prop('checked', true);
-  let parent = input.closest('ul');
+  let ul = input.closest('ul');
+  expandTreeBranch(ul);
+  updateTreeSelection();
+}
+
+function expandTreeBranch(ul) {
+  let parent = ul;
   while (parent.hasClass('nested')) {
-    parent.siblings('.caret').click();
+    parent.siblings('.caret').not('.caret-down').click();
     parent = $(parent).parent().parent();
   }
-  updateTreeSelection();
 }
 
 function scrollToErrors() {
@@ -100,7 +115,7 @@ function setTermsValue() {
 }
 
 function updateTreeSelection() {
-    const selected = $('#taxonomy-tree input[type="checkbox"]:checked');
+    const selected = $('#taxonomy-tree input:checked');
     const count = selected.length;
     $('#matrixCount span').text(count);
     if (count) {
@@ -114,7 +129,7 @@ function updateTreeSelection() {
 
 function clearTreeSelection() {
   $('#treeSearch input').val('');
-  $('#taxonomy-tree input[type="checkbox"]:checked').prop('checked', false);
+  $('#taxonomy-tree input:checked').prop('checked', false);
   updateTreeSelection();
 }
 
