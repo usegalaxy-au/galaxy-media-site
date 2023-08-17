@@ -261,6 +261,7 @@ class BaseAccessRequestForm(forms.Form):
 
     def action(self, request, resource):
         error = None
+        actioned = False
         email = self.cleaned_data['email']
         try:
             is_registered_email = galaxy.is_registered_email(email)
