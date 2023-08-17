@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
+from utils import galaxy
 from utils import postal
 from utils.data.fgenesh import genematrix_tree
 from utils.institution import is_institution_email
@@ -47,12 +48,13 @@ def dispatch_form_mail(
         html=None):
     """Send mail to support inbox.
 
-    This should probably be sent to a worker thread.
+    This should probably be sent to a worker thread but the SMTP server
+    responds very quickly in production.
     """
     recipient = to_address or settings.EMAIL_TO_ADDRESS
     reply_to_value = [reply_to] if reply_to else None
     logger.info(f"Sending mail to {recipient}")
-    mail = EmailMultiAlternatives(
+    email = EmailMultiAlternatives(
         subject,
         text,
         settings.EMAIL_FROM_ADDRESS,
@@ -60,8 +62,8 @@ def dispatch_form_mail(
         reply_to=reply_to_value,
     )
     if html:
-        mail.attach_alternative(html, "text/html")
-    retry_send_mail(mail)
+        email.attach_alternative(html, "text/html")
+    retry_send_mail(email)
 
 
 def user_success_mail(name, email, resource):
@@ -93,6 +95,8 @@ def user_success_mail(name, email, resource):
 
 class OtherFieldFormMixin:
     """Handle validation/cleaning of 'other' fields.
+
+    TODO: this should really be replaced with a custom Django field
 
     The inheriting class must define cls.OTHER_FIELDS as a tuple of field names
     for which a "field_other" field is expected. This field will be populated
@@ -225,12 +229,14 @@ class SupportRequestForm(forms.Form):
 class BaseAccessRequestForm(forms.Form):
     """Abstract form for requesting access to a resource.
 
-    Form fields in the format 'X_other' are substituted into the 'X' field
-    on submission and excluded from dispatched email.
+    Handles auto Galaxy group assignment and dispatches emails to admins and
+    users to notify them of the outcome.
     """
 
-    OTHER_FIELDS = []
+    AUTO_ACTION = False       # Some forms can be auto-actioned by GMS
+    AUTO_ASSIGN_GROUP = True  # By default, assign user to the Galaxy group
     RESOURCE_NAME = None
+    OTHER_FIELDS = []
     MAIL_SUCCESS_MESSAGE = (
         "This request has been actioned by Galaxy Media Site - no action is"
         " necessary but this request should be kept for reporting purposes."
@@ -253,8 +259,51 @@ class BaseAccessRequestForm(forms.Form):
             )
         return email
 
+    def action(self, request, resource):
+        error = None
+        email = self.cleaned_data['email']
+        try:
+            is_registered_email = galaxy.is_registered_email(email)
+        except Exception as exc:
+            logger.error(
+                f"Error calling galaxy.is_registered_email():\n"
+                f"{exc[:1000]}\n")
+            error = (
+                "Galaxy connection refused (could not check account"
+                " status)."
+            )
+            # Admins will have to action this manually
+            actioned = self.dispatch(exception=error)
+
+        if is_registered_email:
+            if self.AUTO_ASSIGN_GROUP:
+                galaxy_group = resource
+                logger.info(
+                    f"Adding user {email} to Galaxy group {galaxy_group}")
+                try:
+                    galaxy.add_user_to_group(
+                        self.cleaned_data['email'],
+                        galaxy_group)
+                except Exception as exc:
+                    logger.error(
+                        f"Error assigning user to Galaxy group:\n{exc}\n"
+                        "This error was not fatal and the user's request"
+                        " has been passed to the support email.")
+                    error = exc
+            logger.info(
+                f"Dispatching {resource} request for email {email}")
+            actioned = self.dispatch(exception=error)
+        else:
+            logger.info(f"Dispatching {resource} warning to {email}")
+            self.dispatch_warning(request)
+
+        return actioned
+
     def dispatch(self, exception=None, notify_user_success=True):
-        """Dispatch form content as email."""
+        """Dispatch form content as email.
+
+        Returns "actioned" as a boolean.
+        """
         subject = (
             f"ERROR actioning {self.RESOURCE_NAME} request on Galaxy Australia"
             if exception else
@@ -290,7 +339,8 @@ class BaseAccessRequestForm(forms.Form):
                 self.cleaned_data['email'],
                 self.RESOURCE_NAME,
             )
-        return exception
+        actioned = not exception and self.AUTO_ACTION
+        return actioned
 
     def dispatch_warning(self, request):
         """Dispatch warning email to let user know their email is invalid."""
@@ -311,6 +361,7 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
     RESOURCE_NAME = 'AlphaFold'
+    AUTO_ACTION = True
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
