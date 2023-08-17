@@ -328,8 +328,9 @@ class BaseAccessRequestForm(forms.Form):
             'success_message': self.MAIL_SUCCESS_MESSAGE,
             'failed_message': self.MAIL_FAILED_MESSAGE,
         }
+        reply_to = None if self.AUTO_ACTION else self.cleaned_data['email']
         dispatch_form_mail(
-            reply_to=self.cleaned_data['email'],
+            reply_to=reply_to,
             subject=subject,
             text=render_to_string(f'{template}.txt', context),
             html=render_to_string(f'{template}.html', context),
@@ -406,7 +407,19 @@ class FgeneshRequestForm(BaseAccessRequestForm):
         return False
 
 
+class CellRangerRequestForm(BaseAccessRequestForm):
+    """Form to request AlphaFold access."""
+
+    RESOURCE_NAME = 'CellRanger'
+    AUTO_ACTION = True
+
+    name = forms.CharField()
+    email = forms.EmailField(validators=[validators.institutional_email])
+    institution = forms.CharField()
+
+
 ACCESS_FORMS = {
     'alphafold': AlphafoldRequestForm,
     'fgenesh': FgeneshRequestForm,
+    'cellranger': CellRangerRequestForm,
 }
