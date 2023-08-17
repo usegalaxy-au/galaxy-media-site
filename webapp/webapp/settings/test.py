@@ -30,6 +30,8 @@ DATABASES = {
     }
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
 LOGGING = config.configure_logging(LOG_ROOT)
 
 MEDIA_ROOT = Path('/tmp/gms-test-media')
