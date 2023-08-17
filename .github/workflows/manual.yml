@@ -1,4 +1,5 @@
-# Deploy to production on push
+name: Deploy to production
+
 on:
   push:
     branches:
