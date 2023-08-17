@@ -1,5 +1,6 @@
 """Custom mail handler for authenticating with Postal server."""
 
+import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -15,6 +16,10 @@ def send_mail(email):
     This is only used for sending emails with specific headers (to satisfy the
     fussy Postal server).
     """
+    if os.environ.get('DJANGO_SETTINGS_MODULE') == 'webapp.settings.test':
+        # Revert to django's default mail handler to use alternative backends
+        return email.send()
+
     try:
         # Create connection
         server = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
