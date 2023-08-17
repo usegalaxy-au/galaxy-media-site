@@ -41,6 +41,7 @@ class NewsTestCase(TestCase):
 
     def setUp(self) -> None:
         """Create some data."""
+        super().setUp()
         self.client = Client()
         for tag in TEST_TAGS:
             Tag.objects.create(**tag)
