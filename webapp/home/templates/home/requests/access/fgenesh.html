@@ -318,18 +318,8 @@
 
 {% block script %}
 <script src="{% static 'home/js/tree-list.js' %}"></script>
+<script src="{% static 'home/js/forms.js' %}"></script>
 <script type="text/javascript">
-  $('input[type="radio"][name="species"]').click( e => {
-    const other = $(`input[name="${e.target.name}_other"]`).closest('.show-other');
-    if (e.target.value === '0') {
-      other.find('input').prop('required', true);
-      other.fadeIn(250);
-    } else {
-      other.find('input').prop('required', false);
-      other.fadeOut(250);
-    }
-  });
-
   $('form').submit( (e) => {
     showTermsInput();
     $('button[type="submit"]').prop('disabled', true);
@@ -350,6 +340,4 @@
 
 
 {% block onload %}
-// Trigger other field if selected
-$('input[type="radio"][name="disk_tb"][value="0"][checked]').click();
 {% endblock %}

@@ -13,7 +13,7 @@
 <main class="container mt-4">
 
   <div class="mb-10">
-    <h2> Galaxy Australia AlphaFold 2.0 Access Request </h2>
+    <h2> Galaxy Australia AlphaFold 2 Access Request </h2>
     <small>
       <a href="/request">
         <span class="material-icons">arrow_back</span>
@@ -23,7 +23,7 @@
   </div>
 
   <p class="lead mb-10">
-    Alphafold 2.0 is available on Galaxy Australia for Australian researchers.
+    Alphafold 2 is available on Galaxy Australia for Australian researchers.
     Please apply for access, using your institutional email.
   </p>
 
@@ -215,12 +215,7 @@
 
 
 {% block script %}
-<script type="text/javascript">
-  $('form').submit( (e) => {
-    $('button[type="submit"]').prop('disabled', true);
-    $('button[type="submit"]').html('<i class="fas fa-sync-alt fa-spin"></i>');
-  });
-</script>
+<script src="{% static 'home/js/forms.js' %}"></script>
 {% endblock %}
 
 

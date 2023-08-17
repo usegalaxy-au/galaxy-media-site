@@ -2,7 +2,6 @@ $(document).ready(function() {
   setMatricesValue();
   setTermsValue();
   addTreeBranchClickEvent();
-  scrollToErrors();
   // Add event handler to update "selected matrices" count
   $('#taxonomy-tree input[type="checkbox"]').change(updateTreeSelection);
 });
@@ -73,14 +72,6 @@ function expandTreeBranch(ul) {
   while (parent.hasClass('nested')) {
     parent.siblings('.caret').not('.caret-down').click();
     parent = $(parent).parent().parent();
-  }
-}
-
-function scrollToErrors() {
-  const errors = $('.errorlist');
-  if (errors.length) {
-    const top = errors.offset().top;
-    $('html, body').animate({scrollTop: top - 80}, 500);
   }
 }
 
