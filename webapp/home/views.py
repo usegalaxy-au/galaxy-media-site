@@ -9,7 +9,6 @@ from django.http import Http404
 from django.template.loader import get_template
 
 from utils import aaf
-from utils import galaxy
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
@@ -138,38 +137,7 @@ def user_request_resource_access(request, resource):
     if request.POST:
         form = Form(request.POST)
         if form.is_valid():
-            error = None
-            email = form.cleaned_data['email']
-            try:
-                is_registered_email = galaxy.is_registered_email(email)
-            except Exception as exc:
-                logger.error(
-                    f"Error calling galaxy.is_registered_email():\n"
-                    f"{exc[:1000]}\n")
-                error = (
-                    "Galaxy connection refused (could not check account"
-                    " status)."
-                )
-                # Let admins figure it out manually
-                actioned = form.dispatch(exception=error)
-            if is_registered_email:
-                logger.info(
-                    f"Dispatching {resource} request for email {email}")
-                group_name = resource
-                try:
-                    galaxy.add_user_to_group(
-                        form.cleaned_data['email'],
-                        group_name)
-                except Exception as exc:
-                    logger.error(
-                        f"Error assigning user to Galaxy group:\n{exc}\n"
-                        "This error was not fatal and the user's request has"
-                        " been passed to the support email.")
-                    error = exc
-                actioned = form.dispatch(exception=error)
-            else:
-                logger.info(f"Dispatching {resource} warning to {email}")
-                form.dispatch_warning(request)
+            actioned = form.action(request, resource)
             success_template = 'home/requests/access/success.html'
             return render(request, success_template, {
                 'form': form.cleaned_data,
