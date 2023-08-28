@@ -133,7 +133,10 @@ SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_SUBJECT_PREFIX = 'GMS: '
 
 # Validating whether submitted email is valid Galaxy AU account
-MOCK_GALAXY_INTERACTIONS = 'MOCK_GALAXY_INTERACTIONS' in os.environ
+MOCK_GALAXY_INTERACTIONS = (
+    os.environ.get('MOCK_GALAXY_INTERACTIONS')
+    in ('1', 'true')
+)
 if MOCK_GALAXY_INTERACTIONS:
     print("MOCK_GALAXY_INTERACTIONS is set: mocking galaxy interactions")
 
