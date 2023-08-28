@@ -416,6 +416,8 @@ class CellRangerRequestForm(BaseAccessRequestForm):
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
     institution = forms.CharField()
+    agree_terms = forms.BooleanField()
+    agree_usage = forms.BooleanField()
 
 
 ACCESS_FORMS = {

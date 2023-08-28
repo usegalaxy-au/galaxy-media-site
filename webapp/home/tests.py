@@ -181,17 +181,7 @@ class AccessRequestsTestCase(TestCase):
             'email': 'test@uq.edu.au',
             'institution': 'University of Queensland',
         })
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(
-            response,
-            'Thanks for your submission',
-        )
-        self.assertContains(
-            response,
-            'please check your spam folder',
-        )
-        # Mail sent to admins and user
-        self.assertEqual(len(mail.outbox), 2)
+        self.assert_access_form_success(response, auto_action=True)
 
     def test_it_can_handle_request_for_fgenesh_access(self):
         response = self.client.post('/request/access/fgenesh', {
@@ -202,15 +192,39 @@ class AccessRequestsTestCase(TestCase):
             'agree_acknowledge': 'on',
             'matrices': [genematrix_tree.as_choices()[0][0]],
         })
+        self.assert_access_form_success(response, auto_action=False)
+
+    def test_it_can_handle_request_for_cellranger_access(self):
+        response = self.client.post('/request/access/cellranger', {
+            'name': 'John Doe',
+            'email': 'test@uq.edu.au',
+            'institution': 'University of Queensland',
+            'agree_terms': 'on',
+            'agree_usage': 'on',
+        })
+        self.assert_access_form_success(response, auto_action=True)
+
+    def assert_access_form_success(self, response, auto_action=True):
+        """Assert that an auto-action form has been successfully submitted.
+
+        Auto-action forms send an email to user to let them know that access
+        has been granted. Non-auto-action forms do not send an email because
+        manual intervention is required.
+        """
         self.assertEqual(response.status_code, 200)
         self.assertContains(
             response,
             'Thanks for your submission',
         )
-        # FGenesh needs to be actioned by admins, so user mail should not be
-        # sent
-        self.assertNotContains(
-            response,
-            'please check your spam folder',
-        )
-        self.assertEqual(len(mail.outbox), 1)
+        if auto_action:
+            self.assertContains(
+                response,
+                'please check your spam folder',
+            )
+        else:
+            self.assertNotContains(
+                response,
+                'please check your spam folder',
+            )
+        expect_len = 2 if auto_action else 1
+        self.assertEqual(len(mail.outbox), expect_len)
