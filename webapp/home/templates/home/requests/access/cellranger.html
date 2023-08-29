@@ -70,14 +70,19 @@
           must be read and acknowledged prior to access being provisioned.
         </p>
         {{ form.agree_terms.errors }}
-        <input
-          class="form-check-input"
-          id="termsInput"
-          name="agree_terms"
-          type="checkbox"
-          {% if form.agree_terms.value %}checked{% endif %}
-        />
-        <label for="termsInput" class="form-check-label">I accept the terms of the license agreement</label>
+        <button type="button" class="ga-btn" onclick="showAcceptLicense(this);">
+          I have read the license agreement
+        </button>
+        <div class="form-check mt-2" style="display: none;">
+          <input
+            class="form-check-input"
+            id="termsInput"
+            name="agree_terms"
+            type="checkbox"
+            {% if form.agree_terms.value %}checked{% endif %}
+          />
+          <label for="termsInput" class="form-check-label">I accept the terms of the license agreement</label>
+        </div>
       </div>
 
       <div class="col-sm-12">
@@ -122,6 +127,13 @@
 
 {% block script %}
 <script src="{% static 'home/js/forms.js' %}"></script>
+<script>
+  function showAcceptLicense(acceptLicenseBtn) {
+    console.log("Button:")
+    console.log(acceptLicenseBtn);
+    $(acceptLicenseBtn).siblings('.form-check').show();
+  }
+</script>
 {% endblock %}
 
 
