@@ -49,13 +49,27 @@
       </div>
 
       <div class="col-md-6">
-        <label for="emailInput" class="form-label">Email</label>
-        <input class="form-control" id="emailInput" type="text" name="email"
-        value="{{form.email.value|default_if_none:''}}"
-        aria-describedby="emailHelp" required
+        <label for="emailInput" class="form-label">Galaxy Account Email</label>
+        <input class="form-control" id="emailInput" type="email" name="email"
+          value="{{form.email.value|default_if_none:''}}"
+          aria-describedby="emailHelp"
+          onfocus="$('#emailHelp').show();"
+          autocomplete="off"
+          required
         >
-        <div id="emailHelp" class="form-text">
-          We may contact you to request further detail.
+        <div id="emailHelp" class="form-text" style="display: none;">
+          <div class="alert alert-danger">
+            <ul style="margin: 0;">
+              <li>
+                Your Galaxy Australia account must be registered to this email
+                for us to upgrade your quota
+              </li>
+              <li>
+                Go to User > Preferences > Manage information to see your registered
+                email address on usegalaxy.org.au
+              </li>
+            <ul>
+          </div>
         </div>
         {{ form.email.errors }}
       </div>
