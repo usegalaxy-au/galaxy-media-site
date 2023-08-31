@@ -69,20 +69,9 @@
           </a>
           must be read and acknowledged prior to access being provisioned.
         </p>
-        {{ form.agree_terms.errors }}
-        <button type="button" class="ga-btn" onclick="showAcceptLicense(this);">
-          I have read the license agreement
-        </button>
-        <div class="form-check mt-2" style="display: none;">
-          <input
-            class="form-check-input"
-            id="termsInput"
-            name="agree_terms"
-            type="checkbox"
-            {% if form.agree_terms.value %}checked{% endif %}
-          />
-          <label for="termsInput" class="form-check-label">I accept the terms of the license agreement</label>
-        </div>
+
+        {% include 'home/requests/access/snippets/agree-terms-modal.html' %}
+
       </div>
 
       <div class="col-sm-12">
@@ -96,6 +85,7 @@
           id="usageInput"
           name="agree_usage"
           type="checkbox"
+          required
           {% if form.agree_usage.value %}checked{% endif %}
         />
         <label for="usageInput" class="form-check-label">I agree to only use CellRanger for academic or non-commercial research purposes</label>

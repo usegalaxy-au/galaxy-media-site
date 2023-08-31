@@ -5,8 +5,8 @@ $(document).ready(scrollToErrors);
 function scrollToErrors() {
     const errors = $('.errorlist');
     if (errors.length) {
-      const top = errors.offset().top;
-      $('html, body').animate({scrollTop: top - 80}, 500);
+      const scrollTo = errors.offset().top - 150;
+      $('html, body').animate({scrollTop: scrollTo}, 500);
     }
   }
 

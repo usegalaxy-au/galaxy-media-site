@@ -6,8 +6,9 @@ from captcha import fields
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.templatetags.static import static
 from utils import galaxy
 from utils import postal
 from utils.data.fgenesh import genematrix_tree
@@ -395,6 +396,12 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     research_topics = forms.CharField(max_length=200, required=False)
     matrices = forms.MultipleChoiceField(choices=genematrix_tree.as_choices())
 
+    terms = {
+        'button_text': 'View terms',
+        'src': static('home/documents/fgenesh-biocommons-terms.html'),
+        'agreement_name': 'FGENESH++ Service Terms of Use and Policies',
+    }
+
     def render_matrix_field(self):
         return genematrix_tree.as_ul()
 
@@ -418,6 +425,12 @@ class CellRangerRequestForm(BaseAccessRequestForm):
     institution = forms.CharField()
     agree_terms = forms.BooleanField()
     agree_usage = forms.BooleanField()
+
+    terms = {
+        'button_text': 'View license agreement',
+        'src': static('home/documents/cellranger-end-user-license.html'),
+        'agreement_name': 'CellRanger End User Licence Agreement',
+    }
 
 
 ACCESS_FORMS = {

@@ -1,0 +1,108 @@
+{% load static %}
+
+{{ form.agree_terms.errors }}
+
+<button
+  class="ga-btn"
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="#termsModal"
+>
+  {{ form.terms.button_text }}
+</button>
+
+<div class="form-check mt-2">
+  <input
+    class="form-check-input"
+    id="agreeTermsInput"
+    name="agree_terms"
+    type="checkbox"
+    disabled
+    {% if form.agree_terms.value %}checked{% endif %}
+  />
+  <label id="agreeTermsLabel" for="agreeTermsInput" class="check-label" style="opacity: 0.2;">
+    I, the Principal Investigator or End User have read and acknowledged
+    the {{ form.terms.agreement_name }}.
+  </label>
+</div>
+
+<div class="modal" tabindex="-1" id="termsModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <iframe
+          src="{{ form.terms.src }}"
+          style="width: 100%; height: calc(95vh - 240px);"
+          frameborder="0"
+        ></iframe>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <div class="w-100">
+          <p class="text-center">
+            I, the Principal Investigator or End User have read and acknowledged
+            the {{ form.terms.agreement_name }}.
+          </p>
+        </div>
+        <div
+          title="Please scroll to the end to accept"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+        >
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="agreeTermsButton"
+            data-bs-dismiss="modal"
+            onclick=""
+            disabled
+          >
+            Agree
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function agreeTermsAction(el) {
+      enableTermsInput();
+      $('#agreeTermsInput').attr('checked', true);
+    }
+    function enableTermsInput() {
+      $('#agreeTermsInput').attr('disabled', false);
+      $('#agreeTermsLabel').css('opacity', '1');
+    }
+
+    function enableAgreeTermsButton() {
+      $('#agreeTermsButton').attr('disabled', false);
+      $('#agreeTermsButton').attr('onclick', 'agreeTermsAction(this);');
+      const tooltip = new bootstrap.Tooltip($('#agreeTermsButton').closest('div')[0]);
+      tooltip.disable();
+    }
+
+    function setEventHandler() {
+      const termsContainer = $('#termsModal iframe').contents().find('#page-container');
+      if (!termsContainer.length) {
+        return setTimeout(setEventHandler, 100);
+      }
+      termsContainer.on('scroll', (event) => {
+        const scrolledToEnd = $(event.target)[0].scrollHeight
+        - $(event.target).scrollTop()
+        - $('#termsModal iframe').height() < 50;
+        scrolledToEnd && enableAgreeTermsButton();
+      });
+    }
+
+    $('#termsModal iframe').contents().ready(setEventHandler);
+
+    // Enable terms checkbox so validation messages can be displayed
+    $('form').submit( () => {
+      enableTermsInput();
+      return true;
+    });
+  </script>
+</div>
