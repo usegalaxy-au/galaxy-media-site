@@ -132,6 +132,8 @@ def user_request_resource_access(request, resource):
 
     The galaxy group name must match the <resource> string encoded in the URL.
     """
+    if resource not in ACCESS_FORMS:
+        raise Http404
     Form = ACCESS_FORMS[resource]
     form = Form()
     if request.POST:
