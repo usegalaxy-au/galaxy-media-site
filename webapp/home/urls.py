@@ -27,8 +27,8 @@ urlpatterns = [
          api.subdomain_feedback,
          name="subdomain_feedback"),
 
-    # Arbitrary HTML pages
-    re_path(r'^[\w\d\_-]+.html$', views.page, name='home_page'),
+    # Arbitrary *.html / *.md pages
+    re_path(r'^[\w\d\_-]+\.(?:html|md)$', views.page, name='html_pages'),
 
     # Redirects
     path('galaxy', redirects.homepage, name="redirect_home"),

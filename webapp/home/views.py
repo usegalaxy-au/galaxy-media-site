@@ -3,7 +3,7 @@
 import os
 import logging
 from django.conf import settings
-from django.template import TemplateDoesNotExist
+from django.template import TemplateDoesNotExist, loader
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.template.loader import get_template
@@ -150,15 +150,31 @@ def user_request_resource_access(request, resource):
     return render(request, template, {'form': form})
 
 
-def page(request):
+def page(request, *args):
     """Serve an arbitrary static page."""
+    logger.warning(args)
     template = f'home/pages/{request.path}'
     templates_dir = os.path.join(
         settings.BASE_DIR,
         'home/templates/home/pages')
     if os.path.basename(template) not in os.listdir(templates_dir):
         raise Http404
+    if request.path.endswith('.md'):
+        return md_page(request, template)
     return render(request, template)
+
+
+def md_page(request, template):
+    """Return a markdown file rendered to HTML."""
+    md_path = (
+        loader.get_template(template)
+        .origin.name
+    )
+    with open(md_path) as f:
+        markdown = f.read()
+    return render(request, 'home/markdown-page.html', {
+        'md_text': markdown,
+    })
 
 
 def aaf_info(request):
@@ -172,4 +188,14 @@ def australian_institutions(request):
     """Show list of recognised AU research institution email domains."""
     return render(request, 'home/au-institutions.html', {
         'institutions': get_institution_list(),
+    })
+
+
+def vgp_workflows(request):
+    """Show VGP workflows."""
+    path = loader.get_template('home/docs/vgp-workflows.md').origin.name
+    with open(path) as f:
+        text = f.read()
+    return render(request, 'home/docs/vgp-workflows.html', {
+        'md_text': text,
     })

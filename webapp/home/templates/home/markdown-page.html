@@ -1,0 +1,13 @@
+{% extends 'home/header.html' %}
+{% load markdown %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/markdown.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+  {{ md_text|markdown|safe }}
+</main>
+{% endblock %}
