@@ -85,16 +85,17 @@
     }
 
     function setEventHandler() {
-      const termsContainer = $('#termsModal iframe').contents().find('#page-container');
+      const termsContainer = $('#termsModal iframe').contents().find('body');
       if (!termsContainer.length) {
         return setTimeout(setEventHandler, 100);
       }
-      termsContainer.on('scroll', (event) => {
-        const scrolledToEnd = $(event.target)[0].scrollHeight
-        - $(event.target).scrollTop()
-        - $('#termsModal iframe').height() < 50;
-        scrolledToEnd && enableAgreeTermsButton();
+      $('#termsModal iframe').contents().on('scroll', (event) => {
+        const scrollFromEnd = $(termsContainer)[0].scrollHeight
+        - $(termsContainer).scrollTop()
+        - $('#termsModal iframe').height();
+        if (scrollFromEnd < 50) enableAgreeTermsButton();
       });
+      termsContainer.css('margin', 'auto');
     }
 
     $('#termsModal iframe').contents().ready(setEventHandler);
