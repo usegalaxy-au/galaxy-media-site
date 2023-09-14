@@ -15,13 +15,13 @@ Anna Syme
 * An international team is working to create these workflows in Galaxy: for more information see [https://galaxyproject.org/projects/vgp/](https://galaxyproject.org/projects/vgp/)
 * In Galaxy Australia, you can access a set of these workflows by going to the [Genome Lab](https://genome.usegalaxy.org.au/), scroll to the Genome Assembly section, click on the Workflows tab.
 * The workflows to import are:
-  * Assembly with PacBio HiFi data:
-    * BAM to FASTQ + QC v1.0
-  * Assembly with PacBio Hifi and HiC data:
-    * Kmer profiling
-    * Hifi assembly and HiC phasing
-    * HiC scaffolding
-    * Decontamination
+    * Assembly with PacBio HiFi data:
+        * BAM to FASTQ + QC v1.0
+    * Assembly with PacBio Hifi and HiC data:
+        * Kmer profiling
+        * Hifi assembly and HiC phasing
+        * HiC scaffolding
+        * Decontamination
 
 ## Can I use the VGP workflows in Galaxy Australia?
 
