@@ -5,9 +5,9 @@ Anna Syme
 ## What are the VGP workflows?
 
 * These are workflows for genome assembly, developed for the Vertebrate Genome Project
-* Website: https://vertebrategenomesproject.org/
-* Data at Genome Ark  https://vgp.github.io/genomeark/
-* Paper: Rhie, A., McCarthy, S.A., Fedrigo, O. et al. Towards complete and error-free genome assemblies of all vertebrate species. Nature 592, 737–746 (2021). https://doi.org/10.1038/s41586-021-03451-0
+* Website: [https://vertebrategenomesproject.org/](https://vertebrategenomesproject.org/)
+* Data at Genome Ark  [https://vgp.github.io/genomeark/](https://vgp.github.io/genomeark/)
+* Paper: [Rhie, A., McCarthy, S.A., Fedrigo, O. et al. Towards complete and error-free genome assemblies of all vertebrate species. Nature 592, 737–746 (2021).](https://doi.org/10.1038/s41586-021-03451-0)
 * This paper covers the testing of tools and workflows. We recommend also looking at the Supplementary Information which is very informative.
 
 ## Are the VGP workflows in Galaxy Australia?
@@ -33,6 +33,7 @@ Anna Syme
 ## What data do I need? 
 
 Overall, you need these inputs: 
+
 * HiFi reads as collection
   * If HiFi data in BAM format, convert to FASTQ using the BAM to FASTQ + QC v1.0 workflow
   * then group output FASTQ files into a single collection
@@ -66,10 +67,10 @@ For each of the other workflows, you will need these inputs:
 ## Do I need any background knowledge before I run these workflows? 
 
 * We recommend the Galaxy Training Network tutorials. 
-* Introduction to Galaxy: https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html
-* Assembly: https://training.galaxyproject.org/training-material/topics/assembly/tutorials/general-introduction/tutorial.html
-* QC: https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html
-* VGP: https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_genome_assembly/tutorial.html
+* [Introduction to Galaxy](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html)
+* [Assembly](https://training.galaxyproject.org/training-material/topics/assembly/tutorials/general-introduction/tutorial.html)
+* [QC](https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html)
+* [VGP tutorials](https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_genome_assembly/tutorial.html)
 * These should be enough to get you started running the VGP workflows, but there are many additional tutorials that would also be useful. 
 * As most species have never had their genome sequenced, it is not possible to guarantee existing workflows are optimal for new data. 
 * It is most likely that any new genome assembly will have its own set of required workflow and analysis customisations to account for things such as ploidy and repeats. 
