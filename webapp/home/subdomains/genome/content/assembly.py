@@ -272,7 +272,7 @@ workflows_hic = [
         "description_html": """
             <p>
               These workflows have been developed as part of the global Vertebrate Genome Project (VGP). 
-              A guide to using these in Galaxy Australia can be found [here](`/vgp-workflows.md`).
+              A guide to using these in Galaxy Australia can be found [here](/vgp-workflows.md).
               A complete guide can be found
               <a
                 href="https://galaxyproject.org/projects/vgp/workflows/"
