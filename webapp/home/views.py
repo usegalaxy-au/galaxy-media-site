@@ -3,14 +3,12 @@
 import os
 import logging
 from django.conf import settings
-from django.template import TemplateDoesNotExist
+from django.template import TemplateDoesNotExist, loader
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.template.loader import get_template
-# from pprint import pformat
 
 from utils import aaf
-from utils.galaxy import is_registered_galaxy_email
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
@@ -19,7 +17,7 @@ from .forms import (
     ResourceRequestForm,
     QuotaRequestForm,
     SupportRequestForm,
-    AlphafoldRequestForm,
+    ACCESS_FORMS,
 )
 from . import subdomains
 
@@ -60,11 +58,14 @@ def landing(request, subdomain):
 
     try:
         sections = getattr(subdomains, subdomain).sections
-    except AttributeError:
+    except AttributeError as exc:
         raise AttributeError(
-            f"No content files found for subdomain '{subdomain}'.")
+            f"{exc}\n\n"
+            f"No content files found for subdomain '{subdomain}'"
+            " at 'webapp/home/subdomains/{subdomain}/'")
 
     return render(request, template, {
+        'name': subdomain,
         'notices': Notice.get_notices_by_type(request, subsite=subdomain),
         'sections': sections,
         'form': SupportRequestForm(),
@@ -98,7 +99,6 @@ def user_request_tool(request):
             form.dispatch()
             return render(request, 'home/requests/success.html')
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/tool.html', {'form': form})
 
 
@@ -112,7 +112,6 @@ def user_request_quota(request):
             form.dispatch()
             return render(request, 'home/requests/success.html')
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/quota.html', {'form': form})
 
 
@@ -125,40 +124,57 @@ def user_request_support(request):
             form.dispatch()
             return render(request, 'home/requests/success.html')
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
     return render(request, 'home/requests/support.html', {'form': form})
 
 
-def user_request_alphafold(request):
-    """Handle alphafold access requests."""
-    form = AlphafoldRequestForm()
+def user_request_resource_access(request, resource):
+    """Handle resource (e.g. tool) access requests.
+
+    The galaxy group name must match the <resource> string encoded in the URL.
+    """
+    if resource not in ACCESS_FORMS:
+        raise Http404
+    Form = ACCESS_FORMS[resource]
+    form = Form()
     if request.POST:
-        form = AlphafoldRequestForm(request.POST)
+        form = Form(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            if is_registered_galaxy_email(email):
-                logger.info(f"Dispatching AlphaFold request for email {email}")
-                form.dispatch()
-            else:
-                logger.info(f"Dispatching AlphaFold warning to {email}")
-                form.dispatch_warning(request)
-            return render(request, 'home/requests/alphafold-success.html', {
-                'email': email,
+            actioned = form.action(request, resource)
+            success_template = 'home/requests/access/success.html'
+            return render(request, success_template, {
+                'form': form.cleaned_data,
+                'actioned': actioned,
             })
         logger.info("Form was invalid. Returning invalid feedback.")
-        # logger.info(pformat(form.errors))
-    return render(request, 'home/requests/alphafold.html', {'form': form})
+    template = f'home/requests/access/{resource}.html'
+    return render(request, template, {'form': form})
 
 
-def page(request):
+def page(request, *args):
     """Serve an arbitrary static page."""
+    logger.warning(args)
     template = f'home/pages/{request.path}'
     templates_dir = os.path.join(
         settings.BASE_DIR,
         'home/templates/home/pages')
     if os.path.basename(template) not in os.listdir(templates_dir):
         raise Http404
+    if request.path.endswith('.md'):
+        return md_page(request, template)
     return render(request, template)
+
+
+def md_page(request, template):
+    """Return a markdown file rendered to HTML."""
+    md_path = (
+        loader.get_template(template)
+        .origin.name
+    )
+    with open(md_path) as f:
+        markdown = f.read()
+    return render(request, 'home/markdown-page.html', {
+        'md_text': markdown,
+    })
 
 
 def aaf_info(request):
@@ -172,4 +188,14 @@ def australian_institutions(request):
     """Show list of recognised AU research institution email domains."""
     return render(request, 'home/au-institutions.html', {
         'institutions': get_institution_list(),
+    })
+
+
+def vgp_workflows(request):
+    """Show VGP workflows."""
+    path = loader.get_template('home/docs/vgp-workflows.md').origin.name
+    with open(path) as f:
+        text = f.read()
+    return render(request, 'home/docs/vgp-workflows.html', {
+        'md_text': text,
     })

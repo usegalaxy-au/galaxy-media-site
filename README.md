@@ -112,7 +112,7 @@ Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-
 
 ---
 
-## Migration
+## Migrating between servers
 
 Application state is stored in the PostgreSQL database, with images in the `webapp/webapp/media` directory. If required, you can migrate the application between servers. This assumes some experience with postgres and the psql shell.
 
@@ -159,10 +159,12 @@ Application state is stored in the PostgreSQL database, with images in the `weba
   ```
   # N.B. you will ssh access to the new webserver with sudo privileges
 
+  REMOTE_ADDRESS=mynewsite.com
+  REMOTE_PROJECT_ROOT=/path/to/the/new/galaxy-media-site
   cd $PROJECT_ROOT
   tar cf - webapp/webapp/media \
-      | ssh <REMOTE-ADDRESS> \ "(
-          cd <NEW_PROJECT_ROOT>/webapp/webapp;
+      | ssh $REMOTE_ADDRESS \ "(
+          cd ${REMOTE_PROJECT_ROOT}/webapp/webapp;
           cat > media.tar;
           tar -xf media.tar && rm media.tar;
           sudo chown -R www-data:www-data media)"

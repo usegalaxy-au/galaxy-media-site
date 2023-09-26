@@ -28,6 +28,7 @@ DEBUG = True
 AUTH_USER_MODEL = 'home.User'
 
 # Site paths and URLs
+HOSTNAME = '127.0.0.1:5000'
 GALAXY_SITE_NAME = 'Media'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'webapp/static'
@@ -130,6 +131,14 @@ EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
 SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_SUBJECT_PREFIX = 'GMS: '
+
+# Validating whether submitted email is valid Galaxy AU account
+MOCK_GALAXY_INTERACTIONS = (
+    os.environ.get('MOCK_GALAXY_INTERACTIONS')
+    in ('1', 'true')
+)
+if MOCK_GALAXY_INTERACTIONS:
+    print("MOCK_GALAXY_INTERACTIONS is set: mocking galaxy interactions")
 
 # Galaxy API auth
 GALAXY_URL = os.environ.get('GALAXY_URL')

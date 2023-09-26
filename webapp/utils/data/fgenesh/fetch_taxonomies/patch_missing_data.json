@@ -1,0 +1,95 @@
+{
+  "Curvularia": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Curvularia",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Fungi",
+    "phylum":"Ascomycota",
+    "order":"Pleosporales",
+    "family":"Pleosporaceae",
+    "genus":"Curvularia",
+    "class": "Dothideomycetes"
+  },
+  "Preussia": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Preussia",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Fungi",
+    "phylum":"Ascomycota",
+    "order":"Pleosporales",
+    "family":"Sporormiaceae",
+    "genus":"Preussia",
+    "class": "Dothideomycetes"
+  },
+  "Cryptococcus": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Cryptococcus",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Fungi",
+    "phylum": "Basidiomycota",
+    "order":"Tremellales",
+    "family":"Tremellaceae",
+    "genus":"Cryptococcus",
+    "class": "Tremellomycetes"
+  },
+  "Paxillus": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Paxillus",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Animalia",
+    "phylum":"Arthropoda",
+    "order":"Coleoptera",
+    "family":"Passallidae",
+    "genus":"Paxillus",
+    "class": "Insecta"
+  },
+  "Monocot plants": {
+    "confidence": 100,
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Plantae",
+    "phylum":"Tracheophyta",
+    "class":"Monocot plants"
+  },
+  "Coccomyxa": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Coccomyxa",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Plantae",
+    "phylum":"Chlorophyta",
+    "class": "Trebouxiophyceae",
+    "order": "incertae sedis",
+    "family":"Coccomyxaceae",
+    "genus":"Coccomyxa"
+  },
+  "Oryzias Latipes": {
+    "confidence": 100,
+    "note": "No match because of too little confidence",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Animalia",
+    "phylum":"Chordata",
+    "order":"Beloniformes",
+    "family":"Adrianichthyidae",
+    "genus":"Oryzias",
+    "species":"Oryzias sinensis",
+    "class": "Actinopterygii"
+  },
+  "Babesia": {
+    "confidence": 100,
+    "note": "Multiple equal matches for Babesia",
+    "matchType": "NONE",
+    "synonym": false,
+    "kingdom":"Chromista",
+    "phylum":"Apicomplexa",
+    "order":"Piroplasmorida",
+    "family":"Babesiidae",
+    "genus":"Babesia",
+    "class": "Aconoidasida"
+  }
+}

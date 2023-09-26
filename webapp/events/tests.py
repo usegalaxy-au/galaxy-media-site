@@ -10,6 +10,7 @@ from .test.data import TEST_EVENTS, TEST_SUPPORTERS, TEST_TAGS, TEST_IMAGES
 class EventsTestCase(TestCase):
 
     def setUp(self) -> None:
+        super().setUp()
         self.client = Client()
         for tag in TEST_TAGS:
             Tag.objects.create(**tag)
@@ -28,7 +29,8 @@ class EventsTestCase(TestCase):
                 tag = Tag.objects.get(name=tag['name'])
                 event.tags.add(tag)
             for supporter in supporters:
-                supporter = Supporter.objects.get(name=supporter['data']['name'])
+                supporter = Supporter.objects.get(
+                    name=supporter['data']['name'])
                 event.supporters.add(supporter)
 
     def test_event_webpage(self):
@@ -42,7 +44,8 @@ class EventsTestCase(TestCase):
 
     @suppress_request_warnings
     def test_unpublished_webpage_404(self):
-        unpublished_event = Event.objects.get(title=TEST_EVENTS[1]['data']['title'])
+        unpublished_event = Event.objects.get(
+            title=TEST_EVENTS[1]['data']['title'])
         response = self.client.get(f'/events/{unpublished_event.id}/')
         self.assertEqual(response.status_code, 404)
 

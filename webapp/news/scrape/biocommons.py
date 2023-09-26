@@ -17,20 +17,18 @@ URL = f'{BASE_URL}/news/category/Galaxy+Australia+news'
 class Article:
     """A new item scraped from the BioCommons website."""
 
-    def __init__(self, article):
+    def __init__(self, soup):
         """Create news item from web content."""
-        self.url = BASE_URL + article.find(
+        self.url = BASE_URL + soup.find(
             'a',
             class_='BlogList-item-readmore',
         )['href']
-
-        self.title = article.find(
+        self.title = soup.find(
             'a',
             class_='BlogList-item-title',
         ).text.strip(' \n\t')
-
         self.date = timezone.make_aware(datetime.strptime(
-            article.find('time')['datetime'],
+            soup.find('time')['datetime'],
             '%Y-%m-%d',
         ))
 

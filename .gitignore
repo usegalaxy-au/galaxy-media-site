@@ -1,8 +1,10 @@
 # Project paths
+*.sqlite3
 .vscode/
 webapp/webapp/logs/
 webapp/webapp/media/
 webapp/webapp/static/
+fetch_taxonomies/outputs/
 
 # Deploy conf
 .vault.pass

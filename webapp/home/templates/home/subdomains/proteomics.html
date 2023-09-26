@@ -1,0 +1,92 @@
+{% extends 'home/header.html' %}
+
+{% comment %}
+  This template renders the Proteomics Lab subdomain landing page.
+  See webapp/home/subdomains/proteomics for content to be rendered into this
+  template (sections, tools, workflows, etc).
+{% endcomment %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/subdomains/main.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  {% include 'home/subdomains/components/proteomics-community-modal.html' %}
+  {% include 'home/subdomains/components/info-modal.html' with subdomain='proteomics' site_name="Proteomics Lab" researchers="proteomics"  %}
+  {% include 'home/subdomains/components/feedback.html' with subdomain='proteomics' %}
+
+  <section  class="header-subdomain australia d-flex align-items-center h-100">
+    <img id="header-logo" src="{% static 'home/img/subdomains/'|add:name|add:'/logo.png' %}" alt="Galaxy Australia Logo" style="width: 5rem;">
+    PROTEOMICS LAB
+  </section>
+
+  <section class="my-5" id="tagline">
+    {% include 'home/snippets/static-notices.html' %}
+
+    <p>
+      Welcome to the Galaxy Australia Proteomics Lab. This page is currently under construction. Watch this space!
+      <br>
+      <a
+        href="#"
+        data-bs-toggle="modal"
+        data-bs-target="#infoModal">
+        What is this page?
+      </a>
+    </p>
+  </section>
+
+  {% for section in sections %}
+    {% include 'home/subdomains/components/section.html' with section=section %}
+  {% endfor %}
+
+<!--
+  <section class="my-5">
+    <h4 class="mb-3">What's happening in Australian proteomics research?</h4>
+    <button
+      class="ga-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#communityConnectModal"
+      disabled
+    >
+      Explore
+    </button>
+    <br>
+    <br>
+    <h4 class="mb-3">What do you think of the Proteomics Lab?</h4>
+    <button
+      class="ga-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#feedbackModal"
+    >
+      Give feedback
+    </button>
+  </section>
+-->
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+  // Ensure that notice links open in new tab if external
+  $('.notice a').each( (i, item) => {
+    if (!item.href.includes("{{ HOSTNAME }}")) {
+      item.target = '_blank';
+    }
+  });
+{% endblock %}

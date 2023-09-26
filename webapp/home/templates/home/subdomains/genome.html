@@ -7,7 +7,6 @@
 {% endcomment %}
 
 {% load static %}
-{% load markdown %}
 
 
 {% block head %}
@@ -16,19 +15,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
-<link rel="stylesheet" href="{% static 'home/css/subdomains/genome.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/subdomains/main.css' %}">
 {% endblock %}
 
 
 {% block content %}
 
 <main>
-  {% include 'home/subdomains/components/info-modal.html' %}
-  {% include 'home/subdomains/components/community-modal.html' %}
+  {% include 'home/subdomains/components/genome-community-modal.html' %}
+  {% include 'home/subdomains/components/info-modal.html' with subdomain='genome' site_name="Genome Lab" researchers="genomics" %}
   {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
 
-  <section  class="header-genome australia d-flex align-items-center h-100">
-    <img id="header-logo" src="{% static 'home/img/subdomains/genome/logo.png' %}" alt="Galaxy Australia Logo">
+  <section  class="header-subdomain australia d-flex align-items-center h-100">
+    <img id="header-logo" src="{% static 'home/img/subdomains/'|add:name|add:'/logo.png' %}" alt="Galaxy Australia Logo">
     GENOME LAB
   </section>
 
@@ -37,6 +36,7 @@
 
     <p>
       Welcome to the Galaxy Australia Genome Lab. Get quick access to tools, workflows and tutorials for genome assembly and annotation.
+      <br>
       <a
         href="#"
         data-bs-toggle="modal"

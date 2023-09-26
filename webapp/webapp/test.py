@@ -1,12 +1,16 @@
 """Custom test components for GMS."""
 
 import os
+import logging
 import shutil
 from django.conf import settings
 from django.test import TestCase as DjangoTestCase
 
 
 class TestCase(DjangoTestCase):
+
+    def setUp(self):
+        logging.getLogger('django').setLevel(logging.ERROR)
 
     def tearDown(self) -> None:
         settings_module = os.environ.get('DJANGO_SETTINGS_MODULE')

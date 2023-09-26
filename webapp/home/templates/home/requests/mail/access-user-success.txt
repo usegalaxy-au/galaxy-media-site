@@ -1,0 +1,7 @@
+Dear {{ name }},
+
+Your request for {{ resource_name }} access has been approved.
+You should now be able to access {{ resource_name }} on Galaxy Australia.
+
+Regards,
+The Galaxy Australia Team

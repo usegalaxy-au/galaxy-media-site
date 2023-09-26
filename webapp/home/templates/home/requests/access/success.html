@@ -16,9 +16,16 @@
     <br>
 
     <p class="alert alert-success" style="max-width: 600px;">
-      If we find a Galaxy Australia account registed to {{ email }}, an
-      administrator will enable AlphaFold access for this account.
+      If we find a Galaxy Australia account registered to {{ form.email }}, an
+      administrator will enable {{ form.RESOURCE_NAME }} access for this account.
     </p>
+
+    {% if actioned %}
+    <p class="alert alert-warning" style="max-width: 600px;">
+      If you do not receive email confirmation within the next 15 minutes,
+      please check your spam folder.
+    </p>
+    {% endif %}
 
     <div class="my-5">
       <a class="ga-btn" href="/"> Home </a>
