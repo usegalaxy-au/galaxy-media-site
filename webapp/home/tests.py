@@ -163,6 +163,9 @@ class HomeTestCase(TestCase):
     def test_utility_institution(self):
         assert institution.is_institution_email('johndoe@uq.edu.au')
         assert not institution.is_institution_email('johndoe@gmail.com')
+        # Subdomain matching
+        assert institution.is_institution_email('johndoe@sub1.uq.edu.au')
+        assert not institution.is_institution_email('johndoe@gmail.edu.au')
 
 
 class AccessRequestsTestCase(TestCase):

@@ -198,7 +198,12 @@
   },
   {
     "name": "The University of Queensland",
-    "domains": ["@uq.edu.au", "@students.uq.edu.au"]
+    "domains": [
+      "@uq.edu.au",
+      "@students.uq.edu.au",
+      "@uqconnect.edu.au",
+      "@uq.net.au"
+    ]
   },
   { "name": "Torrens University Australia", "domains": ["@torrens.edu.au"] },
   {
