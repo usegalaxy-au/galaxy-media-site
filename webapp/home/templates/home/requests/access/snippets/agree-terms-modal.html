@@ -90,6 +90,11 @@
         return setTimeout(setEventHandler, 100);
       }
       $('#termsModal iframe').contents().on('scroll', (event) => {
+
+        console.log('scrollFromEnd: ', $(termsContainer)[0].scrollHeight);
+        console.log('scrollTop: ', $(termsContainer).scrollTop());
+        console.log('iframe height: ', $('#termsModal iframe').height());
+
         const scrollFromEnd = $(termsContainer)[0].scrollHeight
         - $(termsContainer).scrollTop()
         - $('#termsModal iframe').height();
