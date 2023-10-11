@@ -90,11 +90,6 @@
         return setTimeout(setEventHandler, 100);
       }
       $('#termsModal iframe').contents().on('scroll', (event) => {
-
-        console.log('scrollFromEnd: ', $(termsContainer)[0].scrollHeight);
-        console.log('scrollTop: ', $(termsContainer).scrollTop());
-        console.log('iframe height: ', $('#termsModal iframe').height());
-
         const scrollFromEnd = $(termsContainer)[0].scrollHeight
         - $(termsContainer).scrollTop()
         - $('#termsModal iframe').height();
@@ -103,7 +98,7 @@
       termsContainer.css('margin', 'auto');
     }
 
-    $('#termsModal iframe').contents().ready(setEventHandler);
+    $('#termsModal iframe').contents().ready(() => setTimeout(setEventHandler, 500));
 
     // Enable terms checkbox so validation messages can be displayed
     $('form').submit( () => {
