@@ -2,6 +2,7 @@
 
 import os
 import logging
+import pprint
 from django.conf import settings
 from django.template import TemplateDoesNotExist, loader
 from django.shortcuts import render, get_object_or_404
@@ -9,6 +10,7 @@ from django.http import Http404
 from django.template.loader import get_template
 
 from utils import aaf
+from utils.exceptions import ResourceAccessError
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
@@ -139,7 +141,18 @@ def user_request_resource_access(request, resource):
     if request.POST:
         form = Form(request.POST)
         if form.is_valid():
-            actioned = form.action(request, resource)
+            try:
+                actioned = form.action(request, resource)
+            except ResourceAccessError as exc:
+                logger.error(
+                    f"ResourceAccessError for {resource}:\n{exc}"
+                    f"Form data:\n{pprint.pformat(form.cleaned_data)}")
+                return report_exception_response(
+                    request,
+                    exc,
+                    title=("Sorry, an error occurred while actioning your"
+                           " request"),
+                )
             success_template = 'home/requests/access/success.html'
             return render(request, success_template, {
                 'form': form.cleaned_data,
@@ -148,6 +161,14 @@ def user_request_resource_access(request, resource):
         logger.info("Form was invalid. Returning invalid feedback.")
     template = f'home/requests/access/{resource}.html'
     return render(request, template, {'form': form})
+
+
+def report_exception_response(request, exc, title=None):
+    """Report an exception to the user."""
+    return render(request, 'error.html', {
+        'message': str(exc),
+        'title': title or "Sorry, an error has occurred",
+    })
 
 
 def page(request, *args):
