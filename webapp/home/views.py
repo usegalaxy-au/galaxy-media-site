@@ -210,13 +210,3 @@ def australian_institutions(request):
     return render(request, 'home/au-institutions.html', {
         'institutions': get_institution_list(),
     })
-
-
-def vgp_workflows(request):
-    """Show VGP workflows."""
-    path = loader.get_template('home/docs/vgp-workflows.md').origin.name
-    with open(path) as f:
-        text = f.read()
-    return render(request, 'home/docs/vgp-workflows.html', {
-        'md_text': text,
-    })
