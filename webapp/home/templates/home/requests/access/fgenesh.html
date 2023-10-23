@@ -1,0 +1,210 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/tree-list.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container mt-4">
+
+  <div class="mb-10">
+    <h2> Galaxy Australia FGENESH++ Access Request </h2>
+    <small>
+      <a href="/request">
+        <span class="material-icons">arrow_back</span>
+        Back to support menu
+      </a>
+    </small>
+  </div>
+
+  <p class="lead">
+    FGENESH++ is a bioinformatics pipeline for automatic prediction of genes in eukaryotic genomes.  It can produce fully automated genome annotations of a quality similar to manual annotation, and is extremely fast compared to some other automated genome annotation pipelines.
+  </p>
+  <p class="lead mb-10">
+    FGENESH++ is available on Galaxy Australia for Australian researchers. Please apply for access, using your institutional email. The following sign up form is to confirm eligibility for access to the Australian FGENESH++ Service on Galaxy Australia.
+  </p>
+
+
+  <form method="post">
+
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {% include 'home/requests/access/snippets/personal-details-fields.html' %}
+
+    <hr>
+
+    <div class="row mb-5">
+      <h3 class="mb-3">
+        Your research (optional)
+      </h3>
+
+      <div class="col-sm-12">
+        <label for="researchDescriptionInput" class="form-label">
+          Please provide a brief description of your research
+        </label>
+        {{ form.research_description.errors }}
+        <input
+          class="form-control"
+          type="text"
+          id="researchDescriptionInput"
+          name="research_description"
+          maxlength="{{ forms.research_description.max_length }}"
+          placeholder="e.g. Genomics analysis of corals and sponges for reef conservations purposes"
+          value="{{ form.research_description.value|default_if_none:'' }}"
+        />
+      </div>
+
+      <div class="col-sm-12 mb-5">
+        <label for="researchTopicsInput" class="form-label">
+          Which broad topics best describe your research?
+        </label>
+        {{ form.research_topics.errors }}
+        <input
+          class="form-control"
+          type="text"
+          id="researchTopicsInput"
+          name="research_topics"
+          maxlength="{{ forms.research_topics.max_length }}"
+          placeholder="e.g. Agricultural research, biotechnology, freshwater biology, evolutionary biology"
+          value="{{ form.research_topics.value|default_if_none:'' }}"
+        />
+      </div>
+
+      <hr>
+
+      <div class="col-sm-12">
+        <h3 class="mb-3">Select matrices</h3>
+
+        <p>
+          An annotation matrix for your species (or a related species) may need
+          to be installed prior to use. This will be used as a reference to
+          annotate your genome, so you should nominate a matrix with the closest
+          taxonomic proximity to your subject species. If you have more than
+          one species of interest, you can select multiple matrices.
+        </p>
+
+        <div id="matricesValue" style="display: none;">{{ form.matrices.value|default_if_none:"[]" }}</div>
+
+        {{ form.matrices.errors }}
+
+        <p>
+          <button class="ga-btn btn-sm" type="button" onclick="expandTreeSelected();">Show selection</button>
+          <button class="ga-btn btn-sm" type="button" onclick="clearTreeSelection();">Clear selection</button>
+          <button class="ga-btn btn-sm" type="button" onclick="resetTreeList();">Collapse tree</button>
+        </p>
+
+        <div id="treeSearch" class="mb-2">
+          <input
+            class="form-control"
+            type="text"
+            id="treeSearchInput"
+            placeholder="Search matrices by name"
+            onkeyup="debouncedSearchTree(this.value);"
+          />
+          <div class="dropdown">
+          </div>
+        </div>
+
+        <p class="lead" id="matrixCount">
+          <span>0</span> matrices selected
+        </p>
+
+        <ul id="selectedMatrices"></ul>
+
+        {{ form.render_matrix_field|safe }}
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-5">
+      <div class="col-sm-12 mb-5">
+        <p>
+          The FGENESH++ Terms of Use and Acknowledgement Statement
+          are required to be acknowledged prior to access.
+        </p>
+
+        {% include 'home/requests/access/snippets/agree-terms-modal.html' %}
+
+      </div>
+
+      <hr>
+
+      <div class="col-sm-12">
+        <p>
+          The Australian FGENESH++ Service is provided by the Australian
+          Biocommons in collaboration with and underpinned by resources
+          provided by Pawsey Supercomputing Centre and Bioplatforms Australia.
+          When papers acknowledge the Australian FGENESH++ Service, they
+          support continued research infrastructure investments by institutions
+          and governments. Please acknowledge the Australian FGENESH++ Service
+          with the following statement:
+        </p>
+        <blockquote class="blockquote">
+          This work was supported by the Australian FGENESH++ Service
+          (<a
+            href="https://biocommons.org.au/fgenesh-plus-plus"
+            target="_blank"
+          >https://biocommons.org.au/fgenesh-plus-plus</a>)
+          provided by the Australian BioCommons and Galaxy Australia.
+        </blockquote>
+        <div class="form-check">
+          {{ form.agree_acknowledge.errors }}
+          <input
+            class="form-check-input"
+            id="agreeAcknowledgeInput"
+            name="agree_acknowledge"
+            type="checkbox"
+            required
+            {% if form.agree_acknowledge.value %}checked{% endif %}
+          />
+          <label for="agreeAcknowledgeInput" class="form-check-label">
+            I, the Principal Investigator or End User will cite the use of the
+            FGENESH++ Service using the above acknowledgement statement and
+            web address.
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="container mb-10">
+      <b>Privacy Collection Notice:</b> By completing this form you agree that your
+      responses will be provided to the Australian BioCommons and Galaxy
+      Australia and will be used solely for the purposes of determining
+      suitability for access to the Australian FGENESH++ Service. Your
+      responses will be protected against unauthorised access and use; providing
+      your name is required to enable any follow ups. For more information,
+      please see the
+      <a href="https://www.biocommons.org.au/privacy/">
+        BioCommons Privacy Statement</a>.
+    </div>
+
+    <div class="row mb-10">
+      <div class="col text-center">
+        <button class='ga-btn' type="submit" onclick="showTermsInput();"> Submit </button>
+      </div>
+    </div>
+  </form>
+</main>
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'home/js/tree-list.js' %}"></script>
+<script src="{% static 'home/js/forms.js' %}"></script>
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}

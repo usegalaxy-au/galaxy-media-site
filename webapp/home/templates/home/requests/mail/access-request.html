@@ -1,0 +1,54 @@
+{% load get_type %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ resource_name }} Access Request</title>
+  </head>
+  <body>
+
+  {% if exception %}
+  <h3>Error actioning {{ resource_name }} access request - Galaxy Australia</h3>
+  <em style="font-size: 16pt; color: firebrick;">
+    &#128128; {{ failed_message }}
+  </em>
+  <p>
+    Exception: <br>
+    <code style="background-color: #f0d5cc; color: #c43f1a; font-size: 12pt; padding: 8px; max-height: 600px; max-width: 80%; overflow: auto;">
+      {{ exception }}
+    </code>
+  </p>
+  {% else %}
+  <h3>New {{ resource_name }} access request submitted - Galaxy Australia</h3>
+  <em style="font-size: 16pt; color: forestgreen;">
+    &#129395; {{ success_message }}
+  </em>
+  {% endif %}
+
+  <table style="width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px auto; text-align: center;">
+    <tbody>
+
+      {% for name, field in data.items %}
+      <tr>
+        <th style="padding: 10px; border: 1px solid grey; font-weight: bold;"> {{ field.label }} </th>
+        <td style="padding: 10px; border: 1px solid grey;">
+          {% if field.value %}
+          {% if field.value|get_type == "list" %}
+            <ul>
+              {{ field.value|unordered_list }}
+            </ul>
+          {% else %}
+            {{ field.value }}
+          {% endif %}
+          {% else %}
+          None
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+  </body>
+</html>

@@ -7,7 +7,8 @@ import sys
 def main():
     """Run administrative tasks."""
     if 'test' in sys.argv:
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'webapp.settings.test'
+        if 'manage.py' in sys.argv[sys.argv.index('test') - 1]:
+            os.environ['DJANGO_SETTINGS_MODULE'] = 'webapp.settings.test'
     else:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webapp.settings.prod')
     try:

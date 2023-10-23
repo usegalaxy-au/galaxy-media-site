@@ -1,0 +1,62 @@
+<div class="row mb-10">
+  <div class="col-sm-12">
+    <label for="nameInput" class="form-label">Name</label>
+    {{ form.name.errors }}
+    <input class="form-control" id="nameInput" type="text" name="name"
+      value="{{form.name.value|default_if_none:''}}" required
+    >
+  </div>
+
+  <div class="col-sm-12">
+    <label for="emailInput" class="form-label">Galaxy account email</label>
+    {{ form.email.errors }}
+    <input class="form-control" id="emailInput" type="email" name="email"
+      value="{{form.email.value|default_if_none:''}}"
+      aria-describedby="emailHelp"
+      onfocus="$('#emailHelp').show();"
+      autocomplete="off"
+      required
+    >
+    <div
+      class="form-text"
+      id="emailHelp"
+      style="display: none;"
+    >
+      <div class="alert alert-danger">
+        <ul style="margin: 0;">
+          <li>
+            Your Galaxy Australia account must be registered to this email
+            for us to provide access
+          </li>
+          <li>
+            Go to User > Preferences > Manage information to see your registered
+            email address on usegalaxy.org.au
+          </li>
+          <li>
+            Access will be provided only to recognised
+            <a href="/institutions">
+              Australian institution email addresses
+            </a>
+          </li>
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <label for="institutionInput" class="form-label">Institution</label>
+    {{ form.institution.errors }}
+    <input
+      class="form-control"
+      id="institutionInput"
+      name="institution"
+      type="text"
+      value="{{form.institution.value|default_if_none:''}}"
+      aria-describedby="institutionHelp"
+      required
+    />
+    <div class="form-text" id="institutionHelp">
+      Your department, organization or research institute
+    </div>
+  </div>
+</div>

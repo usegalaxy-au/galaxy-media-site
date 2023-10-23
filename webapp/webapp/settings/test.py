@@ -23,17 +23,17 @@ TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
+MOCK_GALAXY_INTERACTIONS = True
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'test.db.sqlite3',
     }
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
 LOGGING = config.configure_logging(LOG_ROOT)
 
-MEDIA_ROOT = Path('/tmp/gms-media')
+MEDIA_ROOT = Path('/tmp/gms-test-media')
