@@ -1,0 +1,12 @@
+Dear {{ recipient.username }},
+
+Galaxy Australia seeks to continually improve and deliver value to researchers across Australia. Your feedback is crucial in this pursuit. If you have a spare couple of minutes, we would appreciate your time in the completion of a short 2 minute survey. 
+
+Survey link: https://www.surveymonkey.com/r/GA-NPS-2023 
+
+Responses are anonymous and the closing date for responses is 20th November 2023.
+If you have any queries regarding this email, please don't hesitate to contact us at: help@genome.edu.au 
+
+Many thanks in advance for your assistance.
+
+Galaxy Australia Administrators
