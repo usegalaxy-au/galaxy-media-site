@@ -10,3 +10,7 @@ If you have any queries regarding this email, please don't hesitate to contact u
 Many thanks in advance for your assistance.
 
 Galaxy Australia Administrators
+
+
+You received this email because you registered an account with this email address on https://usegalaxy.org.au.
+If you no longer wish to receive marketing communications from Galaxy Australia, please unsubscribe here: {{ unsubscribe_href }}

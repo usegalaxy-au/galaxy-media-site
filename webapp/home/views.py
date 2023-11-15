@@ -10,6 +10,7 @@ from django.http import Http404
 from django.template.loader import get_template
 
 from utils import aaf
+from utils import unsubscribe
 from utils.exceptions import ResourceAccessError
 from utils.institution import get_institution_list
 from events.models import Event
@@ -165,7 +166,7 @@ def user_request_resource_access(request, resource):
 
 def report_exception_response(request, exc, title=None):
     """Report an exception to the user."""
-    return render(request, 'error.html', {
+    return render(request, 'generic.html', {
         'message': str(exc),
         'title': title or "Sorry, an error has occurred",
     })
@@ -209,4 +210,17 @@ def australian_institutions(request):
     """Show list of recognised AU research institution email domains."""
     return render(request, 'home/au-institutions.html', {
         'institutions': get_institution_list(),
+    })
+
+
+def unsubscribe_user(request):
+    """Add user hash to unsubscribe list."""
+    email_hash = request.GET.get('id')
+    if not (request.method == 'GET' and email_hash):
+        raise Http404
+    unsubscribe.add(email_hash)
+    return render(request, 'generic.html', {
+        'title': "Unsubscribe successful",
+        'message': ("You will no longer receive marketing emails from Galaxy"
+                    " Australia."),
     })

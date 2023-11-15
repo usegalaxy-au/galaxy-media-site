@@ -5,6 +5,8 @@ webapp/webapp/logs/
 webapp/webapp/media/
 webapp/webapp/static/
 fetch_taxonomies/outputs/
+scripts/mail/unsubscribed/*.txt
+scripts/mail/*.csv
 
 # Deploy conf
 .vault.pass
