@@ -42,9 +42,10 @@ tools = [
         "title_html": '<code>MaxQuant</code>',
         "description_html": '<p>MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.</p>',
         "inputs": [
-            {'datatypes': ['thermo.raw']},
-            {'datatypes': ['mzML']},
-            {'datatypes': ['mzXML']},
+            {
+                'datatypes': ['thermo.raw, mzML, mzXML'],
+                'label': 'Thermo raw, mzML, or mzXML files'
+            },
             {
                 'datatypes': ['tabular'],
                 'label': 'Experimental design template',
