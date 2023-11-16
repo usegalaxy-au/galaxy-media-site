@@ -62,7 +62,7 @@ tools = [
                 'label': 'Indexed mzML',
             },
             {
-                'datatypes': ['fasta,uniprotxml'],
+                'datatypes': ['fasta', 'uniprotxml'],
                 'label': 'MS Protein Search Database: UniProt Xml or Fasta',
             },
         ],
