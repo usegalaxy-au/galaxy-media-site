@@ -44,7 +44,7 @@ tools = [
         "inputs": [
             {
                 'datatypes': ['thermo.raw, mzML, mzXML'],
-                'label': 'Thermo raw, mzML, or mzXML files'
+                'label': 'Mass spectrometry data sets: Thermo raw, mzML, or mzXML files'
             },
             {
                 'datatypes': ['tabular'],
