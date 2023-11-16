@@ -3,8 +3,11 @@
 """Send bulk email to Galaxy Australia users.
 
 Users are defined in the ``RECIPIENTS_CSV`` file.
-Unsubscribed users are listed in `unsubscribed.txt` with an md5 hash of
-their email address. This list is cross-referenced when sending emails. An
+Unsubscribed users are listed in files from various sources in the
+unsubscribed/ dir. These are manually updated from SMTP2GO correspondence, and
+automatically from the GMS unsubscribe list.
+
+This list is cross-referenced when sending emails. An
 unsubscribe link is provided in the email footer.
 
 Be VERY CAREFUL running this script, as mistakes will obviously be distributed
@@ -12,8 +15,8 @@ to thousands of Galaxy AU users!
 
 - Set ``SUBJECT``
 - Update ``BODY_TEXT_TEMPLATE`` and ``BODY_HTML_TEMPLATE``
-- Update ``RECIPIENTS_CSV`` file (see ``export_users_csv.sh``)
-- Ensure that lists in ``unsubscribe/`` are updated.
+- Update ``RECIPIENTS_CSV`` file (created with ``export_users_csv.sh``)
+- Ensure that lists in ``unsubscribed/`` are updated.
 
 When running with ``--commit``, be sure to run with ``nohup`` and expect ~1hr
 per 1000 emails sent.
@@ -21,11 +24,11 @@ per 1000 emails sent.
 
 import argparse
 import chardet
-import csv
 import smtplib
 import os
 import sys
 import time
+import pandas as pd
 from dotenv import load_dotenv
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -50,10 +53,11 @@ SMTP_TEST_USERNAME = os.getenv('MAIL_SMTP_USERNAME')
 SMTP_TEST_PASSWORD = os.getenv('MAIL_SMTP_PASSWORD')
 
 RECIPIENTS_CSV = Path(__file__).parent / 'users_2023.csv'
+RECIPIENTS_MASTER_CSV = Path(__file__).parent / 'recipient_records.csv'
 BODY_TEXT_TEMPLATE = Path(__file__).parent / 'templates/body.txt'
 BODY_HTML_TEMPLATE = Path(__file__).parent / 'templates/body.html'
-UNSUBSCRIBED_HASH_FILE = Path(__file__).parent / 'unsubscribed/hash.txt'
 UNSUBSCRIBED_EMAIL_FILES = [
+    # This file is written to by GMS:
     Path(__file__).parent / 'unsubscribed/emails.txt',
     # These files are sent to us from SMTP2GO:
     Path(__file__).parent / 'unsubscribed/spam_emails.txt',
@@ -79,24 +83,30 @@ def main():
     """Script entrypoint. Comment in/out these lines to test/commit."""
     args = parse_args()
 
-    if args.dry:
-        print_peek_recipients()
-        sys.exit(0)
-
     if args.test:
-        send_test_mail()
+        return send_test_mail()
 
     if args.test_server:
-        send_bulk_mail(
+        return send_bulk_mail(
             SMTP_HOSTNAME,
             SMTP_PORT,
             SMTP_USERNAME,
             SMTP_PASSWORD,
             test=True)
 
+    if args.test_recipients:
+        return test_recipient_list()
+
     if args.commit:
-        send_bulk_mail(
-            SMTP_HOSTNAME, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD)
+        return send_bulk_mail(
+            SMTP_HOSTNAME,
+            SMTP_PORT,
+            SMTP_USERNAME,
+            SMTP_PASSWORD,
+            write=True,
+        )
+
+    print("No action specified. Please see --help for options.")
 
 
 def parse_args():
@@ -113,7 +123,7 @@ def parse_args():
         action='store_true',
         help="Send mail with prod server to test recipients")
     parser.add_argument(
-        '--dry',
+        '--test-recipients',
         action='store_true',
         help="Show parsed recipients list peek and exit")
     parser.add_argument(
@@ -134,7 +144,15 @@ def send_test_mail():
     )
 
 
-def send_bulk_mail(hostname, port, username, password, limit=None, test=False):
+def send_bulk_mail(
+    hostname,
+    port,
+    username,
+    password,
+    limit=None,
+    test=False,
+    write=False,
+):
     """Send SMTP mail to recipient list."""
     # Check SMTP vars are available:
     print("\nRead mail credentials:")
@@ -150,16 +168,16 @@ def send_bulk_mail(hostname, port, username, password, limit=None, test=False):
         print(f"{name}: {value}")
 
     k = 0  # messages in connection
-    recipients = build_recipient_list(test, limit)
+    recipients = build_recipient_df(test=test, limit=limit, write=write)
     n_recipients = len(recipients)
 
     if '-y' not in sys.argv:
-        input(f"Sending mail to {len(recipients)} recipients.\n\n"
+        input(f"Sending mail to {n_recipients} recipients.\n\n"
               "Press enter to continue...\n\n> ")
 
     server = smtp_connect(hostname, port, username, password)
 
-    for i, recipient in enumerate(recipients):
+    for ix, recipient in recipients.iterrows():
         email = recipient['email']
         if '@' not in email or '.' not in email:
             print(f"Skipping recipient with invalid email: {email}",
@@ -168,7 +186,7 @@ def send_bulk_mail(hostname, port, username, password, limit=None, test=False):
 
         msg = build_smtp_body(recipient)
 
-        print(f"Sending mail to recipient {i + 1}/{n_recipients} {email}...",
+        print(f"Sending mail to recipient {ix + 1}/{n_recipients} {email}...",
               flush=True)
         server.sendmail(FROM_ADDRESS, email, msg.as_string())
         k += 1
@@ -198,19 +216,112 @@ def smtp_connect(hostname, port, username, password):
     return server
 
 
-def build_recipient_list(test, limit):
+def test_recipient_list():
+    """Test parsing of recipient and excluded lists."""
+    recipients = build_recipient_df(write=True, test=True)
+    print(f'Collected {len(recipients)} recipients:')
+    i = 0
+    for _, recipient in recipients.iterrows():
+        i += 1
+        print(recipient['username'].ljust(40) + recipient['email'])
+        if i > 5:
+            print('...')
+            break
+    print()
+
+
+def build_recipient_df(test=False, limit=None, write=False):
+    """Build dataframe of recipients from csv and exclude lists.
+
+    If write=True, update the master recipient CSV with new recipients and
+    exclusion records.
+    """
+    print("Building recipient list...")
     recipients = (
-        TEST_RECIPIENTS
-        if test else
+        pd.DataFrame.from_records(TEST_RECIPIENTS)
+        if test and not write else
         read_recipients(limit=limit)
     )
     exclude_list = read_exclude_email_list()
-    exclude_hash_list = read_exclude_email_hash_list()
-    return [
-        r for r in recipients
-        if r['email'] not in exclude_list
-        and md5(r['email'].encode()).hexdigest() not in exclude_hash_list
-    ]
+    exclude_list_flat = read_exclude_email_list(flat=True)
+    if write:
+        recipient_table = write_recipient_list(
+            recipients, exclude_list, test=test)
+        filtered_recipients = recipient_table[
+            recipient_table['excluded_by'].isna()
+        ]
+    else:
+        filtered_recipients = recipients[
+            ~recipients['email'].isin(exclude_list_flat)
+        ]
+    print(f"\nExcluded {len(recipients) - len(filtered_recipients)}"
+          f"/{len(recipients)} recipients")
+    return filtered_recipients
+
+
+def write_recipient_list(recipients, excluded, test=False):
+    """Update the master recipient list for future reference.
+
+    This sheet will contain all records for unsubscribed, bounced, spam and a
+    hash table for email lookup that is user by GMS for unsubscribe requests.
+    """
+    csv_file = RECIPIENTS_MASTER_CSV
+    if test:
+        csv_file = csv_file.parent / f'test_{csv_file.name}'
+    cols = ['username', 'email', 'hash', 'excluded_by']
+    if csv_file.exists():
+        df = pd.read_csv(csv_file)
+    else:
+        df = pd.DataFrame(columns=cols)
+
+    # Add new recipients to master list
+    df_r = recipients[['username', 'email']]
+    df_new_recipients = df_r[~df_r['email'].isin(df['email'])]
+    df_new_recipients['hash'] = df_new_recipients['email'].apply(hash_email)
+    df_new = pd.concat([df, df_new_recipients])
+
+    excluded_rows = []
+    emails_not_found = []
+    for src_filename, email_list in excluded.items():
+        for email in email_list:
+            username = None
+            user_row = df_new[df_new['email'] == email]
+            if len(user_row):
+                username = user_row['username'].values[0]
+            else:
+                emails_not_found.append(f"{email} ({src_filename})")
+                continue
+            excluded_rows.append({
+                'username': username,
+                'email': email,
+                'hash': None,
+                'excluded_by': src_filename,
+            })
+
+    if emails_not_found:
+        print(f"\nWARNING: {len(emails_not_found)} emails not found in "
+              f"master recipient list. This is a no-op, but it should not"
+              " happen because these emails originate from the master list."
+              " Most likely this is because Galaxy AU dispatched emails to"
+              " these users for some other reason:"
+              )
+        print(', '.join(emails_not_found))
+    df_ex = pd.DataFrame.from_records(excluded_rows, columns=cols)
+
+    # Update df rows matching excluded recipients
+    for _, row in df_ex.iterrows():
+        df_new.loc[
+            df_new['email'] == row['email'], 'excluded_by'
+        ] = row['excluded_by']
+
+    df_new.to_csv(csv_file, index=False)
+
+    return df_new
+
+
+def hash_email(email):
+    """Generate MD5 hash from email string."""
+    return md5(email.encode()).hexdigest()
 
 
 def build_smtp_body(recipient):
@@ -242,52 +353,39 @@ def build_smtp_body(recipient):
 
 def read_recipients(limit=None):
     """Read recipients from csv to dictionary."""
-    print("\nReading recipients list...\n")
-    recipients = []
+    print(f"Reading recipients from {RECIPIENTS_CSV}...")
     with open(RECIPIENTS_CSV, 'rb') as f:
         encoding = chardet.detect(f.read())['encoding']
-    with open(RECIPIENTS_CSV, newline='', encoding=encoding) as f:
-        reader = csv.DictReader(f)
-        for i, row in enumerate(reader):
-            if limit and i >= limit:
-                break
-            recipients.append(row)
+    with open(RECIPIENTS_CSV, encoding=encoding) as f:
+        recipients = pd.read_csv(f)
+    if limit:
+        recipients = recipients.head(limit)
+    recipients['email'] = recipients['email'].str.lower()
     return recipients
 
 
-def read_exclude_email_list():
+def read_exclude_email_list(flat=False):
     """Combine emails to skip from unsubscribe/spam lists."""
-    skip_emails = []
+    skip_emails = {}
     for path in UNSUBSCRIBED_EMAIL_FILES:
+        print(f"Reading excluded recipients from {path.name}...")
         with open(path) as f:
-            skip_emails += [
-                line.strip()
+            skip_emails[path.name] = [
+                line.strip().lower()
                 for line in f.readlines()
                 if line.strip()
                 and not line.startswith('#')
             ]
-    return skip_emails
 
+    if not flat:
+        return skip_emails
 
-def read_exclude_email_hash_list():
-    """Read email hashes from unsibscribe hash file."""
-    with open(UNSUBSCRIBED_HASH_FILE) as f:
-        skip_hashes = [
-            line.strip()
-            for line in f.readlines()
-            if line.strip()
-            and not line.startswith('#')
-        ]
-    return skip_hashes
+    flattened = []
+    for email_list in skip_emails.values():
+        flattened += email_list
 
-
-def print_peek_recipients():
-    """List recipients from csv."""
-    recipients = read_recipients()
-    print(f"Read {len(recipients)} recipients from {RECIPIENTS_CSV}")
-    for recipient in recipients[:5]:
-        print(recipient['username'].ljust(40) + recipient['email'])
+    return flattened
 
 
 if __name__ == '__main__':
-    main()
+    test_recipient_list()
