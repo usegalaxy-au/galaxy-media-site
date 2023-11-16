@@ -35,7 +35,7 @@ STATIC_ROOT = BASE_DIR / 'webapp/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'webapp/media'
 LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
-UNSUBSCRIBED_HASH_FILE = BASE_DIR / '../scripts/mail/unsubscribed/hash.txt'
+RECIPIENT_MASTER_CSV = BASE_DIR / '../scripts/mail/recipient_records.csv'
 
 # Hostnames
 ALLOWED_HOSTS = [

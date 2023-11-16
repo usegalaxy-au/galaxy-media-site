@@ -2,23 +2,20 @@
 
 """Send bulk email to Galaxy Australia users.
 
-IMPORTANT: this should be run on the media site server only. If you REALLY have
-to run this locally, make sure that you copy the unsubscribed/emails.txt list
-from the media site to your local unsubscribed/emails.txt file, or unsubscribed
-users will be emailed again! After running, make sure that you update the
-``RECIPIENTS_MASTER_CSV`` file on the media site, so that the media site can
-look up the hash table to unsubscribe users from your email campaign.
+IMPORTANT: this should be run on the GMS server only. If you REALLY have
+to run this locally, make sure that you copy the ``RECIPIENTS_MASTER_CSV`` file
+from the GMS server. After running, make sure that you update the
+``RECIPIENTS_MASTER_CSV`` file on the GMS server, so that GMS can look up the
+hash table to unsubscribe users.
 
 Intended recipients should be defined in the ``RECIPIENTS_CSV`` file.
 Unsubscribed users are listed in files from various sources in the
-unsubscribed/ dir. These are manually updated from SMTP2GO correspondence, and
-from the GMS unsubscribe list.
+unsubscribed/ dir. These are manually updated from SMTP2GO correspondence.
 
-This list is cross-referenced when sending emails.
 An unsubscribe link is provided in the email footer, which points to a GMS
 endpoint where the given email hash will be looked up in the
-``RECIPIENTS_MASTER_CSV`` hash table and added to the
-``unsubscribed/emails.txt`` list.
+``RECIPIENTS_MASTER_CSV`` hash table and a record will be added to the
+'excluded_by' column.
 
 Be VERY CAREFUL running this script - any mistakes will of course be echoed
 to thousands of Galaxy AU users.
@@ -63,13 +60,11 @@ SMTP_TEST_PORT = os.getenv('MAIL_SMTP_PORT')
 SMTP_TEST_USERNAME = os.getenv('MAIL_SMTP_USERNAME')
 SMTP_TEST_PASSWORD = os.getenv('MAIL_SMTP_PASSWORD')
 
-RECIPIENTS_CSV = Path(__file__).parent / 'users_2023.csv'
+RECIPIENTS_CSV = Path(__file__).parent / 'users.csv'
 RECIPIENTS_MASTER_CSV = Path(__file__).parent / 'recipient_records.csv'
 BODY_TEXT_TEMPLATE = Path(__file__).parent / 'templates/body.txt'
 BODY_HTML_TEMPLATE = Path(__file__).parent / 'templates/body.html'
 UNSUBSCRIBED_EMAIL_FILES = [
-    # This file is written to by GMS:
-    Path(__file__).parent / 'unsubscribed/emails.txt',
     # These files are sent to us from SMTP2GO:
     Path(__file__).parent / 'unsubscribed/spam_emails.txt',
     Path(__file__).parent / 'unsubscribed/bounced_emails.txt',
@@ -122,13 +117,11 @@ def main():
 
 def parse_args():
     """Parse command line arguments to determine appropriate action."""
-    parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         '--test',
         action='store_true',
-        help="Send test mail to recipients")
+        help="Send test mail to recipients with configured mailtrap.io server")
     parser.add_argument(
         '--test-server',
         action='store_true',
@@ -146,6 +139,10 @@ def parse_args():
 
 def send_test_mail():
     """Send bulk mail with test SMTP server."""
+    if 'mailtrap' not in SMTP_TEST_HOSTNAME:
+        raise ValueError(
+            "SMTP_TEST_HOSTNAME must be set to a mailtrap.io hostname."
+            " Please check MAIL_HOSTNAME value in .env file.")
     send_bulk_mail(
         SMTP_TEST_HOSTNAME,
         SMTP_TEST_PORT,
@@ -182,10 +179,6 @@ def send_bulk_mail(
     recipients = build_recipient_df(test=test, limit=limit, write=write)
     n_recipients = len(recipients)
 
-    if '-y' not in sys.argv:
-        input(f"Sending mail to {n_recipients} recipients.\n\n"
-              "Press enter to continue...\n\n> ")
-
     server = smtp_connect(hostname, port, username, password)
 
     for ix, recipient in recipients.iterrows():
@@ -197,7 +190,7 @@ def send_bulk_mail(
 
         msg = build_smtp_body(recipient)
 
-        print(f"Sending mail to recipient {ix + 1}/{n_recipients} {email}...",
+        print(f"Sending mail to recipient {ix}/{n_recipients} {email}...",
               flush=True)
         server.sendmail(FROM_ADDRESS, email, msg.as_string())
         k += 1
@@ -254,23 +247,19 @@ def build_recipient_df(test=False, limit=None, write=False):
         read_recipients(limit=limit)
     )
     exclude_list = read_exclude_email_list()
-    exclude_list_flat = read_exclude_email_list(flat=True)
-    if write:
-        recipient_table = write_recipient_list(
-            recipients, exclude_list, test=test)
-        filtered_recipients = recipient_table[
-            recipient_table['excluded_by'].isna()
-        ]
-    else:
-        filtered_recipients = recipients[
-            ~recipients['email'].isin(exclude_list_flat)
-        ]
+    recipient_table = write_recipient_table(
+        recipients, exclude_list, test=test, write=write)
+    filtered_recipients = recipient_table[
+        recipient_table['excluded_by'].isna()
+    ][
+        recipient_table['email'].isin(recipients['email'])
+    ]
     print(f"\nExcluded {len(recipients) - len(filtered_recipients)}"
           f"/{len(recipients)} recipients")
     return filtered_recipients
 
 
-def write_recipient_list(recipients, excluded, test=False):
+def write_recipient_table(recipients, excluded, test=False, write=True):
     """Update the master recipient list for future reference.
 
     This sheet will contain all records for unsubscribed, bounced, spam and a
@@ -325,7 +314,9 @@ def write_recipient_list(recipients, excluded, test=False):
             df_new['email'] == row['email'], 'excluded_by'
         ] = row['excluded_by']
 
-    df_new.to_csv(csv_file, index=False)
+    if write:
+        print(f"\nWriting {len(df_new)} recipients to {csv_file.name}...")
+        df_new.to_csv(csv_file, index=False)
 
     return df_new
 
@@ -364,7 +355,7 @@ def build_smtp_body(recipient):
 
 def read_recipients(limit=None):
     """Read recipients from csv to dictionary."""
-    print(f"Reading recipients from {RECIPIENTS_CSV}...")
+    print(f"Reading recipients from {RECIPIENTS_CSV.name}...")
     with open(RECIPIENTS_CSV, 'rb') as f:
         encoding = chardet.detect(f.read())['encoding']
     with open(RECIPIENTS_CSV, encoding=encoding) as f:
