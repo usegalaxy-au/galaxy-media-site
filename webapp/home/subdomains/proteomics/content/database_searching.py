@@ -43,8 +43,8 @@ tools = [
         "description_html": '<p>MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.</p>',
         "inputs": [
             {
-                'datatypes': ['thermo.raw, mzML, mzXML'],
-                'label': 'Mass spectrometry data sets: Thermo raw, mzML, or mzXML files'
+                'datatypes': ['thermo.raw', 'mzML', 'mzXML'],
+                'label': 'Mass spectrometry data sets'
             },
             {
                 'datatypes': ['tabular'],
@@ -58,7 +58,7 @@ tools = [
         "description_html": '<p>Database search algorithm for high-resolution tandem mass spectra.</p>',
         "inputs": [
             {
-                'datatypes': ['mzml'],
+                'datatypes': ['mzML'],
                 'label': 'Indexed mzML',
             },
             {
@@ -73,7 +73,7 @@ tools = [
         "description_html": '<p>Peptide Identification with MSFragger.</p>',
         "inputs": [
             {
-                'datatypes': ['mzml,mzxml'],
+                'datatypes': ['mzML', 'mzXML'],
                 'label': 'Input File with spectra for MSFragger',
             },
             {
