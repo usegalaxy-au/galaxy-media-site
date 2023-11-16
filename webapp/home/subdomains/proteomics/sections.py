@@ -25,6 +25,40 @@ sections = [
         ],
     },
     {
+        "id": "conversion",
+        "title": "File conversion and modification",
+        "tabs": [
+            {
+                "id": "tools",
+                "title": "Tools",
+                "heading_html": tools_heading_html,
+                "content": content.conversion_modification.tools,
+            },
+            {
+                "id": "help",
+                "title": "Help",
+                "content": content.conversion_modification.help,
+            },
+        ],
+    },
+    {
+        "id": "database",
+        "title": "Database searching",
+        "tabs": [
+            {
+                "id": "tools",
+                "title": "Tools",
+                "heading_html": tools_heading_html,
+                "content": content.database_searching.tools,
+            },
+            {
+                "id": "help",
+                "title": "Help",
+                "content": content.database_searching.help,
+            },
+        ],
+    },
+    {
         "id": "quant_proteomics",
         "title": "Quantitative proteomics",
         "tabs": [
