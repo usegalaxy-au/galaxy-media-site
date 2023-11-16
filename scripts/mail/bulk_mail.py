@@ -399,4 +399,4 @@ def read_exclude_email_list(flat=False):
 
 
 if __name__ == '__main__':
-    test_recipient_list()
+    main()
