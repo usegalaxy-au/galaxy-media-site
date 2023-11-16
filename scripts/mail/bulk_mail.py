@@ -2,24 +2,35 @@
 
 """Send bulk email to Galaxy Australia users.
 
-Users are defined in the ``RECIPIENTS_CSV`` file.
+IMPORTANT: this should be run on the media site server only. If you REALLY have
+to run this locally, make sure that you copy the unsubscribed/emails.txt list
+from the media site to your local unsubscribed/emails.txt file, or unsubscribed
+users will be emailed again! After running, make sure that you update the
+``RECIPIENTS_MASTER_CSV`` file on the media site, so that the media site can
+look up the hash table to unsubscribe users from your email campaign.
+
+Intended recipients should be defined in the ``RECIPIENTS_CSV`` file.
 Unsubscribed users are listed in files from various sources in the
 unsubscribed/ dir. These are manually updated from SMTP2GO correspondence, and
-automatically from the GMS unsubscribe list.
+from the GMS unsubscribe list.
 
-This list is cross-referenced when sending emails. An
-unsubscribe link is provided in the email footer.
+This list is cross-referenced when sending emails.
+An unsubscribe link is provided in the email footer, which points to a GMS
+endpoint where the given email hash will be looked up in the
+``RECIPIENTS_MASTER_CSV`` hash table and added to the
+``unsubscribed/emails.txt`` list.
 
-Be VERY CAREFUL running this script, as mistakes will obviously be distributed
-to thousands of Galaxy AU users!
+Be VERY CAREFUL running this script - any mistakes will of course be echoed
+to thousands of Galaxy AU users.
 
-- Set ``SUBJECT``
-- Update ``BODY_TEXT_TEMPLATE`` and ``BODY_HTML_TEMPLATE``
-- Update ``RECIPIENTS_CSV`` file (created with ``export_users_csv.sh``)
-- Ensure that lists in ``unsubscribed/`` are updated.
+1) Set ``SUBJECT``
+2) Update ``BODY_TEXT_TEMPLATE`` and ``BODY_HTML_TEMPLATE``
+3) Update ``RECIPIENTS_CSV`` file (created with ``export_users_csv.sh``)
+4) Ensure that ``unsubscribed/*`` lists are updated.
 
-When running with ``--commit``, be sure to run with ``nohup`` and expect ~1hr
-per 1000 emails sent.
+N.B. When running with ``--commit``, be sure to run with ``nohup`` and expect
+~1hr per 1000 emails sent. Collect the output carefully - if something goes
+wrong you can pick up from the last attempted email.
 """
 
 import argparse
