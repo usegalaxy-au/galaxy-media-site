@@ -1,7 +1,6 @@
 """User facing forms for making support requests (help/tools/data)."""
 
 import logging
-import traceback
 from captcha import fields
 from django import forms
 from django.conf import settings
@@ -10,35 +9,13 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.templatetags.static import static
 from utils import galaxy
-from utils import postal
 from utils.data.fgenesh import genematrix_tree
 from utils.institution import is_institution_email
+from utils.mail import retry_send_mail
 
 from . import validators
 
-SEND_MAIL_RETRIES = 3
 logger = logging.getLogger('django')
-
-
-def retry_send_mail(mail):
-    """Attempt sending email with error log fallback."""
-    tries = 0
-    while True:
-        try:
-            if settings.EMAIL_HOST == 'mail.usegalaxy.org.au':
-                # Special SMTP setup for GA mail server
-                return postal.send_mail(mail)
-            return mail.send()
-        except Exception:
-            logger.warning(f"Send mail error - attempt {tries}")
-            tries += 1
-            if tries < SEND_MAIL_RETRIES:
-                continue
-            return logger.error(
-                "Error sending mail. The user did not receive an error.\n"
-                + traceback.format_exc()
-                + f"\n\nMail content:\n\n{mail.body}"
-            )
 
 
 def dispatch_form_mail(
@@ -132,7 +109,7 @@ class OtherFieldFormMixin:
                             field,
                             ValidationError('This field is required'))
                         continue
-                if type(other_value) == str:
+                if isinstance(other_value, str):
                     data[field] = 'Other - ' + other_value
                 else:
                     data[field] = other_value
