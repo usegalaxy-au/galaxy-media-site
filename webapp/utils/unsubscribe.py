@@ -14,6 +14,7 @@ logger = logging.getLogger('django')
 
 def add(user_hash):
     """Add user email to unsubscribe list."""
+    logger.info(f'Unsubscribe request from user with email hash: {user_hash}')
     try:
         records = pd.read_csv(settings.RECIPIENT_MASTER_CSV)
         records.loc[
