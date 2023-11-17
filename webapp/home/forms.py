@@ -1,7 +1,7 @@
 """User facing forms for making support requests (help/tools/data)."""
 
 import logging
-from captcha import fields
+from django_recaptcha import fields
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError

@@ -21,7 +21,7 @@ GALAXY_SITE_SUFFIX = 'Media'
 SLACK_API_URLS = parse_list(os.environ.get('SLACK_API_URLS'))
 TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 
-SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
 
 MOCK_GALAXY_INTERACTIONS = True
 

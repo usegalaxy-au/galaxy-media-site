@@ -8,7 +8,7 @@ gunicorn==20.1.0
 markdown2==2.4.1
 python-dotenv==0.19.1
 Pillow
-django-recaptcha
+django-recaptcha==4.*
 beautifulsoup4
 locust
 bioblend
