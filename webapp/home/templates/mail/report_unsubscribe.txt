@@ -1,6 +1,6 @@
-User with email '{{ user_email }}' sent unsubscribe request for Galaxy AU mail.
+Galaxy Australia user with email {{ user_email }} requested to be unsubscribed from marketing mail.
 
 Read more here:
 https://github.com/usegalaxy-au/galaxy-media-site/tree/main/scripts/mail
 
-Sent from the Galaxy AU Media Site (GMS)
+Sent from the Galaxy AU Media Site (https://site.usegalaxy.org.au)
