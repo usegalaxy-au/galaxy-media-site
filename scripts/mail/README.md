@@ -2,9 +2,13 @@
 
 **IMPORTANT**: this should be run on the GMS server only. If you REALLY have
 to run this locally, make sure that you copy the `RECIPIENTS_MASTER_CSV` file
-from the GMS server. After running, make sure that you update the
-`RECIPIENTS_MASTER_CSV` file on the GMS server, so that GMS can look up the
-hash table to unsubscribe users.
+from the GMS server. Shortly after running (within 60 seconds), make sure that
+you update the `RECIPIENTS_MASTER_CSV` file on the GMS server, so that GMS can
+look up the hash table to unsubscribe users. Don't wait until the script
+finished, because users will likely click "unsubscribe" before the email run
+has ended! In this case, they will get an "unsubscribe successful", but it will
+result in a Slack error notification that will need to be manually actioned
+(annoying).
 
 Intended recipients should be defined in the `RECIPIENTS_CSV` file.
 Unsubscribed users are listed in files from various sources in the
