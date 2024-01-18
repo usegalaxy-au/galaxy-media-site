@@ -98,7 +98,6 @@ class NewsTestCase(TestCase):
     def test_biocommons_news_web_scraper(self, mock_get):
         articles = biocommons.Article.fetch_all()
         assert len(articles) > 0, "No articles scraped from BioCommons webpage"
-        # assert article content
 
     @mock.patch('requests.get', side_effect=mocked_requests_get)
     def test_hub_news_scraper(self, mock_get):
