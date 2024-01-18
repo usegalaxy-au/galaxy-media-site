@@ -11,21 +11,21 @@ from news.models import News
 logger = logging.getLogger('django')
 
 BASE_URL = 'https://www.biocommons.org.au'
-URL = f'{BASE_URL}/news/category/Galaxy+Australia+news'
+URL = f'{BASE_URL}/galaxy-australia'
 
 
 class Article:
-    """A new item scraped from the BioCommons website."""
+    """A news item scraped from the BioCommons website."""
 
     def __init__(self, soup):
         """Create news item from web content."""
         self.url = BASE_URL + soup.find(
             'a',
-            class_='BlogList-item-readmore',
+            class_='summary-title-link',
         )['href']
         self.title = soup.find(
             'a',
-            class_='BlogList-item-title',
+            class_='summary-title-link',
         ).text.strip(' \n\t')
         self.date = timezone.make_aware(datetime.strptime(
             soup.find('time')['datetime'],
@@ -42,7 +42,7 @@ class Article:
         html = requests.get(URL).content.decode('utf-8')
         soup = BeautifulSoup(html, 'html.parser')
         articles = []
-        for article_soup in soup.find_all('article'):
+        for article_soup in soup.find_all(class_='summary-content'):
             try:
                 articles.append(cls(article_soup))
             except Exception:

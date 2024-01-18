@@ -9,7 +9,7 @@ For developer docs, please [check out the wiki](https://github.com/neoformit/gal
 
 ## What it does
 
-This web application is designed to host content related to a [Galaxy](https://galaxyproject.org/) instance. It is lightweight, easy to install and maintain, and provides interfaces for publishing:
+This web app is designed to host content related to a [Galaxy](https://galaxyproject.org/) instance. It is lightweight, easy to install and maintain, and provides interfaces for publishing:
 
 - A dynamic landing page for the Galaxy instance
 - Landing page notices
@@ -18,6 +18,7 @@ This web application is designed to host content related to a [Galaxy](https://g
 - Team members
 
 The site also hosts support webforms and static pages like "about" content, terms of service etc.
+There is also a rudimentary facility for sending bulk mail and handling unsubscribe requests (this requires better integration with site, the currently file R/W is a bit hacky and error prone).
 
 This content is all embedded in HTML templates. If you fork the repository, these templates can be updated with content relevant to your Galaxy instance, and new pages can be added too.
 
