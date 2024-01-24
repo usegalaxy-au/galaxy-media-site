@@ -19,7 +19,7 @@ ALLOWED_HOSTS.append("dev.usegalaxy.org.au")
 ALLOWED_HOSTS.append("staging.usegalaxy.org.au")
 
 # To allow cross-site resource sharing with the base domain
-CSRF_COOKIE_DOMAIN = ".usegalaxy.org.au"
+CSRF_COOKIE_DOMAIN = os.getenv("CSRF_COOKIE_DOMAIN", ".usegalaxy.org.au")
 CSRF_TRUSTED_ORIGINS = [
     "http://*.usegalaxy.org.au",
     "https://*.usegalaxy.org.au",
