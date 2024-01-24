@@ -14,22 +14,15 @@ class Notice:
                 href='https://getbootstrap.com/docs/5.0/components/alerts/'
                 target='_blank'
             >standard bootstrap styling</a>
-            (
-                <em>info</em>: blue,
-                <em>warning</em>: orange,
-            ).
+            (<em>info</em>: blue, <em>warning</em>: orange).
         </li>
         <li style='list-style: disc;'>
-            Use the <em>image</em> class for displaying an image. For this,
-            the body should consist of an HTML <code>&lt;img&gt;</code> tag
-            only (or markdown equivalent).
-        </li>
-        <li style='list-style: disc;'>
-            Image notices always have <b>static display</b>, with no
-            title/description text. Use for displaying banners e.g. event posters.
-        </li>
-        <li style='list-style: disc;'>
-            Short/wide images work much better than square ones!
+            Use the <em>Cover Image</em> model for displaying banner images.
+            <span class="text-danger">
+              The <em>image</em> class is deprecated
+            </span>
+            - existing image notices should be migrated to
+            <em>Cover Image</em> records.
         </li>
     </ul>
     """
@@ -50,10 +43,6 @@ class Notice:
             to the <b>short description</b>. If the block notice is dismissed
             by the user, they can still access and click through the rotating
             notice.
-        </li>
-        <li style='list-style: disc;'>
-            Notices with <em>image</em> class always have static display,
-            so this option will be ignored.
         </li>
     </ul>
     """
@@ -93,19 +82,6 @@ class Notice:
             the landing page in a block element, in addition to the dedicated
             webpage.
         </li>
-        <li style='list-style: disc;'>
-            When using the <em>image</em> notice class, images will be rendered
-            with full width and max-height of 250px. You can override this by
-            using an <code>&lt;img&gt;</code> tag and setting the
-            <code>style</code> attribute.
-        </li>
-        <li style='list-style: disc;'>
-            When using the <em>image</em> notice class, you can upload an image
-            and link to it using the
-            <a href="/admin/home/mediaimage/">Media images</a> model.
-            Otherwise you might just link to images hosted elsewhere e.g.
-            github.
-        </li>
     </ul>
     """
 
@@ -115,4 +91,20 @@ class Notice:
     <a href="https://fonts.google.com/icons" target="_blank">
     Browse 2500+ icons here
     </a>.
+    """
+
+
+class CoverImage:
+
+    DISPLAY_HEIGHT = """
+    For most images this should be left at the default (300px).
+    For more square images this can be increased, but try not to let the image
+    taking over the whole landing page. If you want an image to span the full
+    width, try increasing this value.
+    """
+
+    IMG = """
+    An ideal resolution for banner-style images is 1000x300px. It is
+    recommended to publish the image only after viewing the landing page to
+    confirm that the display is acceptable.
     """

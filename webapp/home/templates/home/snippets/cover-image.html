@@ -1,0 +1,5 @@
+{% if cover_image %}
+<div class="container text-center">
+  <img style="height: {{ cover_image.max_height_px }}px; width: auto; max-width: 100%;" src="{{ cover_image.img.url }}" alt="{{ cover_image.img.title }}">
+</div>
+{% endif %}
