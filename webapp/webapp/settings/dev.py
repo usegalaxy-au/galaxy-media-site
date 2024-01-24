@@ -12,13 +12,15 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
 if os.environ.get('HOSTNAME'):
     HOSTNAME = os.environ.get('HOSTNAME')
     ALLOWED_HOSTS.append(HOSTNAME)
+else:
+    raise EnvironmentError('')
 
 # Rendered as "Galaxy <GALAXY_SITE_NAME> <GALAXY_SITE_SUFFIX>"
 GALAXY_SITE_NAME = 'Australia'
 GALAXY_SITE_SUFFIX = 'Media'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.gvl.org.au"
+    f"https://{HOSTNAME}"
 ]
 
 # For posting tool update notifications to a Slack channel
