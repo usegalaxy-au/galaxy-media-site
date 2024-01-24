@@ -13,6 +13,16 @@ from .managers import CustomUserManager
 from . import help_text
 
 
+def get_upload_path(instance, filename):
+    """Return media path for uploaded images."""
+    return f"uploads/images/{filename}"
+
+
+def default_subsite():
+    """The first ID will always be 'main', as created in migration."""
+    return [1]
+
+
 class User(AbstractUser):
     """Staff user for managing site content."""
 
@@ -46,11 +56,6 @@ class Subsite(models.Model):
     def __str__(self):
         """Represent self as string."""
         return self.name
-
-
-def default_subsite():
-    """The first ID will always be 'main', as created in migration."""
-    return [1]
 
 
 class Notice(models.Model):
@@ -143,20 +148,14 @@ class Notice(models.Model):
         if not request.user.is_staff:
             notices = notices.filter(is_published=True)
 
-        # Separate notices for static/rotating/image display
-        image_notices = list(
-            notices.filter(notice_class='none')
-            .order_by('order')
-        )
+        # Separate notices for static/rotating display
         text_notices = notices.exclude(notice_class='none')
         dismissed = request.session.get('dismissed_notices', [])
-
         static_notices = [
             n for n in
             text_notices.filter(static_display=True).order_by('order')
             if n.timestamp not in dismissed
         ]
-
         rotating_notices = list(text_notices.exclude(static_display=True))
         shuffle(rotating_notices)
         all_rotating_notices = (
@@ -164,7 +163,7 @@ class Notice(models.Model):
             + rotating_notices
         )
         return {
-            'image': image_notices,
+            'image': None,  # image_notices are deprecated
             'rotating': all_rotating_notices,
             'static': static_notices,
         }
@@ -190,9 +189,55 @@ class Notice(models.Model):
             self.material_icon = self.material_icon.lower().replace(' ', '_')
 
 
-def get_upload_path(instance, filename):
-    """Return media path for uploaded images."""
-    return f"uploads/images/{filename}"
+class CoverImage(models.Model):
+    """A banner-style image on the landing page."""
+
+    datetime_modified = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=100, blank=True, help_text=(
+        "This will be used to identify the image in the web admin, and for"
+        " accessibility purposes (i.e. screen-readers) on the webpage."
+    ))
+    img = models.FileField(
+        upload_to=get_upload_path,
+        help_text=help_text.CoverImage.IMG)
+    max_height_px = models.IntegerField(
+        default=300,
+        verbose_name="Max height (px)",
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(1000),
+        ],
+        help_text=help_text.CoverImage.DISPLAY_HEIGHT)
+    enabled = models.BooleanField(
+        default=False,
+        help_text="Display on the Galaxy Australia landing page."
+    )
+    is_published = models.BooleanField(
+        default=False,
+        help_text=(
+            "Unpublished content is visible to admin users only."
+            " Use this to review content before release to public users."
+        ),
+    )
+    subsites = models.ManyToManyField(
+        Subsite,
+        help_text=(
+            "Select which subdomain sites should display the notice."
+        ),
+        default=default_subsite,
+    )
+
+    @classmethod
+    def get_random(cls, request, subsite=None):
+        """Return a random cover image."""
+        subsite_name = subsite or 'main'
+        images = cls.objects.filter(
+            enabled=True,
+            subsites__name=subsite_name,
+        )
+        if not request.user.is_staff:
+            images = images.filter(is_published=True)
+        return images.order_by('?').first()
 
 
 class MediaImage(models.Model):
