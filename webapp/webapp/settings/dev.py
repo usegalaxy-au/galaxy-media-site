@@ -12,6 +12,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
 if os.environ.get('HOSTNAME'):
     HOSTNAME = os.environ.get('HOSTNAME')
     ALLOWED_HOSTS.append(HOSTNAME)
+else:
+    raise EnvironmentError('Env variable HOSTNAME not set')
 
 # Rendered as "Galaxy <GALAXY_SITE_NAME> <GALAXY_SITE_SUFFIX>"
 GALAXY_SITE_NAME = 'Australia'
