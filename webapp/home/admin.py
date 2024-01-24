@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.conf import settings
 
-from .models import User, Notice, MediaImage, Subsite
+from .models import CoverImage, MediaImage, Notice, Subsite, User
 from .admin_forms import NoticeAdminForm, UserCreationForm, UserChangeForm
 
 
@@ -96,10 +96,21 @@ class MediaImageAdmin(admin.ModelAdmin):
     ]
 
 
+class CoverImageAdmin(admin.ModelAdmin):
+
+    list_display = [
+        'title',
+        'enabled',
+        'is_published',
+        'max_height_px',
+    ]
+
+
 admin.site.site_header = (
     f"Galaxy {settings.GALAXY_SITE_NAME} content administration")
 admin.site.register(User, UserAdmin)
 admin.site.register(Notice, NoticeAdmin)
 admin.site.unregister(Group)
 admin.site.register(MediaImage, MediaImageAdmin)
+admin.site.register(CoverImage, CoverImageAdmin)
 admin.site.register(Subsite)

@@ -15,7 +15,7 @@ from utils.exceptions import ResourceAccessError
 from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
-from .models import Notice
+from .models import CoverImage, Notice
 from .forms import (
     ResourceRequestForm,
     QuotaRequestForm,
@@ -41,6 +41,7 @@ def index(request, landing=False):
     return render(request, 'home/index.html', {
         'landing': landing,
         'notices': Notice.get_notices_by_type(request),
+        'cover_image': CoverImage.get_random(request),
         'news_items': news_items.order_by('-datetime_created')[:6],
         'events': events.order_by('-datetime_created')[:6],
         'tool_updates': tool_updates.order_by('-datetime_created')[:6],
@@ -70,6 +71,7 @@ def landing(request, subdomain):
     return render(request, template, {
         'name': subdomain,
         'notices': Notice.get_notices_by_type(request, subsite=subdomain),
+        'cover_image': CoverImage.get_random(request, subsite=subdomain),
         'sections': sections,
         'form': SupportRequestForm(),
     })
