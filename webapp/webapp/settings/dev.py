@@ -13,7 +13,7 @@ if os.environ.get('HOSTNAME'):
     HOSTNAME = os.environ.get('HOSTNAME')
     ALLOWED_HOSTS.append(HOSTNAME)
 else:
-    raise EnvironmentError('')
+    raise EnvironmentError('Env variable HOSTNAME not set')
 
 # Rendered as "Galaxy <GALAXY_SITE_NAME> <GALAXY_SITE_SUFFIX>"
 GALAXY_SITE_NAME = 'Australia'
