@@ -17,6 +17,10 @@ if os.environ.get('HOSTNAME'):
 GALAXY_SITE_NAME = 'Australia'
 GALAXY_SITE_SUFFIX = 'Media'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.gvl.org.au"
+]
+
 # For posting tool update notifications to a Slack channel
 SLACK_API_URLS = parse_list(os.environ.get('SLACK_API_URLS'))
 TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
