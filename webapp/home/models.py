@@ -208,6 +208,10 @@ class CoverImage(models.Model):
             MaxValueValidator(1000),
         ],
         help_text=help_text.CoverImage.DISPLAY_HEIGHT)
+    auto_full_width = models.BooleanField(default=False, help_text=(
+        "Automatically set the image width to 100% of the screen width."
+        " This option overrides 'Max height'."
+    ))
     enabled = models.BooleanField(
         default=False,
         help_text="Display on the Galaxy Australia landing page."
