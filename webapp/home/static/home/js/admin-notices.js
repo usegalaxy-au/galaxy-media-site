@@ -1,17 +1,19 @@
 (function($) {
-  const setFormState = (image_class) => {
-    if (image_class === 'none') {
-      // Image class - hide redundant fields
-      $('.field-static_display').hide();
-      $('.field-display_title').hide();
-      $('.field-short_description').hide();
-      $('.field-material_icon').hide();
+  const setFormState = (notice_class) => {
+    const formFields = $('[class*="field-"]').not('.field-notice_class');
+    const warning = $(
+      `<p id="image-class-warning" style="font-size: 1.2rem; color: firebrick; background: lightsalmon; padding: .25rem 1rem; border-radius: .5rem;">
+        Warning: This notice class is deprecated.
+        Please use the "Image" notice class instead.
+      </p>`
+    );
+    if (notice_class === 'none') {
+      // Image class - warn deprecated
+      $('.field-notice_class .help').append(warning);
+      formFields.hide()
     } else {
-      // Show fields
-      $('.field-static_display').show();
-      $('.field-display_title').show();
-      $('.field-short_description').show();
-      $('.field-material_icon').show();
+      $('#image-class-warning').remove();
+      formFields.show()
     }
   }
 
