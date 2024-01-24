@@ -14,10 +14,7 @@ class Notice:
                 href='https://getbootstrap.com/docs/5.0/components/alerts/'
                 target='_blank'
             >standard bootstrap styling</a>
-            (
-                <em>info</em>: blue,
-                <em>warning</em>: orange,
-            ).
+            (<em>info</em>: blue, <em>warning</em>: orange).
         </li>
         <li style='list-style: disc;'>
             Use the <em>Cover Image</em> model for displaying banner images.
