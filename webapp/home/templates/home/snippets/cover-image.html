@@ -1,5 +1,12 @@
 {% if cover_image %}
-<div class="container text-center">
-  <img style="height: {{ cover_image.max_height_px }}px; width: auto; max-width: 100%;" src="{{ cover_image.img.url }}" alt="{{ cover_image.img.title }}">
+<div class="my-3 text-center">
+  <img
+    {% if cover_image.auto_full_width %}
+    style="width: 100%; height: auto;"
+    {% else %}
+    style="height: {{ cover_image.max_height_px }}px; width: auto; max-width: 100%;"
+    {% endif %}
+    src="{{ cover_image.img.url }}"
+    alt="{{ cover_image.img.title }}">
 </div>
 {% endif %}
