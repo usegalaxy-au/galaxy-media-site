@@ -4,8 +4,8 @@ A simple content site for a Galaxy instance, built with Django.
 
 ---
 
-For developer docs, please [check out the wiki](https://github.com/neoformit/galaxy-content-site/wiki/Development).
-[Administration](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration) is also well-documented there.
+For developer docs, please [check out the wiki](https://github.com/usegalaxy-au/galaxy-media-site/wiki/Development).
+[Administration](https://github.com/usegalaxy-au/galaxy-media-site/wiki/Site-administration) is also well-documented there.
 
 ## What it does
 
@@ -40,9 +40,9 @@ function on any page to check if you're currently in an iframe.
 
 ## This repository
 
-- `deploy/`: for deployment of GMS with Ansible and shell script
-- `scrape/`: python scripts for scraping content from the old jekyll site codebase
-- `webapp/`: this is the Django app
+- [deploy/](./deploy/) for deployment of GMS with Ansible and shell script
+- [scrape/](./scrape/) python scripts for scraping content from the old jekyll site codebase
+- [webapp/](./webapp/) this is the Django app
 
 ---
 
@@ -59,7 +59,7 @@ virtual machine instance.
 ### Deploy with Ansible
 
 If you're familiar with ansible, this is the recommended method of
-deployment. See `deploy/ansible/`.
+deployment. See [deploy/ansible/](./deploy/ansible/).
 
 ### Deploy with shell
 
@@ -67,8 +67,8 @@ deployment. See `deploy/ansible/`.
 
 ```bash
 cd <my-projects-directory>
-git clone https://github.com/neoformit/galaxy-content-site.git
-cd galaxy-content-site
+git clone https://github.com/usegalaxy-au/galaxy-media-site.git
+cd galaxy-media-site
 PROJECT_ROOT=$PWD
 
 # Create a .env file here - see .env.sample
@@ -93,6 +93,27 @@ In 2021, peak traffic experienced by Galaxy Australia was below 1000
 requests per hour, so it seems that a 1CPU machine can handle this service
 adequately, based on the Locust model.
 
+## Deploy the maintenance site
+
+For any downtime, the maintenance site can be found [here](./deploy/maintenance-site/).
+
+Point the DNS for your domain name to the host IP address.
+Then, on your Ubuntu web server:
+
+```sh
+sudo apt install nginx
+git clone https://github.com/usegalaxy-au/galaxy-media-site.git
+cd galaxy-media-site
+sudo ln -s /srv/sites/gms-maintenance-site ./deploy/maintenance-site
+
+# Edit with your domain as the server_name
+nano ./deploy/maintenance-site/nginx.conf
+sudo cp ./deploy/maintenance-site/nginx.conf /etc/nginx/sites-available
+sudo ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+sudo service nginx restart
+```
+
+
 ---
 
 ## Site administration
@@ -109,13 +130,13 @@ source deploy/.venv/bin/activate
 python webapp/manage.py createsuperuser
 ```
 
-Check out the [Wiki](https://github.com/neoformit/galaxy-content-site/wiki/Site-administration) to learn about site administration through the web admin.
+Check out the [Wiki](https://github.com/usegalaxy-au/galaxy-media-site/wiki/Site-administration) to learn about site administration through the web admin.
 
 ---
 
 ## Migrating between servers
 
-Application state is stored in the PostgreSQL database, with images in the `webapp/webapp/media` directory. If required, you can migrate the application between servers. This assumes some experience with postgres and the psql shell.
+Application state is stored in the PostgreSQL database, with images in the [webapp/webapp/media](./webapp/webapp/media/) directory. If required, you can migrate the application between servers. This assumes some experience with postgres and the psql shell.
 
 **N.B.** if the database username has changed, you will have to dump the database with the `--no-owner` flag and create privileges for the new owner manually in a `psql` shell.
 
@@ -156,7 +177,7 @@ Application state is stored in the PostgreSQL database, with images in the `weba
 
 5. Check out the new site, the content should be there.
 
-6. Images/media must be migrated separately. `tar` the `webapp/webapp/media` directory and send to the new server:
+6. Images/media must be migrated separately. `tar` the [webapp/webapp/media](./webapp/webapp/media/) directory and send to the new server:
   ```
   # N.B. you will ssh access to the new webserver with sudo privileges
 
