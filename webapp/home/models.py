@@ -212,6 +212,12 @@ class CoverImage(models.Model):
         "Automatically set the image width to 100% of the screen width."
         " This option overrides 'Max height'."
     ))
+    link_url = models.CharField(
+        max_length=255, null=True, blank=True, help_text=(
+            "If set, clicking the image will open this URL. For external URLs,"
+            " the link will open in a new tab."
+        )
+    )
     enabled = models.BooleanField(
         default=False,
         help_text="Display on the Galaxy Australia landing page."
@@ -230,6 +236,11 @@ class CoverImage(models.Model):
         ),
         default=default_subsite,
     )
+
+    @property
+    def link_is_internal(self):
+        """Return True if link_url is an internal URL."""
+        return self.link_url.startswith('/')
 
     @classmethod
     def get_random(cls, request, subsite=None):
