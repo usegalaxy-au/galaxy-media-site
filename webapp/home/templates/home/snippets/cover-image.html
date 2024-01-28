@@ -1,12 +1,24 @@
 {% if cover_image %}
 <div class="my-3 text-center">
-  <img
-    {% if cover_image.auto_full_width %}
-    style="width: 100%; height: auto;"
-    {% else %}
-    style="height: {{ cover_image.max_height_px }}px; width: auto; max-width: 100%;"
+  {% if cover_image.link_url %}
+  <a
+    href="{{ cover_image.link_url }}"
+    {% if not cover_image.link_is_internal %}
+    target="_blank"
     {% endif %}
-    src="{{ cover_image.img.url }}"
-    alt="{{ cover_image.img.title }}">
+  >
+  {% endif %}
+    <img
+      {% if cover_image.auto_full_width %}
+      style="width: 100%; height: auto;"
+      {% else %}
+      style="height: {{ cover_image.max_height_px }}px; width: auto; max-width: 100%;"
+      {% endif %}
+      src="{{ cover_image.img.url }}"
+      alt="{{ cover_image.img.title }}"
+    >
+  {% if cover_image.link_url %}
+  </a>
+  {% endif %}
 </div>
 {% endif %}
