@@ -1,5 +1,9 @@
 {% if cover_image %}
 <div class="my-3 text-center">
+  {% if not event.is_published %}
+  {% include 'home/snippets/unpublished-bubble.html' %}
+  {% endif %}
+
   {% if cover_image.link_url %}
   <a
     href="{{ cover_image.link_url }}"
