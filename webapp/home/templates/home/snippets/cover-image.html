@@ -1,6 +1,6 @@
 {% if cover_image %}
 <div class="my-3 text-center">
-  {% if not event.is_published %}
+  {% if not cover_image.is_published %}
   {% include 'home/snippets/unpublished-bubble.html' %}
   {% endif %}
 
