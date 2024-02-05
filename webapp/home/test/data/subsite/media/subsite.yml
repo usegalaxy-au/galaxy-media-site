@@ -8,5 +8,5 @@ galaxy_base_url: "https://gazorpian-galaxy.org"
 
 # Custom content in HTML snippets relative to this file
 intro_html: "subsite_intro.html"
-# header_image: "my-logo.png"
-# footer_html: "footer.html"
+header_image: "my-logo.png"
+footer_html: "footer.html"
