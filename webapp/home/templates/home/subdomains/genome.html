@@ -88,6 +88,11 @@
   {% endif %}
 </main>
 
+
+{% if snippets.footer_html %}
+{{ snippets.footer_html|safe }}
+{% endif %}
+
 {% endblock %}
 
 
