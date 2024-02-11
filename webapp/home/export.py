@@ -2,6 +2,9 @@
 
 Example URL:
 http://127.0.0.1:8000/landing/genome?export=true&site_name=Australia&lab_name=Genome%20Lab&nationality=Antarctican&galaxy_base_url=http://mygalaxy.org
+
+With remote YAML:
+http://127.0.0.1:8000/landing/genome?export=true&yaml_context_url=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/test/data/subsite/media/subsite.yml
 """
 
 import logging
@@ -29,8 +32,9 @@ class ExportSubsiteContext(dict):
     )
     HTML_SNIPPETS = (
         'intro_html',
-        'header_image',
+        'header_logo',
         'footer_html',
+        'custom_css',
     )
 
     def __init__(self, request):
@@ -85,7 +89,16 @@ class ExportSubsiteContext(dict):
         """Fetch HTML snippets and add to context.snippets."""
         for name in self.HTML_SNIPPETS:
             if relpath := self.get(name):
-                self['snippets'][name] = self._fetch_snippet(relpath)
+                if relpath.rsplit('.', 1)[1] in ('jpg', 'png', 'svg'):
+                    self['snippets'][name] = self._fetch_img_src(relpath)
+                else:
+                    self['snippets'][name] = self._fetch_snippet(relpath)
+
+    def _fetch_img_src(self, relpath):
+        """Build URL for image."""
+        yaml_url = self.params.get('yaml_context_url')
+        if yaml_url:
+            return yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
 
     def _fetch_snippet(self, relpath):
         """Fetch HTML snippet from remote URL."""
