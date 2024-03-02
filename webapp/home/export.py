@@ -60,6 +60,7 @@ class ExportSubsiteContext(dict):
             }.items()
             if v
         })
+        self['sections'] = self._fetch_yaml_content()
 
     def _clean(self):
         """Format params for rendering."""
@@ -84,6 +85,19 @@ class ExportSubsiteContext(dict):
             params = yaml.load(yaml_bytes, Loader=yaml.Loader)
             self.update(params)
             self._fetch_snippets()
+
+    def _fetch_yaml_content(self, relpath):
+        """Fetch web content from remote YAML file if specified."""
+        yaml_url = self.params.get('yaml_context_url')
+        relpath = self.params.get('yaml_sections_url')
+        if yaml_url and relpath:
+            url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
+            response = requests.get(url)
+            if response.status_code >= 300:
+                raise SuspiciousOperation(
+                    f'HTTP {response.status_code} fetching file: {url}')
+            yaml_str = response.content.decode('utf-8')
+            return yaml.safe_load(yaml_str)
 
     def _fetch_snippets(self):
         """Fetch HTML snippets and add to context.snippets."""

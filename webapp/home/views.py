@@ -82,11 +82,11 @@ def landing(request, subdomain):
         context = ExportSubsiteContext(request)
         context.validate()
         context.update({
-            'sections': sections,
             'name': subdomain,
             'title': f'Galaxy - {subdomain.title()} Lab',
         })
-
+        if not context.get('sections'):
+            context['sections'] = sections
     else:
         context.update({
             'sections': sections,
