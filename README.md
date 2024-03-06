@@ -7,6 +7,13 @@ A simple content site for a Galaxy instance, built with Django.
 For developer docs, please [check out the wiki](https://github.com/usegalaxy-au/galaxy-media-site/wiki/Development).
 [Administration](https://github.com/usegalaxy-au/galaxy-media-site/wiki/Site-administration) is also well-documented there.
 
+## Branches
+
+The commit process is documented in the [dev wiki](https://github.com/usegalaxy-au/galaxy-media-site/wiki/Development).
+
+`dev` - main development branch deployed to https://dev-site.gvl.org.au
+`main` - prod branch deployed to https://site.usegalaxy.org.au
+
 ## What it does
 
 This web app is designed to host content related to a [Galaxy](https://galaxyproject.org/) instance. It is lightweight, easy to install and maintain, and provides interfaces for publishing:

@@ -9,6 +9,7 @@ Anna Syme
 * Data at Genome Ark  [https://vgp.github.io/genomeark/](https://vgp.github.io/genomeark/)
 * Paper: [Rhie, A., McCarthy, S.A., Fedrigo, O. et al. Towards complete and error-free genome assemblies of all vertebrate species. Nature 592, 737–746 (2021).](https://doi.org/10.1038/s41586-021-03451-0)
 * This paper covers the testing of tools and workflows. We recommend also looking at the Supplementary Information which is very informative.
+* Most recent paper: [Larivière, D., Abueg, L., Brajuka, N. et al. Scalable, accessible and reproducible reference genome assembly and evaluation in Galaxy. Nat Biotechnol (2024).](https://doi.org/10.1038/s41587-023-02100-3)
 
 ## Are the VGP workflows in Galaxy Australia?
 
@@ -47,19 +48,18 @@ For each of the other workflows, you will need these inputs:
 * WF4 Hifi assembly and HiC phasing
   * Inputs: 
     * HiFi reads in collection
-    * HiC R1, HiC R2, 
+    * HiC R1, HiC R2 
     * from WF1: genomescope model parameters, genomescope summary, mery db
-* WF8a HiC scaffolding
+* WF8 HiC scaffolding
   * Inputs:
     * From WF4: Assembly in gfa format
     * From WF4: estimated genome size
-    * HiC R1, Hi C R2
+    * HiC R1, HiC R2
   * Settings:
-    * For restriction enzymes: set correctly
-    * For Input GFA: Generates the initial set of paths: set true (if using assembly from Hifiasm) 
+    * For restriction enzymes: set correctly 
 * WF9 Decontamination
   * Inputs:
-    * From WF8a: Scaffolded assembly in FASTA format
+    * From WF8: Scaffolded assembly in FASTA format
   * Settings:
     * For step "ID non-target contaminants": select Kraken 2 database : choose: Prebuilt Refseq indexes: PlusPF (Standard plus protozoa and fungi)
     * For step "blast mitochondria db": choose locally installed blast database: choose RefSeq mitochondrion
