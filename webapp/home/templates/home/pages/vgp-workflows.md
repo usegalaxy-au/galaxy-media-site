@@ -9,6 +9,7 @@ Anna Syme
 * Data at Genome Ark  [https://vgp.github.io/genomeark/](https://vgp.github.io/genomeark/)
 * Paper: [Rhie, A., McCarthy, S.A., Fedrigo, O. et al. Towards complete and error-free genome assemblies of all vertebrate species. Nature 592, 737–746 (2021).](https://doi.org/10.1038/s41586-021-03451-0)
 * This paper covers the testing of tools and workflows. We recommend also looking at the Supplementary Information which is very informative.
+* Most recent paper: [Larivière, D., Abueg, L., Brajuka, N. et al. Scalable, accessible and reproducible reference genome assembly and evaluation in Galaxy. Nat Biotechnol (2024).](https://doi.org/10.1038/s41587-023-02100-3)
 
 ## Are the VGP workflows in Galaxy Australia?
 
