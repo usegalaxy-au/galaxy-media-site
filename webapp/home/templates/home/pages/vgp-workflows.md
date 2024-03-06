@@ -48,19 +48,18 @@ For each of the other workflows, you will need these inputs:
 * WF4 Hifi assembly and HiC phasing
   * Inputs: 
     * HiFi reads in collection
-    * HiC R1, HiC R2, 
+    * HiC R1, HiC R2 
     * from WF1: genomescope model parameters, genomescope summary, mery db
-* WF8a HiC scaffolding
+* WF8 HiC scaffolding
   * Inputs:
     * From WF4: Assembly in gfa format
     * From WF4: estimated genome size
-    * HiC R1, Hi C R2
+    * HiC R1, HiC R2
   * Settings:
-    * For restriction enzymes: set correctly
-    * For Input GFA: Generates the initial set of paths: set true (if using assembly from Hifiasm) 
+    * For restriction enzymes: set correctly 
 * WF9 Decontamination
   * Inputs:
-    * From WF8a: Scaffolded assembly in FASTA format
+    * From WF8: Scaffolded assembly in FASTA format
   * Settings:
     * For step "ID non-target contaminants": select Kraken 2 database : choose: Prebuilt Refseq indexes: PlusPF (Standard plus protozoa and fungi)
     * For step "blast mitochondria db": choose locally installed blast database: choose RefSeq mitochondrion
