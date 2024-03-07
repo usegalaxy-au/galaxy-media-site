@@ -14,4 +14,6 @@ intro_html: "subsite_intro.html"
 header_logo: "my-logo.png"
 footer_html: "footer.html"
 custom_css: "custom.css"
-sections: sections.yml
+sections:
+  - data.yml
+  - assembly.yml
