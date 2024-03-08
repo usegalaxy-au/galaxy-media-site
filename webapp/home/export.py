@@ -4,7 +4,7 @@ Example URL:
 http://127.0.0.1:8000/landing/genome?export=true&site_name=Australia&lab_name=Genome%20Lab&nationality=Antarctican&galaxy_base_url=http://mygalaxy.org
 
 With remote YAML:
-http://127.0.0.1:8000/landing/genome?export=true&yaml_context_url=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/test/data/subsite/media/subsite.yml
+http://127.0.0.1:8000/landing/genome?export=true&content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/test/data/subsite/media/subsite.yml
 """
 
 import logging
@@ -22,10 +22,11 @@ class ExportSubsiteContext(dict):
     (i.e. on a different Galaxy server).
 
     The context can be built from GET params or from an externally hosted YAML
-    context specified by a ``yaml_context_url`` GET param.
+    context specified by a ``content_root`` GET param.
     """
 
     REQUIRED_PARAMS = (
+        #! TODO: this should be handled by Pydantic
         'site_name',
         'nationality',
         'galaxy_base_url',
@@ -47,20 +48,8 @@ class ExportSubsiteContext(dict):
             'export': True,
             'extend_template': 'home/header-export.html',
         })
-        if self.params.get('yaml_context_url'):
-            self._fetch_yaml_context()
-        self.update({
-            # GET params override the YAML context if they exist
-            k: v for k, v in
-            {
-                'site_name': self.params.get('site_name'),
-                'lab_name': self.params.get('lab_name'),
-                'nationality': self.params.get('nationality', ''),
-                'galaxy_base_url': self.params.get('galaxy_base_url'),
-            }.items()
-            if v
-        })
-        self['sections'] = self._fetch_yaml_content()
+        self._fetch_yaml_context()
+        self._fetch_sections()
 
     def _clean(self):
         """Format params for rendering."""
@@ -79,25 +68,45 @@ class ExportSubsiteContext(dict):
 
     def _fetch_yaml_context(self):
         """Fetch params from remote YAML file."""
-        url = self.params.get('yaml_context_url')
-        if url:
-            yaml_bytes = requests.get(url).content
-            params = yaml.load(yaml_bytes, Loader=yaml.Loader)
-            self.update(params)
-            self._fetch_snippets()
+        url = self.params.get('content_root')
+        if not url:
+            raise ValueError("GET parameter 'content_root' required for root URL")
+        yaml_str = requests.get(url).content.decode('utf-8')
+        params = yaml.safe_load(yaml_str)
+        self.update(params)
+        self._fetch_snippets()
+
+    def _fetch_sections(self):
+        """Fetch webpage sections content from remote YAML file."""
+        sections = self.get('sections')
+        if isinstance(sections, str):
+            self['sections'] = self._fetch_yaml_content(self.get('sections'))
+        elif isinstance(sections, list):
+            self['sections'] = [
+                self._fetch_yaml_content(s)
+                for s in sections
+            ]
+        return sections
 
     def _fetch_yaml_content(self, relpath):
         """Fetch web content from remote YAML file if specified."""
-        yaml_url = self.params.get('yaml_context_url')
-        relpath = self.params.get('yaml_sections_url')
-        if yaml_url and relpath:
-            url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-            response = requests.get(url)
-            if response.status_code >= 300:
-                raise SuspiciousOperation(
-                    f'HTTP {response.status_code} fetching file: {url}')
-            yaml_str = response.content.decode('utf-8')
-            return yaml.safe_load(yaml_str)
+        yaml_url = self.params.get('content_root')
+        if not (yaml_url and relpath):
+            return
+        url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
+        response = requests.get(url)
+        if response.status_code >= 300:
+            raise SuspiciousOperation(
+                f'HTTP {response.status_code} fetching file: {url}')
+        yaml_str = response.content.decode('utf-8')
+        data = yaml.safe_load(yaml_str)
+        expanded = {
+            k: self._fetch_yaml_content(v) or v
+            if isinstance(v, str) and v.split('.')[-1] in ('yml', 'yaml')
+            else v
+            for k, v in data.items()
+        }
+        return expanded
 
     def _fetch_snippets(self):
         """Fetch HTML snippets and add to context.snippets."""
@@ -110,13 +119,13 @@ class ExportSubsiteContext(dict):
 
     def _fetch_img_src(self, relpath):
         """Build URL for image."""
-        yaml_url = self.params.get('yaml_context_url')
+        yaml_url = self.params.get('content_root')
         if yaml_url:
             return yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
 
     def _fetch_snippet(self, relpath):
         """Fetch HTML snippet from remote URL."""
-        yaml_url = self.params.get('yaml_context_url')
+        yaml_url = self.params.get('content_root')
         if yaml_url:
             url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
             response = requests.get(url)

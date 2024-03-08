@@ -102,6 +102,34 @@ def landing(request, subdomain):
     return response
 
 
+def export_lab(request):
+    """Generic Galaxy Lab landing page build with externally hosted content.
+
+    These pages are built on the fly and can be requested by third parties on
+    an ad hoc basis, where the content would typically be hosted in a GitHub
+    repo with a YAML file root which is specified as a GET parameter.
+    """
+
+    # TODO: validate with Pydantic models
+    # TODO: cache remote content with GET option to refresh
+
+    template = 'home/subdomains/exported.html'
+    if request.GET.get('content_root'):
+        context = ExportSubsiteContext(request)
+        context.validate()
+        response = render(request, template, context)
+        response.content = response.content.replace(
+            b'$GALAXY_URL',
+            context['galaxy_base_url'].encode('utf-8'))
+        return response
+    else:
+        # ! TODO: add validation/feedback error page
+        # ! TODO: actually, for this case show instructions page
+        # ! ... the instructions page could be the default content from github
+        raise ValueError("GET parameter 'content_root' required for remote"
+                         " webpage content")
+
+
 def notice(request, notice_id):
     """Display notice body page."""
     return render(request, 'home/notice.html', {
