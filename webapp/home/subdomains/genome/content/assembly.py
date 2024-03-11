@@ -300,9 +300,9 @@ workflows_hic = [
                 'label': 'PacBio HiFi reads',
             },
         ],
-        "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF1-kmer_profiling_and_QC:VGP",
+        "view_link": "https://dockstore.org/workflows/github.com/iwc-workflows/kmer-profiling-hifi-VGP1/main:main",
         "view_tip": view_workflow_tip,
-        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF1-kmer_profiling_and_QC",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/kmer-profiling-hifi-VGP1/main",
         "button_tip": import_workflow_tip,
     },
     {
@@ -339,42 +339,9 @@ workflows_hic = [
                 'label': '<code>GenomeScope</code> genome profile summary',
             },
         ],
-        "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF4-Assembly_with_HiC:VGP",
+        "view_link": "https://dockstore.org/workflows/github.com/iwc-workflows/Assembly-Hifi-HiC-phasing-VGP4/main:main",
         "view_tip": view_workflow_tip,
-        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF4-Assembly_with_HiC",
-        "button_tip": import_workflow_tip,
-    },
-    {
-        "title_html": 'Purge duplicates',
-        "description_html": """
-            <p>
-              This workflow identifies and reassigns heterozygous contigs.
-            </p>""",
-        "inputs": [
-            {
-                'datatypes': ['fasta'],
-                'label': '<code>hifiasm</code> primary assembly - <code>hap1</code>',
-            },
-            {
-                'datatypes': ['fasta'],
-                'label': '<code>hifiasm</code> alternate assembly - <code>hap2</code>',
-            },
-            {
-                'datatypes': ['fasta', 'fastq'],
-                'label': 'Trimmed PacBio reads',
-            },
-            {
-                'datatypes': ['meryldb'],
-                'label': '<code<Meryl</code> kmer database',
-            },
-            {
-                'datatypes': ['txt'],
-                'label': '<code>GenomeScope</code> model parameters',
-            },
-        ],
-        "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF6-Purgedups:VGP",
-        "view_tip": view_workflow_tip,
-        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF6-Purgedups",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Assembly-Hifi-HiC-phasing-VGP4/main",
         "button_tip": import_workflow_tip,
     },
     {
@@ -385,8 +352,8 @@ workflows_hic = [
             </p>""",
         "inputs": [
             {
-                'datatypes': ['fasta'],
-                'label': 'Assembly',
+                'datatypes': ['gfa'],
+                'label': 'Assembly of haplotype 1',
             },
             {
                 'datatypes': ['fastq'],
@@ -397,9 +364,9 @@ workflows_hic = [
                 'label': 'HiC reverse reads',
             },
         ],
-        "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF8a-Scaffolding_HiC_Yahs:VGP",
+        "view_link": "https://dockstore.org/workflows/github.com/iwc-workflows/Scaffolding-HiC-VGP8/main:main",
         "view_tip": view_workflow_tip,
-        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF8a-Scaffolding_HiC_Yahs",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Scaffolding-HiC-VGP8/main",
         "button_tip": import_workflow_tip,
     },
     {
@@ -414,9 +381,9 @@ workflows_hic = [
                 'label': 'Assembly',
             },
         ],
-        "view_link": "https://dockstore.org/workflows/github.com/Delphine-L/iwc/WF9-Decontamination:VGP",
+        "view_link": "https://dockstore.org/workflows/github.com/iwc-workflows/Assembly-decontamination-VGP9/main:v0.1",
         "view_tip": view_workflow_tip,
-        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/Delphine-L/iwc/WF9-Decontamination",
+        "button_link": "https://genome.usegalaxy.org.au/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Assembly-decontamination-VGP9/main",
         "button_tip": import_workflow_tip,
     },
 ]
