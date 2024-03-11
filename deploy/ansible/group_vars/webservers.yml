@@ -56,11 +56,11 @@ admin_user:
   password: "{{ admin_password }}"
 
 smtp:
-  hostname: smtp.office365.com
-  port: 587
-  username: qfab_smtp@qfab.org
+  hostname: mail.smtp2go.com
+  port: 2525
+  username: galaxytest
   password: "{{ smtp_password }}"
-  from_address: qfab_smtp@qfab.org
+  from_address: noreply@genome.edu.au
   to_address: help@genome.edu.au
   use_tls: true
 
