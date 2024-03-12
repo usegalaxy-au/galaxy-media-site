@@ -2,4 +2,4 @@
 site.usegalaxy.org.au  ansible_connection=ssh  ansible_user=ubuntu
 
 [dev_webservers]
-dev-site.usegalaxy.org.au  ansible_connection=ssh  ansible_user=ubuntu
+dev-site.gvl.org.au  ansible_connection=ssh  ansible_user=ubuntu
