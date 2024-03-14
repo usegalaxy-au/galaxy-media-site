@@ -10,10 +10,10 @@ nationality: Gazorpian
 galaxy_base_url: https://gazorpian-galaxy.org
 
 # Custom content relative to this file URL
-intro_html: subsite_intro.html
-header_logo: my-logo.svg
-footer_html: footer.html
-custom_css: custom.css
+intro_html: templates/intro.html
+header_logo: static/my-logo.svg
+footer_html: templates/footer.html
+custom_css: static/custom.css
 sections:
   - data.yml
   - assembly.yml
