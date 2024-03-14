@@ -36,7 +36,9 @@
     {% include 'home/snippets/cover-image.html' %}
 
     <p>
-      Welcome to the Galaxy Australia Proteomics Lab. This page is currently under construction. Watch this space!
+      Welcome to the Galaxy Australia Proteomics Lab. Get quick access to the
+      tools, workflows and tutorials you need to get started with proteomics on
+      Galaxy.
       <br>
       <a
         href="#"
@@ -45,7 +47,68 @@
         What is this page?
       </a>
     </p>
+
+    <p>
+      This page is currently under development in consultation with the
+      <a href="https://www.biocommons.org.au/proteomics" target="_blank">
+        Australian Proteomics Bioinformatics community</a>.
+    </p>
   </section>
+
+  <hr>
+
+  <section>
+    <div class="row">
+      <div class="col">
+        <a href="https://training.galaxyproject.org/training-material/topics/proteomics/" target="_blank">
+          <table>
+            <tr>
+              <td>
+                <span class="material-icons px-3" style="font-size: 3rem;">school</span>
+              </td>
+              <td>
+                Proteomics tutorials for Galaxy
+              </td>
+            </tr>
+          </table>
+        </a>
+      </div>
+
+      <div class="col">
+        <a class="text-danger" href="">
+          <table>
+            <tr>
+              <td>
+                <span class="material-icons px-3" style="font-size: 3rem;">change_circle</span>
+              </td>
+              <td>
+                MS data file format converters
+              </td>
+            </tr>
+          </table>
+        </a>
+      </div>
+
+      <div class="col">
+        <a class="text-danger" href="">
+          <table>
+            <tr>
+              <td>
+                <span class="material-icons px-3" style="font-size: 3rem;">account_tree</span>
+              </td>
+              <td>
+                MS reference data on Galaxy
+              </td>
+            </tr>
+          </table>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  {% include 'home/snippets/header-cards.html' %}
 
   {% for section in sections %}
     {% include 'home/subdomains/components/section.html' with section=section %}
