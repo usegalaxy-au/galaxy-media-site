@@ -11,7 +11,13 @@
 {% block content %}
 
 <main class="container mt-4">
-  <h1> Request access to specialist tools </h1>
+  <h1 class="mb-2"> Request access to specialist tools </h1>
+  <small>
+    <a href="/request">
+      <span class="material-icons">arrow_back</span>
+      Go to support menu
+    </a>
+  </small>
 
   <div class="m-10" style="margin-top: 15vh;">
     <div class="my-3 mx-auto" style="max-width: 800px;">
@@ -35,6 +41,7 @@
     <div class="card-group request-menu-cards">
       <div class="card">
         <div class="card-body">
+          <!-- <img src="{% static 'home/img/access-alphafold-dalle.webp' %}" alt="Cartoon illustration of AlphaFold2 3D protein prediction"> -->
           <p class="my-0">
             Use AlphaFold 2 to predict protein structures
           </p>
@@ -49,6 +56,7 @@
 
       <div class="card">
         <div class="card-body">
+          <!-- <img src="{% static 'home/img/access-gene-annotation-dalle.webp' %}" alt="Cartoon illustration of gene annotation analysis"> -->
           <p class="my-0">
             Use FGENESH++ to annotate a genome
           </p>
@@ -63,6 +71,7 @@
 
       <div class="card">
         <div class="card-body">
+          <!-- <img src="{% static 'home/img/access-single-cell-dalle.webp' %}" alt="Cartoon illustration of single cell transcriptomics analysis"> -->
           <p class="my-0">
             Use CellRanger for single cell RNA-seq analysis
           </p>
