@@ -132,6 +132,11 @@ def user_request_support(request):
     return render(request, 'home/requests/support.html', {'form': form})
 
 
+def user_request_resource_index(request):
+    """Handle user support requests."""
+    return render(request, 'home/requests/access/index.html')
+
+
 def user_request_resource_access(request, resource):
     """Handle resource (e.g. tool) access requests.
 

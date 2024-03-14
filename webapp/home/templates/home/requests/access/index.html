@@ -1,0 +1,98 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<main class="container mt-4">
+  <h1 class="mb-2"> Request access to specialist tools </h1>
+  <small>
+    <a href="/request">
+      <span class="material-icons">arrow_back</span>
+      Go to support menu
+    </a>
+  </small>
+
+  <div class="m-10" style="margin-top: 15vh;">
+    <div class="my-3 mx-auto" style="max-width: 800px;">
+      <p>
+        Galaxy Australia users from Australian institutions
+        can apply for access to specialized tools. Access to these tools is
+        restricted due to licensing and resource constraints.
+        Access will usually be granted automatically if your account email
+        address is on our
+        <a href="/list-of-institutions.html">list of institutions</a>.
+      </p>
+
+      <p>
+        Please
+        <a href="/request/support">contact us</a>
+        if you have any
+        further queries about accessing these tools.
+      </p>
+    </div>
+
+    <div class="card-group request-menu-cards">
+      <div class="card">
+        <div class="card-body">
+          <!-- <img src="{% static 'home/img/access-alphafold-dalle.webp' %}" alt="Cartoon illustration of AlphaFold2 3D protein prediction"> -->
+          <p class="my-0">
+            Use AlphaFold 2 to predict protein structures
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a class="ga-btn" href="/request/access/alphafold">
+            Apply now
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <!-- <img src="{% static 'home/img/access-gene-annotation-dalle.webp' %}" alt="Cartoon illustration of gene annotation analysis"> -->
+          <p class="my-0">
+            Use FGENESH++ to annotate a genome
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a class="ga-btn" href="/request/access/fgenesh">
+            Apply now
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <!-- <img src="{% static 'home/img/access-single-cell-dalle.webp' %}" alt="Cartoon illustration of single cell transcriptomics analysis"> -->
+          <p class="my-0">
+            Use CellRanger for single cell RNA-seq analysis
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a class="ga-btn" href="/request/access/cellranger">
+            Apply now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}
