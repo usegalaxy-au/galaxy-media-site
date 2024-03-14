@@ -11,7 +11,7 @@ galaxy_base_url: https://gazorpian-galaxy.org
 
 # Custom content relative to this file URL
 intro_html: templates/intro.html
-header_logo: static/my-logo.svg
+header_logo: static/logo.svg
 footer_html: templates/footer.html
 custom_css: static/custom.css
 sections:
