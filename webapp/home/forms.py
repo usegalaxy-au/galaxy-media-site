@@ -246,7 +246,7 @@ class BaseAccessRequestForm(forms.Form):
         except Exception as exc:
             logger.error(
                 f"Error calling galaxy.is_registered_email():\n"
-                f"{exc[:1000]}\n")
+                f"{str(exc)[:1000]}\n")
             error = (
                 "Galaxy connection refused (could not check account"
                 " status)."
@@ -345,7 +345,6 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
-    institution = forms.CharField()
     species = forms.CharField(required=False)
     domain = forms.CharField(required=False, label="Domain of study")
     proteins = forms.CharField(required=False, label="Target proteins")
@@ -366,7 +365,6 @@ class FgeneshRequestForm(BaseAccessRequestForm):
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
-    institution = forms.CharField()
     agree_terms = forms.BooleanField()
     agree_acknowledge = forms.BooleanField()
     research_description = forms.CharField(max_length=200, required=False)
@@ -399,7 +397,6 @@ class CellRangerRequestForm(BaseAccessRequestForm):
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
-    institution = forms.CharField()
     agree_terms = forms.BooleanField()
     agree_usage = forms.BooleanField()
 

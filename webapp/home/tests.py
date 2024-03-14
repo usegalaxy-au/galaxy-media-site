@@ -182,7 +182,6 @@ class AccessRequestsTestCase(TestCase):
         response = self.client.post('/request/access/alphafold', {
             'name': 'John Doe',
             'email': 'test@uq.edu.au',
-            'institution': 'University of Queensland',
         })
         self.assert_access_form_success(response, auto_action=True)
 
@@ -190,7 +189,6 @@ class AccessRequestsTestCase(TestCase):
         response = self.client.post('/request/access/fgenesh', {
             'name': 'John Doe',
             'email': 'test@uq.edu.au',
-            'institution': 'University of Queensland',
             'agree_terms': 'on',
             'agree_acknowledge': 'on',
             'matrices': [genematrix_tree.as_choices()[0][0]],
@@ -201,7 +199,6 @@ class AccessRequestsTestCase(TestCase):
         response = self.client.post('/request/access/cellranger', {
             'name': 'John Doe',
             'email': 'test@uq.edu.au',
-            'institution': 'University of Queensland',
             'agree_terms': 'on',
             'agree_usage': 'on',
         })
