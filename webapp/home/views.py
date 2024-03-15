@@ -115,19 +115,19 @@ def export_lab(request):
 
     template = 'home/subdomains/exported.html'
     if request.GET.get('content_root'):
-        context = ExportSubsiteContext(request)
-        context.validate()
-        response = render(request, template, context)
-        response.content = response.content.replace(
-            b'$GALAXY_URL',
-            context['galaxy_base_url'].encode('utf-8'))
-        return response
+        context = ExportSubsiteContext(request.GET)
     else:
-        # ! TODO: add validation/feedback error page
-        # ! TODO: actually, for this case show instructions page
-        # ! ... the instructions page could be the default content from github
-        raise ValueError("GET parameter 'content_root' required for remote"
-                         " webpage content")
+        # TODO: instructions page as default content
+        context = ExportSubsiteContext({
+            'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
+        })
+
+    context.validate()
+    response = render(request, template, context)
+    response.content = response.content.replace(
+        b'$GALAXY_URL',
+        context['galaxy_base_url'].encode('utf-8'))
+    return response
 
 
 def notice(request, notice_id):

@@ -38,12 +38,11 @@ class ExportSubsiteContext(dict):
         'custom_css',
     )
 
-    def __init__(self, request):
+    def __init__(self, params):
         """Init context from dict."""
         super().__init__(self)
         self['snippets'] = {}
-        self.request = request
-        self.params = request.GET
+        self.params = params
         self.update({
             'export': True,
             'extend_template': 'home/header-export.html',
