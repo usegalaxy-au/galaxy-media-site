@@ -1,19 +1,19 @@
-# Spec for an exported subsite landing page
+# Default ppec for an exported subsite landing page
 
-# Test with: http://127.0.0.1:8000/landing/genome?export=true&yaml_context_url=http://127.0.0.1:8000/media/main.yml
-
-# Or: http://127.0.0.1:8000/lab/export?root_url=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/test/data/subsite/media/main.yml
+# You can test with: /lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/test/data/subsite/media/main.yml
 
 site_name: Antarctica
-lab_name: Archaeology
-nationality: Gazorpian
-galaxy_base_url: https://gazorpian-galaxy.org
+lab_name: Galaxy Lab Pages
+nationality: Antarctican
+galaxy_base_url: https://galaxy-antarctica.org
 
 # Custom content relative to this file URL
 intro_html: templates/intro.html
-header_logo: static/logo.svg
+header_logo: static/flask.svg
 footer_html: templates/footer.html
 custom_css: static/custom.css
+
+# Data to be rendered into sections/tabs/accordion elements:
 sections:
   - data.yml
   - assembly.yml
