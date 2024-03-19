@@ -13,6 +13,10 @@
     "domains": ["@australianhearthealth.org.au"]
   },
   {
+    "name": "Australian Government departments",
+    "domains": ["@gov.au"]
+  },
+  {
     "name": "Australian Institute of Aboriginal and Torres Strait Islander Studies",
     "domains": ["@aiatsis.gov.au"]
   },

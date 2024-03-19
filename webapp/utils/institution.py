@@ -2,6 +2,7 @@
 
 import os
 import json
+import re
 from django.conf import settings
 
 DOMAIN_LIST_PATH = os.path.join(
@@ -19,13 +20,28 @@ def is_institution_email(email):
     if '@' not in email:
         raise ValueError(f"'{email}' is not a valid email address")
     domain = email.split('@')[1]
+    # For me@abc.xyz.edu.au, check also root domains xyz.edu.au, edu.au
     possible_root_domains = {
         '@' + '.'.join(domain.split('.')[i:])
         for i in range(len(domain.split('.')) - 1)
     }
-    valid_emails = get_domains()
-    matching_domains = set(valid_emails) & possible_root_domains
-    return bool(matching_domains)
+
+    # Hard-check against all email domains
+    valid_domains = get_domains()
+    matching_domains = set(valid_domains) & possible_root_domains
+    if matching_domains:
+        return True
+
+    # Check against wildcard domains
+    wildcard_domain_matches = [
+        d.replace('*', '.')
+        for d in valid_domains
+        if '*' in d
+        and re.match(d.replace('*', '.+'), domain)
+    ]
+    if wildcard_domain_matches:
+        return True
+    return False
 
 
 def get_domains():
