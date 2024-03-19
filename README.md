@@ -11,8 +11,9 @@ For developer docs, please [check out the wiki](https://github.com/usegalaxy-au/
 
 The commit process is documented in the [dev wiki](https://github.com/usegalaxy-au/galaxy-media-site/wiki/Development).
 
-`dev` - main development branch deployed to https://dev-site.gvl.org.au
-`main` - prod branch deployed to https://site.usegalaxy.org.au
+`dev` - development branch deployed to https://dev-site.gvl.org.au
+
+`main` - production branch deployed to https://site.usegalaxy.org.au
 
 ## What it does
 
