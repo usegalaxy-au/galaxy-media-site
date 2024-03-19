@@ -1,6 +1,10 @@
 [
   { "name": "ANZAC Research Institute", "domains": ["@anzac.edu.au"] },
   {
+    "name": "Any Australian Government Funded Research Organisation",
+    "domains": ["*.gov.au"]
+  },
+  {
     "name": "Australia New Zealand Gynaecological Oncology Group",
     "domains": ["@anzgog.org.au"]
   },
