@@ -13,8 +13,8 @@
     "domains": ["@australianhearthealth.org.au"]
   },
   {
-    "name": "Australian Government departments",
-    "domains": ["@gov.au"]
+    "name": "Any Australian Government Funded Research Organisation",
+    "domains": ["*.gov.au"]
   },
   {
     "name": "Australian Institute of Aboriginal and Torres Strait Islander Studies",

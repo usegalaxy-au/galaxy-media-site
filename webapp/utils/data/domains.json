@@ -4,7 +4,7 @@
   "@myacu.edu.au": "Australian Catholic University",
   "@acu.edu.au": "Australian Catholic University",
   "@australianhearthealth.org.au": "Australian Centre for Heart Health",
-  "@gov.au": "Australian Government departments",
+  "*.gov.au": "Any Australian Government Funded Research Organisation",
   "@aiatsis.gov.au": "Australian Institute of Aboriginal and Torres Strait Islander Studies",
   "@aims.gov.au": "Australian Institute of Marine Science",
   "@nma.gov.au": "Australian Museum",
