@@ -16,7 +16,12 @@ INSTITUTION_LIST_PATH = os.path.join(
 
 
 def is_institution_email(email):
-    """Return True if given address is for valid institution."""
+    """Return True if given address is for valid institution.
+
+    Match against exact domain and also root domains.
+    e.g. if 'uq.edu.au' is a listed domain, then 'blah.uq.edu.au' will also
+    return True.
+    """
     if '@' not in email:
         raise ValueError(f"'{email}' is not a valid email address")
     domain = email.split('@')[1]
@@ -27,7 +32,10 @@ def is_institution_email(email):
     }
 
     # Hard-check against all email domains
-    valid_domains = get_domains()
+    valid_domains = [
+        d.replace('*.', '@')  # All matched against root domains anyway
+        for d in get_domains()
+    ]
     matching_domains = set(valid_domains) & possible_root_domains
     if matching_domains:
         return True
