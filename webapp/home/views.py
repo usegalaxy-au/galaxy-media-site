@@ -219,13 +219,6 @@ def aaf_info(request):
     })
 
 
-def australian_institutions(request):
-    """Show list of recognised AU research institution email domains."""
-    return render(request, 'home/au-institutions.html', {
-        'institutions': get_institution_list(),
-    })
-
-
 def unsubscribe_user(request):
     """Add user hash to unsubscribe list."""
     email_hash = request.GET.get('id')

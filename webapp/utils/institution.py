@@ -61,4 +61,6 @@ def get_domains():
 def get_institution_list():
     """Return list of institutions with name and email domains."""
     with open(INSTITUTION_LIST_PATH) as f:
-        return json.load(f)
+        institutions = json.load(f)
+        institutions.sort(key=lambda i: i['name'])
+        return institutions
