@@ -17,6 +17,10 @@
     "domains": ["@australianhearthealth.org.au"]
   },
   {
+    "name": "Any Australian Government Funded Research Organisation",
+    "domains": ["*.gov.au"]
+  },
+  {
     "name": "Australian Institute of Aboriginal and Torres Strait Islander Studies",
     "domains": ["@aiatsis.gov.au"]
   },
