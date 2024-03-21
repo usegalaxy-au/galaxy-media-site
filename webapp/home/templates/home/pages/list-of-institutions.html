@@ -5,6 +5,19 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'home/css/about.css' %}">
+
+<style>
+  #emailValidInputWrapper {
+    position: relative;
+  }
+  #emailValidLoading {
+    display: none;
+    position: absolute;
+    top: -0.5rem;
+    right: 0;
+    width: 3.5rem;
+  }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -26,15 +39,70 @@
     to request the addition of your research institution to this list.
   </p>
 
-  <!-- Something like this: -->
-  <!--
-    <div class="border rounded textbox mb-5 p-3">
-    <p class="text-bf">Does my email address qualify?</p>
-    <input class="form-control is-invalid" type="text" placeholder="myemail@example.com">
-    <small class="text-danger">This email address is not qualified as an Australian Institution.</small>
-  </div> -->
+  <div class="border rounded textbox mb-5 p-3">
+    <label class="text-bf mb-2" for="emailValidInput">Verify if my email is on the Australian Research Institutions list:</label>
+    <div id="emailValidInputWrapper">
+      <input id="emailValidInput" class="form-control" type="text" placeholder="myemail@example.com">
+      <img id="emailValidLoading" src="{% static 'home/img/spinner.svg' %}" alt="Loading animation">
+    </div>
+    <small id="emailValidResult"></small>
+  </div>
 
   {% include 'home/snippets/about/list-of-institutions.html' %}
 </main>
 
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready( function() {
+    const DEBOUNCE_MS = 500;
+    const input = $('#emailValidInput');
+
+    function fetchValidateEmail() {
+
+      console.log('fetchValidateEmail()');
+
+      const loadingIcon = $('#emailValidLoading');
+      loadingIcon.show();
+      const email = $(this).val();
+      if (email.length > 0) {
+        $.ajax({
+          url: '/institution/validate',
+          type: 'GET',
+          data: {
+            email: email
+          },
+          success: function(data) {
+            if (data.valid) {
+              input.addClass('is-valid');
+              input.removeClass('is-invalid');
+              $('#emailValidResult').html('Great news! Your email is on the list.');
+              $('#emailValidResult').removeClass('text-danger');
+              $('#emailValidResult').addClass('text-success');
+            } else {
+              input.addClass('is-invalid');
+              input.removeClass('is-valid');
+              $('#emailValidResult').html(
+                'Sorry, your institution is not on our list.'
+                + ' <a href="/request/support">Contact us</a> '
+                + 'to discuss the addition of your institution to this list.');
+              $('#emailValidResult').removeClass('text-success');
+              $('#emailValidResult').addClass('text-danger');
+            }
+          }
+        });
+      } else {
+        $('#emailValidResult').html('');
+      }
+      loadingIcon.hide();
+    }
+
+    $('input').on('input', _.debounce(
+      fetchValidateEmail,
+      DEBOUNCE_MS,
+      { 'leading': true, 'trailing': false },
+    ));
+  });
+</script>
 {% endblock %}
