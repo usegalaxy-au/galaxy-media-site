@@ -51,6 +51,9 @@ def validate_institutional_email(request):
     email = request.GET.get('email')
     if not email:
         return HttpResponseBadRequest()
-    if is_institution_email(email):
-        return JsonResponse({'valid': True})
-    return JsonResponse({'valid': False})
+    try:
+        if is_institution_email(email):
+            return JsonResponse({'valid': True})
+        return JsonResponse({'valid': False})
+    except ValueError:
+        return JsonResponse({'error': True})
