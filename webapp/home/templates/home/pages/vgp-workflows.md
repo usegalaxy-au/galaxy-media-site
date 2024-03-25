@@ -61,8 +61,8 @@ For each of the other workflows, you will need these inputs:
   * Inputs:
     * From WF8: Scaffolded assembly in FASTA format
   * Settings:
-    * For step "ID non-target contaminants": select Kraken 2 database : choose: Prebuilt Refseq indexes: PlusPF (Standard plus protozoa and fungi)
-    * For step "blast mitochondria db": choose locally installed blast database: choose RefSeq mitochondrion
+    * For "Database for Kraken2": choose: Prebuilt Refseq indexes: PlusPF (Standard plus protozoa and fungi)
+    * For "blast mitochondria db": select database/sequences: Locally installed Blast database: click the pencil icon: click in the text box to reveal a list of options: select RefSeq mitochondrion
 
 ## Do I need any background knowledge before I run these workflows? 
 
