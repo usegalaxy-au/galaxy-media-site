@@ -6,7 +6,6 @@ from .base import *
 from .log import config
 from utils.parse import parse_list
 
-
 DEBUG = True
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
 if os.environ.get('HOSTNAME'):
@@ -29,8 +28,8 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-INSTALLED_APPS.append('debug_toolbar')
-MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+# INSTALLED_APPS.append('debug_toolbar')
+# MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 DATABASES = {
     'default': {

@@ -10,7 +10,7 @@ def main():
         if 'manage.py' in sys.argv[sys.argv.index('test') - 1]:
             os.environ['DJANGO_SETTINGS_MODULE'] = 'webapp.settings.test'
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webapp.settings.prod')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webapp.settings.dev')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

@@ -35,5 +35,5 @@ if settings.DEBUG:
         re_path(r'^media/(?P<path>.*)$', serve, {
             'document_root': settings.MEDIA_ROOT,
         }),
-        path('__debug__/', include('debug_toolbar.urls')),
+        # path('__debug__/', include('debug_toolbar.urls')),
     ]
