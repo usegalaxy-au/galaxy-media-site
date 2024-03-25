@@ -6,7 +6,9 @@ $(document).ready( function() {
   const input = $('#emailValidInput');
   const loadingIcon = $('#emailValidLoading');
   const resultText = $('#emailValidResult');
-  const validMessageHtml = 'Great news! Your email is on the list.';
+  const validMessageHtml = `
+    Great news! Your email address is associated with
+    a recognised institution.`;
   const invalidMessageHtml = `
     Sorry, this email address is not associated with an institution on our list.
     <br>
