@@ -1,9 +1,8 @@
 {% extends extend_template %}
 
 {% comment %}
-  This template renders the Genome Lab subdomain landing page.
-  See webapp/home/subdomains/genome for content to be rendered into this
-  template (sections, tools, workflows, etc).
+  This template renders a generic Galaxy Lab landing page based on externally
+  hosted content (e.g. sections, tools, workflows, etc).
 {% endcomment %}
 
 {% load static %}
@@ -19,6 +18,7 @@
 
 <style>
   {{ snippets.custom_css|default:"" }}
+
 </style>
 
 {% endblock %}
@@ -27,65 +27,27 @@
 {% block content %}
 
 <main>
+  {% comment %}
+  <!-- These need to be configurable/templatable as appropriate -->
   {% include 'home/subdomains/components/genome-community-modal.html' %}
   {% include 'home/subdomains/components/info-modal.html' with subdomain='genome' site_name="Genome Lab" researchers="genomics" %}
   {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
+  {% endcomment %}
 
-  <section  class="header-subdomain australia d-flex align-items-center h-100">
+  <section id="headerSection" class="header-subdomain australia d-flex align-items-center h-100">
     {% if snippets.header_logo %}
     <img id="header-logo" src="{{ snippets.header_logo }}" alt="{{ site_name }} Logo">
-    {% else %}
-    <img id="header-logo" src="{% static 'home/img/subdomains/'|add:name|add:'/logo.png' %}" alt="Galaxy Australia Logo">
     {% endif %}
-    {{ lab_name|default:"Genome Lab"|upper }}
+    {{ lab_name|upper }}
   </section>
 
   {% if snippets.intro_html %}
   {{ snippets.intro_html|safe }}
-  {% else %}
-  <section class="my-5" id="tagline">
-    {% include 'home/snippets/static-notices.html' %}
-    {% include 'home/snippets/cover-image.html' %}
-
-    <p>
-      Welcome to the Galaxy {{ site_name }} {{ lab_name|default:"Genome Lab" }}. Get quick access to tools, workflows and tutorials for genome assembly and annotation.
-      <br>
-      <a
-        href="#"
-        data-bs-toggle="modal"
-        data-bs-target="#infoModal">
-        What is this page?
-      </a>
-    </p>
-  </section>
   {% endif %}
 
   {% for section in sections %}
     {% include 'home/subdomains/components/section.html' with section=section %}
   {% endfor %}
-
-  {% if not export %}
-  <section class="my-5">
-    <h4 class="mb-3">What's happening in {{ nationality }} genomics research?</h4>
-    <button
-      class="ga-btn"
-      data-bs-toggle="modal"
-      data-bs-target="#communityConnectModal"
-    >
-      Explore
-    </button>
-    <br>
-    <br>
-    <h4 class="mb-3">What do you think of the Genome Lab?</h4>
-    <button
-      class="ga-btn"
-      data-bs-toggle="modal"
-      data-bs-target="#feedbackModal"
-    >
-      Give feedback
-    </button>
-  </section>
-  {% endif %}
 </main>
 
 

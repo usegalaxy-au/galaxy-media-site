@@ -4,17 +4,18 @@ import os
 import logging
 import pprint
 from django.conf import settings
-from django.template import TemplateDoesNotExist, loader
-from django.shortcuts import render, get_object_or_404
 from django.http import Http404
+from django.shortcuts import render, get_object_or_404
+from django.template import TemplateDoesNotExist, loader
 from django.template.loader import get_template
 
+from events.models import Event
+from news.models import News
 from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError
 from utils.institution import get_institution_list
-from events.models import Event
-from news.models import News
+from .export import ExportSubsiteContext
 from .models import CoverImage, Notice
 from .forms import (
     ResourceRequestForm,
@@ -55,6 +56,7 @@ def landing(request, subdomain):
     A support request form is passed to the template which can be submitted
     with AJAX and processed by an API handler.
     """
+
     template = f'home/subdomains/{subdomain}.html'
     try:
         get_template(template)
@@ -69,13 +71,64 @@ def landing(request, subdomain):
             f"No content files found for subdomain '{subdomain}'"
             " at 'webapp/home/subdomains/{subdomain}/'")
 
-    return render(request, template, {
+    context = {
+        'extend_template': 'home/header.html',
+        'export': False,
         'name': subdomain,
-        'notices': Notice.get_notices_by_type(request, subsite=subdomain),
-        'cover_image': CoverImage.get_random(request, subsite=subdomain),
-        'sections': sections,
-        'form': SupportRequestForm(),
-    })
+        'site_name': settings.GALAXY_SITE_NAME,
+        'nationality': 'Australian',
+        'galaxy_base_url': settings.GALAXY_URL,
+    }
+    if request.GET.get('export'):
+        context = ExportSubsiteContext(request)
+        context.validate()
+        context.update({
+            'name': subdomain,
+            'title': f'Galaxy - {subdomain.title()} Lab',
+        })
+        if not context.get('sections'):
+            context['sections'] = sections
+    else:
+        context.update({
+            'sections': sections,
+            'notices': Notice.get_notices_by_type(request, subsite=subdomain),
+            'cover_image': CoverImage.get_random(request, subsite=subdomain),
+            'form': SupportRequestForm(),
+        })
+
+    response = render(request, template, context)
+    response.content = response.content.replace(
+        b'$GALAXY_URL',
+        context['galaxy_base_url'].encode('utf-8'))
+    return response
+
+
+def export_lab(request):
+    """Generic Galaxy Lab landing page build with externally hosted content.
+
+    These pages are built on the fly and can be requested by third parties on
+    an ad hoc basis, where the content would typically be hosted in a GitHub
+    repo with a YAML file root which is specified as a GET parameter.
+    """
+
+    # TODO: validate with Pydantic models
+    # TODO: cache remote content with GET option to refresh
+
+    template = 'home/subdomains/exported.html'
+    if request.GET.get('content_root'):
+        context = ExportSubsiteContext(request.GET)
+    else:
+        # TODO: instructions page as default content
+        context = ExportSubsiteContext({
+            'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
+        })
+
+    context.validate()
+    response = render(request, template, context)
+    response.content = response.content.replace(
+        b'$GALAXY_URL',
+        context['galaxy_base_url'].encode('utf-8'))
+    return response
 
 
 def notice(request, notice_id):
@@ -230,3 +283,10 @@ def unsubscribe_user(request):
         'message': ("You will no longer receive marketing emails from Galaxy"
                     " Australia."),
     })
+
+
+def custom_400(request, exception, template_name="400.html"):
+    """Custom view to show error messages."""
+    return render(request, template_name, {
+        'exc': exception,
+    }, status=400)
