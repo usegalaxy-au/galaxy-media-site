@@ -19,10 +19,11 @@ header_logo: static/logo.png
 custom_css: static/custom.css
 intro_html: templates/intro.html
 conclusion_html: templates/conclusion.html
-# footer_html: templates/footer.html
+footer_html: templates/footer.html
 
 
-# Data to be rendered into sections/tabs/accordion elements. Either:
+# Data (Tools, Workflows etc.) to be rendered into sections/tabs/accordion elements.
+# Either:
 #   1. Relative to this file URL
 #   2. Full URL to fetch globally centralized content
 sections:
