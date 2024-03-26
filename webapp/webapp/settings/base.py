@@ -28,7 +28,7 @@ DEBUG = True
 AUTH_USER_MODEL = 'home.User'
 
 # Site paths and URLs
-HOSTNAME = '127.0.0.1:5000'
+HOSTNAME = os.getenv('HOSTNAME', 'localhost:8000')
 GALAXY_SITE_NAME = 'Australia'
 GALAXY_SITE_SUFFIX = 'Media'    # Rendered as "Galaxy <SITE_NAME> <SUFFIX>"
 STATIC_URL = '/static/'
@@ -38,7 +38,7 @@ MEDIA_ROOT = BASE_DIR / 'webapp/media'
 LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
 RECIPIENT_MASTER_CSV = BASE_DIR / '../scripts/mail/recipient_records.csv'
 DEFAULT_EXPORTED_LAB_CONTENT_ROOT = (
-    'http://127.0.0.1:8000/static/home/labs/docs/main.yml'
+    f'http://{HOSTNAME}/static/home/labs/docs/main.yml'
     # 'https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site'
     # '/export-lab-pages/webapp/home/labs/docs/main.yml'
 )
@@ -47,6 +47,7 @@ DEFAULT_EXPORTED_LAB_CONTENT_ROOT = (
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    HOSTNAME,
 ]
 
 # Application definition
