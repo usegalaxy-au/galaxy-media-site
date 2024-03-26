@@ -1,4 +1,4 @@
-# Default ppec for an exported subsite landing page
+# Default spec for an exported subsite landing page
 
 # You can test with: /lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/test/data/subsite/media/main.yml
 

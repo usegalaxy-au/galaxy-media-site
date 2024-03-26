@@ -4,10 +4,15 @@ import os
 import logging
 import pprint
 from django.conf import settings
-from django.http import Http404
-from django.shortcuts import render, get_object_or_404
-from django.template import TemplateDoesNotExist, loader
-from django.template.loader import get_template
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.template import (
+    Context,
+    loader,
+    Template,
+    TemplateDoesNotExist,
+)
+from django.template.loader import get_template, render_to_string
 
 from events.models import Event
 from news.models import News
@@ -15,7 +20,7 @@ from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError
 from utils.institution import get_institution_list
-from .export import ExportSubsiteContext
+from .lab_export import ExportSubsiteContext
 from .models import CoverImage, Notice
 from .forms import (
     ResourceRequestForm,
@@ -97,7 +102,7 @@ def landing(request, subdomain):
 
     response = render(request, template, context)
     response.content = response.content.replace(
-        b'$GALAXY_URL',
+        b'{{ galaxy_base_url }}',
         context['galaxy_base_url'].encode('utf-8'))
     return response
 
@@ -117,17 +122,17 @@ def export_lab(request):
     if request.GET.get('content_root'):
         context = ExportSubsiteContext(request.GET)
     else:
-        # TODO: instructions page as default content
         context = ExportSubsiteContext({
             'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
         })
 
+    # Do two rounds of rendering to capture template tags in remote data
     context.validate()
-    response = render(request, template, context)
-    response.content = response.content.replace(
-        b'$GALAXY_URL',
-        context['galaxy_base_url'].encode('utf-8'))
-    return response
+    template_str = render_to_string(template, context, request)
+    t = Template(template_str)
+    body = t.render(Context(context))
+
+    return HttpResponse(body)
 
 
 def notice(request, notice_id):

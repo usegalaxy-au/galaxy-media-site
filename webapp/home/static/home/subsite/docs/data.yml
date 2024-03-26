@@ -5,11 +5,11 @@ tabs:
     title: Tools
     heading_html: Common tools are listed here, or search for more in the full tool panel to the left.
     content:
-      - button_link: $GALAXY_URL/tool_runner?tool_id=upload1
+      - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=upload1"
         title_html: Import data to Galaxy
         description_html: <p>Standard upload of data to Galaxy, from your computer or
           from the web.</p>
-      - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fdevteam%2Ffastqc%2Ffastqc
+      - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fdevteam%2Ffastqc%2Ffastqc"
         title_html: <code>FastQC</code>- sequence quality reports
         description_html: <p>Before using your sequencing data, it&apos;s important
           first ensure that the data quality is sufficient for your analysis.</p>
@@ -30,7 +30,7 @@ tabs:
         Learn more
       </a>.
     content:
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=222
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=222"
         button_tip: Import to Galaxy AU
         title_html: Data QC
         view_link: https://workflowhub.eu/workflows/222
@@ -44,7 +44,7 @@ tabs:
             <code>fastqc</code>
             <code>multiqc</code>
           </p>
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=223
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=223"
         button_tip: Import to Galaxy AU
         description_html: |
           <p>

@@ -1,7 +1,7 @@
 id: annotation
 tabs:
 - content:
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fmaker%2Fmaker
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fmaker%2Fmaker"
     description_html: <p> MAKER is able to annotate both prokaryotes and eukaryotes.
       It works by aligning as many evidences as possible along the genome sequence,
       and then reconciliating all these signals to determine probable gene structures.
@@ -18,7 +18,7 @@ tabs:
       - fasta
       label: Protein evidence (optional)
     title_html: <code>MAKER</code> - genome annotation pipeline
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Ffunannotate_predict%2Ffunannotate_predict
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Ffunannotate_predict%2Ffunannotate_predict"
     description_html: <p> <code>Funannotate predict</code> performs a comprehensive
       whole genome gene prediction. Uses AUGUSTUS, GeneMark, Snap, GlimmerHMM, BUSCO,
       EVidence Modeler, tbl2asn, tRNAScan-SE, Exonerate, minimap2. This approach differs
@@ -34,7 +34,7 @@ tabs:
       - fasta
       label: Protein evidence (optional)
     title_html: <code>Funannotate predict</code> - predicted gene annotations
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Frepeat_masker%2Frepeatmasker_wrapper
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Frepeat_masker%2Frepeatmasker_wrapper"
     description_html: <p> RepeatMasker is a program that screens DNA for repeated
       elements such as tandem repeats, transposons, SINEs and LINEs. Galaxy AU has
       installed the full and curated DFam screening databases, or a custom database
@@ -47,7 +47,7 @@ tabs:
       label: Genome assembly
     title_html: <code>RepeatMasker</code> - screen DNA sequences for interspersed
       repeats and low complexity regions
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Finterproscan%2Finterproscan
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Finterproscan%2Finterproscan"
     description_html: <p> Interproscan is a batch tool to query the InterPro database.
       It provides annotations based on multiple searches of profile and other functional
       databases. </p>
@@ -57,7 +57,7 @@ tabs:
       label: Genome assembly
     title_html: <code>InterProScan</code> - Scans InterPro database and assigns functional
       annotations
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Ffunannotate_compare%2Ffunannotate_compare
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Ffunannotate_compare%2Ffunannotate_compare"
     description_html: <p> <code>Funannotate compare</code> compares several annotations
       and outputs a GFF3 file with the best gene models. It can be used to compare
       the results of different gene predictors, or to compare the results of a gene
@@ -67,7 +67,7 @@ tabs:
       - fasta
       label: Genome assemblies to compare
     title_html: <code>Funannotate compare</code> - compare several annotations
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fjbrowse%2Fjbrowse
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fjbrowse%2Fjbrowse"
     description_html: ''
     inputs:
     - datatypes:
@@ -82,7 +82,7 @@ tabs:
       - bam
       label: Mapped RNAseq data (optional)
     title_html: <code>JBrowse</code> - Genome browser to visualize annotations
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fcrs4%2Fprokka%2Fprokka
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fcrs4%2Fprokka%2Fprokka"
     description_html: ''
     inputs:
     - datatypes:
@@ -94,7 +94,7 @@ tabs:
   id: tools
   title: Tools
 - content:
-  - button_link: $GALAXY_URL/u/anna/w/genome-annotation-with-maker
+  - button_link: "{{ galaxy_base_url }}/u/anna/w/genome-annotation-with-maker"
     button_tip: Run in Galaxy AU
     description_html: '<p> Annotates a genome using multiple rounds of Maker, including
       gene prediction using SNAP and Augustus. <br> <br> Tools: <code>maker</code>
@@ -111,7 +111,7 @@ tabs:
       - fasta
       label: Proteins
     title_html: Annotation with Maker
-  - button_link: $GALAXY_URL/u/anna/w/annotation-funannotate
+  - button_link: "{{ galaxy_base_url }}/u/anna/w/annotation-funannotate"
     button_tip: Run in Galaxy AU
     description_html: '<p> Annotates a genome using Funannotate, includes RNAseq data
       with RNAstar, and protein predictions from EggNOG. <br> <br> Tools: <code>RNAstar</code>
@@ -152,7 +152,8 @@ tabs:
       (in green) with different Galaxy tools (in blue) to annotate a genome assembly.
       For example, one pathway would be taking an assembled genome, plus information
       about repeats, and data from RNA-seq, to run in the Maker pipeline. The annotatations
-      can then be viewed in JBrowse.</p> <img class="img-fluid" src="/static/home/img/subdomains/genome/annotation-overview.png"
+      can then be viewed in JBrowse.</p> <img class="img-fluid"
+      src="/static/home/subsite/genome/static/annotation-overview.png"
       alt="Genome annotation flowchart"> <p class="text-center">A graphical representation
       of genome annotation</p>
     title_html: Genome annotation overview

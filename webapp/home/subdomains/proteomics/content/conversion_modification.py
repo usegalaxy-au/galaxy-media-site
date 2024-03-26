@@ -36,7 +36,7 @@ tools = [
                 'label': 'Input unrefined MS data',
             },
         ],
-        "button_link": "$GALAXY_URL/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/msconvert/msconvert/",
+        "button_link": "{{ galaxy_base_url }}/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/msconvert/msconvert/",
     },
     {
         "title_html": '<code>Thermo</code>',
@@ -47,7 +47,7 @@ tools = [
                 'label': 'Thermo RAW file',
             }
         ],
-        "button_link": "$GALAXY_URL/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/thermo_raw_file_converter/thermo_raw_file_converter/",
+        "button_link": "{{ galaxy_base_url }}/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/thermo_raw_file_converter/thermo_raw_file_converter/",
     }
 ]
 

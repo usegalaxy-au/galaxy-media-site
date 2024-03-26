@@ -1,13 +1,13 @@
 id: assembly
 tabs:
 - content:
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fhifiasm%2Fhifiasm
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fhifiasm%2Fhifiasm"
     description_html: <p> A haplotype-resolved assembler for PacBio HiFi reads. </p>
     inputs:
     - datatypes:
       - fasta
     title_html: <code>Hifiasm</code> - assembly with PacBio HiFi data
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fflye%2Fflye
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fflye%2Fflye"
     description_html: <p> <em>de novo</em> assembly of single-molecule sequencing
       reads, designed for a wide range of datasets, from small bacterial projects
       to large mammalian-scale assemblies. </p>
@@ -17,7 +17,7 @@ tabs:
     - datatypes:
       - fastq
     title_html: <code>Flye</code> - assembly with PacBio or Nanopore data
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler"
     description_html: <p> Hybrid assembly pipeline for bacterial genomes, uses both
       Illumina reads and long reads (PacBio or Nanopore). </p>
     inputs:
@@ -25,7 +25,7 @@ tabs:
       - fastq
     title_html: <code>Unicycler</code> - assembly with Illumina, PacBio or Nanopore
       data - bacteria only
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fsalsa%2Fsalsa
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fsalsa%2Fsalsa"
     description_html: <p> Salsa is a scaffolding tool based on a computational method
       that exploits the genomic proximity information in Hi-C data sets for long-range
       scaffolding of <em>de novo</em> genome assemblies. </p>
@@ -33,7 +33,7 @@ tabs:
     - datatypes:
       - fasta
     title_html: <code>Salsa</code> - scaffold assembly with HiC data
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fquast%2Fquast
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fquast%2Fquast"
     description_html: <p> QUAST = QUality ASsessment Tool. The tool evaluates genome
       assemblies by computing various metrics. If you have one or multiple genome
       assemblies, you can assess their quality with Quast. It works with or without
@@ -42,7 +42,7 @@ tabs:
     - datatypes:
       - fasta
     title_html: <code>Quast</code> - assess genome assembly quality
-  - button_link: $GALAXY_URL/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fbusco%2Fbusco
+  - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fbusco%2Fbusco"
     description_html: '<p> BUSCO: assessing genome assembly and annotation completeness
       with Benchmarking Universal Single-Copy Orthologs. The tool attempts to provide
       a quantitative assessment of the completeness in terms of the expected gene
@@ -63,7 +63,7 @@ tabs:
           assemble your genome on the Galaxy Australia platform, using multiple workflows.
           </p>
         title_html: About these workflows
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=220
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=220"
         button_tip: Import to Galaxy Australia
         description_html: <p> Convert a BAM file to FASTQ format to perform QC analysis
           (required if your data is in BAM format). </p>
@@ -74,7 +74,7 @@ tabs:
         title_html: BAM to FASTQ + QC v1.0
         view_link: https://workflowhub.eu/workflows/220
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=221
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=221"
         button_tip: Import to Galaxy Australia
         description_html: <p> Assemble a genome using PacBio HiFi reads. </p>
         inputs:
@@ -84,7 +84,7 @@ tabs:
         title_html: PacBio HiFi genome assembly using hifiasm v2.1
         view_link: https://workflowhub.eu/workflows/221
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=237
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=237"
         button_tip: Import to Galaxy Australia
         description_html: <p> Optional workflow to purge duplicates from the contig
           assembly. </p>
@@ -98,7 +98,7 @@ tabs:
         title_html: Purge duplicates from hifiasm assembly v1.0
         view_link: https://workflowhub.eu/workflows/237
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=403
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=403"
         button_tip: Import to Galaxy Australia
         description_html: <p> Evaluate the quality of your genome assembly with a
           comprehensive report including <code>FASTA stats</code>, <code>BUSCO</code>,
@@ -117,7 +117,7 @@ tabs:
           target="_blank" > tutorial </a> describes the steps required to assemble
           a genome on Galaxy with Nanopore and Illumina data. </p>
         title_html: About these workflows
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=225
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=225"
         button_tip: Import to Galaxy Australia
         description_html: <p> Assemble Nanopore long reads. This workflow can be run
           alone or as part of a combined workflow for large genome assembly. </p>
@@ -128,7 +128,7 @@ tabs:
         title_html: Flye assembly with Nanopore data
         view_link: https://workflowhub.eu/workflows/225
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=226
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=226"
         button_tip: Import to Galaxy Australia
         description_html: <p> Polishes (corrects) an assembly, using long reads (<code>Racon</code>
           and <code>Medaka</code>) and short reads (<code>Racon</code>). </p>
@@ -145,7 +145,7 @@ tabs:
         title_html: Assembly polishing
         view_link: https://workflowhub.eu/workflows/226
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=229
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=229"
         button_tip: Import to Galaxy Australia
         description_html: <p> Assesses the quality of the genome assembly. Generates
           statistics, determines if expected genes are present and align contigs to
@@ -172,7 +172,7 @@ tabs:
           href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_genome_assembly/tutorial.html"
           target="_blank">Galaxy tutorial</a>. </p>
         title_html: About these workflows
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/kmer-profiling-hifi-VGP1/main
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/kmer-profiling-hifi-VGP1/main"
         button_tip: Import to Galaxy Australia
         description_html: <p> This workflow produces a Meryl database and Genomescope
           outputs that will be used to determine parameters for following workflows,
@@ -186,7 +186,7 @@ tabs:
         title_html: Kmer profiling
         view_link: https://dockstore.org/workflows/github.com/iwc-workflows/kmer-profiling-hifi-VGP1/main:main
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Assembly-Hifi-HiC-phasing-VGP4/main
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Assembly-Hifi-HiC-phasing-VGP4/main"
         button_tip: Import to Galaxy Australia
         description_html: '<p> This workflow uses <code>hifiasm</code> (HiC mode)
           to generate HiC-phased haplotypes (<code>hap1</code> and <code>hap2</code>).
@@ -215,7 +215,7 @@ tabs:
         title_html: Hifi assembly and HiC phasing
         view_link: https://dockstore.org/workflows/github.com/iwc-workflows/Assembly-Hifi-HiC-phasing-VGP4/main:main
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Scaffolding-HiC-VGP8/main
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Scaffolding-HiC-VGP8/main"
         button_tip: Import to Galaxy Australia
         description_html: <p> This workflow scaffolds the assembly contigs using information
           from HiC data. </p>
@@ -232,7 +232,7 @@ tabs:
         title_html: HiC scaffolding
         view_link: https://dockstore.org/workflows/github.com/iwc-workflows/Scaffolding-HiC-VGP8/main:main
         view_tip: View in WorkflowHub
-      - button_link: $GALAXY_URL/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Assembly-decontamination-VGP9/main
+      - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Assembly-decontamination-VGP9/main"
         button_tip: Import to Galaxy Australia
         description_html: <p> This workflow identifies and removes contaminants from
           the assembly. </p>
@@ -285,7 +285,8 @@ tabs:
       - at any stage, the assembly can be assessed for number of contigs, number of
       base pairs, whether expected genes are present, and many other metrics.</li>
       <li>Annotation - identify features on the genome assembly such as gene names
-      and locations.</li> </ul> <img class="img-fluid" src="/static/home/img/subdomains/genome/assembly-overview.png"
+      and locations.</li> </ul> <img class="img-fluid"
+      src="/static/home/subsite/genome/static/assembly-overview.png"
       alt="Genome assembly flowchart"> <p class="text-center">A graphical representation
       of genome assembly</p>
     title_html: Genome assembly overview
