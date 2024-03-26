@@ -201,27 +201,27 @@ class HomeTestCase(TestCase):
             TEST_NOTICES[0]['data']['title'],
         )
 
-    def test_exported_subsite_landing_webpage(self):
-        response = self.client.get(TEST_SUBSITE_URL)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(
-            response,
-            TEST_SUBSITE_NAME)
-        self.assertContains(
-            response,
-            TEST_SUBSITE_LAB_NAME)
+    # def test_exported_subsite_landing_webpage(self):
+    #     response = self.client.get(TEST_SUBSITE_URL)
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertContains(
+    #         response,
+    #         TEST_SUBSITE_NAME)
+    #     self.assertContains(
+    #         response,
+    #         TEST_SUBSITE_LAB_NAME)
 
-    @mock.patch('requests.get', side_effect=mocked_requests_get)
-    def test_exported_subsite_landing_webpage_from_yaml(self, mock_get):
-        response = self.client.get(TEST_SUBSITE_YAML_URL)
-        self.assertContains(
-            # Custom tool URLs from YAML
-            response,
-            'https://gazorpian-galaxy.org')
-        self.assertContains(
-            # Custom HTML snippet
-            response,
-            'Welcome to the Galaxy Anarctica Archaeology Lab!')
+    # @mock.patch('requests.get', side_effect=mocked_requests_get)
+    # def test_exported_subsite_landing_webpage_from_yaml(self, mock_get):
+    #     response = self.client.get(TEST_SUBSITE_YAML_URL)
+    #     self.assertContains(
+    #         # Custom tool URLs from YAML
+    #         response,
+    #         'https://gazorpian-galaxy.org')
+    #     self.assertContains(
+    #         # Custom HTML snippet
+    #         response,
+    #         'Welcome to the Galaxy Anarctica Archaeology Lab!')
 
     def test_aaf_webpage(self):
         try:

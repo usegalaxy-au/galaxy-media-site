@@ -48,6 +48,11 @@
   {% for section in sections %}
     {% include 'home/subdomains/components/section.html' with section=section %}
   {% endfor %}
+
+  {% if snippets.conclusion_html %}
+  {{ snippets.conclusion_html|safe }}
+  {% endif %}
+
 </main>
 
 

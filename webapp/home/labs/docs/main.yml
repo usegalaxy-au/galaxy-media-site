@@ -1,11 +1,13 @@
-# Default ppec for an exported subsite landing page
+# Default spec for an exported subsite landing page
 
-# You can test with: /lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/test/data/subsite/media/main.yml
+# You can test with: /lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/main.yml
 
 site_name: Antarctica
 lab_name: Galaxy Lab Pages
 nationality: Antarctican
 galaxy_base_url: https://galaxy-antarctica.org
+subdomain: antarctica
+root_domain: galaxy-antarctica.org
 
 # Custom content relative to this file URL
 intro_html: templates/intro.html
@@ -15,5 +17,5 @@ custom_css: static/custom.css
 
 # Data to be rendered into sections/tabs/accordion elements:
 sections:
-  - data.yml
-  - assembly.yml
+  - section_1.yml
+  - section_2.yml
