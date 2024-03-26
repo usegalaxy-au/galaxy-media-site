@@ -38,9 +38,9 @@ MEDIA_ROOT = BASE_DIR / 'webapp/media'
 LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
 RECIPIENT_MASTER_CSV = BASE_DIR / '../scripts/mail/recipient_records.csv'
 DEFAULT_EXPORTED_LAB_CONTENT_ROOT = (
-    'http://127.0.0.1:8000/static/home/subsite/main.yml'
+    'http://127.0.0.1:8000/static/home/labs/docs/main.yml'
     # 'https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site'
-    # '/export-lab-pages/webapp/home/test/data/subsite/media/main.yml'
+    # '/export-lab-pages/webapp/home/labs/docs/main.yml'
 )
 
 # Hostnames

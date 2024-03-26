@@ -115,7 +115,6 @@ def export_lab(request):
     repo with a YAML file root which is specified as a GET parameter.
     """
 
-    # TODO: validate with Pydantic models
     # TODO: cache remote content with GET option to refresh
 
     template = 'home/subdomains/exported.html'
@@ -125,6 +124,7 @@ def export_lab(request):
         context = ExportSubsiteContext({
             'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
         })
+    context['HOSTNAME'] = settings.HOSTNAME
 
     # Do two rounds of rendering to capture template tags in remote data
     context.validate()

@@ -1,13 +1,14 @@
 """Exported landing pages to be requested by external Galaxy servers.
 
 Example URL with remote YAML:
-http://127.0.0.1:8000/landing/genome?export=true&content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/static/subsite/genome/main.yml
+http://127.0.0.1:8000/landing/genome?export=true&content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/lab/genome/main.yml
 """
 
 import logging
 import requests
 import yaml
 from django.core.exceptions import SuspiciousOperation
+from pprint import pformat
 from pydantic import ValidationError
 
 from .lab_schema import LabSchema, LabSectionSchema
@@ -62,7 +63,9 @@ class ExportSubsiteContext(dict):
             try:
                 LabSectionSchema(**section)
             except ValidationError as e:
-                msg = f'Error validating section YAML schema:\n{e.errors()}'
+                msg = (
+                    'Error validating section YAML schema:\n'
+                    + pformat(e.errors()))
                 logger.warning(msg)
                 raise SuspiciousOperation(msg)
 
@@ -75,12 +78,16 @@ class ExportSubsiteContext(dict):
         if not url:
             raise ValueError(
                 "GET parameter 'content_root' required for root URL")
-        yaml_str = requests.get(url).content.decode('utf-8')
+        res = requests.get(url)
+        if res.status_code >= 300:
+            raise SuspiciousOperation(
+                f'HTTP {res.status_code} fetching file: {url}')
+        yaml_str = res.content.decode('utf-8')
         params = yaml.safe_load(yaml_str)
         try:
             LabSchema(**params)
         except ValidationError as e:
-            msg = f'Error validating root YAML schema:\n{e.errors()}'
+            msg = 'Error validating root YAML schema:\n' + pformat(e.errors())
             logger.warning(msg)
             raise SuspiciousOperation(msg)
         self.update(params)
