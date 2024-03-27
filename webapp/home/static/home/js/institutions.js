@@ -53,6 +53,14 @@ $(document).ready( function() {
             resultText.addClass('text-danger');
             return;
           }
+          if (data.error) {
+            input.addClass('is-invalid');
+            input.removeClass('is-valid');
+            resultText.html(data.error);
+            resultText.removeClass('text-success');
+            resultText.addClass('text-danger');
+            return;
+          }
           // If not data.valid in response, do nothing
           resetValidateEmail();
         }

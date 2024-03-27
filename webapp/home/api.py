@@ -56,4 +56,4 @@ def validate_institutional_email(request):
             return JsonResponse({'valid': True})
         return JsonResponse({'valid': False})
     except ValueError:
-        return JsonResponse({'error': True})
+        return JsonResponse({'error': 'Please enter a valid email address.'})

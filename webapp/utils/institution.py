@@ -22,7 +22,7 @@ def is_institution_email(email):
     e.g. if 'uq.edu.au' is a listed domain, then 'blah.uq.edu.au' will also
     return True.
     """
-    if '@' not in email:
+    if not _is_valid_email(email):
         raise ValueError(f"'{email}' is not a valid email address")
     domain = email.split('@')[1]
     # For me@abc.xyz.edu.au, check also root domains xyz.edu.au, edu.au
@@ -50,6 +50,11 @@ def is_institution_email(email):
     if wildcard_domain_matches:
         return True
     return False
+
+
+def _is_valid_email(email):
+    """Return True if given address is valid."""
+    return re.match(r'^[^@]+@[^@]+\.[^@]+$', email)
 
 
 def get_domains():
