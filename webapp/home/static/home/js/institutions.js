@@ -8,7 +8,7 @@ $(document).ready( function() {
   const resultText = $('#emailValidResult');
   const validMessageHtml = `
     Great news! Your email address is associated with
-    a recognised institution.`;
+    an institution on our list.`;
   const invalidMessageHtml = `
     Sorry, this email address is not associated with an institution on our list.
     <br>
