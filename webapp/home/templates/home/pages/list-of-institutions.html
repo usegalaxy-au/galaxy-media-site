@@ -5,6 +5,19 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'home/css/about.css' %}">
+
+<style>
+  #emailValidInputWrapper {
+    position: relative;
+  }
+  #emailValidLoading {
+    display: none;
+    position: absolute;
+    top: -0.5rem;
+    right: 0;
+    width: 3.5rem;
+  }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -26,7 +39,20 @@
     to request the addition of your research institution to this list.
   </p>
 
+  <div class="border rounded textbox mb-5 p-3">
+    <label class="text-bf mb-2" for="emailValidInput">Verify if my email is on the Australian Research Institutions list:</label>
+    <div id="emailValidInputWrapper">
+      <input id="emailValidInput" class="form-control" type="email" spellcheck="false" placeholder="myemail@example.com">
+      <img id="emailValidLoading" src="{% static 'home/img/spinner.svg' %}" alt="Loading animation">
+    </div>
+    <small id="emailValidResult"></small>
+  </div>
+
   {% include 'home/snippets/about/list-of-institutions.html' %}
 </main>
 
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'home/js/institutions.js' %}"></script>
 {% endblock %}

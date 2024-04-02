@@ -27,6 +27,9 @@ urlpatterns = [
          api.subdomain_feedback,
          name="subdomain_feedback"),
     path('unsubscribe', views.unsubscribe_user, name="unsubscribe_user"),
+    path('institution/validate',
+         api.validate_institutional_email,
+         name="validate_institutional_email"),
 
     # Arbitrary *.html / *.md pages
     re_path(r'^[\w\d\_-]+\.(?:html|md)$', views.page, name='html_pages'),
