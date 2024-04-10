@@ -1,13 +1,13 @@
 :root {
   --color: #243e8f;
-  /* --color: #2C3143; */
+  --color-dark: #2C3143;
   --tile-bg: #F8F9FA;
   --tile-bg-hover: #E8E9EA;
   --border: #70707033;
   --error: #dc3545;
 }
 body {
-  color: #2C3143;
+  color: var(--color-dark);
   padding: 6rem 2rem 1rem 2rem;
   min-width: calc(99vw - 2rem);
 }
@@ -175,14 +175,14 @@ textarea.invalid {
 }
 .ga-btn {
   display: inline-block;
-  color: var(--color);
+  color: var(--color-dark);
   text-decoration: none;
   margin: .5rem;
   padding: .25rem .5rem;
   min-width: 150px;
   text-align: center;
   background-color: var(--tile-bg);
-  border: 2px solid var(--color);
+  border: 2px solid var(--color-dark);
   border-radius: .25rem;
   transition-duration: .25s;
 }
