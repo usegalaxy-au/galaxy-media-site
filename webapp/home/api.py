@@ -3,6 +3,7 @@
 import json
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 
+from utils.institution import is_institution_email
 from .forms import SupportRequestForm
 
 SESSION_COUNT_LIMIT = 5
@@ -41,3 +42,18 @@ def subdomain_feedback(request, subdomain):
         'success': False,
         'errors_json': form.errors.as_json(),
     })
+
+
+def validate_institutional_email(request):
+    """Check given email against list of Australian institutions."""
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+    email = request.GET.get('email')
+    if not email:
+        return HttpResponseBadRequest()
+    try:
+        if is_institution_email(email):
+            return JsonResponse({'valid': True})
+        return JsonResponse({'valid': False})
+    except ValueError:
+        return JsonResponse({'error': 'Please enter a valid email address.'})

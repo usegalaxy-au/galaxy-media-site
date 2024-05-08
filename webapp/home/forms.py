@@ -392,7 +392,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
 class CellRangerRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
-    RESOURCE_NAME = 'CellRanger'
+    RESOURCE_NAME = 'Cell Ranger'
     AUTO_ACTION = True
 
     name = forms.CharField()
@@ -403,7 +403,7 @@ class CellRangerRequestForm(BaseAccessRequestForm):
     terms = {
         'button_text': 'View license agreement',
         'src': static('home/documents/cellranger-end-user-license.html'),
-        'agreement_name': 'CellRanger End User Licence Agreement',
+        'agreement_name': 'Cell Ranger End User Licence Agreement',
     }
 
 
