@@ -16,6 +16,7 @@ from utils.mail import retry_send_mail
 from . import validators
 
 logger = logging.getLogger('django')
+records_logger = logging.getLogger('django.records')
 
 
 def dispatch_form_mail(
@@ -257,23 +258,32 @@ class BaseAccessRequestForm(forms.Form):
         if is_registered_email:
             if self.AUTO_ASSIGN_GROUP:
                 galaxy_group = resource
-                logger.info(
-                    f"Adding user {email} to Galaxy group {galaxy_group}")
+                msg = (
+                    f"Access request: Adding user {email} to Galaxy group"
+                    f" {galaxy_group}"
+                )
+                logger.info(msg)
+                records_logger.info(msg)
                 try:
                     galaxy.add_user_to_group(
                         self.cleaned_data['email'],
                         galaxy_group)
                 except Exception as exc:
-                    logger.error(
+                    msg = (
                         f"Error assigning user to Galaxy group:\n{exc}\n"
                         "This error was not fatal and the user's request"
                         " has been passed to the support email.")
+                    logger.error(msg)
+                    records_logger.error(msg)
                     error = exc
-            logger.info(
-                f"Dispatching {resource} request for email {email}")
+            msg = f"Dispatching {resource} request for email {email}"
+            logger.info(msg)
+            records_logger.info(msg)
             actioned = self.dispatch(exception=error)
         else:
-            logger.info(f"Dispatching {resource} warning to {email}")
+            msg = f"Dispatching {resource} warning to {email}"
+            logger.info(msg)
+            records_logger.info(msg)
             self.dispatch_warning(request)
 
         return actioned
