@@ -18,6 +18,8 @@ from . import validators
 logger = logging.getLogger('django')
 records_logger = logging.getLogger('django.records')
 
+MAIL_APPEND_TEXT = f"Sent from {settings.HOSTNAME}"
+
 
 def dispatch_form_mail(
         to_address=None,
@@ -33,6 +35,7 @@ def dispatch_form_mail(
     recipient = to_address or settings.EMAIL_TO_ADDRESS
     reply_to_value = [reply_to] if reply_to else None
     logger.info(f"Sending mail to {recipient}")
+    text += f"\n\n\n{MAIL_APPEND_TEXT}"
     email = EmailMultiAlternatives(
         subject,
         text,
@@ -41,6 +44,10 @@ def dispatch_form_mail(
         reply_to=reply_to_value,
     )
     if html:
+        html = html.replace(
+            '</body>',
+            f'<small style="color: gray;">{MAIL_APPEND_TEXT}</small>\n</body>'
+        )
         email.attach_alternative(html, "text/html")
     retry_send_mail(email)
 
