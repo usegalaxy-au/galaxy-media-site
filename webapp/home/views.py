@@ -12,7 +12,6 @@ from django.template.loader import get_template
 from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError
-from utils.institution import get_institution_list
 from events.models import Event
 from news.models import News
 from .models import CoverImage, Notice

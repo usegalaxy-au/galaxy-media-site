@@ -72,6 +72,13 @@ def configure_logging(LOG_ROOT):
                 'filename': LOG_ROOT / 'main.log',
                 'formatter': 'verbose',
             },
+            'records_file': {
+                'delay': True,
+                'level': 'INFO',
+                'class': 'logging.FileHandler',
+                'filename': LOG_ROOT / 'records.log',
+                'formatter': 'verbose',
+            },
             'error_file': {
                 'delay': True,
                 'level': 'ERROR',
@@ -111,6 +118,11 @@ def configure_logging(LOG_ROOT):
                 ],
                 'level': 'DEBUG',
                 'propagate': True,
+            },
+            'django.records': {
+                'handlers': ['records_file'],
+                'level': 'DEBUG',
+                'propagate': False,
             },
             'django.utils.autoreload': {
                 'level': 'WARNING',  # This logger is way too noisy on DEBUG
