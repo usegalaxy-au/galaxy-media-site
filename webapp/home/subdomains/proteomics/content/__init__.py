@@ -1,7 +1,6 @@
 from . import (
-    data,
-    conversion_modification,
     database_searching,
-    post_processing_visualisation,
-    quant_proteomics,
+    dda_standardised_tools,
+    dia_standardised_tools,
+    dda_tmt,
 )
