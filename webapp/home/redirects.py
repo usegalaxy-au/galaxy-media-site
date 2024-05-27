@@ -16,3 +16,8 @@ def support(request):
 def user_request_alphafold(request):
     """Redirect alphafold requests to generic access request form."""
     return redirect('/request/access/alphafold')
+
+
+def institutions(request):
+    """Redirect alphafold requests to generic access request form."""
+    return redirect('/list-of-institutions.html')

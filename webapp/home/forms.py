@@ -16,6 +16,9 @@ from utils.mail import retry_send_mail
 from . import validators
 
 logger = logging.getLogger('django')
+records_logger = logging.getLogger('django.records')
+
+MAIL_APPEND_TEXT = f"Sent from {settings.HOSTNAME}"
 
 
 def dispatch_form_mail(
@@ -32,6 +35,7 @@ def dispatch_form_mail(
     recipient = to_address or settings.EMAIL_TO_ADDRESS
     reply_to_value = [reply_to] if reply_to else None
     logger.info(f"Sending mail to {recipient}")
+    text += f"\n\n\n{MAIL_APPEND_TEXT}"
     email = EmailMultiAlternatives(
         subject,
         text,
@@ -40,6 +44,10 @@ def dispatch_form_mail(
         reply_to=reply_to_value,
     )
     if html:
+        html = html.replace(
+            '</body>',
+            f'<small style="color: gray;">{MAIL_APPEND_TEXT}</small>\n</body>'
+        )
         email.attach_alternative(html, "text/html")
     retry_send_mail(email)
 
@@ -257,23 +265,32 @@ class BaseAccessRequestForm(forms.Form):
         if is_registered_email:
             if self.AUTO_ASSIGN_GROUP:
                 galaxy_group = resource
-                logger.info(
-                    f"Adding user {email} to Galaxy group {galaxy_group}")
+                msg = (
+                    f"Access request: Adding user {email} to Galaxy group"
+                    f" {galaxy_group}"
+                )
+                logger.info(msg)
+                records_logger.info(msg)
                 try:
                     galaxy.add_user_to_group(
                         self.cleaned_data['email'],
                         galaxy_group)
                 except Exception as exc:
-                    logger.error(
+                    msg = (
                         f"Error assigning user to Galaxy group:\n{exc}\n"
                         "This error was not fatal and the user's request"
                         " has been passed to the support email.")
+                    logger.error(msg)
+                    records_logger.error(msg)
                     error = exc
-            logger.info(
-                f"Dispatching {resource} request for email {email}")
+            msg = f"Dispatching {resource} request for email {email}"
+            logger.info(msg)
+            records_logger.info(msg)
             actioned = self.dispatch(exception=error)
         else:
-            logger.info(f"Dispatching {resource} warning to {email}")
+            msg = f"Dispatching {resource} warning to {email}"
+            logger.info(msg)
+            records_logger.info(msg)
             self.dispatch_warning(request)
 
         return actioned
@@ -392,7 +409,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
 class CellRangerRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
-    RESOURCE_NAME = 'CellRanger'
+    RESOURCE_NAME = 'Cell Ranger'
     AUTO_ACTION = True
 
     name = forms.CharField()
@@ -403,7 +420,7 @@ class CellRangerRequestForm(BaseAccessRequestForm):
     terms = {
         'button_text': 'View license agreement',
         'src': static('home/documents/cellranger-end-user-license.html'),
-        'agreement_name': 'CellRanger End User Licence Agreement',
+        'agreement_name': 'Cell Ranger End User Licence Agreement',
     }
 
 

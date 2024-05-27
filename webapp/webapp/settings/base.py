@@ -138,7 +138,7 @@ EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
 SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
-EMAIL_SUBJECT_PREFIX = 'GMS: '
+EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX', 'GMS: ')
 
 # Validating whether submitted email is valid Galaxy AU account
 MOCK_GALAXY_INTERACTIONS = (

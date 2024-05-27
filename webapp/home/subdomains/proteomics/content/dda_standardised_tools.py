@@ -28,6 +28,36 @@ tools = [
     #     "view_tip": "",
     # },
     {
+        "title_html": '<code>MaxQuant</code>',
+        "description_html": '<p>MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.</p>',
+        "inputs": [
+            {
+                'datatypes': [
+                    'thermo.raw',
+                    'mzML',
+                    'mzXML',
+                ],
+                'label': 'MS spectra (input file)',
+            },
+            {
+                'datatypes': ['tabular'],
+                'label': 'Experimental design template',
+            },
+        ],
+        "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/maxquant/maxquant/",
+    },
+    {
+        "title_html": '<code>MSstats</code>',
+        "description_html": '<p>Statistical relative protein significance analysis in DDA, SRM and DIA Mass Spectrometry.</p>',
+        "inputs": [
+            {
+                'datatypes': ['tabular', 'csv'],
+                'label': 'Either the 10-column MSstats format or the outputs of spectral processing tools such as MaxQuant, OpenSWATH.',
+            }
+        ],
+        "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/msstats/msstats/",
+    },
+    {
         "title_html": '<code>LFQ Analyst</code>',
         "description_html": '<p>Analyze and Visualize Label-Free Proteomics output from MaxQuant.</p>',
         "inputs": [
@@ -40,19 +70,7 @@ tools = [
                 'label': 'Experimental Design Matrix (MaxQuant output)',
             }
         ],
-        "button_link": "{{ galaxy_base_url }}/root?tool_id=interactive_tool_lfqanalyst",
-        "view_link": "Shah AD, Goode RJA, Huang C, Powell DR, Schittenhelm RB. LFQ-Analyst: An easy-to-use interactive web-platform to analyze and visualize proteomics data preprocessed with MaxQuant. https://doi.org/10.1021/acs.jproteome.9b00496",
-    },
-    {
-        "title_html": '<code>MSstats</code>',
-        "description_html": '<p>Statistical relative protein significance analysis in DDA, SRM and DIA Mass Spectrometry.</p>',
-        "inputs": [
-            {
-                'datatypes': ['tabular', 'csv'],
-                'label': 'Either the 10-column MSstats format or the outputs of spectral processing tools such as MaxQuant, OpenSWATH.',
-            }
-        ],
-        "button_link": "{{ galaxy_base_url }}/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/msstats/msstats/",
+        "button_link": "https://usegalaxy.org.au/root?tool_id=interactive_tool_lfqanalyst_2",
     }
 ]
 
@@ -66,7 +84,6 @@ help = [
             </p>""",
         "button_link": "https://analyst-suite.monash-proteomics.cloud.edu.au/apps/lfq-analyst/LFQ-Analyst_manual.pdf",
         "button_html": "Manual",
-        "view_link": "Shah AD, Goode RJA, Huang C, Powell DR, Schittenhelm RB. LFQ-Analyst: An easy-to-use interactive web-platform to analyze and visualize proteomics data preprocessed with MaxQuant. https://doi.org/10.1021/acs.jproteome.9b00496",
     },
     {
         "title_html": 'MaxQuant and MSstats for the analysis of label-free data',
@@ -79,3 +96,4 @@ help = [
     },
     galaxy_au_support_item,
 ]
+

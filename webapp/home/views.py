@@ -19,7 +19,6 @@ from news.models import News
 from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError
-from utils.institution import get_institution_list
 from .lab_export import ExportSubsiteContext
 from .models import CoverImage, Notice
 from .forms import (
@@ -28,6 +27,7 @@ from .forms import (
     SupportRequestForm,
     ACCESS_FORMS,
 )
+from . import pages_context
 from . import subdomains
 
 logger = logging.getLogger('django')
@@ -237,18 +237,23 @@ def report_exception_response(request, exc, title=None):
     })
 
 
-def page(request, *args):
+def page(request):
     """Serve an arbitrary static page."""
-    logger.warning(args)
-    template = f'home/pages/{request.path}'
+    # Get template
+    path = request.path.strip('/')
+    template = f'home/pages/{path}'
     templates_dir = os.path.join(
         settings.BASE_DIR,
         'home/templates/home/pages')
     if os.path.basename(template) not in os.listdir(templates_dir):
         raise Http404
-    if request.path.endswith('.md'):
+
+    if path.endswith('.md'):
         return md_page(request, template)
-    return render(request, template)
+
+    # Get context
+    context = pages_context.get(path)
+    return render(request, template, context)
 
 
 def md_page(request, template):
@@ -268,13 +273,6 @@ def aaf_info(request):
     """Show current list of AAF institutions."""
     return render(request, 'home/aaf-institutions.html', {
         'entities': aaf.get_entities(),
-    })
-
-
-def australian_institutions(request):
-    """Show list of recognised AU research institution email domains."""
-    return render(request, 'home/au-institutions.html', {
-        'institutions': get_institution_list(),
     })
 
 
