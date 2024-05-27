@@ -31,9 +31,14 @@ tools = [
         "title_html": '<code>MaxQuant</code>',
         "description_html": '<p>MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.</p>',
         "inputs": [
-            {'datatypes': ['thermo.raw']},
-            {'datatypes': ['mzML']},
-            {'datatypes': ['mzXML']},
+            {
+                'datatypes': [
+                    'thermo.raw',
+                    'mzML',
+                    'mzXML',
+                ],
+                'label': 'MS spectra (input file)',
+            },
             {
                 'datatypes': ['tabular'],
                 'label': 'Experimental design template',
@@ -66,7 +71,6 @@ tools = [
             }
         ],
         "button_link": "https://usegalaxy.org.au/root?tool_id=interactive_tool_lfqanalyst_2",
-        "view_link": "Shah AD, Goode RJA, Huang C, Powell DR, Schittenhelm RB. LFQ-Analyst: An easy-to-use interactive web-platform to analyze and visualize proteomics data preprocessed with MaxQuant. https://doi.org/10.1021/acs.jproteome.9b00496",
     }
 ]
 
@@ -80,7 +84,6 @@ help = [
             </p>""",
         "button_link": "https://analyst-suite.monash-proteomics.cloud.edu.au/apps/lfq-analyst/LFQ-Analyst_manual.pdf",
         "button_html": "Manual",
-        "view_link": "Shah AD, Goode RJA, Huang C, Powell DR, Schittenhelm RB. LFQ-Analyst: An easy-to-use interactive web-platform to analyze and visualize proteomics data preprocessed with MaxQuant. https://doi.org/10.1021/acs.jproteome.9b00496",
     },
     {
         "title_html": 'MaxQuant and MSstats for the analysis of label-free data',
