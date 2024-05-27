@@ -67,21 +67,6 @@ tools = [
             },
         ],
         "button_link": "https://proteomics.usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/morpheus/morpheus/",
-    },
-    {
-        "title_html": '<code>MSFraggerAdapter</code>',
-        "description_html": '<p>Peptide Identification with MSFragger.</p>',
-        "inputs": [
-            {
-                'datatypes': ['mzML', 'mzXML'],
-                'label': 'Input File with spectra for MSFragger',
-            },
-            {
-                'datatypes': ['fasta'],
-                'label': 'Protein FASTA database file path',
-            },
-        ],
-        "button_link": "https://proteomics.usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/openms_msfraggeradapter/MSFraggerAdapter/",
     }
 ]
 
