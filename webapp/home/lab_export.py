@@ -83,7 +83,11 @@ class ExportSubsiteContext(dict):
             raise SuspiciousOperation(
                 f'HTTP {res.status_code} fetching file: {url}')
         yaml_str = res.content.decode('utf-8')
-        params = yaml.safe_load(yaml_str)
+        try:
+            params = yaml.safe_load(yaml_str)
+        except (yaml.YAMLError, yaml.scanner.ScannerError) as e:
+            raise SuspiciousOperation(
+                f'Error parsing YAML content from file {url}: {e}')
         try:
             LabSchema(**params)
         except ValidationError as e:
@@ -119,7 +123,12 @@ class ExportSubsiteContext(dict):
             raise SuspiciousOperation(
                 f'HTTP {response.status_code} fetching file: {url}')
         yaml_str = response.content.decode('utf-8')
-        data = yaml.safe_load(yaml_str)
+
+        try:
+            data = yaml.safe_load(yaml_str)
+        except yaml.YAMLError as e:
+            raise SuspiciousOperation(
+                f'Error parsing YAML content from file {url}: {e}')
 
         if isinstance(data, dict):
             data = {
