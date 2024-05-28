@@ -1,8 +1,7 @@
 # Default spec for an exported subsite landing page
 
-# Can test with: /lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/static/home/labs/genome/main.yml
-
-# Or if developing locally: /lab/export?content_root=http://localhost:8000/static/home/labs/genome/main.yml
+# Can test locally with:
+# http://127.0.0.1:8000/lab/export?content_root=http://localhost:8000/static/home/labs/proteomics/main.yml
 
 # Use these variables in HTML templates like:
 # "Welcome to the Galaxy {{ site_name }} {{ lab_name }}"
@@ -10,7 +9,7 @@
 site_name: Australia
 lab_name: Genome Lab
 nationality: Australian
-galaxy_base_url: https://usegalaxy.org.au  # Use for rendering tool/workflow URLs. Trailing '/' will be removed.
+galaxy_base_url: https://genome.usegalaxy.org.au  # Use for rendering tool/workflow URLs. Trailing '/' will be removed.
 subdomain: genome
 root_domain: usegalaxy.org.au
 
