@@ -21,8 +21,8 @@ root_domain: usegalaxy.org.au
 #   1. Relative to this file URL
 #   2. Full URL to fetch globally centralized content
 sections:
-  - data.yml
-  - conversion_modification.yml
+  # - data.yml
   - database_searching.yml
-  - quant_proteomics.yml
-  - post_processing_visualisation.yml
+  - dda_standardised_tools.yml
+  - dia_standardised_tools.yml
+  - dda_tmt.yml
