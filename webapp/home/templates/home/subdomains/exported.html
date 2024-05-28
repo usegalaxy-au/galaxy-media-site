@@ -45,6 +45,10 @@
   {{ snippets.intro_html|safe }}
   {% endif %}
 
+  {% if au_include_header_cards %}
+  {% include 'home/snippets/header-cards.html' %}
+  {% endif %}
+
   {% for section in sections %}
     {% include 'home/subdomains/components/section.html' with section=section %}
   {% endfor %}
