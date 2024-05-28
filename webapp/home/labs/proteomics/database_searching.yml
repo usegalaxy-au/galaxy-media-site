@@ -26,7 +26,7 @@ tabs:
             label: "Indexed mzML"
           - datatypes: ["fasta", "uniprotxml"]
             label: "MS Protein Search Database: UniProt Xml or Fasta"
-        button_link: "https://proteomics.usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/morpheus/morpheus/"
+        button_link: "{{ galaxy_base_url }}/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/morpheus/morpheus/"
   - id: help
     title: Help
     content: []

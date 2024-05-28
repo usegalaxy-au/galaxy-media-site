@@ -4,7 +4,7 @@
 site_name: Australia
 lab_name: Proteomics Lab
 nationality: Australian
-galaxy_base_url: https://usegalaxy.org.au  # Use for rendering tool/workflow URLs. Trailing '/' will be removed.
+galaxy_base_url: https://proteomics.usegalaxy.org.au  # Use for rendering tool/workflow URLs. Trailing '/' will be removed.
 subdomain: proteomics
 root_domain: usegalaxy.org.au
 
