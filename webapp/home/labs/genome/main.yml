@@ -1,8 +1,8 @@
 # Default spec for an exported subsite landing page
 
-# Can test with: /lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/static/home/subsite/genome/main.yml
+# Can test with: /lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/static/home/labs/genome/main.yml
 
-# Or if developing locally: /lab/export?content_root=http://localhost:8000/static/home/subsite/genome/main.yml
+# Or if developing locally: /lab/export?content_root=http://localhost:8000/static/home/labs/genome/main.yml
 
 # Use these variables in HTML templates like:
 # "Welcome to the Galaxy {{ site_name }} {{ lab_name }}"

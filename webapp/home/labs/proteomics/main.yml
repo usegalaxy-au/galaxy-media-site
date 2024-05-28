@@ -9,12 +9,12 @@ subdomain: proteomics
 root_domain: usegalaxy.org.au
 
 # Custom content relative to this file URL
-# ! TODO header_logo: static/logo.png
-# ! TODO custom_css: static/custom.css
-# ! TODO intro_html: templates/intro.html
-# ! TODO conclusion_html: templates/conclusion.html
-# ! TODO footer_html: templates/footer.html
-
+header_logo: static/logo.png
+custom_css: static/custom.css
+intro_html: templates/intro.html
+conclusion_html: templates/conclusion.html
+footer_html: templates/footer.html
+au_include_header_cards: true
 
 # Data (Tools, Workflows etc.) to be rendered into sections/tabs/accordion elements.
 # Either:

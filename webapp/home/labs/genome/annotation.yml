@@ -153,7 +153,7 @@ tabs:
       For example, one pathway would be taking an assembled genome, plus information
       about repeats, and data from RNA-seq, to run in the Maker pipeline. The annotatations
       can then be viewed in JBrowse.</p> <img class="img-fluid"
-      src="/static/home/subsite/genome/static/annotation-overview.png"
+      src="/static/home/labs/genome/static/annotation-overview.png"
       alt="Genome annotation flowchart"> <p class="text-center">A graphical representation
       of genome annotation</p>
     title_html: Genome annotation overview

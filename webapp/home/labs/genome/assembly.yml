@@ -286,7 +286,7 @@ tabs:
       base pairs, whether expected genes are present, and many other metrics.</li>
       <li>Annotation - identify features on the genome assembly such as gene names
       and locations.</li> </ul> <img class="img-fluid"
-      src="/static/home/subsite/genome/static/assembly-overview.png"
+      src="/static/home/labs/genome/static/assembly-overview.png"
       alt="Genome assembly flowchart"> <p class="text-center">A graphical representation
       of genome assembly</p>
     title_html: Genome assembly overview
