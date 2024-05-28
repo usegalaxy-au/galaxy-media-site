@@ -9,6 +9,7 @@ urlpatterns = [
     path('about', views.about, name="home_about"),
     path('notice/dismiss', api.dismiss_notice, name="api_notice_dismiss"),
     path('notice/<notice_id>', views.notice, name="home_notice"),
+    path('lab/export', views.export_lab, name="home_export_lab"),
     path('landing/<subdomain>', views.landing, name="home_landing"),
     path('request', views.user_request, name="user_request"),
     path('request/tool', views.user_request_tool, name="user_request_tool"),

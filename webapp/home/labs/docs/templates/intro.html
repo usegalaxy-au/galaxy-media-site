@@ -1,0 +1,140 @@
+<section class="my-5" id="introSection">
+  <p class="lead">
+    Welcome to the Galaxy Australia Media Site! This endpoint is used to generate
+    "exported" Galaxy Lab landing pages from remote content hosted on GitHub.
+    You can use this endpoint to rapidly create your own Galaxy Lab pages by
+    pointing to your own remote content.
+  </p>
+
+  <p>
+    You can
+    see the content used to generate this documentation page
+    <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/export-lab-pages/webapp/home/labs/docs" target="_blank">
+      here</a>,
+    and a full working example of an exported Galaxy Lab page
+    <a href="/lab/export?content_root=http://{{ HOSTNAME }}/static/home/labs/genome/main.yml">here</a>.
+  </p>
+
+  <p>
+    This custom introductory text was pulled down from GitHub and rendered in real time.
+    Updates to
+    <a href="https://github.com/usegalaxy-au/galaxy-media-site/blob/export-lab-pages/webapp/home/labs/docs/templates/intro.html" target="_blank">
+      this text
+    </a>
+    on the remote will be reflected on this page. Note that GitHub raw content is
+    cached for 300 seconds, so some updates may take a few minutes to appear on
+    this page.
+  </p>
+
+  <br>
+
+  <h3>How does it work?</h3>
+
+  <p>
+    <ul>
+      <li>
+        The root of your site's content should be a YAML file - see
+        <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/export-lab-pages/webapp/home/labs/docs/main.yml" target="_blank">
+          main.yml
+        </a>
+        for the content root of this page.
+      </li>
+      <li>
+        Request your page by pointing to your remote content with the <code>content_root</code> GET parameter
+        (take a look at URL for this page).
+        For example, we can explicitly request this page with:
+        <br>
+        <small>
+          <a href="/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/main.yml" target="_blank">
+            http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/main.yml
+          </a>
+        </small>
+      </li>
+      <li>
+        The web server will fetch your content from GitHub (or anywhere on the internet) and render it into this page.
+      </li>
+      <li>
+        Note that <code>main.yml</code> points to other files (YAML, HTML, CSS and images), which are located in the same remote directory (e.g. on GitHub). You can template the entire page with these files!
+      </li>
+      <li>
+        The most useful part of this machinery is the <code>sections</code> content, which populates the tool/workflow sections below.
+        See
+        <a href="https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/data.yml" target="_blank">data.yml</a>
+        and
+        <a href="https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/assembly.yml" target="_blank">assembly.yml</a>
+        for examples of how to structure this content in YAML format.
+      </li>
+    </ul>
+  </p>
+
+  <br>
+
+  <h3>How can I make one?</h3>
+
+  <p>
+    <ol>
+      <li>
+        Copy our
+        <a href=https://github.com/usegalaxy-au/galaxy-media-site/tree/export-lab-pages/webapp/home/labs/docs" target="_blank">
+          example content
+        </a>
+        directory to your own github repository.
+      </li>
+      <li>
+        Build your Galaxy Lab's info, tools and workflows by editing the YAML and HTML files.
+        Custom CSS and JavaScript are possible too.
+      </li>
+      <li>
+        Request the site with the <code>content_root</code> GET parameter pointing to your remote content:
+        <br>
+        <small>
+          <code>
+            http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/myusername/myrepo/path/to/content/main.yml
+          </code>
+        </small>
+      </li>
+    </ol>
+  </p>
+
+  <br>
+
+  <h3>How complex can it be?</h3>
+
+  <p>
+    The webpage includes Bootstrap 5.1, Material icons, and
+    FontAwesome 5.15 and JQuery 3.6 so you can use any styling/functionality
+    defined there. This means you can have webforms, interactive elements,
+    and more. Check out the
+    <a
+      href="https://github.com/usegalaxy-au/galaxy-media-site/blob/export-lab-pages/webapp/home/labs/genome/conclusion.yml"
+      target="_blank"
+    >
+      Genome Lab conclusion.html
+    </a>
+    for an example of more complex usage including modals and webforms.
+  </p>
+</section>
+
+<script>
+  function addHoverInfo(id, relpath) {
+    const exportInfoButton = $(`
+      <a
+        class="export-info-button"
+        href="https://github.com/usegalaxy-au/galaxy-media-site/blob/export-lab-pages/webapp/home/labs/docs/${relpath}"
+        target="_blank"
+      >
+        <i class="fab fa-github"></i>
+        View on GitHub
+      </a>
+    `);
+    $(`#${id}`).addClass('export-info-hover');
+    $(`#${id}`).append(exportInfoButton);
+  }
+  $(document).ready(function() {
+    addHoverInfo('headerSection', 'main.yml');
+    addHoverInfo('introSection', 'templates/intro.html');
+    addHoverInfo('dataSection', 'data.yml');
+    addHoverInfo('assemblySection', 'assembly.yml');
+    addHoverInfo('footer', 'templates/footer.html');
+  });
+</script>

@@ -28,19 +28,26 @@ DEBUG = True
 AUTH_USER_MODEL = 'home.User'
 
 # Site paths and URLs
-HOSTNAME = '127.0.0.1:5000'
-GALAXY_SITE_NAME = 'Media'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
+HOSTNAME = os.getenv('HOSTNAME', 'localhost:8000')
+GALAXY_SITE_NAME = 'Australia'
+GALAXY_SITE_SUFFIX = 'Media'    # Rendered as "Galaxy <SITE_NAME> <SUFFIX>"
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'webapp/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'webapp/media'
 LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
 RECIPIENT_MASTER_CSV = BASE_DIR / '../scripts/mail/recipient_records.csv'
+DEFAULT_EXPORTED_LAB_CONTENT_ROOT = (
+    f'http://{HOSTNAME}/static/home/labs/docs/main.yml'
+    # 'https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site'
+    # '/export-lab-pages/webapp/home/labs/docs/main.yml'
+)
 
 # Hostnames
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    HOSTNAME,
 ]
 
 # Application definition
@@ -141,8 +148,14 @@ MOCK_GALAXY_INTERACTIONS = (
 if MOCK_GALAXY_INTERACTIONS:
     print("MOCK_GALAXY_INTERACTIONS is set: mocking galaxy interactions")
 
-# Galaxy API auth
+# For linking to Galaxy server
 GALAXY_URL = os.environ.get('GALAXY_URL')
+if GALAXY_URL:
+    GALAXY_URL = GALAXY_URL.strip('/')
+else:
+    print('Warning: GALAXY_URL not set. Links to Galaxy server will be'
+          ' broken.')
+# API auth
 GALAXY_API_KEY = os.environ.get('GALAXY_API_KEY')
 
 # Internationalization

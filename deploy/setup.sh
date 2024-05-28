@@ -101,7 +101,7 @@ echo ""
 echo "Installing system dependancies..."
 sudo apt-get update \
 && sudo apt-get install -y --no-install-recommends \
-    python3.8 \
+    python3.12 \
     python3-pip \
     postgresql postgresql-client \
     nginx \
@@ -110,14 +110,14 @@ sudo apt-get update \
 export PATH=/home/$USER/.local/bin:$PATH
 echo "export PATH=/home/$USER/.local/bin:$PATH" >> /home/$USER/.bashrc
 
-python3.8 -m pip install --no-cache-dir --upgrade pip
-python3.8 -m pip install --no-cache-dir virtualenv
+python3.12 -m pip install --no-cache-dir --upgrade pip
+python3.12 -m pip install --no-cache-dir virtualenv
 
 echo ""
 echo "Creating virtual environment..."
-python3.8 -m virtualenv .venv
+python3.12 -m virtualenv .venv
 source .venv/bin/activate
-python3.8 -m pip install --no-cache-dir -r ../requirements.txt
+python3.12 -m pip install --no-cache-dir -r ../requirements.txt
 
 echo ""
 echo "Configuring webserver with Nginx and Gunicorn..."
@@ -164,7 +164,7 @@ sudo service webapp start
 # Migrate database
 echo ""
 echo "Migrating database schema..."
-python3.8 ../webapp/manage.py migrate
+python3.12 ../webapp/manage.py migrate
 
 # Configure default user
 echo ""
@@ -175,10 +175,10 @@ echo "N.B. users can be further managed from within the admin interface,"
 echo "once the application has launched. These login credentials will be"
 echo "required to access the admin interface, so keep them safe!"
 echo ""
-python3.8 ../webapp/manage.py createsuperuser
+python3.12 ../webapp/manage.py createsuperuser
 
 # Static file setup
-python3.8 ../webapp/manage.py collectstatic --noinput
+python3.12 ../webapp/manage.py collectstatic --noinput
 
 printf "\nSetup complete!\n\n"
 case $ssl in

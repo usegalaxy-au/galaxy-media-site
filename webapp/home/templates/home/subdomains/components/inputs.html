@@ -4,6 +4,7 @@
   <tr>
     <td>
       {% for datatype in input.datatypes %}
+      {% if forloop.counter0 %}<br>{% endif %}
       <code>{{ datatype }}</code>
       {% endfor %}
     </td>
