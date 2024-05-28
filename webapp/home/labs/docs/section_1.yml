@@ -5,6 +5,23 @@ tabs:
     title: Tools
     heading_html: Common tools are listed here, or search for more in the full tool panel to the left.
     content:
+      # Accordion item schema:
+      #   title_html: <str>  # inline HTML accepted e.g. <i> <b>
+      #   description_html: <str>
+      #   inputs:
+      #     - datatypes:  # tool input 1 - two accepted datatypes
+      #       - <str>
+      #       - <str>
+      #       label: <str>
+      #     - datatypes:  # tool input 2 - one accepted datatype
+      #       - <str>
+      #       label: <str>
+      #   button_link: <str>
+      #   button_html: <str>
+      #   button_tip: <str>
+      #   view_link: <str>
+      #   view_html: <str>
+      #   view_tip: <str>
       - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=upload1"
         title_html: Import data to Galaxy
         description_html: <p>Standard upload of data to Galaxy, from your computer or
