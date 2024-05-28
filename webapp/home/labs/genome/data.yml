@@ -138,14 +138,14 @@ tabs:
           </p>
         button_html: Request
         button_link: /request/quota
-      - title_html: Tutorial: Quality Control
+      - title_html: "Tutorial: Quality Control"
         description_html: >
           <p>
             Quality control and data cleaning is an essential first step in any NGS analysis. This tutorial will show you how to use and interpret results from <code>FastQC</code>, <code>NanoPlot</code> and <code>PycoQC</code>.
           </p>
         button_html: Tutorial
         button_link: https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html
-      - title_html: Tutorial: introduction to Genomics and Galaxy
+      - title_html: "Tutorial: introduction to Genomics and Galaxy"
         description_html: >
           <p>
             This practical aims to familiarize you with the Galaxy user interface. It will teach you how to perform basic tasks such as importing data, running tools, working with histories, creating workflows, and sharing your work.

@@ -1,7 +1,7 @@
 """Schema for validating Galaxy Lab content."""
 
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Union
 
 
 class TabItem(BaseModel):
@@ -28,7 +28,7 @@ class SectionTab(BaseModel):
     """Validate Galaxy Lab section tab."""
     id: str
     title: str
-    content: list[TabItem] | dict[str, list[TabSubsection]]
+    content: Union[list[TabItem], dict[str, list[TabSubsection]]]
 
 
 class LabSectionSchema(BaseModel):

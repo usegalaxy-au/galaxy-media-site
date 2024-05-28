@@ -43,7 +43,7 @@ tabs:
       A workflow is a series of Galaxy tools that have been linked together
       to perform a specific analysis. You can use and customize the example workflows
       below.
-      <a href="https://galaxyproject.org/learn/advanced-workflow/"target="_blank">
+      <a href="https://galaxyproject.org/learn/advanced-workflow/" target="_blank">
         Learn more
       </a>.
     content:

@@ -18,4 +18,5 @@ django_light
 locust
 lxml
 Pillow
-requests
+requests==2.*
+requests_mock==1.*

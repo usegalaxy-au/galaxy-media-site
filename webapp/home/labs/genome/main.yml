@@ -1,6 +1,6 @@
 # Default spec for an exported subsite landing page
 
-# Can test locally with:
+# Test this locally with:
 # http://127.0.0.1:8000/lab/export?content_root=http://localhost:8000/static/home/labs/proteomics/main.yml
 
 # Use these variables in HTML templates like:

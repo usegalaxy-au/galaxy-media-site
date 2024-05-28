@@ -63,9 +63,21 @@ class ExportSubsiteContext(dict):
             try:
                 LabSectionSchema(**section)
             except ValidationError as e:
-                msg = (
-                    'Error validating section YAML schema:\n'
-                    + pformat(e.errors()))
+                msg = 'Error validating section YAML schema:\n\n'
+                for i, error in enumerate(e.errors()):
+                    if i > 0:
+                        msg += '\n\n'
+                        msg += '-' * 80
+                        msg += '\n\n'
+                    msg += f'Section: {section["id"]}\n'
+                    msg += f'Error message: {error["msg"]}\n'
+                    location = (
+                        f'{error["loc"][0]} > '
+                        + ' > '.join(str(x) for x in error["loc"][1:])
+                    )
+                    msg += f'Location: {location}\n\n'
+                    msg += 'Received YAML input:\n'
+                    msg += pformat(error['input'])
                 logger.warning(msg)
                 raise SuspiciousOperation(msg)
 

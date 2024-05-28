@@ -7,7 +7,7 @@ from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.template import (
-    Context,
+    RequestContext,
     loader,
     Template,
     TemplateDoesNotExist,
@@ -115,8 +115,6 @@ def export_lab(request):
     repo with a YAML file root which is specified as a GET parameter.
     """
 
-    # TODO: cache remote content with GET option to refresh
-
     template = 'home/subdomains/exported.html'
     if request.GET.get('content_root'):
         context = ExportSubsiteContext(request.GET)
@@ -130,7 +128,7 @@ def export_lab(request):
     context.validate()
     template_str = render_to_string(template, context, request)
     t = Template(template_str)
-    body = t.render(Context(context))
+    body = t.render(RequestContext(request, context))
 
     return HttpResponse(body)
 

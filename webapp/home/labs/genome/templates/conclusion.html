@@ -24,6 +24,9 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <form id="feedbackForm">
+
+        {% csrf_token %}
+
         <div class="modal-header">
           <h5 class="modal-title">Feedback</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
@@ -37,6 +40,7 @@
             </p>
             <div class="mb-3">
               <label for="nameInput" class="form-label">Name</label>
+
               <input type="text" class="form-control" id="nameInput" required>
             </div>
             <div class="mb-3">
@@ -118,7 +122,7 @@
     fetch('/feedback/{{ subdomain }}', {
       method: 'POST',
       headers: {
-        'X-CSRFToken': '{{ csrf_token }}',
+        'X-CSRFToken': getCsrfToken(),
       },
       body: formData,
     }).then(r => r.json())
@@ -129,6 +133,10 @@
           showErrors(JSON.parse(data.errors_json));
         }
       });
+  }
+
+  function getCsrfToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
   }
 
   function showSuccess() {
