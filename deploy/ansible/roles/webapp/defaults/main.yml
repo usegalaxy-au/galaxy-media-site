@@ -2,7 +2,7 @@
 project_root: /home/ubuntu/galaxy-content-site
 server_root: /home/ubuntu/server
 web_root: /srv/webapp
-venv_root: "{{ project_root }}/.venv"
+venv_root: "{{ project_root }}/venv"
 
 webapp:
   templates:

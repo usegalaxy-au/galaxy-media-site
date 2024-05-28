@@ -1,16 +1,38 @@
+import requests
+import requests_mock
 from django.test import Client
 from django.core.files import File
 from django.core import mail
+from pathlib import Path
 
-from webapp.test import TestCase
+from .models import Notice, Subsite
+from .test.data import (
+    TEST_NOTICES,
+    TEST_SUBSITES,
+    MOCK_REQUESTS,
+    MOCK_BASE_URL,
+)
 from events.models import Event, Supporter, Tag
 from events.test.data import TEST_EVENTS, TEST_SUPPORTERS, TEST_TAGS
-from utils.data.fgenesh import genematrix_tree
 from news.models import News
 from news.test.data import TEST_NEWS
 from utils import institution
-from .models import Notice, Subsite
-from .test.data import TEST_NOTICES, TEST_SUBSITES
+from utils.data.fgenesh import genematrix_tree
+from webapp.test import TestCase
+
+TEST_DATA_DIR = Path(__file__).parent / 'test/data'
+TEST_SUBSITE_NAME = 'Antarctica'
+TEST_SUBSITE_LAB_NAME = 'Galaxy Lab Pages'.upper()
+TEST_SUBSITE_NATIONALITY = 'Antarctican'
+TEST_SUBSITE_GALAXY_BASE_URL = 'https://galaxy-antarctica.org'
+TEST_SUBSITE_SECTION_TEXT = 'Example section 1'
+TEST_SUBSITE_ACCORDION_TEXT = (
+    'Report statistics from sequencing reads',
+    'Assemble Nanopore long reads.',
+)
+TEST_SUBSITE_URL = (
+    '/lab/export?'
+    f'content_root={MOCK_BASE_URL}/main.yml')
 
 
 class HomeTestCase(TestCase):
@@ -110,7 +132,7 @@ class HomeTestCase(TestCase):
         # A tool update link should be shown
         self.assertContains(
             response,
-            '''window.location = '/news/''',
+            "window.location = '/news/",
             count=1,
         )
         # Should display the date, not the title
@@ -151,8 +173,26 @@ class HomeTestCase(TestCase):
             TEST_NOTICES[0]['data']['title'],
         )
 
+    @requests_mock.Mocker()
+    def test_exported_subsite_landing_webpage(self, mock_request):
+        """Mock requests to localhost."""
+        for url, text in MOCK_REQUESTS.items():
+            mock_request.get(url, text=text, status_code=200)
+        response = self.client.get(TEST_SUBSITE_URL)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, TEST_SUBSITE_NAME)
+        self.assertContains(response, TEST_SUBSITE_LAB_NAME)
+        self.assertContains(response, TEST_SUBSITE_GALAXY_BASE_URL)
+        self.assertContains(response, TEST_SUBSITE_SECTION_TEXT)
+        for text in TEST_SUBSITE_ACCORDION_TEXT:
+            self.assertContains(response, text)
+
     def test_aaf_webpage(self):
-        response = self.client.get('/aaf')
+        try:
+            response = self.client.get('/aaf')
+        except requests.exceptions.ConnectionError:
+            print('\nNo internet connection - cannot test AAF list.')
+            return
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(

@@ -4,16 +4,22 @@ import os
 import logging
 import pprint
 from django.conf import settings
-from django.template import TemplateDoesNotExist, loader
-from django.shortcuts import render, get_object_or_404
-from django.http import Http404
-from django.template.loader import get_template
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.template import (
+    RequestContext,
+    loader,
+    Template,
+    TemplateDoesNotExist,
+)
+from django.template.loader import get_template, render_to_string
 
+from events.models import Event
+from news.models import News
 from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError
-from events.models import Event
-from news.models import News
+from .lab_export import ExportSubsiteContext
 from .models import CoverImage, Notice
 from .forms import (
     ResourceRequestForm,
@@ -54,6 +60,7 @@ def landing(request, subdomain):
     A support request form is passed to the template which can be submitted
     with AJAX and processed by an API handler.
     """
+
     template = f'home/subdomains/{subdomain}.html'
     try:
         get_template(template)
@@ -68,13 +75,62 @@ def landing(request, subdomain):
             f"No content files found for subdomain '{subdomain}'"
             " at 'webapp/home/subdomains/{subdomain}/'")
 
-    return render(request, template, {
+    context = {
+        'extend_template': 'home/header.html',
+        'export': False,
         'name': subdomain,
-        'notices': Notice.get_notices_by_type(request, subsite=subdomain),
-        'cover_image': CoverImage.get_random(request, subsite=subdomain),
-        'sections': sections,
-        'form': SupportRequestForm(),
-    })
+        'site_name': settings.GALAXY_SITE_NAME,
+        'nationality': 'Australian',
+        'galaxy_base_url': settings.GALAXY_URL,
+    }
+    if request.GET.get('export'):
+        context = ExportSubsiteContext(request)
+        context.validate()
+        context.update({
+            'name': subdomain,
+            'title': f'Galaxy - {subdomain.title()} Lab',
+        })
+        if not context.get('sections'):
+            context['sections'] = sections
+    else:
+        context.update({
+            'sections': sections,
+            'notices': Notice.get_notices_by_type(request, subsite=subdomain),
+            'cover_image': CoverImage.get_random(request, subsite=subdomain),
+            'form': SupportRequestForm(),
+        })
+
+    response = render(request, template, context)
+    response.content = response.content.replace(
+        b'{{ galaxy_base_url }}',
+        context['galaxy_base_url'].encode('utf-8'))
+    return response
+
+
+def export_lab(request):
+    """Generic Galaxy Lab landing page build with externally hosted content.
+
+    These pages are built on the fly and can be requested by third parties on
+    an ad hoc basis, where the content would typically be hosted in a GitHub
+    repo with a YAML file root which is specified as a GET parameter.
+    """
+
+    template = 'home/subdomains/exported.html'
+    if request.GET.get('content_root'):
+        context = ExportSubsiteContext(request.GET)
+    else:
+        context = ExportSubsiteContext({
+            'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
+        })
+    context['HOSTNAME'] = settings.HOSTNAME
+
+    # Do two rounds of rendering to capture template tags in remote data
+    context.validate()
+    template_str = render_to_string(template, context, request)
+    t = Template(template_str)
+    body = t.render(RequestContext(request, context))
+
+    return HttpResponse(body)
 
 
 def notice(request, notice_id):
@@ -229,3 +285,10 @@ def unsubscribe_user(request):
         'message': ("You will no longer receive marketing emails from Galaxy"
                     " Australia."),
     })
+
+
+def custom_400(request, exception, template_name="400.html"):
+    """Custom view to show error messages."""
+    return render(request, template_name, {
+        'exc': exception,
+    }, status=400)

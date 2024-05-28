@@ -8,40 +8,6 @@ tools_heading_html = """Some example tools are listed here: you can also search 
 
 sections = [
     {
-        "id": "data",
-        "title": "Data import",
-        "tabs": [
-            {
-                "id": "tools",
-                "title": "Tools",
-                "heading_html": tools_heading_html,
-                "content": content.data.tools,
-            },
-            {
-                "id": "help",
-                "title": "Help",
-                "content": content.data.help,
-            },
-        ],
-    },
-    {
-        "id": "conversion",
-        "title": "File conversion and modification",
-        "tabs": [
-            {
-                "id": "tools",
-                "title": "Tools",
-                "heading_html": tools_heading_html,
-                "content": content.conversion_modification.tools,
-            },
-            {
-                "id": "help",
-                "title": "Help",
-                "content": content.conversion_modification.help,
-            },
-        ],
-    },
-    {
         "id": "database",
         "title": "Database searching",
         "tabs": [
@@ -59,36 +25,53 @@ sections = [
         ],
     },
     {
-        "id": "quant_proteomics",
-        "title": "Quantitative proteomics",
+        "id": "dda_standardised_tools",
+        "title": "Data dependent acquisition (DDA) standardised tools",
         "tabs": [
             {
                 "id": "tools",
                 "title": "Tools",
                 "heading_html": tools_heading_html,
-                "content": content.quant_proteomics.tools,
+                "content": content.dda_standardised_tools.tools,
             },
             {
                 "id": "help",
                 "title": "Help",
-                "content": content.quant_proteomics.help,
+                "content": content.dda_standardised_tools.help,
             },
         ],
     },
     {
-        "id": "post_processing_visualisation",
-        "title": "Post processing and visualisation",
+        "id": "dia_standardised_tools",
+        "title": "Data independent acquisition (DIA) standardised tools",
         "tabs": [
             {
                 "id": "tools",
                 "title": "Tools",
                 "heading_html": tools_heading_html,
-                "content": content.post_processing_visualisation.tools,
+                "content": content.dia_standardised_tools.tools,
             },
             {
                 "id": "help",
                 "title": "Help",
-                "content": content.post_processing_visualisation.help,
+                "content": content.dia_standardised_tools.help,
+            },
+        ],
+    },
+    {
+        "id": "dda_tmt",
+        "title": "DDA tandem mass tags (TMT)",
+        "tabs": [
+            {
+                "id": "tools",
+                "title": "Tools",
+                "heading_html": tools_heading_html,
+                "content": content.dda_tmt.tools,
+            },
+            {
+                "id": "help",
+                "title": "Help",
+                "content": content.dda_tmt.help,
             },
         ],
     }

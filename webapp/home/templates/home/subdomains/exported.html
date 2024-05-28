@@ -1,0 +1,81 @@
+{% extends extend_template %}
+
+{% comment %}
+  This template renders a generic Galaxy Lab landing page based on externally
+  hosted content (e.g. sections, tools, workflows, etc).
+{% endcomment %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/subdomains/main.css' %}">
+
+<style>
+  {{ snippets.custom_css|default:"" }}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+  {% comment %}
+  <!-- Modals should be included in intro/conclusion templates as appropriate -->
+  {% include 'home/subdomains/components/genome-community-modal.html' %}
+  {% include 'home/subdomains/components/info-modal.html' with subdomain='genome' site_name="Genome Lab" researchers="genomics" %}
+  {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
+  {% endcomment %}
+
+  <section id="headerSection" class="header-subdomain australia d-flex align-items-center h-100">
+    {% if snippets.header_logo %}
+    <img id="header-logo" src="{{ snippets.header_logo }}" alt="{{ site_name }} Logo">
+    {% endif %}
+    {{ lab_name|upper }}
+  </section>
+
+  {% if snippets.intro_html %}
+  {{ snippets.intro_html|safe }}
+  {% endif %}
+
+  {% if au_include_header_cards %}
+  {% include 'home/snippets/header-cards.html' %}
+  {% endif %}
+
+  {% for section in sections %}
+    {% include 'home/subdomains/components/section.html' with section=section %}
+  {% endfor %}
+
+  {% if snippets.conclusion_html %}
+  {{ snippets.conclusion_html|safe }}
+  {% endif %}
+
+</main>
+
+
+{% if snippets.footer_html %}
+{{ snippets.footer_html|safe }}
+{% endif %}
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+
+
+{% block onload %}
+  // Ensure that notice links open in new tab if external
+  $('.notice a').each( (i, item) => {
+    if (!item.href.includes("{{ HOSTNAME }}")) {
+      item.target = '_blank';
+    }
+  });
+{% endblock %}
