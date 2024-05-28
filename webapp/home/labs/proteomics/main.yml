@@ -1,0 +1,28 @@
+# Use these variables in HTML templates like:
+# "Welcome to the Galaxy {{ site_name }} {{ lab_name }}"
+# To make the content more generic and reusable across sites
+site_name: Australia
+lab_name: Proteomics Lab
+nationality: Australian
+galaxy_base_url: https://usegalaxy.org.au  # Use for rendering tool/workflow URLs. Trailing '/' will be removed.
+subdomain: proteomics
+root_domain: usegalaxy.org.au
+
+# Custom content relative to this file URL
+# ! TODO header_logo: static/logo.png
+# ! TODO custom_css: static/custom.css
+# ! TODO intro_html: templates/intro.html
+# ! TODO conclusion_html: templates/conclusion.html
+# ! TODO footer_html: templates/footer.html
+
+
+# Data (Tools, Workflows etc.) to be rendered into sections/tabs/accordion elements.
+# Either:
+#   1. Relative to this file URL
+#   2. Full URL to fetch globally centralized content
+sections:
+  - data.yml
+  - conversion_modification.yml
+  - database_searching.yml
+  - quant_proteomics.yml
+  - post_processing_visualisation.yml
