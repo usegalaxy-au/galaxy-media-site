@@ -28,6 +28,7 @@ au_include_header_cards: true
 #   2. Full URL to fetch globally centralized content
 sections:
   # - data.yml
+  - conversion_modification.yml
   - database_searching.yml
   - dda_standardised_tools.yml
   - dia_standardised_tools.yml
