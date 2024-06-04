@@ -7,11 +7,11 @@ http://127.0.0.1:8000/landing/genome?export=true&content_root=https://raw.github
 import logging
 import requests
 import yaml
-from django.core.exceptions import SuspiciousOperation
 from pprint import pformat
 from pydantic import ValidationError
 
 from .lab_schema import LabSchema, LabSectionSchema
+from utils.exceptions import SubsiteBuildError
 
 logger = logging.getLogger('django')
 
@@ -79,13 +79,13 @@ class ExportSubsiteContext(dict):
                     msg += 'Received YAML input:\n'
                     msg += pformat(error['input'])
                 logger.warning(msg)
-                raise SuspiciousOperation(msg)
+                raise SubsiteBuildError(msg)
 
     def _get(self, url, webpage=False):
         """Fetch content from URL and validate returned content."""
         res = requests.get(url)
         if res.status_code >= 300:
-            raise SuspiciousOperation(
+            raise SubsiteBuildError(
                 f'HTTP {res.status_code} fetching file: {url}')
         if not webpage:
             lines = [
@@ -93,14 +93,18 @@ class ExportSubsiteContext(dict):
                 for x in res.content.decode('utf-8').split('\n')
                 if x.strip()
             ]
-            if '<!DOCTYPE html>' in lines[0]:
-                raise SuspiciousOperation(
-                    f'Unexpected HTML content in file: {url}\n\n'
-                    'Did you provide a URL for a webpage instead of a raw YAML'
-                    ' file? If you are using GitHub, this URL should start'
-                    ' with "https://raw.githubusercontent.com/". Click the'
-                    ' "Raw" button on the GitHub webpage to view the file in'
-                    ' raw format.')
+            if lines and '<!doctype html>' in lines[0].lower():
+                # TODO: this should probably be replaced with an HTML template
+                raise SubsiteBuildError(
+                    f"Unexpected HTML document at URL: {url}",
+                    description=(
+                        'Did you provide a URL for a webpage instead of a raw'
+                        ' YAML file? If you are using GitHub, this URL should'
+                        ' start with "https://raw.githubusercontent.com/".'
+                        ' Click the "Raw" button on the GitHub webpage to view'
+                        ' the file in raw format!'
+                    )
+                )
         return res
 
     def _fetch_yaml_context(self):
@@ -117,14 +121,14 @@ class ExportSubsiteContext(dict):
         try:
             params = yaml.safe_load(yaml_str)
         except (yaml.YAMLError, yaml.scanner.ScannerError) as e:
-            raise SuspiciousOperation(
+            raise SubsiteBuildError(
                 f'Error parsing YAML content from file {url}: {e}')
         try:
             LabSchema(**params)
         except ValidationError as e:
             msg = 'Error validating root YAML schema:\n' + pformat(e.errors())
             logger.warning(msg)
-            raise SuspiciousOperation(msg)
+            raise SubsiteBuildError(msg)
         self.update(params)
         self._fetch_snippets()
 
@@ -155,7 +159,7 @@ class ExportSubsiteContext(dict):
         try:
             data = yaml.safe_load(yaml_str)
         except yaml.YAMLError as e:
-            raise SuspiciousOperation(
+            raise SubsiteBuildError(
                 f'Error parsing YAML content from file {url}: {e}')
 
         if isinstance(data, dict):
