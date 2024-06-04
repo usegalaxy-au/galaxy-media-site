@@ -81,6 +81,28 @@ class ExportSubsiteContext(dict):
                 logger.warning(msg)
                 raise SuspiciousOperation(msg)
 
+    def _get(self, url, webpage=False):
+        """Fetch content from URL and validate returned content."""
+        res = requests.get(url)
+        if res.status_code >= 300:
+            raise SuspiciousOperation(
+                f'HTTP {res.status_code} fetching file: {url}')
+        if not webpage:
+            lines = [
+                x.strip()
+                for x in res.content.decode('utf-8').split('\n')
+                if x.strip()
+            ]
+            if '<!DOCTYPE html>' in lines[0]:
+                raise SuspiciousOperation(
+                    f'Unexpected HTML content in file: {url}\n\n'
+                    'Did you provide a URL for a webpage instead of a raw YAML'
+                    ' file? If you are using GitHub, this URL should start'
+                    ' with "https://raw.githubusercontent.com/". Click the'
+                    ' "Raw" button on the GitHub webpage to view the file in'
+                    ' raw format.')
+        return res
+
     def _fetch_yaml_context(self):
         """Fetch params from remote YAML file.
 
@@ -90,10 +112,7 @@ class ExportSubsiteContext(dict):
         if not url:
             raise ValueError(
                 "GET parameter 'content_root' required for root URL")
-        res = requests.get(url)
-        if res.status_code >= 300:
-            raise SuspiciousOperation(
-                f'HTTP {res.status_code} fetching file: {url}')
+        res = self._get(url)
         yaml_str = res.content.decode('utf-8')
         try:
             params = yaml.safe_load(yaml_str)
@@ -130,11 +149,8 @@ class ExportSubsiteContext(dict):
             url = relpath
         else:
             url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-        response = requests.get(url)
-        if response.status_code >= 300:
-            raise SuspiciousOperation(
-                f'HTTP {response.status_code} fetching file: {url}')
-        yaml_str = response.content.decode('utf-8')
+        res = self._get(url)
+        yaml_str = res.content.decode('utf-8')
 
         try:
             data = yaml.safe_load(yaml_str)
@@ -173,8 +189,5 @@ class ExportSubsiteContext(dict):
         yaml_url = self.params.get('content_root')
         if yaml_url:
             url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-            response = requests.get(url)
-            if response.status_code >= 300:
-                raise SuspiciousOperation(
-                    f'HTTP {response.status_code} fetching file: {url}')
-            return response.content.decode('utf-8')
+            res = self._get(url)
+            return res.content.decode('utf-8')
