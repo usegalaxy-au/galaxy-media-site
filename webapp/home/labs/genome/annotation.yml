@@ -135,6 +135,138 @@ tabs:
         view_link: ''
         view_tip: ''
         button_tip: Run in Galaxy AU
+        
+      subsections:
+       - id: TSI transcripts
+          title: Transcript alignment 
+          content:
+            - title_html: About these workflows
+              description_html: >
+                <p>
+                  This <a href="https://australianbiocommons.github.io/how-to-guides/genome_annotation/Transcriptome" target="_blank"> How-to-Guide </a> will describe the steps required to align transcript data to your genome on the Galaxy Australia platform, using multiple workflows. The outputs from these workflows can then be used as inputs into the next annotation workflow using FgenesH++.
+                </p>
+            - title_html: Repeat masking
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+
+            - title_html: Repeat masking
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+
+            - title_html: Repeat masking
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+
+            - title_html: Repeat masking
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+
+            - title_html: Repeat masking
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+
+            - title_html: Repeat masking
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+
+
+            - title_html: Repeat masking
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+
+              
+        - id: TSI annotation
+          title: Annotation with FgenesH++
+          content:
+            - title_html: About these workflows
+              description_html: >
+                <p>
+                  This <a href="https://australianbiocommons.github.io/how-to-guides/genome_annotation/Fgenesh" target="_blank"> How-to-Guide </a> will describe the steps required to annotate your genome on the Galaxy Australia platform, using multiple workflows.
+                </p>
+            - title_html: Annotation with FgenesH++
+              description_html: >
+                <p>
+                  Mask repeats in the genome.
+                </p>
+              inputs:
+                - datatypes:
+                    - TBA
+                  label: Assembled genome <em>genome.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
+              view_link: https://workflowhub.eu/workflows/875
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+              
   - id: help
     title: Help
     content:
