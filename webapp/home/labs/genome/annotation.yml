@@ -249,14 +249,19 @@ tabs:
             - title_html: Annotation with FgenesH++
               description_html: >
                 <p>
-                  Mask repeats in the genome.
+                  Annotate the genome using outputs from the TSI transcriptome workflows.
                 </p>
               inputs:
                 - datatypes:
-                    - TBA
+                    - fasta
                   label: Assembled genome <em>genome.fasta</em>
-              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
-              view_link: https://workflowhub.eu/workflows/875
+                  label: Masked genome <em>masked_genome.fasta</em>
+                    - cdna
+                    - pro
+                    - dat
+                  label: Outputs from TSI convert formats workflow <em>sample.cdna</em>, <em>sample.pro</em>, <em>sample.dat</em>                 
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=881"
+              view_link: https://workflowhub.eu/workflows/881
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
               
