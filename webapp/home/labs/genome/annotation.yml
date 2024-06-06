@@ -88,57 +88,61 @@ tabs:
               - fasta
             label: Genome assembly
         button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fcrs4%2Fprokka%2Fprokka"
+
   - id: workflows
     title: Workflows
     heading_html: >
       A workflow is a series of Galaxy tools that have been linked together to perform a specific analysis. You can use and customize the example workflows below.
       <a href="https://galaxyproject.org/learn/advanced-workflow/" target="_blank">Learn more.</a>
     content:
-      - title_html: Annotation with Maker
-        description_html: >
-          <p>
-            Annotates a genome using multiple rounds of Maker, including gene prediction using SNAP and Augustus. <br> <br> Tools: <code>maker</code> <code>snap</code> <code>augustus</code> <code>busco</code> <code>jbrowse</code>
-          </p>
-        inputs:
-          - datatypes:
-              - fasta
-            label: Genome assembly
-          - datatypes:
-              - fastq
-            label: RNAseq Illumina reads
-          - datatypes:
-              - fasta
-            label: Proteins
-        button_link: "{{ galaxy_base_url }}/u/anna/w/genome-annotation-with-maker"
-        view_link: ''
-        view_tip: ''
-        button_tip: Run in Galaxy AU
-      - title_html: Annotation with Funannotate
-        description_html: >
-          <p>
-            Annotates a genome using Funannotate, includes RNAseq data with RNAstar, and protein predictions from EggNOG. <br> <br> Tools: <code>RNAstar</code> <code>funannotate</code> <code>eggnog</code> <code>busco</code> <code>jbrowse</code> <code>aegean parseval</code>
-          </p>
-        inputs:
-          - datatypes:
-              - fasta
-            label: Genome assembly (soft-masked)
-          - datatypes:
-              - fastq
-            label: RNAseq Illumina reads
-          - datatypes:
-              - gff3
-            label: Alternative annotation
-          - datatypes:
-              - gbk
-            label: Alternative annotation
-        button_link: "{{ galaxy_base_url }}/u/anna/w/annotation-funannotate"
-        view_link: ''
-        view_tip: ''
-        button_tip: Run in Galaxy AU
-        
       subsections:
-       - id: TSI transcripts
-          title: Transcript alignment 
+        - id: general
+          title: General use
+          content:
+            - title_html: Annotation with Maker
+              description_html: >
+                <p>
+                  Annotates a genome using multiple rounds of Maker, including gene prediction using SNAP and Augustus. <br> <br> Tools: <code>maker</code> <code>snap</code> <code>augustus</code> <code>busco</code> <code>jbrowse</code>
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Genome assembly
+                - datatypes:
+                    - fastq
+                  label: RNAseq Illumina reads
+                - datatypes:
+                    - fasta
+                  label: Proteins
+              button_link: "{{ galaxy_base_url }}/u/anna/w/genome-annotation-with-maker"
+              view_link: ''
+              view_tip: ''
+              button_tip: Run in Galaxy AU
+            - title_html: Annotation with Funannotate
+              description_html: >
+                <p>
+                  Annotates a genome using Funannotate, includes RNAseq data with RNAstar, and protein predictions from EggNOG. <br> <br> Tools: <code>RNAstar</code> <code>funannotate</code> <code>eggnog</code> <code>busco</code> <code>jbrowse</code> <code>aegean parseval</code>
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Genome assembly (soft-masked)
+                - datatypes:
+                    - fastq
+                  label: RNAseq Illumina reads
+                - datatypes:
+                    - gff3
+                  label: Alternative annotation
+                - datatypes:
+                    - gbk
+                  label: Alternative annotation
+              button_link: "{{ galaxy_base_url }}/u/anna/w/annotation-funannotate"
+              view_link: ''
+              view_tip: ''
+              button_tip: Run in Galaxy AU
+
+        - id: tsi_transcripts
+          title: Transcript alignment
           content:
             - title_html: About these workflows
               description_html: >
@@ -153,7 +157,7 @@ tabs:
               inputs:
                 - datatypes:
                     - fasta
-                  label: Assembled genome <em>genome.fasta</em>
+                  label: Assembled genome <code>genome.fasta</code>
               button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
               view_link: https://workflowhub.eu/workflows/875
               view_tip: View in WorkflowHub
@@ -167,7 +171,7 @@ tabs:
               inputs:
                 - datatypes:
                     - fastqsanger.gz
-                  label: For each tissue: RNAseq R1 files in a collection <em>R1.fastqsanger.gz</em>; RNAseq R2 files in a collection <em>R2.fastqsanger.gz</em>
+                  label: "For each tissue: RNAseq R1 files in a collection <code>R1.fastqsanger.gz</code>; RNAseq R2 files in a collection <code>R2.fastqsanger.gz</code>"
               button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=876"
               view_link: https://workflowhub.eu/workflows/876
               view_tip: View in WorkflowHub
@@ -181,9 +185,9 @@ tabs:
               inputs:
                 - datatypes:
                     - fasta
-                  label: Masked genome <em>masked_genome.fasta</em>
+                  label: Masked genome <code>masked_genome.fasta</code>
                     - fastqsanger.gz
-                  label: For each tissue: Trimmed and merged RNAseq R1 files <em>R1.fastqsanger.gz</em>; Trimmed and merged RNAseq R2 files <em>R2.fastqsanger.gz</em>    
+                  label: "For each tissue: Trimmed and merged RNAseq R1 files <code>R1.fastqsanger.gz</code>; Trimmed and merged RNAseq R2 files <code>R2.fastqsanger.gz</code>"
               button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=877"
               view_link: https://workflowhub.eu/workflows/877
               view_tip: View in WorkflowHub
@@ -197,11 +201,11 @@ tabs:
               inputs:
                 - datatypes:
                     - fasta
-                  label: Masked genome <em>masked_genome.fasta</em>
-                    - gtf           
-                  label: Multiple transcriptomes in a collection <em>transcriptome.gtf</em>
-                    - fasta.gz           
-                  label: Coding and non-coding sequences from NCBI <em>coding_seqs.fna.gz</em> <em>non-coding_seqs.fna.gz</em>                              
+                  label: Masked genome <code>masked_genome.fasta</code>
+                    - gtf
+                  label: Multiple transcriptomes in a collection <code>transcriptome.gtf</code>
+                    - fasta.gz
+                  label: Coding and non-coding sequences from NCBI <code>coding_seqs.fna.gz</code> <code>non-coding_seqs.fna.gz</code>
               button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=878"
               view_link: https://workflowhub.eu/workflows/878
               view_tip: View in WorkflowHub
@@ -215,7 +219,7 @@ tabs:
               inputs:
                 - datatypes:
                     - fasta
-                  label: Merged transcriptomes <em>merged_transcriptomes.fasta</em>
+                  label: Merged transcriptomes <code>merged_transcriptomes.fasta</code>
               button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=879"
               view_link: https://workflowhub.eu/workflows/879
               view_tip: View in WorkflowHub
@@ -230,15 +234,14 @@ tabs:
               inputs:
                 - datatypes:
                     - fasta
-                  label: Transdecoder nucleotides <em>transdecoder_nucleotides.fasta</em>
-                  label: Transdecoder peptides <em>transdecoder_peptides.fasta</em>
+                  label: Transdecoder nucleotides <code>transdecoder_nucleotides.fasta</code>
+                  label: Transdecoder peptides <code>transdecoder_peptides.fasta</code>
               button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=880"
               view_link: https://workflowhub.eu/workflows/880
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
 
-              
-        - id: TSI annotation
+        - id: tsi_annotation
           title: Annotation with FgenesH++
           content:
             - title_html: About these workflows
@@ -254,17 +257,17 @@ tabs:
               inputs:
                 - datatypes:
                     - fasta
-                  label: Assembled genome <em>genome.fasta</em>
-                  label: Masked genome <em>masked_genome.fasta</em>
+                  label: Assembled genome <code>genome.fasta</code>
+                  label: Masked genome <code>masked_genome.fasta</code>
                     - cdna
                     - pro
                     - dat
-                  label: Outputs from TSI convert formats workflow <em>sample.cdna</em>, <em>sample.pro</em>, <em>sample.dat</em>                 
+                  label: Outputs from TSI convert formats workflow <code>sample.cdna</code>, <code>sample.pro</code>, <code>sample.dat</code>
               button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=881"
               view_link: https://workflowhub.eu/workflows/881
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
-              
+
   - id: help
     title: Help
     content:
