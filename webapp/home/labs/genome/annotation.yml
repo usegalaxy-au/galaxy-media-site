@@ -159,88 +159,81 @@ tabs:
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
 
-            - title_html: Repeat masking
+            - title_html: QC and trimming of RNAseq
               description_html: >
                 <p>
-                  Mask repeats in the genome.
+                  Trim and merge RNAseq reads.
                 </p>
               inputs:
                 - datatypes:
-                    - fasta
-                  label: Assembled genome <em>genome.fasta</em>
-              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
-              view_link: https://workflowhub.eu/workflows/875
+                    - fastqsanger.gz
+                  label: For each tissue: RNAseq R1 files in a collection <em>R1.fastqsanger.gz</em>; RNAseq R2 files in a collection <em>R2.fastqsanger.gz</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=876"
+              view_link: https://workflowhub.eu/workflows/876
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
 
-            - title_html: Repeat masking
+            - title_html: Find transcripts
               description_html: >
                 <p>
-                  Mask repeats in the genome.
+                  Align RNAseq to genome to find transcripts.
                 </p>
               inputs:
                 - datatypes:
                     - fasta
-                  label: Assembled genome <em>genome.fasta</em>
-              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
-              view_link: https://workflowhub.eu/workflows/875
+                  label: Masked genome <em>masked_genome.fasta</em>
+                    - fastqsanger.gz
+                  label: For each tissue: Trimmed and merged RNAseq R1 files <em>R1.fastqsanger.gz</em>; Trimmed and merged RNAseq R2 files <em>R2.fastqsanger.gz</em>    
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=877"
+              view_link: https://workflowhub.eu/workflows/877
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
 
-            - title_html: Repeat masking
+            - title_html: Combine transcripts
               description_html: >
                 <p>
-                  Mask repeats in the genome.
+                  Merge transcriptomes from different tissues, and filter out non-coding sequences.
                 </p>
               inputs:
                 - datatypes:
                     - fasta
-                  label: Assembled genome <em>genome.fasta</em>
-              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
-              view_link: https://workflowhub.eu/workflows/875
+                  label: Masked genome <em>masked_genome.fasta</em>
+                    - gtf           
+                  label: Multiple transcriptomes in a collection <em>transcriptome.gtf</em>
+                    - fasta.gz           
+                  label: Coding and non-coding sequences from NCBI <em>coding_seqs.fna.gz</em> <em>non-coding_seqs.fna.gz</em>                              
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=878"
+              view_link: https://workflowhub.eu/workflows/878
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
 
-            - title_html: Repeat masking
+            - title_html: Extract transcripts
               description_html: >
                 <p>
-                  Mask repeats in the genome.
+                  Extract longest transcripts.
                 </p>
               inputs:
                 - datatypes:
                     - fasta
-                  label: Assembled genome <em>genome.fasta</em>
-              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
-              view_link: https://workflowhub.eu/workflows/875
-              view_tip: View in WorkflowHub
-              button_tip: Import to Galaxy Australia
-
-            - title_html: Repeat masking
-              description_html: >
-                <p>
-                  Mask repeats in the genome.
-                </p>
-              inputs:
-                - datatypes:
-                    - fasta
-                  label: Assembled genome <em>genome.fasta</em>
-              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
-              view_link: https://workflowhub.eu/workflows/875
+                  label: Merged transcriptomes <em>merged_transcriptomes.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=879"
+              view_link: https://workflowhub.eu/workflows/879
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
 
 
-            - title_html: Repeat masking
+            - title_html: Convert formats
               description_html: >
                 <p>
-                  Mask repeats in the genome.
+                  Convert formats for FgenesH++
                 </p>
               inputs:
                 - datatypes:
                     - fasta
-                  label: Assembled genome <em>genome.fasta</em>
-              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=875"
-              view_link: https://workflowhub.eu/workflows/875
+                  label: Transdecoder nucleotides <em>transdecoder_nucleotides.fasta</em>
+                  label: Transdecoder peptides <em>transdecoder_peptides.fasta</em>
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=880"
+              view_link: https://workflowhub.eu/workflows/880
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
 
