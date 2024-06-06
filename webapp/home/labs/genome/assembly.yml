@@ -61,6 +61,17 @@ tabs:
           - datatypes:
               - fasta
         button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fbusco%2Fbusco"
+      - title_html: <code>MitoHiFi</code> - assemble mitochondrial genomes
+        description_html: >
+          <p>
+            Assemble mitochondrial genomes from PacBio HiFi reads. Run first to find a related mitogenome, then run to assemble the genome. Inputs are PacBio HiFi reads in fasta or fastq format, and a related mitogenome in both fasta and genbank formats.
+          </p>
+        inputs:
+          - datatypes:
+              - fasta
+              - fastq
+              - genbank
+        button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fmitohifi%2Fmitohfi"
 
   - id: workflows
     title: Workflows
