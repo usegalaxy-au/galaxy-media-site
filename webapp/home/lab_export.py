@@ -7,7 +7,6 @@ http://127.0.0.1:8000/landing/genome?export=true&content_root=https://raw.github
 import logging
 import requests
 import yaml
-from pprint import pformat
 from pydantic import ValidationError
 
 from .lab_schema import LabSchema, LabSectionSchema
@@ -63,30 +62,19 @@ class ExportSubsiteContext(dict):
             try:
                 LabSectionSchema(**section)
             except ValidationError as e:
-                msg = 'Error validating section YAML schema:\n\n'
-                for i, error in enumerate(e.errors()):
-                    if i > 0:
-                        msg += '\n\n'
-                        msg += '-' * 80
-                        msg += '\n\n'
-                    msg += f'Section: {section["id"]}\n'
-                    msg += f'Error message: {error["msg"]}\n'
-                    location = (
-                        f'{error["loc"][0]} > '
-                        + ' > '.join(str(x) for x in error["loc"][1:])
-                    )
-                    msg += f'Location: {location}\n\n'
-                    msg += 'Received YAML input:\n'
-                    msg += pformat(error['input'])
-                logger.warning(msg)
-                raise SubsiteBuildError(msg)
+                raise SubsiteBuildError(
+                    e,
+                    section_id=section["id"],
+                    source='YAML',
+                )
 
     def _get(self, url, webpage=False):
         """Fetch content from URL and validate returned content."""
         res = requests.get(url)
         if res.status_code >= 300:
             raise SubsiteBuildError(
-                f'HTTP {res.status_code} fetching file: {url}')
+                f'HTTP {res.status_code} fetching file.',
+                url=url)
         if not webpage:
             lines = [
                 x.strip()
@@ -94,16 +82,17 @@ class ExportSubsiteContext(dict):
                 if x.strip()
             ]
             if lines and '<!doctype html>' in lines[0].lower():
-                # TODO: this should probably be replaced with an HTML template
                 raise SubsiteBuildError(
-                    f"Unexpected HTML document at URL: {url}",
-                    description=(
+                    (
+                        "Unexpected HTML content in file.\n"
                         'Did you provide a URL for a webpage instead of a raw'
                         ' YAML file? If you are using GitHub, this URL should'
-                        ' start with "https://raw.githubusercontent.com/".'
-                        ' Click the "Raw" button on the GitHub webpage to view'
+                        ' start with "https://raw.githubusercontent.com/".\n'
+                        'Click the "Raw" button on the GitHub webpage to view'
                         ' the file in raw format!'
-                    )
+                    ),
+                    url=url,
+                    source='YAML',
                 )
         return res
 
@@ -120,15 +109,12 @@ class ExportSubsiteContext(dict):
         yaml_str = res.content.decode('utf-8')
         try:
             params = yaml.safe_load(yaml_str)
-        except (yaml.YAMLError, yaml.scanner.ScannerError) as e:
-            raise SubsiteBuildError(
-                f'Error parsing YAML content from file {url}: {e}')
+        except (yaml.YAMLError, yaml.scanner.ScannerError) as exc:
+            raise SubsiteBuildError(exc, url=url, source='YAML')
         try:
             LabSchema(**params)
-        except ValidationError as e:
-            msg = 'Error validating root YAML schema:\n' + pformat(e.errors())
-            logger.warning(msg)
-            raise SubsiteBuildError(msg)
+        except ValidationError as exc:
+            raise SubsiteBuildError(exc, url=url, source='YAML')
         self.update(params)
         self._fetch_snippets()
 
@@ -158,9 +144,8 @@ class ExportSubsiteContext(dict):
 
         try:
             data = yaml.safe_load(yaml_str)
-        except yaml.YAMLError as e:
-            raise SubsiteBuildError(
-                f'Error parsing YAML content from file {url}: {e}')
+        except yaml.YAMLError as exc:
+            raise SubsiteBuildError(exc, url=url)
 
         if isinstance(data, dict):
             data = {
