@@ -9,7 +9,7 @@
   <p>
     You can
     see the content used to generate this documentation page
-    <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/export-lab-pages/webapp/home/labs/docs" target="_blank">
+    <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/dev/webapp/home/labs/docs" target="_blank">
       here</a>,
     and a full working example of an exported Galaxy Lab page
     <a href="/lab/export?content_root=http://{{ HOSTNAME }}/static/home/labs/genome/main.yml">here</a>.
@@ -18,7 +18,7 @@
   <p>
     This custom introductory text was pulled down from GitHub and rendered in real time.
     Updates to
-    <a href="https://github.com/usegalaxy-au/galaxy-media-site/blob/export-lab-pages/webapp/home/labs/docs/templates/intro.html" target="_blank">
+    <a href="https://github.com/usegalaxy-au/galaxy-media-site/blob/dev/webapp/home/labs/docs/templates/intro.html" target="_blank">
       this text
     </a>
     on the remote will be reflected on this page. Note that GitHub raw content is
@@ -34,7 +34,7 @@
     <ul>
       <li>
         The root of your site's content should be a YAML file - see
-        <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/export-lab-pages/webapp/home/labs/docs/main.yml" target="_blank">
+        <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/dev/webapp/home/labs/docs/main.yml" target="_blank">
           main.yml
         </a>
         for the content root of this page.
@@ -45,8 +45,8 @@
         For example, we can explicitly request this page with:
         <br>
         <small>
-          <a href="/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/main.yml" target="_blank">
-            http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/main.yml
+          <a href="/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/main.yml" target="_blank">
+            http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/main.yml
           </a>
         </small>
       </li>
@@ -59,9 +59,9 @@
       <li>
         The most useful part of this machinery is the <code>sections</code> content, which populates the tool/workflow sections below.
         See
-        <a href="https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/data.yml" target="_blank">data.yml</a>
+        <a href="https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/data.yml" target="_blank">data.yml</a>
         and
-        <a href="https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/export-lab-pages/webapp/home/labs/docs/assembly.yml" target="_blank">assembly.yml</a>
+        <a href="https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/assembly.yml" target="_blank">assembly.yml</a>
         for examples of how to structure this content in YAML format.
       </li>
     </ul>
@@ -75,7 +75,7 @@
     <ol>
       <li>
         Copy our
-        <a href=https://github.com/usegalaxy-au/galaxy-media-site/tree/export-lab-pages/webapp/home/labs/docs" target="_blank">
+        <a href=https://github.com/usegalaxy-au/galaxy-media-site/tree/dev/webapp/home/labs/docs" target="_blank">
           example content
         </a>
         directory to your own github repository.
@@ -106,7 +106,7 @@
     defined there. This means you can have webforms, interactive elements,
     and more. Check out the
     <a
-      href="https://github.com/usegalaxy-au/galaxy-media-site/blob/export-lab-pages/webapp/home/labs/genome/conclusion.yml"
+      href="https://github.com/usegalaxy-au/galaxy-media-site/blob/dev/webapp/home/labs/genome/conclusion.yml"
       target="_blank"
     >
       Genome Lab conclusion.html
@@ -120,7 +120,7 @@
     const exportInfoButton = $(`
       <a
         class="export-info-button"
-        href="https://github.com/usegalaxy-au/galaxy-media-site/blob/export-lab-pages/webapp/home/labs/docs/${relpath}"
+        href="https://github.com/usegalaxy-au/galaxy-media-site/blob/dev/webapp/home/labs/docs/${relpath}"
         target="_blank"
       >
         <i class="fab fa-github"></i>

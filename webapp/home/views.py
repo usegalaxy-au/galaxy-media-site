@@ -18,7 +18,7 @@ from events.models import Event
 from news.models import News
 from utils import aaf
 from utils import unsubscribe
-from utils.exceptions import ResourceAccessError
+from utils.exceptions import ResourceAccessError, SubsiteBuildError
 from .lab_export import ExportSubsiteContext
 from .models import CoverImage, Notice
 from .forms import (
@@ -116,16 +116,22 @@ def export_lab(request):
     """
 
     template = 'home/subdomains/exported.html'
-    if request.GET.get('content_root'):
-        context = ExportSubsiteContext(request.GET)
-    else:
-        context = ExportSubsiteContext({
-            'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
-        })
-    context['HOSTNAME'] = settings.HOSTNAME
+
+    try:
+        if request.GET.get('content_root'):
+            context = ExportSubsiteContext(request.GET)
+        else:
+            context = ExportSubsiteContext({
+                'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
+            })
+        context['HOSTNAME'] = settings.HOSTNAME
+        context.validate()
+    except SubsiteBuildError as exc:
+        return render(request, 'home/subdomains/export-error.html', {
+            'exc': exc,
+        }, status=400)
 
     # Do two rounds of rendering to capture template tags in remote data
-    context.validate()
     template_str = render_to_string(template, context, request)
     t = Template(template_str)
     body = t.render(RequestContext(request, context))

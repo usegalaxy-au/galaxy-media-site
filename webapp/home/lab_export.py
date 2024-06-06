@@ -7,11 +7,10 @@ http://127.0.0.1:8000/landing/genome?export=true&content_root=https://raw.github
 import logging
 import requests
 import yaml
-from django.core.exceptions import SuspiciousOperation
-from pprint import pformat
 from pydantic import ValidationError
 
 from .lab_schema import LabSchema, LabSectionSchema
+from utils.exceptions import SubsiteBuildError
 
 logger = logging.getLogger('django')
 
@@ -63,23 +62,39 @@ class ExportSubsiteContext(dict):
             try:
                 LabSectionSchema(**section)
             except ValidationError as e:
-                msg = 'Error validating section YAML schema:\n\n'
-                for i, error in enumerate(e.errors()):
-                    if i > 0:
-                        msg += '\n\n'
-                        msg += '-' * 80
-                        msg += '\n\n'
-                    msg += f'Section: {section["id"]}\n'
-                    msg += f'Error message: {error["msg"]}\n'
-                    location = (
-                        f'{error["loc"][0]} > '
-                        + ' > '.join(str(x) for x in error["loc"][1:])
-                    )
-                    msg += f'Location: {location}\n\n'
-                    msg += 'Received YAML input:\n'
-                    msg += pformat(error['input'])
-                logger.warning(msg)
-                raise SuspiciousOperation(msg)
+                raise SubsiteBuildError(
+                    e,
+                    section_id=section["id"],
+                    source='YAML',
+                )
+
+    def _get(self, url, webpage=False):
+        """Fetch content from URL and validate returned content."""
+        res = requests.get(url)
+        if res.status_code >= 300:
+            raise SubsiteBuildError(
+                f'HTTP {res.status_code} fetching file.',
+                url=url)
+        if not webpage:
+            lines = [
+                x.strip()
+                for x in res.content.decode('utf-8').split('\n')
+                if x.strip()
+            ]
+            if lines and '<!doctype html>' in lines[0].lower():
+                raise SubsiteBuildError(
+                    (
+                        "Unexpected HTML content in file.\n"
+                        'Did you provide a URL for a webpage instead of a raw'
+                        ' YAML file? If you are using GitHub, this URL should'
+                        ' start with "https://raw.githubusercontent.com/".\n'
+                        'Click the "Raw" button on the GitHub webpage to view'
+                        ' the file in raw format!'
+                    ),
+                    url=url,
+                    source='YAML',
+                )
+        return res
 
     def _fetch_yaml_context(self):
         """Fetch params from remote YAML file.
@@ -90,22 +105,16 @@ class ExportSubsiteContext(dict):
         if not url:
             raise ValueError(
                 "GET parameter 'content_root' required for root URL")
-        res = requests.get(url)
-        if res.status_code >= 300:
-            raise SuspiciousOperation(
-                f'HTTP {res.status_code} fetching file: {url}')
+        res = self._get(url)
         yaml_str = res.content.decode('utf-8')
         try:
             params = yaml.safe_load(yaml_str)
-        except (yaml.YAMLError, yaml.scanner.ScannerError) as e:
-            raise SuspiciousOperation(
-                f'Error parsing YAML content from file {url}: {e}')
+        except (yaml.YAMLError, yaml.scanner.ScannerError) as exc:
+            raise SubsiteBuildError(exc, url=url, source='YAML')
         try:
             LabSchema(**params)
-        except ValidationError as e:
-            msg = 'Error validating root YAML schema:\n' + pformat(e.errors())
-            logger.warning(msg)
-            raise SuspiciousOperation(msg)
+        except ValidationError as exc:
+            raise SubsiteBuildError(exc, url=url, source='YAML')
         self.update(params)
         self._fetch_snippets()
 
@@ -130,17 +139,13 @@ class ExportSubsiteContext(dict):
             url = relpath
         else:
             url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-        response = requests.get(url)
-        if response.status_code >= 300:
-            raise SuspiciousOperation(
-                f'HTTP {response.status_code} fetching file: {url}')
-        yaml_str = response.content.decode('utf-8')
+        res = self._get(url)
+        yaml_str = res.content.decode('utf-8')
 
         try:
             data = yaml.safe_load(yaml_str)
-        except yaml.YAMLError as e:
-            raise SuspiciousOperation(
-                f'Error parsing YAML content from file {url}: {e}')
+        except yaml.YAMLError as exc:
+            raise SubsiteBuildError(exc, url=url)
 
         if isinstance(data, dict):
             data = {
@@ -173,8 +178,5 @@ class ExportSubsiteContext(dict):
         yaml_url = self.params.get('content_root')
         if yaml_url:
             url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-            response = requests.get(url)
-            if response.status_code >= 300:
-                raise SuspiciousOperation(
-                    f'HTTP {response.status_code} fetching file: {url}')
-            return response.content.decode('utf-8')
+            res = self._get(url)
+            return res.content.decode('utf-8')

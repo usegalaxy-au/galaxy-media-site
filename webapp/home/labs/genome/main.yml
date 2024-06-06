@@ -1,7 +1,8 @@
-# Default spec for an exported subsite landing page
-
 # Test this locally with:
-# http://127.0.0.1:8000/lab/export?content_root=http://localhost:8000/static/home/labs/proteomics/main.yml
+# http://127.0.0.1:8000/lab/export?content_root=http://localhost:8000/static/home/labs/genome/main.yml
+
+# Request this on site.usegalaxy.org.au with:
+# https://site.usegalaxy.org.au/lab/export?content_root=https://site.usegalaxy.org.au/static/home/labs/genome/main.yml
 
 # Use these variables in HTML templates like:
 # "Welcome to the Galaxy {{ site_name }} {{ lab_name }}"
