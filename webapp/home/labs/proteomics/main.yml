@@ -4,6 +4,9 @@
 # Request this on site.usegalaxy.org.au with:
 # https://site.usegalaxy.org.au/lab/export?content_root=https://site.usegalaxy.org.au/static/home/labs/proteomics/main.yml
 
+# Check out the documentation for building exported labs:
+# https://site.usegalaxy.org.au/lab/export
+
 # Use these variables in HTML templates like:
 # "Welcome to the Galaxy {{ site_name }} {{ lab_name }}"
 # To make the content more generic and reusable across sites
