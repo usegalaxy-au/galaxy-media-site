@@ -15,7 +15,8 @@ tabs:
       - title_html: <code>FastQC</code> - sequence quality reports
         description_html: >
           <p>
-            Before using your sequencing data, it's important first ensure that the data quality is sufficient for your analysis.
+            Before using your sequencing data, it's important to ensure that
+            the data quality is sufficient for your analysis.
           </p>
         inputs:
           - datatypes:

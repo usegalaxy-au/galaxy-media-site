@@ -10,7 +10,7 @@ CONTENT_DIR = (
     Path(__file__).parent.parent.parent
     / 'static/home/labs/docs'
 )
-MOCK_BASE_URL = 'http://mockserver/static/home/labs/genome'
+MOCK_LAB_BASE_URL = 'http://mockserver/static/home/labs/genome'
 
 
 # Collect all the files from the lab's content dir and assign each
@@ -21,9 +21,9 @@ for root, dirs, files in os.walk(CONTENT_DIR):
         with open(os.path.join(root, file)) as f:
             relpath = root.replace(str(CONTENT_DIR), '') + '/' + file
             relpath = relpath.lstrip('/')
-            MOCK_REQUESTS[f'{MOCK_BASE_URL}/{relpath}'] = f.read()
+            MOCK_REQUESTS[f'{MOCK_LAB_BASE_URL}/{relpath}'] = f.read()
 
-TEST_SUBSITES = [
+TEST_LABS = [
     {
         "name": "main",
     },
