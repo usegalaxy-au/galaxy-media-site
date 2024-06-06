@@ -4,7 +4,7 @@ import os
 import logging
 import pprint
 from django.conf import settings
-from django.http import Http404, HttpResponse, HttpResponseBadRequest
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.template import (
     RequestContext,
@@ -127,7 +127,9 @@ def export_lab(request):
         context['HOSTNAME'] = settings.HOSTNAME
         context.validate()
     except SubsiteBuildError as exc:
-        return HttpResponseBadRequest(str(exc))
+        return render(request, 'home/subdomains/export-error.html', {
+            'exc': exc,
+        }, status=400)
 
     # Do two rounds of rendering to capture template tags in remote data
     template_str = render_to_string(template, context, request)
