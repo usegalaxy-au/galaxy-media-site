@@ -1,6 +1,6 @@
 """Data for test setup."""
 
-from .subsites import TEST_SUBSITES
+from .subsites import TEST_LABS
 
 TEST_NOTICES = [
     {
@@ -13,7 +13,7 @@ TEST_NOTICES = [
             "is_published": True,
         },
         "relations": {
-            "subsites": [TEST_SUBSITES[0]],
+            "subsites": [TEST_LABS[0]],
         },
     },
     {
@@ -31,8 +31,8 @@ TEST_NOTICES = [
         },
         "relations": {
             "subsites": [
-                TEST_SUBSITES[0],
-                TEST_SUBSITES[1]
+                TEST_LABS[0],
+                TEST_LABS[1]
             ],
         },
     },
@@ -47,7 +47,7 @@ TEST_NOTICES = [
             "enabled": True,
         },
         "relations": {
-            "subsites": [TEST_SUBSITES[0]],
+            "subsites": [TEST_LABS[0]],
         },
     },
     {
@@ -63,7 +63,7 @@ TEST_NOTICES = [
             "static_display": True,
         },
         "relations": {
-            "subsites": [TEST_SUBSITES[0]],
+            "subsites": [TEST_LABS[0]],
         },
     },
 ]
