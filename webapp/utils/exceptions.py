@@ -2,8 +2,35 @@
 
 import logging
 from pprint import pformat
+from home.lab_schema import (
+    TabItem,
+    TabSubsection,
+    SectionTab,
+)
 
 logger = logging.getLogger('django')
+
+LAB_SCHEMA_MODELS = {
+    'TabItem': TabItem,
+    'TabSubsection': TabSubsection,
+    'SectionTab': SectionTab,
+}
+
+
+def _get_schema_help(loc):
+    """Resolve schema model from error location and render help data."""
+    for item in loc[::]:
+        matched_keys = [k for k in LAB_SCHEMA_MODELS if k in str(item)]
+        if matched_keys:
+            return {
+                'model_name': matched_keys[0],
+                'schema': LAB_SCHEMA_MODELS[
+                    matched_keys[0]
+                ].model_json_schema()['properties'],
+                'required_fields': LAB_SCHEMA_MODELS[
+                    matched_keys[0]
+                ].model_json_schema()['required'],
+            }
 
 
 class ResourceAccessError(Exception):
@@ -36,12 +63,13 @@ class SubsiteBuildError(Exception):
             self.errors = []
             for error in exc.errors():
                 err = {
-                    'msg': error['msg'],
+                    'message': error['msg'],
                     'location': (
                         f'{error["loc"][0]} > '
                         + ' > '.join(str(x) for x in error["loc"][1:])
                     ),
                     'input': pformat(error['input']),
+                    'help': _get_schema_help(error['loc']),
                 }
                 self.errors.append(err)
             msg += pformat(self.errors)
