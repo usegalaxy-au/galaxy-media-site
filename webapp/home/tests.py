@@ -25,7 +25,7 @@ TEST_LAB_NAME = 'Antarctica'
 TEST_LAB_LAB_NAME = 'Galaxy Lab Pages'.upper()
 TEST_LAB_NATIONALITY = 'Antarctican'
 TEST_LAB_GALAXY_BASE_URL = 'https://galaxy-antarctica.org'
-TEST_LAB_SECTION_TEXT = 'Example section 1'
+TEST_LAB_SECTION_TEXT = 'Example section'
 TEST_LAB_ACCORDION_TEXT = (
     'Report statistics from sequencing reads',
     'Assemble Nanopore long reads.',
