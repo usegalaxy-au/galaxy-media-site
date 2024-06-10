@@ -81,7 +81,7 @@ tabs:
     content:
       subsections:
         - id: pacbio
-          title: Assembly with PacBio HiFi data
+          title: TSI assembly workflows - PacBio HiFi data
           content:
             - title_html: About these workflows
               description_html: >
@@ -144,7 +144,7 @@ tabs:
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
         - id: nanopore
-          title: Assembly with Nanopore data and polishing with Illumina data
+          title: General assembly workflows - Nanopore and Illumina data
           content:
             - title_html: About these workflows
               description_html: >
@@ -200,7 +200,7 @@ tabs:
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
         - id: hic
-          title: Assembly with PacBio HiFi and HiC data
+          title: VGP assembly workflows - PacBio HiFi and (optional) HiC data
           content:
             - title_html: About these workflows
               description_html: >
@@ -248,6 +248,27 @@ tabs:
               view_link: https://dockstore.org/workflows/github.com/iwc-workflows/Assembly-Hifi-HiC-phasing-VGP4/main:main
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
+
+            - title_html: Hifi assembly without HiC data
+              description_html: >
+                <p>
+                  This workflow uses <code>hifiasm</code> to generate primary and alternate pseudohaplotype assemblies. This workflow includes three tools for evaluating assembly quality: <code>gfastats</code>, <code>BUSCO</code> and <code>Merqury</code>.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: PacBio HiFi reads
+                - datatypes:
+                    - meryldb
+                  label: <code>Meryl</code> kmer database
+                - datatypes:
+                    - txt
+                  label: <code>GenomeScope</code> genome profile summary
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=dockstore.org&trs_id=%23workflow/github.com/iwc-workflows/Assembly-Hifi-only-VGP3/main"
+              view_link: https://dockstore.org/workflows/github.com/iwc-workflows/Assembly-Hifi-only-VGP3/main:main
+              view_tip: View in Dockstore
+              button_tip: Import to Galaxy Australia
+              
             - title_html: HiC scaffolding
               description_html: >
                 <p>
