@@ -8,9 +8,9 @@ from pathlib import Path
 from .models import Notice, Subsite
 from .test.data import (
     TEST_NOTICES,
-    TEST_SUBSITES,
+    TEST_LABS,
     MOCK_REQUESTS,
-    MOCK_BASE_URL,
+    MOCK_LAB_BASE_URL,
 )
 from events.models import Event, Supporter, Tag
 from events.test.data import TEST_EVENTS, TEST_SUPPORTERS, TEST_TAGS
@@ -21,18 +21,18 @@ from utils.data.fgenesh import genematrix_tree
 from webapp.test import TestCase
 
 TEST_DATA_DIR = Path(__file__).parent / 'test/data'
-TEST_SUBSITE_NAME = 'Antarctica'
-TEST_SUBSITE_LAB_NAME = 'Galaxy Lab Pages'.upper()
-TEST_SUBSITE_NATIONALITY = 'Antarctican'
-TEST_SUBSITE_GALAXY_BASE_URL = 'https://galaxy-antarctica.org'
-TEST_SUBSITE_SECTION_TEXT = 'Example section 1'
-TEST_SUBSITE_ACCORDION_TEXT = (
+TEST_LAB_NAME = 'Antarctica'
+TEST_LAB_LAB_NAME = 'Galaxy Lab Pages'.upper()
+TEST_LAB_NATIONALITY = 'Antarctican'
+TEST_LAB_GALAXY_BASE_URL = 'https://galaxy-antarctica.org'
+TEST_LAB_SECTION_TEXT = 'Example section'
+TEST_LAB_ACCORDION_TEXT = (
     'Report statistics from sequencing reads',
     'Assemble Nanopore long reads.',
 )
-TEST_SUBSITE_URL = (
+TEST_LAB_URL = (
     '/lab/export?'
-    f'content_root={MOCK_BASE_URL}/main.yml')
+    f'content_root={MOCK_LAB_BASE_URL}/main.yml')
 
 
 class HomeTestCase(TestCase):
@@ -42,8 +42,8 @@ class HomeTestCase(TestCase):
         super().setUp()
         self.client = Client()
 
-        for subsite in TEST_SUBSITES[1:]:
-            # First TEST_SUBSITE "main" is created on DB migration
+        for subsite in TEST_LABS[1:]:
+            # First TEST_LAB "main" is created on DB migration
             Subsite.objects.create(**subsite)
         for notice in TEST_NOTICES:
             subsites = notice['relations']['subsites']
@@ -160,7 +160,7 @@ class HomeTestCase(TestCase):
         )
 
     def test_subsite_landing_webpage(self):
-        response = self.client.get(f'/landing/{TEST_SUBSITES[1]["name"]}')
+        response = self.client.get(f'/landing/{TEST_LABS[1]["name"]}')
         self.assertEqual(response.status_code, 200)
 
         # Appropriate notices are being shown
@@ -177,14 +177,15 @@ class HomeTestCase(TestCase):
     def test_exported_subsite_landing_webpage(self, mock_request):
         """Mock requests to localhost."""
         for url, text in MOCK_REQUESTS.items():
+            # Create mock requests for these items
             mock_request.get(url, text=text, status_code=200)
-        response = self.client.get(TEST_SUBSITE_URL)
+        response = self.client.get(TEST_LAB_URL)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, TEST_SUBSITE_NAME)
-        self.assertContains(response, TEST_SUBSITE_LAB_NAME)
-        self.assertContains(response, TEST_SUBSITE_GALAXY_BASE_URL)
-        self.assertContains(response, TEST_SUBSITE_SECTION_TEXT)
-        for text in TEST_SUBSITE_ACCORDION_TEXT:
+        self.assertContains(response, TEST_LAB_NAME)
+        self.assertContains(response, TEST_LAB_LAB_NAME)
+        self.assertContains(response, TEST_LAB_GALAXY_BASE_URL)
+        self.assertContains(response, TEST_LAB_SECTION_TEXT)
+        for text in TEST_LAB_ACCORDION_TEXT:
             self.assertContains(response, text)
 
     def test_aaf_webpage(self):
