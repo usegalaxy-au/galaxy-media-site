@@ -23,7 +23,6 @@ custom_css: static/custom.css
 intro_html: templates/intro.html
 conclusion_html: templates/conclusion.html
 footer_html: templates/footer.html
-au_include_header_cards: true
 
 # Data (Tools, Workflows etc.) to be rendered into sections/tabs/accordion elements.
 # Either:

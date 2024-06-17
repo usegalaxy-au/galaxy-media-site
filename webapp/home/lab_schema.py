@@ -51,4 +51,3 @@ class LabSchema(BaseModel):
     intro_html: Optional[str] = None
     conclusion_html: Optional[str] = None
     footer_html: Optional[str] = None
-    au_include_header_cards: Optional[bool] = False
