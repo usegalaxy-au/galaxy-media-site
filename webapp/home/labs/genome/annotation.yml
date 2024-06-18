@@ -13,12 +13,12 @@ tabs:
             <br><br> The evidences can be transcript or protein sequences from the same (or closely related) organism. These sequences can come from public databases (like NR or GenBank) or from your own experimental data (transcriptome assembly from an RNASeq experiment for example). MAKER is also able to take into account repeated elements.
           </p>
         inputs:
-          - datatypes:
+          - label: Genome assembly
+            datatypes:
               - fasta
-            label: Genome assembly
-          - datatypes:
+          - label: Protein evidence (optional)
+            datatypes:
               - fasta
-            label: Protein evidence (optional)
         button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fmaker%2Fmaker"
       - title_html: <code>Funannotate predict</code> - predicted gene annotations
         description_html: >
@@ -103,17 +103,17 @@ tabs:
               description_html: >
                 <p>
                   Annotates a genome using multiple rounds of Maker, including gene prediction using SNAP and Augustus. <br> <br> Tools: <code>maker</code> <code>snap</code> <code>augustus</code> <code>busco</code> <code>jbrowse</code>
-                </p>
+                </p>              
               inputs:
-                - datatypes:
+                - label: Genome assembly
+                  datatypes:
                     - fasta
-                  label: Genome assembly
-                - datatypes:
+                - label: RNAseq Illumina reads
+                  datatypes:
                     - fastq
-                  label: RNAseq Illumina reads
-                - datatypes:
-                    - fasta
-                  label: Proteins
+                - label: Proteins
+                  datatypes:
+                    - fasta                    
               button_link: "{{ galaxy_base_url }}/u/anna/w/genome-annotation-with-maker"
               view_link: ''
               view_tip: ''
@@ -124,18 +124,18 @@ tabs:
                   Annotates a genome using Funannotate, includes RNAseq data with RNAstar, and protein predictions from EggNOG. <br> <br> Tools: <code>RNAstar</code> <code>funannotate</code> <code>eggnog</code> <code>busco</code> <code>jbrowse</code> <code>aegean parseval</code>
                 </p>
               inputs:
-                - datatypes:
+                - label: Genome assembly (soft-masked)
+                  datatypes:
                     - fasta
-                  label: Genome assembly (soft-masked)
-                - datatypes:
+                - label: RNAseq Illumina reads
+                  datatypes:
                     - fastq
-                  label: RNAseq Illumina reads
-                - datatypes:
+                - label: Alternative annotation
+                  datatypes:
                     - gff3
-                  label: Alternative annotation
-                - datatypes:
-                    - gbk
-                  label: Alternative annotation
+                - label: Alternative annotation
+                  datatypes:
+                    - gbk                   
               button_link: "{{ galaxy_base_url }}/u/anna/w/annotation-funannotate"
               view_link: ''
               view_tip: ''
