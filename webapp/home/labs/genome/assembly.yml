@@ -37,7 +37,7 @@ tabs:
       - title_html: <code>YAHS</code> - scaffold assembly with HiC data
         description_html: >
           <p>
-            YAHS is a scaffolding tool based on a computational method that exploits the genomic proximity information in Hi-C data sets for long-range scaffolding of <em>de novo</em> genome assemblies. Inputs are the primary assembly (or haplotype 1), and HiC reads mapped to the assembly. See [this tutorial] (https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_genome_assembly/tutorial.html#hi-c-scaffolding) to learn how to create a suitable BAM file. 
+            YAHS is a scaffolding tool based on a computational method that exploits the genomic proximity information in Hi-C data sets for long-range scaffolding of <em>de novo</em> genome assemblies. Inputs are the primary assembly (or haplotype 1), and HiC reads mapped to the assembly. See <a href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/vgp_genome_assembly/tutorial.html#hi-c-scaffolding">this tutorial</a> to learn how to create a suitable BAM file. 
           </p>
         inputs:
           - label: Primary assembly or Haplotype 1 <code>genome.fasta</code>
@@ -45,7 +45,7 @@ tabs:
               - fasta
           - label: HiC reads mapped to assembly <code>mapped_reads.bam</code>
             datatypes:
-              - fasta              
+              - bam              
         button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2yahs"
       - title_html: <code>Quast</code> - assess genome assembly quality
         description_html: >
