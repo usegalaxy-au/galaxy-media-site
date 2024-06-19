@@ -92,7 +92,14 @@ tabs:
       - title_html: <code>FGenesH</code> - Genome annotation
         description_html: >
           <p>
-            <code>FGenesH</code> annotates an assembled genome and outputs a GFF3 file. There are several modules that do different things; search for FGENESH in the tool panel to see them. Note: please apply for access to this tool before use at [this link](https://site.usegalaxy.org.au/request/access/fgenesh). 
+            Annotate an assembled genome and output a GFF3 file. There are several modules that do different things - search for FGENESH in the tool panel to see them.
+            <p class="alert alert-warning">
+              Note: you must
+              <a href="https://site.usegalaxy.org.au/request/access/fgenesh" target="_blank">
+                apply for access
+              </a>
+              to this tool before use.
+            </p>
           </p>
         inputs:
           - datatypes:
@@ -102,7 +109,9 @@ tabs:
               - fasta
             label: Repeat-masked (hard) genome assembly
           - datatypes:
-              - .cdna, .pro, .dat
+              - cdna
+              - pro
+              - dat
             label: Optional files from the TSI Transcriptome Assembly workflow (See workflows tab)              
         button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=fgenesh_annotate&version=latest"
 
