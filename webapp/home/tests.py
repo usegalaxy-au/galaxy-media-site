@@ -229,6 +229,23 @@ class LabExportTestCase(TestCase):
         for text in TEST_LAB_ACCORDION_TEXT:
             self.assertContains(response, text)
 
+    @requests_mock.Mocker()
+    def test_genome_lab(self, mock_request):
+        """Mock requests to localhost."""
+        for url, text in MOCK_REQUESTS.items():
+            mock_request.get(url, text=text, status_code=200)
+        response = self.client.get(test_lab_url_for('genome'))
+        self.assertEqual(response.status_code, 200)
+
+    @requests_mock.Mocker()
+    def test_proteomics_lab(self, mock_request):
+        """Mock requests to localhost."""
+        for url, text in MOCK_REQUESTS.items():
+            mock_request.get(url, text=text, status_code=200)
+        response = self.client.get(test_lab_url_for('proteomics'))
+        self.assertEqual(response.status_code, 200)
+
+
 class AccessRequestsTestCase(TestCase):
 
     def test_it_can_show_alphafold_access_form(self):
