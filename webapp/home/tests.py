@@ -5,6 +5,7 @@ from django.core.files import File
 from django.core import mail
 from pathlib import Path
 
+from .lab_export import ExportSubsiteContext
 from .models import Notice, Subsite
 from .test.data import (
     TEST_NOTICES,
@@ -30,9 +31,13 @@ TEST_LAB_ACCORDION_TEXT = (
     'Report statistics from sequencing reads',
     'Assemble Nanopore long reads.',
 )
-TEST_LAB_URL = (
-    '/lab/export?'
-    f'content_root={MOCK_LAB_BASE_URL}/main.yml')
+TEST_LAB_CONTENT_URL = f'{MOCK_LAB_BASE_URL}/static/home/labs/docs/main.yml'
+TEST_LAB_URL = f'/lab/export?content_root={TEST_LAB_CONTENT_URL}'
+
+
+def test_lab_url_for(lab):
+    """Return the URL for the given lab name."""
+    return TEST_LAB_URL.replace('docs', lab)
 
 
 class HomeTestCase(TestCase):
@@ -173,21 +178,6 @@ class HomeTestCase(TestCase):
             TEST_NOTICES[0]['data']['title'],
         )
 
-    @requests_mock.Mocker()
-    def test_exported_subsite_landing_webpage(self, mock_request):
-        """Mock requests to localhost."""
-        for url, text in MOCK_REQUESTS.items():
-            # Create mock requests for these items
-            mock_request.get(url, text=text, status_code=200)
-        response = self.client.get(TEST_LAB_URL)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, TEST_LAB_NAME)
-        self.assertContains(response, TEST_LAB_LAB_NAME)
-        self.assertContains(response, TEST_LAB_GALAXY_BASE_URL)
-        self.assertContains(response, TEST_LAB_SECTION_TEXT)
-        for text in TEST_LAB_ACCORDION_TEXT:
-            self.assertContains(response, text)
-
     def test_aaf_webpage(self):
         try:
             response = self.client.get('/aaf')
@@ -208,6 +198,36 @@ class HomeTestCase(TestCase):
         assert institution.is_institution_email('johndoe@sub1.uq.edu.au')
         assert not institution.is_institution_email('johndoe@gmail.edu.au')
 
+
+class LabExportTestCase(TestCase):
+    """Test exported lab site building functionality."""
+
+    @requests_mock.Mocker()
+    def setUp(self, mock_request):
+        for url, text in MOCK_REQUESTS.items():
+            mock_request.get(url, text=text, status_code=200)
+        self.context = ExportSubsiteContext(TEST_LAB_CONTENT_URL)
+
+    def test_it_can_make_raw_url(self):
+        self.assertEqual(
+            self.context._make_raw('https://github.com/usegalaxy-au/'
+                                   'galaxy-media-site/blob/dev/README.md'),
+            'https://raw.githubusercontent.com/usegalaxy-au/'
+            'galaxy-media-site/dev/README.md')
+
+    @requests_mock.Mocker()
+    def test_exported_lab_docs(self, mock_request):
+        """Mock requests to localhost."""
+        for url, text in MOCK_REQUESTS.items():
+            mock_request.get(url, text=text, status_code=200)
+        response = self.client.get(TEST_LAB_URL)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, TEST_LAB_NAME)
+        self.assertContains(response, TEST_LAB_LAB_NAME)
+        self.assertContains(response, TEST_LAB_GALAXY_BASE_URL)
+        self.assertContains(response, TEST_LAB_SECTION_TEXT)
+        for text in TEST_LAB_ACCORDION_TEXT:
+            self.assertContains(response, text)
 
 class AccessRequestsTestCase(TestCase):
 

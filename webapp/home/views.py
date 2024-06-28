@@ -119,11 +119,10 @@ def export_lab(request):
 
     try:
         if request.GET.get('content_root'):
-            context = ExportSubsiteContext(request.GET)
+            context = ExportSubsiteContext(request.GET.get('content_root'))
         else:
-            context = ExportSubsiteContext({
-                'content_root': settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT,
-            })
+            context = ExportSubsiteContext(
+                settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT)
         context['HOSTNAME'] = settings.HOSTNAME
         context.validate()
     except SubsiteBuildError as exc:
