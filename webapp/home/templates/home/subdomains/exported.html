@@ -1,4 +1,5 @@
 {% extends extend_template %}
+{% load markdown %}
 
 {% comment %}
   This template renders a generic Galaxy Lab landing page based on externally
@@ -41,23 +42,23 @@
     {{ lab_name|upper }}
   </section>
 
-  {% if snippets.intro_html %}
-  {{ snippets.intro_html|safe }}
+  {% if snippets.intro_md %}
+  {{ snippets.intro_md|safe }}
   {% endif %}
 
   {% for section in sections %}
     {% include 'home/subdomains/components/section.html' with section=section %}
   {% endfor %}
 
-  {% if snippets.conclusion_html %}
-  {{ snippets.conclusion_html|safe }}
+  {% if snippets.conclusion_md %}
+  {{ snippets.conclusion_md|markdown|safe }}
   {% endif %}
 
 </main>
 
 
-{% if snippets.footer_html %}
-{{ snippets.footer_html|safe }}
+{% if snippets.footer_md %}
+{{ snippets.footer_md|markdown|safe }}
 {% endif %}
 
 {% endblock %}

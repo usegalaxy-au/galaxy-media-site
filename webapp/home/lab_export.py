@@ -11,6 +11,7 @@ http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.
 import logging
 import requests
 import yaml
+from markdown2 import Markdown
 from pydantic import ValidationError
 
 from types import SimpleNamespace
@@ -37,11 +38,11 @@ class ExportSubsiteContext(dict):
     context specified by a ``content_root`` GET param.
     """
 
-    HTML_SNIPPETS = (
-        'intro_html',
+    FETCH_SNIPPETS = (
         'header_logo',
-        'footer_html',
-        'conclusion_html',
+        'intro_md',
+        'footer_md',
+        'conclusion_md',
         'custom_css',
     )
 
@@ -157,6 +158,10 @@ class ExportSubsiteContext(dict):
         res = self._get(url, expected_type=CONTENT_TYPES.YAML)
         yaml_str = res.content.decode('utf-8')
 
+        # Substitute keys in yaml file
+        # TODO: remove this when all labs converted to _md keys
+        yaml_str = yaml_str.replace('_html:', '_md:')
+
         try:
             data = yaml.safe_load(yaml_str)
         except yaml.YAMLError as exc:
@@ -175,7 +180,7 @@ class ExportSubsiteContext(dict):
 
     def _fetch_snippets(self):
         """Fetch HTML snippets and add to context.snippets."""
-        for name in self.HTML_SNIPPETS:
+        for name in self.FETCH_SNIPPETS:
             if relpath := self.get(name):
                 if relpath.rsplit('.', 1)[1] in ACCEPTED_IMG_EXTENSIONS:
                     self['snippets'][name] = self._fetch_img_src(relpath)
@@ -194,4 +199,18 @@ class ExportSubsiteContext(dict):
             url = (self.content_root.rsplit('/', 1)[0]
                    + '/' + relpath.lstrip('./'))
             res = self._get(url)
-            return res.content.decode('utf-8')
+            body = res.content.decode('utf-8')
+        if url.endswith('.md'):
+            body = self._convert_md(body)
+        return body
+
+    def _convert_md(self, text):
+        """Render markdown to HTML."""
+        engine = Markdown(extras={
+            "tables": True,
+            "code-friendly": True,
+            "html-classes": {
+                'table': 'table table-striped',
+            },
+        })
+        return engine.convert(text)
