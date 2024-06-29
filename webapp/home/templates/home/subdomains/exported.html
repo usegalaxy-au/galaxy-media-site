@@ -1,4 +1,5 @@
 {% extends extend_template %}
+{% load markdown %}
 
 {% comment %}
   This template renders a generic Galaxy Lab landing page based on externally
@@ -50,14 +51,14 @@
   {% endfor %}
 
   {% if snippets.conclusion_html %}
-  {{ snippets.conclusion_html|safe }}
+  {{ snippets.conclusion_html|markdown|safe }}
   {% endif %}
 
 </main>
 
 
 {% if snippets.footer_html %}
-{{ snippets.footer_html|safe }}
+{{ snippets.footer_html|markdown|safe }}
 {% endif %}
 
 {% endblock %}

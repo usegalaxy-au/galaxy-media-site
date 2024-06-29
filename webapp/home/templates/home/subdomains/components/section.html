@@ -1,3 +1,5 @@
+{% load markdown %}
+
 <section class="my-5" id="{{ section.id }}Section">
   <h4 class="mb-3">{{ section.title }}</h4>
 
@@ -32,7 +34,7 @@
         <div class="container py-3">
           {% if tab.heading_html %}
           <p class="mb-3 mx-3">
-            {{ tab.heading_html|safe }}
+            {{ tab.heading_html|markdown|safe }}
           </p>
           {% endif %}
 

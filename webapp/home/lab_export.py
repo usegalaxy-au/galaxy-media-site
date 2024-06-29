@@ -11,6 +11,7 @@ http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.
 import logging
 import requests
 import yaml
+from markdown2 import Markdown
 from pydantic import ValidationError
 
 from types import SimpleNamespace
@@ -194,4 +195,18 @@ class ExportSubsiteContext(dict):
             url = (self.content_root.rsplit('/', 1)[0]
                    + '/' + relpath.lstrip('./'))
             res = self._get(url)
-            return res.content.decode('utf-8')
+            body = res.content.decode('utf-8')
+        if url.endswith('.md'):
+            body = self._convert_md(body)
+        return body
+
+    def _convert_md(self, text):
+        """Render markdown to HTML."""
+        engine = Markdown(extras={
+            "tables": True,
+            "code-friendly": True,
+            "html-classes": {
+                'table': 'table table-striped',
+            },
+        })
+        return engine.convert(text)
