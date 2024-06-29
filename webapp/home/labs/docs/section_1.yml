@@ -3,12 +3,12 @@ title: Example section
 tabs:
   - id: tools
     title: Tools
-    heading_html: Common tools are listed here, or search for more in the full tool panel to the left.
+    heading_md: Common tools are listed here, or search for more in the full tool panel to the left.
     content:
 
       # Accordion item schema:
-      #   title_html: <str>  # inline HTML accepted e.g. <i> <b> <code>
-      #   description_html: <str>
+      #   title_md: <str>  # inline HTML accepted e.g. <i> <b> <code>
+      #   description_md: <str>
       #   inputs: <optional>
       #     - datatypes:  # tool input 1 - two accepted datatypes
       #       - <str>
@@ -18,19 +18,19 @@ tabs:
       #       - <str>
       #       label: <str optional>
       #   button_link: <str optional>
-      #   button_html: <str optional>
+      #   button_md: <str optional>
       #   button_tip: <str optional>
       #   view_link: <str optional>
-      #   view_html: <str optional>
+      #   view_md: <str optional>
       #   view_tip: <str optional>
 
       - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=upload1"
-        title_html: Import data to Galaxy
-        description_html: <p>Standard upload of data to Galaxy, from your computer or
+        title_md: Import data to Galaxy
+        description_md: <p>Standard upload of data to Galaxy, from your computer or
           from the web.</p>
       - button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fdevteam%2Ffastqc%2Ffastqc"
-        title_html: <code>FastQC</code>- sequence quality reports
-        description_html: >
+        title_md: <code>FastQC</code>- sequence quality reports
+        description_md: >
           <p>
             Before using your sequencing data, it's important to ensure that
             the data quality is sufficient for your analysis.
@@ -45,7 +45,7 @@ tabs:
 
   - id: workflows
     title: Workflows
-    heading_html: |
+    heading_md: |
       A workflow is a series of Galaxy tools that have been linked together
       to perform a specific analysis. You can use and customize the example workflows
       below.
@@ -55,10 +55,10 @@ tabs:
     content:
       - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=222"
         button_tip: Import to Galaxy AU
-        title_html: Data QC
+        title_md: Data QC
         view_link: https://workflowhub.eu/workflows/222
         view_tip: View in WorkflowHub
-        description_html: |
+        description_md: |
           <p>
             Report statistics from sequencing reads.
             <br><br>
@@ -69,7 +69,7 @@ tabs:
           </p>
       - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=223"
         button_tip: Import to Galaxy AU
-        description_html: |
+        description_md: |
           <p>
             Estimates genome size and heterozygosity based on counts of kmers.
             <br><br>
@@ -77,26 +77,26 @@ tabs:
             <code>meryl</code>
             <code>genomescope</code>
           </p>
-        title_html: Kmer counting to estimate genome size
+        title_md: Kmer counting to estimate genome size
         view_link: https://workflowhub.eu/workflows/223
         view_tip: View in WorkflowHub
 
   - id: help
     title: Help
     content:
-      - button_html: More info
+      - button_md: More info
         button_link: https://training.galaxyproject.org/training-material/topics/galaxy-interface/
-        description_html: |
+        description_md: |
           <p>
             You can upload your data to Galaxy using the Upload tool from anywhere in Galaxy.
             Just look for the "Upload data" button at the top of the tool panel.
           </p>
-        title_html: How can I import my genomics data?
-      - description_html: |
+        title_md: How can I import my genomics data?
+      - description_md: |
           <p>
             We recommend subsampling large data sets to test tools and workflows.
             A useful tool is
             <code>seqtk_seq</code>,
             setting the parameter at "Sample fraction of sequences"
           </p>
-        title_html: How can I subsample my data?
+        title_md: How can I subsample my data?

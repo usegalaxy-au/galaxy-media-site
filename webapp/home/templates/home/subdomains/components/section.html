@@ -32,9 +32,9 @@
         aria-labelledby="{{ section.id }}-{{ tab.id }}-tab"
       >
         <div class="container py-3">
-          {% if tab.heading_html %}
+          {% if tab.heading_md %}
           <p class="mb-3 mx-3">
-            {{ tab.heading_html|markdown|safe }}
+            {{ tab.heading_md|markdown|safe }}
           </p>
           {% endif %}
 

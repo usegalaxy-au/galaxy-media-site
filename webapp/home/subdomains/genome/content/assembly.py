@@ -9,8 +9,8 @@ view_workflow_tip = "View in WorkflowHub"
 
 tools = [
     # {   # Accordion item schema:
-    #     "title_html": '',
-    #     "description_html": """""",
+    #     "title_md": '',
+    #     "description_md": """""",
     #     "inputs": [
     #         {
     #             'datatypes': [''],
@@ -18,15 +18,15 @@ tools = [
     #         },
     #     ],
     #     "button_link": "",
-    #     "button_html": "",
+    #     "button_md": "",
     #     "button_tip": "",
     #     "view_link": "",
-    #     "view_html": "",
+    #     "view_md": "",
     #     "view_tip": "",
     # },
     {
-        "title_html": '<code>Hifiasm</code> - assembly with PacBio HiFi data',
-        "description_html": """
+        "title_md": '<code>Hifiasm</code> - assembly with PacBio HiFi data',
+        "description_md": """
             <p>
               A haplotype-resolved assembler for PacBio HiFi reads.
             </p>""",
@@ -36,8 +36,8 @@ tools = [
         "button_link": "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fhifiasm%2Fhifiasm",
     },
     {
-        "title_html": '<code>Flye</code> - assembly with PacBio or Nanopore data',
-        "description_html": """
+        "title_md": '<code>Flye</code> - assembly with PacBio or Nanopore data',
+        "description_md": """
             <p>
               <em>de novo</em> assembly of single-molecule sequencing reads,
               designed for a wide range of datasets, from small bacterial
@@ -50,8 +50,8 @@ tools = [
         "button_link": "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fflye%2Fflye",
     },
     {
-        "title_html": '<code>Unicycler</code> - assembly with Illumina, PacBio or Nanopore data - bacteria only',
-        "description_html": """
+        "title_md": '<code>Unicycler</code> - assembly with Illumina, PacBio or Nanopore data - bacteria only',
+        "description_md": """
             <p>
               Hybrid assembly pipeline for bacterial genomes, uses both Illumina reads and long reads (PacBio or Nanopore).
               </p>""",
@@ -61,8 +61,8 @@ tools = [
         "button_link": "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Funicycler%2Funicycler",
     },
     {
-        "title_html": '<code>Salsa</code> - scaffold assembly with HiC data',
-        "description_html": """
+        "title_md": '<code>Salsa</code> - scaffold assembly with HiC data',
+        "description_md": """
             <p>
               Salsa is a scaffolding tool based on a computational method that
               exploits the genomic proximity information in Hi-C data sets
@@ -74,8 +74,8 @@ tools = [
         "button_link": "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fsalsa%2Fsalsa",
     },
     {
-        "title_html": '<code>Quast</code> - assess genome assembly quality',
-        "description_html": """
+        "title_md": '<code>Quast</code> - assess genome assembly quality',
+        "description_md": """
             <p>
               QUAST = QUality ASsessment Tool. The tool evaluates genome assemblies by computing various metrics. If you have one or multiple genome assemblies, you can assess their quality with Quast. It works with or without reference genome
             </p>""",
@@ -85,8 +85,8 @@ tools = [
         "button_link": "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fquast%2Fquast",
     },
     {
-        "title_html": '<code>Busco</code> - assess genome assembly quality',
-        "description_html": """
+        "title_md": '<code>Busco</code> - assess genome assembly quality',
+        "description_md": """
             <p>
               BUSCO: assessing genome assembly and annotation completeness with Benchmarking Universal Single-Copy Orthologs. The tool attempts to provide a quantitative assessment of the completeness in terms of the expected gene content of a genome assembly, transcriptome, or annotated gene set.
             </p>""",
@@ -100,8 +100,8 @@ tools = [
 
 workflows_pacbio = [
     {
-        "title_html": 'About these workflows',
-        "description_html": """
+        "title_md": 'About these workflows',
+        "description_md": """
             <p>
               This
               <a
@@ -114,8 +114,8 @@ workflows_pacbio = [
             </p>""",
     },
     {
-        "title_html": 'BAM to FASTQ + QC v1.0',
-        "description_html": """
+        "title_md": 'BAM to FASTQ + QC v1.0',
+        "description_md": """
             <p>
               Convert a BAM file to FASTQ format to perform QC analysis
               (required if your data is in BAM format).
@@ -132,8 +132,8 @@ workflows_pacbio = [
         "view_tip": view_workflow_tip,
     },
     {
-        "title_html": 'PacBio HiFi genome assembly using hifiasm v2.1',
-        "description_html": """
+        "title_md": 'PacBio HiFi genome assembly using hifiasm v2.1',
+        "description_md": """
             <p>
               Assemble a genome using PacBio HiFi reads.
             </p>""",
@@ -149,8 +149,8 @@ workflows_pacbio = [
         "view_tip": view_workflow_tip,
     },
     {
-        "title_html": 'Purge duplicates from hifiasm assembly v1.0',
-        "description_html": """
+        "title_md": 'Purge duplicates from hifiasm assembly v1.0',
+        "description_md": """
             <p>
               Optional workflow to purge duplicates from the contig assembly.
             </p>""",
@@ -170,8 +170,8 @@ workflows_pacbio = [
         "view_tip": view_workflow_tip,
     },
     {
-        "title_html": 'Genome assessment post-assembly',
-        "description_html": """
+        "title_md": 'Genome assessment post-assembly',
+        "description_md": """
             <p>
               Evaluate the quality of your genome assembly with a comprehensive report including <code>FASTA stats</code>, <code>BUSCO</code>, <code>QUAST</code>, <code>Meryl</code> and <code>Merqury</code>.
             </p>""",
@@ -190,8 +190,8 @@ workflows_pacbio = [
 
 workflows_nanopore = [
     {
-        "title_html": 'About these workflows',
-        "description_html": """
+        "title_md": 'About these workflows',
+        "description_md": """
             <p>
               This
               <a
@@ -204,8 +204,8 @@ workflows_nanopore = [
             </p>""",
     },
     {
-        "title_html": 'Flye assembly with Nanopore data',
-        "description_html": """
+        "title_md": 'Flye assembly with Nanopore data',
+        "description_md": """
             <p>
               Assemble Nanopore long reads. This workflow can be run alone or as part of a combined workflow for large genome assembly.
             </p>""",
@@ -221,8 +221,8 @@ workflows_nanopore = [
         "view_tip": view_workflow_tip,
     },
     {
-        "title_html": 'Assembly polishing',
-        "description_html": """
+        "title_md": 'Assembly polishing',
+        "description_md": """
             <p>
               Polishes (corrects) an assembly, using long reads (<code>Racon</code> and <code>Medaka</code>) and short reads (<code>Racon</code>).
             </p>""",
@@ -246,8 +246,8 @@ workflows_nanopore = [
         "view_tip": view_workflow_tip,
     },
     {
-        "title_html": 'Assess genome quality',
-        "description_html": """
+        "title_md": 'Assess genome quality',
+        "description_md": """
             <p>
               Assesses the quality of the genome assembly. Generates statistics, determines if expected genes are present and align contigs to a reference genome.
             </p>""",
@@ -270,8 +270,8 @@ workflows_nanopore = [
 
 workflows_hic = [
     {
-        "title_html": 'About these workflows',
-        "description_html": """
+        "title_md": 'About these workflows',
+        "description_md": """
             <p>
               These workflows have been developed as part of the global Vertebrate Genome Project (VGP).
               A guide to using these in Galaxy Australia can be found
@@ -291,8 +291,8 @@ workflows_hic = [
             </p>""",
     },
     {
-        "title_html": 'Kmer profiling',
-        "description_html": """
+        "title_md": 'Kmer profiling',
+        "description_md": """
             <p>
               This workflow produces a Meryl database and Genomescope outputs that will be used to determine parameters for following workflows, and assess the quality of genome assemblies. Specifically, it provides information about the genomic complexity, such as the genome size and levels of heterozygosity and repeat content, as well about the data quality.
             </p>""",
@@ -308,8 +308,8 @@ workflows_hic = [
         "button_tip": import_workflow_tip,
     },
     {
-        "title_html": 'Hifi assembly and HiC phasing',
-        "description_html": """
+        "title_md": 'Hifi assembly and HiC phasing',
+        "description_md": """
             <p>
               This workflow uses <code>hifiasm</code> (HiC mode) to generate HiC-phased haplotypes (<code>hap1</code> and <code>hap2</code>). This is in contrast to its default mode, which generates primary and alternate pseudohaplotype assemblies. This workflow includes three tools for evaluating assembly quality: <code>gfastats</code>, <code>BUSCO</code> and <code>Merqury</code>.
             </p>
@@ -347,8 +347,8 @@ workflows_hic = [
         "button_tip": import_workflow_tip,
     },
     {
-        "title_html": 'HiC scaffolding',
-        "description_html": """
+        "title_md": 'HiC scaffolding',
+        "description_md": """
             <p>
               This workflow scaffolds the assembly contigs using information from HiC data.
             </p>""",
@@ -372,8 +372,8 @@ workflows_hic = [
         "button_tip": import_workflow_tip,
     },
     {
-        "title_html": 'Decontamination',
-        "description_html": """
+        "title_md": 'Decontamination',
+        "description_md": """
             <p>
               This workflow identifies and removes contaminants from the assembly.
             </p>""",
@@ -413,8 +413,8 @@ workflows = {
 
 help = [
     {
-        "title_html": 'Can I use Galaxy Australia to assemble a large genome?',
-        "description_html": """
+        "title_md": 'Can I use Galaxy Australia to assemble a large genome?',
+        "description_md": """
             <p>
               Yes. Galaxy Australia has assembly tools for small prokaryote genomes as well as larger eukaryote genomes. We are continually adding new tools and optimising them for large genome assemblies - this means adding enough computer processing power to run data-intensive tools, as well as configuring aspects such as parallelisation.
             </p>
@@ -427,11 +427,11 @@ help = [
               <li>a tool appears to be broken or running slowly</li>
             </ul>""",
         "button_link": "/request",
-        "button_html": "Request support",
+        "button_md": "Request support",
     },
     {
-        "title_html": 'How can I learn about genome assembly?',
-        "description_html": """
+        "title_md": 'How can I learn about genome assembly?',
+        "description_md": """
             <ul>
               <li>See the tutorials in this Help section. They cover different approaches to genome assembly.
               </li>
@@ -440,8 +440,8 @@ help = [
             </ul>""",
     },
     {
-        "title_html": 'Genome assembly overview',
-        "description_html": """
+        "title_md": 'Genome assembly overview',
+        "description_md": """
             <p>Genome assembly can be a very involved process. A typical genome assembly procedure might look like:</p>
             <ul>
               <li>Data QC - check the quality and characteristics of your sequencing reads.</li>
@@ -457,8 +457,8 @@ help = [
             <p class="text-center">A graphical representation of genome assembly</p>""",
     },
     {
-        "title_html": 'Which tools should I use?',
-        "description_html": """
+        "title_md": 'Which tools should I use?',
+        "description_md": """
             <p>
               There is no best set of tools to recommend - new tools are developed constantly, sequencing technology improves rapidly, and many genomes have never been sequenced before and thus their characteristics and quirks are unknown. The "Tools" tab in this section includes a list of commonly-used tools that could be a good starting point. You will find other tools in recent publications or used in workflows.
             </p>
@@ -473,8 +473,8 @@ help = [
         """,
     },
     {
-        "title_html": 'Tutorials',
-        "description_html": """
+        "title_md": 'Tutorials',
+        "description_md": """
             <p>
                 Find 15+ Galaxy training tutorials
                 <a
@@ -521,14 +521,14 @@ help = [
         """,
     },
     {
-        "title_html": 'How can I assess the quality of my genome assembly?',
-        "description_html": """
+        "title_md": 'How can I assess the quality of my genome assembly?',
+        "description_md": """
             <p>
               Once a genome has been assembled, it is important to assess the quality of the assembly, and in the first instance, this quality control (QC) can be achieved using the workflow described here.
             </p>
         """,
         "button_link": "https://australianbiocommons.github.io/how-to-guides/genome_assembly/assembly_qc",
-        "button_html": "Workflow tutorial",
+        "button_md": "Workflow tutorial",
     },
     galaxy_au_support_item,
 ]

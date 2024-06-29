@@ -9,8 +9,8 @@ class TabItem(BaseModel):
 
     In the UI this will be rendered as an "accordion" item.
     """
-    title_html: str
-    description_html: str
+    title_md: str
+    description_md: str
     button_link: Optional[str] = None
     button_tip: Optional[str] = None
     view_link: Optional[str] = None
@@ -48,6 +48,9 @@ class LabSchema(BaseModel):
     sections: list[str] | str
     header_logo: Optional[str] = None
     custom_css: Optional[str] = None
-    intro_html: Optional[str] = None
-    conclusion_html: Optional[str] = None
-    footer_html: Optional[str] = None
+    intro_md: Optional[str] = None
+    conclusion_md: Optional[str] = None
+    footer_md: Optional[str] = None
+    intro_md: Optional[str] = None
+    conclusion_md: Optional[str] = None
+    footer_md: Optional[str] = None

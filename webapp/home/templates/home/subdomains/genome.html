@@ -40,8 +40,8 @@
     {{ lab_name|default:"Genome Lab"|upper }}
   </section>
 
-  {% if snippets.intro_html %}
-  {{ snippets.intro_html|safe }}
+  {% if snippets.intro_md %}
+  {{ snippets.intro_md|safe }}
   {% else %}
   <section class="my-5" id="tagline">
     {% include 'home/snippets/static-notices.html' %}
@@ -89,8 +89,8 @@
 </main>
 
 
-{% if snippets.footer_html %}
-{{ snippets.footer_html|safe }}
+{% if snippets.footer_md %}
+{{ snippets.footer_md|safe }}
 {% endif %}
 
 {% endblock %}
