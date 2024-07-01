@@ -1,3 +1,5 @@
+{% load markdown %}
+
 <div class="accordion" id="{{ section.id }}-{{ tab_id }}{{ accordion_id }}-accordion">
   {% for item in content %}
   <div class="accordion-item">
@@ -10,7 +12,7 @@
         aria-expanded="false"
         aria-controls="{{ section.id }}-{{ tab_id }}-{{ forloop.counter }}{{ accordion_id }}-collapse"
       >
-        {{ item.title_html|safe }}
+        {{ item.title_md|markdown|safe }}
       </button>
     </h2>
     <div
@@ -22,7 +24,8 @@
       <div class="accordion-body">
         <div class="row align-items-center">
           <div class="col">
-            {{ item.description_html|safe }}
+            <!-- {{ item.description_md|markdown|safe }} -->
+            {{ item.description_md|markdown|safe }}
             {% if item.inputs %}
             {% include 'home/subdomains/components/inputs.html' with inputs=item.inputs %}
             {% endif %}
@@ -55,7 +58,7 @@
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"
             >
-              {{ item.button_html|default:'<span class="material-icons">play_arrow</span>' }}
+              {{ item.button_md|markdown|safe|default:'<span class="material-icons">play_arrow</span>' }}
             </a>
           </div>
           {% endif %}

@@ -1,19 +1,19 @@
 """Content for data section - tools, workflows and help tabs."""
 
 galaxy_au_support_item = {
-    "title_html": 'Galaxy Australia support',
-    "description_html": """<p>
+    "title_md": 'Galaxy Australia support',
+    "description_md": """<p>
             Any user of Galaxy Australia can request support through an
             online form.
         </p>""",
     "button_link": "/request/support",
-    "button_html": "Request support",
+    "button_md": "Request support",
 }
 
 tools = [
     # {   # Accordion item schema:
-    #     "title_html": '',
-    #     "description_html": """""",
+    #     "title_md": '',
+    #     "description_md": """""",
     #     "inputs": [
     #         {
     #             'datatypes': [''],
@@ -21,15 +21,15 @@ tools = [
     #         },
     #     ],
     #     "button_link": "",
-    #     "button_html": "",
+    #     "button_md": "",
     #     "button_tip": "",
     #     "view_link": "",
-    #     "view_html": "",
+    #     "view_md": "",
     #     "view_tip": "",
     # },
     {
-        "title_html": '<code>MaxQuant</code>',
-        "description_html": '<p>MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.</p>',
+        "title_md": '<code>MaxQuant</code>',
+        "description_md": '<p>MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.</p>',
         "inputs": [
             {
                 'datatypes': [
@@ -47,8 +47,8 @@ tools = [
         "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/maxquant/maxquant/",
     },
     {
-        "title_html": '<code>MSstats</code>',
-        "description_html": '<p>Statistical relative protein significance analysis in DDA, SRM and DIA Mass Spectrometry.</p>',
+        "title_md": '<code>MSstats</code>',
+        "description_md": '<p>Statistical relative protein significance analysis in DDA, SRM and DIA Mass Spectrometry.</p>',
         "inputs": [
             {
                 'datatypes': ['tabular', 'csv'],
@@ -58,8 +58,8 @@ tools = [
         "button_link": "https://usegalaxy.org.au/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/msstats/msstats/",
     },
     {
-        "title_html": '<code>LFQ Analyst</code>',
-        "description_html": '<p>Analyze and Visualize Label-Free Proteomics output from MaxQuant.</p>',
+        "title_md": '<code>LFQ Analyst</code>',
+        "description_md": '<p>Analyze and Visualize Label-Free Proteomics output from MaxQuant.</p>',
         "inputs": [
             {
                 'datatypes': ['txt'],
@@ -77,22 +77,22 @@ tools = [
 
 help = [
     {
-        "title_html": 'LFQ-Analyst: Manual',
-        "description_html": """
+        "title_md": 'LFQ-Analyst: Manual',
+        "description_md": """
             <p>
               A detailed user manual for LFQ-Analyst.
             </p>""",
         "button_link": "https://analyst-suite.monash-proteomics.cloud.edu.au/apps/lfq-analyst/LFQ-Analyst_manual.pdf",
-        "button_html": "Manual",
+        "button_md": "Manual",
     },
     {
-        "title_html": 'MaxQuant and MSstats for the analysis of label-free data',
-        "description_html": """
+        "title_md": 'MaxQuant and MSstats for the analysis of label-free data',
+        "description_md": """
         <p>
           Learn how to use MaxQuant and MSstats for the analysis of label-free shotgun (DDA) data.
         </p>""",
         "button_link": "https://training.galaxyproject.org/training-material/topics/proteomics/tutorials/maxquant-msstats-dda-lfq/tutorial.html",
-        "button_html": "Tutorial",
+        "button_md": "Tutorial",
     },
     galaxy_au_support_item,
 ]

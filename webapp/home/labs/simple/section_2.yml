@@ -6,7 +6,7 @@ tabs:
     heading_md: |
       The tools in this section have been divided into subsections to make it
       easier for users to find the tools they need. This must replace the
-      entire value of the <code>content</code> key i.e. you can't mix
+      entire value of the `content` key i.e. you can't mix
       subsections with standalone items.
     content:
 
@@ -36,9 +36,9 @@ tabs:
             #   view_md: <str optional>
             #   view_tip: <str optional>
 
-          - title_md: <code>Hifiasm</code>- assembly with PacBio HiFi data
+          - title_md: "`Hifiasm` - assembly with PacBio HiFi data"
             button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fhifiasm%2Fhifiasm"
-            description_md: <p>A haplotype-resolved assembler for PacBio HiFi reads.</p>
+            description_md: A haplotype-resolved assembler for PacBio HiFi reads.
             inputs:
               - label: PacBio reads
                 datatypes:
@@ -48,14 +48,12 @@ tabs:
         - id: subsection_2
           title: Another subsection
           content:
-            - title_md: <code>Flye</code>- assembly with PacBio or Nanopore data
+            - title_md: "`Flye` - assembly with PacBio or Nanopore data"
               button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Fflye%2Fflye"
               description_md: >
-                <p>
-                  <em>de novo</em>
-                  assembly of single-molecule sequencing reads, designed for a wide range of datasets,
-                  from small bacterial projects to large mammalian-scale assemblies.
-                </p>
+                *de novo* assembly of single-molecule sequencing reads, designed
+                for a wide range of datasets, from small bacterial projects to
+                large mammalian-scale assemblies.
               inputs:
               - label: Single-molecule sequencing reads
                 datatypes:
@@ -68,32 +66,24 @@ tabs:
       A workflow is a series of Galaxy tools that have been linked together
       to perform a specific analysis. You can use and customize the example workflows
       below.
-      <a href="https://galaxyproject.org/learn/advanced-workflow/" target="_blank">
-        Learn more
-      </a>.
+      [Learn more](https://galaxyproject.org/learn/advanced-workflow/).
     content:
       subsections:
         - id: pacbio
           title: Assembly with PacBio HiFi data
           content:
             - description_md: >
-                <p>
-                  This
-                  <a href="https://australianbiocommons.github.io/how-to-guides/genome_assembly/hifi_assembly" target="_blank">
-                    How-to-Guide
-                  </a>
-                  will describe the steps required to assemble your genome on the Galaxy Australia platform,
-                  using multiple workflows.
-                </p>
+                This
+                [How-to-Guide](https://australianbiocommons.github.io/how-to-guides/genome_assembly/hifi_assembly)
+                will describe the steps required to assemble your genome on the Galaxy Australia platform,
+                using multiple workflows.
               title_md: About these workflows
             - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=220"
               button_tip: Import to Galaxy Australia
               description_md: >
-                <p>
-                  Convert a BAM file to FASTQ format to perform QC analysis (required if your data is in BAM format).
-                </p>
+                Convert a BAM file to FASTQ format to perform QC analysis (required if your data is in BAM format).
               inputs:
-                - label: PacBio<em>subreads.bam</em>
+                - label: PacBio `subreads.bam`
                   datatypes:
                     - bam
               title_md: BAM to FASTQ + QC v1.0
@@ -103,20 +93,14 @@ tabs:
           title: Assembly with Nanopore data and polishing with Illumina data
           content:
             - description_md: >
-                <p>
-                  This
-                  <a href="https://training.galaxyproject.org/training-material/topics/assembly/tutorials/largegenome/tutorial.html" target="_blank">
-                    tutorial
-                  </a>
-                  describes the steps required to assemble a genome on Galaxy with Nanopore and Illumina data
-                </p>
+                This
+                [tutorial](https://training.galaxyproject.org/training-material/topics/assembly/tutorials/largegenome/tutorial.html)
+                describes the steps required to assemble a genome on Galaxy with Nanopore and Illumina data.
               title_md: About these workflows
             - button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=225"
               button_tip: Import to Galaxy Australia
               description_md: >
-                <p>
-                  Assemble Nanopore long reads. This workflow can be run alone or as part of a combined workflow for large genome assembly.
-                </p>
+                Assemble Nanopore long reads. This workflow can be run alone or as part of a combined workflow for large genome assembly.
               inputs:
                 - label: Long reads (may be raw, filtered and/or corrected)
                   datatypes:
@@ -131,25 +115,18 @@ tabs:
       - button_md: Request support
         button_link: /request
         description_md: >
-          <p>
-            Yes. Galaxy Australia has assembly tools for small prokaryote genomes as well as larger eukaryote genomes.
-            We are continually adding new tools and optimising them for large genome assemblies
-            - this means adding enough computer processing power to run data-intensive tools, as well as configuring
-            aspects such as parallelisation
-          </p>
-          <p>
-            Please contact us if:
-          </p>
-          <ul>
-            <li>you need to increase your data storage limit</li>
-            <li>there is a tool you wish to request</li>
-            <li>a tool appears to be broken or running slowly</li>
-          </ul>
+          Yes. Galaxy Australia has assembly tools for small prokaryote genomes as well as larger eukaryote genomes.
+          We are continually adding new tools and optimising them for large genome assemblies - this means adding enough computer processing power to run data-intensive tools, as well as configuring
+          aspects such as parallelisation.
+
+
+          **Please contact us if**
+          - you need to increase your data storage limit
+          - there is a tool you wish to request
+          - a tool appears to be broken or running slowly
         title_md: Can I use Galaxy Australia to assemble a large genome?
       - description_md: >
-          <ul>
-            <li>See the tutorials in this Help section. They cover different approaches to genome assembly</li>
-            <li>Read the methods in scientific papers about genome assembly, particularly those about genomes with similar characteristics to those in your project</li>
-            <li>See the Workflows section for examples of different approaches to genome assembly - these cover different sequencing data types, and a variety of tools.</li>
-          </ul>
+          - See the tutorials in this Help section. They cover different approaches to genome assembly
+          - Read the methods in scientific papers about genome assembly, particularly those about genomes with similar characteristics to those in your project
+          - See the Workflows section for examples of different approaches to genome assembly - these cover different sequencing data types, and a variety of tools.
         title_md: How can I learn about genome assembly?

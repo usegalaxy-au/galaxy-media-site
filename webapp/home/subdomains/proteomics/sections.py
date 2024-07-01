@@ -4,7 +4,7 @@ file.
 
 from . import content
 
-tools_heading_html = """Some example tools are listed here: you can also search for more in the full tool panel to the left."""
+tools_heading_md = """Some example tools are listed here: you can also search for more in the full tool panel to the left."""
 
 sections = [
     {
@@ -14,7 +14,7 @@ sections = [
             {
                 "id": "tools",
                 "title": "Tools",
-                "heading_html": tools_heading_html,
+                "heading_md": tools_heading_md,
                 "content": content.database_searching.tools,
             },
             {
@@ -31,7 +31,7 @@ sections = [
             {
                 "id": "tools",
                 "title": "Tools",
-                "heading_html": tools_heading_html,
+                "heading_md": tools_heading_md,
                 "content": content.dda_standardised_tools.tools,
             },
             {
@@ -48,7 +48,7 @@ sections = [
             {
                 "id": "tools",
                 "title": "Tools",
-                "heading_html": tools_heading_html,
+                "heading_md": tools_heading_md,
                 "content": content.dia_standardised_tools.tools,
             },
             {
@@ -65,7 +65,7 @@ sections = [
             {
                 "id": "tools",
                 "title": "Tools",
-                "heading_html": tools_heading_html,
+                "heading_md": tools_heading_md,
                 "content": content.dda_tmt.tools,
             },
             {
