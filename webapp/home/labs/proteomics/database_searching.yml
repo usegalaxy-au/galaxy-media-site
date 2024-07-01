@@ -48,6 +48,13 @@ tabs:
   - id: help
     title: Help
     content:
+      - title_html: "Introduction to proteomics, protein identification, quantification and statistical modelling"
+        description_html: >
+          <p>
+            Start here if you are new to proteomic analysis in Galaxy.
+          </p>
+        button_link: "https://usegalaxy.org.au/training-material/topics/proteomics/tutorials/introduction/slides.html"
+        button_html: "Tutorial"
       - title_html: "Label-free data analysis using MaxQuant"
         description_html: >
           <p>
