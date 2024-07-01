@@ -29,7 +29,7 @@ footer_html: templates/footer.html
 #   1. Relative to this file URL
 #   2. Full URL to fetch globally centralized content
 sections:
-  # - data.yml
+  - data.yml
   - conversion_modification.yml
   - database_searching.yml
   - dda_standardised_tools.yml
