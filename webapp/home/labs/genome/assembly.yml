@@ -90,7 +90,7 @@ tabs:
             - title_html: About these workflows
               description_html: >
                 <p>
-                  This <a href="https://australianbiocommons.github.io/how-to-guides/genome_assembly/hifi_assembly" target="_blank"> How-to-Guide </a> will describe the steps required to assemble your genome on the Galaxy Australia platform, using multiple workflows.
+                  This <a href="https://australianbiocommons.github.io/how-to-guides/genome_assembly/hifi_assembly" target="_blank"> How-to-Guide </a> will describe the steps required to assemble your genome on the Galaxy Australia platform, using multiple workflows. There is also a guide about the Genome Assessment workflow, and the HiC Scaffolding workflow.
                 </p>
             - title_html: BAM to FASTQ + QC v1.0
               description_html: >
@@ -147,6 +147,23 @@ tabs:
               view_link: https://workflowhub.eu/workflows/403
               view_tip: View in WorkflowHub
               button_tip: Import to Galaxy Australia
+            - title_html: Optional HiC scaffolding workflow
+              description_html: >
+                <p>
+                  If you have HiC data, scaffold your assembly using <code>YAHS</code>.
+                </p>
+              inputs:
+                - datatypes:
+                    - fasta
+                  label: Primary or Hap1 assembly
+                - datatypes:
+                    - fastqsanger.gz
+                  label: HiC forward reads, HiC reverse reads                
+              button_link: "{{ galaxy_base_url }}/workflows/trs_import?trs_server=workflowhub.eu&run_form=true&trs_id=1054"
+              view_link: https://workflowhub.eu/workflows/1054
+              view_tip: View in WorkflowHub
+              button_tip: Import to Galaxy Australia
+              
         - id: nanopore
           title: General assembly workflows - Nanopore and Illumina data
           content:

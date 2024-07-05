@@ -14,10 +14,11 @@ def markdown(md):
     """Render html from markdown string."""
     if not md:
         return ""
-    return markdown2.markdown(md, extras={
-        "tables": None,
-        "code-friendly": None,
+    html = markdown2.markdown(md.strip(), extras={
+        "tables": True,
+        "code-friendly": True,
         "html-classes": {
             'table': 'table table-striped',
         },
     })
+    return html

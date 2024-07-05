@@ -1,20 +1,31 @@
 """Exported landing pages to be requested by external Galaxy servers.
 
+Example with local YAML:
+http://127.0.0.1:8000/landing/export?content_root=http://127.0.0.1:8000/static/home/labs/genome/main.yml
+
 Example URL with remote YAML:
-http://127.0.0.1:8000/landing/genome?export=true&content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/lab/genome/main.yml
+http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/static/home/labs/genome/main.yml
+
 """
 
 import logging
 import requests
 import yaml
+from markdown2 import Markdown
 from pydantic import ValidationError
 
-from .lab_schema import LabSchema, LabSectionSchema
+from types import SimpleNamespace
 from utils.exceptions import SubsiteBuildError
+from .lab_schema import LabSchema, LabSectionSchema
 
 logger = logging.getLogger('django')
 
 ACCEPTED_IMG_EXTENSIONS = ('png', 'jpg', 'jpeg', 'svg', 'webp')
+
+CONTENT_TYPES = SimpleNamespace(
+    WEBPAGE='webpage',
+    YAML='yaml',
+)
 
 
 class ExportSubsiteContext(dict):
@@ -27,19 +38,19 @@ class ExportSubsiteContext(dict):
     context specified by a ``content_root`` GET param.
     """
 
-    HTML_SNIPPETS = (
-        'intro_html',
+    FETCH_SNIPPETS = (
         'header_logo',
-        'footer_html',
-        'conclusion_html',
+        'intro_md',
+        'footer_md',
+        'conclusion_md',
         'custom_css',
     )
 
-    def __init__(self, params):
+    def __init__(self, content_root):
         """Init context from dict."""
         super().__init__(self)
         self['snippets'] = {}
-        self.params = params
+        self.content_root = content_root
         self.update({
             'export': True,
             'extend_template': 'home/header-export.html',
@@ -68,53 +79,58 @@ class ExportSubsiteContext(dict):
                     source='YAML',
                 )
 
-    def _get(self, url, webpage=False):
+    def _get(self, url, expected_type=None):
         """Fetch content from URL and validate returned content."""
-        res = requests.get(url)
+        res = requests.get(self._make_raw(url))
         if res.status_code >= 300:
             raise SubsiteBuildError(
                 f'HTTP {res.status_code} fetching file.',
                 url=url)
-        if not webpage:
+        if expected_type != CONTENT_TYPES.WEBPAGE:
             lines = [
                 x.strip()
                 for x in res.content.decode('utf-8').split('\n')
                 if x.strip()
             ]
             if lines and '<!doctype html>' in lines[0].lower():
+                expected = expected_type or 'a raw file'
                 raise SubsiteBuildError(
                     (
                         "Unexpected HTML content in file.\n"
-                        'Did you provide a URL for a webpage instead of a raw'
-                        ' YAML file? If you are using GitHub, this URL should'
-                        ' start with "https://raw.githubusercontent.com/".\n'
-                        'Click the "Raw" button on the GitHub webpage to view'
-                        ' the file in raw format!'
+                        'The URL provided returned a webpage (HTML) when'
+                        f' {expected} was expected.'
                     ),
                     url=url,
                     source='YAML',
                 )
         return res
 
+    def _make_raw(self, url):
+        """Make raw URL for fetching content."""
+        if 'github.com' in url:
+            url = (
+                url.replace('github.com', 'raw.githubusercontent.com')
+                .replace('/blob/', '/'))
+        return url
+
     def _fetch_yaml_context(self):
         """Fetch params from remote YAML file.
 
         This file is typically named main.yml.
         """
-        url = self.params.get('content_root')
-        if not url:
+        if not self.content_root:
             raise ValueError(
                 "GET parameter 'content_root' required for root URL")
-        res = self._get(url)
+        res = self._get(self.content_root, expected_type=CONTENT_TYPES.YAML)
         yaml_str = res.content.decode('utf-8')
         try:
             params = yaml.safe_load(yaml_str)
         except (yaml.YAMLError, yaml.scanner.ScannerError) as exc:
-            raise SubsiteBuildError(exc, url=url, source='YAML')
+            raise SubsiteBuildError(exc, url=self.content_root, source='YAML')
         try:
             LabSchema(**params)
         except ValidationError as exc:
-            raise SubsiteBuildError(exc, url=url, source='YAML')
+            raise SubsiteBuildError(exc, url=self.content_root, source='YAML')
         self.update(params)
         self._fetch_snippets()
 
@@ -132,15 +148,19 @@ class ExportSubsiteContext(dict):
 
     def _fetch_yaml_content(self, relpath):
         """Recursively fetch web content from remote YAML file."""
-        yaml_url = self.params.get('content_root')
+        yaml_url = self.content_root
         if not (yaml_url and relpath):
             return
         if relpath.startswith('http'):
             url = relpath
         else:
             url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-        res = self._get(url)
+        res = self._get(url, expected_type=CONTENT_TYPES.YAML)
         yaml_str = res.content.decode('utf-8')
+
+        # Substitute keys in yaml file
+        # TODO: remove this when all labs converted to _md keys
+        yaml_str = yaml_str.replace('_html:', '_md:')
 
         try:
             data = yaml.safe_load(yaml_str)
@@ -160,7 +180,7 @@ class ExportSubsiteContext(dict):
 
     def _fetch_snippets(self):
         """Fetch HTML snippets and add to context.snippets."""
-        for name in self.HTML_SNIPPETS:
+        for name in self.FETCH_SNIPPETS:
             if relpath := self.get(name):
                 if relpath.rsplit('.', 1)[1] in ACCEPTED_IMG_EXTENSIONS:
                     self['snippets'][name] = self._fetch_img_src(relpath)
@@ -169,14 +189,28 @@ class ExportSubsiteContext(dict):
 
     def _fetch_img_src(self, relpath):
         """Build URL for image."""
-        yaml_url = self.params.get('content_root')
-        if yaml_url:
-            return yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
+        if self.content_root:
+            return (self.content_root.rsplit('/', 1)[0]
+                    + '/' + relpath.lstrip('./'))
 
     def _fetch_snippet(self, relpath):
         """Fetch HTML snippet from remote URL."""
-        yaml_url = self.params.get('content_root')
-        if yaml_url:
-            url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
+        if self.content_root:
+            url = (self.content_root.rsplit('/', 1)[0]
+                   + '/' + relpath.lstrip('./'))
             res = self._get(url)
-            return res.content.decode('utf-8')
+            body = res.content.decode('utf-8')
+        if url.endswith('.md'):
+            body = self._convert_md(body)
+        return body
+
+    def _convert_md(self, text):
+        """Render markdown to HTML."""
+        engine = Markdown(extras={
+            "tables": True,
+            "code-friendly": True,
+            "html-classes": {
+                'table': 'table table-striped',
+            },
+        })
+        return engine.convert(text)
