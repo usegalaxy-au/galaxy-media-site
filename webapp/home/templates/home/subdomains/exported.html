@@ -69,9 +69,13 @@
 
 
 {% block onload %}
-  // Ensure that notice links open in new tab if external
+  // Ensure that links open in new tab if external
   $('.notice a').each( (i, item) => {
-    if (!item.href.includes("{{ HOSTNAME }}")) {
+    if (
+      item.href
+      && item.href.slice(0, 1) !== "/"
+      && !item.href.includes("{{ galaxy_base_url }}")
+    ) {
       item.target = '_blank';
     }
   });
