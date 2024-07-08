@@ -130,10 +130,18 @@ def export_lab(request):
             'exc': exc,
         }, status=400)
 
-    # Do two rounds of rendering to capture template tags in remote data
+    # Multiple rounds of templating to render recursive template tags from
+    # remote data
+    i = 0
+    prev_template_str = ''
     template_str = render_to_string(template, context, request)
-    t = Template(template_str)
-    body = t.render(RequestContext(request, context))
+    while prev_template_str.strip('\n') != template_str.strip('\n') and i < 4:
+        prev_template_str = template_str
+        t = Template('{% load markdown %}\n\n' + template_str)
+        template_str = t.render(RequestContext(request, context))
+        i += 1
+
+    body = template_str
 
     return HttpResponse(body)
 

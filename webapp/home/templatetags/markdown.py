@@ -7,6 +7,7 @@ import markdown2
 import re
 import requests
 from django import template
+from django.http import Http404
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -29,8 +30,15 @@ def markdown(md):
 
 @register.simple_tag()
 def markdown_from_url(url):
-    """Fetch content from URL and render html from markdown string."""
-    body = requests.get(url).text
+    """Fetch content from URL and render html from markdown string.
+
+    This is intended to be used by exported Galaxy Labs, where a markdown url
+    comes from a remote source.
+    """
+    res = requests.get(url)
+    if res.status_code >= 300:
+        raise Http404(f"URL {url} returned status code {res.status_code}")
+    body = res.text
 
     # Remove YAML header if present
     liquid_md = (
@@ -38,7 +46,7 @@ def markdown_from_url(url):
         if '---\n' in body
         else body
     )
-    # remove Liquid syntax {: ... } strings
+    # Remove any Liquid syntax {: ... }
     md = re.sub(r'\{:.*\}', '', liquid_md)
 
     html = markdown2.markdown(md, extras={
