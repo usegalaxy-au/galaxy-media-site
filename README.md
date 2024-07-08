@@ -20,6 +20,7 @@ The commit process is documented in the [dev wiki](https://github.com/usegalaxy-
 This web app is designed to host content related to a [Galaxy](https://galaxyproject.org/) instance. It is lightweight, easy to install and maintain, and provides interfaces for publishing:
 
 - A dynamic landing page for the Galaxy instance
+- Galaxy Lab landing pages
 - Landing page notices
 - Event posts
 - News articles (including automated tool updates)
