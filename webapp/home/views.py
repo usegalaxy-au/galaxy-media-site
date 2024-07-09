@@ -131,7 +131,7 @@ def export_lab(request):
         }, status=400)
 
     # Multiple rounds of templating to render recursive template tags from
-    # remote data
+    # remote data with embedded template tags
     i = 0
     prev_template_str = ''
     template_str = render_to_string(template, context, request)
