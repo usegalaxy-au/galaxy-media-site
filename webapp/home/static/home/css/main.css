@@ -198,7 +198,7 @@ textarea.invalid {
 .material-icons {
   vertical-align: bottom;
 }
-i {
+i.fa, i.fab, i.fas {
   margin: 0 .5rem;
 }
 .unpublished-bubble {
