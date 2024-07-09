@@ -60,7 +60,8 @@ class ExportSubsiteContext(dict):
 
     def _clean(self):
         """Format params for rendering."""
-        self['galaxy_base_url'].strip('/')
+        self['galaxy_base_url'] = self['galaxy_base_url'].rstrip('/')
+        self._filter_sections()
 
     def validate(self):
         """Validate against required params."""
@@ -145,6 +146,32 @@ class ExportSubsiteContext(dict):
                 for s in sections
             ]
         return sections
+
+    def _filter_sections(self):
+        """Iterate over sections and remove items based on exclusion tags."""
+        def filter_excluded_items(data):
+            def is_excluded_item(item):
+                return (
+                    isinstance(item, dict)
+                    and 'exclude_from' in item
+                    and self['root_domain'] in item['exclude_from']
+                )
+
+            if isinstance(data, dict):
+                data = {
+                    k: filter_excluded_items(v)
+                    for k, v in data.items()
+                }
+            elif isinstance(data, list):
+                data = [
+                    filter_excluded_items(item)
+                    for item in data
+                    if not is_excluded_item(item)
+                ]
+            return data
+
+        if self.get('root_domain'):
+            self['sections'] = filter_excluded_items(self['sections'])
 
     def _fetch_yaml_content(self, relpath):
         """Recursively fetch web content from remote YAML file."""

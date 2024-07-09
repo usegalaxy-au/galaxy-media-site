@@ -15,6 +15,7 @@ class TabItem(BaseModel):
     button_tip: Optional[str] = None
     view_link: Optional[str] = None
     view_tip: Optional[str] = None
+    exclude_from: Optional[list[str]] = []
 
 
 class TabSubsection(BaseModel):
