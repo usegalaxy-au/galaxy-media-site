@@ -4,7 +4,7 @@ import os
 import logging
 import pprint
 from django.conf import settings
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.template import (
     RequestContext,
@@ -19,6 +19,7 @@ from news.models import News
 from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError, SubsiteBuildError
+from .lab_cache import LabCache
 from .lab_export import ExportSubsiteContext
 from .models import CoverImage, Notice
 from .forms import (
@@ -115,6 +116,9 @@ def export_lab(request):
     repo with a YAML file root which is specified as a GET parameter.
     """
 
+    if response := LabCache.get(request):
+        return response
+
     template = 'home/subdomains/exported.html'
 
     try:
@@ -141,9 +145,9 @@ def export_lab(request):
         template_str = t.render(RequestContext(request, context))
         i += 1
 
-    body = template_str
+    response = LabCache.put(request, template_str)
 
-    return HttpResponse(body)
+    return response
 
 
 def notice(request, notice_id):
