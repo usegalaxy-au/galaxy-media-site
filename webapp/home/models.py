@@ -207,9 +207,10 @@ class CoverImage(models.Model):
             MaxValueValidator(1000),
         ],
         help_text=help_text.CoverImage.DISPLAY_HEIGHT)
-    auto_full_width = models.BooleanField(default=False, help_text=(
+    auto_full_width = models.BooleanField(default=True, help_text=(
         "Automatically set the image width to 100% of the screen width."
-        " This option overrides 'Max height'."
+        " This option overrides 'Max height'. Use this option for banner-style"
+        " images!"
     ))
     link_url = models.CharField(
         max_length=255, null=True, blank=True, help_text=(
