@@ -16,6 +16,7 @@ ICONS = {
     'run': 'play_arrow',
     'tutorial': 'school',
     'social': 'group',
+    'help': 'help',
 }
 
 

@@ -59,7 +59,7 @@
               {% if item.button_icon %}
               <span class="material-icons">{{ item.button_icon|iconkey }}</span>
               {% else %}
-              {{ item.button_md|markdown|default:'<span class="material-icons">play_arrow</span>' }}
+              {{ item.button_md|inline_markdown|default:'<span class="material-icons">play_arrow</span>' }}
               {% endif %}
             </a>
           </div>

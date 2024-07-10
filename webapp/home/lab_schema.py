@@ -6,9 +6,16 @@ from typing import Optional, Union
 
 
 class IconEnum(str, Enum):
-    run = 'run'  # play_arrow
+    """Define material icon types for buttons."""
+    run = 'run'            # play_arrow
     tutorial = 'tutorial'  # school
-    social = 'social'  # group
+    social = 'social'      # group
+    help = 'help'          # help
+
+
+class TabContentEnum(str, Enum):
+    """Define the type of content in a tab item."""
+    subsections = 'subsections'
 
 
 class TabItem(BaseModel):
@@ -39,8 +46,14 @@ class TabSubsection(BaseModel):
 class SectionTab(BaseModel):
     """Validate Galaxy Lab section tab."""
     id: str
-    title: str
-    content: Union[list[TabItem], dict[str, list[TabSubsection]]]
+    title: Optional[str] = None
+    content: Optional[
+        Union[
+            list[TabItem],
+            dict[TabContentEnum, list[TabSubsection]]
+        ]
+    ] = None
+    heading_md: Optional[str] = None
 
 
 class LabSectionSchema(BaseModel):
