@@ -70,7 +70,7 @@
 
 {% block onload %}
   // Ensure that links open in new tab if external
-  $('.notice a').each( (i, item) => {
+  $('a').each( (i, item) => {
     if (
       item.href
       && item.href.slice(0, 1) !== "/"
