@@ -12,6 +12,12 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+ICONS = {
+    'run': 'play_arrow',
+    'tutorial': 'school',
+    'social': 'group',
+}
+
 
 def render_markdown(md):
     if not md:
@@ -72,3 +78,9 @@ def markdown_from_url(url):
     })
 
     return mark_safe(html)
+
+
+@register.filter()
+def iconkey(key):
+    """Map icon keyword to material icons ID."""
+    return ICONS.get(key, 'play_arrow')

@@ -1,7 +1,14 @@
 """Schema for validating Galaxy Lab content."""
 
+from enum import Enum
 from pydantic import BaseModel
 from typing import Optional, Union
+
+
+class IconEnum(str, Enum):
+    run = 'run'  # play_arrow
+    tutorial = 'tutorial'  # school
+    social = 'social'  # group
 
 
 class TabItem(BaseModel):
@@ -13,8 +20,12 @@ class TabItem(BaseModel):
     description_md: str
     button_link: Optional[str] = None
     button_tip: Optional[str] = None
+    button_html: Optional[str] = None
+    button_icon: Optional[IconEnum] = None
     view_link: Optional[str] = None
     view_tip: Optional[str] = None
+    view_html: Optional[str] = None
+    view_icon: Optional[str] = None
     exclude_from: Optional[list[str]] = []
 
 
