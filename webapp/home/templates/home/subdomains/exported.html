@@ -51,14 +51,14 @@
   {% endfor %}
 
   {% if snippets.conclusion_md %}
-  {{ snippets.conclusion_md|markdown|safe }}
+  {{ snippets.conclusion_md|markdown }}
   {% endif %}
 
 </main>
 
 
 {% if snippets.footer_md %}
-{{ snippets.footer_md|markdown|safe }}
+{{ snippets.footer_md|markdown }}
 {% endif %}
 
 {% endblock %}

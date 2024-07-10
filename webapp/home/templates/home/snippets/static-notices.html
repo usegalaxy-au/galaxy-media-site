@@ -24,7 +24,7 @@
   {% endif %}
 
   <div class="body">
-    {{ notice.body|markdown|safe }}
+    {{ notice.body|markdown }}
   </div>
 </div>
 {% endfor %}
@@ -35,7 +35,7 @@
   {% include 'home/snippets/unpublished-bubble.html' %}
   {% endif %}
 
-  {{ notice.body|markdown|safe }}
+  {{ notice.body|markdown }}
 
 </div>
 {% endfor %}

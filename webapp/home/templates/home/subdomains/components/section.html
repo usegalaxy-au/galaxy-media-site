@@ -34,7 +34,7 @@
         <div class="container py-3">
           {% if tab.heading_md %}
           <p class="mb-3 mx-3">
-            {{ tab.heading_md|markdown|safe }}
+            {{ tab.heading_md|inline_markdown }}
           </p>
           {% endif %}
 

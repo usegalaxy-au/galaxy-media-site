@@ -12,7 +12,7 @@
         aria-expanded="false"
         aria-controls="{{ section.id }}-{{ tab_id }}-{{ forloop.counter }}{{ accordion_id }}-collapse"
       >
-        {{ item.title_md|markdown|safe }}
+        {{ item.title_md|inline_markdown }}
       </button>
     </h2>
     <div
@@ -24,7 +24,7 @@
       <div class="accordion-body">
         <div class="row align-items-center">
           <div class="col">
-            {{ item.description_md|markdown|safe }}
+            {{ item.description_md|markdown }}
             {% if item.inputs %}
             {% include 'home/subdomains/components/inputs.html' with inputs=item.inputs %}
             {% endif %}
@@ -57,7 +57,7 @@
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"
             >
-              {{ item.button_md|markdown|safe|default:'<span class="material-icons">play_arrow</span>' }}
+              {{ item.button_md|markdown|default:'<span class="material-icons">play_arrow</span>' }}
             </a>
           </div>
           {% endif %}

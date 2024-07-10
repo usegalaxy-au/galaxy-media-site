@@ -13,9 +13,7 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 
-@register.filter()
-def markdown(md):
-    """Render html from markdown string."""
+def render_markdown(md):
     if not md:
         return ""
     html = markdown2.markdown(md.strip(), extras={
@@ -25,7 +23,23 @@ def markdown(md):
             'table': 'table table-striped',
         },
     })
-    return html
+    return html.strip(' \n')
+
+
+@register.filter()
+def markdown(md):
+    """Render html from markdown string."""
+    html = render_markdown(md)
+    return mark_safe(html)
+
+
+@register.filter()
+def inline_markdown(md):
+    """Render markdown to HTML and strip enclosing <p> tags."""
+    html = render_markdown(md)
+    if html.startswith('<p>'):
+        html = html[3:-4]
+    return mark_safe(html)
 
 
 @register.simple_tag()
