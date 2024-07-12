@@ -37,6 +37,8 @@ def render_markdown(md):
 def markdown(md):
     """Render html from markdown string."""
     html = render_markdown(md)
+    if '{gtn modal}<a' in html:
+        html = html.replace('{gtn modal}<a ', '<a class="gtn-modal" ')
     return mark_safe(html)
 
 

@@ -35,6 +35,9 @@
   {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
   {% endcomment %}
 
+  {% include 'home/subdomains/components/gtn-modal.html' %}
+
+
   <section id="headerSection" class="header-subdomain australia d-flex align-items-center h-100">
     {% if snippets.header_logo %}
     <img id="header-logo" src="{{ snippets.header_logo }}" alt="{{ site_name }} Logo">
