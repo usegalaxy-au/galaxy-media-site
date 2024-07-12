@@ -80,10 +80,13 @@ class ExportSubsiteContext(dict):
                     source='YAML',
                 )
 
-    def _get(self, url, expected_type=None):
+    def _get(self, url, expected_type=None, ignore_404=False):
         """Fetch content from URL and validate returned content."""
+        self._validate_url(url, expected_type)
         res = requests.get(self._make_raw(url))
         if res.status_code >= 300:
+            if res.status_code == 404 and ignore_404:
+                return
             raise SubsiteBuildError(
                 f'HTTP {res.status_code} fetching file.',
                 url=url)
@@ -105,6 +108,18 @@ class ExportSubsiteContext(dict):
                     source='YAML',
                 )
         return res
+
+    def _validate_url(self, url, expected_type):
+        """Validate URL to prevent circular request."""
+        if (
+            '/lab/export' in url
+            and url.split('/')[1, 2] == ['lab', 'export']
+        ):
+            raise SubsiteBuildError(
+                "URL cannot contain '/lab/export'.",
+                url=url,
+                source=expected_type,
+            )
 
     def _make_raw(self, url):
         """Make raw URL for fetching content."""
@@ -128,10 +143,22 @@ class ExportSubsiteContext(dict):
             params = yaml.safe_load(yaml_str)
         except (yaml.YAMLError, yaml.scanner.ScannerError) as exc:
             raise SubsiteBuildError(exc, url=self.content_root, source='YAML')
+
+        if not self.content_root.endswith('base.yml'):
+            # Attempt to extend base.yml with self.content_root
+            base_content_url = (
+                self.content_root.rsplit('/', 1)[0] + '/base.yml')
+            base_data = self._fetch_yaml_content(
+                base_content_url, ignore_404=True, extend=False)
+            if base_data:
+                base_data.update(params)
+                params = base_data
+
         try:
             LabSchema(**params)
         except ValidationError as exc:
             raise SubsiteBuildError(exc, url=self.content_root, source='YAML')
+
         self.update(params)
         self._fetch_snippets()
 
@@ -173,7 +200,7 @@ class ExportSubsiteContext(dict):
         if self.get('root_domain'):
             self['sections'] = filter_excluded_items(self['sections'])
 
-    def _fetch_yaml_content(self, relpath):
+    def _fetch_yaml_content(self, relpath, ignore_404=False, extend=True):
         """Recursively fetch web content from remote YAML file."""
         yaml_url = self.content_root
         if not (yaml_url and relpath):
@@ -182,19 +209,27 @@ class ExportSubsiteContext(dict):
             url = relpath
         else:
             url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-        res = self._get(url, expected_type=CONTENT_TYPES.YAML)
+
+        res = self._get(
+            url,
+            expected_type=CONTENT_TYPES.YAML,
+            ignore_404=ignore_404,
+        )
+        if not res:
+            return
+
         yaml_str = res.content.decode('utf-8')
 
-        # Substitute keys in yaml file
         # TODO: remove this when all labs converted to _md keys
+        # Substitute keys in yaml file
         yaml_str = yaml_str.replace('_html:', '_md:')
 
         try:
             data = yaml.safe_load(yaml_str)
         except yaml.YAMLError as exc:
-            raise SubsiteBuildError(exc, url=url)
+            raise SubsiteBuildError(exc, url=url, source='YAML')
 
-        if isinstance(data, dict):
+        if extend and isinstance(data, dict):
             data = {
                 # Fetch remote YAML if value is <str>.yml
                 k: self._fetch_yaml_content(v) or v
