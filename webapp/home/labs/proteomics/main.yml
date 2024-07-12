@@ -20,9 +20,9 @@ root_domain: usegalaxy.org.au
 # Custom content relative to this file URL
 header_logo: static/logo.png
 custom_css: static/custom.css
-intro_html: templates/intro.html
-conclusion_html: templates/conclusion.html
-footer_html: templates/footer.html
+intro_md: templates/intro.html
+conclusion_md: templates/conclusion.html
+footer_md: templates/footer.html
 
 # Data (Tools, Workflows etc.) to be rendered into sections/tabs/accordion elements.
 # Either:
