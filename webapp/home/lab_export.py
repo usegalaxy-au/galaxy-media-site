@@ -237,10 +237,6 @@ class ExportSubsiteContext(dict):
 
         yaml_str = res.content.decode('utf-8')
 
-        # TODO: remove this when all labs converted to _md keys
-        # Substitute keys in yaml file
-        yaml_str = yaml_str.replace('_html:', '_md:')
-
         try:
             data = yaml.safe_load(yaml_str)
         except yaml.YAMLError as exc:
@@ -328,7 +324,7 @@ def get_github_user(username):
     elif response.status_code == 404:
         logger.warning(f'GitHub user not found: {username}')
         WebCache.put(url, {'login': username}, timeout=2_592_000)
-    return None
+    return {'login': username}
 
 
 def fetch_names(usernames):
