@@ -11,32 +11,52 @@ CACHE_KEY_IGNORE_GET_PARAMS = (
 
 
 class LabCache:
-    @staticmethod
-    def get(request):
+    @classmethod
+    def get(cls, request):
         if request.GET.get('cache', '').lower() == 'false':
             return
 
-        cache_key = _generate_cache_key(request)
+        cache_key = cls._generate_cache_key(request)
         body = cache.get(cache_key)
         if body:
             response = HttpResponse(body)
             response['X-Cache-Status'] = 'HIT'
             return response
 
-    @staticmethod
-    def put(request, body):
-        cache_key = _generate_cache_key(request)
+    @classmethod
+    def put(cls, request, body):
+        cache_key = cls._generate_cache_key(request)
         cache.set(cache_key, body, timeout=3600)
         response = HttpResponse(body)
         response['X-Cache-Status'] = 'MISS'
         return response
 
+    @classmethod
+    def _generate_cache_key(cls, request):
+        """Create a unique cache key from request path."""
+        params = {
+            k: v for k, v in request.GET.items()
+            if k not in CACHE_KEY_IGNORE_GET_PARAMS
+        }
+        key = f"{request.path}?{urlencode(params)}"
+        return md5(key.encode('utf-8')).hexdigest()
 
-def _generate_cache_key(request):
-    """Create a unique cache key from request path."""
-    params = {
-        k: v for k, v in request.GET.items()
-        if k not in CACHE_KEY_IGNORE_GET_PARAMS
-    }
-    key = f"{request.path}?{urlencode(params)}"
-    return md5(key.encode('utf-8')).hexdigest()
+
+class WebCache:
+    """Cache content from web requests."""
+
+    @classmethod
+    def get(cls, url):
+        cache_key = cls._generate_cache_key(url)
+        data = cache.get(cache_key)
+        if data:
+            return data
+
+    @classmethod
+    def put(cls, url, data, timeout=3600):
+        cache_key = cls._generate_cache_key(url)
+        cache.set(cache_key, data, timeout=timeout)
+
+    @classmethod
+    def _generate_cache_key(cls, url):
+        return md5(url.encode('utf-8')).hexdigest()

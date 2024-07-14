@@ -8,20 +8,24 @@ http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.
 
 """
 
+import concurrent.futures
 import logging
 import requests
 import yaml
+from django.conf import settings
 from markdown2 import Markdown
 from pydantic import ValidationError
 
 from types import SimpleNamespace
 from utils.exceptions import SubsiteBuildError
 from .lab_schema import LabSchema, LabSectionSchema
+from .lab_cache import WebCache
 
 logger = logging.getLogger('django')
 
 ACCEPTED_IMG_EXTENSIONS = ('png', 'jpg', 'jpeg', 'svg', 'webp')
-
+CONTRIBUTORS_FILE = 'CONTRIBUTORS'
+GITHUB_USERNAME_URL = "https://api.github.com/users/{username}"
 CONTENT_TYPES = SimpleNamespace(
     WEBPAGE='webpage',
     YAML='yaml',
@@ -51,12 +55,14 @@ class ExportSubsiteContext(dict):
         super().__init__(self)
         self['snippets'] = {}
         self.content_root = content_root
+        self.parent_url = content_root.rsplit('/', 1)[0] + '/'
         self.update({
             'export': True,
             'extend_template': 'home/header-export.html',
         })
         self._fetch_yaml_context()
         self._fetch_sections()
+        self._fetch_contributors()
 
     def _clean(self):
         """Format params for rendering."""
@@ -80,34 +86,46 @@ class ExportSubsiteContext(dict):
                     source='YAML',
                 )
 
-    def _get(self, url, expected_type=None, ignore_404=False):
+    def _get(
+        self,
+        url,
+        expected_type=None,
+        ignore_404=False,
+    ):
         """Fetch content from URL and validate returned content."""
+        url = self._make_raw(url)
         self._validate_url(url, expected_type)
-        res = requests.get(self._make_raw(url))
-        if res.status_code >= 300:
-            if res.status_code == 404 and ignore_404:
-                return
-            raise SubsiteBuildError(
-                f'HTTP {res.status_code} fetching file.',
-                url=url)
-        if expected_type != CONTENT_TYPES.WEBPAGE:
-            lines = [
-                x.strip()
-                for x in res.content.decode('utf-8').split('\n')
-                if x.strip()
-            ]
-            if lines and '<!doctype html>' in lines[0].lower():
-                expected = expected_type or 'a raw file'
+        res = None
+        if not res:
+            res = requests.get(url)
+            if res.status_code >= 300:
+                if ignore_404 and res.status_code == 404:
+                    return
                 raise SubsiteBuildError(
-                    (
-                        "Unexpected HTML content in file.\n"
-                        'The URL provided returned a webpage (HTML) when'
-                        f' {expected} was expected.'
-                    ),
-                    url=url,
-                    source='YAML',
-                )
+                    f'HTTP {res.status_code} fetching file.',
+                    url=url)
+        if expected_type != CONTENT_TYPES.WEBPAGE:
+            self._validate_not_webpage(url, res, expected_type)
         return res
+
+    def _validate_not_webpage(self, url, response, expected_type=None):
+        """Assert that the response body is not a webpage."""
+        lines = [
+            x.strip()
+            for x in response.content.decode('utf-8').split('\n')
+            if x.strip()
+        ]
+        if lines and '<!doctype html>' in lines[0].lower():
+            expected = expected_type or 'a raw file'
+            raise SubsiteBuildError(
+                (
+                    "Unexpected HTML content in file.\n"
+                    'The URL provided returned a webpage (HTML) when'
+                    f' {expected} was expected.'
+                ),
+                url=url,
+                source='YAML',
+            )
 
     def _validate_url(self, url, expected_type):
         """Validate URL to prevent circular request."""
@@ -123,7 +141,7 @@ class ExportSubsiteContext(dict):
 
     def _make_raw(self, url):
         """Make raw URL for fetching content."""
-        if 'github.com' in url:
+        if '//github.com' in url:
             url = (
                 url.replace('github.com', 'raw.githubusercontent.com')
                 .replace('/blob/', '/'))
@@ -146,8 +164,7 @@ class ExportSubsiteContext(dict):
 
         if not self.content_root.endswith('base.yml'):
             # Attempt to extend base.yml with self.content_root
-            base_content_url = (
-                self.content_root.rsplit('/', 1)[0] + '/base.yml')
+            base_content_url = (self.parent_url + 'base.yml')
             base_data = self._fetch_yaml_content(
                 base_content_url, ignore_404=True, extend=False)
             if base_data:
@@ -240,6 +257,20 @@ class ExportSubsiteContext(dict):
 
         return data
 
+    def _fetch_contributors(self):
+        """Attempt to fetch list of contributors from repo."""
+        url = self.parent_url + CONTRIBUTORS_FILE
+        res = self._get(url, ignore_404=True)
+        if res:
+            usernames_list = [
+                x.strip() for x in res.content.decode('utf-8').split('\n')
+                if x.strip()
+                and not x.strip().startswith('#')
+            ]
+            self['contributors'] = fetch_names(usernames_list)
+        else:
+            self['contributors'] = []
+
     def _fetch_snippets(self):
         """Fetch HTML snippets and add to context.snippets."""
         for name in self.FETCH_SNIPPETS:
@@ -252,14 +283,12 @@ class ExportSubsiteContext(dict):
     def _fetch_img_src(self, relpath):
         """Build URL for image."""
         if self.content_root:
-            return (self.content_root.rsplit('/', 1)[0]
-                    + '/' + relpath.lstrip('./'))
+            return (self.parent_url + relpath.lstrip('./'))
 
     def _fetch_snippet(self, relpath):
         """Fetch HTML snippet from remote URL."""
         if self.content_root:
-            url = (self.content_root.rsplit('/', 1)[0]
-                   + '/' + relpath.lstrip('./'))
+            url = (self.parent_url + relpath.lstrip('./'))
             res = self._get(url)
             body = res.content.decode('utf-8')
         if url.endswith('.md'):
@@ -276,3 +305,48 @@ class ExportSubsiteContext(dict):
             },
         })
         return engine.convert(text)
+
+
+def get_github_user(username):
+    url = GITHUB_USERNAME_URL.format(username=username)
+    if cached := WebCache.get(url):
+        return cached
+    headers = {
+        'X-GitHub-Api-Version': '2022-11-28',
+    }
+    token = settings.GITHUB_API_TOKEN
+    if token:
+        headers['Authorization'] = f'Bearer {token}'
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        user_data = response.json()
+        WebCache.put(url, user_data, timeout=2_592_000)
+        return user_data
+    elif response.status_code == 401:
+        logger.warning(
+            'GitHub API token unauthorized. Request blocked by rate-limiting.')
+    elif response.status_code == 404:
+        logger.warning(f'GitHub user not found: {username}')
+        WebCache.put(url, {'login': username}, timeout=2_592_000)
+    return None
+
+
+def fetch_names(usernames):
+    def fetch_name(username):
+        return (username, get_github_user(username))
+
+    users = []
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future_to_username = {
+            executor.submit(fetch_name, username): username
+            for username in usernames
+        }
+        for future in concurrent.futures.as_completed(future_to_username):
+            _, user_data = future.result()
+            users.append(user_data)
+    users.sort(key=lambda x:
+               usernames.index(x.get('login'))
+               if x and x.get('avatar_url')
+               else 9999)
+
+    return users

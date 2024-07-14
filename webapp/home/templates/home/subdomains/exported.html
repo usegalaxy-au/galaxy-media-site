@@ -57,6 +57,10 @@
   {{ snippets.conclusion_md|markdown }}
   {% endif %}
 
+  {% if contributors %}
+  {% include 'home/subdomains/components/contributors.html' %}
+  {% endif %}
+
 </main>
 
 
