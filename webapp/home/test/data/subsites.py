@@ -4,6 +4,7 @@ TODO: this needs to be updated for new exported lab pages.
 """
 
 import os
+import json
 from pathlib import Path
 
 CONTENT_DIRS = (
@@ -34,6 +35,24 @@ for content_dir in CONTENT_DIRS:
                 except UnicodeDecodeError:
                     # Binary files not required for testing
                     pass
+
+MOCK_REQUESTS.update({
+    'https://api.github.com/users/neoformit': json.dumps({
+        "login": "neoformit",
+        "avatar_url":
+        "https://img.freepik.com/premium-photo/penguin-snow_942736-63.jpg",
+    }),
+    'https://api.github.com/users/AnnaSyme': json.dumps({
+        "login": "AnnaSyme",
+        "avatar_url":
+        "https://img.freepik.com/premium-photo/penguin-snow_942736-63.jpg",
+    }),
+    'https://api.github.com/users/supernord': json.dumps({
+        "login": "supernord",
+        "avatar_url":
+        "https://img.freepik.com/premium-photo/penguin-snow_942736-63.jpg",
+    }),
+})
 
 TEST_LABS = [
     {
