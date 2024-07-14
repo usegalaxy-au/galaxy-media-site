@@ -1,4 +1,4 @@
-name: Deploy to web server
+name: Deploy to prod server
 
 on:
   workflow_run:
