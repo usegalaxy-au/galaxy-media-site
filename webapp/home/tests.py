@@ -6,7 +6,7 @@ from django.core import mail
 from pathlib import Path
 
 from .lab_export import ExportSubsiteContext
-from .models import Notice
+from .models import Notice, Subsite
 from .test.data import (
     TEST_NOTICES,
     MOCK_REQUESTS,
@@ -46,7 +46,11 @@ class HomeTestCase(TestCase):
         super().setUp()
         self.client = Client()
         for notice in TEST_NOTICES:
+            subsites = notice['relations']['subsites']
             notice = Notice.objects.create(**notice['data'])
+            for subsite in subsites:
+                subsite = Subsite.objects.get(name=subsite['name'])
+                notice.subsites.add(subsite)
         for tag in TEST_TAGS:
             Tag.objects.create(**tag)
         for supporter in TEST_SUPPORTERS:
