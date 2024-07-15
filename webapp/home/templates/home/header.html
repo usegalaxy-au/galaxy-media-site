@@ -178,7 +178,7 @@
         }
       }
 
-      const subdomainLanding = () => window.location.pathname.includes('/landing/');
+      const isLabPage = () => window.location.pathname.includes('/landing/');
 
       $(document).ready( () => {
         // Restyle navbar if not embedded in iframe
@@ -206,7 +206,7 @@
             if (
               links[i].href
               && links[i].href == ('https://usegalaxy.org.au')
-              && !subdomainLanding()
+              && !isLabPage()
             ) {
               console.log(`Remove href from anchor: ${links[i].href}`);
               $(links[i]).removeAttr("href");

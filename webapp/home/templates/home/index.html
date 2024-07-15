@@ -87,7 +87,7 @@
         {% endif %}
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
-          <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>
+          <p class="markdown"><b> {{ item.title|markdown }} </b></p>
         </div>
 
         <div class="col-sm-auto text-end">
@@ -120,7 +120,7 @@
         {% endif %}
         <div class="col">
           <p> {{ item.datetime_created|date:"Y-m-d" }} </p>
-          <p class="markdown"><b> {{ item.title|markdown|safe }} </b></p>
+          <p class="markdown"><b> {{ item.title|markdown }} </b></p>
         </div>
 
         <div class="col-sm-auto text-end">

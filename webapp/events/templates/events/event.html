@@ -22,7 +22,7 @@
         {% if not event.is_published %}
         {% include 'home/snippets/unpublished-bubble.html' %}
         {% endif %}
-        
+
         <h3> {{ event.title }} </h3>
 
         {% if event.organiser_name %}
@@ -151,7 +151,7 @@
     <br><br>
 
     <div class="container markdown" id="event-body">
-      {{ event.body|markdown|safe }}
+      {{ event.body|markdown }}
     </div>
 
     <div class="container text-center">

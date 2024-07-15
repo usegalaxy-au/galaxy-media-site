@@ -4,7 +4,7 @@ import os
 import logging
 import pprint
 from django.conf import settings
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.template import (
     RequestContext,
@@ -19,6 +19,7 @@ from news.models import News
 from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError, SubsiteBuildError
+from .lab_cache import LabCache
 from .lab_export import ExportSubsiteContext
 from .models import CoverImage, Notice
 from .forms import (
@@ -115,6 +116,9 @@ def export_lab(request):
     repo with a YAML file root which is specified as a GET parameter.
     """
 
+    if response := LabCache.get(request):
+        return response
+
     template = 'home/subdomains/exported.html'
 
     try:
@@ -130,12 +134,20 @@ def export_lab(request):
             'exc': exc,
         }, status=400)
 
-    # Do two rounds of rendering to capture template tags in remote data
+    # Multiple rounds of templating to render recursive template tags from
+    # remote data with embedded template tags
+    i = 0
+    prev_template_str = ''
     template_str = render_to_string(template, context, request)
-    t = Template(template_str)
-    body = t.render(RequestContext(request, context))
+    while prev_template_str.strip('\n') != template_str.strip('\n') and i < 4:
+        prev_template_str = template_str
+        t = Template('{% load markdown %}\n\n' + template_str)
+        template_str = t.render(RequestContext(request, context))
+        i += 1
 
-    return HttpResponse(body)
+    response = LabCache.put(request, template_str)
+
+    return response
 
 
 def notice(request, notice_id):

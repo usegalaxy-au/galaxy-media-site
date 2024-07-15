@@ -30,10 +30,7 @@ TEST_NOTICES = [
             "is_published": True,
         },
         "relations": {
-            "subsites": [
-                TEST_LABS[0],
-                TEST_LABS[1]
-            ],
+            "subsites": [TEST_LABS[0]],
         },
     },
     {

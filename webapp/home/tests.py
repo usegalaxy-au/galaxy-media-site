@@ -9,7 +9,6 @@ from .lab_export import ExportSubsiteContext
 from .models import Notice, Subsite
 from .test.data import (
     TEST_NOTICES,
-    TEST_LABS,
     MOCK_REQUESTS,
     MOCK_LAB_BASE_URL,
 )
@@ -46,10 +45,6 @@ class HomeTestCase(TestCase):
         """Create some data to request a landing page."""
         super().setUp()
         self.client = Client()
-
-        for subsite in TEST_LABS[1:]:
-            # First TEST_LAB "main" is created on DB migration
-            Subsite.objects.create(**subsite)
         for notice in TEST_NOTICES:
             subsites = notice['relations']['subsites']
             notice = Notice.objects.create(**notice['data'])
@@ -164,20 +159,6 @@ class HomeTestCase(TestCase):
             TEST_EVENTS[1]['data']['title'],
         )
 
-    def test_subsite_landing_webpage(self):
-        response = self.client.get(f'/landing/{TEST_LABS[1]["name"]}')
-        self.assertEqual(response.status_code, 200)
-
-        # Appropriate notices are being shown
-        self.assertContains(
-            response,
-            TEST_NOTICES[1]['data']['title'],
-        )
-        self.assertNotContains(
-            response,
-            TEST_NOTICES[0]['data']['title'],
-        )
-
     def test_aaf_webpage(self):
         try:
             response = self.client.get('/aaf')
@@ -208,13 +189,6 @@ class LabExportTestCase(TestCase):
             mock_request.get(url, text=text, status_code=200)
         self.context = ExportSubsiteContext(TEST_LAB_CONTENT_URL)
 
-    def test_it_can_make_raw_url(self):
-        self.assertEqual(
-            self.context._make_raw('https://github.com/usegalaxy-au/'
-                                   'galaxy-media-site/blob/dev/README.md'),
-            'https://raw.githubusercontent.com/usegalaxy-au/'
-            'galaxy-media-site/dev/README.md')
-
     @requests_mock.Mocker()
     def test_exported_lab_docs(self, mock_request):
         """Mock requests to localhost."""
@@ -244,6 +218,63 @@ class LabExportTestCase(TestCase):
             mock_request.get(url, text=text, status_code=200)
         response = self.client.get(test_lab_url_for('proteomics'))
         self.assertEqual(response.status_code, 200)
+
+    def test_it_can_make_raw_url(self):
+        self.assertEqual(
+            self.context._make_raw('https://github.com/usegalaxy-au/'
+                                   'galaxy-media-site/blob/dev/README.md'),
+            'https://raw.githubusercontent.com/usegalaxy-au/'
+            'galaxy-media-site/dev/README.md')
+
+    def test_it_can_filter_sections_by_root_domain(self):
+        root_domain = 'antarctica.org'
+        self.context['root_domain'] = root_domain
+        self.context['sections'] = [
+            {'id': 'section1'},
+            {
+                'id': 'section2',
+                'exclude_from': [root_domain],
+            },
+            {
+                'id': 'section3',
+                'content': [
+                    {
+                        'id': 'item1',
+                    },
+                    {
+                        'id': 'item2',
+                        'exclude_from': [root_domain],
+                    },
+                    {
+                        'id': 'item3',
+                        'exclude_from': ['other.domain.com'],
+                    },
+                    {
+                        'id': 'item4',
+                        'exclude_from': [root_domain, 'other.domain.com'],
+                    },
+                ]
+            },
+        ]
+        self.context._filter_sections()
+        self.assertEqual(
+            self.context['sections'],
+            [
+                {'id': 'section1'},
+                {
+                    'id': 'section3',
+                    'content': [
+                        {
+                            'id': 'item1',
+                        },
+                        {
+                            'id': 'item3',
+                            'exclude_from': ['other.domain.com'],
+                        },
+                    ]
+                },
+            ],
+        )
 
 
 class AccessRequestsTestCase(TestCase):

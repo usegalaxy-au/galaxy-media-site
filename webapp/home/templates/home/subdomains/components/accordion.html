@@ -12,7 +12,7 @@
         aria-expanded="false"
         aria-controls="{{ section.id }}-{{ tab_id }}-{{ forloop.counter }}{{ accordion_id }}-collapse"
       >
-        {{ item.title_md|markdown|safe }}
+        {{ item.title_md|inline_markdown }}
       </button>
     </h2>
     <div
@@ -24,8 +24,7 @@
       <div class="accordion-body">
         <div class="row align-items-center">
           <div class="col">
-            <!-- {{ item.description_md|markdown|safe }} -->
-            {{ item.description_md|markdown|safe }}
+            {{ item.description_md|markdown }}
             {% if item.inputs %}
             {% include 'home/subdomains/components/inputs.html' with inputs=item.inputs %}
             {% endif %}
@@ -52,13 +51,16 @@
           <div class="col col-auto">
             <a
               href="{{ item.button_link }}"
-              class="btn btn-galaxy"
-              {% if item.button_link|first != '/' %}target="_blank"{% endif %}
+              class="btn btn-galaxy{% if 'https://training.galaxyproject' in item.button_link %} gtn-modal{% endif%}"
               title="{{ item.button_tip|default:'Run tool' }}"
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"
             >
-              {{ item.button_md|markdown|safe|default:'<span class="material-icons">play_arrow</span>' }}
+              {% if item.button_icon %}
+              <span class="material-icons">{{ item.button_icon|iconkey }}</span>
+              {% else %}
+              {{ item.button_md|inline_markdown|default:'<span class="material-icons">play_arrow</span>' }}
+              {% endif %}
             </a>
           </div>
           {% endif %}

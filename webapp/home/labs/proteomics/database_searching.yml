@@ -3,11 +3,11 @@ title: Database searching
 tabs:
   - id: tools
     title: Tools
-    heading_html: >
+    heading_md: >
       Some example tools are listed here: you can also search for more in the full tool panel to the left.
     content:
-      - title_html: "<code>DecoyDatabase</code>"
-        description_html: >
+      - title_md: "<code>DecoyDatabase</code>"
+        description_md: >
           <p>
             Create decoy sequence database from forward sequence database.
           </p>
@@ -16,8 +16,8 @@ tabs:
               - fasta
             label: Input FASTA file(s), each containing a database
         button_link: "{{ galaxy_base_url }}/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/openms_decoydatabase/DecoyDatabase/"
-      - title_html: "<code>MaxQuant</code>"
-        description_html: >
+      - title_md: "<code>MaxQuant</code>"
+        description_md: >
           <p>
             MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets.
           </p>
@@ -31,8 +31,8 @@ tabs:
               - tabular
             label: Experimental design template
         button_link: "{{ galaxy_base_url }}/root?tool_id=toolshed.g2.bx.psu.edu/repos/galaxyp/maxquant/maxquant/"
-      - title_html: "<code>Morpheus</code>"
-        description_html: >
+      - title_md: "<code>Morpheus</code>"
+        description_md: >
           <p>
             Database search algorithm for high-resolution tandem mass spectra.
           </p>
@@ -48,31 +48,31 @@ tabs:
   - id: help
     title: Help
     content:
-      - title_html: "Introduction to proteomics, protein identification, quantification and statistical modelling"
-        description_html: >
+      - title_md: "Introduction to proteomics, protein identification, quantification and statistical modelling"
+        description_md: >
           <p>
             Start here if you are new to proteomic analysis in Galaxy.
           </p>
         button_link: "https://usegalaxy.org.au/training-material/topics/proteomics/tutorials/introduction/slides.html"
-        button_html: "Tutorial"
-      - title_html: "Label-free data analysis using MaxQuant"
-        description_html: >
+        button_md: "Tutorial"
+      - title_md: "Label-free data analysis using MaxQuant"
+        description_md: >
           <p>
             Learn how to use MaxQuant for the analysis of label-free shotgun (DDA) data.
           </p>
         button_link: "https://proteomics.usegalaxy.org.au/training-material/topics/proteomics/tutorials/maxquant-label-free/tutorial.html"
-        button_html: "Tutorial"
-      - title_html: "Peptide and Protein ID using OpenMS tools"
-        description_html: >
+        button_md: "Tutorial"
+      - title_md: "Peptide and Protein ID using OpenMS tools"
+        description_md: >
           <p>
             Learn how to identify proteins from LC-MS/MS raw files.
           </p>
         button_link: "https://usegalaxy.org.au/training-material/topics/proteomics/tutorials/protein-id-oms/tutorial.html"
-        button_html: "Tutorial"
-      - title_html: "Galaxy Australia support"
-        description_html: >
+        button_md: "Tutorial"
+      - title_md: "Galaxy Australia support"
+        description_md: >
           <p>
             Any user of Galaxy Australia can request support through an online form.
           </p>
         button_link: "/request/support"
-        button_html: "Request support"
+        button_md: "Request support"

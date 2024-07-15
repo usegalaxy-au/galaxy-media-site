@@ -16,7 +16,7 @@
       {% if cover_image.auto_full_width %}
       style="width: 100%; height: auto;"
       {% else %}
-      style="height: {{ cover_image.max_height_px }}px; width: auto; max-width: 100%;"
+      style="max-height: {{ cover_image.max_height_px }}px; height: auto; width: auto; max-width: 100%;"
       {% endif %}
       src="{{ cover_image.img.url }}"
       alt="{{ cover_image.img.title }}"

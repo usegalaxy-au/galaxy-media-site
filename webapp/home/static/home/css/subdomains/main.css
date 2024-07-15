@@ -32,6 +32,28 @@ code {
 .table-inputs tr:not(:last-child) td {
   border-bottom: 1px solid #ccc;
 }
+.contributor {
+  margin: 0 4px;
+  cursor: pointer;
+}
+.contributor .github-avatar {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+.contributor .wrapper {
+  display: inline-block;
+  width: 35px;
+  min-height: 35px;
+  margin: 2px 0;
+  text-align: center;
+}
+.contributor.dead-link {
+  cursor: default;
+  color: var(--bs-gray-800);
+}
 
 /* BS override */
 ul.nav-pills {

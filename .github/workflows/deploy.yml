@@ -1,16 +1,19 @@
-name: Deploy to production
+name: Deploy to prod server
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Django tests"]
+    types:
+      - completed
     branches:
       - main
 
 jobs:
-  run_pull:
-    name: run server update
+  deploy_prod:
+    name: Deploy to prod server
     runs-on: ubuntu-latest
     environment: deployment
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
     - name: install ssh keys
       # check this thread to understand why its needed:

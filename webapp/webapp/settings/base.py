@@ -113,16 +113,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.NumericPasswordValidator',
     },
 ]
 
@@ -130,9 +134,9 @@ AUTH_PASSWORD_VALIDATORS = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['MAIL_HOSTNAME']
 EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
-EMAIL_HOST_USER = os.environ.get('MAIL_SMTP_USERNAME')
-EMAIL_HOST_PASSWORD = os.environ.get('MAIL_SMTP_PASSWORD')
-EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
+EMAIL_HOST_USER = os.getenv('MAIL_SMTP_USERNAME')
+EMAIL_HOST_PASSWORD = os.getenv('MAIL_SMTP_PASSWORD')
+EMAIL_USE_TLS = os.getenv('MAIL_USE_TLS').lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
 SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
@@ -140,21 +144,28 @@ EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX', 'GMS: ')
 
 # Validating whether submitted email is valid Galaxy AU account
 MOCK_GALAXY_INTERACTIONS = (
-    os.environ.get('MOCK_GALAXY_INTERACTIONS')
+    os.getenv('MOCK_GALAXY_INTERACTIONS')
     in ('1', 'true')
 )
 if MOCK_GALAXY_INTERACTIONS:
     print("MOCK_GALAXY_INTERACTIONS is set: mocking galaxy interactions")
 
 # For linking to Galaxy server
-GALAXY_URL = os.environ.get('GALAXY_URL')
+GALAXY_URL = os.getenv('GALAXY_URL')
 if GALAXY_URL:
     GALAXY_URL = GALAXY_URL.strip('/')
 else:
     print('Warning: GALAXY_URL not set. Links to Galaxy server will be'
           ' broken.')
+
 # API auth
-GALAXY_API_KEY = os.environ.get('GALAXY_API_KEY')
+GALAXY_API_KEY = os.getenv('GALAXY_API_KEY')
+GITHUB_API_TOKEN = os.getenv('GITHUB_API_TOKEN')
+
+if not GITHUB_API_TOKEN:
+    print("Warning: GITHUB_API_TOKEN not set. Requests to api.github.com will"
+          " be rate-limited at 60 requests per hour which may result in"
+          " errors.")
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

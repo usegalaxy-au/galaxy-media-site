@@ -35,6 +35,9 @@
   {% include 'home/subdomains/components/feedback.html' with subdomain='genome' %}
   {% endcomment %}
 
+  {% include 'home/subdomains/components/gtn-modal.html' %}
+
+
   <section id="headerSection" class="header-subdomain australia d-flex align-items-center h-100">
     {% if snippets.header_logo %}
     <img id="header-logo" src="{{ snippets.header_logo }}" alt="{{ site_name }} Logo">
@@ -51,14 +54,23 @@
   {% endfor %}
 
   {% if snippets.conclusion_md %}
-  {{ snippets.conclusion_md|markdown|safe }}
+  {{ snippets.conclusion_md|markdown }}
+  {% endif %}
+
+  {% if contributors %}
+  {% include 'home/subdomains/components/contributors.html' %}
   {% endif %}
 
 </main>
 
 
+{% if feedback_email %}
+{% include 'home/subdomains/components/feedback-modal.html' %}
+{% endif %}
+
+
 {% if snippets.footer_md %}
-{{ snippets.footer_md|markdown|safe }}
+{{ snippets.footer_md|markdown }}
 {% endif %}
 
 {% endblock %}
@@ -69,9 +81,13 @@
 
 
 {% block onload %}
-  // Ensure that notice links open in new tab if external
-  $('.notice a').each( (i, item) => {
-    if (!item.href.includes("{{ HOSTNAME }}")) {
+  // Ensure that links open in new tab if external
+  $('a').each( (i, item) => {
+    if (
+      item.href
+      && item.href.slice(0, 1) !== "/"
+      && !item.href.includes("{{ galaxy_base_url }}")
+    ) {
       item.target = '_blank';
     }
   });

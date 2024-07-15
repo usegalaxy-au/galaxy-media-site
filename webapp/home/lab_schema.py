@@ -1,7 +1,21 @@
 """Schema for validating Galaxy Lab content."""
 
+from enum import Enum
 from pydantic import BaseModel
 from typing import Optional, Union
+
+
+class IconEnum(str, Enum):
+    """Define material icon types for buttons."""
+    run = 'run'            # play_arrow
+    tutorial = 'tutorial'  # school
+    social = 'social'      # group
+    help = 'help'          # help
+
+
+class TabContentEnum(str, Enum):
+    """Define the type of content in a tab item."""
+    subsections = 'subsections'
 
 
 class TabItem(BaseModel):
@@ -13,8 +27,13 @@ class TabItem(BaseModel):
     description_md: str
     button_link: Optional[str] = None
     button_tip: Optional[str] = None
+    button_html: Optional[str] = None
+    button_icon: Optional[IconEnum] = None
     view_link: Optional[str] = None
     view_tip: Optional[str] = None
+    view_html: Optional[str] = None
+    view_icon: Optional[str] = None
+    exclude_from: Optional[list[str]] = []
 
 
 class TabSubsection(BaseModel):
@@ -27,8 +46,14 @@ class TabSubsection(BaseModel):
 class SectionTab(BaseModel):
     """Validate Galaxy Lab section tab."""
     id: str
-    title: str
-    content: Union[list[TabItem], dict[str, list[TabSubsection]]]
+    title: Optional[str] = None
+    content: Optional[
+        Union[
+            list[TabItem],
+            dict[TabContentEnum, list[TabSubsection]]
+        ]
+    ] = None
+    heading_md: Optional[str] = None
 
 
 class LabSectionSchema(BaseModel):
