@@ -64,6 +64,11 @@
 </main>
 
 
+{% if feedback_email %}
+{% include 'home/subdomains/components/feedback-modal.html' %}
+{% endif %}
+
+
 {% if snippets.footer_md %}
 {{ snippets.footer_md|markdown }}
 {% endif %}

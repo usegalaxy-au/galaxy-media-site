@@ -4,7 +4,7 @@ import json
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 
 from utils.institution import is_institution_email
-from .forms import SupportRequestForm
+from .forms import LabFeedbackForm
 
 SESSION_COUNT_LIMIT = 5
 
@@ -30,13 +30,13 @@ def dismiss_notice(request):
     return HttpResponse('OK', status=201)
 
 
-def subdomain_feedback(request, subdomain):
+def lab_feedback(request, subdomain):
     """Process feedback form for *.usegalaxy.org.au subsites."""
     if request.method != 'POST':
         return HttpResponseBadRequest()
-    form = SupportRequestForm(request.POST)
+    form = LabFeedbackForm(request.POST)
     if form.is_valid():
-        form.dispatch(subject=f"{subdomain.title()} subdomain feedback")
+        form.dispatch(subject=f"{subdomain.title()} Lab feedback")
         return JsonResponse({'success': True})
     return JsonResponse({
         'success': False,

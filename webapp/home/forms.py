@@ -212,6 +212,25 @@ class SupportRequestForm(forms.Form):
         )
 
 
+class LabFeedbackForm(SupportRequestForm):
+
+    to_address = forms.EmailField(required=False)
+
+    def dispatch(self, subject=None):
+        """Dispatch content via the FreshDesk API."""
+        data = self.cleaned_data
+        dispatch_form_mail(
+            to_address=data['to_address'] or settings.EMAIL_TO_ADDRESS,
+            reply_to=data['email'],
+            subject=subject or "Galaxy Australia Lab feedback",
+            text=(
+                f"Name: {data['name']}\n"
+                f"Email: {data['email']}\n\n"
+                + data['message']
+            )
+        )
+
+
 class BaseAccessRequestForm(forms.Form):
     """Abstract form for requesting access to a resource.
 
