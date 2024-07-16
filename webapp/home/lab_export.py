@@ -11,7 +11,9 @@ http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.
 import concurrent.futures
 import logging
 import requests
+import warnings
 import yaml
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from django.conf import settings
 from markdown2 import Markdown
 from pydantic import ValidationError
@@ -283,12 +285,13 @@ class ExportSubsiteContext(dict):
 
     def _fetch_snippet(self, relpath):
         """Fetch HTML snippet from remote URL."""
-        if self.content_root:
-            url = (self.parent_url + relpath.lstrip('./'))
-            res = self._get(url)
-            body = res.content.decode('utf-8')
+        url = (self.parent_url + relpath.lstrip('./'))
+        res = self._get(url)
+        body = res.content.decode('utf-8')
         if url.endswith('.md'):
             body = self._convert_md(body)
+        if url.rsplit('.', 1)[1] in ('html', 'md'):
+            self._validate_html(body)
         return body
 
     def _convert_md(self, text):
@@ -301,6 +304,16 @@ class ExportSubsiteContext(dict):
             },
         })
         return engine.convert(text)
+
+    def _validate_html(self, body):
+        """Validate HTML content."""
+        try:
+            with warnings.catch_warnings(action="ignore"):
+                warnings.filterwarnings('ignore',
+                                        category=MarkupResemblesLocatorWarning)
+                BeautifulSoup(body, 'html.parser')
+        except Exception as exc:
+            raise SubsiteBuildError(exc, source='HTML')
 
 
 def get_github_user(username):

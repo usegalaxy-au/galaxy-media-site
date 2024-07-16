@@ -8,9 +8,7 @@ tabs:
     content:
       - title_md: Import data to Galaxy
         description_md: >
-          <p>
-            Standard upload of data to Galaxy, from your computer or from the web.
-          </p>
+          Standard upload of data to Galaxy, from your computer or from the web.
         button_link: "{{ galaxy_base_url }}/tool_runner?tool_id=upload1"
       - title_md: <code>FastQC</code> - sequence quality reports
         description_md: >

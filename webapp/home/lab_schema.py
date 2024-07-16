@@ -1,8 +1,34 @@
 """Schema for validating Galaxy Lab content."""
 
+import re
 from enum import Enum
 from pydantic import BaseModel
+from pydantic.functional_validators import AfterValidator
 from typing import Optional, Union
+from typing_extensions import Annotated
+
+
+def html_tags(v: str) -> str:
+    """Validate markdown content."""
+    if "<" not in v:
+        return
+    # Remove self closing tags
+    v = (
+        re.sub(r'(<.*?/>)|(<img.*?>)', '', v)
+        .replace('<br>', '')
+        .replace('<hr>', '')
+    )
+    # Enumerate open/close tags
+    open_tags = re.findall(r'<[^/].*?>', v)
+    close_tags = re.findall(r'</.*?>', v)
+    assert len(open_tags) == len(close_tags), (
+        f'Unclosed HTML tag in section content:\n{v}')
+    return v
+
+
+MarkdownStr = Annotated[str, AfterValidator(html_tags), {
+    'description': 'Markdown or HTML formatted string.',
+}]
 
 
 class IconEnum(str, Enum):
@@ -23,15 +49,15 @@ class TabItem(BaseModel):
 
     In the UI this will be rendered as an "accordion" item.
     """
-    title_md: str
-    description_md: str
+    title_md: MarkdownStr
+    description_md: MarkdownStr
     button_link: Optional[str] = None
     button_tip: Optional[str] = None
-    button_html: Optional[str] = None
+    button_md: Optional[MarkdownStr] = None
     button_icon: Optional[IconEnum] = None
     view_link: Optional[str] = None
     view_tip: Optional[str] = None
-    view_html: Optional[str] = None
+    view_md: Optional[MarkdownStr] = None
     view_icon: Optional[str] = None
     exclude_from: Optional[list[str]] = []
 
@@ -53,7 +79,7 @@ class SectionTab(BaseModel):
             dict[TabContentEnum, list[TabSubsection]]
         ]
     ] = None
-    heading_md: Optional[str] = None
+    heading_md: Optional[MarkdownStr] = None
 
 
 class LabSectionSchema(BaseModel):
@@ -73,9 +99,6 @@ class LabSchema(BaseModel):
     sections: list[str] | str
     header_logo: Optional[str] = None
     custom_css: Optional[str] = None
-    intro_md: Optional[str] = None
-    conclusion_md: Optional[str] = None
-    footer_md: Optional[str] = None
     intro_md: Optional[str] = None
     conclusion_md: Optional[str] = None
     footer_md: Optional[str] = None
