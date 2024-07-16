@@ -16,6 +16,7 @@ nationality: Australian
 galaxy_base_url: https://proteomics.usegalaxy.org.au  # Use for rendering tool/workflow URLs. Trailing '/' will be removed.
 subdomain: proteomics
 root_domain: usegalaxy.org.au
+feedback_email: help@genome.edu.au
 
 # Custom content relative to this file URL
 header_logo: static/logo.png
