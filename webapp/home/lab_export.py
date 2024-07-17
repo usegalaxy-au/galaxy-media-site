@@ -308,9 +308,8 @@ class ExportSubsiteContext(dict):
     def _validate_html(self, body):
         """Validate HTML content."""
         try:
-            with warnings.catch_warnings(action="ignore"):
-                warnings.filterwarnings('ignore',
-                                        category=MarkupResemblesLocatorWarning)
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', MarkupResemblesLocatorWarning)
                 BeautifulSoup(body, 'html.parser')
         except Exception as exc:
             raise SubsiteBuildError(exc, source='HTML')
