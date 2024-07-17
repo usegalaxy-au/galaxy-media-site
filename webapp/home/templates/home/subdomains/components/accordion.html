@@ -30,40 +30,46 @@
             {% endif %}
           </div>
 
-          {% if item.view_link %}
           <div class="col col-auto">
-            <a
-              href="{{ item.view_link }}"
-              class="btn btn-galaxy"
-              {% if item.view_link|first != '/' %}target="_blank"{% endif %}
-              {% if item.view_tip %}
-              title="{{ item.view_tip }}"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              {% endif %}
-            >
-              <span class="material-icons">visibility</span>
-            </a>
-          </div>
-          {% endif %}
+            {% if item.button_link %}
+            <div class="my-1">
+              <a
+                href="{{ item.button_link }}"
+                class="btn btn-galaxy{% if 'https://training.galaxyproject' in item.button_link %} gtn-modal{% endif%}"
+                title="{{ item.button_tip|default:'Run tool' }}"
+                data-bs-toggle="tooltip"
+                data-bs-placement="left"
+              >
+                {% if item.button_icon %}
+                <span class="material-icons">{{ item.button_icon|iconkey }}</span>
+                {% else %}
+                {{ item.button_md|inline_markdown|default:'<span class="material-icons">play_arrow</span>' }}
+                {% endif %}
+              </a>
+            </div>
+            {% endif %}
 
-          {% if item.button_link %}
-          <div class="col col-auto">
-            <a
-              href="{{ item.button_link }}"
-              class="btn btn-galaxy{% if 'https://training.galaxyproject' in item.button_link %} gtn-modal{% endif%}"
-              title="{{ item.button_tip|default:'Run tool' }}"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-            >
-              {% if item.button_icon %}
-              <span class="material-icons">{{ item.button_icon|iconkey }}</span>
-              {% else %}
-              {{ item.button_md|inline_markdown|default:'<span class="material-icons">play_arrow</span>' }}
-              {% endif %}
-            </a>
+            {% if item.view_link %}
+            <div class="my-1">
+              <a
+                href="{{ item.view_link }}"
+                class="btn btn-galaxy"
+                {% if item.view_link|first != '/' %}target="_blank"{% endif %}
+                {% if item.view_tip %}
+                title="{{ item.view_tip }}"
+                data-bs-toggle="tooltip"
+                data-bs-placement="left"
+                {% endif %}
+              >
+                {% if item.view_icon %}
+                <span class="material-icons">{{ item.view_icon|iconkey }}</span>
+                {% else %}
+                {{ item.view_md|inline_markdown|default:'<span class="material-icons">visibility</span>' }}
+                {% endif %}
+              </a>
+            </div>
+            {% endif %}
           </div>
-          {% endif %}
         </div>
       </div>
     </div>

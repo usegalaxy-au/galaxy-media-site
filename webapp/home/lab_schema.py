@@ -37,6 +37,7 @@ class IconEnum(str, Enum):
     tutorial = 'tutorial'  # school
     social = 'social'      # group
     help = 'help'          # help
+    view = 'view'          # visibility
 
 
 class TabContentEnum(str, Enum):
@@ -58,7 +59,7 @@ class TabItem(BaseModel):
     view_link: Optional[str] = None
     view_tip: Optional[str] = None
     view_md: Optional[MarkdownStr] = None
-    view_icon: Optional[str] = None
+    view_icon: Optional[IconEnum] = None
     exclude_from: Optional[list[str]] = []
 
 
