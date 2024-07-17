@@ -2,16 +2,15 @@
 
 import re
 from enum import Enum
-from pydantic import BaseModel
-from pydantic.functional_validators import AfterValidator
+from pydantic import BaseModel, Field, field_validator
+from pydantic.types import Annotated
 from typing import Optional, Union
-from typing_extensions import Annotated
 
 
 def html_tags(v: str) -> str:
     """Validate markdown content."""
     if "<" not in v:
-        return
+        return v
     # Remove self closing tags
     v = (
         re.sub(r'(<.*?/>)|(<img.*?>)', '', v)
@@ -26,9 +25,10 @@ def html_tags(v: str) -> str:
     return v
 
 
-MarkdownStr = Annotated[str, AfterValidator(html_tags), {
-    'description': 'Markdown or HTML formatted string.',
-}]
+MarkdownStr = Annotated[
+    str,
+    Field(description='Markdown or HTML formatted string.'),
+]
 
 
 class IconEnum(str, Enum):
@@ -62,6 +62,13 @@ class TabItem(BaseModel):
     view_icon: Optional[IconEnum] = None
     exclude_from: Optional[list[str]] = []
 
+    @field_validator(
+        'title_md', 'description_md', 'button_md', 'view_md',
+        mode='before',
+    )
+    def validate_md(cls, value):
+        return html_tags(value)
+
 
 class TabSubsection(BaseModel):
     """Validate Galaxy Lab section tab subsection."""
@@ -81,6 +88,10 @@ class SectionTab(BaseModel):
         ]
     ] = None
     heading_md: Optional[MarkdownStr] = None
+
+    @field_validator('heading_md', mode='before')
+    def validate_md(cls, value):
+        return html_tags(value)
 
 
 class LabSectionSchema(BaseModel):
