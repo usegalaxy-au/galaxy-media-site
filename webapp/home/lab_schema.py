@@ -13,13 +13,13 @@ def html_tags(v: str) -> str:
         return v
     # Remove self closing tags
     v = (
-        re.sub(r'(<.*?/>)|(<img.*?>)', '', v)
+        re.sub(r'(<.*?/>)|(<img.*?>)', '', v, flags=re.MULTILINE)
         .replace('<br>', '')
         .replace('<hr>', '')
     )
     # Enumerate open/close tags
-    open_tags = re.findall(r'<[^/].*?>', v)
-    close_tags = re.findall(r'</.*?>', v)
+    open_tags = re.findall(r'<[^/][\s\S]*?>', v, flags=re.MULTILINE)
+    close_tags = re.findall(r'</[\s\S]*?>', v, flags=re.MULTILINE)
     assert len(open_tags) == len(close_tags), (
         f'Unclosed HTML tag in section content:\n{v}')
     return v
