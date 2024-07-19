@@ -1,5 +1,5 @@
 # python==3.12
-django==4.*
+django>=4.2.7,<5.0
 django-timezone-field==4.*
 django-crispy-forms==1.*
 django-recaptcha==4.*
