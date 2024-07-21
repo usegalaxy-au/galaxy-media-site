@@ -11,7 +11,9 @@ http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.
 import concurrent.futures
 import logging
 import requests
+import warnings
 import yaml
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from django.conf import settings
 from markdown2 import Markdown
 from pydantic import ValidationError
@@ -29,6 +31,7 @@ GITHUB_USERNAME_URL = "https://api.github.com/users/{username}"
 CONTENT_TYPES = SimpleNamespace(
     WEBPAGE='webpage',
     YAML='yaml',
+    TEXT='text',
 )
 
 
@@ -95,36 +98,48 @@ class ExportSubsiteContext(dict):
         """Fetch content from URL and validate returned content."""
         url = self._make_raw(url)
         self._validate_url(url, expected_type)
-        res = None
-        if not res:
+        try:
             res = requests.get(url)
-            if res.status_code >= 300:
-                if ignore_404 and res.status_code == 404:
-                    return
-                raise SubsiteBuildError(
-                    f'HTTP {res.status_code} fetching file.',
-                    url=url)
+        except requests.exceptions.RequestException as exc:
+            raise SubsiteBuildError(exc, url=url)
+        if res.status_code >= 300:
+            if ignore_404 and res.status_code == 404:
+                return
+            raise SubsiteBuildError(
+                f'HTTP {res.status_code} fetching file.',
+                url=url)
         if expected_type != CONTENT_TYPES.WEBPAGE:
             self._validate_not_webpage(url, res, expected_type)
         return res
 
     def _validate_not_webpage(self, url, response, expected_type=None):
         """Assert that the response body is not a webpage."""
-        lines = [
-            x.strip()
-            for x in response.content.decode('utf-8').split('\n')
-            if x.strip()
-        ]
-        if lines and '<!doctype html>' in lines[0].lower():
+        def looks_like_a_webpage(response):
+            body = response.content.decode('utf-8')
+            lines = [
+                x.strip()
+                for x in body.split('\n')
+                if x.strip()
+            ]
+            return any([
+                # raw.githubusercontent.com does not set content-type
+                'text/html' in response.headers.get('content-type', ''),
+                lines and '<!doctype html>' in lines[0].lower(),
+                lines and lines[0].lower().startswith('<html'),
+            ])
+
+        if looks_like_a_webpage(response):
             expected = expected_type or 'a raw file'
             raise SubsiteBuildError(
                 (
                     "Unexpected HTML content in file.\n"
                     'The URL provided returned a webpage (HTML) when'
-                    f' {expected} was expected.'
+                    f' {expected} was expected.\n\n'
+                    'Response content:\n\n'
+                    f'{response.content.decode("utf-8")}'
                 ),
                 url=url,
-                source='YAML',
+                source=expected_type,
             )
 
     def _validate_url(self, url, expected_type):
@@ -148,35 +163,31 @@ class ExportSubsiteContext(dict):
         return url
 
     def _fetch_yaml_context(self):
-        """Fetch params from remote YAML file.
+        """Fetch template context from remote YAML file.
 
-        This file is typically named main.yml.
+        This file is conventionally named <hostname>.yml or base.yml.
         """
         if not self.content_root:
             raise ValueError(
                 "GET parameter 'content_root' required for root URL")
-        res = self._get(self.content_root, expected_type=CONTENT_TYPES.YAML)
-        yaml_str = res.content.decode('utf-8')
-        try:
-            params = yaml.safe_load(yaml_str)
-        except (yaml.YAMLError, yaml.scanner.ScannerError) as exc:
-            raise SubsiteBuildError(exc, url=self.content_root, source='YAML')
+
+        context = self._fetch_yaml_content(self.content_root, extend=False)
 
         if not self.content_root.endswith('base.yml'):
             # Attempt to extend base.yml with self.content_root
             base_content_url = (self.parent_url + 'base.yml')
-            base_data = self._fetch_yaml_content(
+            base_context = self._fetch_yaml_content(
                 base_content_url, ignore_404=True, extend=False)
-            if base_data:
-                base_data.update(params)
-                params = base_data
+            if base_context:
+                base_context.update(context)
+                context = base_context
 
         try:
-            LabSchema(**params)
+            LabSchema(**context)
         except ValidationError as exc:
             raise SubsiteBuildError(exc, url=self.content_root, source='YAML')
 
-        self.update(params)
+        self.update(context)
         self._fetch_snippets()
 
     def _fetch_sections(self):
@@ -222,11 +233,10 @@ class ExportSubsiteContext(dict):
         yaml_url = self.content_root
         if not (yaml_url and relpath):
             return
-        if relpath.startswith('http'):
-            url = relpath
-        else:
-            url = yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
-
+        url = (
+            relpath if relpath.startswith('http')
+            else yaml_url.rsplit('/', 1)[0] + '/' + relpath.lstrip('./')
+        )
         res = self._get(
             url,
             expected_type=CONTENT_TYPES.YAML,
@@ -234,13 +244,19 @@ class ExportSubsiteContext(dict):
         )
         if not res:
             return
-
         yaml_str = res.content.decode('utf-8')
 
         try:
             data = yaml.safe_load(yaml_str)
         except yaml.YAMLError as exc:
             raise SubsiteBuildError(exc, url=url, source='YAML')
+        if isinstance(data, str):
+            raise SubsiteBuildError(
+                'YAML file must contain a dictionary or list.'
+                f' Got a string instead:\n{data}',
+                url=url,
+                source='YAML',
+            )
 
         if extend and isinstance(data, dict):
             data = {
@@ -256,7 +272,7 @@ class ExportSubsiteContext(dict):
     def _fetch_contributors(self):
         """Attempt to fetch list of contributors from repo."""
         url = self.parent_url + CONTRIBUTORS_FILE
-        res = self._get(url, ignore_404=True)
+        res = self._get(url, ignore_404=True, expected_type=CONTENT_TYPES.TEXT)
         if res:
             usernames_list = [
                 x.strip() for x in res.content.decode('utf-8').split('\n')
@@ -283,12 +299,13 @@ class ExportSubsiteContext(dict):
 
     def _fetch_snippet(self, relpath):
         """Fetch HTML snippet from remote URL."""
-        if self.content_root:
-            url = (self.parent_url + relpath.lstrip('./'))
-            res = self._get(url)
-            body = res.content.decode('utf-8')
+        url = (self.parent_url + relpath.lstrip('./'))
+        res = self._get(url, expected_type=CONTENT_TYPES.WEBPAGE)
+        body = res.content.decode('utf-8')
         if url.endswith('.md'):
             body = self._convert_md(body)
+        if url.rsplit('.', 1)[1] in ('html', 'md'):
+            self._validate_html(body)
         return body
 
     def _convert_md(self, text):
@@ -301,6 +318,15 @@ class ExportSubsiteContext(dict):
             },
         })
         return engine.convert(text)
+
+    def _validate_html(self, body):
+        """Validate HTML content."""
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', MarkupResemblesLocatorWarning)
+                BeautifulSoup(body, 'html.parser')
+        except Exception as exc:
+            raise SubsiteBuildError(exc, source='HTML')
 
 
 def get_github_user(username):

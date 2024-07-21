@@ -54,6 +54,7 @@ tabs:
         title_md: Data QC
         view_link: https://workflowhub.eu/workflows/222
         view_tip: View in WorkflowHub
+        view_icon: tutorial
         description_md: |
           Report statistics from sequencing reads.
           <br><br>

@@ -272,9 +272,7 @@ tabs:
                 </p>
             - title_md: Annotation with FgenesH++
               description_md: >
-                <p>
-                  Annotate the genome using outputs from the TSI transcriptome workflows.
-                <p>
+                Annotate the genome using outputs from the TSI transcriptome workflows.
                 <p class="alert alert-warning">
                   Note: you must
                   <a href="https://site.usegalaxy.org.au/request/access/fgenesh" target="_blank">

@@ -64,7 +64,7 @@ class SubsiteBuildError(Exception):
             for error in exc.errors():
                 err = {
                     'message': error['msg'],
-                    'location': (
+                    'location': f"section[{self.section_id}] > " + (
                         f'{error["loc"][0]} > '
                         + ' > '.join(str(x) for x in error["loc"][1:])
                     ),
