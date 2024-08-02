@@ -81,13 +81,9 @@
 
 
 {% block onload %}
-  // Ensure that links open in new tab if external
+  // Ensure that links open in new tab
   $('a').each( (i, item) => {
-    if (
-      item.href
-      && item.href.slice(0, 1) !== "/"
-      && !item.href.includes("{{ galaxy_base_url }}")
-    ) {
+    if (item.href && item.href.slice(0, 1) !== "/") {
       item.target = '_blank';
     }
   });
