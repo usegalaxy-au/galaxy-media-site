@@ -295,7 +295,7 @@ class ExportSubsiteContext(dict):
     def _fetch_img_src(self, relpath):
         """Build URL for image."""
         if self.content_root:
-            return (self.parent_url + relpath.lstrip('./'))
+            return self._make_raw(self.parent_url + relpath.lstrip('./'))
 
     def _fetch_snippet(self, relpath):
         """Fetch HTML snippet from remote URL."""
