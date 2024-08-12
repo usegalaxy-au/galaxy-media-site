@@ -1,8 +1,8 @@
 # Test this locally with:
-# http://127.0.0.1:8000/lab/export?content_root=http://localhost:8000/static/home/labs/genome/main.yml
+# http://127.0.0.1:8000/lab/export?content_root=http://localhost:8000/static/home/labs/genome/base.yml
 
 # Request this on site.usegalaxy.org.au with:
-# https://site.usegalaxy.org.au/lab/export?content_root=https://site.usegalaxy.org.au/static/home/labs/genome/main.yml
+# https://site.usegalaxy.org.au/lab/export?content_root=https://site.usegalaxy.org.au/static/home/labs/genome/base.yml
 
 # Check out the documentation for building exported labs:
 # https://site.usegalaxy.org.au/lab/export

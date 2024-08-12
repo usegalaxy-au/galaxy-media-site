@@ -30,7 +30,7 @@ TEST_LAB_ACCORDION_TEXT = (
     'Report statistics from sequencing reads',
     'Assemble Nanopore long reads.',
 )
-TEST_LAB_CONTENT_URL = f'{MOCK_LAB_BASE_URL}/static/home/labs/docs/main.yml'
+TEST_LAB_CONTENT_URL = f'{MOCK_LAB_BASE_URL}/static/home/labs/docs/base.yml'
 TEST_LAB_URL = f'/lab/export?content_root={TEST_LAB_CONTENT_URL}'
 
 

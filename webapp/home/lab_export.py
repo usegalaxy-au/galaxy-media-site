@@ -1,10 +1,10 @@
 """Exported landing pages to be requested by external Galaxy servers.
 
 Example with local YAML:
-http://127.0.0.1:8000/landing/export?content_root=http://127.0.0.1:8000/static/home/labs/genome/main.yml
+http://127.0.0.1:8000/landing/export?content_root=http://127.0.0.1:8000/static/home/labs/genome/base.yml
 
 Example URL with remote YAML:
-http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/static/home/labs/genome/main.yml
+http://127.0.0.1:8000/landing/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/static/home/labs/genome/base.yml
 
 """
 
