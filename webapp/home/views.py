@@ -319,6 +319,7 @@ def embed_snippet(request, snippet_path):
         return render(request, 'embed-snippet.html', {
             'title': 'Galaxy Media - embedded snippet',
             'snippet_path': snippet_path,
+            'crop_margin': True,  # could make this configurable in future
         })
     except TemplateDoesNotExist:
         raise Http404
