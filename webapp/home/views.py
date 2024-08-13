@@ -309,3 +309,16 @@ def custom_400(request, exception, template_name="400.html"):
     return render(request, template_name, {
         'exc': exception,
     }, status=400)
+
+
+def embed_snippet(request, snippet_path):
+    """Serve an embeddable snippet."""
+    try:
+        if 'snippets' not in snippet_path:
+            raise Http404
+        return render(request, 'embed-snippet.html', {
+            'title': 'Galaxy Media - embedded snippet',
+            'snippet_path': snippet_path,
+        })
+    except TemplateDoesNotExist:
+        raise Http404
