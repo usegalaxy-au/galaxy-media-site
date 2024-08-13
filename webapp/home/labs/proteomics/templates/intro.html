@@ -39,29 +39,18 @@
     </div>
 
     <div class="col">
-      <a class="text-danger" href="">
-        <table>
-          <tr>
-            <td>
-              <span class="material-icons px-3" style="font-size: 3rem;">change_circle</span>
-            </td>
-            <td>
-              MS data file format converters
-            </td>
-          </tr>
-        </table>
-      </a>
-    </div>
-
-    <div class="col">
-      <a class="text-danger" href="">
+      <a
+        href="#"
+        data-bs-toggle="modal"
+        data-bs-target="#sharedHistoryModal"
+      >
         <table>
           <tr>
             <td>
               <span class="material-icons px-3" style="font-size: 3rem;">account_tree</span>
             </td>
             <td>
-              MS reference data on Galaxy
+              Shared proteomics histories
             </td>
           </tr>
         </table>
@@ -93,6 +82,53 @@
         <p><a class="ga-btn" href="{{ galaxy_base_url }}" target="_blank">Take me back to Galaxy {{ site_name }}</a></p>
         <p><a class="ga-btn" href="/about">What is Galaxy Australia?</a></p>
         <p><a class="ga-btn" href="/request/support">Galaxy Australia support</a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="sharedHistoryModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Galaxy {{ site_name }} Shared Histories</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          This set of proteomics-specific shared histories contain test or demo data for software available on Proteomics Lab. You can copy these histories directly to your account on Galaxy, making it faster to get started!
+        </p>
+
+        <table class="table table-striped">
+          <tr>
+            <td>
+              Demo data for LFQanalyst and TMTanalyst.
+            </td>
+            <td>
+              <a class="btn btn-primary text-nowrap" href="https://usegalaxy.org.au/u/mike/h/lfq-and-tmt">
+                View history
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Example data provided for the "MaxQuant and MSstats for the analysis of label-free data" Galaxy Training Network (GTN) tutorial, which is available
+              <a href="https://gxy.io/GTN:T00219">here</a>.
+            </td>
+            <td>
+              <a
+                class="btn btn-primary text-nowrap"
+                href="https://usegalaxy.org.au/u/johan/h/maxquant-and-msstats-for-the-analysis-of-label-free-data-1"
+              >
+                View history
+              </a>
+            </td>
+          </tr>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

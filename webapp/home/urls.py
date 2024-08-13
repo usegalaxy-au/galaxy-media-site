@@ -29,6 +29,10 @@ urlpatterns = [
          api.validate_institutional_email,
          name="validate_institutional_email"),
 
+    # Arbitrary HTML snippets
+    re_path(r'^embed\/([\S\/]+\.html)', views.embed_snippet,
+            name='embed_snippet'),
+
     # Arbitrary *.html / *.md pages
     re_path(r'^[\w\d\_-]+\.(?:html|md)$', views.page, name='html_pages'),
 

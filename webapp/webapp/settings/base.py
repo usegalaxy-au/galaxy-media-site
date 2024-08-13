@@ -38,7 +38,7 @@ MEDIA_ROOT = BASE_DIR / 'webapp/media'
 LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
 RECIPIENT_MASTER_CSV = BASE_DIR / '../scripts/mail/recipient_records.csv'
 DEFAULT_EXPORTED_LAB_CONTENT_ROOT = (
-    f'http://{HOSTNAME}/static/home/labs/docs/main.yml'
+    f'http://{HOSTNAME}/static/home/labs/docs/base.yml'
 )
 
 # Hostnames

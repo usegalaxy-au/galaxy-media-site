@@ -14,11 +14,11 @@
     </li>
     <li>
       See a full working example of an exported Galaxy Lab page
-      <a href="/lab/export?content_root=http://{{ HOSTNAME }}/static/home/labs/genome/main.yml">here</a>.
+      <a href="/lab/export?content_root=http://{{ HOSTNAME }}/static/home/labs/genome/base.yml">here</a>.
     </li>
     <li>
       See a minimal working example of a lab page
-      <a href="/lab/export?content_root=http://{{ HOSTNAME }}/static/home/labs/simple/main.yml">here</a>.
+      <a href="/lab/export?content_root=http://{{ HOSTNAME }}/static/home/labs/simple/base.yml">here</a>.
     </li>
   </ul>
 
@@ -48,8 +48,8 @@
             <ul>
               <li>
                 The root of your site's content should be a YAML file - see
-                <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/dev/webapp/home/labs/docs/main.yml" target="_blank">
-                  main.yml
+                <a href="https://github.com/usegalaxy-au/galaxy-media-site/tree/dev/webapp/home/labs/docs/base.yml" target="_blank">
+                  base.yml
                 </a>
                 for the content root of this page.
               </li>
@@ -59,8 +59,8 @@
                 For example, we can explicitly request this page with:
                 <br>
                 <small>
-                  <a href="/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/main.yml" target="_blank">
-                    http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/main.yml
+                  <a href="/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/base.yml" target="_blank">
+                    http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/usegalaxy-au/galaxy-media-site/dev/webapp/home/labs/docs/base.yml
                   </a>
                 </small>
               </li>
@@ -68,7 +68,7 @@
                 The web server will fetch your content from GitHub (or anywhere on the internet) and render it into this page.
               </li>
               <li>
-                Note that <code>main.yml</code> points to other files (YAML, HTML, CSS and images), which are located in the same remote directory (e.g. on GitHub). You can template the entire page with these files!
+                Note that <code>base.yml</code> points to other files (YAML, HTML, CSS and images), which are located in the same remote directory (e.g. on GitHub). You can template the entire page with these files!
               </li>
               <li>
                 The most useful part of this machinery is the <code>sections</code> content, which populates the tool/workflow sections below.
@@ -110,7 +110,7 @@
                 <br>
                 <small>
                   <code>
-                    http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/myusername/myrepo/path/to/content/main.yml
+                    http://{{ HOSTNAME }}/lab/export?content_root=https://raw.githubusercontent.com/myusername/myrepo/path/to/content/base.yml
                   </code>
                 </small>
               </li>
@@ -204,7 +204,7 @@
     $(`#${id}`).append(exportInfoButton);
   }
   $(document).ready(function() {
-    addHoverInfo('headerSection', 'main.yml');
+    addHoverInfo('headerSection', 'base.yml');
     addHoverInfo('introSection', 'templates/intro.html');
     addHoverInfo('section_1Section', 'section_1.yml');
     addHoverInfo('section_2Section', 'section_2.yml');
