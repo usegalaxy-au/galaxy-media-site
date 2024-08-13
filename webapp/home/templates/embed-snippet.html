@@ -1,0 +1,12 @@
+{% extends 'home/header-export.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/embedded.css' %}">
+{% endblock %}
+
+
+{% block content %}
+{% include snippet_path %}
+{% endblock %}
