@@ -7,7 +7,9 @@
     <a
       href="#"
       data-bs-toggle="modal"
-      data-bs-target="#infoModal">
+      data-bs-target="#infoModal"
+      style="position: absolute; top: 135px; right: calc(50vw - 500px);"
+    >
       What is this page?
     </a>
   </p>
@@ -66,22 +68,38 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Galaxy {{ site_name }}</h5>
+        <h5 class="modal-title">Galaxy {{ site_name }} {{ lab_name }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p>
-          This site <em>{{ subdomain }}.{{ root_domain }}</em> is connected to the same server as <em>{{ root_domain }}</em>, but with an interface dedicated to helping our {{ nationality }} researchers. Your history, jobs and data quota are shared with the "Base" website.
+          The Galaxy {{ site_name }} {{ lab_name }} is your one-stop-shop for everything proteomics! From proteomics data conversion, database searching, identification, quantitation, all the way to visualisation.
         </p>
 
-        <div class="my-3">
-          Switch between sites quickly using the dropdown in Galaxy {{ site_name }}'s main navigation bar:
-          <img class="w-100 my-3 mx-auto" src="https://github.com/usegalaxy-au/galaxy-media-site/blob/dev/webapp/home/static/home/img/subdomains/site-switcher.png?raw=true" alt="Switch site button">
-        </div>
+        <p>
+          This site provides a "skin" over Galaxy {{ site_name }}, pointing you towards useful tools, workflows and resources for proteomics. The underlying Galaxy server is identical to
+          <a href="https://{{ root_domain }}">{{ root_domain }}</a>.
+          You can run all the same tools. Your jobs go into the same history. Your data is shared and uses the same quota.
+        </p>
 
-        <p><a class="ga-btn" href="{{ galaxy_base_url }}" target="_blank">Take me back to Galaxy {{ site_name }}</a></p>
-        <p><a class="ga-btn" href="/about">What is Galaxy Australia?</a></p>
-        <p><a class="ga-btn" href="/request/support">Galaxy Australia support</a></p>
+        <p>
+          If you feel restricted by the Proteomics tool panel, you can quickly switch back to the full tool panel using the dropdown at the top of the tool panel.
+        </p>
+
+        <p>
+          Switching between the "Base site"
+          (<a href="https://{{ root_domain }}">{{ root_domain }}</a>)
+          and {{ lab_name }}
+          (<a href="galaxy_base_url">{{ subdomain }}.{{ root_domain }}</a>)
+          is easy - look for the icon in the top navigation bar to switch between sites:
+          <img class="w-100 my-3 mx-auto" src="https://github.com/usegalaxy-au/galaxy-media-site/blob/dev/webapp/home/static/home/img/subdomains/site-switcher.png?raw=true" alt="Switch site button">
+        </p>
+
+        <p>
+          <b>Please note:</b> unfortunately, AAF login is not configured for Galaxy Labs, but we are working on fixing this.
+        </p>
+
+        <p><a class="ga-btn" href="https://{{ root_domain }}" target="_blank">Take me back to the Base site</a></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
