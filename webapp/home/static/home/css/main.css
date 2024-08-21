@@ -100,7 +100,7 @@ footer .links h6 {
   font-weight: bold;
   margin-bottom: 1.5rem;
 }
-footer .links a {
+.plain-links a {
   color: inherit;
   white-space: nowrap;
 }
