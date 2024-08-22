@@ -410,7 +410,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     terms = {
         'button_text': 'View terms',
         'src': static('home/documents/fgenesh-biocommons-terms.html'),
-        'agreement_name': 'FGENESH++ Service Terms of Use and Policies',
+        'agreement_name': f'{RESOURCE_NAME} Service Terms of Use and Policies',
     }
 
     def render_matrix_field(self):
@@ -426,7 +426,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
 
 
 class CellRangerRequestForm(BaseAccessRequestForm):
-    """Form to request AlphaFold access."""
+    """Form to request Cell Ranger access."""
 
     RESOURCE_NAME = 'Cell Ranger'
     AUTO_ACTION = True
@@ -437,14 +437,34 @@ class CellRangerRequestForm(BaseAccessRequestForm):
     agree_usage = forms.BooleanField()
 
     terms = {
-        'button_text': 'View license agreement',
+        'button_text': 'View license',
         'src': static('home/documents/cellranger-end-user-license.html'),
-        'agreement_name': 'Cell Ranger End User Licence Agreement',
+        'agreement_name': f'{RESOURCE_NAME} End User Licence Agreement',
+    }
+
+
+class DiannRequestForm(BaseAccessRequestForm):
+    """Form to request Diann access."""
+
+    RESOURCE_NAME = 'DIA-NN'
+    AUTO_ACTION = True
+
+    name = forms.CharField()
+    email = forms.EmailField(validators=[validators.institutional_email])
+    research_description = forms.CharField(max_length=500, required=False)
+    research_topics = forms.CharField(max_length=200, required=False)
+    agree_terms = forms.BooleanField()
+
+    terms = {
+        'button_text': 'View license',
+        'src': static('home/documents/diann-end-user-license.html'),
+        'agreement_name': f'{RESOURCE_NAME} End User Licence Agreement',
     }
 
 
 ACCESS_FORMS = {
     'alphafold': AlphafoldRequestForm,
-    'fgenesh': FgeneshRequestForm,
     'cellranger': CellRangerRequestForm,
+    'diann': DiannRequestForm,
+    'fgenesh': FgeneshRequestForm,
 }
