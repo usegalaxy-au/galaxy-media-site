@@ -10,9 +10,8 @@ jobs:
     steps:
       - name: Comment with Gitpod link
         env:
-          DJANGO_SETTINGS_MODULE: webapp.settings.dev
+          GH_TOKEN: ${{ github.token }}
         run: |
           GITPOD_URL="https://gitpod.io/#${{ github.event.pull_request.head.ref }}@github.com/${{ github.repository }}"
           echo "View the preview: [Gitpod]($GITPOD_URL)" > gitpod_comment.md
-
           gh pr comment ${{ github.event.pull_request.number }} --body "$(cat gitpod_comment.md)"
