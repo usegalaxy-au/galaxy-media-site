@@ -1,0 +1,16 @@
+name: Preview on Gitpod
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  gitpod-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment with Gitpod link
+        run: |
+          GITPOD_URL="https://gitpod.io/#${{ github.event.pull_request.head.ref }}@github.com/${{ github.repository }}"
+          echo "View the preview: [Gitpod]($GITPOD_URL)" > gitpod_comment.md
+
+          gh pr comment ${{ github.event.pull_request.number }} --body "$(cat gitpod_comment.md)"
