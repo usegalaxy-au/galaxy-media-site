@@ -131,16 +131,22 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ['MAIL_HOSTNAME']
-EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
-EMAIL_HOST_USER = os.getenv('MAIL_SMTP_USERNAME')
-EMAIL_HOST_PASSWORD = os.getenv('MAIL_SMTP_PASSWORD')
-EMAIL_USE_TLS = os.getenv('MAIL_USE_TLS').lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
 SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX', 'GMS: ')
+
+if os.getenv('MAIL_HOSTNAME'):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ['MAIL_HOSTNAME']
+    EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
+    EMAIL_HOST_USER = os.getenv('MAIL_SMTP_USERNAME')
+    EMAIL_HOST_PASSWORD = os.getenv('MAIL_SMTP_PASSWORD')
+    EMAIL_USE_TLS = os.getenv('MAIL_USE_TLS').lower() in ('1', 'true')
+else:
+    print("Warning: MAIL_HOSTNAME not set. Dispatched emails will be emitted"
+          " to the console.")
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Validating whether submitted email is valid Galaxy AU account
 MOCK_GALAXY_INTERACTIONS = (
