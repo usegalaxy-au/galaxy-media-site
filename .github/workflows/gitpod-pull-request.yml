@@ -1,0 +1,20 @@
+name: Preview on Gitpod
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  gitpod-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Comment with Gitpod link
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          GITPOD_URL="https://gitpod.io/#https://github.com/${{ github.repository }}/tree/${{ github.event.pull_request.head.ref }}"
+          printf "View the preview: [Gitpod]($GITPOD_URL)\n\nSee the [GMS on GitPod docs](../wiki/Development#contributing)" > gitpod_comment.md
+          gh pr comment ${{ github.event.pull_request.number }} --body "$(cat gitpod_comment.md)"

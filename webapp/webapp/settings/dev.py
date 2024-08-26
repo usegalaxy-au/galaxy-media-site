@@ -30,8 +30,12 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-INSTALLED_APPS.append('debug_toolbar')
-MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+if os.getenv('GITPOD_WORKSPACE_ID'):
+    ALLOWED_HOSTS = ['*']
+else:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
 
 DATABASES = {
     'default': {

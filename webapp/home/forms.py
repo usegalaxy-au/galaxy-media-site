@@ -1,6 +1,8 @@
 """User facing forms for making support requests (help/tools/data)."""
 
+import json
 import logging
+import bioblend
 from django_recaptcha import fields
 from django import forms
 from django.conf import settings
@@ -267,6 +269,7 @@ class BaseAccessRequestForm(forms.Form):
     def action(self, request, resource):
         error = None
         actioned = False
+        is_registered_email = False
         email = self.cleaned_data['email']
         try:
             is_registered_email = galaxy.is_registered_email(email)
@@ -276,8 +279,12 @@ class BaseAccessRequestForm(forms.Form):
                 f"{str(exc)[:1000]}\n")
             error = (
                 "Galaxy connection refused (could not check account"
-                " status)."
+                " status)"
             )
+            if isinstance(exc, bioblend.ConnectionError):
+                data = json.loads(exc.body)
+                if data.get('err_msg'):
+                    error += f": {data['err_msg']}"
             # Admins will have to action this manually
             actioned = self.dispatch(exception=error)
 
@@ -310,7 +317,7 @@ class BaseAccessRequestForm(forms.Form):
             msg = f"Dispatching {resource} warning to {email}"
             logger.info(msg)
             records_logger.info(msg)
-            self.dispatch_warning(request)
+            self.dispatch_warning(request, error=error is not None)
 
         return actioned
 
@@ -355,12 +362,15 @@ class BaseAccessRequestForm(forms.Form):
                 self.cleaned_data['email'],
                 self.RESOURCE_NAME,
             )
-        actioned = not exception and self.AUTO_ACTION
-        return actioned
+        return self.AUTO_ACTION
 
-    def dispatch_warning(self, request):
+    def dispatch_warning(self, request, error=False):
         """Dispatch warning email to let user know their email is invalid."""
-        template = 'home/requests/mail/invalid-institutional-email'
+        template = (
+            'home/requests/mail/error'
+            if error else
+            'home/requests/mail/invalid-institutional-email'
+        )
         dispatch_form_mail(
             to_address=self.cleaned_data['email'],
             subject=f"Access to {self.RESOURCE_NAME} could not be granted",
@@ -410,7 +420,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     terms = {
         'button_text': 'View terms',
         'src': static('home/documents/fgenesh-biocommons-terms.html'),
-        'agreement_name': 'FGENESH++ Service Terms of Use and Policies',
+        'agreement_name': f'{RESOURCE_NAME} Service Terms of Use and Policies',
     }
 
     def render_matrix_field(self):
@@ -426,7 +436,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
 
 
 class CellRangerRequestForm(BaseAccessRequestForm):
-    """Form to request AlphaFold access."""
+    """Form to request Cell Ranger access."""
 
     RESOURCE_NAME = 'Cell Ranger'
     AUTO_ACTION = True
@@ -437,14 +447,34 @@ class CellRangerRequestForm(BaseAccessRequestForm):
     agree_usage = forms.BooleanField()
 
     terms = {
-        'button_text': 'View license agreement',
+        'button_text': 'View license',
         'src': static('home/documents/cellranger-end-user-license.html'),
-        'agreement_name': 'Cell Ranger End User Licence Agreement',
+        'agreement_name': f'{RESOURCE_NAME} End User Licence Agreement',
+    }
+
+
+class DiannRequestForm(BaseAccessRequestForm):
+    """Form to request Diann access."""
+
+    RESOURCE_NAME = 'DIA-NN'
+    AUTO_ACTION = True
+
+    name = forms.CharField()
+    email = forms.EmailField(validators=[validators.institutional_email])
+    research_description = forms.CharField(max_length=500, required=False)
+    research_topics = forms.CharField(max_length=200, required=False)
+    agree_terms = forms.BooleanField()
+
+    terms = {
+        'button_text': 'View license',
+        'src': static('home/documents/diann-1.8-license.txt'),
+        'agreement_name': f'{RESOURCE_NAME} End User Licence Agreement',
     }
 
 
 ACCESS_FORMS = {
     'alphafold': AlphafoldRequestForm,
-    'fgenesh': FgeneshRequestForm,
     'cellranger': CellRangerRequestForm,
+    'diann': DiannRequestForm,
+    'fgenesh': FgeneshRequestForm,
 }

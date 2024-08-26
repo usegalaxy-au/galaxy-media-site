@@ -68,6 +68,14 @@
   </div>
 
   <script>
+
+    {% if form.terms.src|slice:"-4:" == ".txt" %}
+    const termsIframe = $('#termsModal iframe')
+    termsIframe.ready( () => termsIframe.contents()
+      .find('body')
+      .css('padding', '1rem'));
+    {% endif %}
+
     function agreeTermsAction(el) {
       enableTermsInput();
       $('#agreeTermsInput').attr('checked', true);
@@ -91,7 +99,7 @@
       }
       $('#termsModal iframe').contents().on('scroll', (event) => {
         const scrollFromEnd = $(termsContainer)[0].scrollHeight
-        - $(termsContainer).scrollTop()
+        - $('#termsModal iframe').contents().scrollTop()
         - $('#termsModal iframe').height();
         if (scrollFromEnd < 50) enableAgreeTermsButton();
       });

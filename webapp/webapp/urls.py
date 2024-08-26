@@ -17,6 +17,7 @@ Including another URLconf
 
 """
 
+import os
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.static import serve
@@ -35,7 +36,8 @@ if settings.DEBUG:
         re_path(r'^media/(?P<path>.*)$', serve, {
             'document_root': settings.MEDIA_ROOT,
         }),
-        path('__debug__/', include('debug_toolbar.urls')),
     ]
+    if not os.getenv('GITPOD_WORKSPACE_ID'):
+        urlpatterns.append(path('__debug__/', include('debug_toolbar.urls')))
 
 handler400 = 'home.views.custom_400'

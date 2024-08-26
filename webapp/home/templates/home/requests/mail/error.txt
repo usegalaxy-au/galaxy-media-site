@@ -1,0 +1,11 @@
+Dear {{ form.cleaned_data.name }},
+
+A user has requested access to {{ form.RESOURCE_NAME }} on Galaxy Australia with your email address ({{ form.cleaned_data.email }}).
+Unfortunately this request cannot be processed automatically, due to an error in our system.
+
+Our team have been notified, so you don't have to do anything. Thank you for your patience while we resolve this issue, we will contact you by email when your access has been granted.
+
+If this was not you, please disregard this email and no action will be taken.
+
+Regards,
+The Galaxy Australia Team
