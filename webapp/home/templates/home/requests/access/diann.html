@@ -1,0 +1,116 @@
+{% extends 'home/header.html' %}
+
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/requests.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/request-form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="container mt-4">
+
+  <div class="mb-10">
+    <h2> Galaxy Australia DIA-NN Access Request </h2>
+    <small>
+      <a href="/request/access">
+        <span class="material-icons">arrow_back</span>
+        Back to tool access menu
+      </a>
+    </small>
+  </div>
+
+  <p class="lead">
+    DIA-NN is a universal software for data-independent acquisition (DIA) proteomics data processing by the Demichev, Ralser and Lilley labs.
+  </p>
+
+  <p>
+    DIA-NN (v1.8.1) is available on Galaxy Australia for Australian researchers undertaking publicly funded research (i.e. using DIA-NN for academic research purposes).
+  </p>
+
+  <p>
+    Please apply for access, using your institutional email. The following sign up form is to confirm eligibility for access to DIA-NN on Galaxy Australia.
+  </p>
+
+  <form class="mt-10" method="post">
+
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {% include 'home/requests/access/snippets/personal-details-fields.html' %}
+
+    <hr>
+
+    <div class="mb-10">
+      <h3 class="mb-3">Your research (optional)</h3>
+      <div class="form-group mb-3">
+        <label class="form-label" for="researchDescription">Please provide a brief description of your research</label>
+        <input
+          class="form-control"
+          id="researchDescription"
+          name="research_description"
+          type="text"
+          value="{{ form.research_description.value|default_if_none:'' }}"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label" for="researchTopics">Which broad topics best describe your research?</label>
+        <input
+          class="form-control"
+          id="researchTopics"
+          name="research_topics"
+          type="text"
+          value="{{ form.research_topics.value|default_if_none:'' }}"
+        />
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-10">
+      <div class="col-sm-12">
+        <h3 class="mb-3">License acknowledgement statement</h3>
+        <p>
+          The {{ form.RESOURCE_NAME }} DIA-NN license is required to be
+          acknowledged prior to access.
+        </p>
+
+        {% include 'home/requests/access/snippets/agree-terms-modal.html' %}
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="container mb-10">
+      {% include 'home/requests/access/snippets/privacy-collection-notice.html' %}
+    </div>
+
+    <div class="row mb-10">
+      <div class="col text-center">
+        <button class='ga-btn' type="submit"> Submit </button>
+      </div>
+    </div>
+  </form>
+
+</main>
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'home/js/forms.js' %}"></script>
+<script>
+  function showAcceptLicense(acceptLicenseBtn) {
+    console.log("Button:")
+    console.log(acceptLicenseBtn);
+    $(acceptLicenseBtn).siblings('.form-check').show();
+  }
+</script>
+{% endblock %}
+
+
+{% block onload %}
+{% endblock %}
