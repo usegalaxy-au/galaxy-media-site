@@ -16,5 +16,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           GITPOD_URL="https://gitpod.io/#https://github.com/${{ github.repository }}/tree/${{ github.event.pull_request.head.ref }}"
-          echo "View the preview: [Gitpod]($GITPOD_URL)" > gitpod_comment.md
+          printf "View the preview: [Gitpod]($GITPOD_URL)\n\nSee the [GMS on GitPod docs](./wiki/Development#gitpod)" > gitpod_comment.md
           gh pr comment ${{ github.event.pull_request.number }} --body "$(cat gitpod_comment.md)"
