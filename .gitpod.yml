@@ -1,14 +1,10 @@
-# Set up and run GMS
-
 tasks:
-  - name: install requirements
-    init: pip install -r requirements.txt
-  - name: Create .env
-    init: |
-      cp .env.sample .env
-  - name: Start Django Server
+  - name: Setup and start development server
     env:
       DJANGO_SETTINGS_MODULE: webapp.settings.dev
+    init: |
+      pip install -r requirements.txt
+      cp .env.sample .env
     command: |
       cd webapp
       python manage.py migrate
