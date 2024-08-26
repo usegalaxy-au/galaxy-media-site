@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ form.RESOURCE_NAME }} Access Request</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h3>Access to {{ form.RESOURCE_NAME }} could not be granted</h3>
+
+    <p style="font-size: 14pt;">
+      Dear {{ form.cleaned_data.name }},
+    </p>
+
+    <p style="font-size: 14pt;">
+      A user has requested access to {{ form.RESOURCE_NAME }} on Galaxy Australia with your
+      email address ({{ form.cleaned_data.email }}).
+    </p>
+
+    <p>
+      <b>
+        Unfortunately this request cannot be processed automatically due to an
+        error in our system.
+      </b>
+    </p>
+
+    <p style="font-size: 14pt;">
+      Our team have been notified, so you don't have to do anything.
+      Thank you for your patience while we resolve this issue,
+      we will contact you by email when your access has been granted.
+    </p>
+
+    <p style="font-size: 14pt;">
+      If this was not you, please disregard this email and no action will be
+      taken.
+    </p>
+
+    <p style="font-size: 14pt;">
+      Regards,
+      <br>
+      The Galaxy Australia Team
+    </p>
+
+    <img
+      src="{{ scheme }}://{{ hostname }}{% static 'home/img/ga-logo.png' %}"
+      alt="Galaxy Australia logo"
+      style="width: 180px; height: auto; margin: 15px 0;"
+    >
+  </body>
+</html>
