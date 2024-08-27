@@ -467,7 +467,7 @@ class DiannRequestForm(BaseAccessRequestForm):
 
     terms = {
         'button_text': 'View license',
-        'src': static('home/documents/diann-1.8-license.txt'),
+        'src': static('home/documents/diann-1.8-license.html'),
         'agreement_name': f'{RESOURCE_NAME} End User Licence Agreement',
     }
 
