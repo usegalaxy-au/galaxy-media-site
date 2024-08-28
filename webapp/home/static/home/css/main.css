@@ -73,6 +73,7 @@ nav.embedded .navbar-collapse {
 
 /* Footer */
 footer {
+  max-width: 100vw;
   margin-top: 10vw;
   padding-bottom: 1rem;
 }
@@ -99,7 +100,7 @@ footer .links h6 {
   font-weight: bold;
   margin-bottom: 1.5rem;
 }
-footer .links a {
+.plain-links a {
   color: inherit;
   white-space: nowrap;
 }
@@ -274,7 +275,21 @@ h6.header {
 }
 
 /* Responsive */
-@media (max-width: 992px) {
+@media (max-width: 1110px) {
+  #footer-links-row {
+    margin: auto;
+    flex-direction: column;
+    max-width: 500px;
+  }
+  #footer-links-row > .col-md-auto {
+    margin: 1rem 0;
+  }
+  #footer-galaxy-logo {
+    display: none;
+  }
+}
+
+@media (max-width: 1110px) {
   :root {
     font-size: 14px;
   }
@@ -289,9 +304,6 @@ h6.header {
     margin-top: 1rem;
     flex-wrap: wrap;
     margin-bottom: 25px;
-  }
-  #footer-galaxy-logo {
-    display: none;
   }
   footer .col-md-6 {
     min-width: fit-content;
