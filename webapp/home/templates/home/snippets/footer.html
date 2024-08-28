@@ -126,4 +126,12 @@
       </div>
     </div>
   </div>
+
+  <script>
+    window.onload = function() {
+      const height = document.body.scrollHeight;
+      console.log('Post footer height:', height);
+      window.parent.postMessage({ height: height }, "*");
+    };
+  </script>
 </footer>
