@@ -18,7 +18,7 @@ def post(message):
     if user_id:
         message += f'<@{user_id}>'
 
-    message += f' [hostname: {os.getenv('HOSTNAME')}]'
+    message += f' [hostname: {os.getenv("HOSTNAME")}]'
     message += f' {message}'
 
     requests.post(
