@@ -39,12 +39,12 @@
     clone: yes
     force: yes
 
-- name: create webapp media directory
+- name: create gms media directory
   file:
     path: "{{ django_root }}/webapp/media"
     state: directory
 
-- name: create webapp logs directory
+- name: create gms logs directory
   file:
     path: "{{ django_root }}/webapp/logs"
     state: directory
@@ -53,13 +53,13 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-  loop: "{{ webapp.templates }}"
+  loop: "{{ gms.templates }}"
 
 - name: copy webserver configuration
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-  loop: "{{ webapp.files }}"
+  loop: "{{ gms.files }}"
 
 - name: link to enable nginx virtualhost
   ansible.builtin.file:
@@ -73,14 +73,14 @@
     virtualenv: "{{ venv_root }}"
     virtualenv_python: python3.12
 
-- name: run webapp setup script
+- name: run gms setup script
   command: "bash {{ server_root }}/setup.sh"
 
 - name: create and install SSL certificate with letsencrypt
   command: "certbot --nginx --noninteractive --agree-tos --redirect --email {{ certbot_renew_email }} -d {{ inventory_hostname }}"
   when: certbot_ssl
 
-- name: Ensure webapp superuser login
+- name: Ensure gms superuser login
   shell: |
     cd {{ django_root }} && \
     export DJANGO_SUPERUSER_PASSWORD={{ admin_user.password }} && \

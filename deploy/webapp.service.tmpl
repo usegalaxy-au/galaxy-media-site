@@ -1,6 +1,6 @@
 [Unit]
 Description=Gunicorn for Galaxy Media Site
-Requires=webapp.socket
+Requires=gms.socket
 After=network.target
 
 [Service]
@@ -8,10 +8,10 @@ PIDFile=/run/gunicorn/pid
 User = ubuntu
 Group = www-data
 RuntimeDirectory=gunicorn
-WorkingDirectory=/srv/sites/webapp
+WorkingDirectory=/srv/galaxy-media-site/webapp
 Environment="PATH={{ PWD }}/.venv/bin:$PATH"
 ExecStart={{ PWD }}/.venv/bin/gunicorn --pid /run/gunicorn/pid   \
-          --bind unix:/run/webapp.sock       \
+          --bind unix:/run/gms.sock       \
           -c {{ PWD }}/gunicorn.py webapp.wsgi
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID

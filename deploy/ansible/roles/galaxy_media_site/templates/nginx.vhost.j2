@@ -1,4 +1,4 @@
-# Server config for {{ inventory_hostname }} (Galaxy content site)
+# Server config for {{ inventory_hostname }} (Galaxy media site)
 
 server {
     # redirect www to non-www
@@ -11,8 +11,8 @@ server {
 
     listen 80;
     server_name  {{ inventory_hostname }};
-    access_log   /var/log/nginx/webapp.access.log;
-    error_log    /var/log/nginx/webapp.error.log;
+    access_log   /var/log/nginx/gms.access.log;
+    error_log    /var/log/nginx/gms.error.log;
 
     if ( $host !~* ^({{ inventory_hostname }})$ ) {
         # Reject requests with incorrect host header
@@ -36,7 +36,7 @@ server {
     }
 
     location  / {
-        proxy_pass            http://unix:/run/webapp.sock;
+        proxy_pass            http://unix:/run/gms.sock;
         proxy_redirect        off;
         proxy_set_header      Host                 $host;
         proxy_set_header      X-Real-IP            $remote_addr;

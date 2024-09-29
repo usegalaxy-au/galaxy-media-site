@@ -19,8 +19,8 @@ gunicorn:
   web_workers: 4
 
 # Postgres database conf
-postgres_db_name: webapp
-postgres_db_user: webapp
+postgres_db_name: gms
+postgres_db_user: gms
 
 postgresql_locales:
   - 'en_US.UTF-8'
