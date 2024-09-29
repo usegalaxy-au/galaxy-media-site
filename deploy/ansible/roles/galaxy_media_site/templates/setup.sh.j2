@@ -8,13 +8,13 @@ cd {{ project_root }}/webapp
 # Set Django settings
 export DJANGO_SETTINGS_MODULE=webapp.settings.prod
 
+# Collect static files for Nginx
+python manage.py collectstatic --noinput
+
 {% if not skip_database_migration %}
 # Migrate database
 python manage.py migrate
 {% endif %}
-
-# Collect static files for Nginx
-python manage.py collectstatic --noinput
 
 # Restart services
 sudo systemctl daemon-reload

@@ -19,10 +19,18 @@
     name:
       - gcc
       - python3.12
-      - python3.12-pip
-      - python3.12-venv
+      - python3-pip
+      - python3-virtualenv
       - python3.12-dev
       - python3-certbot-nginx
+
+- name: Grant database privileges to postgres_db_user
+  ansible.builtin.shell: >
+    sudo -u postgres psql -c
+    "GRANT ALL ON SCHEMA public TO {{ postgres_db_user }};
+    GRANT USAGE, CREATE ON SCHEMA public TO {{ postgres_db_user }};
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO gms;"
+  become: yes
 
 - name: clone git repository for galaxy-content-site
   ansible.builtin.git:
@@ -31,7 +39,7 @@
     clone: yes
     force: yes
 
-- name: link webapp to /srv/sites
+- name: link webapp to web_root
   ansible.builtin.file:
     src: "{{ project_root }}/webapp"
     dest: "{{ web_root }}"
