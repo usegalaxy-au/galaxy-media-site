@@ -39,12 +39,6 @@
     clone: yes
     force: yes
 
-- name: link webapp to web_root
-  ansible.builtin.file:
-    src: "{{ project_root }}/webapp"
-    dest: "{{ web_root }}"
-    state: link
-
 - name: create webapp media directory
   file:
     path: "{{ web_root }}/webapp/media"
