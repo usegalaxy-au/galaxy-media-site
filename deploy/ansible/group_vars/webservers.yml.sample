@@ -46,7 +46,7 @@ project_root: /home/ubuntu/galaxy-content-site
 server_root: /home/ubuntu/serve
 
 # App will be served from here
-web_root: /srv/webapp
+django_root: /srv/webapp
 
 # Virtual environment will be created here
 venv_root: "{{ project_root }}/.venv"

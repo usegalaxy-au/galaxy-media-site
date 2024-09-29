@@ -44,7 +44,7 @@ project_root: /srv/sites/galaxy-media-site
 server_root: /srv/config
 
 # App will be served from here
-web_root: "{{ project_root }}/webapp"
+django_root: "{{ project_root }}/webapp"
 
 # Virtual environment will be created here
 venv_root: "{{ project_root }}/venv"

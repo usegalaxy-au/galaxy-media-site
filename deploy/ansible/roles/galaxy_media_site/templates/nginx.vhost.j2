@@ -24,15 +24,15 @@ server {
     }
 
     location = /favicon.ico {
-        alias  {{ web_root }}/webapp/static/favicon/favicon.ico;
+        alias  {{ django_root }}/webapp/static/favicon/favicon.ico;
     }
 
     location /static {
-        root {{ web_root }}/webapp;
+        root {{ django_root }}/webapp;
     }
 
     location /media {
-        root {{ web_root }}/webapp;
+        root {{ django_root }}/webapp;
     }
 
     location  / {

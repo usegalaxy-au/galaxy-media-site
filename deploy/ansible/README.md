@@ -37,7 +37,7 @@ python -m pip install ansible
    - *Optional* - Host installation paths:
      - `project_root` - where this git repository will be cloned
      - `server_root` - where server configuration will be saved
-     - `web_root` - where the application will be served from
+     - `django_root` - where the application will be served from
      - `venv_root` - where the virtual env will be created
 
 
