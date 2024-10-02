@@ -2,5 +2,4 @@
 site.usegalaxy.org.au  ansible_connection=ssh  ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/galaxy
 
 [dev_webservers]
-# dev-site.gvl.org.au  ansible_connection=ssh  ansible_user=ubuntu
-gms.neoformit.com  ansible_connection=ssh  ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/galaxy
+dev-site.gvl.org.au  ansible_connection=ssh  ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/galaxy
