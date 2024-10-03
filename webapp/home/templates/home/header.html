@@ -215,7 +215,7 @@
               && !el.href.startsWith('https://{{ HOSTNAME }}')
               && !isLabPage()
             ) {
-              if (el.replace(/\/$/, "") === `https://${parentHostname}`) {
+              if (el.href.replace(/\/$/, "") === `https://${parentHostname}`) {
                 // It's a link to the parent site root URL
                 // console.log(`Remove href from anchor: ${el.href}`);
                 $(el).removeAttr("href");
