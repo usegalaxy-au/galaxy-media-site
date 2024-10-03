@@ -200,17 +200,27 @@
 
         // Remove links to usegalaxy.org.au if in iframe
         // ...otherwise risk having galaxy-in-galaxy which is very weird!
+        // If GMS (local) URL then do nothing
+        // If parent root URL then remove href
+        // Else must be:
+        //   - non-root parent URL
+        //   - OR external URL
+        //   -> set target="_blank" (opens in new tab)
+        const urlParams = new URLSearchParams(window.location.search);
+        const parentHostname = urlParams.get('hostname') || 'usegalaxy.org.au';
         if ( inIframe() ) {
           $('a').each( (i, el) => {
             if (
               el.href
-              && !el.href.includes('https://{{ HOSTNAME }}')
+              && !el.href.startsWith('https://{{ HOSTNAME }}')
               && !isLabPage()
             ) {
-              if (el.href.startsWith(`https://${window.top.location.host}`)) {
+              if (el.replace(/\/$/, "") === `https://${parentHostname}`) {
+                // It's a link to the parent site root URL
                 // console.log(`Remove href from anchor: ${el.href}`);
                 $(el).removeAttr("href");
               } else {
+                // It's a link to the parent site with a path, or an external site
                 // console.log(`Set target="_blank" on anchor: ${el.href}`);
                 $(el).attr("target", "_blank");
               }
