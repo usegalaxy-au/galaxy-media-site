@@ -204,10 +204,10 @@
           $('a').each( (i, el) => {
             if (
               el.href
-              && el.href.includes('https://{{ HOSTNAME }}')
+              && !el.href.includes('https://{{ HOSTNAME }}')
               && !isLabPage()
             ) {
-              if (el.href.replace(/\/$/, "") === 'https://{{ HOSTNAME }}') {
+              if (el.href.replace(/\/$/, "") === 'https://usegalaxy.org.au') {
                 console.log(`Remove href from anchor: ${el.href}`);
                 $(el).removeAttr("href");
               } else {
