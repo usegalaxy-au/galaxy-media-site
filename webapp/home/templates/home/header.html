@@ -207,11 +207,11 @@
               && !el.href.includes('https://{{ HOSTNAME }}')
               && !isLabPage()
             ) {
-              if (el.href.replace(/\/$/, "") === 'https://usegalaxy.org.au') {
-                console.log(`Remove href from anchor: ${el.href}`);
+              if (el.href.startsWith(`https://${window.top.location.host}`)) {
+                // console.log(`Remove href from anchor: ${el.href}`);
                 $(el).removeAttr("href");
               } else {
-                console.log(`Set target="_blank" on anchor: ${el.href}`);
+                // console.log(`Set target="_blank" on anchor: ${el.href}`);
                 $(el).attr("target", "_blank");
               }
             }
