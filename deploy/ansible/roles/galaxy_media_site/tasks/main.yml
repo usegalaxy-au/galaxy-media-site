@@ -1,5 +1,15 @@
 ---
 
+- name: Check whether SSL certificate is already installed
+  ansible.builtin.shell: "certbot certificates"
+  register: certbot_certificates
+  changed_when: false
+
+- name: Set ssl_cert_exists fact from certbot output
+  ansible.builtin.set_fact:
+    ssl_cert_exists: "{{ true if inventory_hostname in certbot_certificates.stdout else false }}"
+  changed_when: false
+
 - name: create server directory
   file:
     path: "{{ server_root }}"
@@ -19,10 +29,18 @@
     name:
       - gcc
       - python3.12
-      - python3.12-pip
-      - python3.12-venv
+      - python3-pip
+      - python3-virtualenv
       - python3.12-dev
       - python3-certbot-nginx
+
+- name: Grant database privileges to postgres_db_user
+  ansible.builtin.shell: >
+    sudo -u postgres psql -c
+    "GRANT ALL ON SCHEMA public TO {{ postgres_db_user }};
+    GRANT USAGE, CREATE ON SCHEMA public TO {{ postgres_db_user }};
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO gms;"
+  become: yes
 
 - name: clone git repository for galaxy-content-site
   ansible.builtin.git:
@@ -31,33 +49,27 @@
     clone: yes
     force: yes
 
-- name: link webapp to /srv/sites
-  ansible.builtin.file:
-    src: "{{ project_root }}/webapp"
-    dest: "{{ web_root }}"
-    state: link
-
-- name: create webapp media directory
+- name: create gms media directory
   file:
-    path: "{{ web_root }}/webapp/media"
+    path: "{{ django_root }}/webapp/media"
     state: directory
 
-- name: create webapp logs directory
+- name: create gms logs directory
   file:
-    path: "{{ web_root }}/webapp/logs"
+    path: "{{ django_root }}/webapp/logs"
     state: directory
 
 - name: template webserver configuration
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-  loop: "{{ webapp.templates }}"
+  loop: "{{ gms.templates }}"
 
 - name: copy webserver configuration
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-  loop: "{{ webapp.files }}"
+  loop: "{{ gms.files }}"
 
 - name: link to enable nginx virtualhost
   ansible.builtin.file:
@@ -71,16 +83,16 @@
     virtualenv: "{{ venv_root }}"
     virtualenv_python: python3.12
 
-- name: run webapp setup script
+- name: run gms setup script
   command: "bash {{ server_root }}/setup.sh"
 
 - name: create and install SSL certificate with letsencrypt
   command: "certbot --nginx --noninteractive --agree-tos --redirect --email {{ certbot_renew_email }} -d {{ inventory_hostname }}"
   when: certbot_ssl
 
-- name: Ensure webapp superuser login
+- name: Ensure gms superuser login
   shell: |
-    cd {{ web_root }} && \
+    cd {{ django_root }} && \
     export DJANGO_SUPERUSER_PASSWORD={{ admin_user.password }} && \
     {{ venv_root }}/bin/python manage.py createsuperuser --noinput \
       --email {{ admin_user.email }} \
@@ -98,10 +110,10 @@
     group: ubuntu
 
 - name: update media file ownership
-  file: dest={{ web_root }}/webapp/media owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
+  file: dest={{ django_root }}/webapp/media owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
 
 - name: update log file ownership
-  file: dest={{ web_root }}/webapp/logs owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
+  file: dest={{ django_root }}/webapp/logs owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
 
 - name: make update.sh executable
   file: dest=/home/ubuntu/update.sh mode=a+x
@@ -109,7 +121,7 @@
 - name: check whether news scraper in GMS version
   ansible.builtin.shell: "{{ venv_root }}/bin/python manage.py scrape_news --help"
   args:
-    chdir: "{{ web_root }}"
+    chdir: "{{ django_root }}"
   register: check_scraper
 
 - name: add cron job to scrape news feed
@@ -118,5 +130,5 @@
     user: ubuntu
     hour: 9
     minute: 0
-    job: "cd {{ web_root }} && {{ venv_root }}/bin/python manage.py scrape_news"
+    job: "cd {{ django_root }} && {{ venv_root }}/bin/python manage.py scrape_news"
   when: check_scraper.rc == 0

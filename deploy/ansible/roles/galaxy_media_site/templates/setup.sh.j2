@@ -1,23 +1,23 @@
-# Set up webapp and restart web services
+# Set up gms and restart web services
 
 set -e
 
 source {{ venv_root }}/bin/activate
-cd {{ project_root }}/webapp
+cd {{ django_root }}
 
 # Set Django settings
 export DJANGO_SETTINGS_MODULE=webapp.settings.prod
+
+# Collect static files for Nginx
+python manage.py collectstatic --noinput
 
 {% if not skip_database_migration %}
 # Migrate database
 python manage.py migrate
 {% endif %}
 
-# Collect static files for Nginx
-python manage.py collectstatic --noinput
-
 # Restart services
 sudo systemctl daemon-reload
-sudo systemctl enable webapp.service
-sudo systemctl enable webapp.socket
-sudo service webapp restart
+sudo systemctl enable gms.service
+sudo systemctl enable gms.socket
+sudo service gms restart

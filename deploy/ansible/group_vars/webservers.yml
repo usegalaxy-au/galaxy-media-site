@@ -16,8 +16,8 @@ gunicorn:
   web_workers: 4
 
 # Postgres database conf
-postgres_db_name: webapp
-postgres_db_user: webapp
+postgres_db_name: gms
+postgres_db_user: gms
 
 postgresql_locales:
   - 'en_US.UTF-8'
@@ -30,6 +30,7 @@ postgresql_users:
   - name: "{{ postgres_db_user }}"
     password: "{{ postgres_db_password }}"
     db: "{{ postgres_db_name }}"
+    priv: ALL
 
 postgres_users_no_log: false
 
@@ -37,18 +38,18 @@ postgres_users_no_log: false
 # -----------------------------------------------------------------------------
 
 # Will git clone galaxy-content-site to here
-project_root: /home/ubuntu/galaxy-content-site
+project_root: /srv/sites/galaxy-media-site
 
 # This is where service files will be created
-server_root: /home/ubuntu/serve
+server_root: /srv/config
 
 # App will be served from here
-web_root: /srv/webapp
+django_root: "{{ project_root }}/webapp"
 
 # Virtual environment will be created here
-venv_root: "{{ project_root }}/.venv"
+venv_root: "{{ project_root }}/venv"
 
-# Admin user login for the admin portal
+# Login for django admin portal
 admin_user:
   first_name: admin
   last_name: admin

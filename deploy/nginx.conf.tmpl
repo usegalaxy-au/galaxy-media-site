@@ -11,8 +11,8 @@ server {
 
     listen 80;
     server_name  {{ HOSTNAME }};
-    access_log   /var/log/nginx/webapp.access.log;
-    error_log    /var/log/nginx/webapp.error.log;
+    access_log   /var/log/nginx/gms.access.log;
+    error_log    /var/log/nginx/gms.error.log;
 
     if ( $host !~* ^({{ HOSTNAME }})$ ) {
         # Reject requests with incorrect host header
@@ -24,19 +24,19 @@ server {
     }
 
     location = /favicon.ico {
-        alias  /srv/sites/webapp/webapp/static/favicon/favicon.ico;
+        alias  /srv/galaxy-media-site/webapp/gms/static/favicon/favicon.ico;
     }
 
     location /static {
-        root /srv/sites/webapp/webapp;
+        root /srv/galaxy-media-site/webapp/gms;
     }
 
     location /media {
-        root /srv/sites/webapp/webapp;
+        root /srv/galaxy-media-site/webapp/gms;
     }
 
     location  / {
-        proxy_pass            http://unix:/run/webapp.sock;
+        proxy_pass            http://unix:/run/gms.sock;
         proxy_redirect        off;
         proxy_set_header      Host                 $host;
         proxy_set_header      X-Real-IP            $remote_addr;
