@@ -114,7 +114,7 @@ def configure_logging(LOG_ROOT):
                     'debug_file',
                     'main_file',
                     'error_file',
-                    'error_mail',
+                    # 'error_mail',
                     'error_slack',
                     'console'
                 ],
