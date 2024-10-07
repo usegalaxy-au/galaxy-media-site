@@ -29,6 +29,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('events/', include('events.urls')),
     path('people/', include('people.urls')),
+    path('test-error-handlers/', lambda x: 1 / 0),
 ]
 
 if settings.DEBUG:

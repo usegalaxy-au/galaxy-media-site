@@ -20,3 +20,4 @@ lxml
 Pillow
 requests==2.*
 requests_mock==1.*
+sentry-sdk==2.*
