@@ -1,6 +1,9 @@
+# flake8: noqa
+
 """Settings for production."""
 
 import os
+import logging
 import sentry_sdk
 
 from .base import *
@@ -71,3 +74,4 @@ sentry_sdk.init(
     # of transactions for tracing.
     traces_sample_rate=1.0,
 )
+logging.getLogger('sentry_sdk').setLevel(logging.ERROR)
