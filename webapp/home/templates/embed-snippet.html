@@ -10,3 +10,12 @@
 {% block content %}
 {% include snippet_path %}
 {% endblock %}
+
+{% block script %}
+<script>
+  window.onload = function() {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ height: height }, "*");
+  };
+</script>
+{% endblock %}
