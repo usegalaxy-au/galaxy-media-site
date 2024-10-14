@@ -313,13 +313,28 @@ def custom_400(request, exception, template_name="400.html"):
 
 def embed_snippet(request, snippet_path):
     """Serve an embeddable snippet."""
+    ALLOW_STYLE_PARAMS = ['overflow']
+    body_style_data = {
+        k: request.GET.get(k)
+        for k in ALLOW_STYLE_PARAMS
+        if k in request.GET
+    }
+    body_style = ' '.join(
+        f'{k}: {v};'
+        for k, v in body_style_data.items()
+    )
     try:
         if 'snippets' not in snippet_path:
             raise Http404
         return render(request, 'embed-snippet.html', {
             'title': 'Galaxy Media - embedded snippet',
             'snippet_path': snippet_path,
-            'crop_margin': True,  # could make this configurable in future
+            # Can be referenced in snippet templates:
+            'crop_margin': request.GET.get(
+                'crop',
+                'true',
+            ).lower() in ('true', '1', 'yes'),
+            'body_style': body_style,
         })
     except TemplateDoesNotExist:
         raise Http404
