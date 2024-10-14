@@ -14,8 +14,8 @@
 {% block script %}
 <script>
   window.onload = function() {
-    const height = document.body.scrollHeight;
-    window.parent.postMessage({ height: height }, "*");
+    window.parent.postMessage({ height: document.body.scrollHeight }, "*");
+    window.parent.postMessage({ width: document.body.scrollWidth }, "*");
   };
 </script>
 {% endblock %}

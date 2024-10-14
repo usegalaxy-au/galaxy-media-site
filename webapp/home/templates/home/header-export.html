@@ -22,7 +22,7 @@
     </style>
   </head>
 
-  <body>
+  <body {% if body_style %}style="{{ body_style }}"{% endif %}>
 
     {% block content %}
     {% endblock %}
