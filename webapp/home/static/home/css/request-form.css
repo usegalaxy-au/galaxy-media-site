@@ -27,7 +27,7 @@ ul.errorlist {
   border: 1px solid var(--error);
   border-radius: .5rem;
 }
-[class^="col"] {
+.row [class^="col"] {
   padding-bottom: 1rem;
 }
 .blockquote {
