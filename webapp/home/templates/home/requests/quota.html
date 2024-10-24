@@ -40,15 +40,15 @@
 
     {% csrf_token %}
 
-    <div class="row mb-10">
-      <div class="col-md-6">
+    <div class="row mb-10 narrow">
+      <div class="col-sm-12">
         <label for="nameInput" class="form-label">Full name</label>
         <input class="form-control" id="nameInput" type="text" name="name"
         value="{{form.name.value|default_if_none:''}}" required>
         {{ form.name.errors }}
       </div>
 
-      <div class="col-md-6">
+      <div class="col-sm-12">
         <label for="emailInput" class="form-label">Galaxy Account Email</label>
         <input class="form-control" id="emailInput" type="email" name="email"
           value="{{form.email.value|default_if_none:''}}"
@@ -75,8 +75,8 @@
       </div>
     </div>
 
-    <div class="row mb-10">
-      <div class="col-md-6">
+    <div class="row mb-10 narrow">
+      <div class="col-sm-12">
         <label for="dateInput" class="form-label">
           When do you plan to start your data analysis?
         </label>
@@ -87,28 +87,36 @@
         {{ form.start_date.errors }}
       </div>
 
-      <div class="col-md-6">
+      <div class="col-sm-12">
         <label for="durationInput" class="form-label">
           For how long will you need your extended data quota?
         </label>
-        <div class="input-group">
-          <input
-          class="form-control"  id="durationInput" type="number" step="1"
-          name="duration_months" value="{{form.duration_months.value|default_if_none:''}}"
-          required
+
+        <div class="form-check">
+          <input class="form-check-input"  id="monthsInput0" type="radio" name="duration_months" value="3"
+            {% if form.duration_months.value == '3' %}checked{% endif%} required
           >
-          <div class="input-group-append">
-            <span class="input-group-text" id="duration-input-units">
-              months
-            </span>
-          </div>
+          <label class="form-check-label" for="monthsInput0">3 months</label>
         </div>
+        <div class="form-check">
+          <input class="form-check-input"  id="monthsInput1" type="radio" name="duration_months" value="6"
+            {% if form.duration_months.value == '6' %}checked{% endif%} required
+          >
+          <label class="form-check-label" for="monthsInput1">6 months</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input"  id="monthsInput2" type="radio" name="duration_months" value="12"
+            {% if form.duration_months.value == '12' %}checked{% endif%} required
+          >
+          <label class="form-check-label" for="monthsInput2">12 months</label>
+        </div>
+
         {{ form.duration_months.errors }}
       </div>
     </div>
 
-    <div class="row mb-10">
-      <div class="col-md-6">
+    <div class="row mb-10 narrow">
+      <div class="col-sm-12">
         <p>
           What is the total storage space you require?
         </p>
@@ -116,14 +124,21 @@
         {{ form.disk_tb.errors }}
 
         <div class="form-check">
-          <input class="form-check-input"  id="diskInput1" type="radio" name="disk_tb" value="1"
+          <input class="form-check-input"  id="diskInput0" type="radio" name="disk_tb" value="0.5"
+            {% if form.disk_tb.value == '0.5' %}checked{% endif%} required
+          >
+          <label class="form-check-label" for="diskInput0">500GB</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input"  id="diskInput1" type="radio" name="disk_tb" value="1.0"
             {% if form.disk_tb.value == '1' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput1">1TB</label>
         </div>
 
         <div class="form-check">
-          <input class="form-check-input"  id="diskInput2" type="radio" name="disk_tb" value="2"
+          <input class="form-check-input"  id="diskInput2" type="radio" name="disk_tb" value="2.0"
             {% if form.disk_tb.value == '2' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput2">2TB</label>
@@ -148,20 +163,13 @@
             </div>
           </div>
         </div>
-
-        <div class="form-check">
-          <input class="form-check-input"  id="diskInput4" type="radio" name="disk_tb" value="-1"
-            {% if form.disk_tb.value == '-1' %}checked{% endif %} required
-          >
-          <label class="form-check-label" for="diskInput4">Unsure</label>
-        </div>
       </div>
     </div>
 
     <div class="row mb-10">
       <div class="col">
         <label for="descriptionInput" class="form-label">
-          Justification and comments
+          Justification for quota increase
         </label>
         {{ form.description.errors }}
         <textarea class="form-control" id="descriptionInput"
@@ -169,12 +177,12 @@
         >{{form.description.value|default_if_none:''}}</textarea>
       </div>
       <div id="descriptionHelp" class="form-text">
-        Please briefly justify your need for additional data storage.
-        Describe your data, file types and why they are required for your research.
+        Please briefly justify your need for additional data storage by
+        describing your data and intended analysis.
       </div>
     </div>
 
-    <div class="m-5 p-5">
+    <div class="mx-5 px-5 my-5">
       <hr>
       <h4>Agreement on the use of the Galaxy Australia Server</h4>
 
