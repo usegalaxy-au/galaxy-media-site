@@ -81,12 +81,34 @@
       {% include 'home/snippets/about/service-levels.html' %}
     </section>
   </div>
+
+  <div
+    id="scrollToTop"
+    title="Scroll to top"
+    data-bs-toggle="tooltip"
+    onclick="window.scrollTo(0, 0); window.location.hash = '';"
+  >
+    <i class="fas fa-arrow-up"></i>
+  </div>
 </main>
 {% endblock %}
 
 
 {% block script %}
 <script src="{% static 'home/js/scroll-hash.js' %}" ></script>
+
+<script>
+  // Scroll event handler to show/hide the floating "scroll-to-top" element
+  window.addEventListener('scroll', function() {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const targetElement = document.getElementById('scrollToTop');
+    if (scrollPosition > 500) {
+      targetElement.style.bottom = '2rem'; // Show the element
+    } else {
+      targetElement.style.bottom = '-5rem'; // Hide the element
+    }
+  });
+</script>
 {% endblock %}
 
 
