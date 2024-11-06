@@ -22,6 +22,19 @@ section:last-child {
 .textbox {
   margin: 4rem;
 }
+#scrollToTop {
+  position: fixed;
+  bottom: -5rem;
+  right: 2rem;
+  background-color: var(--color);
+  color: white;
+  padding: .25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  transition: bottom 1s ease;
+  font-size: 2rem;
+}
 
 /* Lists */
 ol.nested > li {
