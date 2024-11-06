@@ -59,4 +59,17 @@ span.material-icons {
     font-size: 0.8rem;
     padding: 0;
   }
+  .request-menu-cards .ga-btn {
+    min-width: 100px;
+  }
+}
+@media (max-width: 575px) {
+  .request-menu-cards .card {
+    padding: 2rem 1rem;
+    margin: .5rem auto;
+    max-width: 300px;
+  }
+  .request-menu-cards .card-body {
+    font-size: 1rem;
+  }
 }

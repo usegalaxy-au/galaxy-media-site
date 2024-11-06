@@ -1,6 +1,10 @@
+# flake8: noqa
+
 """Settings for production."""
 
 import os
+import logging
+import sentry_sdk
 
 from .base import *
 from . import validate
@@ -60,4 +64,14 @@ DATABASES = {
 LOGGING = config.configure_logging(LOG_ROOT)
 
 # Use manifest to manage static file versions for cache busting:
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = (
+    'django.contrib.staticfiles.storage'
+    '.ManifestStaticFilesStorage')
+
+sentry_sdk.init(
+    dsn="https://426e64399bbafe4210c4fa647c7a2f5b@sentry.galaxyproject.org/20",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+)
+logging.getLogger('sentry_sdk').setLevel(logging.ERROR)

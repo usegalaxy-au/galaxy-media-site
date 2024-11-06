@@ -21,6 +21,20 @@ from utils.data.fgenesh import genematrix_tree
 from webapp.test import TestCase
 
 TEST_DATA_DIR = Path(__file__).parent / 'test/data'
+
+# Endpoints to test for HTTP 200
+TEST_ENDPOINTS = [
+    '/about',
+    '/request',
+    '/request/tool',
+    '/request/quota',
+    '/request/support',
+    '/request/access',
+    '/list-of-institutions.html',
+]
+
+
+# Galaxy Labs
 TEST_LAB_NAME = 'Antarctica'
 TEST_LAB_LAB_NAME = 'Galaxy Lab Pages'.upper()
 TEST_LAB_NATIONALITY = 'Antarctican'
@@ -171,6 +185,11 @@ class HomeTestCase(TestCase):
             response,
             'University of Queensland'
         )
+
+    def test_webpages(self):
+        for endpoint in TEST_ENDPOINTS:
+            response = self.client.get(endpoint)
+            self.assertLess(response.status_code, 300)
 
     def test_utility_institution(self):
         assert institution.is_institution_email('johndoe@uq.edu.au')

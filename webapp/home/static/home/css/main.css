@@ -137,6 +137,9 @@ section {
   margin-left: 0;
   margin-right: 0;
 }
+.narrow {
+  max-width: 600px;
+}
 .container-centered {
   /*
   For content centered on full
@@ -148,6 +151,10 @@ section {
   justify-content: center;
   width: 100%;
   height: 85vh;
+}
+.my-10 {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
 }
 
 /* Forms */

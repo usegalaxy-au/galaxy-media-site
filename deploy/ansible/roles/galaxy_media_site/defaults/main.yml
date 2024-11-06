@@ -1,15 +1,15 @@
 ---
-project_root: /home/ubuntu/galaxy-content-site
-server_root: /home/ubuntu/server
-web_root: /srv/webapp
+project_root: /srv/galaxy-media-site
+server_root: /srv/config
+django_root: "{{ project_root }}/webapp"
 venv_root: "{{ project_root }}/venv"
 
-webapp:
+gms:
   templates:
     - src: "{{ role_path }}/templates/gunicorn.py.j2"
       dest: "{{ server_root }}/gunicorn.py"
-    - src: "{{ role_path }}/templates/webapp.service.j2"
-      dest: /etc/systemd/system/webapp.service
+    - src: "{{ role_path }}/templates/gms.service.j2"
+      dest: /etc/systemd/system/gms.service
     - src: "{{ role_path }}/templates/setup.sh.j2"
       dest: "{{ server_root }}/setup.sh"
     - src: "{{ role_path }}/templates/nginx.vhost.j2"
@@ -20,8 +20,8 @@ webapp:
       dest: "/home/ubuntu/update.sh"
 
   files:
-    - src: "{{ role_path }}/files/webapp.socket"
-      dest: /etc/systemd/system/webapp.socket
+    - src: "{{ role_path }}/files/gms.socket"
+      dest: /etc/systemd/system/gms.socket
 
 certbot_ssl: true
 
