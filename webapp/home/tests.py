@@ -319,7 +319,6 @@ class AccessRequestsTestCase(TestCase):
             'email': 'test@uq.edu.au',
             'agree_terms': 'on',
             'agree_acknowledge': 'on',
-            'matrices': [genematrix_tree.as_choices()[0][0]],
         })
         self.assert_access_form_success(response, auto_action=False)
 
