@@ -1,7 +1,7 @@
 $(document).ready(function() {
   setMatricesValue();
   setTermsValue();
-  addTreeBranchClickEvent();
+  addNodeClickEvent();
   // Add event handler to update "selected matrices" count
   $('#taxonomy-tree input[type="checkbox"]').change(updateTreeSelection);
 });
@@ -75,14 +75,21 @@ function expandTreeBranch(ul) {
   }
 }
 
-function addTreeBranchClickEvent() {
+function expandNode(node) {
+  node.querySelector(".nested").classList.toggle("active");
+  const nodeButton = node.querySelector(".caret");
+  nodeButton.classList.toggle("caret-down");
+
+  // if node has only one child, expand child too (recursive)
+  const children = node.querySelector(".nested").children;
+  children.length === 1 && expandNode(children[0]);
+}
+
+function addNodeClickEvent() {
   let i;
   const toggler = document.getElementsByClassName("caret");
   for (i = 0; i < toggler.length; i++) {
-    toggler[i].addEventListener("click", function() {
-      this.parentElement.querySelector(".nested").classList.toggle("active");
-      this.classList.toggle("caret-down");
-    });
+    toggler[i].addEventListener("click", (e) => expandNode(e.target.parentElement));
   }
 }
 
