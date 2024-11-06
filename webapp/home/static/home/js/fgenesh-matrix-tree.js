@@ -1,9 +1,14 @@
+const SELECTION_ENABLED = false;
+
 $(document).ready(function() {
-  setMatricesValue();
   setTermsValue();
   addNodeClickEvent();
-  // Add event handler to update "selected matrices" count
-  $('#taxonomy-tree input[type="checkbox"]').change(updateTreeSelection);
+
+  if (SELECTION_ENABLED) {
+    setMatricesValue();
+    // Add event handler to update "selected matrices" count
+    $('#taxonomy-tree input[type="checkbox"]').change(updateTreeSelection);
+  }
 });
 
 const debouncedSearchTree = (q) => _.debounce(
@@ -61,7 +66,7 @@ function showTreeMatches(matched) {
 function selectTreeMatch(id) {
   $('#treeSearch .dropdown').empty();
   const input = $(`#taxonomy-tree input[value="${id}"]`);
-  input.prop('checked', true);
+  SELECTION_ENABLED && input.prop('checked', true);
   let ul = input.closest('ul');
   expandTreeBranch(ul);
   updateTreeSelection();
@@ -94,6 +99,7 @@ function addNodeClickEvent() {
 }
 
 function setMatricesValue() {
+  if (!SELECTION_ENABLED) return;
   const matricesValueText = $('#matricesValue').text().replaceAll("'", '"');
   const selectedMatrices = JSON.parse(matricesValueText);
   if (selectedMatrices.length) {
@@ -113,19 +119,21 @@ function setTermsValue() {
 }
 
 function updateTreeSelection() {
-    const selected = $('#taxonomy-tree input:checked');
-    const count = selected.length;
-    $('#matrixCount span').text(count);
-    if (count) {
-        $('#matrixCount').addClass('text-success');
-        $('#matrixCount').removeClass('text-danger');
-    } else {
-        $('#matrixCount').addClass('text-danger');
-        $('#matrixCount').removeClass('text-success');
-    }
+  if (!SELECTION_ENABLED) return;
+  const selected = $('#taxonomy-tree input:checked');
+  const count = selected.length;
+  $('#matrixCount span').text(count);
+  if (count) {
+      $('#matrixCount').addClass('text-success');
+      $('#matrixCount').removeClass('text-danger');
+  } else {
+      $('#matrixCount').addClass('text-danger');
+      $('#matrixCount').removeClass('text-success');
+  }
 }
 
 function clearTreeSelection() {
+  if (!SELECTION_ENABLED) return;
   $('#treeSearch input').val('');
   $('#taxonomy-tree input:checked').prop('checked', false);
   updateTreeSelection();
