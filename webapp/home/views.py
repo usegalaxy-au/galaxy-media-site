@@ -6,21 +6,13 @@ import pprint
 from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
-from django.template import (
-    RequestContext,
-    loader,
-    Template,
-    TemplateDoesNotExist,
-)
-from django.template.loader import get_template, render_to_string
+from django.template import loader, TemplateDoesNotExist
 
 from events.models import Event
 from news.models import News
 from utils import aaf
 from utils import unsubscribe
-from utils.exceptions import ResourceAccessError, SubsiteBuildError
-from .lab_cache import LabCache
-from .lab_export import ExportSubsiteContext
+from utils.exceptions import ResourceAccessError
 from .models import CoverImage, Notice
 from .forms import (
     ResourceRequestForm,
@@ -29,7 +21,6 @@ from .forms import (
     ACCESS_FORMS,
 )
 from . import pages_context
-from . import subdomains
 
 logger = logging.getLogger('django')
 
@@ -58,96 +49,17 @@ def index(request, landing=False):
 def landing(request, subdomain):
     """Show landing pages for *.usegalaxy.org.au subsites.
 
-    A support request form is passed to the template which can be submitted
-    with AJAX and processed by an API handler.
+    DEPRECATED: This view is deprecated in favour of labs.usegalaxy.org.au.
     """
-
-    template = f'home/subdomains/{subdomain}.html'
-    try:
-        get_template(template)
-    except TemplateDoesNotExist:
-        raise Http404
-
-    try:
-        sections = getattr(subdomains, subdomain).sections
-    except AttributeError as exc:
-        raise AttributeError(
-            f"{exc}\n\n"
-            f"No content files found for subdomain '{subdomain}'"
-            " at 'webapp/home/subdomains/{subdomain}/'")
-
-    context = {
-        'extend_template': 'home/header.html',
-        'export': False,
-        'name': subdomain,
-        'site_name': settings.GALAXY_SITE_NAME,
-        'nationality': 'Australian',
-        'galaxy_base_url': settings.GALAXY_URL,
-    }
-    if request.GET.get('export'):
-        context = ExportSubsiteContext(request)
-        context.validate()
-        context.update({
-            'name': subdomain,
-            'title': f'Galaxy - {subdomain.title()} Lab',
-        })
-        if not context.get('sections'):
-            context['sections'] = sections
-    else:
-        context.update({
-            'sections': sections,
-            'notices': Notice.get_notices_by_type(request, subsite=subdomain),
-            'cover_image': CoverImage.get_random(request, subsite=subdomain),
-            'form': SupportRequestForm(),
-        })
-
-    response = render(request, template, context)
-    response.content = response.content.replace(
-        b'{{ galaxy_base_url }}',
-        context['galaxy_base_url'].encode('utf-8'))
-    return response
+    return render(request, 'home/labs-deprecated.html')
 
 
 def export_lab(request):
     """Generic Galaxy Lab landing page build with externally hosted content.
 
-    These pages are built on the fly and can be requested by third parties on
-    an ad hoc basis, where the content would typically be hosted in a GitHub
-    repo with a YAML file root which is specified as a GET parameter.
+    DEPRECATED: This view is deprecated in favour of labs.usegalaxy.org.au.
     """
-
-    if response := LabCache.get(request):
-        return response
-
-    template = 'home/subdomains/exported.html'
-
-    try:
-        if request.GET.get('content_root'):
-            context = ExportSubsiteContext(request.GET.get('content_root'))
-        else:
-            context = ExportSubsiteContext(
-                settings.DEFAULT_EXPORTED_LAB_CONTENT_ROOT)
-        context['HOSTNAME'] = settings.HOSTNAME
-        context.validate()
-    except SubsiteBuildError as exc:
-        return render(request, 'home/subdomains/export-error.html', {
-            'exc': exc,
-        }, status=400)
-
-    # Multiple rounds of templating to render recursive template tags from
-    # remote data with embedded template tags
-    i = 0
-    prev_template_str = ''
-    template_str = render_to_string(template, context, request)
-    while prev_template_str.strip('\n') != template_str.strip('\n') and i < 4:
-        prev_template_str = template_str
-        t = Template('{% load markdown %}\n\n' + template_str)
-        template_str = t.render(RequestContext(request, context))
-        i += 1
-
-    response = LabCache.put(request, template_str)
-
-    return response
+    return render(request, 'home/labs-deprecated.html')
 
 
 def notice(request, notice_id):
