@@ -1,0 +1,119 @@
+{% extends 'home/header.html' %}  {% load static %}
+
+
+{% block content %}
+
+<!--
+
+This FAQs page is built based on the 2024 edition of Top Tips from Galaxy Australia
+
+ -->
+
+<main>
+  <h1> Frequently asked questions</h1>
+
+  <br>
+
+  <div class="container">
+    <p class="lead">
+Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team answer your question.
+    </p>
+
+    <p>
+<!-- Section one uploading data -->
+ <h3>Uploading data</h3>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=147s">How do I upload data via URL?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=217s">How do I upload data from external databases?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=311s">How do I use public data that's already within Galaxy Australia?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=373s">Are there dedicated tools for importing data?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=517s">How do I name files while uploading them?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=574s">Do I have to leave Galaxy Australia open while data is uploading?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=663s">Will there be more data added to the data libraries over time?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=712s">Can I upload lots of files at once?</a></li>
+</ul>
+<!-- Section two choosing the right tool for the job -->
+ <h3>Choosing the right tool for the job</h3>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=38s">How do I know if I have chosen the right tool to use?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=155s">What's in the tool help section?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=210s">How do I use a test dataset?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=626s">How do I check what file types I can use a tool for?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=680s">How do I cancel a job while it is running?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=713s">How do I get a tool into Galaxy Australia?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=813s">How do I find tools if I don't know the tool name?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=892s">What is a Galaxy Lab and why should I use a Galaxy Lab?</a></li>
+</ul>
+<!-- Section three staying organised -->
+ <h3>Staying organised while working on Galaxy Australia</h3>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=90s">How do I annotate and tag a history?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=260s">How do I get files from a data library?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=350s">How do I tag files?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=350s">How do tags propagate?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=525s">How do I make file collections?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=684s">Do tags work for file collections?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=765s">How do I work across multiple histories?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=847s">What's the history multiview? Why should I use the history multiview?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1012s">How do I share my history?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1037s">How do I organise my storage quota</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1252s">Is there a limit to how many tags one file can have?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1283s">How do I rename multiple files at once?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1329s">How do I request more storage?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1368s">Can I set up my history tags before I upload data or run jobs?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1425s">Can I reuse a result from other histories instead of running the tool again?</a></li>
+<ul>
+<!-- Section four what to do when things go wrong -->
+ <h3>What to do when things go wrong</h3>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=53s">My jobs keep failing am I doing the wrong thing?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=120s">My job failed! What do I do now?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=210s">How do I submit a bug report? </a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=254s">Help I don't understand the error message</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=390s">How do I submit a failed job to support?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=454s">How do I contact support without a failed job?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=520s">It's not clear what went wrong, what now?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=611s">Can I test a tool for why it's erroring?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=701s">How do I access an older version of a tool?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=808s">Can I contribute to the help forum?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=874s">How do I test an entire workflow?</a></li>
+</ul>
+<!-- Section five all things workflows -->
+ <h3>Using workflows</h3>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=45s">What's the workflow canvas?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=45s">How do I build a workflow?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=124s">How do I run a workflow?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=140s">How do I follow the progress of a workflow?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=180s">How do I make a branching workflow?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=240s">How do I stay organised making workflows?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=302s">Can I tag workflows?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=357s">There's too much in my history after running a workflow. What can I do?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=391s">What is the annotation box for in a workflow?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=484s">How do I share a workflow?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=525s">I need help keeping track of all the tools and settings I've used</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=743s">How do I change workflow settings just before I run it?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=808s">Can I chain workflows together?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=924s">Can I change where my workflow outputs go?</a></li>
+</ul>
+<!-- Section six downloading and sharing data or histories -->
+ <h3>Sharing or downloading your data and histories</h3>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=48s">How does data sharing work in Galaxy Australia?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=143s">Why should I share my data?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=178s">How do I share my data?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=192s">How do I share my history as a URL?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=234s">How do I import a history?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=307s">How do I share my history publicly?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=343s">How do I share my history with a specific user></a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=397s">How do I access shared data?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=457s">Why would I download my data?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=491s">How do I download metadata?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=558s">How do I cite tools and cite Galaxy Australia?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=603s">How do I download my data?</a></li>
+</ul>
+    </p>
+  </div>
+</main>
+
+{% endblock %}
