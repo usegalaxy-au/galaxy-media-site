@@ -19,8 +19,8 @@ This FAQs page is built based on the 2024 edition of Top Tips from Galaxy Austra
 Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team answer your question.
     </p>
 
-    <p>
 <!-- Section one uploading data -->
+
  <h3>Uploading data</h3>
 <ul>
   <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=147s">How do I upload data via URL?</a></li>
@@ -32,7 +32,9 @@ Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team 
   <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=663s">Will there be more data added to the data libraries over time?</a></li>
   <li><a href="https://www.youtube.com/watch?v=eSBQP81NrQw&t=712s">Can I upload lots of files at once?</a></li>
 </ul>
+
 <!-- Section two choosing the right tool for the job -->
+
  <h3>Choosing the right tool for the job</h3>
 <ul>
   <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=38s">How do I know if I have chosen the right tool to use?</a></li>
@@ -44,7 +46,9 @@ Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team 
   <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=813s">How do I find tools if I don't know the tool name?</a></li>
   <li><a href="https://www.youtube.com/watch?v=04Whoon_6Sk&t=892s">What is a Galaxy Lab and why should I use a Galaxy Lab?</a></li>
 </ul>
+
 <!-- Section three staying organised -->
+
  <h3>Staying organised while working on Galaxy Australia</h3>
 <ul>
   <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=90s">How do I annotate and tag a history?</a></li>
@@ -63,7 +67,9 @@ Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team 
   <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1368s">Can I set up my history tags before I upload data or run jobs?</a></li>
   <li><a href="https://www.youtube.com/watch?v=l6VGX-jKDtE&t=1425s">Can I reuse a result from other histories instead of running the tool again?</a></li>
 <ul>
+
 <!-- Section four what to do when things go wrong -->
+
  <h3>What to do when things go wrong</h3>
 <ul>
   <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=53s">My jobs keep failing am I doing the wrong thing?</a></li>
@@ -78,7 +84,9 @@ Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team 
   <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=808s">Can I contribute to the help forum?</a></li>
   <li><a href="https://www.youtube.com/watch?v=3_Feg1fIp7k&t=874s">How do I test an entire workflow?</a></li>
 </ul>
+
 <!-- Section five all things workflows -->
+
  <h3>Using workflows</h3>
 <ul>
   <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=45s">What's the workflow canvas?</a></li>
@@ -96,7 +104,9 @@ Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team 
   <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=808s">Can I chain workflows together?</a></li>
   <li><a href="https://www.youtube.com/watch?v=sMUMs8JNLkU&t=924s">Can I change where my workflow outputs go?</a></li>
 </ul>
+
 <!-- Section six downloading and sharing data or histories -->
+
  <h3>Sharing or downloading your data and histories</h3>
 <ul>
   <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=48s">How does data sharing work in Galaxy Australia?</a></li>
@@ -112,7 +122,7 @@ Click on an FAQ to watch a YouTube video where one of the Galaxy Australia team 
   <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=558s">How do I cite tools and cite Galaxy Australia?</a></li>
   <li><a href="https://www.youtube.com/watch?v=-7e9HT-Mw6c&t=603s">How do I download my data?</a></li>
 </ul>
-    </p>
+
   </div>
 </main>
 
