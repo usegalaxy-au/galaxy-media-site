@@ -1,19 +1,22 @@
 name: Preview on Gitpod
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened]
 
 jobs:
   gitpod-preview:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository
+      - name: Check out base branch
         uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.base.ref }}
 
       - name: Comment with Gitpod link
         env:
-          GH_TOKEN: ${{ secrets.PR_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           REPO_URL: "https://github.com/${{ github.event.pull_request.head.repo.full_name }}/tree/${{ github.event.pull_request.head.ref }}"
         run: |
           GITPOD_URL="https://gitpod.io/#${REPO_URL}"
