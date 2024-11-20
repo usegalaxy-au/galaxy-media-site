@@ -2,7 +2,7 @@ name: Preview on Gitpod
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened]
 
 jobs:
   gitpod-preview:
@@ -13,8 +13,9 @@ jobs:
 
       - name: Comment with Gitpod link
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.PR_ACCESS_TOKEN }}
+          REPO_URL: "https://github.com/${{ github.event.pull_request.head.repo.full_name }}/tree/${{ github.event.pull_request.head.ref }}"
         run: |
-          GITPOD_URL="https://gitpod.io/#https://github.com/${{ github.repository }}/tree/${{ github.event.pull_request.head.ref }}"
+          GITPOD_URL="https://gitpod.io/#${REPO_URL}"
           printf "View the preview: [Gitpod]($GITPOD_URL)\n\nSee the [GMS on GitPod docs](../wiki/Development#contributing)" > gitpod_comment.md
           gh pr comment ${{ github.event.pull_request.number }} --body "$(cat gitpod_comment.md)"
