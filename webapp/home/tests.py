@@ -11,7 +11,6 @@ from events.test.data import TEST_EVENTS, TEST_SUPPORTERS, TEST_TAGS
 from news.models import News
 from news.test.data import TEST_NEWS
 from utils import institution
-from utils.data.fgenesh import genematrix_tree
 from webapp.test import TestCase
 
 TEST_DATA_DIR = Path(__file__).parent / 'test/data'
@@ -168,6 +167,14 @@ class HomeTestCase(TestCase):
         # Subdomain matching
         assert institution.is_institution_email('johndoe@sub1.uq.edu.au')
         assert not institution.is_institution_email('johndoe@gmail.edu.au')
+
+    def test_embedded_snippets(self):
+        response = self.client.get('/embed/home/snippets/footer.html')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            '</footer>',
+        )
 
 
 class AccessRequestsTestCase(TestCase):
