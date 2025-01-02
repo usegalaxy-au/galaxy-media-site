@@ -48,6 +48,9 @@
     dest: "{{ project_root }}"
     clone: yes
     force: yes
+    update: yes
+  tags:
+    - update
 
 - name: create gms media directory
   file:
@@ -64,12 +67,16 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   loop: "{{ gms.templates }}"
+  tags:
+    - config
 
 - name: copy webserver configuration
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   loop: "{{ gms.files }}"
+  tags:
+    - config
 
 - name: link to enable nginx virtualhost
   ansible.builtin.file:
@@ -82,24 +89,51 @@
     requirements: "{{ project_root }}/requirements.txt"
     virtualenv: "{{ venv_root }}"
     virtualenv_python: python3.12
+  tags:
+    - always
 
 - name: run gms setup script
   command: "bash {{ server_root }}/setup.sh"
 
 - name: create and install SSL certificate with letsencrypt
-  command: "certbot --nginx --noninteractive --agree-tos --redirect --email {{ certbot_renew_email }} -d {{ inventory_hostname }}"
+  command: >
+    certbot --nginx --noninteractive --agree-tos --redirect
+      --email {{ certbot_renew_email }}
+      -d {{ inventory_hostname }}
   when: certbot_ssl
 
 - name: Ensure gms superuser login
-  shell: |
-    cd {{ django_root }} && \
-    export DJANGO_SUPERUSER_PASSWORD={{ admin_user.password }} && \
-    {{ venv_root }}/bin/python manage.py createsuperuser --noinput \
-      --email {{ admin_user.email }} \
-      --first_name {{ admin_user.first_name }} \
+  args:
+    chdir: "{{ django_root }}"
+  environment:
+    DJANGO_SETTINGS_MODULE: webapp.settings.prod
+    DJANGO_SUPERUSER_PASSWORD: "{{ admin_user.password }}"
+  command: >
+    {{ venv_root }}/bin/python manage.py createsuperuser --noinput
+      --email {{ admin_user.email }}
+      --first_name {{ admin_user.first_name }}
       --last_name {{ admin_user.last_name }}
   ignore_errors: yes
   when: admin_user and not skip_database_migration
+
+- name: Run Django migrate
+  environment:
+    DJANGO_SETTINGS_MODULE: webapp.settings.prod
+  args:
+    chdir: "{{ django_root }}"
+  command: "{{ venv_root }}/bin/python manage.py migrate"
+  tags:
+    - update
+  when: not skip_database_migration
+
+- name: Run Django collectstatic
+  environment:
+    DJANGO_SETTINGS_MODULE: webapp.settings.prod
+  args:
+    chdir: "{{ django_root }}"
+  command: "{{ venv_root }}/bin/python manage.py collectstatic --noinput"
+  tags:
+    - update
 
 - name: update project ownership
   ansible.builtin.file:
@@ -108,12 +142,28 @@
     recurse: yes
     owner: ubuntu
     group: ubuntu
+  tags:
+    - always
 
 - name: update media file ownership
-  file: dest={{ django_root }}/webapp/media owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
+  file: >
+    dest={{ django_root }}/webapp/media
+    owner=www-data
+    group=www-data
+    mode=u=rwX,g=rwX,o=rwX
+    recurse=yes
+  tags:
+    - always
 
 - name: update log file ownership
-  file: dest={{ django_root }}/webapp/logs owner=www-data group=www-data mode=u=rwX,g=rwX,o=rwX recurse=yes
+  file: >
+    dest={{ django_root }}/webapp/logs
+    owner=www-data
+    group=www-data
+    mode=u=rwX,g=rwX,o=rwX
+    recurse=yes
+  tags:
+    - always
 
 - name: make update.sh executable
   file: dest=/home/ubuntu/update.sh mode=a+x
@@ -132,3 +182,17 @@
     minute: 0
     job: "cd {{ django_root }} && {{ venv_root }}/bin/python manage.py scrape_news"
   when: check_scraper.rc == 0
+
+- name: restart nginx
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+  tags:
+    - config
+
+- name: restart gms
+  ansible.builtin.systemd:
+    name: gms
+    state: restarted
+  tags:
+    - always
