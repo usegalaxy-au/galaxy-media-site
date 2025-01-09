@@ -81,23 +81,32 @@
       <hr>
 
       <div class="col-sm-12">
-        <h3 class="mb-3">Select matrices</h3>
+        <h3 class="mb-3">Locate a matrix for your analysis</h3>
 
         <p>
-          An annotation matrix for your species (or a related species) may need
-          to be installed prior to use. This will be used as a reference to
-          annotate your genome, so you should nominate a matrix with the closest
-          taxonomic proximity to your subject species. If you have more than
-          one species of interest, you can select multiple matrices.
+          An annotation matrix for your species (or a related species) must be
+          selected when you run this tool. This will be used as a reference to
+          annotate your genome.
         </p>
 
-        <div id="matricesValue" style="display: none;">{{ form.matrices.value|default_if_none:"[]" }}</div>
-
-        {{ form.matrices.errors }}
+        <div class="alert alert-info">
+          <table>
+            <tr>
+              <td>
+                <span class="material-icons p-3" style="opacity: 1;">info</span>
+              </td>
+              <td>
+                A matrix with close taxonomic proximity to your subject species
+                will provide higher quality gene predictions.
+                Please use the explorer below to ensure that a suitable matrix exists
+                for your analysis. Take a note of the matrix you intend to use for
+                when you run this tool in Galaxy.
+              </td>
+            </tr>
+          </table>
+        </div>
 
         <p>
-          <button class="ga-btn btn-sm" type="button" onclick="expandTreeSelected();">Show selection</button>
-          <button class="ga-btn btn-sm" type="button" onclick="clearTreeSelection();">Clear selection</button>
           <button class="ga-btn btn-sm" type="button" onclick="resetTreeList();">Collapse tree</button>
         </p>
 
@@ -112,12 +121,6 @@
           <div class="dropdown">
           </div>
         </div>
-
-        <p class="lead" id="matrixCount">
-          <span>0</span> matrices selected
-        </p>
-
-        <ul id="selectedMatrices"></ul>
 
         {{ form.render_matrix_field|safe }}
 

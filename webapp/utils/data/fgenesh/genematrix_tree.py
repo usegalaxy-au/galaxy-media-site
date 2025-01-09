@@ -66,20 +66,26 @@ def as_ul():
             keys.sort(key=lambda k: get_order(node[k]))
             return keys
 
-        def render_leaf_li(key, desc):
+        def render_leaf_li(key, desc, checkbox=False):
             """Render a list item representing a matrix choice."""
             tag = f'{"  " * indent}<li>\n'
             indent_str = "  " * (indent + 1)
             input_val = get_input_val(key, desc)
-            checkbox = (f'{indent_str}<input type="checkbox"'
-                        f' name="matrices" value="{input_val}"'
-                        f' id="{input_val}">')
+            checkbox_html = (
+                f'{indent_str}<input type="checkbox"'
+                f' name="matrices" value="{input_val}"'
+                f' id="{input_val}">'
+            )
+            if not checkbox:
+                icon = '<i class="fas fa-check-square" style="color: limegreen;"></i>'
+                checkbox_html = icon + checkbox_html.replace(
+                    'type="checkbox"', 'type="hidden"')
             text = key
             if desc:
                 text += f' - {desc}'
             return (
                 f'{tag}{indent_str}<span class="choice">'
-                f'{checkbox}'
+                f'{checkbox_html}'
                 f'<label for="{input_val}">'
                 f"{text}"
                 '</label>'

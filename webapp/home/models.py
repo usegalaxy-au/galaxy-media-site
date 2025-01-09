@@ -39,24 +39,6 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name} <{self.email}>"
 
 
-class Subsite(models.Model):
-    """Galaxy subsite which will consume a custom landing page.
-
-    The migration for this model creates a default 'main' subsite.
-    """
-
-    name = models.CharField(max_length=30, unique=True, help_text=(
-        "This field should match the subdomain name. e.g."
-        " for a 'genome.usegalaxy.org' subsite, the name should be 'genome'."
-        " This also determines the URL as: '/landing/<subsite.name>'. The"
-        " HTML template for this landing page must be created manually."
-    ))
-
-    def __str__(self):
-        """Represent self as string."""
-        return self.name
-
-
 class Notice(models.Model):
     """A site notice to be displayed on the home/landing pages.
 
@@ -128,21 +110,12 @@ class Notice(models.Model):
             " notices are enabled (i.e. lowest value shown first)"
         ),
     )
-    subsites = models.ManyToManyField(
-        Subsite,
-        help_text=(
-            "Select which subdomain sites should display the notice."
-        ),
-        default=default_subsite,
-    )
 
     @classmethod
-    def get_notices_by_type(cls, request, subsite=None):
+    def get_notices_by_type(cls, request):
         """Return dictionary of notices by type for given user."""
-        subsite_name = subsite or 'main'
         notices = cls.objects.filter(
             enabled=True,
-            subsites__name=subsite_name,
         )
         if not request.user.is_staff:
             notices = notices.filter(is_published=True)
@@ -229,13 +202,6 @@ class CoverImage(models.Model):
             " Use this to review content before release to public users."
         ),
     )
-    subsites = models.ManyToManyField(
-        Subsite,
-        help_text=(
-            "Select which subdomain sites should display the notice."
-        ),
-        default=default_subsite,
-    )
 
     @property
     def link_is_internal(self):
@@ -243,12 +209,10 @@ class CoverImage(models.Model):
         return self.link_url.startswith('/')
 
     @classmethod
-    def get_random(cls, request, subsite=None):
+    def get_random(cls, request):
         """Return a random cover image."""
-        subsite_name = subsite or 'main'
         images = cls.objects.filter(
             enabled=True,
-            subsites__name=subsite_name,
         )
         if not request.user.is_staff:
             images = images.filter(is_published=True)

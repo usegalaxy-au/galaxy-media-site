@@ -1,7 +1,5 @@
 """Data for test setup."""
 
-from .subsites import TEST_LABS
-
 TEST_NOTICES = [
     {
         "data": {
@@ -12,9 +10,6 @@ TEST_NOTICES = [
             "enabled": True,
             "is_published": True,
         },
-        "relations": {
-            "subsites": [TEST_LABS[0]],
-        },
     },
     {
         "data": {
@@ -24,13 +19,10 @@ TEST_NOTICES = [
             "body": (
                 "# Test notice body 2\n\n"
                 "Another arbitrary info notice."
-                " This one will also be displayed on a second subsite."
+                " This one used to be displayed on a second subsite."
             ),
             "enabled": True,
             "is_published": True,
-        },
-        "relations": {
-            "subsites": [TEST_LABS[0]],
         },
     },
     {
@@ -42,9 +34,6 @@ TEST_NOTICES = [
                 "# Test notice body 3\n\nThis notice is not yet published."
             ),
             "enabled": True,
-        },
-        "relations": {
-            "subsites": [TEST_LABS[0]],
         },
     },
     {
@@ -58,9 +47,6 @@ TEST_NOTICES = [
             "enabled": True,
             "is_published": True,
             "static_display": True,
-        },
-        "relations": {
-            "subsites": [TEST_LABS[0]],
         },
     },
 ]

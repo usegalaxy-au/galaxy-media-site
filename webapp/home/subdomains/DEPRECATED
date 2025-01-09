@@ -1,4 +1,0 @@
-This module is deprecated - use exported labs from here on.
-
-- For lab webpage content see: ./webapp/home/labs/<lab-name>
-- For exported labs code, see: ./webapp/home/lab_export.py

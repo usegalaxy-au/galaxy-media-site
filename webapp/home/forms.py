@@ -402,12 +402,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
     RESOURCE_NAME = 'FGENESH++'
-    MAIL_SUCCESS_MESSAGE = (
-        "This request has been actioned by Galaxy Media Site and the user has"
-        " been assigned to the 'fgenesh' group on Galaxy AU. An admin should"
-        "  ensure that the required matrices are installed before notifying"
-        " the user that the service is ready for use."
-    )
+    AUTO_ACTION = True
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
@@ -415,7 +410,6 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     agree_acknowledge = forms.BooleanField()
     research_description = forms.CharField(max_length=200, required=False)
     research_topics = forms.CharField(max_length=200, required=False)
-    matrices = forms.MultipleChoiceField(choices=genematrix_tree.as_choices())
 
     terms = {
         'button_text': 'View terms',
