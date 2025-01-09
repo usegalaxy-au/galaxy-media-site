@@ -39,6 +39,10 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY_DEV }}" > ~/.ssh/id_rsa
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
+      - name: Add VAULT password
+        run: |
+          echo "${{ secrets.ANSIBLE_VAULT_PASS }}" > deploy/ansible/.vault.pass
+
       - name: Run Ansible Playbook
         run: |
           cd deploy/ansible
