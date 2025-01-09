@@ -43,6 +43,11 @@ jobs:
         run: |
           echo "${{ secrets.ANSIBLE_VAULT_PASS }}" > deploy/ansible/.vault.pass
 
+      - name: Install ansible roles
+        run: |
+          cd deploy/ansible
+          ansible-galaxy install -p roles -r requirements.yml
+
       - name: Run Ansible Playbook
         run: |
           cd deploy/ansible
