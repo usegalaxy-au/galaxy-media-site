@@ -166,12 +166,6 @@ else:
 
 # API auth
 GALAXY_API_KEY = os.getenv('GALAXY_API_KEY')
-GITHUB_API_TOKEN = os.getenv('GITHUB_API_TOKEN')
-
-if not GITHUB_API_TOKEN:
-    print("Warning: GITHUB_API_TOKEN not set. Requests to api.github.com will"
-          " be rate-limited at 60 requests per hour which may result in"
-          " errors.")
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
