@@ -44,6 +44,8 @@ TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
 
+SENTRY_DNS_URL = os.environ.get('SENTRY_DNS_URL')
+
 # See base.py for mail config, read from .env
 
 ADMINS = [
@@ -69,7 +71,7 @@ STATICFILES_STORAGE = (
     '.ManifestStaticFilesStorage')
 
 sentry_sdk.init(
-    dsn="https://426e64399bbafe4210c4fa647c7a2f5b@sentry.galaxyproject.org/20",
+    dsn=SENTRY_DNS_URL,
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for tracing.
     traces_sample_rate=1.0,
