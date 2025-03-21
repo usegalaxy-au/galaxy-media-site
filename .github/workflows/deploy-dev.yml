@@ -36,21 +36,26 @@ jobs:
         run: |
           install -m 600 -D /dev/null ~/.ssh/galaxy
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/galaxy
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
       - name: Add VAULT password
         run: |
-          echo "${{ secrets.ANSIBLE_VAULT_PASS }}" > infrastructure/.vault_pass.txt
+          echo "${{ secrets.ANSIBLE_VAULT_PASS_BASE64 }}" | base64 --decode > .vault_pass.txt
+        working-directory: infrastructure
 
       - name: Install ansible roles
         run: |
-          cd infrastructure
           ansible-galaxy install -p roles -r requirements.yml
+        working-directory: infrastructure
 
       - name: Run Ansible Playbook
-        run: |
-          cd infrastructure
-          ansible-playbook -i hosts --tags update --key-file ~/.ssh/galaxy galaxy-media_dev_playbook.yml
+        run: >
+          ansible-playbook
+          -i hosts
+          --tags update
+          --key-file ~/.ssh/galaxy
+          --vault-password-file .vault_pass.txt
+          galaxy-media_dev_playbook.yml
+        working-directory: infrastructure
         env:
           ANSIBLE_HOST_KEY_CHECKING: 'False'
           ANSIBLE_REMOTE_USER: ${{ secrets.SSH_USER }}
