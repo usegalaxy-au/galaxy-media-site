@@ -203,4 +203,3 @@ Application state is stored in the PostgreSQL database, with images in the [weba
   Your images should now be display on the new site.
 
 8. If you are using a Jenkins task for automated news posts, you will need to update the Jenkins config if the hostname has changed. The API key should be unchanged.
-
