@@ -42,21 +42,6 @@ jobs:
           echo "${{ secrets.ANSIBLE_VAULT_PASS_BASE64 }}" | base64 --decode > .vault_pass.txt
         working-directory: infrastructure
 
-      - name: DEBUG write vault pass to remote host
-        run: >
-          cat .vault_pass.txt
-          | ssh
-          -i ~/.ssh/galaxy
-          -o StrictHostKeyChecking=no
-          -o UserKnownHostsFile=/dev/null
-          ${{ secrets.SSH_USER }}@site.usegalaxy.org.au
-          'cat > ~/vault_pass.txt'
-        working-directory: infrastructure
-
-      - name: DEBUG char count vault pass
-        run: wc -c .vault_pass.txt
-        working-directory: infrastructure
-
       - name: Install ansible roles
         run: |
           ansible-galaxy install -p roles -r requirements.yml
