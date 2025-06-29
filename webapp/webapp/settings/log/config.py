@@ -81,6 +81,14 @@ def configure_logging(LOG_ROOT):
                 'filename': LOG_ROOT / 'records.log',
                 'formatter': 'verbose',
             },
+            'mail_file': {
+                'delay': True,
+                'level': 'INFO',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'maxBytes': 1000000,  # 1MB ~ 20k rows
+                'filename': LOG_ROOT / 'mail.log',
+                'formatter': 'verbose',
+            },
             'error_file': {
                 'delay': True,
                 'level': 'ERROR',
@@ -123,6 +131,11 @@ def configure_logging(LOG_ROOT):
             },
             'django.records': {
                 'handlers': ['records_file'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+            'django.mail': {
+                'handlers': ['mail_file'],
                 'level': 'DEBUG',
                 'propagate': False,
             },
