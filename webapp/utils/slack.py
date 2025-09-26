@@ -11,11 +11,15 @@ def post(message):
     key = os.environ.get("SLACK_API_KEY")
     user_id = os.environ.get("SLACK_MENTION_USER_ID")
     channel_id = os.environ.get("SLACK_CHANNEL_ID")
+    message = ""
 
     if key is None:
         return
     if user_id:
-        message = f'<@{user_id}> {message}'
+        message += f'<@{user_id}>'
+
+    message += f' [hostname: {os.getenv("HOSTNAME")}]'
+    message += f' {message}'
 
     requests.post(
         SLACK_URL,

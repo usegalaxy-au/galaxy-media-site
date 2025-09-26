@@ -41,10 +41,10 @@
               {% include 'home/snippets/unpublished-bubble.html' %}
               {% endif %}
               <a href="{{ item.url }}" {% if item.external %} target="_blank" {% endif %}>
-                <h4 class="markdown"> {{ item.title|markdown|safe }} </h4>
+                <h4 class="markdown"> {{ item.title|markdown }} </h4>
               </a>
               <div class="blurb markdown">
-                {{ item.blurb|markdown|safe }}
+                {{ item.blurb|markdown }}
               </div>
             </td>
 

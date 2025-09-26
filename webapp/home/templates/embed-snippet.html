@@ -1,0 +1,21 @@
+{% extends 'header-embedded.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/css/embedded.css' %}">
+{% endblock %}
+
+
+{% block content %}
+{% include snippet_path %}
+{% endblock %}
+
+{% block script %}
+<script>
+  window.onload = function() {
+    window.parent.postMessage({ height: document.body.scrollHeight }, "*");
+    window.parent.postMessage({ width: document.body.scrollWidth }, "*");
+  };
+</script>
+{% endblock %}

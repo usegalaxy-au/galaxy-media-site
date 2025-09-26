@@ -4,17 +4,15 @@ import os
 import logging
 import pprint
 from django.conf import settings
-from django.template import TemplateDoesNotExist, loader
-from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-from django.template.loader import get_template
+from django.shortcuts import get_object_or_404, render
+from django.template import loader, TemplateDoesNotExist
 
+from events.models import Event
+from news.models import News
 from utils import aaf
 from utils import unsubscribe
 from utils.exceptions import ResourceAccessError
-from utils.institution import get_institution_list
-from events.models import Event
-from news.models import News
 from .models import CoverImage, Notice
 from .forms import (
     ResourceRequestForm,
@@ -23,7 +21,6 @@ from .forms import (
     ACCESS_FORMS,
 )
 from . import pages_context
-from . import subdomains
 
 logger = logging.getLogger('django')
 
@@ -52,30 +49,17 @@ def index(request, landing=False):
 def landing(request, subdomain):
     """Show landing pages for *.usegalaxy.org.au subsites.
 
-    A support request form is passed to the template which can be submitted
-    with AJAX and processed by an API handler.
+    DEPRECATED: This view is deprecated in favour of labs.usegalaxy.org.au.
     """
-    template = f'home/subdomains/{subdomain}.html'
-    try:
-        get_template(template)
-    except TemplateDoesNotExist:
-        raise Http404
+    return render(request, 'home/labs-deprecated.html')
 
-    try:
-        sections = getattr(subdomains, subdomain).sections
-    except AttributeError as exc:
-        raise AttributeError(
-            f"{exc}\n\n"
-            f"No content files found for subdomain '{subdomain}'"
-            " at 'webapp/home/subdomains/{subdomain}/'")
 
-    return render(request, template, {
-        'name': subdomain,
-        'notices': Notice.get_notices_by_type(request, subsite=subdomain),
-        'cover_image': CoverImage.get_random(request, subsite=subdomain),
-        'sections': sections,
-        'form': SupportRequestForm(),
-    })
+def export_lab(request):
+    """Generic Galaxy Lab landing page build with externally hosted content.
+
+    DEPRECATED: This view is deprecated in favour of labs.usegalaxy.org.au.
+    """
+    return render(request, 'home/labs-deprecated.html')
 
 
 def notice(request, notice_id):
@@ -230,3 +214,39 @@ def unsubscribe_user(request):
         'message': ("You will no longer receive marketing emails from Galaxy"
                     " Australia."),
     })
+
+
+def custom_400(request, exception, template_name="400.html"):
+    """Custom view to show error messages."""
+    return render(request, template_name, {
+        'exc': exception,
+    }, status=400)
+
+
+def embed_snippet(request, snippet_path):
+    """Serve an embeddable snippet."""
+    ALLOW_STYLE_PARAMS = ['overflow']
+    body_style_data = {
+        k: request.GET.get(k)
+        for k in ALLOW_STYLE_PARAMS
+        if k in request.GET
+    }
+    body_style = ' '.join(
+        f'{k}: {v};'
+        for k, v in body_style_data.items()
+    )
+    try:
+        if 'snippets' not in snippet_path:
+            raise Http404
+        return render(request, 'embed-snippet.html', {
+            'title': 'Galaxy Media - embedded snippet',
+            'snippet_path': snippet_path,
+            # Can be referenced in snippet templates:
+            'crop_margin': request.GET.get(
+                'crop',
+                'true',
+            ).lower() in ('true', '1', 'yes'),
+            'body_style': body_style,
+        })
+    except TemplateDoesNotExist:
+        raise Http404

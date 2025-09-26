@@ -8,6 +8,7 @@ from utils.parse import parse_list
 
 
 DEBUG = True
+# DEBUG = False
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or "secretkey"
 if os.environ.get('HOSTNAME'):
     HOSTNAME = os.environ.get('HOSTNAME')
@@ -29,8 +30,12 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-INSTALLED_APPS.append('debug_toolbar')
-MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+if os.getenv('GITPOD_WORKSPACE_ID'):
+    ALLOWED_HOSTS = ['*']
+else:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
 
 DATABASES = {
     'default': {

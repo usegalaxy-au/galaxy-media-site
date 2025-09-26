@@ -1,5 +1,6 @@
 """Logging configuration."""
 
+import re
 from django.template.base import VariableDoesNotExist
 
 
@@ -8,8 +9,9 @@ EXCLUDE_EXCEPTIONS = [
 ]
 
 # Lowercase only
-EXCLUDE_PHRASES = [
-    'invalid http_host header',
+EXCLUDE_PATTERNS = [
+    r'invalid http_host header',
+    r"Field '.+' expected an? \w+ but got '.+'"
 ]
 
 
@@ -23,10 +25,10 @@ def filter_exc_by_type(record):
     return True
 
 
-def filter_exc_by_phrase(record):
+def filter_exc_by_pattern(record):
     """Exclude exceptions based on string content."""
-    for phrase in EXCLUDE_PHRASES:
-        if phrase in record.msg.lower():
+    for pattern in EXCLUDE_PATTERNS:
+        if re.match(pattern, record.msg.lower()):
             return False
     return True
 
@@ -47,9 +49,9 @@ def configure_logging(LOG_ROOT):
                 '()': 'django.utils.log.CallbackFilter',
                 'callback': filter_exc_by_type,
             },
-            'filter_exc_by_phrase': {
+            'filter_exc_by_pattern': {
                 '()': 'django.utils.log.CallbackFilter',
-                'callback': filter_exc_by_phrase,
+                'callback': filter_exc_by_pattern,
             },
         },
         'handlers': {
@@ -72,6 +74,21 @@ def configure_logging(LOG_ROOT):
                 'filename': LOG_ROOT / 'main.log',
                 'formatter': 'verbose',
             },
+            'records_file': {
+                'delay': True,
+                'level': 'INFO',
+                'class': 'logging.FileHandler',
+                'filename': LOG_ROOT / 'records.log',
+                'formatter': 'verbose',
+            },
+            'mail_file': {
+                'delay': True,
+                'level': 'INFO',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'maxBytes': 1000000,  # 1MB ~ 20k rows
+                'filename': LOG_ROOT / 'mail.log',
+                'formatter': 'verbose',
+            },
             'error_file': {
                 'delay': True,
                 'level': 'ERROR',
@@ -85,13 +102,13 @@ def configure_logging(LOG_ROOT):
                 'level': 'ERROR',
                 'class': 'django.utils.log.AdminEmailHandler',
                 'formatter': 'verbose',
-                'filters': ['filter_exc_by_phrase'],
+                'filters': ['filter_exc_by_pattern'],
             },
             'error_slack': {
                 # Credentials are read directly from .env
                 'level': 'ERROR',
                 'class': 'webapp.settings.log.handlers.SlackHandler',
-                'filters': ['filter_exc_by_phrase'],
+                'filters': ['filter_exc_by_pattern'],
             },
             'console': {
                 'class': 'logging.StreamHandler',
@@ -105,12 +122,22 @@ def configure_logging(LOG_ROOT):
                     'debug_file',
                     'main_file',
                     'error_file',
-                    'error_mail',
+                    # 'error_mail',
                     'error_slack',
                     'console'
                 ],
                 'level': 'DEBUG',
                 'propagate': True,
+            },
+            'django.records': {
+                'handlers': ['records_file'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+            'django.mail': {
+                'handlers': ['mail_file'],
+                'level': 'DEBUG',
+                'propagate': False,
             },
             'django.utils.autoreload': {
                 'level': 'WARNING',  # This logger is way too noisy on DEBUG

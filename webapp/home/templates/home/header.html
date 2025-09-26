@@ -178,7 +178,7 @@
         }
       }
 
-      const subdomainLanding = () => window.location.pathname.includes('/landing/');
+      const isLabPage = () => window.location.pathname.includes('/lab/');
 
       $(document).ready( () => {
         // Restyle navbar if not embedded in iframe
@@ -200,18 +200,32 @@
 
         // Remove links to usegalaxy.org.au if in iframe
         // ...otherwise risk having galaxy-in-galaxy which is very weird!
+        // If GMS (local) URL then do nothing
+        // If parent root URL then remove href
+        // Else must be:
+        //   - non-root parent URL
+        //   - OR external URL
+        //   -> set target="_blank" (opens in new tab)
+        const urlParams = new URLSearchParams(window.location.search);
+        const parentHostname = urlParams.get('hostname') || 'usegalaxy.org.au';
         if ( inIframe() ) {
-          const links = document.getElementsByTagName('a');
-          for (var i in links) {
+          $('a').each( (i, el) => {
             if (
-              links[i].href
-              && links[i].href == ('https://usegalaxy.org.au')
-              && !subdomainLanding()
+              el.href
+              && !el.href.startsWith('https://{{ HOSTNAME }}')
+              && !isLabPage()
             ) {
-              console.log(`Remove href from anchor: ${links[i].href}`);
-              $(links[i]).removeAttr("href");
+              if (el.href.replace(/\/$/, "") === `https://${parentHostname}`) {
+                // It's a link to the parent site root URL
+                // console.log(`Remove href from anchor: ${el.href}`);
+                $(el).removeAttr("href");
+              } else {
+                // It's a link to the parent site with a path, or an external site
+                // console.log(`Set target="_blank" on anchor: ${el.href}`);
+                $(el).attr("target", "_blank");
+              }
             }
-          };
+          });
         }
 
         {% block onload %}
