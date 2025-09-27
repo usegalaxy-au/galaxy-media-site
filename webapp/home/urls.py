@@ -7,6 +7,7 @@ from . import api, redirects, views
 urlpatterns = [
     path('', views.index, name="home_index"),
     path('about', views.about, name="home_about"),
+    path('cite', views.cite, name="home_cite"),
     path('notice/dismiss', api.dismiss_notice, name="api_notice_dismiss"),
     path('notice/<notice_id>', views.notice, name="home_notice"),
     path('lab/export', views.export_lab, name="home_export_lab"),
