@@ -47,14 +47,14 @@
       >
         About
       </a>
-      <a {% if request.path|slice:":7" == '/cite' %}
+      <a {% if request.path|slice:":7" == '/acknowledge' %}
         class="nav-link active"
         {% else %}
         class="nav-link"
         {% endif %}
-        href="/cite"
+        href="/acknowledge"
       >
-        Cite
+        Acknowledge
       </a>
       <a {% if request.path|slice:":8" == '/request' %}
           class="nav-link active"

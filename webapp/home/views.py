@@ -74,9 +74,9 @@ def about(request):
     return render(request, 'home/about.html')
 
 
-def cite(request):
-    """Show cite page."""
-    return render(request, 'home/cite.html')
+def acknowledge(request):
+    """Show acknowledge page."""
+    return render(request, 'home/acknowledge.html')
 
 
 def user_request(request):
