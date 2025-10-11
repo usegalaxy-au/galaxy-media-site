@@ -24,14 +24,28 @@
       {% endfor %}
     </div>
 
-    <hr>
+    <hr CLASS="my-5">
 
-    <h2 class="mb-2">Galaxy Australia Alumni</h2>
+    <h2 class="mb-2">Alumni</h2>
 
     <p class="mb-5">
       Past members of the Galaxy Australia team who helped bring us to
       where we are today.
     </p>
+
+    {% if simon %}
+    <div class="row mb-5 align-items-center">
+      <div class="col-sm-6 px-5">
+        <h3>In memoriam</h3>
+        <p>
+          Simon Gladman was one of the founding members of Galaxy Australia, and lead the technical design and development of the service. He unfortunately passed away in late 2022, leaving a gap in the team that may never be fully repaired. Simon was a brilliant engineer, and his passion for Galaxy, board games and D&D will be remembered by many in the global Galaxy community. Galaxy Australia is his legacy, and we are proud to continue his work.
+        </p>
+      </div>
+      <div class="col-sm-6">
+        {% include 'people/snippets/person-card.html' with p=simon %}
+      </div>
+    </div>
+    {% endif %}
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-4">
       {% for p in alumni %}
@@ -41,6 +55,10 @@
       {% endfor %}
     </div>
   </div>
+
+  <p>
+    Galaxy Australia has had many contributors since its inception. If you know someone that should be mentioned on this page, please let us know.
+  </p>
 </main>
 
 {% endblock %}
