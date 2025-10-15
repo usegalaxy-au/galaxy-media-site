@@ -11,5 +11,11 @@ class PersonAdmin(admin.ModelAdmin):
 
     form = PersonAdminForm
 
+    list_display = [
+        'full_name',
+        'alumni',
+        'ranking',
+    ]
+
 
 admin.site.register(Person, PersonAdmin)
