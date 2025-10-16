@@ -7,6 +7,9 @@
 .card td {
   vertical-align: top;
 }
+.card-body {
+  justify-content: flex-start;
+}
 .card-footer {
   background-color: inherit;
   border-top: none;
