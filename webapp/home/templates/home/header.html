@@ -61,91 +61,8 @@
       {% endfor %}
     {% endif %}
 
-    <nav
-      {% if notices.rotating %}
-      class="navbar navbar-expand embedded"
-      {% else %}
-      class="navbar fixed-top navbar-expand embedded"
-      {% endif %}
-    >
-      <a class="navbar-brand" href="/">
-        <span class="australia">Galaxy {{ GALAXY_SITE_NAME }}</span> {{ GALAXY_SITE_SUFFIX }}
-      </a>
 
-      <div class="collapse navbar-collapse mr-auto" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a {% if request.path == '/' %}
-            class="nav-link active" href="/"
-            {% else %}
-            class="nav-link" href="/"
-            {% endif %}>
-            Home
-          </a>
-          <a {% if request.path|slice:":5" == '/news' %}
-            class="nav-link active" href="/news"
-            {% else %}
-            class="nav-link" href="/news"
-            {% endif %}>
-            News
-          </a>
-          <!-- <a {% if request.path|slice:":7" == '/events' %}
-            class="nav-link active" href="/events"
-            {% else %}
-            class="nav-link" href="/events"
-            {% endif %}>
-            Events
-          </a> -->
-          <a {% if request.path|slice:":7" == '/people' %}
-            class="nav-link active" href="/people"
-            {% else %}
-            class="nav-link" href="/people"
-            {% endif %}>
-            People
-          </a>
-          <a {% if request.path|slice:":6" == '/about' %}
-            class="nav-link active" href="/about"
-            {% else %}
-            class="nav-link" href="/about"
-            {% endif %}>
-            About
-          </a>
-          <a {% if request.path|slice:":8" == '/request' %}
-              class="nav-link active" href="/request"
-              {% else %}
-              class="nav-link" href="/request"
-              {% endif %}
-          >Support</a>
-          <a {% if request.path|slice:":10" == '/docs.html' %}
-              class="nav-link active" href="/docs.html"
-              {% else %}
-              class="nav-link" href="/docs.html"
-              {% endif %}
-          >Docs</a>
-          {% if user.is_staff %}
-          <a class="nav-link" href="/admin" target="_blank">Admin</a>
-          {% endif %}
-        </div>
-      </div>
-
-      {% if not user.is_authenticated %}
-      <div class="navbar-nav login">
-        <a
-          href="/admin"
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
-          title="Admin login"
-          id="admin-login"
-        >Login</a>
-      </div>
-      {% else %}
-      <div class="navbar-nav">
-        <a href="/admin/logout">Log out</a>
-      </div>
-      {% endif %}
-    </nav>
-    {% if notices.rotating %}
-    </div>
-    {% endif %}
+    {% include 'home/snippets/nav.html' %}
 
 
     {% block content %}
@@ -178,7 +95,7 @@
         }
       }
 
-      const subdomainLanding = () => window.location.pathname.includes('/landing/');
+      const isLabPage = () => window.location.pathname.includes('/lab/');
 
       $(document).ready( () => {
         // Restyle navbar if not embedded in iframe
@@ -200,18 +117,32 @@
 
         // Remove links to usegalaxy.org.au if in iframe
         // ...otherwise risk having galaxy-in-galaxy which is very weird!
+        // If GMS (local) URL then do nothing
+        // If parent root URL then remove href
+        // Else must be:
+        //   - non-root parent URL
+        //   - OR external URL
+        //   -> set target="_blank" (opens in new tab)
+        const urlParams = new URLSearchParams(window.location.search);
+        const parentHostname = urlParams.get('hostname') || 'usegalaxy.org.au';
         if ( inIframe() ) {
-          const links = document.getElementsByTagName('a');
-          for (var i in links) {
+          $('a').each( (i, el) => {
             if (
-              links[i].href
-              && links[i].href == ('https://usegalaxy.org.au')
-              && !subdomainLanding()
+              el.href
+              && !el.href.startsWith('https://{{ HOSTNAME }}')
+              && !isLabPage()
             ) {
-              console.log(`Remove href from anchor: ${links[i].href}`);
-              $(links[i]).removeAttr("href");
+              if (el.href.replace(/\/$/, "") === `https://${parentHostname}`) {
+                // It's a link to the parent site root URL
+                // console.log(`Remove href from anchor: ${el.href}`);
+                $(el).removeAttr("href");
+              } else {
+                // It's a link to the parent site with a path, or an external site
+                // console.log(`Set target="_blank" on anchor: ${el.href}`);
+                $(el).attr("target", "_blank");
+              }
             }
-          };
+          });
         }
 
         {% block onload %}

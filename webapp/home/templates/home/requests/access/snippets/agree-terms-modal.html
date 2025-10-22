@@ -68,6 +68,16 @@
   </div>
 
   <script>
+
+    {% if form.terms.src|slice:"-4:" == ".txt" %}
+    const termsIframe = $('#termsModal iframe')
+    termsIframe.ready( () => termsIframe.contents()
+      .find('body')
+      .css('padding', '1rem'));
+    {% endif %}
+
+    const isMac = () => navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
     function agreeTermsAction(el) {
       enableTermsInput();
       $('#agreeTermsInput').attr('checked', true);
@@ -84,16 +94,20 @@
       tooltip.disable();
     }
 
+
     function setEventHandler() {
       const termsContainer = $('#termsModal iframe').contents().find('body');
       if (!termsContainer.length) {
         return setTimeout(setEventHandler, 100);
       }
+      if (isMac()) {
+        return enableAgreeTermsButton();
+      }
       $('#termsModal iframe').contents().on('scroll', (event) => {
         const scrollFromEnd = $(termsContainer)[0].scrollHeight
-        - $(termsContainer).scrollTop()
+        - $('#termsModal iframe').contents().scrollTop()
         - $('#termsModal iframe').height();
-        if (scrollFromEnd < 50) enableAgreeTermsButton();
+        scrollFromEnd < 50 && enableAgreeTermsButton();
       });
       termsContainer.css('margin', 'auto');
     }

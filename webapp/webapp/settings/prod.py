@@ -1,6 +1,10 @@
+# flake8: noqa
+
 """Settings for production."""
 
 import os
+import logging
+import sentry_sdk
 
 from .base import *
 from . import validate
@@ -40,6 +44,8 @@ TOOL_UPDATE_EMAILS = parse_list(os.environ.get('TOOL_UPDATE_EMAILS'))
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
 
+SENTRY_DNS_URL = os.environ.get('SENTRY_DNS_URL')
+
 # See base.py for mail config, read from .env
 
 ADMINS = [
@@ -60,4 +66,14 @@ DATABASES = {
 LOGGING = config.configure_logging(LOG_ROOT)
 
 # Use manifest to manage static file versions for cache busting:
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = (
+    'django.contrib.staticfiles.storage'
+    '.ManifestStaticFilesStorage')
+
+sentry_sdk.init(
+    dsn=SENTRY_DNS_URL,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+)
+logging.getLogger('sentry_sdk').setLevel(logging.ERROR)

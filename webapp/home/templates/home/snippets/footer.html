@@ -1,52 +1,39 @@
 {% load static %}
 
 <footer>
+  {% if crop_margin %}
+  <style>
+    footer {
+      margin-top: 0;
+    }
+  </style>
+  {% endif %}
+
   <div class="container logo">
     <div class="text-center">
-      <a href="https://www.biocommons.org.au" target="_blank">
-        <img src="{% static 'logos/footer/au-biocommons-2.png' %}" />
+      <a href="https://www.education.gov.au/ncris" target="_blank">
+        <img
+          src="{% static 'logos/footer/NCRIS-PROVIDER.png' %}"
+          alt="NCRIS logo"
+        />
       </a>
-
-      <a href="https://www.qcif.edu.au" target="_blank">
-        <img src="{% static 'logos/footer/qcif-2.png' %}" />
+      <a href="https://bioplatforms.com/" target="_blank">
+        <img
+          src="{% static 'logos/footer/BIO-RGB_Full-POS.png' %}"
+          alt="Bioplatforms australia logo"
+        />
       </a>
-
-      <a href="https://www.unimelb.edu.au" target="_blank">
-        <img src="{% static 'logos/footer/unimelb-2.svg' %}" />
+      <a href="https://www.biocommons.org.au/" target="_blank">
+        <img
+          src="{% static 'logos/footer/au-biocommons.png' %}"
+          alt="Australian Biocommons logo"
+        />
       </a>
-
-      <a href="https://www.aarnet.edu.au" target="_blank">
-        <img src="{% static 'logos/footer/aarnet.png' %}" />
-      </a>
-    </div>
-
-    <div class="text-center second">
-      <a href="https://www.uq.edu.au" target="_blank">
-        <img src="{% static 'logos/footer/uq-grayscale.png' %}" />
-      </a>
-
-      <a href="https://ardc.edu.au" target="_blank">
-        <img src="{% static 'logos/footer/ardc-grayscale.png' %}" />
-      </a>
-
-      <a href="https://bioplatforms.com" target="_blank">
-        <img src="{% static 'logos/footer/bpa-grayscale.png' %}" />
-      </a>
-
-      <a href="https://nci.org.au" target="_blank">
-        <img src="{% static 'logos/footer/nci-grayscale.png' %}" />
-      </a>
-
-      <a href="https://pawsey.org.au" target="_blank">
-        <img src="{% static 'logos/footer/pawsey-grayscale.png' %}" />
-      </a>
-
-      <a href="https://www.dese.gov.au/ncris" target="_blank">
-        <img src="{% static 'logos/footer/ncris-grayscale.png' %}" />
-      </a>
-
-      <a href="https://www.qld.gov.au" target="_blank">
-        <img src="{% static 'logos/footer/qld-gov.png' %}" />
+      <a href="https://qld.gov.au" target="_blank">
+        <img
+          src="{% static 'logos/footer/qld-gov.png' %}"
+          alt="Queensland government logo"
+        />
       </a>
     </div>
   </div>
@@ -55,29 +42,29 @@
   <div class="container links">
     <hr>
     <div class="row" id="footer-links-row">
-      <div class="col" id="footer-galaxy-logo">
+      <div class="col-md-auto" id="footer-galaxy-logo">
         <a href="/">
           <img
-          src="{% static 'logos/footer/galaxy-black.svg' %}"
-          alt="Galaxy logo black"
+          src="{% static 'favicon/android-chrome-192x192.png' %}"
+          alt="Galaxy logo"
           >
         </a>
       </div>
 
-      <div class="col-6">
-        <h6>SITE LINKS</h6>
-        <div class="row" id="footer-site-links">
+      <div class="col-md-auto">
+        <div class="row plain-links" id="footer-site-links">
           <div class="col-md-6">
             <small>
               <a href="/request">Support</a> <br>
+              <a href="/about">About</a><br>
               <a href="/about#acknowledgement-statement">Acknowledging Galaxy Australia</a> <br>
-              <a href="/about#feature-catalogue">Feature catalogue</a> <br>
-              <a href="/about#terms-of-service">Terms and conditions</a>
+              <a href="/about#feature-catalogue">Feature catalogue</a>
             </small>
           </div>
 
           <div class="col-md-6">
             <small>
+              <a href="/about#terms-of-service">Terms and conditions</a> <br>
               <a href="/about#data-privacy">Privacy and data collection</a> <br>
               <a href="/about#acceptable-use">Acceptable use</a> <br>
               <a href="/about#service-levels">Service levels</a>
@@ -86,35 +73,37 @@
         </div>
       </div>
 
-      <div class="col-6">
-        <div class="row">
-          <div class="col-md-6">
-            <h6>ACKNOWLEDGEMENTS</h6>
-            <p class="tight">
-              <small>
-                We acknowledge and pay respect to the Elders and Traditional Owners
-                of the lands on which our partner organisations stand.
-              </small>
-            </p>
-          </div>
+      <div class="col-md-auto" style="max-width: 450px;">
+        <small>
+          <p class="tight mb-2">
+            This service forms part of the national Australian BioCommons infrastructure.
+          </p>
+          <p class="tight mb-2">
+            Galaxy Australia acknowledges operational and computational support from its
+            <a href="/about#operational-partners">partner organisations</a>.
+          </p>
+          <p class="tight mb-2">
+            We acknowledge and pay respect to the Elders and Traditional Owners of the lands on which our partner organisations stand.
+          </p>
+        </small>
+      </div>
 
-          <div class="col-md-6">
-            <h6>CONNECT</h6>
-            <p>
-              <a href="mailto:help@genome.edu.au">
-                <i class="fas fa-envelope"></i>
-              </a>
+      <div class="col-md-auto">
+        <p class="plain-links">
+          <a href="mailto:help@genome.edu.au">
+            <i class="fas fa-envelope"></i>
+          </a>
 
-              <a href="https://github.com/usegalaxy-au" target="_blank">
-                <i class="fab fa-github"></i>
-              </a>
+          <a href="https://github.com/usegalaxy-au" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
 
-              <a href="https://twitter.com/galaxyaustralia" target="_blank">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </p>
-          </div>
-        </div>
+          <a href="https://twitter.com/galaxyaustralia" target="_blank">
+            <i class="fab fa-twitter"></i>
+          <a href="https://www.linkedin.com/products/australianbiocommons-galaxyaustralia/" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </p>
       </div>
     </div>
   </div>

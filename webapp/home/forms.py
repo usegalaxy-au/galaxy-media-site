@@ -1,6 +1,8 @@
 """User facing forms for making support requests (help/tools/data)."""
 
+import json
 import logging
+import bioblend
 from django_recaptcha import fields
 from django import forms
 from django.conf import settings
@@ -16,6 +18,10 @@ from utils.mail import retry_send_mail
 from . import validators
 
 logger = logging.getLogger('django')
+records_logger = logging.getLogger('django.records')
+mail_logger = logging.getLogger('django.mail')
+
+MAIL_APPEND_TEXT = f"Sent from {settings.HOSTNAME}"
 
 
 def dispatch_form_mail(
@@ -32,6 +38,7 @@ def dispatch_form_mail(
     recipient = to_address or settings.EMAIL_TO_ADDRESS
     reply_to_value = [reply_to] if reply_to else None
     logger.info(f"Sending mail to {recipient}")
+    text += f"\n\n\n{MAIL_APPEND_TEXT}"
     email = EmailMultiAlternatives(
         subject,
         text,
@@ -40,7 +47,16 @@ def dispatch_form_mail(
         reply_to=reply_to_value,
     )
     if html:
+        html = html.replace(
+            '</body>',
+            f'<small style="color: gray;">{MAIL_APPEND_TEXT}</small>\n</body>'
+        )
         email.attach_alternative(html, "text/html")
+    mail_logger.info(
+        f"Dispatching email to {recipient} from user {reply_to}:\n"
+        f"Subject: {subject}\n"
+        f"Body:\n{text}\n\n" + '=' * 80 + '\n\n'
+    )
     retry_send_mail(email)
 
 
@@ -164,8 +180,8 @@ class QuotaRequestForm(OtherFieldFormMixin, forms.Form):
     email = forms.EmailField()
     start_date = forms.DateField()
     duration_months = forms.IntegerField()
-    disk_tb = forms.IntegerField()
-    disk_tb_other = forms.IntegerField(required=False)
+    disk_tb = forms.FloatField()
+    disk_tb_other = forms.FloatField(required=False)
     description = forms.CharField()
     captcha = fields.ReCaptchaField()
     accepted_terms = forms.BooleanField()
@@ -196,6 +212,25 @@ class SupportRequestForm(forms.Form):
         dispatch_form_mail(
             reply_to=data['email'],
             subject=subject or "Galaxy Australia Support request",
+            text=(
+                f"Name: {data['name']}\n"
+                f"Email: {data['email']}\n\n"
+                + data['message']
+            )
+        )
+
+
+class LabFeedbackForm(SupportRequestForm):
+
+    to_address = forms.EmailField(required=False)
+
+    def dispatch(self, subject=None):
+        """Dispatch content via the FreshDesk API."""
+        data = self.cleaned_data
+        dispatch_form_mail(
+            to_address=data['to_address'] or settings.EMAIL_TO_ADDRESS,
+            reply_to=data['email'],
+            subject=subject or "Galaxy Australia Lab feedback",
             text=(
                 f"Name: {data['name']}\n"
                 f"Email: {data['email']}\n\n"
@@ -240,6 +275,7 @@ class BaseAccessRequestForm(forms.Form):
     def action(self, request, resource):
         error = None
         actioned = False
+        is_registered_email = False
         email = self.cleaned_data['email']
         try:
             is_registered_email = galaxy.is_registered_email(email)
@@ -249,32 +285,45 @@ class BaseAccessRequestForm(forms.Form):
                 f"{str(exc)[:1000]}\n")
             error = (
                 "Galaxy connection refused (could not check account"
-                " status)."
+                " status)"
             )
+            if isinstance(exc, bioblend.ConnectionError):
+                data = json.loads(exc.body)
+                if data.get('err_msg'):
+                    error += f": {data['err_msg']}"
             # Admins will have to action this manually
             actioned = self.dispatch(exception=error)
 
         if is_registered_email:
             if self.AUTO_ASSIGN_GROUP:
                 galaxy_group = resource
-                logger.info(
-                    f"Adding user {email} to Galaxy group {galaxy_group}")
+                msg = (
+                    f"Access request: Adding user {email} to Galaxy group"
+                    f" {galaxy_group}"
+                )
+                logger.info(msg)
+                records_logger.info(msg)
                 try:
                     galaxy.add_user_to_group(
                         self.cleaned_data['email'],
                         galaxy_group)
                 except Exception as exc:
-                    logger.error(
+                    msg = (
                         f"Error assigning user to Galaxy group:\n{exc}\n"
                         "This error was not fatal and the user's request"
                         " has been passed to the support email.")
+                    logger.error(msg)
+                    records_logger.error(msg)
                     error = exc
-            logger.info(
-                f"Dispatching {resource} request for email {email}")
+            msg = f"Dispatching {resource} request for email {email}"
+            logger.info(msg)
+            records_logger.info(msg)
             actioned = self.dispatch(exception=error)
         else:
-            logger.info(f"Dispatching {resource} warning to {email}")
-            self.dispatch_warning(request)
+            msg = f"Dispatching {resource} warning to {email}"
+            logger.info(msg)
+            records_logger.info(msg)
+            self.dispatch_warning(request, error=error is not None)
 
         return actioned
 
@@ -319,12 +368,15 @@ class BaseAccessRequestForm(forms.Form):
                 self.cleaned_data['email'],
                 self.RESOURCE_NAME,
             )
-        actioned = not exception and self.AUTO_ACTION
-        return actioned
+        return self.AUTO_ACTION
 
-    def dispatch_warning(self, request):
+    def dispatch_warning(self, request, error=False):
         """Dispatch warning email to let user know their email is invalid."""
-        template = 'home/requests/mail/invalid-institutional-email'
+        template = (
+            'home/requests/mail/error'
+            if error else
+            'home/requests/mail/invalid-institutional-email'
+        )
         dispatch_form_mail(
             to_address=self.cleaned_data['email'],
             subject=f"Access to {self.RESOURCE_NAME} could not be granted",
@@ -356,12 +408,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     """Form to request AlphaFold access."""
 
     RESOURCE_NAME = 'FGENESH++'
-    MAIL_SUCCESS_MESSAGE = (
-        "This request has been actioned by Galaxy Media Site and the user has"
-        " been assigned to the 'fgenesh' group on Galaxy AU. An admin should"
-        "  ensure that the required matrices are installed before notifying"
-        " the user that the service is ready for use."
-    )
+    AUTO_ACTION = True
 
     name = forms.CharField()
     email = forms.EmailField(validators=[validators.institutional_email])
@@ -369,12 +416,11 @@ class FgeneshRequestForm(BaseAccessRequestForm):
     agree_acknowledge = forms.BooleanField()
     research_description = forms.CharField(max_length=200, required=False)
     research_topics = forms.CharField(max_length=200, required=False)
-    matrices = forms.MultipleChoiceField(choices=genematrix_tree.as_choices())
 
     terms = {
         'button_text': 'View terms',
         'src': static('home/documents/fgenesh-biocommons-terms.html'),
-        'agreement_name': 'FGENESH++ Service Terms of Use and Policies',
+        'agreement_name': f'{RESOURCE_NAME} Service Terms of Use and Policies',
     }
 
     def render_matrix_field(self):
@@ -390,7 +436,7 @@ class FgeneshRequestForm(BaseAccessRequestForm):
 
 
 class CellRangerRequestForm(BaseAccessRequestForm):
-    """Form to request AlphaFold access."""
+    """Form to request Cell Ranger access."""
 
     RESOURCE_NAME = 'Cell Ranger'
     AUTO_ACTION = True
@@ -401,14 +447,34 @@ class CellRangerRequestForm(BaseAccessRequestForm):
     agree_usage = forms.BooleanField()
 
     terms = {
-        'button_text': 'View license agreement',
+        'button_text': 'View license',
         'src': static('home/documents/cellranger-end-user-license.html'),
-        'agreement_name': 'Cell Ranger End User Licence Agreement',
+        'agreement_name': f'{RESOURCE_NAME} End User Licence Agreement',
+    }
+
+
+class DiannRequestForm(BaseAccessRequestForm):
+    """Form to request Diann access."""
+
+    RESOURCE_NAME = 'DIA-NN'
+    AUTO_ACTION = True
+
+    name = forms.CharField()
+    email = forms.EmailField(validators=[validators.institutional_email])
+    research_description = forms.CharField(max_length=500, required=False)
+    research_topics = forms.CharField(max_length=200, required=False)
+    agree_terms = forms.BooleanField()
+
+    terms = {
+        'button_text': 'View license',
+        'src': static('home/documents/diann-1.8-license.html'),
+        'agreement_name': f'{RESOURCE_NAME} End User Licence Agreement',
     }
 
 
 ACCESS_FORMS = {
     'alphafold': AlphafoldRequestForm,
-    'fgenesh': FgeneshRequestForm,
     'cellranger': CellRangerRequestForm,
+    'diann': DiannRequestForm,
+    'fgenesh': FgeneshRequestForm,
 }

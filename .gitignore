@@ -7,7 +7,7 @@ webapp/webapp/static/
 fetch_taxonomies/outputs/
 scripts/mail/unsubscribed/*.txt
 scripts/mail/*.csv
-
+venv*
 # Deploy conf
 .vault.pass
 
@@ -116,6 +116,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env.*
 .venv
 env/
 venv/

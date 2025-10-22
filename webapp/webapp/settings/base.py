@@ -28,19 +28,24 @@ DEBUG = True
 AUTH_USER_MODEL = 'home.User'
 
 # Site paths and URLs
-HOSTNAME = '127.0.0.1:5000'
-GALAXY_SITE_NAME = 'Media'  # Rendered as "Galaxy <GALAXY_SITE_NAME>"
+HOSTNAME = os.getenv('HOSTNAME', 'localhost:8000')
+GALAXY_SITE_NAME = 'Australia'
+GALAXY_SITE_SUFFIX = 'Media'    # Rendered as "Galaxy <SITE_NAME> <SUFFIX>"
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'webapp/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'webapp/media'
 LOG_ROOT = ensure_dir(BASE_DIR / 'webapp/logs')
 RECIPIENT_MASTER_CSV = BASE_DIR / '../scripts/mail/recipient_records.csv'
+DEFAULT_EXPORTED_LAB_CONTENT_ROOT = (
+    f'http://{HOSTNAME}/static/home/labs/docs/base.yml'
+)
 
 # Hostnames
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    HOSTNAME,
 ]
 
 # Application definition
@@ -108,42 +113,59 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+                '.NumericPasswordValidator',
     },
 ]
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ['MAIL_HOSTNAME']
-EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
-EMAIL_HOST_USER = os.environ.get('MAIL_SMTP_USERNAME')
-EMAIL_HOST_PASSWORD = os.environ.get('MAIL_SMTP_PASSWORD')
-EMAIL_USE_TLS = os.environ.get('MAIL_USE_TLS').lower() in ('1', 'true')
 EMAIL_FROM_ADDRESS = os.environ['MAIL_FROM_ADDRESS']
 EMAIL_TO_ADDRESS = os.environ['MAIL_TO_ADDRESS']
-SERVER_EMAIL = os.environ['MAIL_FROM_ADDRESS']
-EMAIL_SUBJECT_PREFIX = 'GMS: '
+SERVER_EMAIL = os.getenv('SERVER_EMAIL', EMAIL_FROM_ADDRESS)
+EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX', 'GMS: ')
+
+if os.getenv('MAIL_HOSTNAME'):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ['MAIL_HOSTNAME']
+    EMAIL_PORT = os.environ['MAIL_SMTP_PORT']
+    EMAIL_HOST_USER = os.getenv('MAIL_SMTP_USERNAME')
+    EMAIL_HOST_PASSWORD = os.getenv('MAIL_SMTP_PASSWORD')
+    EMAIL_USE_TLS = os.getenv('MAIL_USE_TLS').lower() in ('1', 'true')
+else:
+    print("Warning: MAIL_HOSTNAME not set. Dispatched emails will be emitted"
+          " to the console.")
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Validating whether submitted email is valid Galaxy AU account
 MOCK_GALAXY_INTERACTIONS = (
-    os.environ.get('MOCK_GALAXY_INTERACTIONS')
+    os.getenv('MOCK_GALAXY_INTERACTIONS')
     in ('1', 'true')
 )
 if MOCK_GALAXY_INTERACTIONS:
     print("MOCK_GALAXY_INTERACTIONS is set: mocking galaxy interactions")
 
-# Galaxy API auth
-GALAXY_URL = os.environ.get('GALAXY_URL')
-GALAXY_API_KEY = os.environ.get('GALAXY_API_KEY')
+# For linking to Galaxy server
+GALAXY_URL = os.getenv('GALAXY_URL')
+if GALAXY_URL:
+    GALAXY_URL = GALAXY_URL.strip('/')
+else:
+    print('Warning: GALAXY_URL not set. Links to Galaxy server will be'
+          ' broken.')
+
+# API auth
+GALAXY_API_KEY = os.getenv('GALAXY_API_KEY')
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

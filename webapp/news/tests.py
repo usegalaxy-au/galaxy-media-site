@@ -102,22 +102,22 @@ class NewsTestCase(TestCase):
     @mock.patch('requests.get', side_effect=mocked_requests_get)
     def test_hub_news_scraper(self, mock_get):
         articles = hub.Article.fetch_all()
-        self.assertEquals(
+        self.assertEqual(
             len(articles),
             3,
             f"Scraped {len(articles)} from Hub JSON feed but expected 3."
         )
         for i, a in enumerate(articles):
             expected = HUB_JSON['news'][i]
-            self.assertEquals(
+            self.assertEqual(
                 a.title,
                 expected['title'],
             )
-            self.assertEquals(
+            self.assertEqual(
                 a.url,
                 hub.BASE_URL + expected['path'],
             )
-            self.assertEquals(
+            self.assertEqual(
                 a.date.strftime('%-d %B %Y'),
                 expected['date'],
             )

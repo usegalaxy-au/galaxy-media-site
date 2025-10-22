@@ -1,25 +1,61 @@
-name: Deploy to production
+name: Deploy to prod server
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Django tests"]
+    types:
+      - completed
     branches:
       - main
+  workflow_dispatch: {}  # For local testing with act
 
 jobs:
-  run_pull:
-    name: run server update
+  deploy:
     runs-on: ubuntu-latest
     environment: deployment
+    concurrency:
+      group: deploy
+      cancel-in-progress: true
 
     steps:
-    - name: install ssh keys
-      # check this thread to understand why its needed:
-      # https://stackoverflow.com/a/70447517
-      run: |
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-    - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "./update.sh && exit"
-    - name: cleanup
-      run: rm -rf ~/.ssh
+      - name: Clone Infrastructure Repository
+        run: git clone https://github.com/usegalaxy-au/infrastructure.git infrastructure
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install Ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible packaging
+
+      - name: Install ssh keys
+        # For reference: https://stackoverflow.com/a/70447517
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/galaxy
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/galaxy
+
+      - name: Add VAULT password
+        run: |
+          echo "${{ secrets.ANSIBLE_VAULT_PASS_BASE64 }}" | base64 --decode > .vault_pass.txt
+        working-directory: infrastructure
+
+      - name: Install ansible roles
+        run: |
+          ansible-galaxy install -p roles -r requirements.yml
+        working-directory: infrastructure
+
+      - name: Run Ansible Playbook
+        run: >
+          ansible-playbook
+          -i hosts
+          --tags update
+          --key-file ~/.ssh/galaxy
+          --vault-password-file .vault_pass.txt
+          galaxy-media_playbook.yml
+        working-directory: infrastructure
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: 'False'
+          ANSIBLE_REMOTE_USER: ${{ secrets.SSH_USER }}

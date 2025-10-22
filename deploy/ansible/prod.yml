@@ -6,7 +6,10 @@
     - group_vars/secrets.yml
     - group_vars/webservers.yml
   roles:
-    - geerlingguy.nginx
+    - role: geerlingguy.nginx
+      tags: init
     - role: geerlingguy.postgresql
       become: true
-    - webapp
+      tags: init,postgresql
+    - role: galaxy_media_site
+      tags: gms

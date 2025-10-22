@@ -1,16 +1,30 @@
+import requests
 from django.test import Client
 from django.core.files import File
 from django.core import mail
+from pathlib import Path
 
-from webapp.test import TestCase
+from .models import Notice
+from .test.data import TEST_NOTICES
 from events.models import Event, Supporter, Tag
 from events.test.data import TEST_EVENTS, TEST_SUPPORTERS, TEST_TAGS
-from utils.data.fgenesh import genematrix_tree
 from news.models import News
 from news.test.data import TEST_NEWS
 from utils import institution
-from .models import Notice, Subsite
-from .test.data import TEST_NOTICES, TEST_SUBSITES
+from webapp.test import TestCase
+
+TEST_DATA_DIR = Path(__file__).parent / 'test/data'
+
+# Endpoints to test for HTTP 200
+TEST_ENDPOINTS = [
+    '/about',
+    '/request',
+    '/request/tool',
+    '/request/quota',
+    '/request/support',
+    '/request/access',
+    '/list-of-institutions.html',
+]
 
 
 class HomeTestCase(TestCase):
@@ -19,16 +33,8 @@ class HomeTestCase(TestCase):
         """Create some data to request a landing page."""
         super().setUp()
         self.client = Client()
-
-        for subsite in TEST_SUBSITES[1:]:
-            # First TEST_SUBSITE "main" is created on DB migration
-            Subsite.objects.create(**subsite)
         for notice in TEST_NOTICES:
-            subsites = notice['relations']['subsites']
             notice = Notice.objects.create(**notice['data'])
-            for subsite in subsites:
-                subsite = Subsite.objects.get(name=subsite['name'])
-                notice.subsites.add(subsite)
         for tag in TEST_TAGS:
             Tag.objects.create(**tag)
         for supporter in TEST_SUPPORTERS:
@@ -110,7 +116,7 @@ class HomeTestCase(TestCase):
         # A tool update link should be shown
         self.assertContains(
             response,
-            '''window.location = '/news/''',
+            "window.location = '/news/",
             count=1,
         )
         # Should display the date, not the title
@@ -137,22 +143,12 @@ class HomeTestCase(TestCase):
             TEST_EVENTS[1]['data']['title'],
         )
 
-    def test_subsite_landing_webpage(self):
-        response = self.client.get(f'/landing/{TEST_SUBSITES[1]["name"]}')
-        self.assertEqual(response.status_code, 200)
-
-        # Appropriate notices are being shown
-        self.assertContains(
-            response,
-            TEST_NOTICES[1]['data']['title'],
-        )
-        self.assertNotContains(
-            response,
-            TEST_NOTICES[0]['data']['title'],
-        )
-
     def test_aaf_webpage(self):
-        response = self.client.get('/aaf')
+        try:
+            response = self.client.get('/aaf')
+        except requests.exceptions.ConnectionError:
+            print('\nNo internet connection - cannot test AAF list.')
+            return
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(
@@ -160,12 +156,25 @@ class HomeTestCase(TestCase):
             'University of Queensland'
         )
 
+    def test_webpages(self):
+        for endpoint in TEST_ENDPOINTS:
+            response = self.client.get(endpoint)
+            self.assertLess(response.status_code, 300)
+
     def test_utility_institution(self):
         assert institution.is_institution_email('johndoe@uq.edu.au')
         assert not institution.is_institution_email('johndoe@gmail.com')
         # Subdomain matching
         assert institution.is_institution_email('johndoe@sub1.uq.edu.au')
         assert not institution.is_institution_email('johndoe@gmail.edu.au')
+
+    def test_embedded_snippets(self):
+        response = self.client.get('/embed/home/snippets/footer.html')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            '</footer>',
+        )
 
 
 class AccessRequestsTestCase(TestCase):
@@ -191,7 +200,6 @@ class AccessRequestsTestCase(TestCase):
             'email': 'test@uq.edu.au',
             'agree_terms': 'on',
             'agree_acknowledge': 'on',
-            'matrices': [genematrix_tree.as_choices()[0][0]],
         })
         self.assert_access_form_success(response, auto_action=False)
 
