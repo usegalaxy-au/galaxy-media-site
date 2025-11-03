@@ -74,6 +74,11 @@ def about(request):
     return render(request, 'home/about.html')
 
 
+def acknowledge(request):
+    """Show acknowledge page."""
+    return render(request, 'home/acknowledge.html')
+
+
 def user_request(request):
     """Show user request menu."""
     return render(request, 'home/requests/menu.html')
