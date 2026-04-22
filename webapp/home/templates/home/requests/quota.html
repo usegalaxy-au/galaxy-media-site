@@ -125,39 +125,44 @@
 
         <div class="form-check">
           <input class="form-check-input"  id="diskInput0" type="radio" name="disk_tb" value="0.5"
-            {% if form.disk_tb.value == '0.5' %}checked{% endif%} required
+            {% if form.data.disk_tb == '0.5' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput0">500GB</label>
         </div>
 
         <div class="form-check">
           <input class="form-check-input"  id="diskInput1" type="radio" name="disk_tb" value="1.0"
-            {% if form.disk_tb.value == '1' %}checked{% endif%} required
+            {% if form.data.disk_tb == '1.0' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput1">1TB</label>
         </div>
 
         <div class="form-check">
           <input class="form-check-input"  id="diskInput2" type="radio" name="disk_tb" value="2.0"
-            {% if form.disk_tb.value == '2' %}checked{% endif%} required
+            {% if form.data.disk_tb == '2.0' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput2">2TB</label>
         </div>
 
         <div class="form-check">
           <input class="form-check-input"  id="diskInput3" type="radio" name="disk_tb" value="0"
-            {% if form.disk_tb.value == '0' %}checked{% endif%} required
+            {% if form.data.disk_tb == '0' %}checked{% endif%} required
           >
           <label class="form-check-label" for="diskInput3">More</label>
         </div>
 
         <div class="show-other">
           <div class="input-group">
-            <input class="form-control" type="number" name="disk_tb_other"
-            value="{{ form.disk_tb_other.value|default_if_none:'' }}"
+            <input
+              class="form-control"
+              type="number"
+              name="disk_tb_other"
+              min="3"
+              max="100"
+              value="{{ form.data.disk_tb_other|default:'' }}"
             >
             <div class="input-group-append">
-              <span class="input-group-text" id="disk-gb-units">
+              <span class="input-group-text" id="disk-tb-units">
                 TB
               </span>
             </div>
