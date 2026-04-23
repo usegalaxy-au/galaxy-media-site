@@ -16,6 +16,7 @@ from utils.institution import is_institution_email
 from utils.mail import retry_send_mail
 
 from . import validators
+from .fields import OtherChoiceField
 
 logger = logging.getLogger('django')
 records_logger = logging.getLogger('django.records')
@@ -87,51 +88,6 @@ def user_success_mail(name, email, resource):
     retry_send_mail(mail)
 
 
-class OtherFieldFormMixin:
-    """Handle validation/cleaning of 'other' fields.
-
-    TODO: this should really be replaced with a custom Django field
-
-    The inheriting class must define cls.OTHER_FIELDS as a tuple of field names
-    for which a "field_other" field is expected. This field will be populated
-    with the value of "other" if str(value) == "0".
-
-    Typically this is involves an "Other" radiobuttom with a value of "0".
-    """
-
-    def __init__(self, *args, **kwargs):
-        """Assert required other fields."""
-        super().__init__(*args, **kwargs)
-        for field in self.OTHER_FIELDS:
-            if f'{field}_other' not in self.fields:
-                raise AttributeError(
-                    f"Expected field '{field}_other' not found in form."
-                    " Fields declared as OTHER_FIELDS must be accompanied by"
-                    " an '_other' field to provide the 'other' value."
-                )
-
-    def clean(self):
-        data = self.cleaned_data
-        for field in self.OTHER_FIELDS:
-            field_value = data.get(field)
-            if str(field_value) == '0':
-                # User selected the 'other' field and typed a value
-                other_value = data.get(f'{field}_other')
-                logger.info(f"field_value: {field_value}")
-                logger.info(f"other_value: {other_value}")
-                if not other_value:
-                    if self.fields[field].required:
-                        self.add_error(
-                            field,
-                            ValidationError('This field is required'))
-                        continue
-                if isinstance(other_value, str):
-                    data[field] = 'Other - ' + other_value
-                else:
-                    data[field] = other_value
-        return data
-
-
 class ResourceRequestForm(forms.Form):
     """Form for requesting a tool or dataset."""
 
@@ -173,20 +129,25 @@ class ResourceRequestForm(forms.Form):
         )
 
 
-class QuotaRequestForm(OtherFieldFormMixin, forms.Form):
+class QuotaRequestForm(forms.Form):
     """Form for requesting data quota."""
 
     name = forms.CharField()
     email = forms.EmailField()
     start_date = forms.DateField()
     duration_months = forms.IntegerField()
-    disk_tb = forms.FloatField()
-    disk_tb_other = forms.FloatField(required=False)
+    disk_tb = OtherChoiceField(
+        choices=[
+            (0.5, '500 GB'),
+            (1.0, '1 TB'),
+            (2.0, '2 TB'),
+        ],
+        min=0,
+        max=100,
+    )
     description = forms.CharField()
     captcha = fields.ReCaptchaField()
     accepted_terms = forms.BooleanField()
-
-    OTHER_FIELDS = ('disk_tb',)
 
     def dispatch(self):
         """Dispatch form content as email."""
