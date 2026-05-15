@@ -31,6 +31,10 @@
     "name": "Baker Heart and Diabetes Institute",
     "domains": ["@baker.edu.au", "@bakeridi.edu.au"]
   },
+  {
+    "name": "Australian BioCommons",
+    "domains": ["@biocommons.org.au"]
+  },
   { "name": "Bond University", "domains": ["@bond.edu.au"] },
   { "name": "Burnet Institute", "domains": ["@burnet.edu.au"] },
   { "name": "CSIRO", "domains": ["@csiro.au"] },
