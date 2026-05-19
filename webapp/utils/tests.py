@@ -18,8 +18,8 @@ class InstitutionEmailTestCase(TestCase):
     def setUp(self):
         self.domain_list = mock.patch.object(
             institution,
-            "get_domains",
-            return_value=MOCK_DOMAIN_LIST)
+            "_email_domains",
+            new=MOCK_DOMAIN_LIST)
 
     def test_valid_institution_email(self):
         email = "john.doe@uni.edu.au"
