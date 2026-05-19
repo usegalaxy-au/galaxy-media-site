@@ -34,7 +34,7 @@ def is_institution_email(email):
     # Hard-check against all email domains
     valid_domains = [
         d.replace('*.', '@')  # All matched against root domains anyway
-        for d in get_domains()
+        for d in _email_domains
     ]
     matching_domains = set(valid_domains) & possible_root_domains
     if matching_domains:
@@ -57,15 +57,16 @@ def _is_valid_email(email):
     return re.match(r'^[^@]+@[^@]+\.[^@]+$', email)
 
 
-def get_domains():
+def _get_email_domains():
     """Return dictionary of domains mapped to institution names."""
-    with open(DOMAIN_LIST_PATH) as f:
-        return json.load(f)
-
-
-def get_institution_list():
-    """Return list of institutions with name and email domains."""
     with open(INSTITUTION_LIST_PATH) as f:
         institutions = json.load(f)
-        institutions.sort(key=lambda i: i['name'])
-        return institutions
+
+    domains = {}
+    for institution in institutions:
+        for domain in institution['domains']:
+            domains[domain] = institution['name']
+    return domains
+
+
+_email_domains = _get_email_domains()

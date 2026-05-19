@@ -1,6 +1,7 @@
 """Run this script when updating institutions.json"""
 
 import json
+import time
 from pathlib import Path
 
 parent = Path(__file__).resolve().parent
@@ -9,6 +10,8 @@ DOMAINS_JSON = parent / 'domains.json'
 
 
 def main():
+    start = time.perf_counter()
+
     with open(INSTITUTIONS_JSON) as f:
         institutions = json.load(f)
 
@@ -21,6 +24,7 @@ def main():
         json.dump(domains, f, indent=2)
 
     print(f"\nRegenerated {DOMAINS_JSON}")
+    print(f"Walltime: {time.perf_counter() - start:.3f}s")
 
 
 if __name__ == '__main__':
