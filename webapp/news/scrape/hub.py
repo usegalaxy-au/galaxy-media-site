@@ -17,7 +17,7 @@ from news.models import News
 from django.utils import timezone
 
 logger = logging.getLogger('django')
-BASE_URL = 'https://galaxyproject.org'
+BASE_URL = 'https://archive.galaxyproject.org'
 URL = f'{BASE_URL}/news/feed.json'
 
 
