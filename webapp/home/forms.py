@@ -11,7 +11,6 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.templatetags.static import static
 from utils import galaxy
-from utils.data.fgenesh import genematrix_tree
 from utils.institution import is_institution_email
 from utils.mail import retry_send_mail
 
@@ -365,37 +364,6 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
     count_aa = forms.IntegerField(required=False, label="Total count (AA)")
 
 
-class FgeneshRequestForm(BaseAccessRequestForm):
-    """Form to request AlphaFold access."""
-
-    RESOURCE_NAME = 'FGENESH++'
-    AUTO_ACTION = True
-
-    name = forms.CharField()
-    email = forms.EmailField(validators=[validators.institutional_email])
-    agree_terms = forms.BooleanField()
-    agree_acknowledge = forms.BooleanField()
-    research_description = forms.CharField(max_length=200, required=False)
-    research_topics = forms.CharField(max_length=200, required=False)
-
-    terms = {
-        'button_text': 'View terms',
-        'src': static('home/documents/fgenesh-biocommons-terms.html'),
-        'agreement_name': f'{RESOURCE_NAME} Service Terms of Use and Policies',
-    }
-
-    def render_matrix_field(self):
-        return genematrix_tree.as_ul()
-
-    def dispatch(self, exception=None, notify_user_success=False):
-        """Dispatch form without notifying user by default."""
-        super().dispatch(
-            exception=exception,
-            notify_user_success=notify_user_success,
-        )
-        return False
-
-
 class CellRangerRequestForm(BaseAccessRequestForm):
     """Form to request Cell Ranger access."""
 
@@ -437,5 +405,4 @@ ACCESS_FORMS = {
     'alphafold': AlphafoldRequestForm,
     'cellranger': CellRangerRequestForm,
     'diann': DiannRequestForm,
-    'fgenesh': FgeneshRequestForm,
 }
