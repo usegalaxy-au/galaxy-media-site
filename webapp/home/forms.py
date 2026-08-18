@@ -364,6 +364,12 @@ class AlphafoldRequestForm(BaseAccessRequestForm):
     count_aa = forms.IntegerField(required=False, label="Total count (AA)")
 
 
+class FgeneshRequestForm(BaseAccessRequestForm):
+    """Stub to allow users to view deprecated FGENESH++ form."""
+
+    RESOURCE_NAME = 'FGENESH++'
+
+
 class CellRangerRequestForm(BaseAccessRequestForm):
     """Form to request Cell Ranger access."""
 
@@ -405,4 +411,5 @@ ACCESS_FORMS = {
     'alphafold': AlphafoldRequestForm,
     'cellranger': CellRangerRequestForm,
     'diann': DiannRequestForm,
+    'fgenesh': FgeneshRequestForm,
 }
