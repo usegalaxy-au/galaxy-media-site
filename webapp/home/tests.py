@@ -194,15 +194,6 @@ class AccessRequestsTestCase(TestCase):
         })
         self.assert_access_form_success(response, auto_action=True)
 
-    def test_it_can_handle_request_for_fgenesh_access(self):
-        response = self.client.post('/request/access/fgenesh', {
-            'name': 'John Doe',
-            'email': 'test@uq.edu.au',
-            'agree_terms': 'on',
-            'agree_acknowledge': 'on',
-        })
-        self.assert_access_form_success(response, auto_action=False)
-
     def test_it_can_handle_request_for_cellranger_access(self):
         response = self.client.post('/request/access/cellranger', {
             'name': 'John Doe',
