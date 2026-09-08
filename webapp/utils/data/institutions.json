@@ -209,8 +209,22 @@
     "domains": [
       "@uq.edu.au",
       "@students.uq.edu.au",
+      "@awmc.uq.edu.au",
+      "@cai.uq.edu.au",
+      "@imb.uq.edu.au",
+      "@mater.uq.edu.au",
+      "@student.uq.edu.au",
+      "@student.uqconnect.edu.au",
+      "@tri.edu.au",
+      "@uq.connect.edu.au",
+      "@uq.edu",
+      "@uq.edu.eu",
+      "@uq.net",
+      "@uq.net.au",
+      "@uq.net.edu",
+      "@uqconnect.edu",
       "@uqconnect.edu.au",
-      "@uq.net.au"
+      "@uqconnect.net.au"
     ]
   },
   { "name": "Torrens University Australia", "domains": ["@torrens.edu.au"] },
@@ -235,7 +249,13 @@
     "name": "University of South Australia",
     "domains": ["@unisa.edu.au", "@mymail.unisa.edu.au"]
   },
-  { "name": "University of Southern Queensland", "domains": ["@usq.edu.au"] },
+  { "name": "University of Southern Queensland",
+    "domains": [
+      "@usq.edu.au",
+      "@unisq.edu.au",
+      "@umail.usq.edu.au"
+    ]
+  },
   {
     "name": "University of Sydney",
     "domains": ["@sydney.edu.au", "@uni.sydney.edu.au"]
