@@ -1,9 +1,17 @@
 """Test utilities."""
 
-from django.test import TestCase
+import os
+import shutil
+import time
 from unittest import mock
+
+import requests
+import requests_mock
+from django.test import TestCase
+
 from . import institution
 from .institution import is_institution_email
+from .test.data import TEST_APPROVED_DOMAINS
 
 
 MOCK_DOMAIN_LIST = {
@@ -18,8 +26,8 @@ class InstitutionEmailTestCase(TestCase):
     def setUp(self):
         self.domain_list = mock.patch.object(
             institution,
-            "_email_domains",
-            new=MOCK_DOMAIN_LIST)
+            "get_email_domains",
+            return_value=MOCK_DOMAIN_LIST)
 
     def test_valid_institution_email(self):
         email = "john.doe@uni.edu.au"
@@ -51,3 +59,90 @@ class InstitutionEmailTestCase(TestCase):
         email = "john.doe@subdomain.gov.au"
         with self.domain_list:
             self.assertTrue(is_institution_email(email))
+
+
+class ApprovedDomainsCacheTestCase(TestCase):
+    """Test fetching and caching of the remote approved domains list."""
+
+    def setUp(self):
+        shutil.rmtree(institution.CACHE_DIR, ignore_errors=True)
+
+    def tearDown(self):
+        shutil.rmtree(institution.CACHE_DIR, ignore_errors=True)
+
+    def test_institutions_are_sorted_with_bare_domains(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            institutions = institution.get_institutions()
+        self.assertEqual(
+            [i['name'] for i in institutions],
+            [
+                "Australian Genome Research Facility",
+                "Australian Government",
+                "The University of Queensland",
+            ],
+        )
+        self.assertEqual(institutions[1]['domains'], ["*.gov.au"])
+        self.assertEqual(
+            institutions[2]['domains'],
+            ["uq.edu.au", "student.uq.edu.au"],
+        )
+
+    def test_email_domains_are_prefixed(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            domains = institution.get_email_domains()
+        self.assertEqual(domains["@uq.edu.au"], "The University of Queensland")
+        self.assertIn("*.gov.au", domains)
+        self.assertNotIn("uq.edu.au", domains)
+
+    def test_is_institution_email_uses_remote_list(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            self.assertTrue(is_institution_email("a@uq.edu.au"))
+            self.assertTrue(is_institution_email("a@x.uq.edu.au"))
+            self.assertTrue(is_institution_email("a@health.gov.au"))
+            self.assertFalse(is_institution_email("a@gmail.com"))
+
+    def test_cache_hit_does_not_refetch(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            institution.get_institutions()
+            institution.get_email_domains()
+            institution.get_institutions()
+            self.assertEqual(m.call_count, 1)
+
+    def test_expired_cache_refetches(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            institution.get_institutions()
+            expired = time.time() - institution.CACHE_SECONDS - 60
+            for path in (
+                institution.INSTITUTIONS_CACHE_PATH,
+                institution.DOMAINS_CACHE_PATH,
+            ):
+                os.utime(path, (expired, expired))
+            institution.get_institutions()
+            self.assertEqual(m.call_count, 2)
+
+    def test_fetch_failure_serves_stale_cache(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            institution.get_institutions()
+            expired = time.time() - institution.CACHE_SECONDS - 60
+            os.utime(institution.INSTITUTIONS_CACHE_PATH, (expired, expired))
+            m.get(institution.APPROVED_DOMAINS_URL, status_code=500)
+            institutions = institution.get_institutions()
+        self.assertEqual(len(institutions), 3)
+
+    def test_fetch_failure_without_cache_raises(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL, status_code=500)
+            with self.assertRaises(requests.HTTPError):
+                institution.get_institutions()
