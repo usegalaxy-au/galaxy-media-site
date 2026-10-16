@@ -12,7 +12,7 @@
       <td>{{ institution.name }}</td>
       <td>
         {% for domain in institution.domains %}
-        {{ domain }}{% if not forloop.last %}, {% endif %}
+        <span class="badge bg-light text-dark border fw-normal my-1" style="font-size: 0.9rem;">{% if domain|slice:":1" != "*" %}@{% endif %}{{ domain }}</span>
         {% endfor %}
       </td>
     </tr>
