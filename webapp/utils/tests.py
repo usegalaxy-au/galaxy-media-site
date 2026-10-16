@@ -146,3 +146,52 @@ class ApprovedDomainsCacheTestCase(TestCase):
             m.get(institution.APPROVED_DOMAINS_URL, status_code=500)
             with self.assertRaises(requests.HTTPError):
                 institution.get_institutions()
+
+    def test_fetch_failure_defers_retry(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            institution.get_institutions()
+            self._expire_cache()
+            m.get(institution.APPROVED_DOMAINS_URL, status_code=500)
+            institution.get_institutions()
+            institution.get_institutions()
+            institution.get_email_domains()
+            # 1 initial fetch + 1 failed retry; cooldown blocks the rest
+            self.assertEqual(m.call_count, 2)
+
+            # Retry happens again once the cooldown has passed
+            self._expire_cache()
+            institution.get_institutions()
+            self.assertEqual(m.call_count, 3)
+
+    def test_write_leaves_no_temp_files(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            institution.get_institutions()
+        self.assertEqual(
+            sorted(p.name for p in institution.CACHE_DIR.iterdir()),
+            ['domains.json', 'institutions.json'],
+        )
+
+    def test_write_failure_cleans_temp_file(self):
+        with requests_mock.Mocker() as m:
+            m.get(institution.APPROVED_DOMAINS_URL,
+                  json=TEST_APPROVED_DOMAINS)
+            with mock.patch.object(
+                institution.os,
+                'replace',
+                side_effect=OSError('disk error'),
+            ):
+                with self.assertRaises(OSError):
+                    institution.get_institutions()
+        self.assertEqual(list(institution.CACHE_DIR.iterdir()), [])
+
+    def _expire_cache(self):
+        expired = time.time() - institution.CACHE_SECONDS - 60
+        for path in (
+            institution.INSTITUTIONS_CACHE_PATH,
+            institution.DOMAINS_CACHE_PATH,
+        ):
+            os.utime(path, (expired, expired))

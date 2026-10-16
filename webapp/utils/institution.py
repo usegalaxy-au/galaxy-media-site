@@ -8,6 +8,7 @@ import json
 import logging
 import os
 import re
+import tempfile
 import time
 from pathlib import Path
 
@@ -20,6 +21,7 @@ APPROVED_DOMAINS_URL = (
     'https://raw.githubusercontent.com/usegalaxy-au/infrastructure/'
     'refs/heads/master/roles/grouper/files/approved_domains.json')
 CACHE_SECONDS = 86400  # 24 hours
+RETRY_COOLDOWN_SECONDS = 3600  # 1 hour - wait after a failed refresh
 REQUEST_TIMEOUT_SECONDS = 10
 CACHE_DIR = Path(settings.MEDIA_ROOT) / 'institutions'
 INSTITUTIONS_CACHE_PATH = CACHE_DIR / 'institutions.json'
@@ -91,12 +93,18 @@ def _read_cache(path):
     if not _is_cache_fresh(path):
         try:
             _refresh_cache()
-        except (requests.RequestException, ValueError, KeyError) as exc:
+        except (
+            requests.RequestException,
+            ValueError,
+            KeyError,
+            OSError,
+        ) as exc:
             if not path.exists():
                 raise
             logger.warning(
                 f"Failed to fetch approved domains from"
                 f" {APPROVED_DOMAINS_URL} - using stale cache: {exc}")
+            _defer_refresh()
     with open(path) as f:
         return json.load(f)
 
@@ -107,6 +115,17 @@ def _is_cache_fresh(path):
         path.exists()
         and os.path.getmtime(path) > time.time() - CACHE_SECONDS
     )
+
+
+def _defer_refresh():
+    """Mark stale cache as fresh until the retry cooldown expires.
+
+    Prevents every request blocking on a slow/unreachable remote.
+    """
+    mtime = time.time() - CACHE_SECONDS + RETRY_COOLDOWN_SECONDS
+    for path in (INSTITUTIONS_CACHE_PATH, DOMAINS_CACHE_PATH):
+        if path.exists():
+            os.utime(path, (mtime, mtime))
 
 
 def _refresh_cache():
@@ -126,12 +145,22 @@ def _refresh_cache():
 def _write_json_atomic(path, data):
     """Write JSON to a temp file and move into place.
 
-    Prevents concurrent workers from reading a partially written file.
+    Prevents concurrent workers/threads from reading a partially written
+    file. Each call writes to its own unique temp file.
     """
-    tmp_path = path.with_suffix(f'.{os.getpid()}.tmp')
-    with open(tmp_path, 'w') as f:
-        json.dump(data, f, indent=2)
-    os.replace(tmp_path, path)
+    fd, tmp_path = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=path.name,
+        suffix='.tmp',
+    )
+    try:
+        with os.fdopen(fd, 'w') as f:
+            json.dump(data, f, indent=2)
+        os.replace(tmp_path, path)
+    except BaseException:
+        if os.path.exists(tmp_path):
+            os.unlink(tmp_path)
+        raise
 
 
 def _build_institutions(data):
