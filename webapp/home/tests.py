@@ -174,7 +174,7 @@ class HomeTestCase(TestCase):
         self.assertNotContains(response, '@*.gov.au')
         self.assertContains(
             response,
-            'All email domains ending in *.gov.au',
+            'All email domains ending in .gov.au',
         )
 
     @requests_mock.Mocker()
