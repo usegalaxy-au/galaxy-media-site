@@ -15,7 +15,7 @@
         {% if domain|slice:":1" == "*" %}
         <div>
           <span class="badge bg-light text-dark border fw-normal my-1" style="font-size: 0.9rem;">{{ domain }}</span>
-          <em class="small">- All email domains ending in {{ domain }}</em>
+          <em class="small">- All email domains ending in <strong>{{ domain|slice:"1:" }}</strong></em>
         </div>
         {% else %}
         <span class="badge bg-light text-dark border fw-normal my-1" style="font-size: 0.9rem;">@{{ domain }}</span>
