@@ -168,10 +168,10 @@ def _build_institutions(data):
     institutions = [
         {
             'name': group['name'],
-            'domains': [
-                domain.strip().lower()
-                for domain in group['domains']
-            ],
+            'domains': sorted(
+                (domain.strip().lower() for domain in group['domains']),
+                key=lambda d: not d.startswith('*'),  # Wildcards first
+            ),
         }
         for group in data.values()
     ]

@@ -172,6 +172,10 @@ class HomeTestCase(TestCase):
         self.assertContains(response, '@uq.edu.au')
         self.assertContains(response, '*.gov.au')
         self.assertNotContains(response, '@*.gov.au')
+        self.assertContains(
+            response,
+            'All email domains ending in *.gov.au will be included',
+        )
 
     @requests_mock.Mocker()
     def test_utility_institution(self, m):

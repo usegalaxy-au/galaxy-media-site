@@ -195,3 +195,15 @@ class ApprovedDomainsCacheTestCase(TestCase):
             institution.DOMAINS_CACHE_PATH,
         ):
             os.utime(path, (expired, expired))
+
+    def test_wildcard_domains_are_listed_first(self):
+        institutions = institution._build_institutions({
+            "mixed": {
+                "name": "Mixed",
+                "domains": ["b.edu.au", "*.gov.au", "a.edu.au"],
+            },
+        })
+        self.assertEqual(
+            institutions[0]['domains'],
+            ["*.gov.au", "b.edu.au", "a.edu.au"],
+        )
