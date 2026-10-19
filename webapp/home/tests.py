@@ -1,4 +1,5 @@
 import requests
+import requests_mock
 from django.test import Client
 from django.core.files import File
 from django.core import mail
@@ -11,6 +12,7 @@ from events.test.data import TEST_EVENTS, TEST_SUPPORTERS, TEST_TAGS
 from news.models import News
 from news.test.data import TEST_NEWS
 from utils import institution
+from utils.test.data import TEST_APPROVED_DOMAINS
 from webapp.test import TestCase
 
 TEST_DATA_DIR = Path(__file__).parent / 'test/data'
@@ -156,12 +158,28 @@ class HomeTestCase(TestCase):
             'University of Queensland'
         )
 
-    def test_webpages(self):
+    @requests_mock.Mocker()
+    def test_webpages(self, m):
+        m.get(institution.APPROVED_DOMAINS_URL, json=TEST_APPROVED_DOMAINS)
         for endpoint in TEST_ENDPOINTS:
             response = self.client.get(endpoint)
             self.assertLess(response.status_code, 300)
 
-    def test_utility_institution(self):
+    @requests_mock.Mocker()
+    def test_list_of_institutions_domain_display(self, m):
+        m.get(institution.APPROVED_DOMAINS_URL, json=TEST_APPROVED_DOMAINS)
+        response = self.client.get('/list-of-institutions.html')
+        self.assertContains(response, '@uq.edu.au')
+        self.assertContains(response, '*.gov.au')
+        self.assertNotContains(response, '@*.gov.au')
+        self.assertContains(
+            response,
+            'All email domains ending in *.gov.au',
+        )
+
+    @requests_mock.Mocker()
+    def test_utility_institution(self, m):
+        m.get(institution.APPROVED_DOMAINS_URL, json=TEST_APPROVED_DOMAINS)
         assert institution.is_institution_email('johndoe@uq.edu.au')
         assert not institution.is_institution_email('johndoe@gmail.com')
         # Subdomain matching
@@ -178,6 +196,16 @@ class HomeTestCase(TestCase):
 
 
 class AccessRequestsTestCase(TestCase):
+
+    def setUp(self):
+        super().setUp()
+        mocker = requests_mock.Mocker()
+        mocker.start()
+        self.addCleanup(mocker.stop)
+        mocker.get(
+            institution.APPROVED_DOMAINS_URL,
+            json=TEST_APPROVED_DOMAINS,
+        )
 
     def test_it_can_show_alphafold_access_form(self):
         response = self.client.get('/request/access/alphafold')
